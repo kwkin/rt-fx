@@ -1,0 +1,208 @@
+/*-- ############################### Filled Spinner Accents ############################### */
+.rt-spinner.filled.primary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-light-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.primary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-mid-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.primary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-dark-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.secondary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-light-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.secondary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-mid-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.secondary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-dark-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.base-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-light-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.base-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-mid-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.filled.base-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-dark-color;
+    -rt-background-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Flat Spinner Accents ############################### */
+.rt-spinner.flat.primary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.primary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.primary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.secondary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.secondary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.secondary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.base-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.base-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-spinner.flat.base-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Filled Spinner Styles ############################### */
+.rt-spinner.filled
+{
+    -fx-background-color: -rt-background-color;
+	-fx-background-radius: 2.0;
+    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-radius: 0;
+	-fx-border-width: 0 0 2 0;
+    -fx-border-radius: 0;
+    -fx-max-width: 1000000;
+    -fx-text-fill: -rt-text-color;
+}
+
+.rt-spinner.filled .text-field
+{
+    -fx-background-color: transparent;
+	-fx-background-radius: 0;
+	-fx-border-color: transparent;
+	-fx-border-width: 0;
+}
+
+.rt-spinner.filled:hover, 
+.rt-spinner.filled:focused
+{
+    -fx-border-color: -rt-selected-border-color;
+}
+
+.rt-spinner .increment-arrow-button, 
+.rt-spinner .decrement-arrow-button 
+{
+	-fx-background-color: transparent;
+	-fx-fill: swatch-500;
+}
+
+.rt-spinner .increment-arrow-button .increment-arrow
+{
+    -fx-shape: "M 350 250 L 350 100 L 450 100 L 450 250 L 600 250 L 600 350 L 450 350 L 450 500 L 350 500 L 350 350 L 200 350 L 200 250 L 350 250";
+    -fx-border-color: -rt-selected-border-color;
+}
+
+.rt-spinner .decrement-arrow-button .decrement-arrow
+{
+    -fx-shape: "M 600 250 L 600 350 L 200 350 L 200 250 L 600 250";
+    -fx-border-color: -rt-selected-border-color;
+}
+
+.rt-spinner .increment-arrow-button, 
+.rt-spinner .decrement-arrow-button 
+{
+	-fx-background-color: transparent;
+	-fx-fill: swatch-500;
+}
+
+/*-- ############################### Flat Spinner Styles ############################### */
+.rt-spinner.flat
+{
+    -fx-background-color: transparent;
+	-fx-background-radius: 2.0;
+    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-radius: 0;
+    -fx-border-width: 0 0 2 0;
+    -fx-max-width: 1000000;
+	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
+    -fx-text-fill: -rt-text-color;
+}
+
+.rt-spinner.flat:hover, 
+.rt-spinner.flat:focused
+{
+    -fx-border-color: -rt-selected-border-color;
+}

@@ -1,0 +1,116 @@
+
+/*-- ############################### Accents ############################### */
+.rt-check-box.primary-light
+{
+    -rt-selected-color: -rt-primary-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.primary-mid
+{
+    -rt-selected-color: -rt-primary-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.primary-dark
+{
+    -rt-selected-color: -rt-primary-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.secondary-light
+{
+    -rt-selected-color: -rt-secondary-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.secondary-mid
+{
+    -rt-selected-color: -rt-secondary-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.secondary-dark
+{
+    -rt-selected-color: -rt-secondary-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.base-light
+{
+    -rt-selected-color: -rt-base-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.base-mid
+{
+    -rt-selected-color: -rt-base-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-check-box.base-dark
+{
+    -rt-selected-color: -rt-base-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+} 
+
+/*-- ############################### Check Box Style ############################### */
+.rt-check-box
+{
+    -fx-cursor: hand;
+}
+
+.rt-check-box .box
+{
+    -fx-pref-width: 18;
+    -fx-pref-height: 18;
+
+    -fx-min-width: -fx-pref-width;
+    -fx-max-width: -fx-pref-width;
+    -fx-min-height: -fx-pref-height;
+    -fx-max-height: -fx-pref-height;
+
+    -fx-background-color: transparent;
+    -fx-background-radius: 2;
+
+    -fx-border-color: -rt-unselected-color;
+    -fx-border-style: solid;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+}
+
+.rt-check-box:hover .box
+{
+    -fx-border-color: -rt-selected-color;
+    -fx-border-radius: 2;
+}
+
+.rt-check-box:selected .box,
+.rt-check-box:indeterminate .box,
+.rt-check-box:indeterminate:selected .box
+{
+    -fx-border-color: -rt-selected-color;
+    -fx-border-radius: 2;
+}
+
+ .rt-check-box .box .mark 
+ {
+    -fx-shape: "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z";
+
+    -fx-max-width: 12;
+    -fx-max-height: 12;
+
+    -fx-background-color: -rt-base-light-color;
+    -fx-border-color: -rt-base-light-color;
+
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+.rt-check-box .box .indeterminate-mark{
+    -fx-background-color: -rt-selected-color;
+    -fx-background-radius: 2;
+    -fx-border-width: 0;
+    -fx-max-width: 10;
+    -fx-max-height: 10;
+}

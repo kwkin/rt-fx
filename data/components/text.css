@@ -1,0 +1,203 @@
+/*-- ############################### Small ############################### */
+.rt-text-flow .rt-text.small
+{
+    -fx-font-size: 12px;
+}
+
+.rt-text-flow .rt-text.small.base-light
+{
+    -fx-text-fill: -rt-base-light-text-color;
+}
+
+.rt-text-flow .rt-text.small.base-mid
+{
+    -fx-text-fill: -rt-base-mid-text-color;
+}
+
+.rt-text-flow .rt-text.small.base-dark
+{
+    -fx-text-fill: -rt-base-dark-text-color;
+}
+
+.rt-text-flow .rt-text.small.primary-light
+{
+    -fx-text-fill: -rt-primary-light-color;
+}
+
+.rt-text-flow .rt-text.small.primary-mid
+{
+    -fx-text-fill: -rt-primary-mid-color;
+}
+
+.rt-text-flow .rt-text.small.primary-dark
+{
+    -fx-text-fill: -rt-primary-dark-color;
+}
+
+.rt-text-flow .rt-text.small.secondary-light
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow .rt-text.small.secondary-mid
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow .rt-text.small.secondary-dark
+{
+    -fx-text-fill: -rt-secondary-dark-color;
+}
+
+/*-- ############################### Normal ############################### */
+.rt-text-flow.normal
+{
+    -fx-font-size: 14px;
+}
+
+.rt-text-flow.normal.base-light
+{
+    -fx-text-fill: -rt-base-light-text-color;
+}
+
+.rt-text-flow.normal.base-mid
+{
+    -fx-text-fill: -rt-base-mid-text-color;
+}
+
+.rt-text-flow.normal.base-dark
+{
+    -fx-text-fill: -rt-base-dark-text-color;
+}
+
+.rt-text-flow.normal.primary-light
+{
+    -fx-text-fill: -rt-primary-light-color;
+}
+
+.rt-text-flow.normal.primary-mid
+{
+    -fx-text-fill: -rt-primary-mid-color;
+}
+
+.rt-text-flow.normal.primary-dark
+{
+    -fx-text-fill: -rt-primary-dark-color;
+}
+
+.rt-text-flow.normal.secondary-light
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.normal.secondary-mid
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.normal.secondary-dark
+{
+    -fx-text-fill: -rt-secondary-dark-color;
+}
+
+/*-- ############################### Large ############################### */
+.rt-text-flow.large
+{
+    -fx-font-size: 16px;
+}
+
+.rt-text-flow.large.base-light
+{
+    -fx-text-fill: -rt-base-light-text-color;
+}
+
+.rt-text-flow.large.base-mid
+{
+    -fx-text-fill: -rt-base-mid-text-color;
+}
+
+.rt-text-flow.large.base-dark
+{
+    -fx-text-fill: -rt-base-dark-text-color;
+}
+
+.rt-text-flow.large.primary-light
+{
+    -fx-text-fill: -rt-primary-light-color;
+}
+
+.rt-text-flow.large.primary-mid
+{
+    -fx-text-fill: -rt-primary-mid-color;
+}
+
+.rt-text-flow.large.primary-dark
+{
+    -fx-text-fill: -rt-primary-dark-color;
+}
+
+.rt-text-flow.large.secondary-light
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.large.secondary-mid
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.large.secondary-dark
+{
+    -fx-text-fill: -rt-secondary-dark-color;
+}
+
+/*-- ############################### Title ############################### */
+.rt-text-flow.title
+{
+    -fx-font-size: 18px;
+}
+
+.rt-text-flow.title.base-light
+{
+    -fx-text-fill: -rt-base-light-text-color;
+}
+
+.rt-text-flow.title.base-mid
+{
+    -fx-text-fill: -rt-base-mid-text-color;
+}
+
+.rt-text-flow.title.base-dark
+{
+    -fx-text-fill: -rt-base-dark-text-color;
+}
+
+.rt-text-flow.title.primary-light
+{
+    -fx-text-fill: -rt-primary-light-color;
+}
+
+.rt-text-flow.title.primary-mid
+{
+    -fx-text-fill: -rt-primary-mid-color;
+}
+
+.rt-text-flow.title.primary-dark
+{
+    -fx-text-fill: -rt-primary-dark-color;
+}
+
+.rt-text-flow.title.secondary-light
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.title.secondary-mid
+{
+    -fx-text-fill: -rt-secondary-mid-color;
+}
+
+.rt-text-flow.title.secondary-dark
+{
+    -fx-text-fill: -rt-secondary-dark-color;
+}

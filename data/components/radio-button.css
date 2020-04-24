@@ -1,0 +1,109 @@
+/*-- ############################### Radio Button Accents ############################### */
+.rt-radio-button.primary-light
+{
+    -rt-selected-color: -rt-primary-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.primary-mid
+{
+    -rt-selected-color: -rt-primary-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.primary-dark
+{
+    -rt-selected-color: -rt-primary-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.secondary-light
+{
+    -rt-selected-color: -rt-secondary-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.secondary-mid
+{
+    -rt-selected-color: -rt-secondary-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.secondary-dark
+{
+    -rt-selected-color: -rt-secondary-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.base-light
+{
+    -rt-selected-color: -rt-base-light-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.base-mid
+{
+    -rt-selected-color: -rt-base-mid-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+.rt-radio-button.base-dark
+{
+    -rt-selected-color: -rt-base-dark-color;
+    -rt-unselected-color: -rt-base-dark-color;
+}
+
+/*-- ############################### Radio Button Styles ############################### */
+.rt-radio-button 
+{
+    -fx-cursor: hand;
+}
+
+.rt-radio-button .text 
+{
+	-fx-fill: -fx-text-base-color;
+}
+
+.rt-radio-button .radio, 
+.rt-radio-button .radio.unfocused, 
+.rt-radio-button:disabled .radio 
+{
+	-fx-border-radius: 100.0;
+	-fx-border-width: 2;
+	-fx-background-radius: 100;
+	-fx-background-color: transparent;
+	-fx-padding: 3;
+}
+
+.rt-radio-button:focused .radio 
+{
+	-fx-background-color: transparent;
+	-fx-padding: 3;
+}
+
+.rt-radio-button:focused:armed .radio 
+{
+	-fx-background-color: transparent;
+	-fx-padding: 3;
+}
+
+.rt-radio-button:hover .radio 
+{
+	-fx-border-color: -rt-selected-color;
+	-fx-background-insets: 0;
+}
+
+.rt-radio-button:selected .radio 
+{
+	-fx-border-color: -rt-selected-color;
+	-fx-background-insets: 0;
+}
+
+/* 
+.rt-radio-button:selected .radio .dot 
+{
+	-fx-background-color: -rt-selected-color;
+	-fx-background-insets: 0;
+} 
+*/
+

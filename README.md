@@ -1,2 +1,6 @@
-# rt-fx
-An extension providing a modernized look-and-feel to JavaFX.
+# RT-FX
+
+![Desktop Application Sample](/img/sample1.png)
+
+## LICENSE
+[Icons obtained here](https://github.com/Templarian/MaterialDesign) 

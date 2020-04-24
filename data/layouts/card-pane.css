@@ -1,0 +1,57 @@
+/*-- ############################### Card Pane Accents ############################### */
+.rt-card-pane.primary-light
+{
+    -fx-background-color: -rt-primary-light-color;
+}
+
+.rt-card-pane.primary-mid
+{
+    -fx-background-color: -rt-primary-mid-color;
+}
+
+.rt-card-pane.primary-dark
+{
+    -fx-background-color: -rt-primary-dark-color;
+}
+
+.rt-card-pane.secondary-light
+{
+    -fx-background-color: -rt-secondary-light-color;
+}
+
+.rt-card-pane.secondary-mid
+{
+    -fx-background-color: -rt-secondary-mid-color;
+}
+
+.rt-card-pane.secondary-dark
+{
+    -fx-background-color: -rt-secondary-dark-color;
+}
+
+.rt-card-pane.base-light
+{
+    -fx-background-color: -rt-base-light-color;
+}
+
+.rt-card-pane.base-mid
+{
+    -fx-background-color: -rt-base-mid-color;
+}
+
+.rt-card-pane.base-dark
+{
+    -fx-background-color: -rt-base-dark-color;
+}
+
+/*-- ############################### Card Pane Styles ############################### */
+.rt-card-pane
+{
+    -fx-background-color: -rt-main-light-color;
+    -fx-background-radius: 4;
+    -fx-border-color: -rt-main-light-color;
+    -fx-border-width: 0 0 0 0;
+    -fx-hgap: 10;
+    
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 7, 0.06, 0, 2);
+}

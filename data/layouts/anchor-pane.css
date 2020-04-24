@@ -1,0 +1,49 @@
+.rt-anchor-pane
+{
+}
+
+/*-- ############################### Anchor Pane Accents ############################### */
+.rt-anchor-pane.primary-light
+{
+    -fx-background-color: -rt-primary-light-color;
+}
+
+.rt-anchor-pane.primary-mid
+{
+    -fx-background-color: -rt-primary-mid-color;
+}
+
+.rt-anchor-pane.primary-dark
+{
+    -fx-background-color: -rt-primary-dark-color;
+}
+
+.rt-anchor-pane.secondary-light
+{
+    -fx-background-color: -rt-secondary-light-color;
+}
+
+.rt-anchor-pane.secondary-mid
+{
+    -fx-background-color: -rt-secondary-mid-color;
+}
+
+.rt-anchor-pane.secondary-dark
+{
+    -fx-background-color: -rt-secondary-dark-color;
+}
+
+.rt-anchor-pane.base-light
+{
+    -fx-background-color: -rt-base-light-color;
+}
+
+.rt-anchor-pane.base-mid
+{
+    -fx-background-color: -rt-base-mid-color;
+}
+
+.rt-anchor-pane.base-dark
+{
+    -fx-background-color: -rt-base-dark-color;
+}

@@ -1,0 +1,47 @@
+.root 
+{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+    /*-- ############################### Font ############################### */
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14;
+
+    /*-- ############################### Main Color ############################### */
+    -rt-main-light-color: #212121;
+    -rt-main-mid-color: #303030;
+    -rt-main-dark-color: #424242;
+
+    -rt-main-light-text-color: #ffffff;
+    -rt-main-mid-text-color: #ffffff;
+    -rt-main-dark-text-color: #ffffff;
+
+    /*-- ############################### Base Color ############################### */
+    -rt-base-light-color: #efb7ff;
+    -rt-base-mid-color: #bb86fc;
+    -rt-base-dark-color: #8858c8;
+
+    -rt-base-light-text-color: #000000;
+    -rt-base-mid-text-color: #000000;
+    -rt-base-dark-text-color: #ffffff;
+
+    /*-- ############################### Primary Color ############################### */
+    -rt-primary-light-color: #80d6ff;
+    -rt-primary-mid-color: #03dac6;
+    -rt-primary-dark-color: #0077c2;
+    
+    -rt-primary-light-text-color: #000000;
+    -rt-primary-mid-text-color: #000000;
+    -rt-primary-dark-text-color: #0a0a0a;
+    
+    /*-- ############################### Secondary Color ############################### */
+    -rt-secondary-light-color: #66fff9;
+    -rt-secondary-mid-color: #03dac6;
+    -rt-secondary-dark-color: #00a896;
+    
+    -rt-secondary-light-text-color: #000000;
+    -rt-secondary-mid-text-color: #000000;
+    -rt-secondary-dark-text-color: #000000;
+    
+    -fx-background-color : #000000;
+}

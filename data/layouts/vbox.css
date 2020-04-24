@@ -1,0 +1,51 @@
+.rt-vbox.primary-light
+{
+    -fx-background-color: -rt-primary-light-color;
+}
+
+.rt-vbox.primary-mid
+{
+    -fx-background-color: -rt-primary-mid-color;
+}
+
+.rt-vbox.primary-dark
+{
+    -fx-background-color: -rt-primary-dark-color;
+}
+
+.rt-vbox.secondary-light
+{
+    -fx-background-color: -rt-secondary-light-color;
+}
+
+.rt-vbox.secondary-mid
+{
+    -fx-background-color: -rt-secondary-mid-color;
+}
+
+.rt-vbox.secondary-dark
+{
+    -fx-background-color: -rt-secondary-dark-color;
+}
+
+.rt-vbox.base-light
+{
+    -fx-background-color: -rt-base-light-color;
+}
+
+.rt-vbox.base-mid
+{
+    -fx-background-color: -rt-base-mid-color;
+}
+
+.rt-vbox.base-dark
+{
+    -fx-background-color: -rt-base-dark-color;
+}
+
+/*-- ############################### HBox Style ############################### */
+.rt-vbox
+{ 
+    -fx-spacing: 5;
+    -fx-padding: 0 10 0 10;
+}

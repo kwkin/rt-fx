@@ -1,0 +1,53 @@
+/*-- ############################### Tile Pane Accents ############################### */
+.rt-tile-pane.primary-light
+{
+    -fx-background-color: -rt-primary-light-color;
+}
+
+.rt-tile-pane.primary-mid
+{
+    -fx-background-color: -rt-primary-mid-color;
+}
+
+.rt-tile-pane.primary-dark
+{
+    -fx-background-color: -rt-primary-dark-color;
+}
+
+.rt-tile-pane.secondary-light
+{
+    -fx-background-color: -rt-secondary-light-color;
+}
+
+.rt-tile-pane.secondary-mid
+{
+    -fx-background-color: -rt-secondary-mid-color;
+}
+
+.rt-tile-pane.secondary-dark
+{
+    -fx-background-color: -rt-secondary-dark-color;
+}
+
+.rt-tile-pane.base-light
+{
+    -fx-background-color: -rt-base-light-color;
+}
+
+.rt-tile-pane.base-mid
+{
+    -fx-background-color: -rt-base-mid-color;
+}
+
+.rt-tile-pane.base-dark
+{
+    -fx-background-color: -rt-base-dark-color;
+}
+
+/*-- ############################### Tile Pane Style ############################### */
+.rt-tile-pane
+{
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-padding: 16;
+}
