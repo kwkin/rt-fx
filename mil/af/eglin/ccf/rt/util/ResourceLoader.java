@@ -13,10 +13,6 @@ public class ResourceLoader
     private final static String LAYOUTS_DIRECTORY = "../../../../../../data/layouts";
     private final static String ICONS_DIRECTORY = "../../../../../../data/icons";
     private final static String DEMO_DATA_DIRECTORY = "../../../../../../test/data";
-    
-    // TODO make this into a proper gradle project or somethin' so I don't have to do this
-    private final static String DATA_DIRECTORY_JFX = "../../../../../../../../JFoenix-master/src/data";
-    private final static String DATA_DIRECTORY_JFX_DEMO = "../../../../../../../../JFoenix-master/demo/build/resources/main/css";
 
     public static String loadFile(String fileName)
     {
