@@ -11,12 +11,14 @@
 }
 
 
-.text-field {
+.text-field 
+{
     -fx-max-width: 300;
 }
 
 /* JFeonix Components Demo CSS */
-.jfx-text-field, .jfx-password-field {
+.jfx-text-field, .jfx-password-field 
+{
     -fx-background-color: WHITE;
     -fx-font-weight: BOLD;
     -fx-prompt-text-fill: #808080;
@@ -26,8 +28,10 @@
     -fx-max-width: 300;
 }
 
-.jfx-decorator {
-    -fx-decorator-color: derive(#8695ac, -40%);
+.jfx-decorator 
+{
+    -fx-decorator-color: #121212;
+    /* -fx-decorator-color: derive(-rt-primary-light-color, -40%); */
 }
 
 .jfx-decorator .jfx-decorator-buttons-container {
@@ -89,7 +93,6 @@
 }
 
 /* Button */
-
 .button-raised {
     -fx-padding: 0.7em 0.57em;
     -fx-font-size: 14px;
@@ -185,7 +188,7 @@
 .jfx-tool-bar {
     -fx-font-size: 20;
     -fx-font-weight: BOLD;
-    -fx-background-color: derive(#8695ac, -20%);
+    -fx-decorator-color: #1a1a1a;
     -fx-pref-width: 100%;
     -fx-pref-height: 48px;
 }

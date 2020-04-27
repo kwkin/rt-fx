@@ -2,7 +2,7 @@
 {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-background-color : #4ab884;
+    -fx-background-color : #121212;
 
     /*-- ############################### Font ############################### */
     -fx-font-family: "Roboto";
@@ -10,9 +10,9 @@
 
     /* Main colors are used on backgrounds and overlays */
     /*-- ############################### Main Color ############################### */
-    -rt-main-light-color: #1f2023;
-    -rt-main-mid-color: #2c2e31;
-    -rt-main-dark-color: #303235;
+    -rt-main-light-color: #1d1d1d;
+    -rt-main-mid-color: #1a1a1a;
+    -rt-main-dark-color: #212121;
 
     -rt-main-light-text-color: #ffffff;
     -rt-main-mid-text-color: #ffffff;
@@ -20,9 +20,9 @@
 
     /* Base colors are used on components */
     /*-- ############################### Base Color ############################### */
-    -rt-base-light-color: #4c5053;
-    -rt-base-mid-color: #6a6d70;
-    -rt-base-dark-color: #999ea4;
+    -rt-base-light-color: #2c2c2c;
+    -rt-base-mid-color: #323232;
+    -rt-base-dark-color: #373737;
 
     -rt-base-light-text-color: #ffffff;
     -rt-base-mid-text-color: #ffffff;
@@ -32,9 +32,9 @@
 
     /* Primary colors are used to accent components */
     /*-- ############################### Primary Color ############################### */
-    -rt-primary-light-color: #49a7d2;
-    -rt-primary-mid-color: #2d9fd6;
-    -rt-primary-dark-color: #035d90;
+    -rt-primary-light-color: #bb86fc;
+    -rt-primary-mid-color: #bb86fc;
+    -rt-primary-dark-color: #3700b3;
     
     -rt-primary-light-text-color: #000000;
     -rt-primary-mid-text-color: #000000;
@@ -44,30 +44,13 @@
 
     /* Secondary colors are used to accent components */
     /*-- ############################### Secondary Color ############################### */
-    -rt-secondary-light-color: #5ae0a2;
-    -rt-secondary-mid-color: #4ab884;
-    -rt-secondary-dark-color: #398f67;
+    -rt-secondary-light-color: #03dac6;
+    -rt-secondary-mid-color: #03dac6;
+    -rt-secondary-dark-color: #03dac6;
     
     -rt-secondary-light-text-color: #000000;
     -rt-secondary-mid-text-color: #000000;
     -rt-secondary-dark-text-color: #000000;
     
     -rt-secondary-overlay-color: rgba(255, 255, 255, 0.25);
-}
-
-.rt-label.block-title.primary-mid
-{
-    -fx-background-color: -rt-main-dark-color;
-    -fx-text-fill: -rt-main-dark-text-color;
-}
-
-.rt-card-pane
-{
-    -fx-background-color: -rt-main-light-color;
-    -fx-background-radius: 4;
-    -fx-border-color: -rt-main-light-color;
-    -fx-border-width: 0 0 0 0;
-    -fx-hgap: 10;
-    
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 17, 0.45, 0, 4);
 }

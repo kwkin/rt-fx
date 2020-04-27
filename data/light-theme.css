@@ -26,6 +26,8 @@
     -rt-base-mid-text-color: #000000;
     -rt-base-dark-text-color: #000000;
 
+    -rt-base-overlay-color: rgba(0, 0, 0, 0.25);
+
     /*-- ############################### Primary Color ############################### */
     -rt-primary-light-color: #8695ac;
     -rt-primary-mid-color: #414f63;
@@ -35,7 +37,7 @@
     -rt-primary-mid-text-color: #ffffff;
     -rt-primary-dark-text-color: #ffffff;
     
-    -rt-primary-overlay-color: #000000;
+    -rt-primary-overlay-color: rgba(255, 255, 255, 0.25);
 
     /*-- ############################### Secondary Color ############################### */
     -rt-secondary-light-color: #ff8e9b;
@@ -46,5 +48,5 @@
     -rt-secondary-mid-text-color: #ffffff;
     -rt-secondary-dark-text-color: #ffffff;
 
-    -rt-secondary-overlay-color: #000000;
+    -rt-secondary-overlay-color: rgba(255, 255, 255, 0.25);
 }

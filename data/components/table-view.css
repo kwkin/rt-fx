@@ -208,6 +208,7 @@
 .tree-table-view .column-drag-header .label
 {
 	-fx-alignment: center-left;
+    -fx-text-fill: -rt-text-fill;
 }
 
 .rt-table-view .column-header-background, 
