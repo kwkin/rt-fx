@@ -68,8 +68,6 @@
     -fx-max-height: -rt-size;
 }
 
-/* TODO horizontal bar and corner styling */ 
-
 .rt-scroll-pane .scroll-bar .increment-button,
 .rt-scroll-pane .scroll-bar .decrement-button 
 {
@@ -218,7 +216,7 @@
 }
 
 /*-- ############################### List View Scroll Bar Corner Style ############################### */
-.list-view .virtual-flow .corner
+.scroll-pane .corner
 {
     -fx-background-color: transparent;
 }

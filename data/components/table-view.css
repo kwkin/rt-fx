@@ -3,60 +3,180 @@
 .rt-table-view.primary-light
 {
     -rt-accent-color: -rt-primary-light-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
+
 }
 
 .rt-table-view.primary-mid
 {
     -rt-accent-color: -rt-primary-mid-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.primary-dark
 {
     -rt-accent-color: -rt-primary-dark-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-light
 {
     -rt-accent-color: -rt-secondary-light-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-mid
 {
     -rt-accent-color: -rt-secondary-mid-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-dark
 {
     -rt-accent-color: -rt-secondary-dark-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-light
 {
     -rt-accent-color: -rt-base-light-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-mid
 {
     -rt-accent-color: -rt-base-mid-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-dark
 {
     -rt-accent-color: -rt-base-dark-color;
+    
+    -rt-border-color: #e4e4e4;
+    -rt-text-fill: -rt-main-dark-text-color;
+    -rt-cell-background: -rt-main-light-color;
+    -rt-cell-odd-background: -rt-main-mid-color;
+
+    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
+    -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 /*-- ############################### Table View Style ############################### */
 .rt-table-view, .tree-table-view 
 {
     -fx-background-color: transparent;
-    
-    -fx-padding: 1;
-
-    /* TODO add this color to the template */
-    -rt-border-color: #e4e4e4;
-    -rt-text-fill: -rt-main-dark-text-color;
+    -fx-padding: 4 4 4 4;
 }
 
+.rt-table-view .table-cell 
+{
+    -fx-alignment: center-left;
+    -fx-border-width: 0 0 0 0;
+    -fx-cursor: hand;
+    -fx-padding: 4 16 4 16;
+    -fx-text-fill: -rt-text-fill;
+}
+
+.rt-table-view .table-row-cell
+{
+	-fx-cell-size: 48px;
+	-fx-border-color: -rt-border-color;
+	-fx-border-width: 0 0 1 0;
+}
+
+.rt-table-view.plain .table-row-cell
+{
+    -fx-background: -rt-cell-background;
+}
+
+.rt-table-view.zebra .table-row-cell
+{
+    -fx-background: -rt-cell-odd-background;
+}
+
+.rt-table-view .table-row-cell:odd 
+{
+	-fx-border-color: -rt-border-color;
+	-fx-border-width: 0 0 1 0;
+}
+
+.rt-table-view.plain .table-row-cell:odd 
+{
+    -fx-background: -rt-main-light-color;
+}
+
+.rt-table-view.zebra .table-row-cell:odd 
+{
+    -fx-background: -rt-main-light-color;
+}
+
+/*-- ############################### Table View Header Style ############################### */
 .rt-table-view .filler, 
 .tree-table-view .filler, 
 .rt-table-view .column-header,
@@ -64,9 +184,11 @@
 {
 	-fx-background-color: transparent;
     -fx-border-style: null;
-    -fx-border-style: solid segments(0, 12, 25, 15) solid solid;
+    -fx-border-style: solid solid solid solid;
+    /* -fx-border-style: solid segments(0, 12, 25, 15) solid solid; */
 	-fx-border-color: -rt-border-color;
-	-fx-border-width: 0 2 1 0;
+	-fx-border-width: 0 1 1 0;
+    -fx-cursor: hand;
     -fx-font-family: "Roboto Black";
     -fx-padding: 4 16 4 16;
 	-fx-size: 48px;
@@ -94,98 +216,16 @@
 	-fx-background-color: transparent;
 }
 
-.rt-table-view .table-cell 
-{
-    -fx-alignment: center-left;
-	-fx-border-width: 0 0 0 0;
-    -fx-padding: 4 16 4 16;
-    -fx-text-fill: -rt-text-fill;
-}
-
-.rt-table-view .table-row-cell
-{
-	-fx-cell-size: 48px;
-	-fx-border-color: -rt-border-color;
-	-fx-border-width: 0 0 1 0;
-}
-
-.rt-table-view.plain .table-row-cell
-{
-    -fx-background: -rt-main-light-color;
-}
-
-.rt-table-view.zebra .table-row-cell
-{
-    -fx-background: -rt-main-mid-color;
-}
-
-.rt-table-view .table-row-cell:odd 
-{
-	-fx-border-color: -rt-border-color;
-	-fx-border-width: 0 0 1 0;
-}
-
-.rt-table-view.plain .table-row-cell:odd 
-{
-    -fx-background: -rt-main-light-color;
-}
-
-.rt-table-view.zebra .table-row-cell:odd 
-{
-    -fx-background: -rt-main-light-color;
-}
-
 .rt-table-view .column-header .arrow,
 .rt-table-view .column-header .sort-order-dot 
 {
-    -fx-shape: "M 200 150 L 600 150 C 750 150 750 150 600 300 L 500 400 C 400 500 400 500 300 400 L 200 300 C 50 150 50 150 200 150 ";
+    -fx-shape: "M7,10L12,15L17,10H7Z";
     -fx-padding: 4;
     -fx-translate-x: 24;
     -fx-background-color: -rt-text-fill;
 }
 
-/* Dragging properties */
-.rt-table-view .column-overlay 
-{
-    -fx-background-color: -rt-base-dark-color;
-}
-
-.rt-table-view .column-resize-line, .rt-table-view .column-drag-header 
-{
-    -fx-background-color: -rt-accent-color;
-}
-
-.table-view:focused .virtual-flow .clipped-container .sheet .table-row-cell:filled:selected,
-.tree-table-view:focused .virtual-flow .clipped-container .sheet .tree-table-row-cell:filled:selected,
-.table-view:focused .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:selected,
-.tree-table-view:focused .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:selected 
-{
-    -fx-background: derive(-rt-accent-color, 90%);
-    -fx-background-color: derive(-rt-accent-color, 90%);
-    -fx-table-cell-border-color:  derive(-rt-accent-color, 90%);
-}
-
-.table-row-cell:filled:selected,
-.tree-table-row-cell:filled:selected,
-.table-row-cell:filled .table-cell:selected,
-.tree-table-row-cell:filled .tree-table-cell:selected 
-{
-    -fx-background: derive(-rt-accent-color, 90%);
-    -fx-background-color: derive(-rt-accent-color, 90%);
-    -fx-table-cell-border-color:  derive(-rt-accent-color, 90%);
-}
-
-.table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
-.tree-table-view:focused:row-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell:focused,
-.table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused,
-.tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused 
-{
-    -fx-background: derive(-rt-accent-color, 90%);
-    -fx-background-color: derive(-rt-accent-color, 90%);
-    -fx-table-cell-border-color:  derive(-rt-accent-color, 90%);
-}
-
-/*-- ############################### Table Column Style ############################### */
+/*-- ############################### Table View Column Style ############################### */
 .rt-table-column.text
 {
     -fx-alignment: center-left;
@@ -199,6 +239,69 @@
 .rt-table-column.number
 {
     -fx-alignment: center-right;
+}
+
+/*-- ############################### Table View Drag Style ############################### */
+.rt-table-view .column-overlay 
+{
+    -fx-background-color: -rt-base-dark-color;
+}
+
+.rt-table-view .column-resize-line, .rt-table-view .column-drag-header 
+{
+    -fx-background-color: -rt-accent-color;
+}
+
+/*-- ############################### Table View Cell State Style ############################### */
+.table-view:focused .virtual-flow .clipped-container .sheet .table-row-cell:filled:selected,
+.tree-table-view:focused .virtual-flow .clipped-container .sheet .tree-table-row-cell:filled:selected,
+.table-view:focused .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:selected,
+.tree-table-view:focused .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:selected 
+{
+    -fx-background: -rt-cell-selected-background;
+    -fx-background-color: -rt-cell-selected-background;
+    -fx-table-cell-border-color:  -rt-cell-selected-background;
+}
+
+.table-row-cell:filled:hover,
+.tree-table-row-cell:filled:hover,
+.table-row-cell:filled .table-cell:hover,
+.tree-table-row-cell:filled .tree-table-cell:hover 
+{
+    -fx-background: -rt-cell-hover-background;
+    -fx-background-color: -rt-cell-hover-background;
+    -fx-table-cell-border-color:  -rt-cell-hover-background;
+}
+
+
+.table-row-cell:filled:selected:hover,
+.tree-table-row-cell:filled:selected:hover,
+.table-row-cell:filled:selected .table-cell:hover,
+.tree-table-row-cell:filled:selected .tree-table-cell:hover 
+{
+    -fx-background: -rt-cell-selected-background;
+    -fx-background-color: -rt-cell-selected-background;
+    -fx-table-cell-border-color:  -rt-cell-selected-background;
+}
+
+.table-row-cell:filled:selected,
+.tree-table-row-cell:filled:selected,
+.table-row-cell:filled .table-cell:selected,
+.tree-table-row-cell:filled .tree-table-cell:selected 
+{
+    -fx-background: -rt-cell-focused-background;
+    -fx-background-color: -rt-cell-focused-background;
+    -fx-table-cell-border-color:  -rt-cell-focused-background;
+}
+
+.table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
+.tree-table-view:focused:row-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell:focused,
+.table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused,
+.tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused 
+{
+    -fx-background: -rt-cell-focused-background;
+    -fx-background-color: -rt-cell-focused-background;
+    -fx-table-cell-border-color:  -rt-cell-focused-background;
 }
 
 /*-- ############################### Checkbox Table Cell Style ############################### */
@@ -246,7 +349,8 @@
     -fx-border-radius: 2;
 }
 
- .rt-check-box .box .mark {
+ .rt-check-box .box .mark 
+ {
     -fx-shape: "M 6,12 C 6,12 4,14 4,14 4,14 10,20 10,20 10,20 22,8 22,8 22,8 20,6 20,6 20,6 10,16 10,16 10,16 6,12 6,12 Z";
 
     -fx-max-width: 12;
@@ -259,7 +363,8 @@
     -fx-border-radius: 2;
 }
 
-.rt-check-box .box .indeterminate-mark{
+.rt-check-box .box .indeterminate-mark
+{
     -fx-background-color: -rt-accent-color;
     -fx-background-radius: 2;
     -fx-border-width: 0;
@@ -270,22 +375,22 @@
 
 /*-- ############################### Scroll Pane Styles ############################### */
 /* Figure out why this only gets set when the their is at least one explict scroll pane as a parent*/
-.scroll-pane
+.rt-scroll-pane
 {
     -fx-background-color: transparent;
 }
 
-.scroll-pane:focused
+.rt-scroll-pane:focused
 {
     -fx-background-color: transparent;
 }
 
-.scroll-pane .viewport
+.rt-scroll-pane .viewport
 {
     -fx-background-color: transparent;
 }
 
-.scroll-pane .scroll-bar 
+.rt-scroll-pane .scroll-bar 
 {
     -rt-size: 12;
     -fx-min-height: -rt-size;
@@ -293,10 +398,8 @@
     -fx-max-height: -rt-size;
 }
 
-/* TODO horizontal bar and corner styling */ 
-
-.scroll-pane .scroll-bar .increment-button,
-.scroll-pane .scroll-bar .decrement-button 
+.rt-scroll-pane .scroll-bar .increment-button,
+.rt-scroll-pane .scroll-bar .decrement-button 
 {
     -rt-size: 12;
     -fx-min-height: -rt-size;
@@ -305,86 +408,146 @@
     -fx-max-height: -rt-size;
 }
 
-
-.scroll-pane .scroll-bar:vertical 
+/*-- ############################### Scroll Pane Scroll Bar Styles ############################### */
+.rt-scroll-pane .scroll-bar:vertical,
+.rt-scroll-pane .scroll-bar:horizontal
 {
     -fx-background-color: transparent;
     -fx-opacity: 30%;
-
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-max-width: -rt-size;
 }
 
-.scroll-pane .scroll-bar:vertical:hover
+.rt-scroll-pane .scroll-bar:vertical:hover,
+.rt-scroll-pane .scroll-bar:horizontal:hover
 {
     -fx-opacity: 50%;
 }
 
-.scroll-pane .scroll-bar:vertical:pressed
+.rt-scroll-pane .scroll-bar:vertical:pressed,
+.rt-scroll-pane .scroll-bar:horizontal:pressed
 {
     -fx-opacity: 100%;
 }
 
-.scroll-pane .scroll-bar:vertical .track
+.rt-scroll-pane .scroll-bar:vertical .track,
+.rt-scroll-pane .scroll-bar:horizontal .track
 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
 }
 
-.scroll-pane .scroll-bar:vertical .thumb
+.rt-scroll-pane .scroll-bar:vertical .thumb,
+.rt-scroll-pane .scroll-bar:horizontal .thumb
 {
-    -fx-cursor: open_hand;
     -fx-background-color: -rt-accent-color;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
-
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
 }
 
-.scroll-pane .scroll-bar:vertical .thumb:hover
+.rt-scroll-pane .scroll-bar:vertical .thumb:hover,
+.rt-scroll-pane .scroll-bar:horizontal .thumb:hover
 {
     -fx-cursor: open_hand;
 }
 
-
-.scroll-pane .scroll-bar:vertical .thumb:pressed
+.rt-scroll-pane .scroll-bar:vertical .thumb:pressed,
+.rt-scroll-pane .scroll-bar:horizontal .thumb:pressed
 {
     -fx-cursor: closed_hand;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-button,
-.scroll-pane .scroll-bar:vertical .decrement-button
+.rt-scroll-pane .scroll-bar:vertical .increment-button,
+.rt-scroll-pane .scroll-bar:vertical .decrement-button,
+.rt-scroll-pane .scroll-bar:horizontal .increment-button,
+.rt-scroll-pane .scroll-bar:horizontal .decrement-button
 {
     -fx-cursor: hand;
     -fx-padding: 2 2 2 2;
     -fx-border-width: 0;
+}
 
+/*-- ############################### Scroll Pane Vertical Scroll Bar Style ############################### */
+.rt-scroll-pane .scroll-bar:vertical 
+{
     -rt-size: 12;
     -fx-min-height: -rt-size;
     -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
     -fx-max-width: -rt-size;
-    -fx-max-height: -rt-size;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
+.rt-scroll-pane .scroll-bar:vertical .track
+{
+    -rt-size: 12;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:vertical .thumb
+{
+    -rt-size: 12;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
 {
     -fx-background-color: -rt-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
-.scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
+.rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
 {
     -fx-background-color: -rt-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
+}
+
+/*-- ############################### Scroll Pane Horizontal Scroll Bar Style ############################### */
+.rt-scroll-pane .scroll-bar:horizontal 
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .track
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .thumb
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow
+{
+    -fx-background-color: -rt-accent-color;
+    -fx-shape: "M10,17L15,12L10,7V17Z";
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
+{
+    -fx-background-color: -rt-accent-color;
+    -fx-shape: "M14,7L9,12L14,17V7Z";
+}
+
+/*-- ############################### List View Scroll Bar Corner Style ############################### */
+.scroll-pane .corner,
+.rt-table-view .virtual-flow .corner
+{
+    -fx-background-color: transparent;
 }

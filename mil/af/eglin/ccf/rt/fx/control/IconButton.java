@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
+import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -26,6 +27,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class IconButton extends Button
 {
     protected StackPane iconPane = new StackPane();
+    protected Accent accent = Accent.BASE_MID;
     protected SvgIcon icon;
     
     private static final String USER_AGENT_STYLESHEET = "button.css";
@@ -115,6 +117,8 @@ public class IconButton extends Button
         double height = this.icon.getSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
+        
+        getStyleClass().add(this.accent.getCssName());
     }
     
     private void setIconPaneSize(double width, double height)

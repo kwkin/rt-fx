@@ -6,6 +6,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -19,6 +20,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -32,6 +34,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -45,6 +48,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -58,6 +62,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -71,6 +76,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -84,6 +90,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -97,6 +104,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -110,6 +118,7 @@
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
+    -rt-listview-zebra-border: #e4e4e4;
     -rt-listview-selected-background: derive(-rt-accent-color, 90%);
     -rt-scroll-bar-foreground: -rt-accent-color;
     -rt-scroll-bar-background: transparent;
@@ -155,6 +164,27 @@
 {
     -fx-background-color: -rt-listview-odd-background;
     -fx-text-fill: -rt-text-color;
+}
+
+.list-view.plain .virtual-flow .clipped-container .sheet .list-cell
+{
+    -fx-border-color: -rt-listview-background;
+}
+
+.list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
+{
+    -fx-border-color: -rt-listview-odd-background;
+}
+
+.list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
+.list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
+{
+	-fx-border-width: 0 0 1 0;
+}
+
+.list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
+{
+    -fx-border-color: -rt-listview-zebra-border;
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */

@@ -26,6 +26,6 @@ public enum Accent
     
     public String getFullAccentName(String cssName)
     {
-        return String.format("%s-%s", cssName, getCssName()); 
+        return String.format("%s-%s", cssName, getCssName());
     }
 }

@@ -2,6 +2,7 @@
 {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+    -fx-background-color : #eaedf2;
     
     /*-- ############################### Font ############################### */
     -fx-font-family: "Roboto";
@@ -34,6 +35,8 @@
     -rt-primary-mid-text-color: #ffffff;
     -rt-primary-dark-text-color: #ffffff;
     
+    -rt-primary-overlay-color: #000000;
+
     /*-- ############################### Secondary Color ############################### */
     -rt-secondary-light-color: #ff8e9b;
     -rt-secondary-mid-color: #f06373;
@@ -43,5 +46,5 @@
     -rt-secondary-mid-text-color: #ffffff;
     -rt-secondary-dark-text-color: #ffffff;
 
-    -fx-background-color : #eaedf2;
+    -rt-secondary-overlay-color: #000000;
 }

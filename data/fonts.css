@@ -16,6 +16,11 @@
     src: url('../../../../../../data/fonts/Roboto/Roboto-Black.ttf');
 }
 
+@font-face {
+    font-family: "Roboto Bold";
+    src: url("'../../../../../../data/fonts/Roboto/Roboto-Bold.ttf");
+}
+
 /* @font-face
 {
     font-family: "Roboto";

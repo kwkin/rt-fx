@@ -1,203 +1,204 @@
 /*-- ############################### Small ############################### */
-.rt-text-flow .rt-text.small
+.rt-text.small
 {
     -fx-font-size: 12px;
 }
 
-.rt-text-flow .rt-text.small.base-light
+.rt-text.small.base-light
 {
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-fill: -rt-base-light-text-color;
 }
 
-.rt-text-flow .rt-text.small.base-mid
+.rt-text.small.base-mid
 {
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-fill: -rt-base-mid-text-color;
 }
 
-.rt-text-flow .rt-text.small.base-dark
+.rt-text.small.base-dark
 {
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-fill: -rt-base-dark-text-color;
 }
 
-.rt-text-flow .rt-text.small.primary-light
+.rt-text.small.primary-light
 {
-    -fx-text-fill: -rt-primary-light-color;
+    -fx-fill: -rt-primary-light-color;
 }
 
-.rt-text-flow .rt-text.small.primary-mid
+.rt-text.small.primary-mid
 {
-    -fx-text-fill: -rt-primary-mid-color;
+    -fx-fill: -rt-primary-mid-color;
 }
 
-.rt-text-flow .rt-text.small.primary-dark
+.rt-text.small.primary-dark
 {
-    -fx-text-fill: -rt-primary-dark-color;
+    -fx-fill: -rt-primary-dark-color;
 }
 
-.rt-text-flow .rt-text.small.secondary-light
+.rt-text.small.secondary-light
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow .rt-text.small.secondary-mid
+.rt-text.small.secondary-mid
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow .rt-text.small.secondary-dark
+.rt-text.small.secondary-dark
 {
-    -fx-text-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-secondary-dark-color;
 }
 
 /*-- ############################### Normal ############################### */
-.rt-text-flow.normal
+.rt-text.normal
 {
     -fx-font-size: 14px;
 }
 
-.rt-text-flow.normal.base-light
+.rt-text.normal.base-light
 {
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-fill: -rt-base-light-text-color;
 }
 
-.rt-text-flow.normal.base-mid
+.rt-text.normal.base-mid
 {
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-fill: -rt-base-mid-text-color;
 }
 
-.rt-text-flow.normal.base-dark
+.rt-text.normal.base-dark
 {
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-fill: -rt-base-dark-text-color;
 }
 
-.rt-text-flow.normal.primary-light
+.rt-text.normal.primary-light
 {
-    -fx-text-fill: -rt-primary-light-color;
+    -fx-fill: -rt-primary-light-color;
 }
 
-.rt-text-flow.normal.primary-mid
+.rt-text.normal.primary-mid
 {
-    -fx-text-fill: -rt-primary-mid-color;
+    -fx-fill: -rt-primary-mid-color;
 }
 
-.rt-text-flow.normal.primary-dark
+.rt-text.normal.primary-dark
 {
-    -fx-text-fill: -rt-primary-dark-color;
+    -fx-fill: -rt-primary-dark-color;
 }
 
-.rt-text-flow.normal.secondary-light
+.rt-text.normal.secondary-light
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.normal.secondary-mid
+.rt-text.normal.secondary-mid
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.normal.secondary-dark
+.rt-text.normal.secondary-dark
 {
-    -fx-text-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-secondary-dark-color;
 }
 
 /*-- ############################### Large ############################### */
-.rt-text-flow.large
+.rt-text.large
 {
     -fx-font-size: 16px;
+    -fx-fill: white;
 }
 
-.rt-text-flow.large.base-light
+.rt-text.large.base-light
 {
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-fill: -rt-base-light-text-color;
 }
 
-.rt-text-flow.large.base-mid
+.rt-text.large.base-mid
 {
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-fill: -rt-base-mid-text-color;
 }
 
-.rt-text-flow.large.base-dark
+.rt-text.large.base-dark
 {
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-fill: -rt-base-dark-text-color;
 }
 
-.rt-text-flow.large.primary-light
+.rt-text.large.primary-light
 {
-    -fx-text-fill: -rt-primary-light-color;
+    -fx-fill: -rt-primary-light-color;
 }
 
-.rt-text-flow.large.primary-mid
+.rt-text.large.primary-mid
 {
-    -fx-text-fill: -rt-primary-mid-color;
+    -fx-fill: -rt-primary-mid-color;
 }
 
-.rt-text-flow.large.primary-dark
+.rt-text.large.primary-dark
 {
-    -fx-text-fill: -rt-primary-dark-color;
+    -fx-fill: -rt-primary-dark-color;
 }
 
-.rt-text-flow.large.secondary-light
+.rt-text.large.secondary-light
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.large.secondary-mid
+.rt-text.large.secondary-mid
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.large.secondary-dark
+.rt-text.large.secondary-dark
 {
-    -fx-text-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-secondary-dark-color;
 }
 
 /*-- ############################### Title ############################### */
-.rt-text-flow.title
+.rt-text.title
 {
     -fx-font-size: 18px;
 }
 
-.rt-text-flow.title.base-light
+.rt-text.title.base-light
 {
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-fill: -rt-base-light-text-color;
 }
 
-.rt-text-flow.title.base-mid
+.rt-text.title.base-mid
 {
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-fill: -rt-base-mid-text-color;
 }
 
-.rt-text-flow.title.base-dark
+.rt-text.title.base-dark
 {
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-fill: -rt-base-dark-text-color;
 }
 
-.rt-text-flow.title.primary-light
+.rt-text.title.primary-light
 {
-    -fx-text-fill: -rt-primary-light-color;
+    -fx-fill: -rt-primary-light-color;
 }
 
-.rt-text-flow.title.primary-mid
+.rt-text.title.primary-mid
 {
-    -fx-text-fill: -rt-primary-mid-color;
+    -fx-fill: -rt-primary-mid-color;
 }
 
-.rt-text-flow.title.primary-dark
+.rt-text.title.primary-dark
 {
-    -fx-text-fill: -rt-primary-dark-color;
+    -fx-fill: -rt-primary-dark-color;
 }
 
-.rt-text-flow.title.secondary-light
+.rt-text.title.secondary-light
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.title.secondary-mid
+.rt-text.title.secondary-mid
 {
-    -fx-text-fill: -rt-secondary-mid-color;
+    -fx-fill: -rt-secondary-mid-color;
 }
 
-.rt-text-flow.title.secondary-dark
+.rt-text.title.secondary-dark
 {
-    -fx-text-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-secondary-dark-color;
 }

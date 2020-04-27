@@ -1,12 +1,17 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TextStyle;
+import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Text extends javafx.scene.text.Text implements RtComponent
 {
-    protected TextStyle style = TextStyle.SMALL;
-    protected Accent accent = Accent.PRIMARY_MID;
+    private static final String USER_AGENT_STYLESHEET = "text.css";
+    
+    protected TextStyle style = TextStyle.NORMAL;
+    protected Accent accent = Accent.BASE_MID;
     
     private static final String CSS_CLASS = "rt-text";
 
@@ -101,6 +106,9 @@ public class Text extends javafx.scene.text.Text implements RtComponent
     
     private void initialize()
     {
+        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
+        
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());

@@ -39,7 +39,7 @@ import test.sample.presentation.model.TableViewModel;
 
 public class TableComparison extends ScrollPane implements TitledContentPane
 {
-    private static final String TITLE = "Table";
+    private static final String TITLE = "Table View";
 
     private PaneController controller;
     private TableViewModel model;
@@ -95,7 +95,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
 
         TableColumn<TablePerson, Boolean> isSubscribedColumn = new TableColumn<TablePerson, Boolean>("Sub");
         isSubscribedColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Boolean>("isSubscribed"));
-        isSubscribedColumn.setPrefWidth(60);
+        isSubscribedColumn.setPrefWidth(90);
         isSubscribedColumn.setCellFactory(column ->
         {
             CheckBoxTableCell<TablePerson, Boolean> ctCell = new CheckBoxTableCell<>();
@@ -139,7 +139,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
         TableColumn<TablePerson, Double> coolFactorColumn = new TableColumn<TablePerson, Double>("Coolness",
                 TableColumnStyle.NUMBER);
         coolFactorColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Double>("coolFactor"));
-        coolFactorColumn.setPrefWidth(100);
+        coolFactorColumn.setPrefWidth(110);
         coolFactorColumn.setCellFactory(column ->
         {
             return new TableCell<TablePerson, Double>()
@@ -182,7 +182,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
         {
             return param.getValue().getValue().getIsSubscribedProperty();
         });
-        isSubscribedColumn.setPrefWidth(60);
+        isSubscribedColumn.setPrefWidth(90);
 
         JFXTreeTableColumn<TablePerson, String> firstNameColumn = new JFXTreeTableColumn<TablePerson, String>("First Name");
         firstNameColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<TablePerson, String> param) -> 
@@ -221,7 +221,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
             return new SimpleStringProperty(String.format("%.2f", value));
         });
         coolFactorColumn.setStyle("-fx-alignment: center-left");
-        coolFactorColumn.setPrefWidth(100);
+        coolFactorColumn.setPrefWidth(110);
 
         final TreeItem<TablePerson> root = new RecursiveTreeItem<>(model.getPeople(), RecursiveTreeObject::getChildren);
         JFXTreeTableView<TablePerson> table = new JFXTreeTableView<TablePerson>(root);
