@@ -67,7 +67,7 @@
 .rt-check-box
 {
     -fx-cursor: hand;
-    -fx-text-fill: -text-color;
+    -fx-text-fill: -rt-text-color;
 }
 
 .rt-check-box .box

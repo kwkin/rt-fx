@@ -3,54 +3,63 @@
 {
     -rt-selected-color: -rt-primary-light-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.primary-mid
 {
     -rt-selected-color: -rt-primary-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.primary-dark
 {
     -rt-selected-color: -rt-primary-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.secondary-light
 {
     -rt-selected-color: -rt-secondary-light-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.secondary-mid
 {
     -rt-selected-color: -rt-secondary-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.secondary-dark
 {
     -rt-selected-color: -rt-secondary-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.base-light
 {
     -rt-selected-color: -rt-base-light-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.base-mid
 {
     -rt-selected-color: -rt-base-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-radio-button.base-dark
 {
     -rt-selected-color: -rt-base-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 /*-- ############################### Radio Button Styles ############################### */
@@ -61,7 +70,7 @@
 
 .rt-radio-button .text 
 {
-	-fx-fill: -fx-text-base-color;
+	-fx-fill: -rt-text-color;
 }
 
 .rt-radio-button .radio, 
@@ -98,12 +107,4 @@
 	-fx-border-color: -rt-selected-color;
 	-fx-background-insets: 0;
 }
-
-/* 
-.rt-radio-button:selected .radio .dot 
-{
-	-fx-background-color: -rt-selected-color;
-	-fx-background-insets: 0;
-} 
-*/
 
