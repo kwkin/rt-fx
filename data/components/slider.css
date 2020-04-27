@@ -4,6 +4,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-primary-light-color;
     -thumb-color: -rt-primary-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.primary-mid
@@ -11,6 +12,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-primary-mid-color;
     -thumb-color: -rt-primary-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.primary-dark
@@ -18,6 +20,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-primary-dark-color;
     -thumb-color: -rt-primary-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.secondary-light
@@ -25,6 +28,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-secondary-light-color;
     -thumb-color: -rt-secondary-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.secondary-mid
@@ -32,6 +36,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-secondary-mid-color;
     -thumb-color: -rt-secondary-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.secondary-dark
@@ -39,6 +44,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-secondary-dark-color;
     -thumb-color: -rt-secondary-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.base-light
@@ -46,6 +52,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-base-light-color;
     -thumb-color: -rt-base-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.base-mid
@@ -53,6 +60,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-base-mid-color;
     -thumb-color: -rt-base-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 .rt-slider.base-dark
@@ -60,6 +68,7 @@
     -unfilled-track-color: -rt-main-mid-color;
     -filled-track-color: -rt-base-dark-color;
     -thumb-color: -rt-base-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
 }
 
 /*-- ############################### Slider Style ############################### */
@@ -108,4 +117,13 @@
 {
     -fx-cursor: hand;
 	-fx-background-color: -thumb-color;
+}
+
+.slider .axis 
+{
+    -fx-tick-label-fill: -rt-label-color;
+    -fx-tick-label-gap: 4;
+    -fx-tick-length: 5px;
+    -fx-minor-tick-length: 4px;
+    -fx-border-color: null;
 }
