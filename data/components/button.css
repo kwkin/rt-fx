@@ -72,8 +72,8 @@
 /*-- ############################### Flat Button Accents ############################### */
 .rt-button.flat
 {
-    -rt-text-color: -rt-primary-mid-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 
@@ -115,23 +115,29 @@
 
 .rt-button.flat.base-light
 {
-    -rt-text-color: -rt-base-light-color;
+    -rt-text-color: -rt-base-light-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.base-mid
 {
-    -rt-text-color: -rt-base-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.base-dark
 {
-    -fx-text-fill: -rt-base-dark-color;
+    -fx-text-fill: -rt-base-dark-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 /*-- ############################### Icon Button Accents ############################### */
+.rt-button.icon
+{
+    -rt-text-color: -rt-primary-mid-color;
+    -rt-overlay-color: -rt-primary-overlay-color;
+}
+
 .rt-button.icon.primary-light
 {
     -rt-text-color: -rt-primary-light-color;
@@ -170,19 +176,19 @@
 
 .rt-button.icon.base-light
 {
-    -rt-text-color: -rt-base-light-color;
+    -rt-text-color: -rt-base-light-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.icon.base-mid
 {
-    -rt-text-color: -rt-base-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.icon.base-dark
 {
-    -fx-text-fill: -rt-base-dark-color;
+    -fx-text-fill: -rt-base-dark-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
@@ -241,15 +247,19 @@
 .rt-button.flat
 {
     -fx-background-color: transparent;
+    -fx-background-radius: 4 4 4 4;
     -fx-border-color: transparent;
+    -fx-border-radius: 4 4 4 4;
     -fx-border-width: 0;
+    
+    -fx-font-family: "Roboto Medium";
     -fx-text-fill: -rt-text-color;
 }
 
 .rt-button.flat .hoverBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 0;
+    -fx-background-radius: 4 4 4 4;
     -fx-border-radius: 0;
     -fx-border-width: 0;
 }
@@ -257,7 +267,7 @@
 .rt-button.flat .armedBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 0;
+    -fx-background-radius: 4 4 4 4;
     -fx-border-radius: 0;
     -fx-border-width: 0;
 }
@@ -266,17 +276,21 @@
 .rt-button.icon
 {
     -fx-background-color: transparent;
+    -fx-background-radius: 4 4 4 4;
     -fx-border-width: 0 0 0 0;
-    -fx-text-fill: -rt-text-color;
+    -fx-border-radius: 4 4 4 4;
     -fx-padding: 4 4 4 4;
     -fx-insets: 0 0 0 0;
+    
+    -fx-font-family: "Roboto Medium";
+    -fx-text-fill: -rt-text-color;
 }
 
 .rt-button.icon:hover .hoverBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+    -fx-background-radius: 4 4 4 4;
+    -fx-border-radius: 4 4 4 4;
     -fx-border-width: 0;
 
     -fx-padding: 0 0 0 0;
@@ -286,8 +300,8 @@
 .rt-button.icon:armed .armedBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+    -fx-background-radius: 4 4 4 4;
+    -fx-border-radius: 4 4 4 4;
     -fx-border-width: 0;
     
     -fx-padding: 0 0 0 0;
