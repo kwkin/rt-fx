@@ -1,144 +1,127 @@
-/*-- TODO change all padding to em --*/
-.rt-toggle-button
+/*-- ############################### Raised Toggle Button Accents ############################### */
+.rt-toggle-button.raised
 {
-    -fx-cursor: hand;
+    -rt-accent-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-primary-mid-text-color;
+    -rt-overlay-color: -rt-primary-overlay-color;
 }
 
-/*-- ############################### Raised Toggle Button Accents ############################### */
 .rt-toggle-button.raised.primary-light
 {
-    -fx-background-color: -rt-primary-light-color;
-    -fx-border-color: -rt-primary-light-color;
-    -fx-text-fill: -rt-primary-light-text-color;
+    -rt-accent-color: -rt-primary-light-color;
+    -rt-text-color: -rt-primary-light-text-color;
+    -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.primary-mid
 {
-    -fx-background-color: -rt-primary-mid-color;
-    -fx-border-color: -rt-primary-mid-color;
-    -fx-text-fill: -rt-primary-mid-text-color;
+    -rt-accent-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-primary-mid-text-color;
+    -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.primary-dark
 {
-    -fx-background-color: -rt-primary-dark-color;
-    -fx-border-color: -rt-primary-dark-color;
-    -fx-text-fill: -rt-primary-dark-text-color;
+    -rt-accent-color: -rt-primary-dark-color;
+    -rt-text-color: -rt-primary-dark-text-color;
+    -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-light
 {
-    -fx-background-color: -rt-secondary-light-color;
-    -fx-border-color: -rt-secondary-light-color;
-    -fx-text-fill: -rt-secondary-light-text-color;
+    -rt-accent-color: -rt-secondary-light-color;
+    -rt-text-color: -rt-secondary-light-text-color;
+    -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-mid
 {
-    -fx-background-color: -rt-secondary-mid-color;
-    -fx-border-color: -rt-secondary-mid-color;
-    -fx-text-fill: -rt-secondary-mid-text-color;
+    -rt-accent-color: -rt-secondary-mid-color;
+    -rt-text-color: -rt-secondary-mid-text-color;
+    -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-dark
 {
-    -fx-background-color: -rt-secondary-dark-color;
-    -fx-border-color: -rt-secondary-dark-color;
-    -fx-text-fill: -rt-secondary-dark-text-color;
+    -rt-accent-color: -rt-secondary-dark-color;
+    -rt-text-color: -rt-secondary-dark-text-color;
+    -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.base-light
 {
-    -fx-background-color: -rt-base-light-color;
-    -fx-border-color: -rt-base-light-color;
-    -fx-text-fill: -rt-base-light-text-color;
+    -rt-accent-color: -rt-base-light-color;
+    -rt-text-color: -rt-base-light-text-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-toggle-button.raised.base-mid
 {
-    -fx-background-color: -rt-base-mid-color;
-    -fx-border-color: -rt-base-mid-color;
-    -fx-text-fill: -rt-base-mid-text-color;
+    -rt-accent-color: -rt-base-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-toggle-button.raised.base-dark
 {
-    -fx-background-color: -rt-base-dark-color;
-    -fx-border-color: -rt-base-dark-color;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -rt-accent-color: -rt-base-dark-color;
+    -rt-text-color: -rt-base-dark-text-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 /*-- ############################### Switch Toggle Button ############################### */
 .rt-toggle-switch.primary-light
 {
-    -selected-color: -rt-primary-light-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-primary-light-color, 50%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-primary-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.primary-mid
 {
-    -selected-color: -rt-primary-mid-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-primary-mid-color, 60%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.primary-dark
 {
-    -selected-color: -rt-primary-dark-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-primary-dark-color, 80%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-primary-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-light
 {
-    -selected-color: -rt-secondary-light-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-secondary-light-color, 50%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-secondary-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-mid
 {
-    -selected-color: -rt-secondary-mid-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-secondary-mid-color, 60%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-secondary-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-dark
 {
-    -selected-color: -rt-secondary-dark-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-secondary-dark-color, 80%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-secondary-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-light
 {
-    -selected-color: -rt-base-light-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-base-light-color, 50%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-base-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-mid
 {
-    -selected-color: -rt-primary-mid-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-base-mid-color, 60%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-base-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-dark
 {
-    -selected-color: -rt-primary-dark-color;
-    -unselected-color: -rt-base-light-color;
-    -selected-line-color: derive(-rt-base-dark-color, 80%);
-    -unselected-line-color: -rt-base-mid-color;
+    -rt-accent-color: -rt-base-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
 }
 
 /*-- ############################### Icon Toggle Button ############################### */
@@ -205,31 +188,43 @@
     -selected-glow-color: -rt-base-dark-color;
 }
 
+/*-- ############################### Toggle Button Style ############################### */
+.rt-toggle-button
+{
+    -fx-cursor: hand;
+}
+
 /*-- ############################### Raised Toggle Button Style ############################### */
 .rt-toggle-button.raised
 {
-    -fx-background-radius: 1;
-    -rt-border-width: 0 0 0 0;
-    -fx-border-radius: 1;
+    -fx-background-color: -rt-accent-color;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 4 4 4 4;
+    -fx-border-color: -rt-accent-color;
+    -fx-border-radius: 4 4 4 4;
+    -fx-border-width: 0 0 0 0;
     -fx-font-size: 14;
     -fx-min-height: 32;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
-    -fx-background-insets: 0;
-    
-    -rt-hover-box-color: rgba(0, 0, 0, 0.075);
-    -rt-armed-box-color: rgba(0, 0, 0, 0.15);
+    -fx-pref-width: 200.0;
+
+    -fx-font-family: "Roboto Medium";
+    -fx-text-fill: -rt-text-color;
 }
 
 .rt-toggle-button.raised:focused
 {
-    -fx-background-radius: 1;
-    -fx-background-insets: 0;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 4 4 4 4;
+    -fx-border-radius: 4 4 4 4;
+    -fx-border-width: 0 0 0 0;
 }
 
+/* TODO armed color */
 .rt-toggle-button.raised .hoverBox
 {
-    -fx-background-color: -rt-hover-box-color;
+    -fx-background-color: -rt-overlay-color;
     -fx-background-radius: 1;
     -fx-border-width: 0;
     -fx-border-radius: 1;
@@ -237,7 +232,7 @@
 
 .rt-toggle-button.raised .selectedBox
 {
-    -fx-background-color: -rt-armed-box-color;
+    -fx-background-color: -rt-overlay-color;
     -fx-background-radius: 1;
     -fx-border-width: 0;
     -fx-border-radius: 1;
@@ -255,14 +250,16 @@
     -fx-background-color: transparent;
     -fx-background-radius: 3px;
     -fx-background-insets: 0px;
+    -fx-text-fill: -rt-text-color;
 
-    /* Fix padding */
+    /* TODO Fix padding */
     -fx-padding: 0;
 
-    -rt-selected-color: -selected-color;
-    -rt-unselected-color: -unselected-color;
-    -rt-selected-line-color: -selected-line-color;
-    -rt-unselected-line-color: -unselected-line-color;
+    /* TODO Fix color inheritance */
+    -rt-selected-color: -rt-accent-color;
+    -rt-unselected-color: -rt-base-light-color;
+    -rt-selected-line-color: derive(-rt-accent-color, 50%);
+    -rt-unselected-line-color: -rt-base-mid-color;
 }
 
 .rt-toggle-switch .line 

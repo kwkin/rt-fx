@@ -4,64 +4,63 @@
 {
     -rt-selected-color: -rt-primary-light-color;
     -rt-unselected-color: -rt-base-dark-color;
-
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.primary-mid
 {
     -rt-selected-color: -rt-primary-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.primary-dark
 {
     -rt-selected-color: -rt-primary-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-light
 {
     -rt-selected-color: -rt-secondary-light-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-mid
 {
     -rt-selected-color: -rt-secondary-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-dark
 {
     -rt-selected-color: -rt-secondary-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-light
 {
     -rt-selected-color: -rt-base-light-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-mid
 {
     -rt-selected-color: -rt-base-mid-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-dark
 {
     -rt-selected-color: -rt-base-dark-color;
     -rt-unselected-color: -rt-base-dark-color;
-    -text-color: -rt-main-mid-text-color;
+    -rt-text-color: -rt-main-mid-text-color;
 } 
 
 /*-- ############################### Check Box Style ############################### */
