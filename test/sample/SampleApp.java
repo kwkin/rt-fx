@@ -62,8 +62,8 @@ public class SampleApp extends Application
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
         
-        ThemeManager.getInstance().load(Theme.LIGHT);
-//        ThemeManager.load(Theme.DARK);
+//        ThemeManager.getInstance().load(Theme.LIGHT);
+        ThemeManager.getInstance().load(Theme.DARK3);
       
         scene.getStylesheets().add(ResourceLoader.loadJFXCss("demo.css"));
         
