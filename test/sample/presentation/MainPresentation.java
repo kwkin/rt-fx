@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXToolbar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
+import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
@@ -38,7 +39,7 @@ public class MainPresentation extends BorderPane
     private StackPane centerPane;
     private JFXDrawer drawer;
     private IconToggleButton toggleButton;
-    private IconToggleButton themeToggle;;
+    private ComboBox<Theme> comboBoxTheme;
     private Label titled;
 
     private ObservableList<TitledContentPane> panes = FXCollections.observableArrayList();
@@ -53,22 +54,17 @@ public class MainPresentation extends BorderPane
         SvgIcon arrowRight = new SvgIcon(SvgIcons.ARROW_RIGHT, Color.WHITE, IconSizes.SIZE_16);
         SvgIcon arrowLeft = new SvgIcon(SvgIcons.ARROW_LEFT, Color.WHITE, IconSizes.SIZE_16);
         this.toggleButton = new IconToggleButton(arrowLeft, arrowRight);
-        SvgIcon bright7 = new SvgIcon(SvgIcons.BRIGHTNESS_7, Color.WHITE, IconSizes.SIZE_16);
-        SvgIcon bright5 = new SvgIcon(SvgIcons.BRIGHTNESS_5, Color.WHITE, IconSizes.SIZE_16);
-        this.themeToggle = new IconToggleButton(bright7, bright5);
         this.titled = new Label("Components");
+        Label noticeMessage = new Label("Notice: Some component skins do not update dynamically (yet!).");
+        Label themeLabel = new Label("    Theme:");
+        
+        this.comboBoxTheme = new ComboBox<Theme>(FXCollections.observableArrayList(Theme.values()));
         toolBar.setLeftItems(this.toggleButton, this.titled);
-        toolBar.setRightItems(this.themeToggle);
-        this.themeToggle.selectedProperty().addListener((ov, oldVal, newVal) ->
+        toolBar.setRightItems(noticeMessage, themeLabel, this.comboBoxTheme);
+        
+        this.comboBoxTheme.valueProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (newVal)
-            {
-                ThemeManager.getInstance().load(Theme.DARK);
-            }
-            else
-            {
-                ThemeManager.getInstance().load(Theme.LIGHT);
-            }
+            ThemeManager.getInstance().load(newVal);
         });
         setTop(toolBar);
 

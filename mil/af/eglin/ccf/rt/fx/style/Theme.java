@@ -2,20 +2,28 @@ package mil.af.eglin.ccf.rt.fx.style;
 
 public enum Theme
 {
-    LIGHT("light-theme.css"),
-    DARK("dark-theme.css"),
-    DARK2("dark-theme-material.css"),
-    DARK3("dark-theme-3.css");
-    
+    LIGHT("Light", "light-theme.css"),
+    EMERALD_COAST("Emerald Coast", "emerald-coast.css"),
+    DARK2("Dark Material", "dark-theme-material.css"),
+    DEEP_SEA("Deep Sea", "deep-sea.css");
+
+    private String name;
     private String fileName;
     
-    Theme(String fileName)
+    Theme(String name, String fileName)
     {
+        this.name = name;
         this.fileName = fileName;
     }
     
     public String getPath()
     {
         return this.fileName;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return name; 
     }
 }

@@ -1,14 +1,20 @@
 package mil.af.eglin.ccf.rt.fx.style;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.collections.FXCollections;
+import javafx.scene.Scene;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO use nio paths instead of strings and check if file exists
+// TODO remove reference to scene
 public class ThemeManager
 {
     private final static Theme DEFAULT_THEME = Theme.LIGHT;
     private Theme theme;
+    private List<Scene> scenes = FXCollections.observableArrayList();
 
     private ThemeManager() 
     {
@@ -35,15 +41,30 @@ public class ThemeManager
         if (theme != this.theme)
         {
             String newFilePath = ResourceLoader.loadFile(theme.getPath());
-            StyleManager.getInstance().addUserAgentStylesheet(newFilePath);
+            for (Scene scene : scenes)
+            {
+                scene.getStylesheets().add(newFilePath);
+            }
+//            StyleManager.getInstance().addUserAgentStylesheet(newFilePath);
+            
             if (this.theme != null)
             {
                 String oldFilePath = ResourceLoader.loadFile(this.theme.getPath());
-                StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
+//                StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
+
+                for (Scene scene : scenes)
+                {
+                    scene.getStylesheets().remove(oldFilePath);
+                }
             }
             this.theme = theme;
         }
         return isChanged;
+    }
+    
+    public void addScene(Scene scene)
+    {
+        this.scenes.add(scene);
     }
     
     public Theme getCurrentTheme()

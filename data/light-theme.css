@@ -50,3 +50,25 @@
 
     -rt-secondary-overlay-color: rgba(255, 255, 255, 0.35);
 }
+
+
+/* Remove when JFeonix Dependency is gone */
+.jfx-decorator 
+{
+    -fx-decorator-color: derive(-rt-primary-light-color, -40%);
+}
+
+.jfx-tool-bar 
+{
+    -fx-background-color: derive(-rt-primary-light-color, -20%);
+}
+
+.jfx-popup-container 
+{
+    -fx-background-color: -rt-main-light-color;
+}
+
+.jfx-drawer-side-pane
+{
+    -fx-background-color: -rt-main-light-color;
+}
