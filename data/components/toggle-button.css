@@ -295,7 +295,7 @@
 
 .rt-icon-toggle-button.normal:selected,
 .rt-icon-toggle-button.normal:focused,
-.rt-icon-toggle-button.normal:selected:focused,
+.rt-icon-toggle-button.normal:selected:focused
 {
     -fx-border-width: 0 0 0 0;
     -fx-background-color: transparent;
@@ -331,7 +331,7 @@
 
 .rt-icon-toggle-button.highlighted:selected,
 .rt-icon-toggle-button.highlighted:focused,
-.rt-icon-toggle-button.highlighted:selected:focused,
+.rt-icon-toggle-button.highlighted:selected:focused
 {
     -fx-border-width: 0 0 0 0;
     -fx-background-color: transparent;
@@ -375,7 +375,7 @@
 
 .rt-icon-toggle-button.glowing:selected,
 .rt-icon-toggle-button.glowing:focused,
-.rt-icon-toggle-button.glowing:selected:focused,
+.rt-icon-toggle-button.glowing:selected:focused
 {
     -fx-background: transparent;
     -fx-background-color: transparent;

@@ -7,6 +7,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mil.af.eglin.ccf.rt.fx.style.Theme;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 import test.sample.abstraction.SampleSession;
 import test.sample.abstraction.Settings;
@@ -56,12 +58,12 @@ public class SampleApp extends Application
         JFXDecorator decorator = new JFXDecorator(stage, presentation, false, true, true);
         stage.setTitle("RT-FX Demo");
         
-        
         // TODO clean this up
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("light-theme.css"));
-//        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("dark-theme.css"));
+        
+        ThemeManager.load(Theme.LIGHT);
+//        ThemeManager.load(Theme.DARK);
 //        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadDemoFile("demo.css"));
       
         scene.getStylesheets().add(ResourceLoader.loadJFXCss("demo.css"));

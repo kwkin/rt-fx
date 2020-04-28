@@ -1,7 +1,7 @@
 /*-- ############################### Scroll Pane Accents ############################### */
 .rt-scroll-pane.primary-light
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -rt-accent-color: -rt-primary-light-color;
 }
 
 .rt-scroll-pane.primary-mid

@@ -1,0 +1,183 @@
+/*
+TODO
+- Tab Pane close button
+- Tab Pane padding
+- Tab Pane hover states
+- Tab Pane selection and hover state transitions
+*/
+
+/*-- ############################### Tab Pane Accents ############################### */
+.rt-tab-pane
+{
+    -rt-accent-color: -rt-primary-mid-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.primary-light
+{
+    -rt-accent-color: -rt-primary-light-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.primary-mid
+{
+    -rt-accent-color: -rt-primary-mid-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.primary-dark
+{
+    -rt-accent-color: -rt-primary-dark-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.secondary-light
+{
+    -rt-accent-color: -rt-secondary-light-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.secondary-mid
+{
+    -rt-accent-color: -rt-secondary-mid-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.secondary-dark
+{
+    -rt-accent-color: -rt-secondary-dark-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.base-light
+{
+    -rt-accent-color: -rt-main-light-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.base-mid
+{
+    -rt-accent-color: -rt-base-mid-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+.rt-tab-pane.base-dark
+{
+    -rt-accent-color: -rt-base-dark-color;
+
+    -rt-text-color: -rt-base-mid-text-color;
+    -rt-background-color: -rt-main-light-color;
+    -rt-unselected-border-color: -rt-base-mid-color;
+}
+
+/*-- ############################### Tab Pane Styles ############################### */
+.tab-pane 
+{
+    -fx-tab-min-height: 32px;
+    -fx-tab-max-height: 32px;
+    -fx-tab-min-width: 64px;
+}
+
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label 
+{
+    -fx-alignment: CENTER;
+    -fx-text-fill: -rt-text-color;
+}
+
+.tab-pane .tab-header-area .headers-region .tab 
+{
+    -fx-background-color: -rt-background-color;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 4 16 4 16;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:top,
+.tab-pane .tab-header-area .headers-region .tab:right,
+.tab-pane .tab-header-area .headers-region .tab:bottom,
+.tab-pane .tab-header-area .headers-region .tab:left 
+{
+    -fx-background-color: -rt-background-color;
+    -fx-border-color: -rt-unselected-border-color;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:top
+{
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:right
+{
+    -fx-border-width: 0 0 0 2;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:bottom
+{
+    -fx-border-width: 2 0 0 0;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:left 
+{
+    -fx-border-width: 0 2 0 0;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:selected
+{
+    -fx-border-color: -rt-accent-color;
+}
+
+.tab-pane .tab-header-area .tab-header-background 
+{
+    -fx-background-color: -rt-background-color;
+}
+
+.tab-pane .tab-content-area
+ {
+    -fx-padding: 16;
+    -fx-background-color: transparent;
+}
+
+/*-- ############################### Tab Pane Arrow ############################### */
+.tab-pane .tab-header-area .control-buttons-tab .container .tab-down-button .arrow  
+{
+    -fx-background-color: -rt-accent-color;
+    -fx-shape: "M7,10L12,15L17,10H7Z";
+}
+
+/*-- ############################### Tab Pane Close Button ############################### */
+/* .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
+    -fx-background-color: -fx-mark-color;
+    -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
+    -fx-scale-shape: false;
+    -fx-effect: dropshadow(two-pass-box , rgba(255, 255, 255, 0.4), 1, 0.0 , 0, 1);
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover {
+    -fx-background-color: derive(-fx-mark-color, -30%);
+} */

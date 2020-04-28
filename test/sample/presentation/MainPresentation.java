@@ -2,6 +2,7 @@ package test.sample.presentation;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXToolbar;
+import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,9 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
+import mil.af.eglin.ccf.rt.fx.style.Theme;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
+import mil.af.eglin.ccf.rt.util.ResourceLoader;
 import test.jfeonix.presentation.panes.controls.CheckBoxComparison;
 import test.jfeonix.presentation.panes.controls.ComboBoxComparison;
 import test.jfeonix.presentation.panes.controls.ListViewComparison;
@@ -36,6 +40,7 @@ public class MainPresentation extends BorderPane
     private StackPane centerPane;
     private JFXDrawer drawer;
     private IconToggleButton toggleButton;
+    private IconToggleButton themeToggle;;
     private Label titled;
 
     private ObservableList<TitledContentPane> panes = FXCollections.observableArrayList();
@@ -50,8 +55,23 @@ public class MainPresentation extends BorderPane
         SvgIcon arrowRight = new SvgIcon(SvgIcons.ARROW_RIGHT, Color.WHITE, IconSizes.SIZE_16);
         SvgIcon arrowLeft = new SvgIcon(SvgIcons.ARROW_LEFT, Color.WHITE, IconSizes.SIZE_16);
         this.toggleButton = new IconToggleButton(arrowLeft, arrowRight);
+        SvgIcon bright7 = new SvgIcon(SvgIcons.BRIGHTNESS_7, Color.WHITE, IconSizes.SIZE_16);
+        SvgIcon bright5 = new SvgIcon(SvgIcons.BRIGHTNESS_5, Color.WHITE, IconSizes.SIZE_16);
+        this.themeToggle = new IconToggleButton(bright7, bright5);
         this.titled = new Label("Components");
-        toolBar.setLeftItems(toggleButton, titled);
+        toolBar.setLeftItems(this.toggleButton, this.titled);
+        toolBar.setRightItems(this.themeToggle);
+        this.themeToggle.selectedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (newVal)
+            {
+                ThemeManager.load(Theme.LIGHT);
+            }
+            else
+            {
+                ThemeManager.load(Theme.LIGHT);
+            }
+        });
         setTop(toolBar);
 
         this.panes.add(new ComponentsPresentation(paneController));

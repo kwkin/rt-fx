@@ -2,8 +2,9 @@ package test.sample.presentation.panes.controls;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
 import mil.af.eglin.ccf.rt.fx.control.Button;
+import mil.af.eglin.ccf.rt.fx.control.TabPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.sample.control.TitledCard;
 import test.sample.control.DescriptionPane;
@@ -30,6 +31,7 @@ public class TabPanePresentation extends TitledCard
         descriptionPane.setDescription("A tab pane must define tab items. Each tab item can contain content.");
 
         TabPane tabPane = new TabPane();
+        tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
         
         Tab tab1 = new Tab("Tab 1");
         Button button1 = new Button("Button 1");
