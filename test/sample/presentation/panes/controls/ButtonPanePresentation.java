@@ -40,31 +40,35 @@ public class ButtonPanePresentation extends TitledCard
         descriptionPane.setDescription("Normal buttons come in several varieties: raised, flat, icon, and icon with text. Here are some raised buttons.");
 
         VBox buttonVBox = new VBox();
+        buttonVBox.setSpacing(16);
         
-        ButtonBar primaryButtonPane = new ButtonBar();
+        HBox primaryButtonPane = new HBox();
+        primaryButtonPane.setSpacing(16);
         Button primaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
         Button primaryMidButton = new Button("Cancel", ButtonStyle.RAISED, Accent.PRIMARY_MID);
         Button primaryDarkButton = new Button("Apply", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
-        primaryButtonPane.getButtons().add(primaryLightButton);
-        primaryButtonPane.getButtons().add(primaryMidButton);
-        primaryButtonPane.getButtons().add(primaryDarkButton);
+        primaryButtonPane.getChildren().add(primaryLightButton);
+        primaryButtonPane.getChildren().add(primaryMidButton);
+        primaryButtonPane.getChildren().add(primaryDarkButton);
 
-        ButtonBar secondaryButtonPane = new ButtonBar();
+        HBox secondaryButtonPane = new HBox();
+        secondaryButtonPane.setSpacing(16);
         Button secondaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
         Button secondaryMidButton = new Button("Cancel", ButtonStyle.RAISED, Accent.SECONDARY_MID);
         Button secondaryDarkButton = new Button("Apply", ButtonStyle.RAISED, Accent.SECONDARY_DARK);
-        secondaryButtonPane.getButtons().add(secondaryLightButton);
-        secondaryButtonPane.getButtons().add(secondaryMidButton);
-        secondaryButtonPane.getButtons().add(secondaryDarkButton);
+        secondaryButtonPane.getChildren().add(secondaryLightButton);
+        secondaryButtonPane.getChildren().add(secondaryMidButton);
+        secondaryButtonPane.getChildren().add(secondaryDarkButton);
 
-        ButtonBar baseButtonPane = new ButtonBar();
+        HBox baseButtonPane = new HBox();
+        baseButtonPane.setSpacing(16);
         Button baseLightButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE_LIGHT);
         baseLightButton.setDefaultButton(true);
         Button baseMidButton = new Button("Cancel", ButtonStyle.RAISED, Accent.BASE_MID);
         Button baseDarkButton = new Button("Apply", ButtonStyle.RAISED, Accent.BASE_DARK);
-        baseButtonPane.getButtons().add(baseLightButton);
-        baseButtonPane.getButtons().add(baseMidButton);
-        baseButtonPane.getButtons().add(baseDarkButton);
+        baseButtonPane.getChildren().add(baseLightButton);
+        baseButtonPane.getChildren().add(baseMidButton);
+        baseButtonPane.getChildren().add(baseDarkButton);
 
         buttonVBox.getChildren().add(primaryButtonPane);
         buttonVBox.getChildren().add(secondaryButtonPane);
