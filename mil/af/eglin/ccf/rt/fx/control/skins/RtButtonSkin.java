@@ -13,34 +13,28 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO combine armed and hover boxes
 public class RtButtonSkin extends ButtonSkin
 {
-    private final StackPane armedBox = new StackPane();
-    private final StackPane hoverBox = new StackPane();
+    private final StackPane stateBox = new StackPane();
     
+    private Button button;
     private RtAnimationTimer hoverTimer;
     private RtAnimationTimer armedTimer;
     
     public RtButtonSkin(Button button)
     {
         super(button);
+        this.button = button;
         
-        armedBox.getStyleClass().setAll("armedBox");
-        armedBox.setOpacity(0);
-        hoverBox.getStyleClass().setAll("hoverBox");
-        hoverBox.setOpacity(0);
+        stateBox.getStyleClass().setAll("state-box");
+        stateBox.setOpacity(0);
         
         Node text = getSkinnable().lookup(".text");
         int index = getChildren().indexOf(text);
         index = index == -1 ? getChildren().size() - 1 : index;
-        if (hoverBox != null)
+        if (stateBox != null)
         {
-            getChildren().add(index, hoverBox);
-        }
-        if (armedBox != null)
-        {
-            getChildren().add(index, armedBox);
+            getChildren().add(index, stateBox);
         }
         
         switch(button.getButtonStyle())
@@ -60,13 +54,13 @@ public class RtButtonSkin extends ButtonSkin
                                 .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                 .build(),
                             RtKeyValue.builder()
-                                .setTarget(armedBox.opacityProperty())
-                                .setEndValueSupplier(() -> determineArmedOpacity(button.isArmed()))
+                                .setTarget(stateBox.opacityProperty())
+                                .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
                                 .setInterpolator(Interpolator.EASE_BOTH)
                                 .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                 .build())
                         .build());
-                armedTimer.setCacheNodes(armedBox);
+                armedTimer.setCacheNodes(stateBox);
                 
                 hoverTimer = new RtAnimationTimer(
                         RtKeyFrame.builder()
@@ -79,13 +73,13 @@ public class RtButtonSkin extends ButtonSkin
                                     .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                     .build(),
                                 RtKeyValue.builder()
-                                    .setTarget(hoverBox.opacityProperty())
-                                    .setEndValueSupplier(() -> determineHoverOpacity(button.isHover()))
+                                    .setTarget(stateBox.opacityProperty())
+                                    .setEndValueSupplier(() -> determineOpacity(button.isHover()))
                                     .setInterpolator(Interpolator.EASE_BOTH)
                                     .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                     .build())
                             .build());
-                hoverTimer.setCacheNodes(hoverBox);
+                hoverTimer.setCacheNodes(stateBox);
                 break;
             default:
                 button.setPickOnBounds(true);
@@ -94,26 +88,26 @@ public class RtButtonSkin extends ButtonSkin
                         .setDuration(Duration.millis(100))
                         .setKeyValues(
                                 RtKeyValue.builder()
-                                    .setTarget(armedBox.opacityProperty())
-                                    .setEndValueSupplier(() -> determineArmedOpacity(button.isArmed()))
+                                    .setTarget(stateBox.opacityProperty())
+                                    .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
                                     .setInterpolator(Interpolator.EASE_BOTH)
                                     .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                     .build())
                             .build());
-                    armedTimer.setCacheNodes(armedBox);
+                    armedTimer.setCacheNodes(stateBox);
                     
                     hoverTimer = new RtAnimationTimer(
                         RtKeyFrame.builder()
                             .setDuration(Duration.millis(100))
                             .setKeyValues(
                                     RtKeyValue.builder()
-                                        .setTarget(hoverBox.opacityProperty())
-                                        .setEndValueSupplier(() -> determineHoverOpacity(button.isHover()))
+                                        .setTarget(stateBox.opacityProperty())
+                                        .setEndValueSupplier(() -> determineOpacity(button.isHover()))
                                         .setInterpolator(Interpolator.EASE_BOTH)
                                         .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
                                         .build())
                                 .build());
-                    armedTimer.setCacheNodes(hoverBox);
+                    armedTimer.setCacheNodes(stateBox);
                 break;
             
         }
@@ -148,12 +142,7 @@ public class RtButtonSkin extends ButtonSkin
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
         // @formatter:off
-        armedBox.resizeRelocate(
-            getSkinnable().getLayoutBounds().getMinX(),
-            getSkinnable().getLayoutBounds().getMinY(),
-            getSkinnable().getWidth(), getSkinnable().getHeight());
-        
-        hoverBox.resizeRelocate(
+        stateBox.resizeRelocate(
             getSkinnable().getLayoutBounds().getMinX(),
             getSkinnable().getLayoutBounds().getMinY(),
             getSkinnable().getWidth(), getSkinnable().getHeight());
@@ -162,14 +151,18 @@ public class RtButtonSkin extends ButtonSkin
         layoutLabelInArea(x, y, w, h);
     }
 
-    private double determineArmedOpacity(boolean isArmed) 
+    private double determineOpacity(boolean isArmed) 
     {
-        return isArmed ? 1 : 0;
-    }
-
-    private double determineHoverOpacity(boolean isHover) 
-    {
-        return isHover ? 1 : 0;
+        double opacity = 0;
+        if (button.isArmed())
+        {
+            opacity = 1;
+        }
+        else if (button.isHover())
+        {
+            opacity = 0.4;
+        }
+        return opacity;
     }
 
     private DepthShadow determinedArmedShadow(boolean isArmed) 

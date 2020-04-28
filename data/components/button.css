@@ -227,16 +227,7 @@
     -fx-border-width: 0;
 }
 
-.rt-button.raised .hoverBox
-{
-    -fx-background-color: -rt-overlay-color;
-    -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-button.raised .armedBox
+.rt-button.raised .state-box
 {
     -fx-background-color: -rt-overlay-color;
     -fx-background-insets: 0;
@@ -258,16 +249,7 @@
     -fx-text-fill: -rt-text-color;
 }
 
-.rt-button.flat .hoverBox
-{
-    -fx-background-color: -rt-overlay-color;
-    -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-button.flat .armedBox
+.rt-button.flat .state-box
 {
     -fx-background-color: -rt-overlay-color;
     -fx-background-insets: 0;
@@ -290,17 +272,7 @@
     -fx-text-fill: -rt-text-color;
 }
 
-.rt-button.icon:hover .hoverBox
-{
-    -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-    -fx-padding: 0;
-    -fx-insets: 0;
-}
-
-.rt-button.icon:armed .armedBox
+.rt-button.icon .state-box
 {
     -fx-background-color: -rt-overlay-color;
     -fx-background-radius: 4;

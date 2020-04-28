@@ -1,7 +1,6 @@
 package test.sample.presentation.panes.controls;
 
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
