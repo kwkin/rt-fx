@@ -89,7 +89,6 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
                         .build(),
-                        
                     RtKeyValue.builder()
                         .setTarget(line.strokeProperty())
                         .setEndValueSupplier(() -> determineLineColor(this.toggleSwitch.isSelected()))

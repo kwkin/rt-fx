@@ -80,37 +80,37 @@
 .rt-button.flat.primary-light
 {
     -rt-text-color: -rt-primary-light-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.primary-mid
 {
     -rt-text-color: -rt-primary-mid-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.primary-dark
 {
     -rt-text-color: -rt-primary-dark-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.secondary-light
 {
     -rt-text-color: -rt-secondary-light-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.secondary-mid
 {
     -rt-text-color: -rt-secondary-mid-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.secondary-dark
 {
     -rt-text-color: -rt-secondary-dark-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
+    -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.base-light
@@ -202,11 +202,11 @@
 .rt-button.raised
 {
     -fx-background-color: -rt-accent-color;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 4 4 4 4;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
     -fx-border-color: -rt-accent-color;
-    -fx-border-radius: 4 4 4 4;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
     -fx-font-size: 14;
     -fx-min-height: 32;
     -fx-min-width: 64;
@@ -221,26 +221,28 @@
 
 .rt-button.raised:focused
 {
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 4 4 4 4;
-    -fx-border-width: 0 0 0 0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
 }
 
 .rt-button.raised .hoverBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
-    -fx-border-radius: 1;
 }
 
 .rt-button.raised .armedBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
-    -fx-border-radius: 1;
 }
 
 /*-- ############################### Flat Button Style ############################### */
@@ -259,16 +261,18 @@
 .rt-button.flat .hoverBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
 }
 
 .rt-button.flat .armedBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
 }
 
@@ -276,11 +280,11 @@
 .rt-button.icon
 {
     -fx-background-color: transparent;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-width: 0 0 0 0;
-    -fx-border-radius: 4 4 4 4;
-    -fx-padding: 4 4 4 4;
-    -fx-insets: 0 0 0 0;
+    -fx-background-radius: 4;
+    -fx-border-width: 0;
+    -fx-border-radius: 4;
+    -fx-padding: 4;
+    -fx-insets: 0;
     
     -fx-font-family: "Roboto Medium";
     -fx-text-fill: -rt-text-color;
@@ -289,21 +293,19 @@
 .rt-button.icon:hover .hoverBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 4 4 4 4;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
-
-    -fx-padding: 0 0 0 0;
-    -fx-insets: 0 0 0 0;
+    -fx-padding: 0;
+    -fx-insets: 0;
 }
 
 .rt-button.icon:armed .armedBox
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 4 4 4 4;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
-    
-    -fx-padding: 0 0 0 0;
-    -fx-insets: 0 0 0 0;
+    -fx-padding: 0;
+    -fx-insets: 0;
 }

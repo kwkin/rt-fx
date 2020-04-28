@@ -12,34 +12,29 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Button;
+import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+// TODO combine armed and hover boxes
 public class RtButtonSkin extends ButtonSkin
 {
-    private final GridPane graphicTextPane = new GridPane();
     private final StackPane armedBox = new StackPane();
     private final StackPane hoverBox = new StackPane();
     
-    private ButtonTransition armedTransition;
-    private ButtonTransition hoverTransition;
+    private RtAnimationTimer hoverTimer;
+    private RtAnimationTimer armedTimer;
     
     public RtButtonSkin(Button button)
     {
         super(button);
-
-        button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> playArmedAnimation(true));
-        button.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> playArmedAnimation(false));
-        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> playHoverAnimation(true));
-        button.addEventFilter(MouseEvent.MOUSE_EXITED, e -> playHoverAnimation(false));
-
+        
         armedBox.getStyleClass().setAll("armedBox");
         armedBox.setOpacity(0);
         hoverBox.getStyleClass().setAll("hoverBox");
         hoverBox.setOpacity(0);
-
-        double duration = button.getIsAnimationDisabled() ? 0 : 150;
-        armedTransition = new ButtonTransition(armedBox, Duration.millis(duration));
-        hoverTransition = new ButtonTransition(hoverBox, Duration.millis(duration));
         
         Node text = getSkinnable().lookup(".text");
         int index = getChildren().indexOf(text);
@@ -52,19 +47,55 @@ public class RtButtonSkin extends ButtonSkin
         {
             getChildren().add(index, armedBox);
         }
-//        Node graphic = button.getGraphic();
-//        Node textComponent = button.lookup(".text");
-//        if (graphic != null)
-//        {
-//            getChildren().remove(graphic);
-//            graphicTextPane.add(graphic, 0, 0);
-//        }
-//        if (textComponent != null)
-//        {
-//            getChildren().remove(textComponent);
-//            graphicTextPane.add(textComponent, 0, 1);
-//        }
-//        getChildren().add(graphicTextPane);
+        
+        armedTimer = new RtAnimationTimer(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(armedBox.opacityProperty())
+                        .setEndValueSupplier(() -> determineArmedOpacity(button.isArmed()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                        .build())
+                .build());
+        armedTimer.setCacheNodes(armedBox);
+        
+        hoverTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(hoverBox.opacityProperty())
+                            .setEndValueSupplier(() -> determineHoverOpacity(button.isHover()))
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                            .build())
+                    .build());
+        armedTimer.setCacheNodes(hoverBox);
+        
+        button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (!button.getIsAnimationDisabled())
+            {
+                armedTimer.reverseAndContinue();
+            }
+            else
+            {
+                armedTimer.applyEndValues();
+            }
+        });
+        button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (!button.getIsAnimationDisabled())
+            {
+                hoverTimer.reverseAndContinue();
+            }
+            else
+            {
+                hoverTimer.applyEndValues();
+            }
+        });
     }
 
 
@@ -86,77 +117,13 @@ public class RtButtonSkin extends ButtonSkin
         layoutLabelInArea(x, y, w, h);
     }
 
-    private void playArmedAnimation(boolean isArmed) 
+    private double determineArmedOpacity(boolean isArmed) 
     {
-        if (armedTransition != null) 
-        {
-            if (isArmed)
-            {
-                armedTransition.setRate(1);
-                armedTransition.play();
-            }
-            else
-            {
-                armedTransition.setRate(-1);
-                armedTransition.playFrom(Duration.ZERO);
-            }
-        }
+        return isArmed ? 1 : 0;
     }
 
-    private void playHoverAnimation(boolean isHovered) 
+    private double determineHoverOpacity(boolean isHover) 
     {
-        if (hoverTransition != null) 
-        {
-            if (isHovered)
-            {
-                hoverTransition.setRate(1);
-                hoverTransition.play();
-            }
-            else
-            {
-                hoverTransition.setRate(-1);
-                hoverTransition.playFrom(Duration.ZERO);
-            }
-        }
-    }
-
-    private final static class ButtonTransition extends CachedTransition
-    {
-        protected Node node;
-
-        ButtonTransition(Node node, Duration duration)
-        {
-            // @formatter:off
-            super(null, new Timeline(
-                    new KeyFrame(Duration.ZERO,
-                            new KeyValue(node.opacityProperty(), 0, Interpolator.EASE_OUT)),
-                    new KeyFrame(duration, 
-                            new KeyValue(node.opacityProperty(), 1, Interpolator.EASE_OUT))));
-            // @formatter:on
-            if (duration == Duration.ZERO)
-            {
-                setCycleDuration(Duration.millis(1));
-                setCycleCount(1);
-            }
-            else
-            {
-                setCycleDuration(Duration.seconds(0.2));
-            }
-            setDelay(Duration.seconds(0));
-            this.node = node;
-        }
-
-        @Override
-        protected void beginStart()
-        {
-            super.beginStart();
-        }
-
-        @Override
-        protected void beginStop()
-        {
-            super.beginStop();
-            node.setOpacity(getRate() == 1 ? 1 : 0);
-        }
+        return isHover ? 1 : 0;
     }
 }
