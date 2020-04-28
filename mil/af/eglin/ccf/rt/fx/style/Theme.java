@@ -1,23 +1,20 @@
 package mil.af.eglin.ccf.rt.fx.style;
 
-import mil.af.eglin.ccf.rt.util.ResourceLoader;
-
 public enum Theme
 {
-    // TODO change these to nio path
-    LIGHT(ResourceLoader.loadFile("light-theme.css")),
-    DARK(ResourceLoader.loadFile("dark-theme.css")),
-    DARK2(ResourceLoader.loadFile("dark-theme-material.css"));
+    LIGHT("light-theme.css"),
+    DARK("dark-theme.css"),
+    DARK2("dark-theme-material.css");
     
-    private String path;
+    private String fileName;
     
-    Theme(String path)
+    Theme(String fileName)
     {
-        this.path = path;
+        this.fileName = fileName;
     }
     
     public String getPath()
     {
-        return this.path;
+        return this.fileName;
     }
 }

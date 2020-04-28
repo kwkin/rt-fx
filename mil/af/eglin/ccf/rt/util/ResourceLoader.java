@@ -4,7 +4,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// TODO change to paths instead of strings
 // TODO replace with rt-util and fix up paths
 public class ResourceLoader
 {

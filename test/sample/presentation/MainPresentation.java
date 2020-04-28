@@ -2,7 +2,6 @@ package test.sample.presentation;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXToolbar;
-import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.style.Theme;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
-import mil.af.eglin.ccf.rt.util.ResourceLoader;
 import test.jfeonix.presentation.panes.controls.CheckBoxComparison;
 import test.jfeonix.presentation.panes.controls.ComboBoxComparison;
 import test.jfeonix.presentation.panes.controls.ListViewComparison;
@@ -65,11 +63,11 @@ public class MainPresentation extends BorderPane
         {
             if (newVal)
             {
-                ThemeManager.load(Theme.LIGHT);
+                ThemeManager.getInstance().load(Theme.DARK);
             }
             else
             {
-                ThemeManager.load(Theme.LIGHT);
+                ThemeManager.getInstance().load(Theme.LIGHT);
             }
         });
         setTop(toolBar);
