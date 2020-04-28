@@ -84,23 +84,27 @@ public class ButtonPanePresentation extends TitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Flat buttons behave the same as regular buttons, but they appear to be on the same level as its container.");
 
+        // TODO figure out why these are linked to the other VBox properties
         VBox buttonVBox = new VBox();
+        buttonVBox.setSpacing(16);
         
-        ButtonBar primaryButtonBar = new ButtonBar();
+        HBox primaryButtonBar = new HBox();
+        primaryButtonBar.setSpacing(16);
         Button primaryLightFlatButton = new Button("Discard", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
         Button primaryMidFlatButton = new Button("Apply", ButtonStyle.FLAT, Accent.PRIMARY_MID);
         Button primaryDarkFlatButton = new Button("Add", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
-        primaryButtonBar.getButtons().add(primaryLightFlatButton);
-        primaryButtonBar.getButtons().add(primaryMidFlatButton);
-        primaryButtonBar.getButtons().add(primaryDarkFlatButton);
+        primaryButtonBar.getChildren().add(primaryLightFlatButton);
+        primaryButtonBar.getChildren().add(primaryMidFlatButton);
+        primaryButtonBar.getChildren().add(primaryDarkFlatButton);
 
-        ButtonBar secondaryButtonBar = new ButtonBar();
+        HBox secondaryButtonBar = new HBox();
+        secondaryButtonBar.setSpacing(16);
         Button secondaryLightFlatButton = new Button("Discard", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
         Button secondaryMidFlatButton = new Button("Apply", ButtonStyle.FLAT, Accent.SECONDARY_MID);
         Button secondaryDarkFlatButton = new Button("Add", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
-        secondaryButtonBar.getButtons().add(secondaryLightFlatButton);
-        secondaryButtonBar.getButtons().add(secondaryMidFlatButton);
-        secondaryButtonBar.getButtons().add(secondaryDarkFlatButton);
+        secondaryButtonBar.getChildren().add(secondaryLightFlatButton);
+        secondaryButtonBar.getChildren().add(secondaryMidFlatButton);
+        secondaryButtonBar.getChildren().add(secondaryDarkFlatButton);
         
         buttonVBox.getChildren().add(primaryButtonBar);
         buttonVBox.getChildren().add(secondaryButtonBar);

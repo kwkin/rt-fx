@@ -30,7 +30,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     // TODO convert to BooleanProperty
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
-
+    
     /**
      * Creates a button with an empty string for its label.
      */

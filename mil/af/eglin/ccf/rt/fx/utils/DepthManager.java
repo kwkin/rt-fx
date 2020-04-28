@@ -5,25 +5,24 @@ import java.util.List;
 
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
 // TODO add a shadow transition (similar to fill transition)
 public class DepthManager
 {
-    private List<DropShadow> depth = new ArrayList<>();
+    private List<DepthShadow> depth = new ArrayList<>();
 
     private DepthManager() 
     {
         // @formatter:off
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0),     0,    0, 0, 0));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  1, 0.12, 0, 1));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  3, 0.15, 0, 1));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  5, 0.18, 0, 2));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  7, 0.21, 0, 2));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 10, 0.24, 0, 3));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 13, 0.27, 0, 3));
-        depth.add(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 16, 0.30, 0, 4));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0),     0,    0, 0, 0));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  1, 0.12, 0, 1));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  3, 0.15, 0, 1));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  5, 0.18, 0, 2));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  7, 0.21, 0, 2));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 10, 0.24, 0, 3));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 13, 0.27, 0, 3));
+        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 16, 0.30, 0, 4));
         // @formatter:on
     }
 
@@ -43,7 +42,7 @@ public class DepthManager
         level = Math.min(getLevels() - 1, level);
         
         // @formatter:off
-        control.setEffect(new DropShadow(BlurType.GAUSSIAN,
+        control.setEffect(new DepthShadow(BlurType.GAUSSIAN,
             depth.get(level).getColor(),
             depth.get(level).getRadius(),
             depth.get(level).getSpread(),
@@ -57,7 +56,7 @@ public class DepthManager
         return depth.size();
     }
 
-    public DropShadow getShadowAt(int level) 
+    public DepthShadow getShadowAt(int level) 
     {
         return depth.get(level);
     }
