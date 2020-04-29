@@ -7,6 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.TabPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.sample.control.TitledCard;
+import test.sample.control.TitledCardSize;
 import test.sample.control.DescriptionPane;
 import test.sample.controller.PaneController;
 
@@ -16,7 +17,7 @@ public class TabPanePresentation extends TitledCard
     
     public TabPanePresentation(PaneController controller)
     {
-        super(TITLE);
+        super(TITLE, TitledCardSize.SIZE_1x1);
 
         VBox stackPane = new VBox();
         

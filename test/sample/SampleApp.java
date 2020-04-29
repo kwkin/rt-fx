@@ -58,16 +58,21 @@ public class SampleApp extends Application
         JFXDecorator decorator = new JFXDecorator(stage, presentation, false, true, true);
         stage.setTitle("RT-FX Demo");
         
+        // TODO THIS SHOULD REALLY BE DONE BEFORE RT-FX IS BASELINED:
+        // TODO Set the default sheet to the appropriate theme, and remove any reference to Modena.
+//        StyleManager.getInstance().setDefaultUserAgentStylesheet(ResourceLoader.loadFile("light-theme.css"));
+
         // TODO clean this up
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
         ThemeManager.getInstance().addScene(scene);
-        
-        ThemeManager.getInstance().load(Theme.LIGHT);
-//        ThemeManager.getInstance().load(Theme.EMERALD_COAST);
-//        ThemeManager.getInstance().load(Theme.DEEP_SEA);
-      
+
         scene.getStylesheets().add(ResourceLoader.loadJFXCss("demo.css"));
+        
+//        ThemeManager.getInstance().load(Theme.LIGHT);
+//        ThemeManager.getInstance().load(Theme.EMERALD_COAST);
+        ThemeManager.getInstance().load(Theme.DEEP_SEA);
+      
         
         this.stage.setScene(scene);
         this.stage.show();

@@ -10,6 +10,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.sample.control.TitledCard;
+import test.sample.control.TitledCardSize;
 import test.sample.control.DescriptionPane;
 import test.sample.controller.PaneController;
 
@@ -19,13 +20,11 @@ public class SpinnerPanePresentation extends TitledCard
     
     public SpinnerPanePresentation(PaneController controller)
     {
-        super(TITLE);
+        super(TITLE, TitledCardSize.SIZE_1x1);
 
         VBox stackPane = new VBox();
 
         stackPane.getChildren().add(createSpinnerPane());
-        stackPane.getChildren().add(new Separator());
-        stackPane.getChildren().add(createAccentSpinnerPane());
         
         setContent(stackPane);
     }

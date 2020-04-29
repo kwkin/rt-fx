@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ListView;
+import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.sample.control.TitledCard;
 import test.sample.control.DescriptionPane;
@@ -29,6 +30,9 @@ public class ListViewPanePresentation extends TitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("List boxes can contain several items. These items can include text, images, or really anything.");
 
+        VBox stackPane = new VBox();
+        stackPane.setSpacing(25);
+        
         ObservableList<String> items = FXCollections.observableArrayList();
         int itemCount = 10;
         items.add("This is a ridiculously long list view entry used in order to show the horizontal scroll bar.");
@@ -36,10 +40,12 @@ public class ListViewPanePresentation extends TitledCard
         {
             items.add(String.format("Item %d", index));
         }
-        ListView<String> listView = new ListView<String>(items);
-        listView.setMaxHeight(200);
+        ListView<String> listViewZebra = new ListView<String>(items);
+        ListView<String> listView = new ListView<String>(items, ListViewStyle.PLAIN);
+        stackPane.getChildren().add(listViewZebra);
+        stackPane.getChildren().add(listView);
 
-        descriptionPane.setContent(listView);
+        descriptionPane.setContent(stackPane);
         
         return descriptionPane;
     }

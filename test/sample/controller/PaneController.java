@@ -10,7 +10,7 @@ import test.sample.presentation.model.BoxesPaneModel;
 import test.sample.presentation.model.ColorPickerPaneModel;
 import test.sample.presentation.model.ComboBoxPaneModel;
 import test.sample.presentation.model.ContextMenuPaneModel;
-import test.sample.presentation.model.ExpanderPaneModel;
+import test.sample.presentation.model.TitledPaneModel;
 import test.sample.presentation.model.LabelPaneModel;
 import test.sample.presentation.model.ListViewPaneModel;
 import test.sample.presentation.model.NormalButtonPaneModel;
@@ -40,7 +40,7 @@ public class PaneController
     private StepperPaneModel stepperPaneModel = new StepperPaneModel();
     private ColorPickerPaneModel colorPickerPaneModel = new ColorPickerPaneModel();
     private ProgressPaneModel progressPaneModel = new ProgressPaneModel();
-    private ExpanderPaneModel expanderPaneModel = new ExpanderPaneModel();
+    private TitledPaneModel expanderPaneModel = new TitledPaneModel();
     private TabPaneModel tabPaneModel = new TabPaneModel();
     private ListViewPaneModel listViewPaneModel = new ListViewPaneModel();
     private ContextMenuPaneModel contextMenuPaneModel = new ContextMenuPaneModel();
@@ -142,7 +142,7 @@ public class PaneController
         return this.progressPaneModel;
     }
     
-    public ExpanderPaneModel getExpanderPaneModel()
+    public TitledPaneModel getExpanderPaneModel()
     {
         return this.expanderPaneModel;
     }

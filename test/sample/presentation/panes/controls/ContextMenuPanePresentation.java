@@ -15,6 +15,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.sample.control.TitledCard;
+import test.sample.control.TitledCardSize;
 import test.sample.control.DescriptionPane;
 import test.sample.controller.PaneController;
 
@@ -24,7 +25,7 @@ public class ContextMenuPanePresentation extends TitledCard
     
     public ContextMenuPanePresentation(PaneController controller)
     {
-        super(TITLE);
+        super(TITLE, TitledCardSize.SIZE_1x1);
 
         VBox vBox = new VBox();
         

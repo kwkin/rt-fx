@@ -2,6 +2,8 @@ package mil.af.eglin.ccf.rt.fx.style;
 
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -37,12 +39,12 @@ public class ThemeManager
             {
                 scene.getStylesheets().add(newFilePath);
             }
-//            StyleManager.getInstance().addUserAgentStylesheet(newFilePath);
+            StyleManager.getInstance().addUserAgentStylesheet(newFilePath);
             
             if (this.theme != null)
             {
                 String oldFilePath = ResourceLoader.loadFile(this.theme.getPath());
-//                StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
+                StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
 
                 for (Scene scene : scenes)
                 {

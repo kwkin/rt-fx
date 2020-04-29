@@ -163,22 +163,7 @@ TODO
 .list-cell 
 {
     -fx-padding: 8 16 8 16;
-}
-
-.list-cell:odd
-{
-    -fx-background-color: -rt-listview-odd-background;
     -fx-text-fill: -rt-text-color;
-}
-
-.list-view.plain .virtual-flow .clipped-container .sheet .list-cell
-{
-    -fx-border-color: -rt-listview-background;
-}
-
-.list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
-{
-    -fx-border-color: -rt-listview-odd-background;
 }
 
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
@@ -187,9 +172,20 @@ TODO
 	-fx-border-width: 0 0 1 0;
 }
 
+.list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
+.list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
+{
+    -fx-border-color: -rt-listview-background;
+}
+
 .list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
 {
     -fx-border-color: -rt-listview-zebra-border;
+}
+
+.list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd
+{
+    -fx-background-color: -rt-listview-odd-background;
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */

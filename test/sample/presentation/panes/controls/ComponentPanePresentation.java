@@ -23,7 +23,7 @@ public class ComponentPanePresentation extends ScrollPane
         SpinnerPanePresentation stepperPane = new SpinnerPanePresentation(controller);
         ColorPickerPanePresentation colorPickerPane = new ColorPickerPanePresentation(controller);
         ProgressPanePresentation progressPane = new ProgressPanePresentation(controller);
-        ExpanderPanePresentation expanderPane = new ExpanderPanePresentation(controller);
+        TitledPanePresentation expanderPane = new TitledPanePresentation(controller);
         TabPanePresentation tabPane = new TabPanePresentation(controller);
         ListViewPanePresentation listViewPane = new ListViewPanePresentation(controller);
         ContextMenuPanePresentation contextMenuPane = new ContextMenuPanePresentation(controller);
