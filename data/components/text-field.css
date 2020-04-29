@@ -1,4 +1,11 @@
-/*-- TODO change usage of base to main --*/
+/*
+TODO
+- Change usage of main to base colors
+- Padding
+- Add bottom border
+- Text color
+*/
+
 /*-- ############################### Filled Text Field Accent ############################### */
 .rt-text-field.filled.primary-light
 {

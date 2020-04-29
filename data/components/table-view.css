@@ -1,4 +1,11 @@
-/* TODO add table tree */
+/*
+TODO
+- Row selected and hover transitions
+- Derive color to include dark ahd light theme
+- Add tree table
+- Derive border color
+*/
+
 /*-- ############################### Table View Accents ############################### */
 .rt-table-view.primary-light
 {

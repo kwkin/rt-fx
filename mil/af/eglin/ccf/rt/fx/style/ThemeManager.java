@@ -2,8 +2,6 @@ package mil.af.eglin.ccf.rt.fx.style;
 
 import java.util.List;
 
-import com.sun.javafx.css.StyleManager;
-
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -12,7 +10,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 // TODO remove reference to scene
 public class ThemeManager
 {
-    private final static Theme DEFAULT_THEME = Theme.LIGHT;
     private Theme theme;
     private List<Scene> scenes = FXCollections.observableArrayList();
 
@@ -20,14 +17,9 @@ public class ThemeManager
     {
     }
 
-    private ThemeManager(Theme theme) 
-    {
-        load(theme);
-    }
-
     private static class InstanceHolder 
     {
-        final static ThemeManager INSTANCE = new ThemeManager(DEFAULT_THEME);
+        final static ThemeManager INSTANCE = new ThemeManager();
     }
     
     public static ThemeManager getInstance()

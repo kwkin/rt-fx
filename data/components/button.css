@@ -1,3 +1,9 @@
+/*
+TODO
+- Flat button padding
+- Flat button min height
+*/
+
 /*-- ############################### Raised Button Accents ############################### */
 .rt-button.raised
 {
@@ -207,13 +213,13 @@
     -fx-border-color: -rt-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
-    -fx-font-size: 14;
-    -fx-min-height: 32;
+    -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
 
     -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
     -fx-text-fill: -rt-text-color;
     
     -rt-disable-animation: false;
