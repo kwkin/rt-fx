@@ -3,146 +3,147 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
-import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
+import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
+import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
 // TODO change armed to selected
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
-    private final StackPane selectedBox = new StackPane();
-    private final StackPane hoverBox = new StackPane();
-    
-    private ToggleButtonTransition selectedTransition;
-    private ToggleButtonTransition hoverTransition;
+    private final StackPane stateBox = new StackPane();
+
+    private ToggleButton button;
+    private RtAnimationTimer timer;
     
     public RtToggleButtonSkin(ToggleButton button)
     {
         super(button);
-
-        button.selectedProperty().addListener((ov, oldVal, newVal) -> 
-        {
-            playSelectedAnimation(newVal);
-        });
-        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> playHoverAnimation(true));
-        button.addEventFilter(MouseEvent.MOUSE_EXITED, e -> playHoverAnimation(false));
-
-        selectedBox.getStyleClass().setAll("selectedBox");
-        selectedBox.setOpacity(0);
-        hoverBox.getStyleClass().setAll("hoverBox");
-        hoverBox.setOpacity(0);
-
-        double duration = button.getIsAnimationDisabled() ? 0 : 150;
-        selectedTransition = new ToggleButtonTransition(selectedBox, Duration.millis(duration));
-        hoverTransition = new ToggleButtonTransition(hoverBox, Duration.millis(duration));
-
-        Node text = button.lookup(".text");
+        this.button = button;
+        
+        stateBox.getStyleClass().setAll("state-box");
+        stateBox.setOpacity(0);
+        
+        Node text = getSkinnable().lookup(".text");
         int index = getChildren().indexOf(text);
         index = index == -1 ? getChildren().size() - 1 : index;
-        if (hoverBox != null)
+        if (stateBox != null)
         {
-            getChildren().add(index, hoverBox);
+            getChildren().add(index, stateBox);
         }
-        if (selectedBox != null)
+
+        // TODO generate shadow automatically
+        button.setPickOnBounds(false);
+        DepthManager.getInstance().setDepth(button, 2);
+        timer = new RtAnimationTimer(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(button.effectProperty())
+                        .setEndValueSupplier(() -> determineShadow())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(stateBox.opacityProperty())
+                        .setEndValueSupplier(() -> determineOpacity())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
+                        .build())
+                .build());
+        timer.setCacheNodes(stateBox);
+        
+        button.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
-            getChildren().add(index, selectedBox);
-        }
+            updateState();
+        });
+        button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            updateState();
+        });
+        button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            updateState();
+        });
     }
 
 
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        selectedBox.resizeRelocate(
-                getSkinnable().getLayoutBounds().getMinX(),
-                getSkinnable().getLayoutBounds().getMinY(),
-                getSkinnable().getWidth(), getSkinnable().getHeight());
-            
-        hoverBox.resizeRelocate(
-                getSkinnable().getLayoutBounds().getMinX(),
-                getSkinnable().getLayoutBounds().getMinY(),
-                getSkinnable().getWidth(), getSkinnable().getHeight());
+        // @formatter:off
+        stateBox.resizeRelocate(
+            getSkinnable().getLayoutBounds().getMinX(),
+            getSkinnable().getLayoutBounds().getMinY(),
+            getSkinnable().getWidth(), getSkinnable().getHeight());
+        // @formatter:on
         
         layoutLabelInArea(x, y, w, h);
     }
-
-    private void playSelectedAnimation(boolean isSelected) 
+    
+    private void updateState()
     {
-        if (selectedTransition != null) 
+        if (!button.getIsAnimationDisabled())
         {
-            if (isSelected)
-            {
-                selectedTransition.setRate(1);
-                selectedTransition.play();
-            }
-            else
-            {
-                selectedTransition.setRate(-1);
-                selectedTransition.playFrom(Duration.ZERO);
-            }
+            timer.reverseAndContinue();
+        }
+        else
+        {
+            timer.applyEndValues();
         }
     }
 
-    private void playHoverAnimation(boolean isHovered) 
+    private double determineOpacity() 
     {
-        if (hoverTransition != null) 
+        double opacity = 0;
+        if (button.isArmed())
         {
-            if (isHovered)
-            {
-                hoverTransition.setRate(1);
-                hoverTransition.play();
-            }
-            else
-            {
-                hoverTransition.setRate(-1);
-                hoverTransition.playFrom(Duration.ZERO);
-            }
+            opacity = 1;
         }
+        else if (button.isHover() && button.isSelected())
+        {
+            opacity = 0.8;
+        }
+        else if (button.isSelected())
+        {
+            opacity = 0.6;
+        }
+        else if (button.isHover())
+        {
+            opacity = 0.4;
+        }
+        return opacity;
     }
 
-    private final static class ToggleButtonTransition extends CachedTransition
+    private DepthShadow determineShadow() 
     {
-        protected Node node;
-
-        ToggleButtonTransition(Node node, Duration duration)
+        DepthShadow shadow;
+        if (button.isArmed())
         {
-            // @formatter:off
-            super(null, new Timeline(
-                    new KeyFrame(Duration.ZERO,
-                            new KeyValue(node.opacityProperty(), 0, Interpolator.EASE_OUT)),
-                    new KeyFrame(Duration.millis(500), 
-                            new KeyValue(node.opacityProperty(), 1, Interpolator.EASE_OUT))));
-            // @formatter:on
-            if (duration == Duration.ZERO)
-            {
-                setCycleDuration(Duration.millis(1));
-                setCycleCount(1);
-            }
-            else
-            {
-                setCycleDuration(Duration.seconds(0.2));
-            }
-            setDelay(Duration.seconds(0));
-            this.node = node;
+            shadow = DepthManager.getInstance().getShadowAt(5);
         }
-
-        @Override
-        protected void beginStart()
+        else if (button.isHover() && button.isSelected())
         {
-            super.beginStart();
+            shadow = DepthManager.getInstance().getShadowAt(4);
         }
-
-        @Override
-        protected void beginStop()
+        else if (button.isSelected())
         {
-            super.beginStop();
-            node.setOpacity(getRate() == 1 ? 1 : 0);
+            shadow = DepthManager.getInstance().getShadowAt(3);
         }
+        else if (button.isHover())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(3);
+        }
+        else
+        {
+            shadow = DepthManager.getInstance().getShadowAt(2);
+        }
+        return shadow;
     }
 }

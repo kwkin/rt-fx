@@ -1,13 +1,6 @@
 /*
 TODO
-- Toggle button padding
-- Toggle button min height
-- Toggle button armed state
-
-- Toggle switch hover state
-
-- Icon button hover state
-- Icon button hover and selected state transisitons
+- Icon button glowing accent API
 */
 
 /*-- ############################### Raised Toggle Button Accents ############################### */
@@ -81,123 +74,68 @@ TODO
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
-/*-- ############################### Switch Toggle Button ############################### */
-.rt-toggle-switch.primary-light
-{
-    -rt-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.primary-mid
-{
-    -rt-accent-color: -rt-primary-mid-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.primary-dark
-{
-    -rt-accent-color: -rt-primary-dark-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.secondary-light
-{
-    -rt-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.secondary-mid
-{
-    -rt-accent-color: -rt-secondary-mid-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.secondary-dark
-{
-    -rt-accent-color: -rt-secondary-dark-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.base-light
-{
-    -rt-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.base-mid
-{
-    -rt-accent-color: -rt-base-mid-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
-.rt-toggle-switch.base-dark
-{
-    -rt-accent-color: -rt-base-dark-color;
-    -rt-text-color: -rt-base-mid-text-color;
-}
-
 /*-- ############################### Icon Toggle Button ############################### */
 .rt-icon-toggle-button.primary-light
 {
     -selected-color: -rt-primary-light-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.primary-mid
 {
     -selected-color: -rt-primary-mid-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.primary-dark
 {
     -selected-color: -rt-primary-dark-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.secondary-light
 {
     -selected-color: -rt-secondary-light-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.secondary-mid
 {
     -selected-color: -rt-secondary-mid-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.secondary-dark
 {
     -selected-color: -rt-secondary-dark-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.base-light
 {
     -selected-color: -rt-base-light-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.base-mid
 {
     -selected-color: -rt-primary-mid-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 .rt-icon-toggle-button.base-dark
 {
     -selected-color: -rt-primary-dark-color;
     -unselected-color: -rt-base-dark-text-color;
-    -selected-glow-color: -rt-base-dark-color;
+    -rt-overlay-color: -rt-base-dark-color;
 }
 
 /*-- ############################### Toggle Button Style ############################### */
@@ -210,87 +148,35 @@ TODO
 .rt-toggle-button.raised
 {
     -fx-background-color: -rt-accent-color;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 4 4 4 4;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
     -fx-border-color: -rt-accent-color;
-    -fx-border-radius: 4 4 4 4;
-    -fx-border-width: 0 0 0 0;
-    -fx-font-size: 14;
-    -fx-min-height: 32;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
+    -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
 
     -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
     -fx-text-fill: -rt-text-color;
 }
 
 .rt-toggle-button.raised:focused
 {
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 4 4 4 4;
-    -fx-border-radius: 4 4 4 4;
-    -fx-border-width: 0 0 0 0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
 }
 
-/* TODO armed color */
-.rt-toggle-button.raised .hoverBox
+.rt-toggle-button.raised .state-box
 {
     -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 1;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
     -fx-border-width: 0;
-    -fx-border-radius: 1;
-}
-
-.rt-toggle-button.raised .selectedBox
-{
-    -fx-background-color: -rt-overlay-color;
-    -fx-background-radius: 1;
-    -fx-border-width: 0;
-    -fx-border-radius: 1;
-}
-
-/*-- ############################### Toggle Switch Style ############################### */
-.rt-toggle-switch,
-.rt-toggle-switch:armed,
-.rt-toggle-switch:hover,
-.rt-toggle-switch:focused,
-.rt-toggle-switch:selected,
-.rt-toggle-switch:focused:selected 
-{
-    -fx-cursor: hand;
-    -fx-background-color: transparent;
-    -fx-background-radius: 3px;
-    -fx-background-insets: 0px;
-    -fx-text-fill: -rt-text-color;
-
-    /* TODO Fix padding */
-    -fx-padding: 0;
-
-    /* TODO Fix color inheritance */
-    -rt-selected-color: -rt-accent-color;
-    -rt-unselected-color: -rt-base-light-color;
-    -rt-selected-line-color: derive(-rt-accent-color, 50%);
-    -rt-unselected-line-color: -rt-base-mid-color;
-}
-
-.rt-toggle-switch .line 
-{
-    -fx-stroke: -rt-unselected-line-color;
-}
-.rt-toggle-switch:selected .line
-{
-    -fx-stroke: -rt-selected-line-color;
-}
-
-.rt-toggle-switch .circle
-{
-    -fx-fill: -rt-unselected-color;
-}
-
-.rt-toggle-switch:selected .circle
-{
-    -fx-fill: -rt-selected-color;
 }
 
 /*-- ############################### Normal Icon Toggle Button Style ############################### */
@@ -299,24 +185,25 @@ TODO
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-text-fill: -unselected-color;
 
-    -fx-padding: 4 4 4 4;
+    -fx-padding: 4;
+}
+
+.rt-icon-toggle-button.normal .state-box
+{
+    -fx-background-color: -rt-overlay-color;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
 }
 
 .rt-icon-toggle-button.normal:selected,
 .rt-icon-toggle-button.normal:focused,
 .rt-icon-toggle-button.normal:selected:focused
 {
-    -fx-border-width: 0 0 0 0;
-    -fx-background-color: transparent;
-}
-
-.rt-icon-toggle-button.normal:selected .selectedBox,
-.rt-icon-toggle-button.normal:focused:selected .selectedBox
-{
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-background-color: transparent;
 }
 
@@ -326,33 +213,28 @@ TODO
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-text-fill: -unselected-color;
 
     -rt-selected-icon-color: -selected-color;
     -rt-unselected-icon-color: -unselected-color;
 
-    -fx-padding: 4 4 4 4;
+    -fx-padding: 4;
 }
 
-.rt-icon-toggle-button.highlighted:hover
+.rt-icon-toggle-button.highlighted .state-box
 {
-    -fx-text-fill: -selected-color;
-    -rt-fill-color: -selected-color;
+    -fx-background-color: -rt-overlay-color;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
 }
 
 .rt-icon-toggle-button.highlighted:selected,
 .rt-icon-toggle-button.highlighted:focused,
 .rt-icon-toggle-button.highlighted:selected:focused
 {
-    -fx-border-width: 0 0 0 0;
-    -fx-background-color: transparent;
-}
-
-.rt-icon-toggle-button.highlighted:selected .selectedBox,
-.rt-icon-toggle-button.highlighted:focused:selected .selectedBox
-{
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-background-color: transparent;
 }
 
@@ -362,27 +244,22 @@ TODO
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-text-fill: -unselected-color;
 
     -rt-selected-icon-color: -selected-color;
     -rt-unselected-icon-color: -unselected-color;
-    -fx-background-insets: 0 0 0 0;
+    -fx-background-insets: 0;
 
-    -fx-padding: 4 4 4 4;
+    -fx-padding: 4;
 }
 
-.rt-icon-toggle-button.glowing:hover
+.rt-icon-toggle-button.glowing .state-box
 {
-    -fx-text-fill: -selected-color;
-    -rt-fill-color: -selected-color;
-}
-
-.rt-icon-toggle-button.glowing:hover .selectedBox
-{
-    -fx-background-radius: 100000;
-    -fx-text-fill: -selected-color;
-    -rt-fill-color: -selected-color;
+    -fx-background-color: -rt-overlay-color;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
 }
 
 .rt-icon-toggle-button.glowing:selected,
@@ -391,19 +268,9 @@ TODO
 {
     -fx-background: transparent;
     -fx-background-color: transparent;
-    -fx-background-insets: 0 0 0 0;
+    -fx-background-insets: 0;
     -fx-border-color: transparent;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-text-fill: -selected-color;
     -rt-fill-color: -selected-color;
-}
-
-.rt-icon-toggle-button.glowing:selected .selectedBox,
-.rt-icon-toggle-button.glowing:focused:selected .selectedBox
-{
-    -fx-background-radius: 4;
-    -fx-background-color: -selected-glow-color;
-    -fx-background-insets: 0 0 0 0;
-    -fx-border-width: 0 0 0 0;
-    -fx-opacity: 0.5;
 }

@@ -51,13 +51,13 @@ public class RtButtonSkin extends ButtonSkin
                                 .setTarget(button.effectProperty())
                                 .setEndValueSupplier(() -> determinedArmedShadow(button.isArmed()))
                                 .setInterpolator(Interpolator.EASE_BOTH)
-                                .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                 .build(),
                             RtKeyValue.builder()
                                 .setTarget(stateBox.opacityProperty())
                                 .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
                                 .setInterpolator(Interpolator.EASE_BOTH)
-                                .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                 .build())
                         .build());
                 armedTimer.setCacheNodes(stateBox);
@@ -70,13 +70,13 @@ public class RtButtonSkin extends ButtonSkin
                                     .setTarget(button.effectProperty())
                                     .setEndValueSupplier(() -> determineHoverShadow(button.isHover()))
                                     .setInterpolator(Interpolator.EASE_BOTH)
-                                    .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                    .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                     .build(),
                                 RtKeyValue.builder()
                                     .setTarget(stateBox.opacityProperty())
                                     .setEndValueSupplier(() -> determineOpacity(button.isHover()))
                                     .setInterpolator(Interpolator.EASE_BOTH)
-                                    .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                    .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                     .build())
                             .build());
                 hoverTimer.setCacheNodes(stateBox);
@@ -91,7 +91,7 @@ public class RtButtonSkin extends ButtonSkin
                                     .setTarget(stateBox.opacityProperty())
                                     .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
                                     .setInterpolator(Interpolator.EASE_BOTH)
-                                    .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                    .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                     .build())
                             .build());
                     armedTimer.setCacheNodes(stateBox);
@@ -104,7 +104,7 @@ public class RtButtonSkin extends ButtonSkin
                                         .setTarget(stateBox.opacityProperty())
                                         .setEndValueSupplier(() -> determineOpacity(button.isHover()))
                                         .setInterpolator(Interpolator.EASE_BOTH)
-                                        .setAnimateCondition(() -> !((Button) getSkinnable()).getIsAnimationDisabled())
+                                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                         .build())
                                 .build());
                     armedTimer.setCacheNodes(stateBox);

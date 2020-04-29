@@ -18,7 +18,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO add selected state
 public class ToggleButton extends javafx.scene.control.ToggleButton implements RtComponent
 {
     protected ToggleButtonStyle style = ToggleButtonStyle.RAISED;

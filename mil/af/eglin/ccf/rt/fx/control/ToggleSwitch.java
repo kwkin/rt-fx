@@ -22,7 +22,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 {
     protected Accent accent = Accent.PRIMARY_MID;
     
-    private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
+    private static final String USER_AGENT_STYLESHEET = "toggle-switch.css";
     private static final String CSS_CLASS = "rt-toggle-switch";
 
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(

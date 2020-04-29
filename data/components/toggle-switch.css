@@ -1,0 +1,102 @@
+/*
+TODO
+- Toggle switch hover state
+*/
+
+/*-- ############################### Switch Toggle Button ############################### */
+.rt-toggle-switch.primary-light
+{
+    -rt-accent-color: -rt-primary-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.primary-mid
+{
+    -rt-accent-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.primary-dark
+{
+    -rt-accent-color: -rt-primary-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.secondary-light
+{
+    -rt-accent-color: -rt-secondary-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.secondary-mid
+{
+    -rt-accent-color: -rt-secondary-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.secondary-dark
+{
+    -rt-accent-color: -rt-secondary-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.base-light
+{
+    -rt-accent-color: -rt-base-light-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.base-mid
+{
+    -rt-accent-color: -rt-base-mid-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+.rt-toggle-switch.base-dark
+{
+    -rt-accent-color: -rt-base-dark-color;
+    -rt-text-color: -rt-base-mid-text-color;
+}
+
+/*-- ############################### Toggle Switch Style ############################### */
+.rt-toggle-switch,
+.rt-toggle-switch:armed,
+.rt-toggle-switch:hover,
+.rt-toggle-switch:focused,
+.rt-toggle-switch:selected,
+.rt-toggle-switch:focused:selected 
+{
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-background-radius: 3px;
+    -fx-background-insets: 0px;
+    -fx-text-fill: -rt-text-color;
+
+    /* TODO Fix padding */
+    -fx-padding: 0;
+
+    /* TODO Fix color inheritance */
+    -rt-selected-color: -rt-accent-color;
+    -rt-unselected-color: -rt-base-light-color;
+    -rt-selected-line-color: derive(-rt-accent-color, 50%);
+    -rt-unselected-line-color: -rt-base-mid-color;
+}
+
+.rt-toggle-switch .line 
+{
+    -fx-stroke: -rt-unselected-line-color;
+}
+.rt-toggle-switch:selected .line
+{
+    -fx-stroke: -rt-selected-line-color;
+}
+
+.rt-toggle-switch .circle
+{
+    -fx-fill: -rt-unselected-color;
+}
+
+.rt-toggle-switch:selected .circle
+{
+    -fx-fill: -rt-selected-color;
+}

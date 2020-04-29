@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtIconToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
@@ -87,6 +88,11 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     public IconSizes getIconSizes()
     {
         return this.iconSize;
+    }
+
+    public IconToggleButtonStyle getRtStyle()
+    {
+        return this.style;
     }
 
     public StyleableObjectProperty<Paint> selectedFillProperty()
