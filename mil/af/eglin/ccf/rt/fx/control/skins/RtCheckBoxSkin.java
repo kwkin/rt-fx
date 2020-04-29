@@ -19,10 +19,12 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtFillTransition;
+import mil.af.eglin.ccf.rt.fx.utils.JFXNodeUtils;
 
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
@@ -31,6 +33,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane overallBox = new StackPane();
 
+    private CheckBox checkBox;
+    
     // TODO change to RtAnimationTimer
     private Transition transition;
     private Transition indeterminateTransition;
@@ -39,6 +43,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     public RtCheckBoxSkin(CheckBox checkBox)
     {
         super(checkBox, new ButtonBehavior<>(checkBox));
+        this.checkBox = checkBox;
 
         this.selectedMark.getStyleClass().setAll("mark");
         this.selectedMark.setOpacity(0);
@@ -68,6 +73,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         transition = new CheckBoxTransition(selectedMark);
         indeterminateTransition = new CheckBoxTransition(indeterminateMark);
         createFillTransition();
+        
+        // TODO register change listeners
     }
 
     @Override

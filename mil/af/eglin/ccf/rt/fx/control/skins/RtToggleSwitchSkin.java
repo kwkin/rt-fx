@@ -102,6 +102,48 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         updateSelectionState();
  
         // TODO add change listeners
+        registerChangeListener(toggleSwitch.selectedColorProperty(), "SELECTED_COLOR");
+        registerChangeListener(toggleSwitch.unselectedColorProperty(), "UNSELECTED_COLOR");
+        registerChangeListener(toggleSwitch.selectedLineColorProperty(), "SELECTED_LINE_COLOR");
+        registerChangeListener(toggleSwitch.unselectedLineColorProperty(), "UNSELECTED_LINE_COLOR");
+    }
+    
+    @Override
+    protected void handleControlPropertyChanged(String property) 
+    {
+        super.handleControlPropertyChanged(property);
+        if ("SELECTED_COLOR".equals(property)) 
+        {
+            Paint paint = determineCircleColor(this.toggleSwitch.isSelected());
+            if (paint != null)
+            {
+                circle.setFill(paint);
+            }
+        } 
+        else if ("UNSELECTED_COLOR".equals(property)) 
+        {
+            Paint paint = determineCircleColor(this.toggleSwitch.isSelected());
+            if (paint != null)
+            {
+                circle.setFill(paint);
+            }
+        }
+        else if ("SELECTED_LINE_COLOR".equals(property)) 
+        {
+            Paint paint = determineLineColor(this.toggleSwitch.isSelected());
+            if (paint != null)
+            {
+                line.setStroke(paint);
+            }
+        } 
+        else if ("UNSELECTED_LINE_COLOR".equals(property)) 
+        {
+            Paint paint = determineLineColor(this.toggleSwitch.isSelected());
+            if (paint != null)
+            {
+                line.setStroke(paint);
+            }
+        }
     }
     
     private void updateSelectionState()
