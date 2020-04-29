@@ -1,7 +1,6 @@
 /*
 TODO
 - Hover animation
-- Text to graphic padding
 */
 
 /*-- ############################### Accents ############################### */
@@ -73,6 +72,7 @@ TODO
 {
     -fx-cursor: hand;
     -fx-text-fill: -rt-text-color;
+    -fx-label-padding: 0 0 0 12;
 }
 
 .rt-check-box .box
