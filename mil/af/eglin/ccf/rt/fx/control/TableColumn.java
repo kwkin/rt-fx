@@ -1,6 +1,5 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import javafx.collections.ListChangeListener;
 import mil.af.eglin.ccf.rt.fx.control.style.TableColumnStyle;
 
 public class TableColumn<S, T> extends javafx.scene.control.TableColumn<S, T>

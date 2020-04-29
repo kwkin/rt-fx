@@ -116,7 +116,7 @@ public class ButtonPanePresentation extends TitledCard
     private Node createIconButtons()
     {
         DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("Icon buttons may appear with or without text.");
+        descriptionPane.setDescription("Icon buttons are similar to flat buttons, but have a tighter padding and the graphic and text automatically match color");
         
         HBox primaryButtonBar = new HBox();
         IconButton iconButton1 = new IconButton(new SvgIcon(SvgIcons.MAGNIFY_MINUS, IconSizes.SIZE_24));

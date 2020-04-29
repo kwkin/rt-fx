@@ -38,7 +38,7 @@ public class SvgIcon extends StackPane
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
     private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
             StyleableProperties.SIZE, this, "size", (double)IconSizes.SIZE_32.getIconSize());
-
+    
     public SvgIcon(SvgIcons icon)
     {
         initialize(extractSvgPath(icon.getFilePath()));
@@ -135,12 +135,11 @@ public class SvgIcon extends StackPane
         });
         backgroundProperty().addListener((ov, oldVal, newVal) -> 
         {
-            if (newVal != null && newVal.getFills().size() > 0)
+            if (this.fill.getValue() != null)
             {
-                this.fill.setValue(newVal.getFills().get(0).getFill());
+                setBackground(new Background(new BackgroundFill(getFill(), null, null)));
             }
         });
-        
         shapeProperty().addListener((ov, oldVal, newVal) ->
         {
             if (newVal != null)
