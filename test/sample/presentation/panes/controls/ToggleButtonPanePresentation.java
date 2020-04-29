@@ -1,5 +1,6 @@
 package test.sample.presentation.panes.controls;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
@@ -109,7 +110,8 @@ public class ToggleButtonPanePresentation extends TitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Toggle buttons can also be represented with icons with and without text. Additionally, the icon buttons can be accented or glowing.:");
         
-        FlowPane toggleButtonGridPane = new FlowPane();
+        FlowPane pane = new FlowPane();
+        pane.setPadding(new Insets(0));
         
         SvgIcon smilyOn = new SvgIcon(SvgIcons.EMOTICON_EXCITED, IconSizes.SIZE_32);
         SvgIcon smilyOff = new SvgIcon(SvgIcons.EMOTICON_EXCITED_OUTLINE, IconSizes.SIZE_32);
@@ -120,10 +122,14 @@ public class ToggleButtonPanePresentation extends TitledCard
         IconToggleButton normalWithText = new IconToggleButton(eyeOn, eyeOff);
         normalWithText.setText("Normal");
 
+        SvgIcon play = new SvgIcon(SvgIcons.PLAY, IconSizes.SIZE_32);
+        SvgIcon pause = new SvgIcon(SvgIcons.PAUSE, IconSizes.SIZE_32);
+        IconToggleButton accented = new IconToggleButton(play, pause, IconToggleButtonStyle.ACCENTED);
+
         SvgIcon mapAlert = new SvgIcon(SvgIcons.MAP_MARKER_ALERT, IconSizes.SIZE_32);
         SvgIcon mapAlertCircle = new SvgIcon(SvgIcons.MAP_MARKER_ALERT_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton accented = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
-        accented.setText("Accented");
+        IconToggleButton accentedWithText = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
+        accentedWithText.setText("Accented");
 
         SvgIcon alertCircle = new SvgIcon(SvgIcons.ALERT_CIRCLE, IconSizes.SIZE_32);
         SvgIcon alertCircleOutline = new SvgIcon(SvgIcons.ALERT_CIRCLE_OUTLINE, IconSizes.SIZE_32);
@@ -134,13 +140,14 @@ public class ToggleButtonPanePresentation extends TitledCard
         IconToggleButton glowingWithText = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
         glowingWithText.setText("Glowing");
 
-        toggleButtonGridPane.getChildren().add(normal);
-        toggleButtonGridPane.getChildren().add(normalWithText);
-        toggleButtonGridPane.getChildren().add(accented);
-        toggleButtonGridPane.getChildren().add(glowing);
-        toggleButtonGridPane.getChildren().add(glowingWithText);
+        pane.getChildren().add(normal);
+        pane.getChildren().add(normalWithText);
+        pane.getChildren().add(accented);
+        pane.getChildren().add(accentedWithText);
+        pane.getChildren().add(glowing);
+        pane.getChildren().add(glowingWithText);
         
-        descriptionPane.setContent(toggleButtonGridPane);
+        descriptionPane.setContent(pane);
 
         return descriptionPane;
     }
