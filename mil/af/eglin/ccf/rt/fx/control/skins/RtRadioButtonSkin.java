@@ -27,7 +27,6 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     public RtRadioButtonSkin(RadioButton radioButton)
     {
         super(radioButton);
-
         this.radioButton = radioButton;
         
         double radioRadius = 8;
@@ -95,6 +94,32 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         // @formatter:on
 
         updateChildren();
+        
+        registerChangeListener(radioButton.selectedColorProperty(), "SELECTED_COLOR");
+        registerChangeListener(radioButton.unselectedColorProperty(), "UNSELECTED_COLOR");
+    }
+    
+    @Override
+    protected void handleControlPropertyChanged(String property) 
+    {
+        super.handleControlPropertyChanged(property);
+        if ("SELECTED_COLOR".equals(property)) 
+        {
+            Paint paint = determineColor(this.radioButton.isSelected());
+            if (paint != null)
+            {
+                radio.setStroke(paint);
+            }
+            this.dot.setFill(this.radioButton.getSelectedColor());
+        } 
+        else if ("UNSELECTED_COLOR".equals(property)) 
+        {
+            Paint paint = determineColor(this.radioButton.isSelected());
+            if (paint != null)
+            {
+                radio.setStroke(paint);
+            }
+        }
     }
 
     @Override

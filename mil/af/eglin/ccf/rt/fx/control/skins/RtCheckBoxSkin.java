@@ -73,8 +73,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         transition = new CheckBoxTransition(selectedMark);
         indeterminateTransition = new CheckBoxTransition(indeterminateMark);
         createFillTransition();
-        
-        // TODO register change listeners
     }
 
     @Override
@@ -234,6 +232,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         select.setInterpolator(Interpolator.EASE_OUT);
     }
 
+    // TODO remove checkbox transition and replace with animation timer
     private final static class CheckBoxTransition extends CachedTransition
     {
         protected Node mark;
