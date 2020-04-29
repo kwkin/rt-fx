@@ -113,32 +113,32 @@ public class ToggleButtonPanePresentation extends TitledCard
         
         SvgIcon smilyOn = new SvgIcon(SvgIcons.EMOTICON_EXCITED, IconSizes.SIZE_32);
         SvgIcon smilyOff = new SvgIcon(SvgIcons.EMOTICON_EXCITED_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton smiley = new IconToggleButton(smilyOn, smilyOff);
+        IconToggleButton normal = new IconToggleButton(smilyOn, smilyOff);
         
         SvgIcon eyeOn = new SvgIcon(SvgIcons.EYE, IconSizes.SIZE_32);
         SvgIcon eyeOff = new SvgIcon(SvgIcons.EYE_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton rtPalette = new IconToggleButton(eyeOn, eyeOff);
-        rtPalette.setText("Normal");
+        IconToggleButton normalWithText = new IconToggleButton(eyeOn, eyeOff);
+        normalWithText.setText("Normal");
 
         SvgIcon mapAlert = new SvgIcon(SvgIcons.MAP_MARKER_ALERT, IconSizes.SIZE_32);
         SvgIcon mapAlertCircle = new SvgIcon(SvgIcons.MAP_MARKER_ALERT_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.HIGHLIGHTED);
-        rtMapAlert.setText("Highlighted");
-
-        SvgIcon shieldAlert = new SvgIcon(SvgIcons.SHIELD_ALERT, IconSizes.SIZE_32);
-        SvgIcon shieldAlertOutline = new SvgIcon(SvgIcons.SHIELD_ALERT_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
-        rtToggle.setText("Glowing");
+        IconToggleButton accented = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
+        accented.setText("Accented");
 
         SvgIcon alertCircle = new SvgIcon(SvgIcons.ALERT_CIRCLE, IconSizes.SIZE_32);
         SvgIcon alertCircleOutline = new SvgIcon(SvgIcons.ALERT_CIRCLE_OUTLINE, IconSizes.SIZE_32);
-        IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING);
+        IconToggleButton glowing = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING);
 
-        toggleButtonGridPane.getChildren().add(smiley);
-        toggleButtonGridPane.getChildren().add(rtPalette);
-        toggleButtonGridPane.getChildren().add(rtMapAlert);
-        toggleButtonGridPane.getChildren().add(rtToggle);
-        toggleButtonGridPane.getChildren().add(rtToggleIconGlow);
+        SvgIcon shieldAlert = new SvgIcon(SvgIcons.SHIELD_ALERT, IconSizes.SIZE_32);
+        SvgIcon shieldAlertOutline = new SvgIcon(SvgIcons.SHIELD_ALERT_OUTLINE, IconSizes.SIZE_32);
+        IconToggleButton glowingWithText = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
+        glowingWithText.setText("Glowing");
+
+        toggleButtonGridPane.getChildren().add(normal);
+        toggleButtonGridPane.getChildren().add(normalWithText);
+        toggleButtonGridPane.getChildren().add(accented);
+        toggleButtonGridPane.getChildren().add(glowing);
+        toggleButtonGridPane.getChildren().add(glowingWithText);
         
         descriptionPane.setContent(toggleButtonGridPane);
 

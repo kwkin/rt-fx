@@ -3,7 +3,7 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 public enum IconToggleButtonStyle
 {
     GLOWING("glowing"),
-    HIGHLIGHTED("highlighted"),
+    ACCENTED("accented"),
     NORMAL("normal");
     
     private String cssName;
