@@ -16,7 +16,8 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 public class RtButtonSkin extends ButtonSkin
 {
     private final StackPane stateBox = new StackPane();
-    
+
+    // TODO combine armed timer and hover timer
     private Button button;
     private RtAnimationTimer hoverTimer;
     private RtAnimationTimer armedTimer;

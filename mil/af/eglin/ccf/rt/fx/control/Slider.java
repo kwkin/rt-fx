@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.css.CssMetaData;
@@ -30,6 +31,8 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
             StyleableProperties.FILLED_TRACK_COLOR, this, "filledTrackColor");
     private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
+    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
     public Slider()
     {
@@ -100,6 +103,21 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
     public void setUnfilledTrackColor(Paint color)
     {
         this.unfilledTrackColor.setValue(color);
+    }
+
+    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    {
+        return this.isAnimationDisabled;
+    }
+
+    public boolean getIsAnimationDisabled()
+    {
+        return isAnimationDisabled.getValue();
+    }
+
+    public void setIsAnimationDisabled(boolean isAnimationDisabled)
+    {
+        this.isAnimationDisabled.setValue(isAnimationDisabled);
     }
 
     /**
@@ -200,6 +218,21 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
                 return control.thumbColor;
             }
         };
+        private static final CssMetaData<Slider, Boolean> DISABLE_ANIMATION = new CssMetaData<Slider, Boolean>(
+                "-rt-disable-animation", BooleanConverter.getInstance(), false)
+        {
+            @Override
+            public boolean isSettable(Slider control)
+            {
+                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Boolean> getStyleableProperty(Slider control)
+            {
+                return control.isAnimationDisabled;
+            }
+        };
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
 
         static
@@ -209,6 +242,7 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
             styleables.add(THUMB_COLOR);
             styleables.add(FILLED_TRACK_COLOR);
             styleables.add(UNFILLED_TRACK_COLOR);
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
