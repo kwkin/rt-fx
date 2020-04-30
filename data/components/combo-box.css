@@ -6,6 +6,7 @@ TODO
 - Menu scroll bar color
 - Padding
 - Add bottom border
+- Rename color inheritance
 */
 
 /*-- ############################### Filled Combo Box Accent ############################### */
@@ -18,6 +19,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-primary-light-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.primary-mid
@@ -29,6 +34,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-primary-mid-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.primary-dark
@@ -40,6 +49,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-primary-dark-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.secondary-light
@@ -51,6 +64,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-secondary-light-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.secondary-mid
@@ -62,6 +79,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-secondary-mid-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.secondary-dark
@@ -73,6 +94,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-secondary-dark-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.base-light
@@ -84,6 +109,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-base-light-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.base-mid
@@ -95,6 +124,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-base-mid-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.filled.base-dark
@@ -106,6 +139,10 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-accent-color: derive(-rt-base-dark-color, 90%);
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 /*-- ############################### Flat Text Field Accent ############################### */
@@ -114,6 +151,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-primary-light-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.primary-mid
@@ -121,6 +163,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-primary-mid-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.primary-dark
@@ -128,6 +175,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-primary-dark-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.secondary-light
@@ -135,6 +187,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-secondary-light-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.secondary-mid
@@ -142,6 +199,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-secondary-mid-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.secondary-dark
@@ -156,6 +218,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-base-light-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.base-mid
@@ -163,6 +230,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-base-mid-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.base-dark
@@ -170,6 +242,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-base-dark-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 /*-- ############################### Filled Combo Box Style ############################### */
@@ -285,4 +362,122 @@ TODO
     -fx-max-width: 1000000;
 	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
     -fx-text-fill: -rt-text-color;
+}
+
+/*-- ############################### Combo Box Popup Style ############################### */
+.combo-box-popup .list-view 
+{
+    -fx-background-color: -rt-listview-background;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 12, 0.0 , 0 , 8 );
+}
+
+.combo-box-popup .rt-list-view:focused
+{
+	-fx-background-color: -rt-listview-background;
+}
+
+.combo-box-popup .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
+{
+    -fx-background-color: -rt-listview-selected-background;
+}
+
+.combo-box-popup .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused
+{
+    -fx-background-color: -rt-listview-selected-background;
+}
+
+.list-cell 
+{
+    -fx-background-color: -rt-listview-background;
+    -fx-text-fill: -rt-text-color;
+    -fx-padding: 8 16 8 16;
+    -fx-text-fill: -rt-text-color;
+    -fx-border-width: 0;
+}
+
+/*-- ############################### List View Vertical Scroll Bar Style ############################### */
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical 
+{
+    -rt-size: 12;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .track
+{
+    -rt-size: 12;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .thumb
+{
+    -rt-size: 12;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-pref-width: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow
+{
+    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-shape: "M7,10L12,15L17,10H7Z";
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
+{
+    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-shape: "M7,15L12,10L17,15H7Z";
+}
+
+/*-- ############################### List View Horizontal Scroll Bar Style ############################### */
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal 
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .track
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .thumb
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.combo-box-popup .combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow
+{
+    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-shape: "M10,17L15,12L10,7V17Z";
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .decrement-button .decrement-arrow
+{
+    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-shape: "M14,7L9,12L14,17V7Z";
+}
+
+/*-- ############################### List View Scroll Bar Corner Style ############################### */
+.combo-box-popup .list-view .virtual-flow .corner
+{
+    -fx-background-color: -rt-scroll-bar-background;
 }

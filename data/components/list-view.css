@@ -158,12 +158,12 @@ TODO
 {
     -fx-background-color: -rt-listview-background;
     -fx-text-fill: -rt-text-color;
+    -fx-padding: 8 16 8 16;
+    -fx-text-fill: -rt-text-color;
 }
 
 .list-cell 
 {
-    -fx-padding: 8 16 8 16;
-    -fx-text-fill: -rt-text-color;
 }
 
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell,

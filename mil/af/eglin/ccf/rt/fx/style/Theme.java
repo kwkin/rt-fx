@@ -2,10 +2,12 @@ package mil.af.eglin.ccf.rt.fx.style;
 
 public enum Theme
 {
-    LIGHT("Light", "light-theme.css"),
+    DARK_MATERIAL("Dark Material", "dark-theme-material.css"),
+    DEEP_SEA("Deep Sea", "deep-sea.css"),
     EMERALD_COAST("Emerald Coast", "emerald-coast.css"),
-    DARK2("Dark Material", "dark-theme-material.css"),
-    DEEP_SEA("Deep Sea", "deep-sea.css");
+    LIGHT("Light", "light-theme.css"),
+    PINE_TREES_AND_LOG_CABINS("Pine Trees and Log Cabins", "pine-trees-and-log-cabins.css"),
+    CELESTIAL_QUASAR("Celestial Quasar", "celestial-quasar.css");
 
     private String name;
     private String fileName;
