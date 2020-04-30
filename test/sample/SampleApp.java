@@ -69,8 +69,8 @@ public class SampleApp extends Application
 
         scene.getStylesheets().add(ResourceLoader.loadJFXCss("demo.css"));
         
-//        ThemeManager.getInstance().load(Theme.LIGHT);
-        ThemeManager.getInstance().load(Theme.DARK_MATERIAL);
+        ThemeManager.getInstance().load(Theme.LIGHT);
+//        ThemeManager.getInstance().load(Theme.DARK_MATERIAL);
 //        ThemeManager.getInstance().load(Theme.EMERALD_COAST);
 //        ThemeManager.getInstance().load(Theme.DEEP_SEA);
 //        ThemeManager.getInstance().load(Theme.CELESTIAL_QUASAR);

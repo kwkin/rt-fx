@@ -23,6 +23,20 @@ public enum Theme
         return this.fileName;
     }
     
+    public static Theme getByName(String name)
+    {
+        Theme selectedTheme = Theme.LIGHT;
+        for (Theme theme : Theme.values())
+        {
+            if (theme.toString().equals(name))
+            {
+                selectedTheme = theme;
+                break;
+            }
+        }
+        return selectedTheme;
+    }
+    
     @Override
     public String toString()
     {

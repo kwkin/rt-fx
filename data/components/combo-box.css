@@ -211,6 +211,11 @@ TODO
     -rt-unselected-border-color: -rt-base-dark-color;
     -rt-selected-border-color: -rt-secondary-dark-color;
     -rt-text-color: -rt-main-mid-text-color;
+    
+    -rt-listview-background: -rt-main-light-color;
+    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
+    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-scroll-bar-background: transparent;
 }
 
 .rt-combo-box.flat.base-light
@@ -260,6 +265,16 @@ TODO
     -fx-cursor: hand;
     -fx-max-width: 1000000;
     -fx-padding: 1 1 1 1;
+    -fx-text-fill: -rt-text-color;
+}
+
+.combo-box-base .text-input,
+.combo-box-base,
+.combo-box-base .label,
+.rt-combo-box.filled .label,
+.combo-box-base:editable .arrow-button,
+.combo-box-popup .list-view .placeholder .label 
+{
     -fx-text-fill: -rt-text-color;
 }
 

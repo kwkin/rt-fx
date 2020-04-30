@@ -74,3 +74,10 @@
 {
     -fx-background-color: -rt-main-light-color;
 }
+
+.rt-combo-box.filled,
+.combo-box-base,
+.combo-box-base:editable .text-field
+{
+    -fx-text-fill: -rt-main-mid-text-color;
+}

@@ -59,6 +59,8 @@ public class MainPresentation extends BorderPane
         Label themeLabel = new Label("    Theme:");
         
         this.comboBoxTheme = new ComboBox<Theme>(FXCollections.observableArrayList(Theme.values()));
+        this.comboBoxTheme.setEditable(true);
+        this.comboBoxTheme.setValue(Theme.LIGHT);
         toolBar.setLeftItems(this.toggleButton, this.titled);
         toolBar.setRightItems(noticeMessage, themeLabel, this.comboBoxTheme);
         

@@ -162,10 +162,6 @@ TODO
     -fx-text-fill: -rt-text-color;
 }
 
-.list-cell 
-{
-}
-
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
 .list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
 {
