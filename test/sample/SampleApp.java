@@ -75,7 +75,6 @@ public class SampleApp extends Application
 //        ThemeManager.getInstance().load(Theme.DEEP_SEA);
 //        ThemeManager.getInstance().load(Theme.CELESTIAL_QUASAR);
 //        ThemeManager.getInstance().load(Theme.PINE_TREES_AND_LOG_CABINS);
-      
         
         this.stage.setScene(scene);
         this.stage.show();

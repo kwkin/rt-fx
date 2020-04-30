@@ -19,8 +19,7 @@ public class RtButtonSkin extends ButtonSkin
 
     // TODO combine armed timer and hover timer
     private Button button;
-    private RtAnimationTimer hoverTimer;
-    private RtAnimationTimer armedTimer;
+    private RtAnimationTimer timer;
     
     public RtButtonSkin(Button button)
     {
@@ -44,71 +43,39 @@ public class RtButtonSkin extends ButtonSkin
                 // TODO generate shadow automatically
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
-                armedTimer = new RtAnimationTimer(
+                timer = new RtAnimationTimer(
                     RtKeyFrame.builder()
                         .setDuration(Duration.millis(100))
                         .setKeyValues(
                             RtKeyValue.builder()
                                 .setTarget(button.effectProperty())
-                                .setEndValueSupplier(() -> determinedArmedShadow(button.isArmed()))
+                                .setEndValueSupplier(() -> determinedShadow())
                                 .setInterpolator(Interpolator.EASE_BOTH)
                                 .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                 .build(),
                             RtKeyValue.builder()
                                 .setTarget(stateBox.opacityProperty())
-                                .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
+                                .setEndValueSupplier(() -> determineOpacity())
                                 .setInterpolator(Interpolator.EASE_BOTH)
                                 .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                 .build())
                         .build());
-                armedTimer.setCacheNodes(stateBox);
-                
-                hoverTimer = new RtAnimationTimer(
-                        RtKeyFrame.builder()
-                            .setDuration(Duration.millis(100))
-                            .setKeyValues(
-                                RtKeyValue.builder()
-                                    .setTarget(button.effectProperty())
-                                    .setEndValueSupplier(() -> determineHoverShadow(button.isHover()))
-                                    .setInterpolator(Interpolator.EASE_BOTH)
-                                    .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                                    .build(),
-                                RtKeyValue.builder()
-                                    .setTarget(stateBox.opacityProperty())
-                                    .setEndValueSupplier(() -> determineOpacity(button.isHover()))
-                                    .setInterpolator(Interpolator.EASE_BOTH)
-                                    .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                                    .build())
-                            .build());
-                hoverTimer.setCacheNodes(stateBox);
+                timer.setCacheNodes(stateBox);
                 break;
             default:
                 button.setPickOnBounds(true);
-                armedTimer = new RtAnimationTimer(
+                timer = new RtAnimationTimer(
                     RtKeyFrame.builder()
                         .setDuration(Duration.millis(100))
                         .setKeyValues(
                                 RtKeyValue.builder()
                                     .setTarget(stateBox.opacityProperty())
-                                    .setEndValueSupplier(() -> determineOpacity(button.isArmed()))
+                                    .setEndValueSupplier(() -> determineOpacity())
                                     .setInterpolator(Interpolator.EASE_BOTH)
                                     .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                                     .build())
                             .build());
-                    armedTimer.setCacheNodes(stateBox);
-                    
-                    hoverTimer = new RtAnimationTimer(
-                        RtKeyFrame.builder()
-                            .setDuration(Duration.millis(100))
-                            .setKeyValues(
-                                    RtKeyValue.builder()
-                                        .setTarget(stateBox.opacityProperty())
-                                        .setEndValueSupplier(() -> determineOpacity(button.isHover()))
-                                        .setInterpolator(Interpolator.EASE_BOTH)
-                                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                                        .build())
-                                .build());
-                    armedTimer.setCacheNodes(stateBox);
+                timer.setCacheNodes(stateBox);
                 break;
             
         }
@@ -116,25 +83,11 @@ public class RtButtonSkin extends ButtonSkin
         
         button.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!button.getIsAnimationDisabled())
-            {
-                armedTimer.reverseAndContinue();
-            }
-            else
-            {
-                armedTimer.applyEndValues();
-            }
+            updateState();
         });
         button.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!button.getIsAnimationDisabled())
-            {
-                hoverTimer.reverseAndContinue();
-            }
-            else
-            {
-                hoverTimer.applyEndValues();
-            }
+            updateState();
         });
     }
 
@@ -151,8 +104,20 @@ public class RtButtonSkin extends ButtonSkin
         
         layoutLabelInArea(x, y, w, h);
     }
+    
+    private void updateState()
+    {
+        if (!button.getIsAnimationDisabled())
+        {
+            timer.reverseAndContinue();
+        }
+        else
+        {
+            timer.applyEndValues();
+        }
+    }
 
-    private double determineOpacity(boolean isArmed) 
+    private double determineOpacity() 
     {
         double opacity = 0;
         if (button.isArmed())
@@ -166,13 +131,21 @@ public class RtButtonSkin extends ButtonSkin
         return opacity;
     }
 
-    private DepthShadow determinedArmedShadow(boolean isArmed) 
+    private DepthShadow determinedShadow() 
     {
-        return isArmed ? DepthManager.getInstance().getShadowAt(5) : DepthManager.getInstance().getShadowAt(2);
-    }
-
-    private DepthShadow determineHoverShadow(boolean isHover) 
-    {
-        return isHover ? DepthManager.getInstance().getShadowAt(3) : DepthManager.getInstance().getShadowAt(2);
+        DepthShadow shadow;
+        if (button.isArmed())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(5);
+        }
+        else if (button.isHover())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(3);
+        }
+        else
+        {
+            shadow = DepthManager.getInstance().getShadowAt(2);
+        }
+        return shadow;
     }
 }

@@ -201,6 +201,12 @@ TODO
 .rt-button
 {
     -fx-cursor: hand;
+
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+    -fx-text-fill: -rt-text-color;
 }
 
 /*-- ############################### Raised Button Style ############################### */
@@ -216,12 +222,6 @@ TODO
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
-
-    -fx-font-family: "Roboto Medium";
-    -fx-font-size: 14;
-    -fx-text-fill: -rt-text-color;
-    
-    -rt-disable-animation: false;
 }
 
 .rt-button.raised:focused
@@ -253,11 +253,6 @@ TODO
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
-    
-    -fx-font-family: "Roboto Medium";
-    -fx-text-fill: -rt-text-color;
-
-    -rt-disable-animation: false;
 }
 
 .rt-button.flat .state-box

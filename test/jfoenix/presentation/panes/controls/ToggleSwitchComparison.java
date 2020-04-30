@@ -1,4 +1,4 @@
-package test.jfeonix.presentation.panes.controls;
+package test.jfoenix.presentation.panes.controls;
 
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXToggleNode;
