@@ -17,7 +17,6 @@ public class RtButtonSkin extends ButtonSkin
 {
     private final StackPane stateBox = new StackPane();
 
-    // TODO combine armed timer and hover timer
     private Button button;
     private RtAnimationTimer timer;
     
@@ -37,6 +36,45 @@ public class RtButtonSkin extends ButtonSkin
             getChildren().add(index, stateBox);
         }
         
+        this.timer = createAnimation();
+        button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            updateState();
+        });
+        button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            updateState();
+        });
+    }
+
+    @Override
+    protected void layoutChildren(final double x, final double y, final double w, final double h)
+    {
+        // @formatter:off
+        stateBox.resizeRelocate(
+            getSkinnable().getLayoutBounds().getMinX(),
+            getSkinnable().getLayoutBounds().getMinY(),
+            getSkinnable().getWidth(), getSkinnable().getHeight());
+        // @formatter:on
+        
+        layoutLabelInArea(x, y, w, h);
+    }
+    
+    private void updateState()
+    {
+        if (!button.getIsAnimationDisabled())
+        {
+            timer.reverseAndContinue();
+        }
+        else
+        {
+            timer.applyEndValues();
+        }
+    }
+    
+    private RtAnimationTimer createAnimation()
+    {
+        RtAnimationTimer timer;
         switch(button.getButtonStyle())
         {
             case RAISED:
@@ -76,45 +114,9 @@ public class RtButtonSkin extends ButtonSkin
                                     .build())
                             .build());
                 timer.setCacheNodes(stateBox);
-                break;
-            
+                break;    
         }
-        
-        
-        button.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        button.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-    }
-
-
-    @Override
-    protected void layoutChildren(final double x, final double y, final double w, final double h)
-    {
-        // @formatter:off
-        stateBox.resizeRelocate(
-            getSkinnable().getLayoutBounds().getMinX(),
-            getSkinnable().getLayoutBounds().getMinY(),
-            getSkinnable().getWidth(), getSkinnable().getHeight());
-        // @formatter:on
-        
-        layoutLabelInArea(x, y, w, h);
-    }
-    
-    private void updateState()
-    {
-        if (!button.getIsAnimationDisabled())
-        {
-            timer.reverseAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
+        return timer;
     }
 
     private double determineOpacity() 
