@@ -20,6 +20,7 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
+import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO add armed color before the icon
@@ -33,7 +34,7 @@ public class IconButton extends Button
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
     private StyleableObjectProperty<Paint> iconFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill");
+            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     

@@ -21,6 +21,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
+import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO change some of this stuff to be in the skin instead
@@ -41,9 +42,9 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     private static final String CSS_CLASS = "rt-icon-toggle-button";
     
     private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill");
+            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_ICON_COLOR, this, "unselectedFill");
+            StyleableProperties.UNSELECTED_ICON_COLOR, this, "unselectedFill", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     

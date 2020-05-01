@@ -16,6 +16,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtToggleSwitchSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ToggleSwitch extends javafx.scene.control.ToggleButton implements RtComponent
@@ -26,13 +27,13 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     private static final String CSS_CLASS = "rt-toggle-switch";
 
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_COLOR, this, "selectedColor");
+            StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor");
+            StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> selectedLineColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_LINE_COLOR, this, "selectedLineColor");
+            StyleableProperties.SELECTED_LINE_COLOR, this, "selectedLineColor", DefaultPalette.getInstance().getLightAccentColor());
     private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_LINE_COLOR, this, "unselectedLineColor");
+            StyleableProperties.UNSELECTED_LINE_COLOR, this, "unselectedLineColor", DefaultPalette.getInstance().getLightBaseColor());
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 

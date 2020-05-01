@@ -19,6 +19,7 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
+import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO add an option to have an icon
@@ -34,9 +35,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
             StyleableProperties.LABEL_FLOAT, this, "lableFloat", false);
     private StyleableObjectProperty<Paint> unFocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unFocusColor");
+            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unFocusColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor");
+            StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
     // @formatter:on

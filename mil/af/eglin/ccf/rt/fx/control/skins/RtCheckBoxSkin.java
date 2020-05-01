@@ -23,8 +23,8 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtFillTransition;
-import mil.af.eglin.ccf.rt.fx.utils.JFXNodeUtils;
 
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
@@ -36,7 +36,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private CheckBox checkBox;
     
     // TODO change to RtAnimationTimer
-    private Transition transition;
+    private RtAnimationTimer transition;
     private Transition indeterminateTransition;
     private RtFillTransition select;
 
@@ -46,9 +46,9 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.checkBox = checkBox;
 
         this.selectedMark.getStyleClass().setAll("mark");
-        this.selectedMark.setOpacity(0);
-        this.selectedMark.setScaleX(0);
-        this.selectedMark.setScaleY(0);
+        this.selectedMark.setOpacity(1);
+        this.selectedMark.setScaleX(1);
+        this.selectedMark.setScaleY(1);
 
         this.indeterminateMark.getStyleClass().setAll("indeterminate-mark");
         this.indeterminateMark.setOpacity(0);
@@ -62,17 +62,76 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
-            playSelectAnimation(checkBox.isSelected(), true);
+            select.play();
+            transition.reverseAndContinue();
         });
-        checkBox.indeterminateProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playIndeterminateAnimation(checkBox.isIndeterminate(), true);
-        });
+//        checkBox.indeterminateProperty().addListener((ov, oldVal, newVal) ->
+//        {
+//            playIndeterminateAnimation(checkBox.isIndeterminate(), true);
+//        });
         updateChildren();
 
-        transition = new CheckBoxTransition(selectedMark);
-        indeterminateTransition = new CheckBoxTransition(indeterminateMark);
+//        transition = new CheckBoxTransition(selectedMark);
+//        indeterminateTransition = new CheckBoxTransition(indeterminateMark);
         createFillTransition();
+        
+//        RtKeyFrame keyFrame1 = RtKeyFrame.builder()
+//            .setDuration(Duration.ZERO)
+//            .setKeyValues(
+//                    RtKeyValue.builder()
+//                        .setTarget(this.selectedMark.opacityProperty())
+//                        .setEndValue(0)
+//                        .setInterpolator(Interpolator.EASE_OUT).build(),
+//                    RtKeyValue.builder()
+//                        .setTarget(this.selectedMark.scaleXProperty())
+//                        .setEndValue(0.5)
+//                        .setInterpolator(Interpolator.EASE_OUT).build(),
+//                    RtKeyValue.builder()
+//                        .setTarget(this.selectedMark.scaleYProperty())
+//                        .setEndValue(0.5)
+//                        .setInterpolator(Interpolator.EASE_OUT).build()).build();
+//        RtKeyFrame keyFrame2 = RtKeyFrame.builder()
+//                .setDuration(Duration.millis(400))
+//                .setKeyValues(
+//                        RtKeyValue.builder()
+//                            .setTarget(this.selectedMark.opacityProperty())
+//                            .setEndValueSupplier(() -> 1)
+//                            .setAnimateCondition(() -> !checkBox.getIsAnimationDisabled())
+//                            .setInterpolator(Interpolator.EASE_OUT).build(),
+//                        RtKeyValue.builder()
+//                            .setTarget(this.selectedMark.scaleXProperty())
+//                            .setEndValueSupplier(() -> 0.5)
+//                            .setAnimateCondition(() -> !checkBox.getIsAnimationDisabled())
+//                            .setInterpolator(Interpolator.EASE_OUT).build(),
+//                        RtKeyValue.builder()
+//                            .setTarget(this.selectedMark.scaleYProperty())
+//                            .setEndValueSupplier(() -> 0.5)
+//                            .setAnimateCondition(() -> !checkBox.getIsAnimationDisabled())
+//                            .setInterpolator(Interpolator.EASE_OUT).build()).build();
+//        RtKeyFrame keyFrame3 = RtKeyFrame.builder()
+//                .setDuration(Duration.millis(1000))
+//                .setKeyValues(
+//                        RtKeyValue.builder()
+//                            .setTarget(this.selectedMark.scaleXProperty())
+//                            .setEndValue(1)
+//                            .setInterpolator(Interpolator.EASE_OUT).build(),
+//                        RtKeyValue.builder()
+//                            .setTarget(this.selectedMark.scaleYProperty())
+//                            .setEndValue(1)
+//                            .setInterpolator(Interpolator.EASE_OUT).build()).build();
+//        transition = new RtAnimationTimer(keyFrame2);
+
+//        new KeyFrame(Duration.ZERO, 
+//                new KeyValue(mark.opacityProperty(), 0, Interpolator.EASE_OUT),
+//                new KeyValue(mark.scaleXProperty(), 0.5, Interpolator.EASE_OUT),
+//                new KeyValue(mark.scaleYProperty(), 0.5, Interpolator.EASE_OUT)),
+//        new KeyFrame(Duration.millis(400), 
+//                new KeyValue(mark.opacityProperty(), 1, Interpolator.EASE_OUT),
+//                new KeyValue(mark.scaleXProperty(), 0.5, Interpolator.EASE_OUT),
+//                new KeyValue(mark.scaleYProperty(), 0.5, Interpolator.EASE_OUT)),
+//        new KeyFrame(Duration.millis(1000), 
+//                new KeyValue(mark.scaleXProperty(), 1, Interpolator.EASE_OUT),
+//                new KeyValue(mark.scaleYProperty(), 1, Interpolator.EASE_OUT))));
     }
 
     @Override
@@ -132,11 +191,11 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
         if (checkBox.isIndeterminate())
         {
-            playIndeterminateAnimation(true, false);
+//            playIndeterminateAnimation(true, false);
         } 
         else if (checkBox.isSelected())
         {
-            playSelectAnimation(true, false);
+//            transition.reverseAndContinue();
         }
 
         layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
@@ -145,85 +204,85 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     }
 
-    private void playSelectAnimation(Boolean selection, boolean playAnimation)
-    {
-        if (selection == null)
-        {
-            selection = false;
-        }
-        transition.setRate(selection ? 1 : -1);
-        select.setRate(selection ? 1 : -1);
-        if (playAnimation)
-        {
-            transition.play();
-            select.play();
-        } 
-        else
-        {
-            CornerRadii radii = box.getBackground() == null ? null : box.getBackground().getFills().get(0).getRadii();
-            Insets insets = box.getBackground() == null ? null : box.getBackground().getFills().get(0).getInsets();
-            if (selection)
-            {
-                selectedMark.setScaleY(1);
-                selectedMark.setScaleX(1);
-                selectedMark.setOpacity(1);
-                box.setBackground(new Background(new BackgroundFill(getSkinnable().getSelectedColor(), radii, insets)));
-                select.playFrom(select.getCycleDuration());
-                transition.playFrom(transition.getCycleDuration());
-            } 
-            else
-            {
-                selectedMark.setScaleY(0);
-                selectedMark.setScaleX(0);
-                selectedMark.setOpacity(0);
-                box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, radii, insets)));
-                select.playFrom(Duration.ZERO);
-                transition.playFrom(Duration.ZERO);
-            }
-        }
-        box.setBorder(new Border(
-                new BorderStroke(selection ? getSkinnable().getSelectedColor() : getSkinnable().getUnselectedColor(),
-                        BorderStrokeStyle.SOLID, new CornerRadii(2), new BorderWidths(2))));
-    }
-
-    private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
-    {
-        if (indeterminate == null)
-        {
-            indeterminate = false;
-        }
-        indeterminateTransition.setRate(indeterminate ? 1 : -1);
-        if (playAnimation)
-        {
-            indeterminateTransition.play();
-        } else
-        {
-            if (indeterminate)
-            {
-                CornerRadii radii = indeterminateMark.getBackground() == null ? null
-                        : indeterminateMark.getBackground().getFills().get(0).getRadii();
-                Insets insets = indeterminateMark.getBackground() == null ? null
-                        : indeterminateMark.getBackground().getFills().get(0).getInsets();
-                indeterminateMark.setOpacity(1);
-                indeterminateMark.setScaleY(1);
-                indeterminateMark.setScaleX(1);
-                indeterminateMark.setBackground(
-                        new Background(new BackgroundFill(getSkinnable().getSelectedColor(), radii, insets)));
-                indeterminateTransition.playFrom(indeterminateTransition.getCycleDuration());
-            } else
-            {
-                indeterminateMark.setOpacity(0);
-                indeterminateMark.setScaleY(0);
-                indeterminateMark.setScaleX(0);
-                indeterminateTransition.playFrom(Duration.ZERO);
-            }
-        }
-
-        if (getSkinnable().isSelected())
-        {
-            playSelectAnimation(!indeterminate, playAnimation);
-        }
-    }
+//    private void updateBox()
+//    {
+//        if (this.checkBox.isSel == null)
+//        {
+//            selection = false;
+//        }
+//        transition.setRate(selection ? 1 : -1);
+//        select.setRate(selection ? 1 : -1);
+//        if (playAnimation)
+//        {
+//            transition.play();
+//            select.play();
+//        } 
+//        else
+//        {
+//            CornerRadii radii = box.getBackground() == null ? null : box.getBackground().getFills().get(0).getRadii();
+//            Insets insets = box.getBackground() == null ? null : box.getBackground().getFills().get(0).getInsets();
+//            if (selection)
+//            {
+//                selectedMark.setScaleY(1);
+//                selectedMark.setScaleX(1);
+//                selectedMark.setOpacity(1);
+//                box.setBackground(new Background(new BackgroundFill(getSkinnable().getSelectedColor(), radii, insets)));
+//                select.playFrom(select.getCycleDuration());
+//                transition.playFrom(transition.getCycleDuration());
+//            } 
+//            else
+//            {
+//                selectedMark.setScaleY(0);
+//                selectedMark.setScaleX(0);
+//                selectedMark.setOpacity(0);
+//                box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, radii, insets)));
+//                select.playFrom(Duration.ZERO);
+//                transition.playFrom(Duration.ZERO);
+//            }
+//        }
+//        box.setBorder(new Border(
+//                new BorderStroke(selection ? getSkinnable().getSelectedColor() : getSkinnable().getUnselectedColor(),
+//                        BorderStrokeStyle.SOLID, new CornerRadii(2), new BorderWidths(2))));
+//    }
+//
+//    private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
+//    {
+//        if (indeterminate == null)
+//        {
+//            indeterminate = false;
+//        }
+//        indeterminateTransition.setRate(indeterminate ? 1 : -1);
+//        if (playAnimation)
+//        {
+//            indeterminateTransition.play();
+//        } else
+//        {
+//            if (indeterminate)
+//            {
+//                CornerRadii radii = indeterminateMark.getBackground() == null ? null
+//                        : indeterminateMark.getBackground().getFills().get(0).getRadii();
+//                Insets insets = indeterminateMark.getBackground() == null ? null
+//                        : indeterminateMark.getBackground().getFills().get(0).getInsets();
+//                indeterminateMark.setOpacity(1);
+//                indeterminateMark.setScaleY(1);
+//                indeterminateMark.setScaleX(1);
+//                indeterminateMark.setBackground(
+//                        new Background(new BackgroundFill(getSkinnable().getSelectedColor(), radii, insets)));
+//                indeterminateTransition.playFrom(indeterminateTransition.getCycleDuration());
+//            } else
+//            {
+//                indeterminateMark.setOpacity(0);
+//                indeterminateMark.setScaleY(0);
+//                indeterminateMark.setScaleX(0);
+//                indeterminateTransition.playFrom(Duration.ZERO);
+//            }
+//        }
+//
+//        if (getSkinnable().isSelected())
+//        {
+////            playSelectAnimation(!indeterminate, playAnimation);
+//        }
+//    }
 
     private void createFillTransition()
     {
