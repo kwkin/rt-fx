@@ -67,19 +67,25 @@ public class TextFieldPanePresentation extends TitledCard
         descriptionPane.setDescription("This group contains accented text boxes, which defaults the text line with the primary or secondary color.");
 
         GridPane textboxGridPane = new GridPane();
-        TextField primaryLightAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.PRIMARY_LIGHT);
+        TextField primaryLightAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_LIGHT);
         primaryLightAccentTextBox.setPromptText("First Name");
-        TextField primaryMidAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.PRIMARY_MID);
+        primaryLightAccentTextBox.setLabelFloat(true);
+        TextField primaryMidAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_MID);
         primaryMidAccentTextBox.setPromptText("Last Name");
-        TextField primaryDarkAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.PRIMARY_DARK);
+        primaryMidAccentTextBox.setLabelFloat(true);
+        TextField primaryDarkAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_DARK);
         primaryDarkAccentTextBox.setPromptText("Email");
+        primaryDarkAccentTextBox.setLabelFloat(true);
 
-        TextField secondaryLightAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.SECONDARY_LIGHT);
+        TextField secondaryLightAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_LIGHT);
         secondaryLightAccentTextBox.setPromptText("First Name");
-        TextField secondaryMidAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.SECONDARY_MID);
+        secondaryLightAccentTextBox.setLabelFloat(true);
+        TextField secondaryMidAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_MID);
         secondaryMidAccentTextBox.setPromptText("Last Name");
-        TextField secondaryDarkAccentTextBox = new TextField(TextFieldStyle.FLAT, Accent.SECONDARY_DARK);
+        secondaryMidAccentTextBox.setLabelFloat(true);
+        TextField secondaryDarkAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_DARK);
         secondaryDarkAccentTextBox.setPromptText("Email");
+        secondaryDarkAccentTextBox.setLabelFloat(true);
         
         textboxGridPane.add(primaryLightAccentTextBox, 0, 0);
         textboxGridPane.add(primaryMidAccentTextBox, 0, 1);

@@ -52,9 +52,10 @@ public class RtButtonSkin extends ButtonSkin
     {
         // @formatter:off
         stateBox.resizeRelocate(
-            getSkinnable().getLayoutBounds().getMinX(),
-            getSkinnable().getLayoutBounds().getMinY(),
-            getSkinnable().getWidth(), getSkinnable().getHeight());
+            button.getLayoutBounds().getMinX(),
+            button.getLayoutBounds().getMinY(),
+            button.getWidth(), 
+            button.getHeight());
         // @formatter:on
         
         layoutLabelInArea(x, y, w, h);
@@ -78,9 +79,9 @@ public class RtButtonSkin extends ButtonSkin
         switch(button.getButtonStyle())
         {
             case RAISED:
-                // TODO generate shadow automatically
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
+                // @formatter:off
                 timer = new RtAnimationTimer(
                     RtKeyFrame.builder()
                         .setDuration(Duration.millis(100))
@@ -99,6 +100,7 @@ public class RtButtonSkin extends ButtonSkin
                                 .build())
                         .build());
                 timer.setCacheNodes(stateBox);
+                // @formatter:on
                 break;
             default:
                 button.setPickOnBounds(true);

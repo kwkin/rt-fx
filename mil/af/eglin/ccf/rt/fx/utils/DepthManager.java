@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.paint.Color;
 
-// TODO add a shadow transition (similar to fill transition)
 public class DepthManager
 {
     private List<DepthShadow> depth = new ArrayList<>();

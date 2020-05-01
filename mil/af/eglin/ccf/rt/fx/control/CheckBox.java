@@ -42,7 +42,8 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
     
     private static final String USER_AGENT_STYLESHEET = "check-box.css";
     private static final String DEFAULT_STYLE_CLASS = "rt-check-box";
-
+    
+    // TODO add default colors
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_COLOR, this, "selectedColor");
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(

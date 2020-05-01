@@ -23,14 +23,14 @@ public class Button extends javafx.scene.control.Button implements RtComponent
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
     protected Accent accent;
-    
+
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";
 
     // TODO convert to BooleanProperty
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
-    
+
     /**
      * Creates a button with an empty string for its label.
      */
