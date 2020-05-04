@@ -1,204 +1,204 @@
 /*-- ############################### Raised Button Accents ############################### */
 .rt-button.raised
 {
-    -accent-color: -rt-primary-mid-color;
-    -text-color: -rt-primary-mid-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-mid-color;
+    -var-text-color: -rt-primary-mid-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.raised.primary-light
 {
-    -accent-color: -rt-primary-light-color;
-    -text-color: -rt-primary-light-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-light-color;
+    -var-text-color: -rt-primary-light-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.raised.primary-mid
 {
-    -accent-color: -rt-primary-mid-color;
-    -text-color: -rt-primary-mid-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-mid-color;
+    -var-text-color: -rt-primary-mid-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.raised.primary-dark
 {
-    -accent-color: -rt-primary-dark-color;
-    -text-color: -rt-primary-dark-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-dark-color;
+    -var-text-color: -rt-primary-dark-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.raised.secondary-light
 {
-    -accent-color: -rt-secondary-light-color;
-    -text-color: -rt-secondary-light-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-light-color;
+    -var-text-color: -rt-secondary-light-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.raised.secondary-mid
 {
-    -accent-color: -rt-secondary-mid-color;
-    -text-color: -rt-secondary-mid-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-mid-color;
+    -var-text-color: -rt-secondary-mid-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.raised.secondary-dark
 {
-    -accent-color: -rt-secondary-dark-color;
-    -text-color: -rt-secondary-dark-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-dark-color;
+    -var-text-color: -rt-secondary-dark-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.raised.base-light
 {
-    -accent-color: -rt-base-light-color;
-    -text-color: -rt-base-light-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-light-color;
+    -var-text-color: -rt-base-light-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.raised.base-mid
 {
-    -accent-color: -rt-base-mid-color;
-    -text-color: -rt-base-mid-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-mid-color;
+    -var-text-color: -rt-base-mid-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.raised.base-dark
 {
-    -accent-color: -rt-base-dark-color;
-    -text-color: -rt-base-dark-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-dark-color;
+    -var-text-color: -rt-base-dark-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 /*-- ############################### Flat Button Accents ############################### */
 .rt-button.flat
 {
-    -accent-color: -rt-primary-mid-color;
-    -text-color: -rt-primary-mid-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-mid-color;
+    -var-text-color: -rt-primary-mid-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.flat.primary-light
 {
-    -accent-color: -rt-primary-light-color;
-    -text-color: -rt-primary-light-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-light-color;
+    -var-text-color: -rt-primary-light-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.flat.primary-mid
 {
-    -accent-color: -rt-primary-mid-color;
-    -text-color: -rt-primary-mid-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-mid-color;
+    -var-text-color: -rt-primary-mid-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.flat.primary-dark
 {
-    -accent-color: -rt-primary-dark-color;
-    -text-color: -rt-primary-dark-text-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -rt-primary-dark-color;
+    -var-text-color: -rt-primary-dark-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.flat.secondary-light
 {
-    -accent-color: -rt-secondary-light-color;
-    -text-color: -rt-secondary-light-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-light-color;
+    -var-text-color: -rt-secondary-light-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.flat.secondary-mid
 {
-    -accent-color: -rt-secondary-mid-color;
-    -text-color: -rt-secondary-mid-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-mid-color;
+    -var-text-color: -rt-secondary-mid-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.flat.secondary-dark
 {
-    -accent-color: -rt-secondary-dark-color;
-    -text-color: -rt-secondary-dark-text-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -rt-secondary-dark-color;
+    -var-text-color: -rt-secondary-dark-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.flat.base-light
 {
-    -accent-color: -rt-base-light-color;
-    -text-color: -rt-base-light-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-light-color;
+    -var-text-color: -rt-base-light-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.base-mid
 {
-    -accent-color: -rt-base-mid-color;
-    -text-color: -rt-base-mid-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-mid-color;
+    -var-text-color: -rt-base-mid-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.flat.base-dark
 {
-    -accent-color: -rt-base-dark-color;
-    -text-color: -rt-base-dark-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -rt-base-dark-color;
+    -var-text-color: -rt-base-dark-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 /*-- ############################### Icon Button Accents ############################### */
 .rt-button.icon
 {
-    -text-color: -rt-primary-mid-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-text-color: -rt-primary-mid-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.icon.primary-light
 {
-    -text-color: -rt-primary-light-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-text-color: -rt-primary-light-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.icon.primary-mid
 {
-    -text-color: -rt-primary-mid-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-text-color: -rt-primary-mid-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.icon.primary-dark
 {
-    -text-color: -rt-primary-dark-color;
-    -overlay-color: -rt-primary-overlay-color;
+    -var-text-color: -rt-primary-dark-color;
+    -var-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-button.icon.secondary-light
 {
-    -text-color: -rt-secondary-light-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-text-color: -rt-secondary-light-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.icon.secondary-mid
 {
-    -text-color: -rt-secondary-mid-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-text-color: -rt-secondary-mid-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.icon.secondary-dark
 {
-    -text-color: -rt-secondary-dark-color;
-    -overlay-color: -rt-secondary-overlay-color;
+    -var-text-color: -rt-secondary-dark-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-button.icon.base-light
 {
-    -text-color: -rt-base-light-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-text-color: -rt-base-light-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.icon.base-mid
 {
-    -text-color: -rt-base-mid-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-text-color: -rt-base-mid-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-button.icon.base-dark
 {
     -fx-text-fill: -rt-base-dark-text-color;
-    -overlay-color: -rt-base-overlay-color;
+    -var-overlay-color: -rt-base-overlay-color;
 }
 
 /*-- ############################### Button Style ############################### */
@@ -210,22 +210,24 @@
     -fx-content-display: LEFT;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
-    -fx-text-fill: -text-color;
+    -fx-text-fill: -var-text-color;
 }
 
 /*-- ############################### Raised Button Style ############################### */
 .rt-button.raised
 {
-    -fx-background-color: -accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
-    -fx-border-color: -accent-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
+
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-button.raised:focused
@@ -238,7 +240,7 @@
 
 .rt-button.raised .state-box
 {
-    -fx-background-color: -overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
@@ -248,16 +250,18 @@
 /*-- ############################### Flat Button Style ############################### */
 .rt-button.flat
 {
-    -fx-background-color: -accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
-    -fx-border-color: -accent-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
+    
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-button.flat:focused
@@ -270,7 +274,7 @@
 
 .rt-button.flat .state-box
 {
-    -fx-background-color: -overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
@@ -286,14 +290,15 @@
     -fx-border-radius: 4;
     -fx-padding: 4;
     -fx-insets: 0;
-    
     -fx-font-family: "Roboto Medium";
-    -fx-text-fill: -text-color;
+    -fx-text-fill: -var-text-color;
+    
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-button.icon .state-box
 {
-    -fx-background-color: -overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;

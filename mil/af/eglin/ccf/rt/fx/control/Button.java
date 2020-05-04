@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.converters.BooleanConverter;
+import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
@@ -13,12 +15,14 @@ import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
+import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO incorporate logging
+// TODO add overlay color style
 public class Button extends javafx.scene.control.Button implements RtComponent
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
@@ -27,7 +31,8 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";
 
-    // TODO convert to BooleanProperty
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, this, "overlayColor");
     private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
@@ -132,7 +137,22 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return overlayColor.getValue();
+    }
+
+    public void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.setValue(overlayColor);
+    }
+
+    public ObjectProperty<Boolean> isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
@@ -215,6 +235,22 @@ public class Button extends javafx.scene.control.Button implements RtComponent
 
     private static class StyleableProperties
     {
+        private static final CssMetaData<Button, Paint> OVERLAY_COLOR = new CssMetaData<Button, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance())
+        {
+            @Override
+            public boolean isSettable(Button control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(Button control)
+            {
+                return control.overlayColor;
+            }
+        };
+        
         private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = new CssMetaData<Button, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -227,7 +263,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
             @Override
             public StyleableProperty<Boolean> getStyleableProperty(Button control)
             {
-                return control.isAnimationDisabledProperty();
+                return control.isAnimationDisabled;
             }
         };
 

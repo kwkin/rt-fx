@@ -44,17 +44,17 @@ public class ToggleButtonPanePresentation extends TitledCard
 
         GridPane toggleButtonGridPane = new GridPane();
 
-        ToggleButton primaryLightToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
-        ToggleButton primaryMidToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.PRIMARY_MID);
-        ToggleButton primaryDarkToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.PRIMARY_DARK);
+        ToggleButton primaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
+        ToggleButton primaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_MID);
+        ToggleButton primaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_DARK);
 
-        ToggleButton secondaryLightToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
-        ToggleButton secondaryMidToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
-        ToggleButton secondaryDarkToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
+        ToggleButton secondaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
+        ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
+        ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
 
-        ToggleButton baseLightToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.BASE_LIGHT);
-        ToggleButton baseMidToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.BASE_MID);
-        ToggleButton baseDarkToggleButton = new ToggleButton("Toggle", ToggleButtonStyle.RAISED, Accent.BASE_DARK);
+        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_LIGHT);
+        ToggleButton baseMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_MID);
+        ToggleButton baseDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_DARK);
 
         toggleButtonGridPane.add(primaryLightToggleButton, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleButton, 1, 0);

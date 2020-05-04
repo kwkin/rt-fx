@@ -100,7 +100,8 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         // @formatter:on
         
         updateSelectionState();
- 
+
+        // TODO use property's name rather than hardcoding the name
         registerChangeListener(toggleSwitch.selectedColorProperty(), "SELECTED_COLOR");
         registerChangeListener(toggleSwitch.unselectedColorProperty(), "UNSELECTED_COLOR");
         registerChangeListener(toggleSwitch.selectedLineColorProperty(), "SELECTED_LINE_COLOR");
