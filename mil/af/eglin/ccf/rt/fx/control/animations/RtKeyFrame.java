@@ -13,6 +13,11 @@ public class RtKeyFrame
     private Set<RtKeyValue<?>> keyValues = new CopyOnWriteArraySet<>();
     private Supplier<Boolean> animateCondition = null;
 
+    public RtKeyFrame()
+    {
+        
+    }
+    
     public RtKeyFrame(Duration duration, RtKeyValue<?>... keyValues)
     {
         this.duration = duration;
@@ -35,11 +40,6 @@ public class RtKeyFrame
                 this.keyValues.add(keyValue);
             }
         }
-    }
-
-    private RtKeyFrame()
-    {
-
     }
 
     public Duration getDuration()

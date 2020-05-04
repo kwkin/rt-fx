@@ -43,7 +43,7 @@ public class ButtonPanePresentation extends TitledCard
         
         HBox primaryButtonPane = new HBox();
         primaryButtonPane.setSpacing(16);
-        Button primaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
+        Button primaryLightButton = new Button("BUTTON", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
         Button primaryMidButton = new Button("Cancel", ButtonStyle.RAISED, Accent.PRIMARY_MID);
         Button primaryDarkButton = new Button("Apply", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
         primaryButtonPane.getChildren().add(primaryLightButton);

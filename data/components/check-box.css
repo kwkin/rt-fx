@@ -112,7 +112,7 @@ TODO
  {
     -fx-shape: "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z";
 
-    -fx-max-width: 12;
+    -fx-max-width: 13;
     -fx-max-height: 12;
 
     -fx-background-color: -rt-base-light-color;
@@ -122,10 +122,16 @@ TODO
     -fx-border-radius: 2;
 }
 
-.rt-check-box .box .indeterminate-mark{
-    -fx-background-color: -rt-selected-color;
-    -fx-background-radius: 2;
-    -fx-border-width: 0;
+.rt-check-box .box .indeterminate-mark
+{
+    -fx-shape: "M19 13H5v-2h14v2z";
+
     -fx-max-width: 10;
-    -fx-max-height: 10;
+    -fx-max-height: 2;
+
+    -fx-background-color: -rt-base-light-color;
+    -fx-border-color: -rt-base-light-color;
+
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
 }

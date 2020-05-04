@@ -156,7 +156,7 @@
 .slider .state-thumb 
 {
     -fx-fill: -thumb-color;
-    -fx-opacity: 0.5;
+    -fx-opacity: 0.3;
 }
 
 .slider .circle-thumb

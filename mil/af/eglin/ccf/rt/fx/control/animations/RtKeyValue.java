@@ -17,6 +17,21 @@ public class RtKeyValue<T>
     {
         this.animateCondition = () -> true;
     }
+    
+    public RtKeyValue(WritableValue<T> target, T endValue, Interpolator interpolator)
+    {
+        this.target = target;
+        this.endValue = endValue;
+        this.interpolator = interpolator;
+    }
+    
+    public RtKeyValue(WritableValue<T> target, T endValue, Interpolator interpolator, Supplier<Boolean> animateCondition)
+    {
+        this.target = target;
+        this.endValue = endValue;
+        this.interpolator = interpolator;
+        this.animateCondition = animateCondition;
+    }
 
     public static Builder builder()
     {

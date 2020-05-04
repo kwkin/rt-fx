@@ -124,7 +124,7 @@ public class RtSliderSkin extends SliderSkin
         double radius = 0;
         if (slider.isPressed() || thumb.isHover())
         {
-            radius = 16;
+            radius = 12;
         }
         return radius;
     }
@@ -134,7 +134,7 @@ public class RtSliderSkin extends SliderSkin
         double radius = 8;
         if (slider.isPressed())
         {
-            radius = 12;
+            radius = 9;
         }
         return radius;
     }

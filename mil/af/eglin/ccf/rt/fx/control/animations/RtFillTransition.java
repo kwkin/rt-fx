@@ -1,5 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.control.animations;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
@@ -60,6 +61,12 @@ public final class RtFillTransition extends Transition
                 }
             }
         });
+    }
+    
+    public RtFillTransition(Duration duration, Region region, Color fromValue, Color toValue, Interpolator interpolator)
+    {
+        this(duration, region, fromValue, toValue);
+        setInterpolator(interpolator);
     }
 
     public RtFillTransition(Duration duration, Color fromValue, Color toValue)
