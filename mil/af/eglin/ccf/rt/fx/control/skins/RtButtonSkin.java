@@ -3,6 +3,9 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
@@ -11,18 +14,17 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Button;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
+import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
-import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
 public class RtButtonSkin extends ButtonSkin
 {
+    private final static Duration ANIMATION_DURATION = Duration.millis(200);
     private final StackPane stateBox = new StackPane();
 
     private Button button;
-    private RtAnimationTimer timer;
+    private CachedTransition armedTransition;
+    private CachedTransition hoverTransition;
 
     public RtButtonSkin(Button button)
     {
@@ -40,14 +42,31 @@ public class RtButtonSkin extends ButtonSkin
             getChildren().add(index, stateBox);
         }
 
-        this.timer = createAnimation();
+        createAnimation();
         button.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            if (!button.getIsAnimationDisabled())
+            {
+                // TODO add cue positions for hover
+                armedTransition.setRate(newVal ? 1 : -1);
+                armedTransition.play();
+            }
+            else
+            {
+                armedTransition.playFrom(newVal ? Duration.ZERO : ANIMATION_DURATION);
+            }
         });
         button.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            if (!button.getIsAnimationDisabled())
+            {
+                hoverTransition.setRate(newVal ? 1 : -1);
+                hoverTransition.play();
+            }
+            else
+            {
+                hoverTransition.playFrom(newVal ? Duration.ZERO : ANIMATION_DURATION);
+            }
         });
         updateStateBoxColor();
 
@@ -79,90 +98,48 @@ public class RtButtonSkin extends ButtonSkin
         layoutLabelInArea(x, y, w, h);
     }
 
-    private void updateState()
+    private void createAnimation()
     {
-        if (!button.getIsAnimationDisabled())
-        {
-            timer.reverseAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
-    }
-
-    private RtAnimationTimer createAnimation()
-    {
-        RtAnimationTimer timer;
         switch (button.getButtonStyle())
         {
             case RAISED:
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
                 // @formatter:off
-                timer = new RtAnimationTimer(
-                    RtKeyFrame.builder()
-                        .setDuration(Duration.millis(100))
-                        .setKeyValues(
-                            RtKeyValue.builder()
-                                .setTarget(button.effectProperty())
-                                .setEndValueSupplier(() -> determinedShadow())
-                                .setInterpolator(Interpolator.EASE_BOTH)
-                                .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                                .build(),
-                            RtKeyValue.builder()
-                                .setTarget(stateBox.opacityProperty())
-                                .setEndValueSupplier(() -> determineOpacity())
-                                .setInterpolator(Interpolator.EASE_BOTH)
-                                .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                                .build())
-                        .build());
-                timer.setCacheNodes(stateBox);
+                armedTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(Duration.ZERO,  
+                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(2), Interpolator.EASE_OUT), 
+                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
+                    new KeyFrame(ANIMATION_DURATION,  
+                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(5), Interpolator.EASE_OUT), 
+                        new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
+                hoverTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(Duration.ZERO,  
+                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(2), Interpolator.EASE_OUT), 
+                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
+                    new KeyFrame(ANIMATION_DURATION,  
+                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(3), Interpolator.EASE_OUT), 
+                        new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
                 // @formatter:on
+                armedTransition.setCycle(ANIMATION_DURATION);
+                hoverTransition.setCycle(ANIMATION_DURATION);
                 break;
             default:
                 button.setPickOnBounds(true);
-                timer = new RtAnimationTimer(RtKeyFrame.builder().setDuration(Duration.millis(100))
-                        .setKeyValues(RtKeyValue.builder().setTarget(stateBox.opacityProperty())
-                                .setEndValueSupplier(() -> determineOpacity()).setInterpolator(Interpolator.EASE_BOTH)
-                                .setAnimateCondition(() -> !button.getIsAnimationDisabled()).build())
-                        .build());
-                timer.setCacheNodes(stateBox);
+                // @formatter:off
+                armedTransition = new CachedTransition(null, 
+                    new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
+                        new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
+                hoverTransition = new CachedTransition(null, 
+                    new Timeline(
+                        new KeyFrame(Duration.ZERO, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
+                        new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
+                // @formatter:on
+                armedTransition.setCycle(ANIMATION_DURATION);
+                hoverTransition.setCycle(ANIMATION_DURATION);
                 break;
         }
-        return timer;
-    }
-
-    private double determineOpacity()
-    {
-        double opacity = 0;
-        if (button.isArmed())
-        {
-            opacity = 1;
-        }
-        else if (button.isHover())
-        {
-            opacity = 0.4;
-        }
-        return opacity;
-    }
-
-    private DepthShadow determinedShadow()
-    {
-        DepthShadow shadow;
-        if (button.isArmed())
-        {
-            shadow = DepthManager.getInstance().getShadowAt(5);
-        }
-        else if (button.isHover())
-        {
-            shadow = DepthManager.getInstance().getShadowAt(3);
-        }
-        else
-        {
-            shadow = DepthManager.getInstance().getShadowAt(2);
-        }
-        return shadow;
     }
     
     private void updateStateBoxColor()

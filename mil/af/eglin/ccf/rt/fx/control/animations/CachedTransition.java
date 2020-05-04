@@ -73,4 +73,9 @@ public class CachedTransition extends Transition
             }
         });
     }
+    
+    public void setCycle(Duration duration)
+    {
+        this.setCycleDuration(duration);
+    }
 }
