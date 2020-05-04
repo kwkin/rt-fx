@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtComponent
 {
-    protected ListViewStyle style = ListViewStyle.ZEBRA;
+    protected ListViewStyle style = ListViewStyle.PLAIN;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "list-view.css";

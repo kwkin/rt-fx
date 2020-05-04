@@ -190,11 +190,10 @@ TODO
 .tree-table-view .column-header 
 {
 	-fx-background-color: transparent;
-    -fx-border-style: null;
-    -fx-border-style: solid solid solid solid;
-    /* -fx-border-style: solid segments(0, 12, 25, 15) solid solid; */
+    /* -fx-border-style: solid solid solid solid; */
+    -fx-border-style: solid segments(0, 12, 24, 30) solid solid;
 	-fx-border-color: -rt-border-color;
-	-fx-border-width: 0 1 1 0;
+	-fx-border-width: 0 2 1 0;
     -fx-cursor: hand;
     -fx-font-family: "Roboto Black";
     -fx-padding: 4 16 4 16;

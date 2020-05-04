@@ -35,17 +35,17 @@ public class TabPanePresentation extends TitledCard
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
         
         Tab tab1 = new Tab("Tab 1");
-        Button button1 = new Button("Button 1");
+        Button button1 = new Button("TAB 1 BUTTON");
         tab1.setContent(button1);
         
         Tab tab2 = new Tab("Tab 2");
-        Button tabButton2 = new Button("Tab Button 2");
+        Button tabButton2 = new Button("TAB 2 BUTTON");
         tab2.setContent(tabButton2);
         
         Tab disabled = new Tab("Disabled");
-        Button disabledButton = new Button("Button 1");
+        Button disabledButton = new Button("DISABLED TAB BUTTON");
         disabled.setDisable(true);
-        tab1.setContent(disabledButton);
+        disabled.setContent(disabledButton);
         
         tabPane.getTabs().addAll(tab1, tab2, disabled);
         

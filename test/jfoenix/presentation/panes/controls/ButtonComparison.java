@@ -88,8 +88,8 @@ public class ButtonComparison extends TitledCard
     public Node createRtButtons()
     {
         HBox box = new HBox();
-        box.getChildren().add(new Button("BUTTON", ButtonStyle.FLAT));
-        box.getChildren().add(new Button("ACCENTED", ButtonStyle.FLAT, Accent.PRIMARY_MID));
+        box.getChildren().add(new Button("BUTTON", ButtonStyle.FLAT, Accent.BASE_MID));
+        box.getChildren().add(new Button("ACCENT", ButtonStyle.FLAT, Accent.PRIMARY_MID));
         Button rtDisabledButton = new Button("DISABLED", ButtonStyle.FLAT);
         rtDisabledButton.setDisable(true);
         box.getChildren().add(rtDisabledButton);
@@ -101,7 +101,7 @@ public class ButtonComparison extends TitledCard
         HBox box = new HBox();
         JFXButton jfxButton = new JFXButton("BUTTON");
         jfxButton.getStyleClass().add("button-flat");
-        JFXButton jfxAccentedButton = new JFXButton("ACCENTED");
+        JFXButton jfxAccentedButton = new JFXButton("ACCENT");
         jfxAccentedButton.getStyleClass().add("button-flat");
         jfxAccentedButton.setStyle("-fx-text-fill:#414f63");
         JFXButton jfxDisabledButton = new JFXButton("DISABLED");
@@ -116,10 +116,9 @@ public class ButtonComparison extends TitledCard
     public Node createRtRaisedButtons()
     {
         HBox box = new HBox();
-        box.setSpacing(20);
         
-        box.getChildren().add(new Button("BUTTON", ButtonStyle.RAISED, Accent.BASE_MID));
-        box.getChildren().add(new Button("ACCENTED", ButtonStyle.RAISED, Accent.PRIMARY_MID));
+        box.getChildren().add(new Button("BUTTON", ButtonStyle.RAISED, Accent.BASE_LIGHT));
+        box.getChildren().add(new Button("ACCENT", ButtonStyle.RAISED, Accent.PRIMARY_MID));
         Button rtDisabledButton = new Button("DISABLED", ButtonStyle.RAISED, Accent.BASE_MID);
         rtDisabledButton.setDisable(true);
         box.getChildren().add(rtDisabledButton);
@@ -129,12 +128,11 @@ public class ButtonComparison extends TitledCard
     public Node createJfxRaisedButtons()
     {
         HBox box = new HBox();
-        box.setSpacing(20);
         
         JFXButton jfxButton = new JFXButton("BUTTON");
         jfxButton.setStyle("-fx-background-color:WHITE;-fx-text-fill:BLACK");
         jfxButton.getStyleClass().add("button-raised");
-        JFXButton jfxAccentedButton = new JFXButton("ACCENTED");
+        JFXButton jfxAccentedButton = new JFXButton("ACCENT");
         jfxAccentedButton.getStyleClass().add("button-raised");
         jfxAccentedButton.setStyle("-fx-background-color:#414f63;-fx-text-fill:WHITE");
         JFXButton jfxDisabledButton = new JFXButton("DISABLED");

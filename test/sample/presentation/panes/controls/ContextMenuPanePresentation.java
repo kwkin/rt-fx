@@ -41,7 +41,7 @@ public class ContextMenuPanePresentation extends TitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Context menus will be displayed when right clicking the component. The context menu can have multiple items, such as text, shortcut combinations, and images.");
 
-        Button contextMenuButton = new Button("Right Click Me", ButtonStyle.RAISED, Accent.PRIMARY_MID);
+        Button contextMenuButton = new Button("RIGHT CLICK", ButtonStyle.RAISED, Accent.PRIMARY_MID);
         ContextMenu contextMenu = new ContextMenu();
         MenuItem contextMenuItem1 = new MenuItem("Item 1");
         Menu contextMenuItem2 = new Menu("Parent");
@@ -73,7 +73,7 @@ public class ContextMenuPanePresentation extends TitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Tooltips are displayed after hovering over the component for a short amount of time.");
 
-        Button toolTipButton = new Button("Hover Over Me", ButtonStyle.RAISED, Accent.PRIMARY_MID);
+        Button toolTipButton = new Button("HOVER", ButtonStyle.RAISED, Accent.PRIMARY_MID);
         Tooltip toolTip = new Tooltip("This is a tooltip");
         toolTipButton.setTooltip(toolTip);
         
