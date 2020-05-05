@@ -28,14 +28,14 @@ import mil.af.eglin.ccf.rt.fx.control.style.TableColumnStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.TableViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.abstraction.immutable.Service;
-import test.sample.control.DescriptionPane;
-import test.sample.control.TitledCard;
-import test.sample.control.TitledCardSize;
-import test.sample.control.TitledContentPane;
-import test.sample.controller.PaneController;
-import test.sample.presentation.data.TablePerson;
-import test.sample.presentation.model.TableViewModel;
+import test.demo.abstraction.immutable.Service;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.control.TitledCardSize;
+import test.demo.control.TitledContentPane;
+import test.demo.controller.PaneController;
+import test.demo.presentation.data.TablePerson;
+import test.demo.presentation.model.TableViewModel;
 
 public class TableComparison extends ScrollPane implements TitledContentPane
 {

@@ -1,4 +1,4 @@
-package test.sample;
+package test.demo;
 
 import com.jfoenix.controls.JFXDecorator;
 import com.sun.javafx.css.StyleManager;
@@ -10,10 +10,10 @@ import javafx.stage.Stage;
 import mil.af.eglin.ccf.rt.fx.style.Theme;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
-import test.sample.abstraction.SampleSession;
-import test.sample.abstraction.Settings;
-import test.sample.controller.PaneController;
-import test.sample.presentation.MainPresentation;
+import test.demo.abstraction.SampleSession;
+import test.demo.abstraction.Settings;
+import test.demo.controller.PaneController;
+import test.demo.presentation.MainPresentation;
 
 // TODO add default colors for CSS properties
 public class SampleApp extends Application
@@ -61,6 +61,7 @@ public class SampleApp extends Application
         
         // TODO THIS SHOULD REALLY BE DONE BEFORE RT-FX IS BASELINED:
         // TODO Set the default sheet to the appropriate theme, and remove any reference to Modena.
+        // TODO maybe the default can be set to rt-fx, and Modena is added as a secondary sheet?
 //        StyleManager.getInstance().setDefaultUserAgentStylesheet(ResourceLoader.loadFile("light-theme.css"));
 
         // TODO clean this up

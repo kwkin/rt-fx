@@ -13,10 +13,10 @@ import mil.af.eglin.ccf.rt.fx.control.ProgressBar;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.DescriptionPane;
-import test.sample.control.TitledCard;
-import test.sample.control.TitledCardSize;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.control.TitledCardSize;
+import test.demo.controller.PaneController;
 
 public class ProgressBarComparison extends TitledCard
 {

@@ -74,7 +74,7 @@ TODO
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
-/*-- ############################### Slider Style ############################### */
+/*-- ############################### Titled Pane Style ############################### */
 .rt-titled-pane
 {
     -fx-cursor: hand;
