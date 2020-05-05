@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
@@ -6,10 +6,10 @@ import mil.af.eglin.ccf.rt.fx.control.RadioButton;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
-import test.sample.control.TitledCardSize;
-import test.sample.control.DescriptionPane;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.control.TitledCardSize;
+import test.demo.controller.PaneController;
 
 public class RadioButtonPanePresentation extends TitledCard
 {
@@ -49,7 +49,7 @@ public class RadioButtonPanePresentation extends TitledCard
         secondaryLightCheckBox.setToggleGroup(secondaryButtonGroup);
         RadioButton secondaryMidCheckBox = new RadioButton("Option B", Accent.SECONDARY_MID);
         secondaryMidCheckBox.setToggleGroup(secondaryButtonGroup);
-        RadioButton secondaryDarkCheckBox = new RadioButton("Three State", Accent.SECONDARY_DARK);
+        RadioButton secondaryDarkCheckBox = new RadioButton("Option C", Accent.SECONDARY_DARK);
         secondaryDarkCheckBox.setToggleGroup(secondaryButtonGroup);
         secondaryDarkCheckBox.setSelected(true);
         iconButtonPane.add(secondaryLightCheckBox, 1, 0);

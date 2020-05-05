@@ -1,10 +1,10 @@
-package test.sample.presentation.model;
+package test.demo.presentation.model;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import test.sample.abstraction.immutable.Service;
-import test.sample.presentation.data.TablePerson;
+import test.demo.abstraction.immutable.Service;
+import test.demo.presentation.data.TablePerson;
 
 public class TableViewModel
 {

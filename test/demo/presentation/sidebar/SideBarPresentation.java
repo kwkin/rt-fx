@@ -1,4 +1,4 @@
-package test.sample.presentation.sidebar;
+package test.demo.presentation.sidebar;
 
 import java.util.HashMap;
 
@@ -15,7 +15,7 @@ import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.ScrollPane;
 import mil.af.eglin.ccf.rt.fx.control.TreeView;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
-import test.sample.control.TitledContentPane;
+import test.demo.control.TitledContentPane;
 
 // TODO add sidebar as a control
 public class SideBarPresentation extends StackPane

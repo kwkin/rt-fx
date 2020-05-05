@@ -1,13 +1,13 @@
-package test.sample.presentation.panes.layouts;
+package test.demo.presentation.panes.layouts;
 
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.TilePane;
-import test.sample.control.DescriptionPane;
-import test.sample.control.TitledCard;
-import test.sample.control.TitledCardSize;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.control.TitledCardSize;
 
 public class TilePanePresentation extends TitledCard
 {

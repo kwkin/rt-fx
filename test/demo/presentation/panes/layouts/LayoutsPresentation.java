@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.layouts;
+package test.demo.presentation.panes.layouts;
 
 import com.jfoenix.controls.JFXMasonryPane;
 
@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ScrollPane;
-import test.sample.control.TitledContentPane;
+import test.demo.control.TitledContentPane;
 
 public class LayoutsPresentation extends ScrollPane implements TitledContentPane
 {

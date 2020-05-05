@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import java.text.NumberFormat;
 
@@ -18,9 +18,9 @@ import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
-import test.sample.control.DescriptionPane;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.controller.PaneController;
 
 public class SliderPanePresentation extends TitledCard
 {

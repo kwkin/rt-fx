@@ -1,4 +1,4 @@
-package test.sample.abstraction.immutable;
+package test.demo.abstraction.immutable;
 
 public enum Service
 {

@@ -1,4 +1,4 @@
-package test.sample.abstraction.data;
+package test.demo.abstraction.data;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import test.sample.abstraction.immutable.Service;
+import test.demo.abstraction.immutable.Service;
 
 public class Person
 {

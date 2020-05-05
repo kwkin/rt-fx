@@ -1,4 +1,4 @@
-package test.sample.presentation;
+package test.demo.presentation;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXToolbar;
@@ -16,6 +16,11 @@ import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.style.Theme;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
+import test.demo.control.TitledContentPane;
+import test.demo.controller.PaneController;
+import test.demo.presentation.panes.controls.ComponentsPresentation;
+import test.demo.presentation.panes.layouts.LayoutsPresentation;
+import test.demo.presentation.sidebar.SideBarPresentation;
 import test.jfoenix.presentation.panes.controls.ButtonComparison;
 import test.jfoenix.presentation.panes.controls.CheckBoxComparison;
 import test.jfoenix.presentation.panes.controls.ComboBoxComparison;
@@ -27,11 +32,6 @@ import test.jfoenix.presentation.panes.controls.SliderComparison;
 import test.jfoenix.presentation.panes.controls.TableComparison;
 import test.jfoenix.presentation.panes.controls.TextFieldComparison;
 import test.jfoenix.presentation.panes.controls.ToggleSwitchComparison;
-import test.sample.control.TitledContentPane;
-import test.sample.controller.PaneController;
-import test.sample.presentation.panes.controls.ComponentsPresentation;
-import test.sample.presentation.panes.layouts.LayoutsPresentation;
-import test.sample.presentation.sidebar.SideBarPresentation;
 
 public class MainPresentation extends BorderPane
 {

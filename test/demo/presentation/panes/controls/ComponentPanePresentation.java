@@ -1,8 +1,8 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import javafx.scene.control.ScrollPane;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
-import test.sample.controller.PaneController;
+import test.demo.controller.PaneController;
 
 public class ComponentPanePresentation extends ScrollPane
 {

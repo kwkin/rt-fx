@@ -1,4 +1,4 @@
-package test.sample.abstraction;
+package test.demo.abstraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Random;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import test.sample.abstraction.data.Person;
-import test.sample.abstraction.immutable.Service;
+import test.demo.abstraction.data.Person;
+import test.demo.abstraction.immutable.Service;
 
 public class SampleSession
 {

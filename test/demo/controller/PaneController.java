@@ -1,28 +1,28 @@
-package test.sample.controller;
+package test.demo.controller;
 
 import javafx.collections.ListChangeListener;
-import test.sample.abstraction.SampleSession;
-import test.sample.abstraction.Settings;
-import test.sample.abstraction.data.Person;
-import test.sample.abstraction.immutable.Service;
-import test.sample.presentation.data.TablePerson;
-import test.sample.presentation.model.BoxesPaneModel;
-import test.sample.presentation.model.ColorPickerPaneModel;
-import test.sample.presentation.model.ComboBoxPaneModel;
-import test.sample.presentation.model.ContextMenuPaneModel;
-import test.sample.presentation.model.TitledPaneModel;
-import test.sample.presentation.model.LabelPaneModel;
-import test.sample.presentation.model.ListViewPaneModel;
-import test.sample.presentation.model.NormalButtonPaneModel;
-import test.sample.presentation.model.PaneModel;
-import test.sample.presentation.model.ProgressPaneModel;
-import test.sample.presentation.model.SliderPaneModel;
-import test.sample.presentation.model.SpecialButtonPaneModel;
-import test.sample.presentation.model.StepperPaneModel;
-import test.sample.presentation.model.TabPaneModel;
-import test.sample.presentation.model.TableViewModel;
-import test.sample.presentation.model.TextAreaPaneModel;
-import test.sample.presentation.model.TextFieldPaneModel;
+import test.demo.abstraction.SampleSession;
+import test.demo.abstraction.Settings;
+import test.demo.abstraction.data.Person;
+import test.demo.abstraction.immutable.Service;
+import test.demo.presentation.data.TablePerson;
+import test.demo.presentation.model.BoxesPaneModel;
+import test.demo.presentation.model.ColorPickerPaneModel;
+import test.demo.presentation.model.ComboBoxPaneModel;
+import test.demo.presentation.model.ContextMenuPaneModel;
+import test.demo.presentation.model.LabelPaneModel;
+import test.demo.presentation.model.ListViewPaneModel;
+import test.demo.presentation.model.NormalButtonPaneModel;
+import test.demo.presentation.model.PaneModel;
+import test.demo.presentation.model.ProgressPaneModel;
+import test.demo.presentation.model.SliderPaneModel;
+import test.demo.presentation.model.SpecialButtonPaneModel;
+import test.demo.presentation.model.StepperPaneModel;
+import test.demo.presentation.model.TabPaneModel;
+import test.demo.presentation.model.TableViewModel;
+import test.demo.presentation.model.TextAreaPaneModel;
+import test.demo.presentation.model.TextFieldPaneModel;
+import test.demo.presentation.model.TitledPaneModel;
 
 public class PaneController
 {

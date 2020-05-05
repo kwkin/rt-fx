@@ -1,4 +1,4 @@
-package test.sample.presentation.data;
+package test.demo.presentation.data;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import test.sample.abstraction.immutable.Service;
+import test.demo.abstraction.immutable.Service;
 
 public class TablePerson  extends RecursiveTreeObject<TablePerson>
 {

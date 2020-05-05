@@ -1,4 +1,4 @@
-package test.sample.abstraction;
+package test.demo.abstraction;
 
 public class Settings
 {

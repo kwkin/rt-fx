@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,9 +6,9 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ListView;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
-import test.sample.control.DescriptionPane;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.controller.PaneController;
 
 public class ListViewPanePresentation extends TitledCard
 {

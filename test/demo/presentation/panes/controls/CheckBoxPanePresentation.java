@@ -1,14 +1,14 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
-import test.sample.control.TitledCardSize;
-import test.sample.control.DescriptionPane;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.control.TitledCardSize;
+import test.demo.controller.PaneController;
 
 public class CheckBoxPanePresentation extends TitledCard
 {

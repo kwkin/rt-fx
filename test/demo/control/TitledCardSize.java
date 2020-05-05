@@ -1,4 +1,4 @@
-package test.sample.control;
+package test.demo.control;
 
 public enum TitledCardSize
 {

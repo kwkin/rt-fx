@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.samples;
+package test.demo.presentation.panes.samples;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -18,7 +18,7 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.TextFlow;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
+import test.demo.control.TitledCard;
 
 public class LogonPresentation extends TitledCard
 {

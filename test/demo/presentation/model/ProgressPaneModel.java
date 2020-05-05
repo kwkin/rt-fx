@@ -1,4 +1,4 @@
-package test.sample.presentation.model;
+package test.demo.presentation.model;
 
 public class ProgressPaneModel
 {

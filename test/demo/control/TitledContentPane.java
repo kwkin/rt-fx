@@ -1,4 +1,4 @@
-package test.sample.control;
+package test.demo.control;
 
 import javafx.scene.Node;
 

@@ -1,4 +1,4 @@
-package test.sample.presentation.panes.controls;
+package test.demo.presentation.panes.controls;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -15,9 +15,9 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.sample.control.TitledCard;
-import test.sample.control.DescriptionPane;
-import test.sample.controller.PaneController;
+import test.demo.control.DescriptionPane;
+import test.demo.control.TitledCard;
+import test.demo.controller.PaneController;
 
 public class ToggleButtonPanePresentation extends TitledCard
 {
