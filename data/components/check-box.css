@@ -6,97 +6,97 @@ TODO
 /*-- ############################### Accents ############################### */
 .rt-check-box.primary-light
 {
-    -rt-selected-color: -rt-primary-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-primary-light-color;
+    -var-unselected-color: -rt-primary-light-color;
+    -var-text-color: -rt-primary-light-color;
 }
 
 .rt-check-box.primary-mid
 {
-    -rt-selected-color: -rt-primary-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-primary-mid-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.primary-dark
 {
-    -rt-selected-color: -rt-primary-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-primary-dark-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-light
 {
-    -rt-selected-color: -rt-secondary-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-secondary-light-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-mid
 {
-    -rt-selected-color: -rt-secondary-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-secondary-mid-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-dark
 {
-    -rt-selected-color: -rt-secondary-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-secondary-dark-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-light
 {
-    -rt-selected-color: -rt-base-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-base-light-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-mid
 {
-    -rt-selected-color: -rt-base-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-base-mid-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-dark
 {
-    -rt-selected-color: -rt-base-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+    -var-accent-color: -rt-base-dark-color;
+    -var-unselected-color: -rt-base-dark-color;
+    -var-text-color: -rt-main-mid-text-color;
 } 
 
 /*-- ############################### Check Box Style ############################### */
 .rt-check-box
 {
     -fx-cursor: hand;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -var-text-color;
     -fx-label-padding: 0 0 0 12;
+    
+    -rt-selected-color: -var-accent-color;
+    -rt-unselected-color: -var-unselected-color;
 }
 
 .rt-check-box .box
 {
-    -fx-pref-width: 18;
-    -fx-pref-height: 18;
-
-    -fx-min-width: -fx-pref-width;
-    -fx-max-width: -fx-pref-width;
-    -fx-min-height: -fx-pref-height;
-    -fx-max-height: -fx-pref-height;
-
     -fx-background-color: transparent;
     -fx-background-radius: 2;
-
-    -fx-border-color: -rt-unselected-color;
+    -fx-border-color: -var-unselected-color;
     -fx-border-style: solid;
     -fx-border-radius: 2;
     -fx-border-width: 2;
+    -fx-pref-width: 18;
+    -fx-pref-height: 18;
+    -fx-max-height: -fx-pref-height;
+    -fx-max-width: -fx-pref-width;
+    -fx-min-height: -fx-pref-height;
+    -fx-min-width: -fx-pref-width;
 }
 
 .rt-check-box:hover .box
 {
-    -fx-border-color: -rt-selected-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 2;
 }
 
@@ -104,7 +104,7 @@ TODO
 .rt-check-box:indeterminate .box,
 .rt-check-box:indeterminate:selected .box
 {
-    -fx-border-color: -rt-selected-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 2;
 }
 
@@ -114,9 +114,11 @@ TODO
     -fx-max-width: 13;
     -fx-max-height: 12;
 
-    /* -fx-shape: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
+    /* 
+    -fx-shape: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
     -fx-max-width: 12;
-    -fx-max-height: 12; */
+    -fx-max-height: 12; 
+    */
 
     -fx-background-color: -rt-base-light-color;
     -fx-border-color: -rt-base-light-color;

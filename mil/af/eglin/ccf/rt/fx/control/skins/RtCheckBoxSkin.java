@@ -9,6 +9,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -16,6 +18,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
@@ -29,6 +32,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
     
+    // TODO should skinnable or a reference be kept?
     private CheckBox checkBox;
 
     private Transition transition;
@@ -52,9 +56,9 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.indeterminateMark.setScaleY(0);
         this.wasIndeterminate = false;
 
-        box.getStyleClass().setAll("box");
-        box.getChildren().setAll(indeterminateMark, selectedMark);
-        boxAndMarks.getChildren().add(box);
+        this.box.getStyleClass().setAll("box");
+        this.box.getChildren().setAll(indeterminateMark, selectedMark);
+        this.boxAndMarks.getChildren().add(box);
 
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
@@ -66,10 +70,27 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         });
         updateChildren();
 
-        transition = new CheckBoxTransition(selectedMark, ANIMATION_DURATION);
-        indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
-        select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
+        this.transition = new CheckBoxTransition(selectedMark, ANIMATION_DURATION);
+        this.indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
+        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
                 (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
+
+        registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
+        registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (checkBox.selectedColorProperty().getName().equals(property))
+        {
+            updateColors();
+        }
+        else if (checkBox.unselectedColorProperty().getName().equals(property))
+        {
+            updateColors();
+        }
     }
 
     @Override
@@ -163,10 +184,23 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             select.playFrom(select.getCycleDuration());
             transition.playFrom(transition.getCycleDuration());
         }
+        // TODO remove hardcoded corner radii and border widths
         box.setBorder(new Border(
                 new BorderStroke(selection ? getSkinnable().getSelectedColor() : getSkinnable().getUnselectedColor(),
                         BorderStrokeStyle.SOLID, new CornerRadii(2), new BorderWidths(2))));
         this.wasIndeterminate = false;
+    }
+    
+    private void updateColors()
+    {
+        boolean isSelected = this.checkBox.isSelected();
+        BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
+        CornerRadii radii = box.getBorder().getStrokes().get(0).getRadii();
+        
+        Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
+        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, radii, widths)));
+        this.region.get().setBackground(new Background(new BackgroundFill(newColor, this.radii, this.insets)));
+        this.box.setBackground(value);
     }
 
     private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
