@@ -6,10 +6,11 @@ import java.util.List;
 
 import com.sun.javafx.css.converters.BooleanConverter;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
-import javafx.css.SimpleStyleableObjectProperty;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableObjectProperty;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
@@ -26,7 +27,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
     private static final String CSS_CLASS = "rt-toggle-button";
 
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     
     public ToggleButton()
@@ -68,7 +69,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
         super(text, graphic);
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
@@ -160,7 +161,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Boolean> getStyleableProperty(ToggleButton control)
             {
-                return control.isAnimationDisabledProperty();
+                return control.isAnimationDisabled;
             }
         };
 

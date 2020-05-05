@@ -7,9 +7,13 @@ import java.util.List;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
@@ -34,7 +38,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             StyleableProperties.SELECTED_LINE_COLOR, this, "selectedLineColor", DefaultPalette.getInstance().getLightAccentColor());
     private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_LINE_COLOR, this, "unselectedLineColor", DefaultPalette.getInstance().getLightBaseColor());
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
     public ToggleSwitch()
@@ -63,7 +67,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         initialize();
     }
 
-    public StyleableObjectProperty<Paint> selectedColorProperty()
+    public ObjectProperty<Paint> selectedColorProperty()
     {
         return this.selectedColor;
     }
@@ -78,7 +82,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         this.selectedColor.setValue(color);
     }
 
-    public StyleableObjectProperty<Paint> unselectedColorProperty()
+    public ObjectProperty<Paint> unselectedColorProperty()
     {
         return this.unselectedColor;
     }
@@ -93,7 +97,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         this.unselectedColor.setValue(color);
     }
 
-    public StyleableObjectProperty<Paint> selectedLineColorProperty()
+    public ObjectProperty<Paint> selectedLineColorProperty()
     {
         return this.selectedLineColor;
     }
@@ -123,7 +127,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         this.unselectedLineColor.setValue(color);
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
@@ -209,7 +213,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Paint> getStyleableProperty(ToggleSwitch control)
             {
-                return control.selectedColorProperty();
+                return control.selectedColor;
             }
         };
 
@@ -225,7 +229,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Paint> getStyleableProperty(ToggleSwitch control)
             {
-                return control.unselectedColorProperty();
+                return control.unselectedColor;
             }
         };
 
@@ -241,7 +245,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Paint> getStyleableProperty(ToggleSwitch control)
             {
-                return control.selectedLineColorProperty();
+                return control.selectedLineColor;
             }
         };
 
@@ -257,7 +261,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Paint> getStyleableProperty(ToggleSwitch control)
             {
-                return control.unselectedLineColorProperty();
+                return control.unselectedLineColor;
             }
         };
         private static final CssMetaData<ToggleSwitch, Boolean> DISABLE_ANIMATION = new CssMetaData<ToggleSwitch, Boolean>(
@@ -272,7 +276,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             @Override
             public StyleableProperty<Boolean> getStyleableProperty(ToggleSwitch control)
             {
-                return control.isAnimationDisabledProperty();
+                return control.isAnimationDisabled;
             }
         };
 

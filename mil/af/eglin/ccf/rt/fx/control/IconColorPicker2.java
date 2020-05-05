@@ -8,6 +8,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO combine with other icon color picker
+// TODO add feature to change the icon size
 public class IconColorPicker2 extends javafx.scene.control.ColorPicker implements RtComponent
 {
     protected ColorPickerStyle style = ColorPickerStyle.ICON2;

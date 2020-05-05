@@ -25,9 +25,13 @@ import java.util.List;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
@@ -48,7 +52,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
     /**
@@ -83,7 +87,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
         initialize();
     }
 
-    public StyleableObjectProperty<Paint> selectedColorProperty()
+    public ObjectProperty<Paint> selectedColorProperty()
     {
         return this.selectedColor;
     }
@@ -98,7 +102,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
         this.selectedColor.setValue(color);
     }
 
-    public StyleableObjectProperty<Paint> unselectedColorProperty()
+    public ObjectProperty<Paint> unselectedColorProperty()
     {
         return this.unselectedColor;
     }
@@ -113,7 +117,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
         this.unselectedColor.set(color);
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
@@ -193,7 +197,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             @Override
             public StyleableProperty<Paint> getStyleableProperty(CheckBox control)
             {
-                return control.selectedColorProperty();
+                return control.selectedColor;
             }
         };
         private static final CssMetaData<CheckBox, Paint> UNSELECTED_COLOR = new CssMetaData<CheckBox, Paint>(
@@ -208,7 +212,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             @Override
             public StyleableProperty<Paint> getStyleableProperty(CheckBox control)
             {
-                return control.unselectedColorProperty();
+                return control.unselectedColor;
             }
         };
         private static final CssMetaData<CheckBox, Boolean> DISABLE_ANIMATION = new CssMetaData<CheckBox, Boolean>(
@@ -223,7 +227,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             @Override
             public StyleableProperty<Boolean> getStyleableProperty(CheckBox control)
             {
-                return control.isAnimationDisabledProperty();
+                return control.isAnimationDisabled;
             }
         };
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;

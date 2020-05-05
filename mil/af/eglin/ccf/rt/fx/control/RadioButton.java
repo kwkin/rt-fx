@@ -7,9 +7,12 @@ import java.util.List;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
@@ -30,7 +33,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
             StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     
     public RadioButton()
@@ -82,7 +85,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
         this.unselectedColor.set(color);
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
@@ -192,7 +195,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
             @Override
             public StyleableProperty<Boolean> getStyleableProperty(RadioButton control)
             {
-                return control.isAnimationDisabledProperty();
+                return control.isAnimationDisabled;
             }
         };
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;

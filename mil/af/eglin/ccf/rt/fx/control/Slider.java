@@ -7,9 +7,12 @@ import java.util.List;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
@@ -31,7 +34,7 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
             StyleableProperties.FILLED_TRACK_COLOR, this, "filledTrackColor");
     private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
     public Slider()
@@ -105,7 +108,7 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
         this.unfilledTrackColor.setValue(color);
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }

@@ -6,10 +6,11 @@ import java.util.List;
 
 import com.sun.javafx.css.converters.BooleanConverter;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
-import javafx.css.SimpleStyleableObjectProperty;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableObjectProperty;
+import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -22,7 +23,7 @@ public class TitledPane extends javafx.scene.control.TitledPane
     private static final String USER_AGENT_STYLESHEET = "titled-pane.css";
     private static final String CSS_CLASS = "rt-titled-pane";
 
-    private StyleableObjectProperty<Boolean> isAnimationDisabled = new SimpleStyleableObjectProperty<>(
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     
     public TitledPane()
@@ -51,7 +52,7 @@ public class TitledPane extends javafx.scene.control.TitledPane
         initialize();
     }
 
-    public StyleableObjectProperty<Boolean> isAnimationDisabledProperty()
+    public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
