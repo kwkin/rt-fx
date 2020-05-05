@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -37,7 +38,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     private Transition transition;
     private Transition indeterminateTransition;
-    private Transition select;
+    private RtFillTransition select;
     private boolean wasIndeterminate;
 
     public RtCheckBoxSkin(CheckBox checkBox)
@@ -193,14 +194,15 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     
     private void updateColors()
     {
+        // TODO null checks
         boolean isSelected = this.checkBox.isSelected();
         BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
-        CornerRadii radii = box.getBorder().getStrokes().get(0).getRadii();
+        CornerRadii borderRadii = box.getBorder().getStrokes().get(0).getRadii();
         
         Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
-        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, radii, widths)));
-        this.region.get().setBackground(new Background(new BackgroundFill(newColor, this.radii, this.insets)));
-        this.box.setBackground(value);
+        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, borderRadii, borderWidths)));
+        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
+                (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
     }
 
     private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
