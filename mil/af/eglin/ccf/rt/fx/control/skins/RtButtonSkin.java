@@ -23,6 +23,7 @@ public class RtButtonSkin extends ButtonSkin
     private final StackPane stateBox = new StackPane();
 
     private Button button;
+    private CachedTransition normalTransition;
     private CachedTransition armedTransition;
     private CachedTransition hoverTransition;
 
@@ -45,28 +46,11 @@ public class RtButtonSkin extends ButtonSkin
         createAnimation();
         button.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!button.getIsAnimationDisabled())
-            {
-                // TODO add cue positions for hover
-                armedTransition.setRate(newVal ? 1 : -1);
-                armedTransition.play();
-            }
-            else
-            {
-                armedTransition.playFrom(newVal ? Duration.ZERO : ANIMATION_DURATION);
-            }
+            updateState();
         });
         button.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!button.getIsAnimationDisabled())
-            {
-                hoverTransition.setRate(newVal ? 1 : -1);
-                hoverTransition.play();
-            }
-            else
-            {
-                hoverTransition.playFrom(newVal ? Duration.ZERO : ANIMATION_DURATION);
-            }
+            updateState();
         });
         updateStateBoxColor();
 
@@ -97,6 +81,40 @@ public class RtButtonSkin extends ButtonSkin
 
         layoutLabelInArea(x, y, w, h);
     }
+    
+    private void updateState()
+    {
+        if (!button.getIsAnimationDisabled())
+        {
+            if (button.isArmed())
+            {
+                armedTransition.play();
+            }
+            else if (button.isHover())
+            {
+                hoverTransition.play();
+            }
+            else
+            {
+                normalTransition.play();
+            }
+        }
+        else
+        {
+            if (button.isArmed())
+            {
+                armedTransition.playFrom(ANIMATION_DURATION);
+            }
+            else if (button.isHover())
+            {
+                hoverTransition.playFrom(ANIMATION_DURATION);
+            }
+            else
+            {
+                normalTransition.playFrom(ANIMATION_DURATION);
+            }
+        }
+    }
 
     private void createAnimation()
     {
@@ -106,40 +124,35 @@ public class RtButtonSkin extends ButtonSkin
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
                 // @formatter:off
-                armedTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(Duration.ZERO,  
+                normalTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(ANIMATION_DURATION,  
                         new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(2), Interpolator.EASE_OUT), 
-                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
+                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT))));
+                armedTransition = new CachedTransition(null, new Timeline(
                     new KeyFrame(ANIMATION_DURATION,  
                         new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(5), Interpolator.EASE_OUT), 
                         new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
                 hoverTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(Duration.ZERO,  
-                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(2), Interpolator.EASE_OUT), 
-                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
                     new KeyFrame(ANIMATION_DURATION,  
                         new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(3), Interpolator.EASE_OUT), 
                         new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
                 // @formatter:on
-                armedTransition.setCycle(ANIMATION_DURATION);
-                hoverTransition.setCycle(ANIMATION_DURATION);
                 break;
             default:
                 button.setPickOnBounds(true);
                 // @formatter:off
-                armedTransition = new CachedTransition(null, 
-                    new Timeline(
-                        new KeyFrame(Duration.ZERO, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
-                        new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
-                hoverTransition = new CachedTransition(null, 
-                    new Timeline(
-                        new KeyFrame(Duration.ZERO, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT)),
-                        new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
+                normalTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT))));
+                armedTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
+                hoverTransition = new CachedTransition(null, new Timeline(
+                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
                 // @formatter:on
-                armedTransition.setCycle(ANIMATION_DURATION);
-                hoverTransition.setCycle(ANIMATION_DURATION);
                 break;
         }
+        normalTransition.setCycle(ANIMATION_DURATION);
+        armedTransition.setCycle(ANIMATION_DURATION);
+        hoverTransition.setCycle(ANIMATION_DURATION);
     }
     
     private void updateStateBoxColor()
