@@ -72,6 +72,5 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtC
         StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
-        
     }
 }

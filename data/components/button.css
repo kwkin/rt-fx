@@ -225,7 +225,6 @@
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
-    -fx-pref-width: 200.0;
 
     -rt-overlay-color: -var-overlay-color;
 }
@@ -259,7 +258,6 @@
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
-    -fx-pref-width: 200.0;
     
     -rt-overlay-color: -var-overlay-color;
 }

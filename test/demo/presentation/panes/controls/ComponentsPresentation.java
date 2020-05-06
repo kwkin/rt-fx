@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ScrollPane;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
+import test.demo.presentation.panes.layouts.DialogPanePresentation;
 
 public class ComponentsPresentation extends ScrollPane implements TitledContentPane
 {
@@ -50,6 +51,7 @@ public class ComponentsPresentation extends ScrollPane implements TitledContentP
         componentPanes.add(new TabPanePresentation(controller));
         componentPanes.add(new ListViewPanePresentation(controller));
         componentPanes.add(new ContextMenuPanePresentation(controller));
+        componentPanes.add(new DialogPanePresentation(controller));
         return componentPanes;
     }
 

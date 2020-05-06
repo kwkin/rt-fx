@@ -209,7 +209,6 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     
     private void initialize()
     {
-        // TODO add transition animation
         // TODO add binding for the icon sizes and padding
         this.iconPane.getChildren().addAll(this.selectedIcon, this.unselectedIcon);
         
