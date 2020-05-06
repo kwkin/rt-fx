@@ -1,9 +1,9 @@
 package test.demo.presentation.panes.layouts;
 
 import javafx.scene.Node;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -30,7 +30,7 @@ public class HBoxPresentation extends SizedTitledCard
         int columns = 5;
         for (int columnIndex = 0; columnIndex < columns; columnIndex++)
         {
-            SvgIcon template = new SvgIcon(SvgIcons.SQUARE, IconSizes.SIZE_32);
+            SvgGlyph template = new SvgGlyph(SvgFile.SQUARE, IconSize.SIZE_32);
             pane.getChildren().add(template);
         }
         descriptionPane.setContent(pane);

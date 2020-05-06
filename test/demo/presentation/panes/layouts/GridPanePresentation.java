@@ -2,9 +2,9 @@ package test.demo.presentation.panes.layouts;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -37,7 +37,7 @@ public class GridPanePresentation extends SizedTitledCard
         {
             for (int columnIndex = 0; columnIndex < columns; columnIndex++)
             {
-                SvgIcon template = new SvgIcon(SvgIcons.SQUARE, IconSizes.SIZE_32);
+                SvgGlyph template = new SvgGlyph(SvgFile.SQUARE, IconSize.SIZE_32);
                 template.setPadding(new Insets(0));
                 iconButtonPane.add(template, rowIndex, columnIndex);
             }

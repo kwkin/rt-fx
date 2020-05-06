@@ -9,9 +9,9 @@ import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -113,30 +113,30 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         FlowPane pane = new FlowPane();
         pane.setPadding(new Insets(0));
         
-        SvgIcon smilyOn = new SvgIcon(SvgIcons.EMOTICON_EXCITED, IconSizes.SIZE_32);
-        SvgIcon smilyOff = new SvgIcon(SvgIcons.EMOTICON_EXCITED_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph smilyOn = new SvgGlyph(SvgFile.EMOTICON_EXCITED, IconSize.SIZE_32);
+        SvgGlyph smilyOff = new SvgGlyph(SvgFile.EMOTICON_EXCITED_OUTLINE, IconSize.SIZE_32);
         IconToggleButton normal = new IconToggleButton(smilyOn, smilyOff);
         
-        SvgIcon eyeOn = new SvgIcon(SvgIcons.EYE, IconSizes.SIZE_32);
-        SvgIcon eyeOff = new SvgIcon(SvgIcons.EYE_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_32);
+        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_32);
         IconToggleButton normalWithText = new IconToggleButton(eyeOn, eyeOff);
         normalWithText.setText("Normal");
 
-        SvgIcon play = new SvgIcon(SvgIcons.PLAY, IconSizes.SIZE_32);
-        SvgIcon pause = new SvgIcon(SvgIcons.PAUSE, IconSizes.SIZE_32);
+        SvgGlyph play = new SvgGlyph(SvgFile.PLAY, IconSize.SIZE_32);
+        SvgGlyph pause = new SvgGlyph(SvgFile.PAUSE, IconSize.SIZE_32);
         IconToggleButton accented = new IconToggleButton(play, pause, IconToggleButtonStyle.ACCENTED);
 
-        SvgIcon mapAlert = new SvgIcon(SvgIcons.MAP_MARKER_ALERT, IconSizes.SIZE_32);
-        SvgIcon mapAlertCircle = new SvgIcon(SvgIcons.MAP_MARKER_ALERT_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph mapAlert = new SvgGlyph(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
+        SvgGlyph mapAlertCircle = new SvgGlyph(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
         IconToggleButton accentedWithText = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
         accentedWithText.setText("Accented");
 
-        SvgIcon alertCircle = new SvgIcon(SvgIcons.ALERT_CIRCLE, IconSizes.SIZE_32);
-        SvgIcon alertCircleOutline = new SvgIcon(SvgIcons.ALERT_CIRCLE_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph alertCircle = new SvgGlyph(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
+        SvgGlyph alertCircleOutline = new SvgGlyph(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
         IconToggleButton glowing = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING);
 
-        SvgIcon shieldAlert = new SvgIcon(SvgIcons.SHIELD_ALERT, IconSizes.SIZE_32);
-        SvgIcon shieldAlertOutline = new SvgIcon(SvgIcons.SHIELD_ALERT_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph shieldAlert = new SvgGlyph(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
+        SvgGlyph shieldAlertOutline = new SvgGlyph(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
         IconToggleButton glowingWithText = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
         glowingWithText.setText("Glowing");
 

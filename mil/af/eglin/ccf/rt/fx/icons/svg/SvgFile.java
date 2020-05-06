@@ -4,8 +4,9 @@ import java.nio.file.Path;
 
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public enum SvgIcons
+public enum SvgFile
 {
+    // @formatter:off
     ACCOUNT("account.svg"),
     ALERT_CIRCLE_OUTLINE("alert-circle-outline.svg"),
     ALERT_CIRCLE("alert-circle.svg"),
@@ -64,10 +65,11 @@ public enum SvgIcons
     SQUARE("square.svg"),
     TACO("taco.svg"),
     UNDO("undo.svg");
+    // @formatter:on
     
     private String svgFileName;
     
-    SvgIcons(String svgFileName)
+    SvgFile(String svgFileName)
     {
         this.svgFileName = svgFileName;
     }

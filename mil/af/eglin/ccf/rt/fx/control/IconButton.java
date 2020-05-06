@@ -22,7 +22,7 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -32,7 +32,7 @@ public class IconButton extends Button
 {
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE_MID;
-    protected SvgIcon icon;
+    protected SvgGlyph icon;
     
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
@@ -41,21 +41,21 @@ public class IconButton extends Button
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     
-    public IconButton(SvgIcon icon)
+    public IconButton(SvgGlyph icon)
     {
         super(ButtonStyle.ICON);
         this.icon = icon;
         initialize();
     }
     
-    public IconButton(SvgIcon icon, String text)
+    public IconButton(SvgGlyph icon, String text)
     {
         super(text, ButtonStyle.ICON);
         this.icon = icon;
         initialize();
     }
     
-    public SvgIcon getIcon()
+    public SvgGlyph getIcon()
     {
         return this.icon;
     }

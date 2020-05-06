@@ -24,12 +24,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO Add a maintain aspect ratio flag
-public class SvgIcon extends StackPane
+public class SvgGlyph extends StackPane
 {
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
@@ -37,26 +37,26 @@ public class SvgIcon extends StackPane
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
     private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
-            StyleableProperties.SIZE, this, "size", (double)IconSizes.SIZE_32.getIconSize());
+            StyleableProperties.SIZE, this, "size", (double)IconSize.SIZE_32.getIconSize());
     
-    public SvgIcon(SvgIcons icon)
+    public SvgGlyph(SvgFile icon)
     {
         initialize(extractSvgPath(icon.getFilePath()));
     }
 
-    public SvgIcon(SvgIcons icon, IconSizes size)
+    public SvgGlyph(SvgFile icon, IconSize size)
     {
         this.size.setValue(size.getIconSize());
         initialize(extractSvgPath(icon.getFilePath()));
     }
 
-    public SvgIcon(SvgIcons icon, Paint fill)
+    public SvgGlyph(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
         initialize(extractSvgPath(icon.getFilePath()));
     }
 
-    public SvgIcon(SvgIcons icon, Paint fill, IconSizes size)
+    public SvgGlyph(SvgFile icon, Paint fill, IconSize size)
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
@@ -64,12 +64,12 @@ public class SvgIcon extends StackPane
     }
 
     // TODO remaining constructors
-    public SvgIcon(Path filePath)
+    public SvgGlyph(Path filePath)
     {
         initialize(extractSvgPath(filePath));
     }
 
-    public SvgIcon(String svgPath)
+    public SvgGlyph(String svgPath)
     {
 
         initialize(svgPath);
@@ -211,17 +211,17 @@ public class SvgIcon extends StackPane
 
     private static class StyleableProperties
     {
-        private static final CssMetaData<SvgIcon, Number> SIZE = new CssMetaData<SvgIcon, Number>("-rt-size",
+        private static final CssMetaData<SvgGlyph, Number> SIZE = new CssMetaData<SvgGlyph, Number>("-rt-size",
                 SizeConverter.getInstance(), Region.USE_COMPUTED_SIZE)
         {
             @Override
-            public boolean isSettable(SvgIcon control)
+            public boolean isSettable(SvgGlyph control)
             {
                 return control.size == null || !control.size.isBound();
             }
 
             @Override
-            public StyleableDoubleProperty getStyleableProperty(SvgIcon control)
+            public StyleableDoubleProperty getStyleableProperty(SvgGlyph control)
             {
                 return control.size;
             }

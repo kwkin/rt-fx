@@ -22,8 +22,8 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtIconToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -31,9 +31,9 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class IconToggleButton extends javafx.scene.control.ToggleButton
 {
     protected StackPane iconPane = new StackPane();
-    protected SvgIcon selectedIcon;
-    protected SvgIcon unselectedIcon;
-    protected IconSizes iconSize = IconSizes.SIZE_32;
+    protected SvgGlyph selectedIcon;
+    protected SvgGlyph unselectedIcon;
+    protected IconSize iconSize = IconSize.SIZE_32;
     protected IconToggleButtonStyle style = IconToggleButtonStyle.NORMAL;
     protected Accent accent = Accent.PRIMARY_MID;
     
@@ -51,7 +51,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
     
-    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
+    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon)
     {
         super();
         this.selectedIcon = selectedIcon;
@@ -59,7 +59,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         initialize();
     }
     
-    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String text)
+    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, String text)
     {
         super();
         this.selectedIcon = selectedIcon;
@@ -68,7 +68,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         initialize();
     }
     
-    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String selectedText, String unselectedText)
+    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, String selectedText, String unselectedText)
     {
         super();
         this.selectedIcon = selectedIcon;
@@ -79,7 +79,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         initialize();
     }
 
-    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, IconToggleButtonStyle style)
+    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, IconToggleButtonStyle style)
     {
         super();
         this.selectedIcon = selectedIcon;
@@ -88,7 +88,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         initialize();
     }
     
-    public IconSizes getIconSizes()
+    public IconSize getIconSizes()
     {
         return this.iconSize;
     }
@@ -128,12 +128,12 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         return unselectedFill.getValue();
     }
     
-    public SvgIcon getSelectedIcon()
+    public SvgGlyph getSelectedIcon()
     {
         return this.selectedIcon;
     }
     
-    public SvgIcon getUnslectedIcon()
+    public SvgGlyph getUnslectedIcon()
     {
         return this.unselectedIcon;
     }

@@ -13,9 +13,9 @@ import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -118,27 +118,27 @@ public class ToggleSwitchComparison extends SizedTitledCard
     public Node createRtIconButton()
     {
         VBox box = new VBox();
-        SvgIcon smilyOn = new SvgIcon(SvgIcons.EMOTICON_EXCITED, IconSizes.SIZE_32);
-        SvgIcon smilyOff = new SvgIcon(SvgIcons.EMOTICON_EXCITED_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph smilyOn = new SvgGlyph(SvgFile.EMOTICON_EXCITED, IconSize.SIZE_32);
+        SvgGlyph smilyOff = new SvgGlyph(SvgFile.EMOTICON_EXCITED_OUTLINE, IconSize.SIZE_32);
         IconToggleButton smiley = new IconToggleButton(smilyOn, smilyOff);
         
-        SvgIcon eyeOn = new SvgIcon(SvgIcons.EYE, IconSizes.SIZE_32);
-        SvgIcon eyeOff = new SvgIcon(SvgIcons.EYE_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_32);
+        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_32);
         IconToggleButton rtPalette = new IconToggleButton(eyeOn, eyeOff);
         rtPalette.setText("Normal");
 
-        SvgIcon mapAlert = new SvgIcon(SvgIcons.MAP_MARKER_ALERT, IconSizes.SIZE_32);
-        SvgIcon mapAlertCircle = new SvgIcon(SvgIcons.MAP_MARKER_ALERT_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph mapAlert = new SvgGlyph(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
+        SvgGlyph mapAlertCircle = new SvgGlyph(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
         IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
         rtMapAlert.setText("Highlighted");
 
-        SvgIcon shieldAlert = new SvgIcon(SvgIcons.SHIELD_ALERT, IconSizes.SIZE_32);
-        SvgIcon shieldAlertOutline = new SvgIcon(SvgIcons.SHIELD_ALERT_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph shieldAlert = new SvgGlyph(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
+        SvgGlyph shieldAlertOutline = new SvgGlyph(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
         IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
         rtToggle.setText("Glowing");
 
-        SvgIcon alertCircle = new SvgIcon(SvgIcons.ALERT_CIRCLE, IconSizes.SIZE_32);
-        SvgIcon alertCircleOutline = new SvgIcon(SvgIcons.ALERT_CIRCLE_OUTLINE, IconSizes.SIZE_32);
+        SvgGlyph alertCircle = new SvgGlyph(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
+        SvgGlyph alertCircleOutline = new SvgGlyph(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
         IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING);
 
         box.getChildren().add(smiley);
@@ -153,10 +153,10 @@ public class ToggleSwitchComparison extends SizedTitledCard
     {
         VBox box = new VBox();
         JFXToggleNode jfxUnselected = new JFXToggleNode();
-        jfxUnselected.setGraphic(new SvgIcon(SvgIcons.MAP_MARKER_ALERT, IconSizes.SIZE_32));
+        jfxUnselected.setGraphic(new SvgGlyph(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32));
 
         JFXToggleNode jfxGlowing = new JFXToggleNode();
-        jfxGlowing.setGraphic(new SvgIcon(SvgIcons.SHIELD_ALERT, IconSizes.SIZE_32));
+        jfxGlowing.setGraphic(new SvgGlyph(SvgFile.SHIELD_ALERT, IconSize.SIZE_32));
         jfxGlowing.setText("Glowing");
         
         box.getChildren().add(jfxUnselected);

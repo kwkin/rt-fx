@@ -12,9 +12,9 @@ import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSizes;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.TextFlow;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -38,7 +38,7 @@ public class LogonPresentation extends SizedTitledCard
         VBox vBox = new VBox(Accent.BASE_LIGHT);
         vBox.setPadding(new Insets(0, 0, 10, 0));
          
-        SvgIcon icon = new SvgIcon(SvgIcons.ACCOUNT, IconSizes.SIZE_64);
+        SvgGlyph icon = new SvgGlyph(SvgFile.ACCOUNT, IconSize.SIZE_64);
         GridPane iconGridPane = new GridPane();
         iconGridPane.setPadding(new Insets(0, 0, 10, 0));
         iconGridPane.setAlignment(Pos.CENTER);
