@@ -22,6 +22,7 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
+import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO incorporate logging
@@ -36,9 +37,9 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private static final String CSS_CLASS = "rt-button";
 
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, this, "overlayColor");
+            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+            StyleableProperties.DISABLE_ANIMATION, Button.this, "disableAnimation", false);
 
     /**
      * Creates a button with an empty string for its label.
@@ -240,7 +241,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private static class StyleableProperties
     {
         private static final CssMetaData<Button, Paint> OVERLAY_COLOR = new CssMetaData<Button, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance())
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
         {
             @Override
             public boolean isSettable(Button control)
@@ -278,6 +279,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
             // @formatter:off
+            Collections.addAll(styleables, OVERLAY_COLOR);
             Collections.addAll(styleables, DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);

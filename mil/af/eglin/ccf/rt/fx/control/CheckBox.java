@@ -49,11 +49,11 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
     private static final String DEFAULT_STYLE_CLASS = "rt-check-box";
     
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_COLOR, CheckBox.this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNSELECTED_COLOR, CheckBox.this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+            StyleableProperties.DISABLE_ANIMATION, CheckBox.this, "disableAnimation", false);
 
     /**
      * {@inheritDoc}

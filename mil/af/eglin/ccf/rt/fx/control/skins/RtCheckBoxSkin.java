@@ -72,7 +72,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
         this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
                 (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
-
+        
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
     }

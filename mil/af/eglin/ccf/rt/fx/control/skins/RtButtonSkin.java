@@ -157,7 +157,7 @@ public class RtButtonSkin extends ButtonSkin
     
     private void updateStateBoxColor()
     {
-        CornerRadii radii = this.stateBox.getBackground() == null ? null : this.stateBox.getBackground().getFills().get(0).getRadii(); 
+        CornerRadii radii = this.button.getBackground() == null ? null : this.button.getBackground().getFills().get(0).getRadii(); 
         Insets insets = this.stateBox.getInsets();
         this.stateBox.setBackground(new Background(new BackgroundFill(this.button.getOverlayColor(), radii, insets)));
     }

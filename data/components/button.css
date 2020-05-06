@@ -237,15 +237,6 @@
     -fx-border-width: 0;
 }
 
-.rt-button.raised .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
 /*-- ############################### Flat Button Style ############################### */
 .rt-button.flat
 {
@@ -270,15 +261,6 @@
     -fx-border-width: 0;
 }
 
-.rt-button.flat .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
 /*-- ############################### Icon Button Style ############################### */
 .rt-button.icon
 {
@@ -292,14 +274,4 @@
     -fx-text-fill: -var-text-color;
     
     -rt-overlay-color: -var-overlay-color;
-}
-
-.rt-button.icon .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-    -fx-padding: 0;
-    -fx-insets: 0;
 }

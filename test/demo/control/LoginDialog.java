@@ -1,28 +1,19 @@
 package test.demo.control;
 
-import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.Dialog;
-import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
-
-import com.jfoenix.controls.JFXDecorator;
 
 import javafx.geometry.HPos;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import mil.af.eglin.ccf.rt.fx.control.RadioButton;
 import mil.af.eglin.ccf.rt.fx.control.Text;
 import mil.af.eglin.ccf.rt.fx.control.TextArea;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;

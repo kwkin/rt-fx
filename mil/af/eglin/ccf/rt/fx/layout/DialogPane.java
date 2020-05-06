@@ -16,12 +16,12 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class DialogPane extends javafx.scene.control.DialogPane
 {
     protected Accent accent;
-    
+
     private static final String USER_AGENT_STYLESHEET = "dialog-pane.css";
     private static final String CSS_CLASS = "rt-dialog-pane";
-    
+
     private ButtonBar buttonBar;
-    
+
     public DialogPane()
     {
         super();
@@ -39,15 +39,14 @@ public class DialogPane extends javafx.scene.control.DialogPane
      * {@inheritDoc}`
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET);
     }
 
-    
     // TODO expandable handler
-    @Override 
-    protected Node createButtonBar() 
+    @Override
+    protected Node createButtonBar()
     {
         ButtonBar buttonBar = new ButtonBar();
         buttonBar.getStyleClass().add("button-box");
@@ -59,8 +58,8 @@ public class DialogPane extends javafx.scene.control.DialogPane
         this.buttonBar = buttonBar;
         return buttonBar;
     }
-    
-    @Override 
+
+    @Override
     protected Node createButton(ButtonType buttonType)
     {
         final Button button = new Button(buttonType.getText(), ButtonStyle.FLAT);
@@ -71,11 +70,11 @@ public class DialogPane extends javafx.scene.control.DialogPane
         ButtonBar.setButtonUniformSize(button, false);
         return button;
     }
-    
+
     private void updateButtons()
     {
         List<Button> buttons = new ArrayList<>();
-        for (ButtonType buttonType : getButtonTypes()) 
+        for (ButtonType buttonType : getButtonTypes())
         {
             // TODO this will create duplicate buttons
             Node lookup = lookupButton(buttonType);
@@ -83,11 +82,11 @@ public class DialogPane extends javafx.scene.control.DialogPane
             buttonBar.getButtons().add(button);
             if (button instanceof Button)
             {
-                buttons.add((Button)button);
+                buttons.add((Button) button);
             }
         }
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
