@@ -6,10 +6,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 
-public class HBoxPresentation extends TitledCard
+public class HBoxPresentation extends SizedTitledCard
 {
     private static final String TITLE = "H Box";
     

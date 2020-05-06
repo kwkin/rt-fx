@@ -18,9 +18,9 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.TextFlow;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 
-public class LogonPresentation extends TitledCard
+public class LogonPresentation extends SizedTitledCard
 {
     private static final String TITLE = "Login";
     

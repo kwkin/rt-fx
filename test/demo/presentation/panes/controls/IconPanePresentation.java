@@ -13,11 +13,11 @@ import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.TilePane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 
-public class IconPanePresentation extends TitledCard
+public class IconPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Icons";
     

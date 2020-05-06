@@ -6,10 +6,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 
-public class VBoxPresentation extends TitledCard
+public class VBoxPresentation extends SizedTitledCard
 {
     private static final String TITLE = "V Box";
     

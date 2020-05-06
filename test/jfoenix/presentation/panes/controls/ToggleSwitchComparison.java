@@ -19,11 +19,11 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 
-public class ToggleSwitchComparison extends TitledCard
+public class ToggleSwitchComparison extends SizedTitledCard
 {
     private static final String TITLE = "Toggle Buttons";
 

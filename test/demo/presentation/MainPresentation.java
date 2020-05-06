@@ -57,13 +57,13 @@ public class MainPresentation extends BorderPane
         this.titled = new Label("Components");
         Label noticeMessage = new Label("Notice: Some component skins do not update dynamically (yet!).");
         Label themeLabel = new Label("    Theme:");
-        
+
         this.comboBoxTheme = new ComboBox<Theme>(FXCollections.observableArrayList(Theme.values()));
-//        this.comboBoxTheme.setEditable(true);
+        // this.comboBoxTheme.setEditable(true);
         this.comboBoxTheme.setValue(Theme.LIGHT);
         toolBar.setLeftItems(this.toggleButton, this.titled);
         toolBar.setRightItems(noticeMessage, themeLabel, this.comboBoxTheme);
-        
+
         this.comboBoxTheme.valueProperty().addListener((ov, oldVal, newVal) ->
         {
             ThemeManager.getInstance().load(newVal);
@@ -82,7 +82,7 @@ public class MainPresentation extends BorderPane
         this.panes.add(new TextFieldComparison(paneController));
         this.panes.add(new RadioButtonComparison(paneController));
         this.panes.add(new PickerComparison(paneController));
-        this.panes.add(new ProgressBarComparison(paneController));
+        this.panes.add(new ProgressBarComparison(paneController)); 
 
         this.drawer = new JFXDrawer();
         this.drawer.setDefaultDrawerSize(250);
@@ -113,7 +113,8 @@ public class MainPresentation extends BorderPane
             if (this.drawer.isClosed() || this.drawer.isClosing())
             {
                 this.drawer.open();
-            } else
+            }
+            else
             {
                 this.drawer.close();
             }

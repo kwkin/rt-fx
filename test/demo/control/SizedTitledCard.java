@@ -9,14 +9,14 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.layout.CardPane;
 
-public class TitledCard extends CardPane implements TitledContentPane
+public class SizedTitledCard extends CardPane implements TitledContentPane
 {
     private Label titleLabel;
     private Node content;
     
     private TitledCardSize cardSize = TitledCardSize.SIZE_1x2;
     
-    public TitledCard(String title)
+    public SizedTitledCard(String title)
     {
         super();
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
@@ -24,7 +24,7 @@ public class TitledCard extends CardPane implements TitledContentPane
         initialize();
     }
     
-    public TitledCard(String title, Accent accent)
+    public SizedTitledCard(String title, Accent accent)
     {
         super(accent);
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
@@ -32,7 +32,7 @@ public class TitledCard extends CardPane implements TitledContentPane
         initialize();
     }
 
-    public TitledCard(String title, TitledCardSize size)
+    public SizedTitledCard(String title, TitledCardSize size)
     {
         super();
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
@@ -41,7 +41,7 @@ public class TitledCard extends CardPane implements TitledContentPane
         initialize();
     }
     
-    public TitledCard(String title, Accent accent, TitledCardSize size)
+    public SizedTitledCard(String title, Accent accent, TitledCardSize size)
     {
         super(accent);
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);

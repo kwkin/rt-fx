@@ -30,7 +30,7 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.abstraction.immutable.Service;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
@@ -47,7 +47,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
     public TableComparison(PaneController controller)
     {
         StackPane border = new StackPane();
-        TitledCard card = new TitledCard(TITLE, TitledCardSize.SIZE_3x3);
+        SizedTitledCard card = new SizedTitledCard(TITLE, TitledCardSize.SIZE_3x3);
         card.setAlignment(Pos.CENTER);
         this.controller = controller;
         this.model = controller.getTableViewModel();

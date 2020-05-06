@@ -6,10 +6,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 
-public class FlowPanePresentation extends TitledCard
+public class FlowPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Flow Pane";
     

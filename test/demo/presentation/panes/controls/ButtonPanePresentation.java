@@ -12,10 +12,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.controller.PaneController;
 
-public class ButtonPanePresentation extends TitledCard
+public class ButtonPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Buttons";
     

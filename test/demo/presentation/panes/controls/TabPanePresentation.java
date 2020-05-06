@@ -7,11 +7,11 @@ import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.TabPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 
-public class TabPanePresentation extends TitledCard
+public class TabPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Tabs";
     

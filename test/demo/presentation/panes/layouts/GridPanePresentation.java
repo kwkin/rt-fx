@@ -7,10 +7,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcons;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 
-public class GridPanePresentation extends TitledCard
+public class GridPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Grid Pane";
     private GridPane iconButtonPane;

@@ -32,6 +32,7 @@ public class LayoutsPresentation extends ScrollPane implements TitledContentPane
         componentPanes.add(new TilePanePresentation());
         componentPanes.add(new HBoxPresentation());
         componentPanes.add(new VBoxPresentation());
+        componentPanes.add(new CardPanePresentation());
         return componentPanes;
     }
 

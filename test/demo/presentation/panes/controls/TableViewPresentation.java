@@ -15,13 +15,13 @@ import mil.af.eglin.ccf.rt.fx.control.style.TableViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.abstraction.immutable.Service;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 import test.demo.presentation.data.TablePerson;
 import test.demo.presentation.model.TableViewModel;
 
-public class TableViewPresentation extends TitledCard
+public class TableViewPresentation extends SizedTitledCard
 {
     private static final String TITLE = "Table View";
 

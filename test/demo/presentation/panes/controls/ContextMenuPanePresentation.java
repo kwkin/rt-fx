@@ -15,11 +15,11 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 
-public class ContextMenuPanePresentation extends TitledCard
+public class ContextMenuPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Context Menu";
     

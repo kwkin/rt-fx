@@ -7,10 +7,10 @@ import mil.af.eglin.ccf.rt.fx.control.ListView;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.controller.PaneController;
 
-public class ListViewPanePresentation extends TitledCard
+public class ListViewPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "List View";
     

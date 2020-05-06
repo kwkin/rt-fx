@@ -10,10 +10,10 @@ import mil.af.eglin.ccf.rt.fx.control.style.ComboBoxStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
-import test.demo.control.TitledCard;
+import test.demo.control.SizedTitledCard;
 import test.demo.controller.PaneController;
 
-public class ComboBoxPanePresentation extends TitledCard
+public class ComboBoxPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Combo Boxes";
     
