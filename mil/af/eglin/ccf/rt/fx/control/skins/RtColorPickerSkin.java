@@ -13,7 +13,7 @@ public class RtColorPickerSkin extends ColorPickerSkin
 {
     protected StackPane iconPane;
 
-    public RtColorPickerSkin(ColorPicker colorPicker)
+    public RtColorPickerSkin(final ColorPicker colorPicker)
     {
         super(colorPicker);
 

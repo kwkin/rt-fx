@@ -29,7 +29,7 @@ public class RtProgressBarSkin extends ProgressIndicatorSkin
     private double barWidth = 0;
     private Region clip;
 
-    public RtProgressBarSkin(ProgressBar progressBar)
+    public RtProgressBarSkin(final ProgressBar progressBar)
     {
         super(progressBar);
 

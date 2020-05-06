@@ -25,7 +25,6 @@ public class RtSliderSkin extends SliderSkin
     private StackPane track;
     private RtAnimationTimer timer;
 
-    // TODO add final qualifier to all skin constructors
     public RtSliderSkin(final Slider slider)
     {
         super(slider);

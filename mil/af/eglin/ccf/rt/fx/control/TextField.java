@@ -22,7 +22,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO add an option to have an icon
+// TODO add an option to have a trailing icon
 public class TextField extends javafx.scene.control.TextField implements RtComponent
 {
     protected TextFieldStyle style = TextFieldStyle.FILLED;

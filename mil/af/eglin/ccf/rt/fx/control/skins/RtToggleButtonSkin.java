@@ -21,7 +21,7 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
     private ToggleButton button;
     private RtAnimationTimer timer;
     
-    public RtToggleButtonSkin(ToggleButton button)
+    public RtToggleButtonSkin(final ToggleButton button)
     {
         super(button);
         this.button = button;

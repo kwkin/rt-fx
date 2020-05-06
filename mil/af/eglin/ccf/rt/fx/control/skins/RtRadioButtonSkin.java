@@ -24,7 +24,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private RtAnimationTimer timer;
     private RadioButton radioButton;
     
-    public RtRadioButtonSkin(RadioButton radioButton)
+    public RtRadioButtonSkin(final RadioButton radioButton)
     {
         super(radioButton);
         this.radioButton = radioButton;

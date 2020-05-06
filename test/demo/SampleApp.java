@@ -15,7 +15,6 @@ import test.demo.abstraction.Settings;
 import test.demo.controller.PaneController;
 import test.demo.presentation.MainPresentation;
 
-// TODO add default colors for CSS properties
 public class SampleApp extends Application
 {
     private Stage stage;

@@ -27,7 +27,7 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO add armed color before the icon
-// TODO if text is added, place below the icon
+// TODO add option to add direction/orientation to graphic and text placement
 public class IconButton extends Button
 {
     protected StackPane iconPane = new StackPane();

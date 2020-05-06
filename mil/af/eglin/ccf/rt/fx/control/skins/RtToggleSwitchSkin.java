@@ -26,7 +26,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     private RtAnimationTimer timer;
     private ToggleSwitch toggleSwitch;
     
-    public RtToggleSwitchSkin(ToggleSwitch toggleSwitch) 
+    public RtToggleSwitchSkin(final ToggleSwitch toggleSwitch) 
     {
         super(toggleSwitch);
         

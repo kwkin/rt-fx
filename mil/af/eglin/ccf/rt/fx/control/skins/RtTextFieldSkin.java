@@ -20,7 +20,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private PromptLinesWrapper linesWrapper;
 
-    public RtTextFieldSkin(TextField textField)
+    public RtTextFieldSkin(final TextField textField)
     {
         super(textField);
         this.textField = textField;

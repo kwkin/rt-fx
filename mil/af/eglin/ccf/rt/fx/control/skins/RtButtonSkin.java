@@ -27,7 +27,7 @@ public class RtButtonSkin extends ButtonSkin
     private CachedTransition armedTransition;
     private CachedTransition hoverTransition;
 
-    public RtButtonSkin(Button button)
+    public RtButtonSkin(final Button button)
     {
         super(button);
         this.button = button;

@@ -8,10 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -41,7 +38,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private RtFillTransition select;
     private boolean wasIndeterminate;
 
-    public RtCheckBoxSkin(CheckBox checkBox)
+    public RtCheckBoxSkin(final CheckBox checkBox)
     {
         super(checkBox, new ButtonBehavior<>(checkBox));
         this.checkBox = checkBox;
