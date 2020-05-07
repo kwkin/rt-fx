@@ -2,71 +2,61 @@
 .rt-accordion
 {
     -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.primary-light
 {
     -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.primary-mid
 {
     -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.primary-dark
 {
     -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.secondary-light
 {
     -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.secondary-mid
 {
     -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.secondary-dark
 {
     -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.base-light
 {
     -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.base-mid
 {
     -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 .rt-accordion.base-dark
 {
     -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
 }
 
 /*-- ############################### Accordion Style ############################### */
@@ -74,7 +64,7 @@
 .rt-accordion .rt-titled-pane .title
 {
     -fx-background-color: red;
-    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-color: -rt-base-mid-color;
     -fx-border-width: 0 0 2 0;
     -fx-background-insets: 0;
     -fx-background-radius: 0;

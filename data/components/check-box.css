@@ -7,63 +7,54 @@ TODO
 .rt-check-box.primary-light
 {
     -var-accent-color: -rt-primary-light-color;
-    -var-unselected-color: -rt-primary-light-color;
     -var-accent-text-color: -rt-primary-light-color;
 }
 
 .rt-check-box.primary-mid
 {
     -var-accent-color: -rt-primary-mid-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.primary-dark
 {
     -var-accent-color: -rt-primary-dark-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-light
 {
     -var-accent-color: -rt-secondary-light-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-mid
 {
     -var-accent-color: -rt-secondary-mid-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-dark
 {
     -var-accent-color: -rt-secondary-dark-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-light
 {
     -var-accent-color: -rt-base-light-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-mid
 {
     -var-accent-color: -rt-base-mid-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-dark
 {
     -var-accent-color: -rt-base-dark-color;
-    -var-unselected-color: -rt-base-dark-color;
     -var-accent-text-color: -rt-main-mid-text-color;
 } 
 
@@ -71,41 +62,52 @@ TODO
 .rt-check-box
 {
     -fx-cursor: hand;
-    -fx-text-fill: -var-accent-text-color;
     -fx-label-padding: 0 0 0 12;
+    -fx-text-fill: -var-accent-text-color;
     
     -rt-selected-color: -var-accent-color;
-    -rt-unselected-color: -var-unselected-color;
+    -rt-unselected-color: -rt-base-dark-color;
 }
 
 .rt-check-box .box
 {
     -fx-background-color: transparent;
     -fx-background-radius: 2;
-    -fx-border-color: -var-unselected-color;
+    -fx-border-color: -rt-base-dark-color;
     -fx-border-style: solid;
     -fx-border-radius: 2;
     -fx-border-width: 2;
-    -fx-pref-width: 18;
-    -fx-pref-height: 18;
-    -fx-max-height: -fx-pref-height;
-    -fx-max-width: -fx-pref-width;
-    -fx-min-height: -fx-pref-height;
-    -fx-min-width: -fx-pref-width;
+
+    -var-pref-width: 18;
+    -var-pref-height: 18;
+    -fx-max-width: -var-pref-width;
+    -fx-min-width: -var-pref-width;
+    -fx-max-height: -var-pref-height;
+    -fx-min-height: -var-pref-height;
 }
 
 .rt-check-box:hover .box
 {
+    -fx-border-color: -rt-base-mid-color;
+}
+
+.rt-check-box:armed .box
+{
     -fx-border-color: -var-accent-color;
-    -fx-border-radius: 2;
 }
 
 .rt-check-box:selected .box,
 .rt-check-box:indeterminate .box,
 .rt-check-box:indeterminate:selected .box
 {
+    -fx-background-insets: 0;
     -fx-border-color: -var-accent-color;
-    -fx-border-radius: 2;
+}
+
+.check-box:focused .box
+{
+    -fx-background-insets: 0;
+    -fx-background-radius: 2;
 }
 
  .rt-check-box .box .mark 
@@ -122,9 +124,6 @@ TODO
 
     -fx-background-color: -rt-base-light-color;
     -fx-border-color: -rt-base-light-color;
-
-    -fx-border-width: 2;
-    -fx-border-radius: 2;
 }
 
 .rt-check-box .box .indeterminate-mark
@@ -136,7 +135,4 @@ TODO
 
     -fx-background-color: -rt-base-light-color;
     -fx-border-color: -rt-base-light-color;
-
-    -fx-border-width: 2;
-    -fx-border-radius: 2;
 }

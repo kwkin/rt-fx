@@ -26,6 +26,21 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO incorporate logging
+// Logged components should have easily discernable names. Some concerns:
+// Not all components have a variable name
+// Some components are dynamically created, such as in a for loop.
+// Some components may have the exact same content (remove icon buttons in a list of entries)
+//
+// Some ideas:
+// If a specific logging name is defined, use that. (Maybe not do this to reduce variance with all these if/else)
+// Else If the component/layout has a variable name, use that and the index in the parent layout
+// Else use the component/layout type, context (if component), and the index in the parent layout
+// Use reflection to recursively get variable names of the component and parent layouts/scene
+//
+// Examples:
+// mainScene.sideBar.mainTree.treeItem-5.deleteIcon
+// mainScene.sideBar.tree-view-1.tree-item-5.icon-button-(delete)-2
+//
 // TODO default button style
 // TODO cancel button style
 public class Button extends javafx.scene.control.Button implements RtComponent
