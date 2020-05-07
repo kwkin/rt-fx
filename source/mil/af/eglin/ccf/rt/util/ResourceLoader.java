@@ -11,13 +11,7 @@ public class ResourceLoader
     private final static String COMPONENTS_DIRECTORY = "data/components/";
     private final static String LAYOUTS_DIRECTORY    = "data/layouts/";
     private final static String ICONS_DIRECTORY      = "data/icons/";
-    private final static String DEMO_DATA_DIRECTORY  = "test/data/";
-
-    public static void test(String fileName)
-    {
-        URL resource = ResourceLoader.class.getClassLoader().getResource(DATA_DIRECTORY + fileName);
-        System.out.println(resource);
-    }
+    private final static String DEMO_DATA_DIRECTORY  = "data/";
 
     public static String loadFile(String fileName)
     {
