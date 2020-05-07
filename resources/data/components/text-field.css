@@ -1,0 +1,260 @@
+/*
+TODO
+- Change usage of main to base colors
+- Padding
+- Add bottom border
+- Text color
+*/
+
+/*-- ############################### Filled Text Field Accent ############################### */
+.rt-text-field.filled.primary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.primary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.primary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.secondary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.secondary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.secondary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.base-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.base-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.filled.base-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Flat Text Field Accent ############################### */
+.rt-text-field.flat.primary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.primary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.primary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-primary-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.secondary-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.secondary-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.secondary-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-secondary-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.base-light
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-light-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.base-mid
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-mid-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-text-field.flat.base-dark
+{
+    -rt-unselected-border-color: -rt-base-dark-color;
+    -rt-selected-border-color: -rt-base-dark-color;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Filled Text Field Style ############################### */
+
+.rt-text-field.filled,
+.rt-text-field.filled:focused
+{
+    -fx-background-color: -rt-unselected-background-color;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-radius: 2 2 0 0;
+    -fx-max-width: 1000000;
+    -fx-padding: 18 16 0 16;
+
+    -fx-prompt-text-fill:  red;
+    -rt-focus-color: -rt-selected-border-color;
+    -rt-unfocus-color: -rt-unselected-border-color;
+
+    -fx-text-fill: -rt-text-color;
+
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+    -fx-min-height: 56;
+}
+
+.text-field 
+{
+    -fx-prompt-text-fill: red;
+}
+
+/* Fix padding with input container */
+.rt-text-field.filled .input-container
+{
+    /* -fx-background-color: rgb(0, 255, 0, 0.5);
+    -fx-border-color: rgb(0, 255, 0); */
+}
+
+.rt-text-field.filled .prompt-text-container
+{
+}
+
+.rt-text-field.filled .input-focused-line
+{
+    -fx-background-color: transparent;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: -rt-selected-border-color;
+    -fx-border-radius: 2 2 0 0;
+}
+
+.rt-text-field.filled
+{
+    -fx-prompt-text-fill: -rt-unselected-border-color;
+}
+
+.rt-text-field.filled:focused 
+{
+    -fx-prompt-text-fill: -rt-unselected-border-color;
+}
+
+.rt-text-field.filled:error 
+{
+    -rt-focus-color: #D34336;
+    -rt-unfocus-color: #D34336;
+}
+
+.rt-text-field.filled .error-label 
+{
+    -fx-text-fill: #D34336;
+}
+
+.rt-text-field.filled .error-icon 
+{
+    -fx-fill: #D34336;
+}
+
+
+/* 
+.rt-text-field.filled:hover
+{
+    -fx-border-color: derive(-rt-selected-border-color, 80%);
+}
+
+.rt-text-field.filled:focused,
+.rt-text-field.filled:focused:hover
+{
+    -fx-background-color: -rt-selected-background-color;
+    -fx-border-color: -rt-selected-border-color;
+}
+
+.rt-text-field.filled:focused .prompt-pane,
+.rt-text-field.filled:focused:hover .prompt-pane
+{
+    -fx-background-color: -rt-main-light-color;
+    -fx-fill: -rt-main-light-color;
+	-fx-background-radius: 2.0;
+    -fx-border-width: 0 0 0 0;
+}
+
+.rt-text-field.filled:focused .prompt-pane #text,
+.rt-text-field.filled:focused:hover .prompt-pane #text
+{
+    -fx-fill: -rt-selected-border-color;
+    -fx-text-fill: -rt-selected-border-color;
+    -fx-padding: 0 0 0 4;
+}
+*/

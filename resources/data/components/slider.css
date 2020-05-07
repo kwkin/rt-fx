@@ -1,0 +1,166 @@
+/*-- ############################### Slider Accents ############################### */
+.rt-slider.primary-light
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-primary-light-color;
+    -thumb-color: -rt-primary-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.primary-mid
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-primary-mid-color;
+    -thumb-color: -rt-primary-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.primary-dark
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-primary-dark-color;
+    -thumb-color: -rt-primary-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.secondary-light
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-secondary-light-color;
+    -thumb-color: -rt-secondary-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.secondary-mid
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-secondary-mid-color;
+    -thumb-color: -rt-secondary-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.secondary-dark
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-secondary-dark-color;
+    -thumb-color: -rt-secondary-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.base-light
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-base-light-color;
+    -thumb-color: -rt-base-light-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.base-mid
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-base-mid-color;
+    -thumb-color: -rt-base-mid-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+.rt-slider.base-dark
+{
+    -unfilled-track-color: -rt-base-mid-color;
+    -filled-track-color: -rt-base-dark-color;
+    -thumb-color: -rt-base-dark-color;
+    -rt-label-color: -rt-base-mid-text-color;
+    -rt-tick-mark-color: -rt-base-mid-text-color;
+}
+
+/*-- ############################### Slider Style ############################### */
+.rt-slider
+{
+    -fx-padding: 10 0 10 0;
+    -fx-min-height: 16;
+}
+
+.rt-slider:vertical 
+{
+	-fx-padding: 0 10 0 10;
+    -fx-min-width: 16;
+}
+
+.rt-slider .colored-track
+{
+    -fx-background-color: -filled-track-color;
+    -fx-background-radius: 4
+}
+
+.rt-slider .track 
+{
+	-fx-background-color: -unfilled-track-color;
+    -fx-background-insets: 1.5;
+}
+
+.rt-slider .thumb 
+{
+    -fx-cursor: hand;
+	-fx-background-color: -thumb-color;
+    -fx-effect: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 16;
+    -fx-padding: 0;
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+}
+
+.rt-slider:focused .thumb 
+{
+    -fx-cursor: hand;
+    -fx-background-color: -thumb-color;
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.rt-slider:vertical .track 
+{
+	-fx-background-color: -unfilled-track-color;
+	-fx-background-insets: 1.5;
+}
+
+.rt-slider:vertical .thumb 
+{
+    -fx-cursor: hand;
+	-fx-background-color: -thumb-color;
+}
+
+.slider .axis 
+{
+    -fx-tick-label-fill: -rt-label-color;
+    -fx-tick-label-gap: 4;
+    -fx-tick-length: 5px;
+    -fx-minor-tick-length: 4px;
+    -fx-border-color: null;
+}
+
+.slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark 
+{
+    -fx-fill: null;
+    -fx-stroke: -rt-tick-mark-color;
+}
+
+.slider .state-thumb 
+{
+    -fx-fill: -thumb-color;
+    -fx-opacity: 0.3;
+}
+
+.slider .circle-thumb
+{
+    -fx-fill: -thumb-color;
+    -fx-radius: 8;
+}

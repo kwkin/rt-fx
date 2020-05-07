@@ -1,0 +1,467 @@
+/*
+TODO
+- Padding
+- Drop down arrow background color and border color
+*/
+
+/*-- ############################### Filled Color Picker ############################### */
+.rt-color-picker.filled.primary-light
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-primary-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.primary-mid
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-primary-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.primary-dark
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-primary-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.secondary-light
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-secondary-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.secondary-mid
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-secondary-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.secondary-dark
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-secondary-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.base-light
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-base-light-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.base-mid
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-base-mid-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.filled.base-dark
+{
+    -rt-unselected-border-color: -rt-base-light-color;
+    -rt-selected-border-color: -rt-base-dark-color;
+    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Icon Color Picker ############################### */
+.rt-color-picker.icon.primary-light
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.primary-mid
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.primary-dark
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.secondary-light
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.secondary-mid
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.secondary-dark
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.base-light
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.base-mid
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon.base-dark
+{
+    -rt-unselected-border-color: -rt-main-light-color;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: -rt-main-light-color;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Icon Color Picker ############################### */
+.rt-color-picker.icon2.primary-light
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.primary-mid
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.primary-dark
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.secondary-light
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.secondary-mid
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.secondary-dark
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.base-light
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.base-mid
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+.rt-color-picker.icon2.base-dark
+{
+    -rt-unselected-border-color: transparent;
+    -rt-selected-border-color: transparent;
+    -rt-unselected-background-color: transparent;
+    -rt-selected-background-color: transparent;
+    -rt-text-color: -rt-main-mid-text-color;
+}
+
+/*-- ############################### Color Picker Style ############################### */
+.rt-color-picker.filled
+{
+    -fx-background-color: -rt-unselected-background-color;
+	-fx-background-radius: 2.0;
+    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-radius: 2.0;
+    -fx-border-width: 2 2 2 2;
+    -fx-max-width: 1000000;
+	-fx-padding: 4 8 4 4;
+    -fx-text-fill: -rt-text-color;
+}
+
+.rt-color-picker.filled:hover
+{
+    -fx-border-color: derive(-rt-selected-border-color, 80%);
+}
+
+.rt-color-picker.filled .arrow-button .arrow
+{
+    -fx-shape: "M7,10L12,15L17,10H7Z";
+}
+
+.rt-color-picker.filled:showing .arrow-button .arrow
+{
+    -fx-shape: "M7,15L12,10L17,15H7Z";
+}
+
+.rt-color-picker.filled:focused,
+.rt-color-picker.filled:focused:hover
+{
+    -fx-background-color: -rt-selected-background-color;
+    -fx-border-color: -rt-selected-border-color;
+}
+
+.rt-color-picker.filled:focused .prompt-pane,
+.rt-color-picker.filled:focused:hover .prompt-pane
+{
+    -fx-background-color: -rt-main-light-color;
+    -fx-fill: -rt-main-light-color;
+	-fx-background-radius: 2.0;
+    -fx-border-width: 0 0 0 0;
+}
+
+.rt-color-picker.filled:focused .prompt-pane #text,
+.rt-color-picker.filled:focused:hover .prompt-pane #text
+{
+    -fx-fill: -rt-selected-border-color;
+    -fx-text-fill: -rt-selected-border-color;
+    -fx-padding: 0 0 0 4;
+}
+
+.rt-color-picker.filled .label,
+.rt-color-picker.filled.split-button .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.rt-color-picker.filled.split-button:focused .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.rt-color-picker.filled .color-picker-label .picker-color
+{
+    -fx-border-width: 0 0 0 0;
+    -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
+
+    -rt-size: 16;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-max-height: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.rt-color-picker.filled .color-picker-label .picker-color .picker-color-rect 
+{
+    -fx-stroke-width: 0;
+    -fx-opacity: 0;
+}
+
+/*-- ############################### Color Picker Icon Text ############################### */
+.rt-color-picker.icon
+{
+    -fx-background-color: -rt-unselected-border-color;
+	-fx-background-radius: 2.0;
+    -fx-border-color: -rt-selected-border-color;
+    -fx-border-radius: 2.0;
+    -fx-border-width: 2 2 2 2;
+	-fx-padding: 2 8 2 2;
+    -fx-text-fill: -rt-text-color;
+    
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 4, 0.06, 0, 2);
+}
+
+.rt-color-picker.icon:hover
+{
+    -fx-border-color: transparent;
+}
+
+.rt-color-picker.icon .arrow-button .arrow
+{
+    -fx-background-color: transparent;
+}
+
+.rt-color-picker.icon:showing .arrow-button .arrow
+{
+    -fx-background-color: transparent;
+}
+
+.rt-color-picker.icon .color-picker-label .picker-color
+{
+    -fx-border-width: 0 0 0 0;
+    -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
+
+    -rt-size: 16;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-max-height: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.rt-color-picker.icon .color-picker-label .picker-color .picker-color-rect 
+{
+    -fx-stroke-width: 0;
+    -fx-opacity: 0;
+}
+
+.rt-color-picker.icon .label,
+.rt-color-picker.icon.split-button .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.rt-color-picker.icon.split-button:focused .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+/*-- ############################### Color Picker Icon ############################### */
+.rt-color-picker.icon2
+{
+    -fx-background-color: -rt-unselected-border-color;
+	-fx-background-radius: 2.0;
+    -fx-border-color: -rt-selected-border-color;
+    -fx-border-radius: 2.0;
+    -fx-border-width: 2 2 2 2;
+	-fx-padding: 4 4 4 4;
+    -fx-text-fill: -rt-text-color;
+    -fx-color-label-visible: false;
+
+    -fx-effect: null;
+}
+
+.rt-color-picker.icon2:hover
+{
+    -fx-border-color: transparent;
+}
+
+.rt-color-picker.icon2 .arrow-button .arrow
+{
+    -fx-background-color: transparent;
+}
+
+.rt-color-picker.icon2:showing .arrow-button .arrow
+{
+    -fx-background-color: transparent;
+}
+
+.rt-color-picker.icon2 .color-picker-label .picker-color
+{
+    -fx-border-width: 0 0 0 0;
+    -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
+
+    -rt-size: 16;
+    -fx-min-height: -rt-size;
+    -fx-min-width: -rt-size;
+    -fx-max-height: -rt-size;
+    -fx-max-width: -rt-size;
+}
+
+.rt-color-picker.icon2 .color-picker-label .picker-color .picker-color-rect 
+{
+    -fx-stroke-width: 0;
+    -fx-opacity: 0;
+}
+
+.rt-color-picker.icon2 .label,
+.rt-color-picker.icon2.split-button .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.rt-color-picker.icon2.split-button:focused .color-picker-label
+{
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+/*-- ############################### Color Palette ############################### */
+.color-palette 
+{
+    -fx-spacing: 0.833333em;
+    -fx-background-color: -rt-main-light-color;
+    -fx-background-radius: 2 2 2 2;
+    -fx-border-color: -rt-main-light-color;
+    -fx-border-width: 0 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
+    -fx-padding: 8 8 8 8;
+}
