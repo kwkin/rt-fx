@@ -1,116 +1,91 @@
-/*
-TODO
-- Hover animation
-*/
-
-/*-- ############################### Radio Button Accents ############################### */
-.rt-radio-button.primary-light
-{
-    -rt-selected-color: -rt-primary-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
+/*-- ############################### Radio Button Accents ############################### */ 
+.rt-radio-button.primary-light 
+{ 
+    -var-accent-color: -rt-primary-light-color; 
+} 
+ 
+.rt-radio-button.primary-mid 
+{ 
+    -var-accent-color: -rt-primary-mid-color; 
+} 
+ 
+.rt-radio-button.primary-dark 
+{ 
+    -var-accent-color: -rt-primary-dark-color; 
+} 
+ 
+.rt-radio-button.secondary-light 
+{ 
+    -var-accent-color: -rt-secondary-light-color; 
+} 
+ 
+.rt-radio-button.secondary-mid 
+{ 
+    -var-accent-color: -rt-secondary-mid-color; 
+} 
+ 
+.rt-radio-button.secondary-dark 
+{ 
+    -var-accent-color: -rt-secondary-dark-color; 
+} 
+ 
+.rt-radio-button.base-light 
+{ 
+    -var-accent-color: -rt-base-light-color; 
+} 
+ 
+.rt-radio-button.base-mid 
+{ 
+    -var-accent-color: -rt-base-mid-color; 
+} 
+ 
+.rt-radio-button.base-dark 
+{ 
+    -var-accent-color: -rt-base-dark-color; 
+} 
+ 
+/*-- ############################### Radio Button Styles ############################### */ 
+.rt-radio-button  
+{ 
+    -fx-cursor: hand; 
+    -fx-label-padding: 0 0 0 12; 
+    -fx-padding: 4 8 4 8; 
+    -fx-text-fill: -rt-main-mid-text-color; 
+     
+    -rt-selected-color: -var-accent-color; 
+    -rt-unselected-color: -rt-base-dark-color; 
+} 
+ 
+.rt-radio-button .radio,  
+.rt-radio-button .radio.unfocused,  
+.rt-radio-button:disabled .radio  
+{ 
+	-fx-border-radius: 100.0; 
+	-fx-border-width: 2; 
+	-fx-background-radius: 100; 
+	-fx-background-color: transparent; 
+	-fx-padding: 3; 
+} 
+ 
+.rt-radio-button:focused .radio  
+{ 
+	-fx-background-color: transparent; 
+	-fx-padding: 3; 
+} 
+ 
+.rt-radio-button:focused:armed .radio  
+{ 
+	-fx-background-color: transparent; 
+	-fx-padding: 3; 
+} 
+ 
+.rt-radio-button:hover .radio  
+{ 
+	-fx-border-color: -rt-base-mid-color; 
+	-fx-background-insets: 0; 
+} 
+ 
+.rt-check-box:armed .box 
+{ 
+    -fx-border-color: -var-accent-color; 
 }
-
-.rt-radio-button.primary-mid
-{
-    -rt-selected-color: -rt-primary-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.primary-dark
-{
-    -rt-selected-color: -rt-primary-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.secondary-light
-{
-    -rt-selected-color: -rt-secondary-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.secondary-mid
-{
-    -rt-selected-color: -rt-secondary-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.secondary-dark
-{
-    -rt-selected-color: -rt-secondary-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.base-light
-{
-    -rt-selected-color: -rt-base-light-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.base-mid
-{
-    -rt-selected-color: -rt-base-mid-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-radio-button.base-dark
-{
-    -rt-selected-color: -rt-base-dark-color;
-    -rt-unselected-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-/*-- ############################### Radio Button Styles ############################### */
-.rt-radio-button 
-{
-    -fx-cursor: hand;
-    -fx-label-padding: 0 0 0 12;
-}
-
-.rt-radio-button .text 
-{
-	-fx-fill: -rt-text-color;
-}
-
-.rt-radio-button .radio, 
-.rt-radio-button .radio.unfocused, 
-.rt-radio-button:disabled .radio 
-{
-	-fx-border-radius: 100.0;
-	-fx-border-width: 2;
-	-fx-background-radius: 100;
-	-fx-background-color: transparent;
-	-fx-padding: 3;
-}
-
-.rt-radio-button:focused .radio 
-{
-	-fx-background-color: transparent;
-	-fx-padding: 3;
-}
-
-.rt-radio-button:focused:armed .radio 
-{
-	-fx-background-color: transparent;
-	-fx-padding: 3;
-}
-
-.rt-radio-button:hover .radio 
-{
-	-fx-border-color: -rt-selected-color;
-	-fx-background-insets: 0;
-}
-
-.rt-radio-button:selected .radio 
-{
-	-fx-border-color: -rt-selected-color;
-	-fx-background-insets: 0;
-}
-

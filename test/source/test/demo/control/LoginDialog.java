@@ -24,16 +24,16 @@ public class LoginDialog extends Dialog<Boolean>
     public LoginDialog()
     {
         setTitle("Login");
-        
+
         ColumnConstraints constraints = new ColumnConstraints();
         constraints.setFillWidth(true);
         constraints.setPercentWidth(50);
-        
+
         GridPane grid = new GridPane();
         grid.setVgap(16);
         grid.setHgap(24);
         grid.getColumnConstraints().addAll(constraints, constraints);
-        
+
         TextField firstName = new TextField();
         firstName.setPromptText("First Name");
         firstName.setLabelFloat(true);
@@ -58,7 +58,7 @@ public class LoginDialog extends Dialog<Boolean>
 
         TextArea additionalInfo = new TextArea();
         additionalInfo.setPromptText("Additional Info");
-        
+
         HBox shippingLayout = new HBox();
         Label shippingSpeed = new Label("Shipping Speed: ");
         ToggleGroup shippingGroup = new ToggleGroup();
@@ -75,13 +75,14 @@ public class LoginDialog extends Dialog<Boolean>
 
         BorderPane notificationsLayout = new BorderPane();
         GridPane.setFillWidth(notificationsLayout, true);
-        TextFlow notificationDetails = new TextFlow(new Text("Send me regular notifications on the status of my delivery."));
+        TextFlow notificationDetails = new TextFlow(
+                new Text("Send me regular notifications on the status of my delivery."));
         ToggleSwitch notify = new ToggleSwitch(Accent.SECONDARY_MID);
         notify.setSelected(true);
         GridPane.setHalignment(notify, HPos.RIGHT);
         notificationsLayout.setCenter(notificationDetails);
         notificationsLayout.setRight(notify);
-        
+
         int row = 0;
         grid.add(firstName, 0, row, 1, 1);
         grid.add(lastName, 1, row++, 1, 1);
@@ -92,12 +93,9 @@ public class LoginDialog extends Dialog<Boolean>
         grid.add(additionalInfo, 0, row++, 2, 1);
         grid.add(shippingLayout, 0, row++, 2, 1);
         grid.add(notificationsLayout, 0, row++, 2, 1);
-        
+
         ButtonType loginButtonType = new ButtonType("Submit", ButtonData.OK_DONE);
         getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
         getDialogPane().setContent(grid);
-//        Stage stage = (Stage) getDialogPane().getScene().getWindow();
-//        JFXDecorator decorator = new JFXDecorator(stage, grid, false, true, true);
-//        getDialogPane().setContent(decorator);
     }
 }

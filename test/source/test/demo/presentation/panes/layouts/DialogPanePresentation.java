@@ -1,8 +1,10 @@
 package test.demo.presentation.panes.layouts;
 
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -14,24 +16,25 @@ import test.demo.control.LoginDialog;
 import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
+import test.demo.presentation.panes.samples.LogonPresentation;
 
 public class DialogPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Dialogs";
-    
+
     public DialogPanePresentation(PaneController controller)
     {
         super(TITLE, TitledCardSize.SIZE_1x2);
 
         VBox vBox = new VBox();
-        
+
         vBox.getChildren().add(createDialogButtons());
         vBox.getChildren().add(new Separator());
         vBox.getChildren().add(createCustomDialogButton());
-        
+
         setContent(vBox);
     }
-    
+
     private Node createDialogButtons()
     {
         DescriptionPane descriptionPane = new DescriptionPane();
@@ -39,7 +42,7 @@ public class DialogPanePresentation extends SizedTitledCard
 
         GridPane pane = new GridPane();
         Button errorButton = new Button("Error", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
-        errorButton.setOnAction(action -> 
+        errorButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.ERROR);
             dialog.setTitle("Error Dialog");
@@ -47,9 +50,9 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the error.");
             dialog.showAndWait();
         });
-        
+
         Button headerlessErrorButton = new Button("Headerless Error", ButtonStyle.RAISED, Accent.PRIMARY_MID);
-        headerlessErrorButton.setOnAction(action -> 
+        headerlessErrorButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.ERROR);
             dialog.setTitle("Error Dialog");
@@ -57,9 +60,9 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the error.");
             dialog.showAndWait();
         });
-        
+
         Button warningButton = new Button("Warning", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
-        warningButton.setOnAction(action -> 
+        warningButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.WARNING);
             dialog.setTitle("Warning Dialog");
@@ -67,9 +70,9 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the warning.");
             dialog.showAndWait();
         });
-        
+
         Button headerlessWarningButton = new Button("Headerless Warning", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
-        headerlessWarningButton.setOnAction(action -> 
+        headerlessWarningButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.WARNING);
             dialog.setTitle("Warning Dialog");
@@ -77,9 +80,9 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the warning.");
             dialog.showAndWait();
         });
-        
+
         Button informationButton = new Button("Information", ButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
-        informationButton.setOnAction(action -> 
+        informationButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.INFORMATION);
             dialog.setTitle("Information Dialog");
@@ -87,9 +90,10 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the information.");
             dialog.showAndWait();
         });
-        
-        Button headerlessInformationButton = new Button("Headerless Information", ButtonStyle.RAISED, Accent.SECONDARY_MID);
-        headerlessInformationButton.setOnAction(action -> 
+
+        Button headerlessInformationButton = new Button("Headerless Information", ButtonStyle.RAISED,
+                Accent.SECONDARY_MID);
+        headerlessInformationButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.INFORMATION);
             dialog.setTitle("Information Dialog");
@@ -97,9 +101,9 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the information.");
             dialog.showAndWait();
         });
-        
+
         Button confirmationButton = new Button("Confirmation", ButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
-        confirmationButton.setOnAction(action -> 
+        confirmationButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.CONFIRMATION);
             dialog.setTitle("Confirmation Dialog");
@@ -107,18 +111,19 @@ public class DialogPanePresentation extends SizedTitledCard
             dialog.setContentText("This is a message detailing the context of the confirmation.");
             dialog.showAndWait();
         });
-        
-        Button headerlessConfirmationButton = new Button("Headerless Confirmation", ButtonStyle.RAISED, Accent.SECONDARY_MID);
-        headerlessConfirmationButton.setOnAction(action -> 
+
+        Button headerlessConfirmationButton = new Button("Headerless Confirmation", ButtonStyle.RAISED,
+                Accent.SECONDARY_MID);
+        headerlessConfirmationButton.setOnAction(action ->
         {
             Alert dialog = new Alert(AlertType.CONFIRMATION);
             dialog.setTitle("Confirmation Dialog");
             dialog.setHeaderText(null);
             dialog.setContentText("This is a message detailing the context of the confirmation.");
             dialog.showAndWait();
-            
+
         });
-        
+
         int row = 0;
         pane.add(errorButton, 0, row);
         pane.add(headerlessErrorButton, 1, row++);
@@ -128,7 +133,7 @@ public class DialogPanePresentation extends SizedTitledCard
         pane.add(headerlessInformationButton, 1, row++);
         pane.add(confirmationButton, 0, row);
         pane.add(headerlessConfirmationButton, 1, row++);
-        
+
         descriptionPane.setContent(pane);
         return descriptionPane;
     }
@@ -145,8 +150,19 @@ public class DialogPanePresentation extends SizedTitledCard
             LoginDialog customDialog = new LoginDialog();
             customDialog.showAndWait();
         });
+
+        Button customStageDialogButton = new Button("Custom Stage", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
+        customStageDialogButton.setOnAction(action ->
+        {
+            Stage newStage = new Stage();
+            newStage.setTitle("New Window");
+            newStage.setScene(new Scene(new LogonPresentation(), 600, 600));
+            newStage.show();
+        });
+
         pane.getChildren().add(customDialogButton);
-        
+        pane.getChildren().add(customStageDialogButton);
+
         descriptionPane.setContent(pane);
         return descriptionPane;
     }

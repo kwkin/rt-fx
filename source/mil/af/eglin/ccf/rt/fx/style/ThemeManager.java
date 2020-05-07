@@ -35,21 +35,12 @@ public class ThemeManager
         if (theme != this.theme)
         {
             String newFilePath = ResourceLoader.loadFile(theme.getPath());
-            for (Scene scene : scenes)
-            {
-                scene.getStylesheets().add(newFilePath);
-            }
             StyleManager.getInstance().addUserAgentStylesheet(newFilePath);
             
             if (this.theme != null)
             {
                 String oldFilePath = ResourceLoader.loadFile(this.theme.getPath());
                 StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
-
-                for (Scene scene : scenes)
-                {
-                    scene.getStylesheets().remove(oldFilePath);
-                }
             }
             this.theme = theme;
         }

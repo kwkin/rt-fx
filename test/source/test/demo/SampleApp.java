@@ -66,7 +66,6 @@ public class SampleApp extends Application
         // TODO clean this up
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
-        ThemeManager.getInstance().addScene(scene);
         scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
         
         ThemeManager.getInstance().load(Theme.LIGHT);

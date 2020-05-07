@@ -181,10 +181,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             select.playFrom(select.getCycleDuration());
             transition.playFrom(transition.getCycleDuration());
         }
-        // TODO remove hardcoded corner radii and border widths
-        box.setBorder(new Border(
-                new BorderStroke(selection ? getSkinnable().getSelectedColor() : getSkinnable().getUnselectedColor(),
-                        BorderStrokeStyle.SOLID, new CornerRadii(2), new BorderWidths(2))));
         this.wasIndeterminate = false;
     }
     
