@@ -90,14 +90,14 @@
 }
 
 /*-- ############################### Button Style ############################### */
-.rt-button
+.rt-button,
+.rt-button.raised,
+.rt-button.icon
 {
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
     -fx-cursor: hand;
-    -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
-    -fx-text-fill: -var-accent-text-color;
 }
 
 /*-- ############################### Raised Button Style ############################### */
@@ -109,9 +109,11 @@
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
+    -fx-graphic-text-gap: 8;
     -fx-min-height: 36;
     -fx-min-width: 64;
-    -fx-padding: 4 16 4 16;
+    -fx-padding: 8 16 8 16;
+    -fx-text-fill: -var-accent-text-color;
 
     -rt-overlay-color: -var-overlay-color;
 }
@@ -133,9 +135,11 @@
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
+    -fx-graphic-text-gap: 8;
     -fx-min-height: 36;
     -fx-min-width: 64;
-    -fx-padding: 4 16 4 16;
+    -fx-padding: 8 16 8 16;
+    -fx-text-fill: -var-accent-text-color;
     
     -rt-overlay-color: -var-overlay-color;
 }
@@ -155,10 +159,11 @@
     -fx-background-radius: 4;
     -fx-border-width: 0;
     -fx-border-radius: 4;
+    -fx-graphic-text-gap: 8;
     -fx-padding: 4;
     -fx-insets: 0;
     -fx-font-family: "Roboto Medium";
-    -fx-text-fill: -var-accent-text-color;
+    -fx-text-fill: -rt-main-mid-text-color;
     
     -rt-overlay-color: -var-overlay-color;
 }
