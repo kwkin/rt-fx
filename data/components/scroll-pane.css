@@ -1,47 +1,47 @@
 /*-- ############################### Scroll Pane Accents ############################### */
 .rt-scroll-pane.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
 }
 
 .rt-scroll-pane.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
 }
 
 .rt-scroll-pane.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
 }
 
 .rt-scroll-pane.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
 }
 
 .rt-scroll-pane.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
 }
 
 .rt-scroll-pane.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
 }
 
 .rt-scroll-pane.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
 }
 
 .rt-scroll-pane.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
 }
 
 .rt-scroll-pane.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
 }
 
 /*-- ############################### Scroll Pane Styles ############################### */
@@ -108,7 +108,7 @@
 .rt-scroll-pane .scroll-bar:vertical .thumb,
 .rt-scroll-pane .scroll-bar:horizontal .thumb
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
 }
@@ -165,13 +165,13 @@
 
 .rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
 .rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
@@ -205,13 +205,13 @@
 
 .rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M10,17L15,12L10,7V17Z";
 }
 
 .rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M14,7L9,12L14,17V7Z";
 }
 

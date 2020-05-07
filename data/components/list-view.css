@@ -7,13 +7,13 @@ TODO
 /*-- ############################### List View Colors ############################### */
 .rt-list-view.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -21,13 +21,13 @@ TODO
 
 .rt-list-view.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -35,13 +35,13 @@ TODO
 
 .rt-list-view.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -49,13 +49,13 @@ TODO
 
 .rt-list-view.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -63,13 +63,13 @@ TODO
 
 .rt-list-view.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -77,13 +77,13 @@ TODO
 
 .rt-list-view.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -91,13 +91,13 @@ TODO
 
 .rt-list-view.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -105,13 +105,13 @@ TODO
 
 .rt-list-view.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;
@@ -119,13 +119,13 @@ TODO
 
 .rt-list-view.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
     
     -rt-listview-background: -rt-main-light-color;
     -rt-listview-odd-background: -rt-main-mid-color;
     -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(-var-accent-color, 90%);
+    -rt-scroll-bar-foreground: -var-accent-color;
     -rt-scroll-bar-background: transparent;
     -rt-text-color: -rt-main-light-text-color;
     -rt-highlight-text-color:-rt-main-light-text-color;

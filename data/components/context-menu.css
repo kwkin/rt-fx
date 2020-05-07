@@ -8,47 +8,47 @@ TODO
 /*-- ############################### Table View Accents ############################### */
 .rt-context-menu.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
 }
 
 .rt-context-menu.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
 }
 
 .rt-context-menu.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
 }
 
 .rt-context-menu.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
 }
 
 .rt-context-menu.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
 }
 
 .rt-context-menu.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
 }
 
 .rt-context-menu.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
 }
 
 .rt-context-menu.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
 }
 
 .rt-context-menu.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
 }
 
 /*-- ############################### Table View Accents ############################### */
@@ -87,14 +87,14 @@ TODO
 
 .menu-item:hover
 {
-    -fx-background: derive(-rt-accent-color, 90%);
-    -fx-background-color: derive(-rt-accent-color, 90%);
+    -fx-background: derive(-var-accent-color, 90%);
+    -fx-background-color: derive(-var-accent-color, 90%);
 }
 
 .menu-item:focused
 {
-    -fx-background: derive(-rt-accent-color, 90%);
-    -fx-background-color: derive(-rt-accent-color, 90%);
+    -fx-background: derive(-var-accent-color, 90%);
+    -fx-background-color: derive(-var-accent-color, 90%);
 }
 
 .menu-item .label 
@@ -114,8 +114,8 @@ TODO
 
 .check-menu-item:checked .left-container .check 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: -var-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M 6,12 C 6,12 4,14 4,14 4,14 10,20 10,20 10,20 22,8 22,8 22,8 20,6 20,6 20,6 10,16 10,16 10,16 6,12 6,12 Z";
     -fx-scale-shape: true;
 
@@ -129,14 +129,14 @@ TODO
 }
 .check-menu-item:focused:checked .left-container .check 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: -var-accent-color;
+    -fx-background-color: -var-accent-color;
 }
 
 .radio-menu-item:checked .left-container .radio 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: -var-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M 6,12 C 6,12 4,14 4,14 4,14 10,20 10,20 10,20 22,8 22,8 22,8 20,6 20,6 20,6 10,16 10,16 10,16 6,12 6,12 Z";
     -fx-scale-shape: true;
 
@@ -151,6 +151,6 @@ TODO
 
 .check-menu-item:focused:checked .left-container .check 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: -var-accent-color;
+    -fx-background-color: -var-accent-color;
 }

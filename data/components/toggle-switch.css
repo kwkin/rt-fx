@@ -6,55 +6,55 @@ TODO
 /*-- ############################### Switch Toggle Button ############################### */
 .rt-toggle-switch.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
 .rt-toggle-switch.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
     -rt-text-color: -rt-base-mid-text-color;
 }
 
@@ -76,9 +76,9 @@ TODO
     -fx-padding: 0;
 
     /* TODO Fix color inheritance */
-    -rt-selected-color: -rt-accent-color;
+    -rt-selected-color: -var-accent-color;
     -rt-unselected-color: -rt-base-light-color;
-    -rt-selected-line-color: derive(-rt-accent-color, 50%);
+    -rt-selected-line-color: derive(-var-accent-color, 50%);
     -rt-unselected-line-color: -rt-base-mid-color;
 }
 

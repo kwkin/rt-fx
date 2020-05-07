@@ -6,70 +6,70 @@ TODO
 /*-- ############################### Raised Toggle Button Accents ############################### */
 .rt-toggle-button.raised
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
     -rt-text-color: -rt-primary-mid-text-color;
     -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-primary-light-text-color;
     -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
     -rt-text-color: -rt-primary-mid-text-color;
     -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
     -rt-text-color: -rt-primary-dark-text-color;
     -rt-overlay-color: -rt-primary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     -rt-text-color: -rt-secondary-light-text-color;
     -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
     -rt-text-color: -rt-secondary-mid-text-color;
     -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
     -rt-text-color: -rt-secondary-dark-text-color;
     -rt-overlay-color: -rt-secondary-overlay-color;
 }
 
 .rt-toggle-button.raised.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     -rt-text-color: -rt-base-light-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-toggle-button.raised.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
 
 .rt-toggle-button.raised.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
     -rt-text-color: -rt-base-dark-text-color;
     -rt-overlay-color: -rt-base-overlay-color;
 }
@@ -147,10 +147,10 @@ TODO
 /*-- ############################### Raised Toggle Button Style ############################### */
 .rt-toggle-button.raised
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
-    -fx-border-color: -rt-accent-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
     -fx-min-height: 36;

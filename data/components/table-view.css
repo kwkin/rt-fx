@@ -9,14 +9,14 @@ TODO
 /*-- ############################### Table View Accents ############################### */
 .rt-table-view.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 
@@ -24,112 +24,112 @@ TODO
 
 .rt-table-view.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
 
 .rt-table-view.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
     
     -rt-border-color: #e4e4e4;
     -rt-text-fill: -rt-main-dark-text-color;
     -rt-cell-background: -rt-main-light-color;
     -rt-cell-odd-background: -rt-main-mid-color;
 
-    -rt-cell-selected-background: derive(-rt-accent-color, 90%);
+    -rt-cell-selected-background: derive(-var-accent-color, 90%);
     -rt-cell-focused-background: derive(-rt-main-light-color, -20%);
     -rt-cell-hover-background: derive(-rt-main-light-color, -10%);
 }
@@ -256,7 +256,7 @@ TODO
 
 .rt-table-view .column-resize-line, .rt-table-view .column-drag-header 
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
 }
 
 /*-- ############################### Table View Cell State Style ############################### */
@@ -336,7 +336,7 @@ TODO
     -fx-background-color: transparent;
     -fx-background-radius: 2;
 
-    -fx-border-color: -rt-accent-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-style: solid;
     -fx-border-radius: 2;
     -fx-border-width: 2;
@@ -344,7 +344,7 @@ TODO
 
 .rt-check-box:hover .box
 {
-    -fx-border-color: derive(-rt-accent-color, 50.0%);
+    -fx-border-color: derive(-var-accent-color, 50.0%);
     -fx-border-radius: 2;
 }
 
@@ -352,7 +352,7 @@ TODO
 .rt-check-box:indeterminate .box,
 .rt-check-box:indeterminate:selected .box
 {
-    -fx-border-color: -rt-accent-color;
+    -fx-border-color: -var-accent-color;
     -fx-border-radius: 2;
 }
 
@@ -372,7 +372,7 @@ TODO
 
 .rt-check-box .box .indeterminate-mark
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-radius: 2;
     -fx-border-width: 0;
     -fx-max-width: 10;
@@ -445,7 +445,7 @@ TODO
 .rt-scroll-pane .scroll-bar:vertical .thumb,
 .rt-scroll-pane .scroll-bar:horizontal .thumb
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
 }
@@ -502,13 +502,13 @@ TODO
 
 .rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
 .rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
@@ -542,13 +542,13 @@ TODO
 
 .rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M10,17L15,12L10,7V17Z";
 }
 
 .rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M14,7L9,12L14,17V7Z";
 }
 

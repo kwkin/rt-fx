@@ -1,6 +1,7 @@
 package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
@@ -9,6 +10,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
+import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -118,20 +120,30 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Icon buttons are similar to flat buttons, but have a tighter padding and different API.");
         
-        HBox primaryButtonBar = new HBox();
+        FlowPane primaryButtonBar = new FlowPane();
         IconButton iconButton1 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_MINUS, IconSize.SIZE_24));
         IconButton iconButton2 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY, IconSize.SIZE_24));
         IconButton iconButton3 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_PLUS, IconSize.SIZE_24));
         IconButton iconButton4 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_REMOVE_CURSOR, IconSize.SIZE_24));
-        IconButton iconButton5 = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "With Text");
+
+        IconButton iconButtonLeftText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Left Icon");
+        IconButton iconButtonRightText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Right Icon");
+        iconButtonRightText.setContentDisplay(ContentDisplay.RIGHT);
+        IconButton iconButtonTopText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Top Icon");
+        iconButtonTopText.setContentDisplay(ContentDisplay.TOP);
+        IconButton iconButtonBottomText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Bottom Icon");
+        iconButtonBottomText.setContentDisplay(ContentDisplay.BOTTOM);
+        
         primaryButtonBar.getChildren().add(iconButton1);
         primaryButtonBar.getChildren().add(iconButton2);
         primaryButtonBar.getChildren().add(iconButton3);
         primaryButtonBar.getChildren().add(iconButton4);
-        primaryButtonBar.getChildren().add(iconButton5);
+        primaryButtonBar.getChildren().add(iconButtonLeftText);
+        primaryButtonBar.getChildren().add(iconButtonRightText);
+        primaryButtonBar.getChildren().add(iconButtonTopText);
+        primaryButtonBar.getChildren().add(iconButtonBottomText);
 
         descriptionPane.setContent(primaryButtonBar);
-        
         return descriptionPane;
     }
 }

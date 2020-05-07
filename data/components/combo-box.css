@@ -18,10 +18,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-primary-light-color, 90%);
+    : derive(-rt-primary-light-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -33,10 +33,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-primary-mid-color, 90%);
+    : derive(-rt-primary-mid-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -48,10 +48,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-primary-dark-color, 90%);
+    : derive(-rt-primary-dark-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -63,10 +63,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-secondary-light-color, 90%);
+    : derive(-rt-secondary-light-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -78,10 +78,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-secondary-mid-color, 90%);
+    : derive(-rt-secondary-mid-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -93,10 +93,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-secondary-dark-color, 90%);
+    : derive(-rt-secondary-dark-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -108,10 +108,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-base-light-color, 90%);
+    : derive(-rt-base-light-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -123,10 +123,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-base-mid-color, 90%);
+    : derive(-rt-base-mid-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -138,10 +138,10 @@ TODO
     -rt-selected-background-color: transparent;
     -rt-text-color: -rt-main-mid-text-color;
     
-    -rt-accent-color: derive(-rt-base-dark-color, 90%);
+    : derive(-rt-base-dark-color, 90%);
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -153,8 +153,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -165,8 +165,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -177,8 +177,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -189,8 +189,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -201,8 +201,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -213,8 +213,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -225,8 +225,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -237,8 +237,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -249,8 +249,8 @@ TODO
     -rt-text-color: -rt-main-mid-text-color;
     
     -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
+    -rt-listview-selected-background: derive(, 90%);
+    -rt-scroll-bar-foreground: ;
     -rt-scroll-bar-background: transparent;
 }
 
@@ -323,15 +323,15 @@ TODO
 
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
-    -fx-background: derive(-rt-accent-color, 50%);
-    -fx-background-color: derive(-rt-accent-color, 50%);
+    -fx-background: derive(, 50%);
+    -fx-background-color: derive(, 50%);
 }
 
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected:hover 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: ;
+    -fx-background-color: ;
 }
 
 .combo-box-base:editable .arrow-button,

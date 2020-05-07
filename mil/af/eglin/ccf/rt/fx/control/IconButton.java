@@ -15,6 +15,7 @@ import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,7 +28,6 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO add armed color before the icon
-// TODO add option to add direction/orientation to graphic and text placement
 public class IconButton extends Button
 {
     protected StackPane iconPane = new StackPane();
@@ -52,6 +52,22 @@ public class IconButton extends Button
     {
         super(text, ButtonStyle.ICON);
         this.icon = icon;
+        initialize();
+    }
+
+    public IconButton(SvgGlyph icon, ContentDisplay display)
+    {
+        super(ButtonStyle.ICON);
+        this.icon = icon;
+        setContentDisplay(display);
+        initialize();
+    }
+    
+    public IconButton(SvgGlyph icon, String text, ContentDisplay display)
+    {
+        super(text, ButtonStyle.ICON);
+        this.icon = icon;
+        setContentDisplay(display);
         initialize();
     }
     

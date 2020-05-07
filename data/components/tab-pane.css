@@ -9,7 +9,7 @@ TODO
 /*-- ############################### Tab Pane Accents ############################### */
 .rt-tab-pane
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -18,7 +18,7 @@ TODO
 
 .rt-tab-pane.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -27,7 +27,7 @@ TODO
 
 .rt-tab-pane.primary-mid
 {
-    -rt-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -rt-primary-mid-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -36,7 +36,7 @@ TODO
 
 .rt-tab-pane.primary-dark
 {
-    -rt-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -rt-primary-dark-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -45,7 +45,7 @@ TODO
 
 .rt-tab-pane.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -54,7 +54,7 @@ TODO
 
 .rt-tab-pane.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -rt-secondary-mid-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -63,7 +63,7 @@ TODO
 
 .rt-tab-pane.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -rt-secondary-dark-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -72,7 +72,7 @@ TODO
 
 .rt-tab-pane.base-light
 {
-    -rt-accent-color: -rt-main-light-color;
+    -var-accent-color: -rt-main-light-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -81,7 +81,7 @@ TODO
 
 .rt-tab-pane.base-mid
 {
-    -rt-accent-color: -rt-base-mid-color;
+    -var-accent-color: -rt-base-mid-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -90,7 +90,7 @@ TODO
 
 .rt-tab-pane.base-dark
 {
-    -rt-accent-color: -rt-base-dark-color;
+    -var-accent-color: -rt-base-dark-color;
 
     -rt-text-color: -rt-base-mid-text-color;
     -rt-background-color: -rt-main-light-color;
@@ -150,7 +150,7 @@ TODO
 
 .tab-pane .tab-header-area .headers-region .tab:selected
 {
-    -fx-border-color: -rt-accent-color;
+    -fx-border-color: -var-accent-color;
 }
 
 .tab-pane .tab-header-area .tab-header-background 
@@ -167,7 +167,7 @@ TODO
 /*-- ############################### Tab Pane Arrow ############################### */
 .tab-pane .tab-header-area .control-buttons-tab .container .tab-down-button .arrow  
 {
-    -fx-background-color: -rt-accent-color;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 

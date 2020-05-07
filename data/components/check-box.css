@@ -8,70 +8,70 @@ TODO
 {
     -var-accent-color: -rt-primary-light-color;
     -var-unselected-color: -rt-primary-light-color;
-    -var-text-color: -rt-primary-light-color;
+    -var-accent-text-color: -rt-primary-light-color;
 }
 
 .rt-check-box.primary-mid
 {
     -var-accent-color: -rt-primary-mid-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.primary-dark
 {
     -var-accent-color: -rt-primary-dark-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-light
 {
     -var-accent-color: -rt-secondary-light-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-mid
 {
     -var-accent-color: -rt-secondary-mid-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.secondary-dark
 {
     -var-accent-color: -rt-secondary-dark-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-light
 {
     -var-accent-color: -rt-base-light-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-mid
 {
     -var-accent-color: -rt-base-mid-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 }
 
 .rt-check-box.base-dark
 {
     -var-accent-color: -rt-base-dark-color;
     -var-unselected-color: -rt-base-dark-color;
-    -var-text-color: -rt-main-mid-text-color;
+    -var-accent-text-color: -rt-main-mid-text-color;
 } 
 
 /*-- ############################### Check Box Style ############################### */
 .rt-check-box
 {
     -fx-cursor: hand;
-    -fx-text-fill: -var-text-color;
+    -fx-text-fill: -var-accent-text-color;
     -fx-label-padding: 0 0 0 12;
     
     -rt-selected-color: -var-accent-color;

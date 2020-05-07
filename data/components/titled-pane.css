@@ -6,70 +6,70 @@ TODO
 /*-- ############################### Slider Accents ############################### */
 .rt-titled-pane
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.primary-light
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.primary-mid
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.primary-dark
 {
-    -rt-accent-color: -rt-primary-light-color;
+    -var-accent-color: -rt-primary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.secondary-light
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.secondary-mid
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.secondary-dark
 {
-    -rt-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -rt-secondary-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.base-light
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.base-mid
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
 
 .rt-titled-pane.base-dark
 {
-    -rt-accent-color: -rt-base-light-color;
+    -var-accent-color: -rt-base-light-color;
     -rt-text-color: -rt-base-mid-text-color;
     -rt-unselected-border-color: -rt-base-mid-color;
 }
@@ -107,7 +107,7 @@ TODO
 
 .rt-titled-pane:expanded .title
 {
-    -fx-border-color: -rt-accent-color;
+    -fx-border-color: -var-accent-color;
 }
 
 .rt-titled-pane .title .arrow-button 
