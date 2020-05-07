@@ -12,7 +12,8 @@ sourceSets {
 }
 
 dependencies {
-	compile files('../contrib/jfoenix-8.0.8.jar')
+	compile files('../../_lib/jfoenix-8.0.8.jar')
+	// compile 'com.jfoenix:jfoenix:8.0.8'
 	compile files('../build/libs/rt-fx.jar')
 }
 
