@@ -1,0 +1,95 @@
+/*
+TODO
+- Label visibility property
+*/
+
+/*-- ############################### Progress Bar Accents ############################### */
+.rt-progress-bar.primary-light
+{
+    -rt-progress-color: -rt-primary-light-color;
+    -rt-remaining-color: derive(-rt-primary-light-color, 75.0%);
+}
+
+.rt-progress-bar.primary-mid
+{
+    -rt-progress-color: -rt-primary-mid-color;
+    -rt-remaining-color: derive(-rt-primary-mid-color, 75.0%);
+}
+
+.rt-progress-bar.primary-dark
+{
+    -rt-progress-color: -rt-primary-dark-color;
+    -rt-remaining-color: derive(-rt-primary-darkr-color, 75.0%);
+}
+
+.rt-progress-bar.secondary-light
+{
+    -rt-progress-color: -rt-secondary-light-color;
+    -rt-remaining-color: derive(-rt-secondary-light-color, 75.0%);
+}
+
+.rt-progress-bar.secondary-mid
+{
+    -rt-progress-color: -rt-secondary-mid-color;
+    -rt-remaining-color: derive(-rt-secondary-mid-color, 75.0%);
+}
+
+.rt-progress-bar.secondary-dark
+{
+    -rt-progress-color: -rt-primary-dark-color;
+    -rt-remaining-color: derive(-rt-primary-darkr-color, 75.0%);
+}
+
+.rt-progress-bar.base-light
+{
+    -rt-progress-color: -rt-base-dark-color;
+    -rt-remaining-color: derive(-rt-base-light-color, 75.0%);
+}
+
+.rt-progress-bar.base-mid
+{
+    -rt-progress-color: -rt-base-dark-color;
+    -rt-remaining-color: derive(-rt-base-mid-color, 75.0%);
+}
+
+.rt-progress-bar.base-dark
+{
+    -rt-progress-color: -rt-base-dark-color;
+    -rt-remaining-color: derive(-rt-base-dark-color, 75.0%);
+} 
+
+/*-- ############################### Progress Bar Style ############################### */
+.rt-progress-bar
+{
+    -fx-min-width: 20;
+    -fx-max-width: 10000;
+}
+
+.rt-progress-bar .track 
+{
+	-fx-background-color: -rt-remaining-color;
+	-fx-background-radius: 3.0;
+	-fx-padding: 0.0;
+}
+
+.rt-progress-bar .bar 
+{
+	-fx-background-color: -rt-progress-color;
+	-fx-background-radius: 2.0;
+	-fx-background-insets: 0.0;
+	-fx-border-width: 0.0;
+	-fx-effect: null;
+}
+
+.rt-progress-bar .text 
+{
+	-fx-fill: white;
+}
+
+/* .rt-progress-bar:indeterminate>.bar {
+	-fx-background-color: -rt-remaining-color;
+	-fx-background-radius: 2.0;
+	-fx-background-insets: 0.0;
+	-fx-border-width: 0.0;
+	-fx-effect: null;
+} */

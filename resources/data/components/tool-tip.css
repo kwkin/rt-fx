@@ -1,0 +1,14 @@
+/*-- ############################### Tree View Accents ############################### */
+.rt-tool-tip
+{
+    -fx-background: -rt-main-light-color;
+    -fx-background-color: -rt-main-light-color;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+    -fx-padding: 8 16 8 16;
+    -fx-min-height: 44;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.26), 10, 0.24, 0, 3);
+    -fx-text-fill: -rt-main-light-text-color;
+}

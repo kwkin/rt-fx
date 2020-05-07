@@ -1,0 +1,82 @@
+.root 
+{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color : #101011;
+
+    /*-- ############################### Font ############################### */
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+
+    /* Main colors are used on backgrounds and overlays */
+    /*-- ############################### Main Color ############################### */
+    -rt-main-light-color: #1a1a1d;
+    -rt-main-mid-color: #202023;
+    -rt-main-dark-color: #28282c;
+
+    -rt-main-light-text-color: #f1f1f1;
+    -rt-main-mid-text-color: #f1f1f1;
+    -rt-main-dark-text-color: #f1f1f1;
+
+    /* Base colors are used on components */
+    /*-- ############################### Base Color ############################### */
+    -rt-base-light-color: #2d2d31;
+    -rt-base-mid-color: #2f2f37;
+    -rt-base-dark-color: #323239;
+
+    -rt-base-light-text-color: #f1f1f1;
+    -rt-base-mid-text-color: #f1f1f1;
+    -rt-base-dark-text-color: #f1f1f1;
+
+    -rt-base-overlay-color: rgba(255, 255, 255, 0.25);
+
+    /* Primary colors are used to accent components */
+    /*-- ############################### Primary Color ############################### */
+    -rt-primary-light-color: #80d6ff;
+    -rt-primary-mid-color: #42a5f5;
+    -rt-primary-dark-color: #0077c2;
+    
+    -rt-primary-light-text-color: #000000;
+    -rt-primary-mid-text-color: #f1f1f1;
+    -rt-primary-dark-text-color: #f1f1f1;
+    
+    -rt-primary-overlay-color: rgba(255, 255, 255, 0.45);
+
+    /* Secondary colors are used to accent components */
+    /*-- ############################### Secondary Color ############################### */
+    -rt-secondary-light-color: #b085f5;
+    -rt-secondary-mid-color: #7e57c2;
+    -rt-secondary-dark-color: #4d2c91;
+    
+    -rt-secondary-light-text-color: #000000;
+    -rt-secondary-mid-text-color: #f1f1f1;
+    -rt-secondary-dark-text-color: #f1f1f1;
+    
+    -rt-secondary-overlay-color: rgba(255, 255, 255, 0.45);
+}
+
+.rt-label.block-title.primary-mid
+{
+    -fx-background-color: -rt-main-dark-color;
+    -fx-text-fill: -rt-base-mid-text-color;
+}
+
+.jfx-decorator 
+{
+    -fx-decorator-color: -rt-main-dark-color;
+}
+
+.jfx-tool-bar 
+{
+    -fx-background-color: -rt-main-light-color;
+}
+
+.jfx-popup-container 
+{
+    -fx-background-color: -rt-main-light-color;
+}
+
+.jfx-drawer-side-pane
+{
+    -fx-background-color: -rt-main-light-color;
+}

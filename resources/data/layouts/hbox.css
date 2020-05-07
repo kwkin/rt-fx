@@ -1,0 +1,51 @@
+/*-- ############################### HBox Accents ############################### */
+.rt-hbox.primary-light
+{
+    -fx-background-color: -rt-primary-light-color;
+}
+
+.rt-hbox.primary-mid
+{
+    -fx-background-color: -rt-primary-mid-color;
+}
+
+.rt-hbox.primary-dark
+{
+    -fx-background-color: -rt-primary-dark-color;
+}
+
+.rt-hbox.secondary-light
+{
+    -fx-background-color: -rt-secondary-light-color;
+}
+
+.rt-hbox.secondary-mid
+{
+    -fx-background-color: -rt-secondary-mid-color;
+}
+
+.rt-hbox.secondary-dark
+{
+    -fx-background-color: -rt-secondary-dark-color;
+}
+
+.rt-hbox.base-light
+{
+    -fx-background-color: -rt-base-light-color;
+}
+
+.rt-hbox.base-mid
+{
+    -fx-background-color: -rt-base-mid-color;
+}
+
+.rt-hbox.base-dark
+{
+    -fx-background-color: -rt-base-dark-color;
+}
+
+/*-- ############################### HBox Style ############################### */
+.rt-hbox
+{ 
+    -fx-spacing: 10;
+}
