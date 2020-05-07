@@ -2,7 +2,8 @@ package mil.af.eglin.ccf.rt.fx.icons.svg;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,33 +42,28 @@ public class SvgGlyph extends StackPane
     
     public SvgGlyph(SvgFile icon)
     {
-        initialize(extractSvgPath(icon.getFilePath()));
+        initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
     public SvgGlyph(SvgFile icon, IconSize size)
     {
         this.size.setValue(size.getIconSize());
-        initialize(extractSvgPath(icon.getFilePath()));
+        initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
     public SvgGlyph(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
-        initialize(extractSvgPath(icon.getFilePath()));
+        initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
     public SvgGlyph(SvgFile icon, Paint fill, IconSize size)
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
-        initialize(extractSvgPath(icon.getFilePath()));
+        initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-    // TODO remaining constructors
-    public SvgGlyph(Path filePath)
-    {
-        initialize(extractSvgPath(filePath));
-    }
 
     public SvgGlyph(String svgPath)
     {
@@ -190,10 +186,10 @@ public class SvgGlyph extends StackPane
         setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
 
-    private static String extractSvgPath(Path path)
+    private static String extractSvgPath(InputStream inputStream)
     {
         StringBuilder builder = new StringBuilder();
-        try(BufferedReader reader = Files.newBufferedReader(path))
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
         {
             String line;
             while ((line = reader.readLine()) != null)

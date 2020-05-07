@@ -1,24 +1,24 @@
 @font-face
 {
     font-family: "Roboto";
-    src: url('../../../../../../data/fonts/Roboto/Roboto-Regular.ttf');
+    src: url('fonts/Roboto/Roboto-Regular.ttf');
 }
 
 @font-face
 {
     font-family: "Roboto Medium";
-    src: url('../../../../../../data/fonts/Roboto/Roboto-Medium.ttf');
+    src: url('fonts/Roboto/Roboto-Medium.ttf');
 }
 
 @font-face
 {
     font-family: "Roboto Black";
-    src: url('../../../../../../data/fonts/Roboto/Roboto-Black.ttf');
+    src: url('fonts/Roboto/Roboto-Black.ttf');
 }
 
 @font-face {
     font-family: "Roboto Bold";
-    src: url("'../../../../../../data/fonts/Roboto/Roboto-Bold.ttf");
+    src: url("'fonts/Roboto/Roboto-Bold.ttf");
 }
 
 /* @font-face

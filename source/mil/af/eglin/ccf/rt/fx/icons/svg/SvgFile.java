@@ -1,5 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.icons.svg;
 
+import java.io.InputStream;
 import java.nio.file.Path;
 
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -79,8 +80,8 @@ public enum SvgFile
         return svgFileName;
     }
     
-    public Path getFilePath()
+    public InputStream getIconInputStream()
     {
-        return ResourceLoader.loadIconPath(getSvgFileName());
+        return ResourceLoader.loadIconStream(getSvgFileName());
     }
 }
