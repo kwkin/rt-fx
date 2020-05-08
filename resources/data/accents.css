@@ -1,0 +1,63 @@
+/*-- ############################### Raised Button Accents ############################### */
+.primary-light
+{
+    -var-accent-color: -rt-primary-light-color;
+    -var-accent-text-color: -rt-primary-light-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
+}
+
+.primary-mid
+{
+    -var-accent-color: -rt-primary-mid-color;
+    -var-accent-text-color: -rt-primary-mid-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
+}
+
+.primary-dark
+{
+    -var-accent-color: -rt-primary-dark-color;
+    -var-accent-text-color: -rt-primary-dark-text-color;
+    -var-overlay-color: -rt-primary-overlay-color;
+}
+
+.secondary-light
+{
+    -var-accent-color: -rt-secondary-light-color;
+    -var-accent-text-color: -rt-secondary-light-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
+}
+
+.secondary-mid
+{
+    -var-accent-color: -rt-secondary-mid-color;
+    -var-accent-text-color: -rt-secondary-mid-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
+}
+
+.secondary-dark
+{
+    -var-accent-color: -rt-secondary-dark-color;
+    -var-accent-text-color: -rt-secondary-dark-text-color;
+    -var-overlay-color: -rt-secondary-overlay-color;
+}
+
+.base-light
+{
+    -var-accent-color: -rt-base-light-color;
+    -var-accent-text-color: -rt-base-light-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
+}
+
+.base-mid
+{
+    -var-accent-color: -rt-base-mid-color;
+    -var-accent-text-color: -rt-base-mid-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
+}
+
+.base-dark
+{
+    -var-accent-color: -rt-base-dark-color;
+    -var-accent-text-color: -rt-base-dark-text-color;
+    -var-overlay-color: -rt-base-overlay-color;
+}

@@ -69,6 +69,7 @@ public class SampleApp extends Application
         scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
         
         ThemeManager.getInstance().load(Theme.LIGHT);
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
 //        ThemeManager.getInstance().load(Theme.DARK_MATERIAL);
 //        ThemeManager.getInstance().load(Theme.EMERALD_COAST);
 //        ThemeManager.getInstance().load(Theme.DEEP_SEA);

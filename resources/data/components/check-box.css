@@ -1,49 +1,6 @@
-/*-- ############################### Accents ############################### */ 
-.rt-check-box.primary-light 
-{ 
-    -var-accent-color: -rt-primary-light-color; 
-} 
- 
-.rt-check-box.primary-mid 
-{ 
-    -var-accent-color: -rt-primary-mid-color; 
-} 
- 
-.rt-check-box.primary-dark 
-{ 
-    -var-accent-color: -rt-primary-dark-color; 
-} 
- 
-.rt-check-box.secondary-light 
-{ 
-    -var-accent-color: -rt-secondary-light-color; 
-} 
- 
-.rt-check-box.secondary-mid 
-{ 
-    -var-accent-color: -rt-secondary-mid-color; 
-} 
- 
-.rt-check-box.secondary-dark 
-{ 
-    -var-accent-color: -rt-secondary-dark-color; 
-} 
- 
-.rt-check-box.base-light 
-{ 
-    -var-accent-color: -rt-base-light-color; 
-} 
- 
-.rt-check-box.base-mid 
-{ 
-    -var-accent-color: -rt-base-mid-color; 
-} 
- 
-.rt-check-box.base-dark 
-{ 
-    -var-accent-color: -rt-base-dark-color; 
-}  
- 
+/*
+TODO add animations to the check box 
+*/
 /*-- ############################### Check Box Style ############################### */ 
 .rt-check-box 
 { 

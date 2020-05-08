@@ -13,7 +13,6 @@ import mil.af.eglin.ccf.rt.fx.control.ChoiceBox;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.ComboBoxStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -94,11 +93,11 @@ public class ComboBoxComparison extends SizedTitledCard
         items.add("Item 4");
         items.add("Item 5");
         
-        ComboBox<String> rtCombobox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);        
-        ComboBox<String> rtEditable = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);   
+        ComboBox<String> rtCombobox = new ComboBox<String>(items, Accent.PRIMARY_MID);        
+        ComboBox<String> rtEditable = new ComboBox<String>(items, Accent.PRIMARY_MID);   
         rtEditable.setPromptText("Editable");
         rtEditable.setEditable(true);  
-        ComboBox<String> rtDisabled = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);
+        ComboBox<String> rtDisabled = new ComboBox<String>(items, Accent.PRIMARY_MID);
         rtDisabled.setPromptText("Disabled");
         rtDisabled.setDisable(true);
         box.getChildren().add(rtCombobox);
@@ -143,8 +142,8 @@ public class ComboBoxComparison extends SizedTitledCard
         items.add("Item 4");
         items.add("Item 5");
         
-        ChoiceBox<String> rtCombobox = new ChoiceBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);  
-        ChoiceBox<String> rtDisabled = new ChoiceBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);  
+        ChoiceBox<String> rtCombobox = new ChoiceBox<String>(items, Accent.PRIMARY_MID);  
+        ChoiceBox<String> rtDisabled = new ChoiceBox<String>(items, Accent.PRIMARY_MID);  
         rtDisabled.setDisable(true);
         box.getChildren().add(rtCombobox);
         box.getChildren().add(rtDisabled);

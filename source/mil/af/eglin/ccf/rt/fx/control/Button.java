@@ -46,7 +46,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class Button extends javafx.scene.control.Button implements RtComponent
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
-    protected Accent accent;
+    protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";

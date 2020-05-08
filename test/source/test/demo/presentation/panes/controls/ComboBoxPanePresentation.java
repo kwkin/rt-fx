@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.ComboBoxStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -43,21 +42,21 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         items.add("Item 5");
         
         GridPane textboxGridPane = new GridPane();
-        ComboBox<String> primaryLightComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_LIGHT);
+        ComboBox<String> primaryLightComboBox = new ComboBox<String>(items, Accent.PRIMARY_LIGHT);
         primaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> primaryMidComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_MID);
+        ComboBox<String> primaryMidComboBox = new ComboBox<String>(items, Accent.PRIMARY_MID);
         primaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.PRIMARY_DARK);
+        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(items, Accent.PRIMARY_DARK);
         primaryDarkComboBox.setPromptText("Images and Text");
 
         GridPane.setFillWidth(primaryLightComboBox, true);
         GridPane.setFillWidth(primaryMidComboBox, true);
         
-        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.SECONDARY_LIGHT);
+        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(items, Accent.SECONDARY_LIGHT);
         secondaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.SECONDARY_MID);
+        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(items, Accent.SECONDARY_MID);
         secondaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(items, ComboBoxStyle.FILLED, Accent.SECONDARY_DARK);
+        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(items, Accent.SECONDARY_DARK);
         secondaryDarkComboBox.setPromptText("Images and Text:");
         
         textboxGridPane.add(primaryLightComboBox, 0, 0);
@@ -79,18 +78,18 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Text boxes come in many permutations: accented, filled, and areas. The group below contains non-accented, filled and non-filled text boxes.");
 
         GridPane textboxGridPane = new GridPane();
-        ComboBox<String> primaryLightComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.PRIMARY_LIGHT);
+        ComboBox<String> primaryLightComboBox = new ComboBox<String>(Accent.PRIMARY_LIGHT);
         primaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> primaryMidComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.PRIMARY_MID);
+        ComboBox<String> primaryMidComboBox = new ComboBox<String>(Accent.PRIMARY_MID);
         primaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.PRIMARY_DARK);
+        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(Accent.PRIMARY_DARK);
         primaryDarkComboBox.setPromptText("Images and Text");
 
-        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.SECONDARY_LIGHT);
+        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(Accent.SECONDARY_LIGHT);
         secondaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.SECONDARY_MID);
+        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(Accent.SECONDARY_MID);
         secondaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(ComboBoxStyle.FLAT, Accent.SECONDARY_DARK);
+        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(Accent.SECONDARY_DARK);
         secondaryDarkComboBox.setPromptText("Images and Text:");
         
         textboxGridPane.add(primaryLightComboBox, 0, 0);

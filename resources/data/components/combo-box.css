@@ -7,287 +7,40 @@ TODO
 - Padding
 - Add bottom border
 - Rename color inheritance
+- Combo box height
+- Change to a dense combo box?
 */
 
-/*-- ############################### Filled Combo Box Accent ############################### */
-.rt-combo-box.filled.primary-light
+/*-- ############################### Combo Box Style ############################### */
+.rt-combo-box
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-primary-light-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.primary-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-primary-mid-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.primary-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-primary-dark-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.secondary-light
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-secondary-light-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.secondary-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-secondary-mid-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.secondary-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-secondary-dark-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.base-light
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-base-light-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.base-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-base-mid-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.filled.base-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-accent-color: derive(-rt-base-dark-color, 90%);
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-/*-- ############################### Flat Text Field Accent ############################### */
-.rt-combo-box.flat.primary-light
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-primary-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.primary-mid
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-primary-mid-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.primary-dark
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-primary-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.secondary-light
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.secondary-mid
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-secondary-mid-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.secondary-dark
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-secondary-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.base-light
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-base-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.base-mid
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-base-mid-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-.rt-combo-box.flat.base-dark
-{
-    -rt-unselected-border-color: -rt-base-dark-color;
-    -rt-selected-border-color: -rt-base-dark-color;
-    -rt-text-color: -rt-main-mid-text-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-selected-background: derive(-rt-accent-color, 90%);
-    -rt-scroll-bar-foreground: -rt-accent-color;
-    -rt-scroll-bar-background: transparent;
-}
-
-/*-- ############################### Filled Combo Box Style ############################### */
-.rt-combo-box.filled
-{
-    -fx-background-color: -rt-unselected-background-color;
+    -fx-background-color: -rt-base-light-color;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-color: -rt-base-dark-color;
     -fx-border-radius: 2.0;
-    -fx-border-width: 2 2 2 2;
+    -fx-border-width: 0 0 2 0;
     -fx-cursor: hand;
+    -fx-min-height: 56;
     -fx-max-width: 1000000;
     -fx-padding: 1 1 1 1;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -rt-base-light-text-color;
 }
 
 .combo-box-base .text-input,
 .combo-box-base,
 .combo-box-base .label,
-.rt-combo-box.filled .label,
+.rt-combo-box .label,
 .combo-box-base:editable .arrow-button,
 .combo-box-popup .list-view .placeholder .label 
 {
-    -fx-text-fill: -rt-text-color;
-}
-
-.rt-combo-box.filled:hover
-{
-    -fx-border-color: -rt-selected-border-color;
+    -fx-text-fill: -rt-base-light-text-color;
 }
 
 .combo-box-base:editable:focused,
-.rt-combo-box.filled:focused
+.rt-combo-box:focused
 {
-    -fx-background-color: -rt-selected-background-color;
-    -fx-border-color: -rt-selected-border-color;
+    -fx-background-color: -rt-base-light-color;
+    -fx-border-color: -var-accent-color;
 }
 
 .rt-combo-box .arrow-button .arrow
@@ -321,17 +74,18 @@ TODO
     -fx-text-fill: -rt-base-dark-text-color;
 }
 
+/* Change derive color */
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
-    -fx-background: derive(-rt-accent-color, 50%);
-    -fx-background-color: derive(-rt-accent-color, 50%);
+    -fx-background: derive(-var-accent-color, 50%);
+    -fx-background-color: derive(-var-accent-color, 50%);
 }
 
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected:hover 
 {
-    -fx-background: -rt-accent-color;
-    -fx-background-color: -rt-accent-color;
+    -fx-background: -var-accent-color;
+    -fx-background-color: -var-accent-color;
 }
 
 .combo-box-base:editable .arrow-button,
@@ -365,71 +119,37 @@ TODO
     -fx-background-radius: 0 0 0 0;
 }
 
-
-/*-- ############################### Flat Combo Box Style ############################### */
-.rt-combo-box.flat
-{
-    -fx-background-color: transparent;
-	-fx-background-radius: 2.0;
-    -fx-border-color: -rt-selected-border-color;
-    -fx-border-radius: 0;
-    -fx-border-width: 0 0 2 0;
-    -fx-max-width: 1000000;
-	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
-    -fx-text-fill: -rt-text-color;
-}
-
 /*-- ############################### Combo Box Popup Style ############################### */
 .combo-box-popup .list-view 
 {
-    -fx-background-color: -rt-listview-background;
+    -fx-background-color: -rt-main-light-color;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 12, 0.0 , 0 , 8 );
 }
 
 .combo-box-popup .rt-list-view:focused
 {
-	-fx-background-color: -rt-listview-background;
+	-fx-background-color: -rt-main-light-color;
 }
 
+.combo-box-popup .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
 .combo-box-popup .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
 {
-    -fx-background-color: -rt-listview-selected-background;
-}
-
-.combo-box-popup .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused
-{
-    -fx-background-color: -rt-listview-selected-background;
+    -fx-background-color: -var-accent-color;
 }
 
 .list-cell 
 {
-    -fx-background-color: -rt-listview-background;
-    -fx-text-fill: -rt-text-color;
+    -fx-background-color: -rt-main-light-color;
+    -fx-text-fill: -rt-main-light-text-color;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -rt-main-light-text-color;
     -fx-border-width: 0;
 }
 
 /*-- ############################### List View Vertical Scroll Bar Style ############################### */
-.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical 
-{
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
-}
-
-.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .track
-{
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
-}
-
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical,
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .track,
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .thumb
 {
     -rt-size: 12;
@@ -439,37 +159,25 @@ TODO
     -fx-max-width: -rt-size;
 }
 
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow,
+.combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
+{
+    -fx-background-color: -var-accent-color;
+}
+
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
 /*-- ############################### List View Horizontal Scroll Bar Style ############################### */
-.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal 
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .track
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal,
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .track,
 .combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .thumb
 {
     -rt-size: 12;
@@ -478,21 +186,24 @@ TODO
     -fx-pref-height: -rt-size;
     -fx-max-height: -rt-size;
 }
-
-.combo-box-popup .combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow,
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: -var-accent-color;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow
+{
     -fx-shape: "M10,17L15,12L10,7V17Z";
 }
 
 .combo-box-popup .list-view .virtual-flow .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
     -fx-shape: "M14,7L9,12L14,17V7Z";
 }
 
 /*-- ############################### List View Scroll Bar Corner Style ############################### */
 .combo-box-popup .list-view .virtual-flow .corner
 {
-    -fx-background-color: -rt-scroll-bar-background;
+    -fx-background-color: transparent;
 }

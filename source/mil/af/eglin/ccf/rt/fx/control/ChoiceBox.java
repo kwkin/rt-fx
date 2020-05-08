@@ -2,12 +2,10 @@ package mil.af.eglin.ccf.rt.fx.control;
 
 import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.ComboBoxStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtComponent 
 {
-    protected ComboBoxStyle style = ComboBoxStyle.FILLED;
     protected Accent accent = Accent.PRIMARY_MID;
     
     private static final String USER_AGENT_STYLESHEET = "combo-box.css";
@@ -19,24 +17,9 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         initialize();
     }
     
-    public ChoiceBox(ComboBoxStyle style)
-    {
-        this();
-        this.style = style;
-        initialize();
-    }
-    
     public ChoiceBox(Accent accent) 
     {
         super();
-        this.accent = accent;
-        initialize();
-    }
-    
-    public ChoiceBox(ComboBoxStyle style, Accent accent)
-    {
-        super();
-        this.style = style;
         this.accent = accent;
         initialize();
     }
@@ -47,31 +30,11 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         initialize();
     }
     
-    public ChoiceBox(ObservableList<T> items, ComboBoxStyle style)
-    {
-        this(items);
-        this.style = style;
-        initialize();
-    }
-    
     public ChoiceBox(ObservableList<T> items, Accent accent) 
     {
         super(items);
         this.accent = accent;
         initialize();
-    }
-    
-    public ChoiceBox(ObservableList<T> items, ComboBoxStyle style, Accent accent)
-    {
-        super(items);
-        this.style = style;
-        this.accent = accent;
-        initialize();
-    }
-    
-    public ComboBoxStyle getButtonStyle()
-    {
-        return this.style;
     }
 
     /**
@@ -113,7 +76,6 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
     }
 }
