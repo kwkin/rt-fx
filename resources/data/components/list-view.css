@@ -4,162 +4,36 @@ TODO
 - Hover state
 - Hover and selected state animation
 */
-/*-- ############################### List View Colors ############################### */
-.rt-list-view.primary-light
-{
-    -var-accent-color: -rt-primary-light-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.primary-mid
-{
-    -var-accent-color: -rt-primary-mid-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.primary-dark
-{
-    -var-accent-color: -rt-primary-dark-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.secondary-light
-{
-    -var-accent-color: -rt-secondary-light-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.secondary-mid
-{
-    -var-accent-color: -rt-secondary-mid-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.secondary-dark
-{
-    -var-accent-color: -rt-secondary-dark-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.base-light
-{
-    -var-accent-color: -rt-base-light-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.base-mid
-{
-    -var-accent-color: -rt-base-mid-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
-
-.rt-list-view.base-dark
-{
-    -var-accent-color: -rt-base-dark-color;
-    
-    -rt-listview-background: -rt-main-light-color;
-    -rt-listview-odd-background: -rt-main-mid-color;
-    -rt-listview-zebra-border: #e4e4e4;
-    -rt-listview-selected-background: derive(-var-accent-color, 90%);
-    -rt-scroll-bar-foreground: -var-accent-color;
-    -rt-scroll-bar-background: transparent;
-    -rt-text-color: -rt-main-light-text-color;
-    -rt-highlight-text-color:-rt-main-light-text-color;
-}
 
 /* TODO override list view skin and replace scroll bar with rt-scoll-bar */ 
 /*-- ############################### List View Styles ############################### */
 .rt-list-view
 {
-    -fx-background-color: -rt-listview-background;
+    -fx-background-color: -rt-main-light-color;
 }
 
 .rt-list-view:focused
 {
-	-fx-background-color: -rt-listview-background;
+	-fx-background-color: -rt-main-light-color;
 }
 
 .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
 {
-    -fx-background-color: -rt-listview-selected-background;
+    -fx-background-color: derive(-var-accent-color, 90%);
 }
 
 .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused
 {
-    -fx-background-color: -rt-listview-selected-background;
+    -fx-background-color: derive(-var-accent-color, 90%);
 }
 
 /*-- ############################### List Cell Styles ############################### */
 .list-cell 
 {
-    -fx-background-color: -rt-listview-background;
-    -fx-text-fill: -rt-text-color;
+    -fx-background-color: -rt-main-light-color;
+    -fx-text-fill: -rt-main-light-text-color;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -rt-main-light-text-color;
 }
 
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
@@ -171,24 +45,24 @@ TODO
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
 .list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
 {
-    -fx-border-color: -rt-listview-background;
+    -fx-border-color: -rt-main-light-color;
 }
 
 .list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
 {
-    -fx-border-color: -rt-listview-zebra-border;
+    -fx-border-color: #e4e4e4;
 }
 
 .list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd
 {
-    -fx-background-color: -rt-listview-odd-background;
+    -fx-background-color: -rt-main-mid-color;
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */
 .list-view .virtual-flow .scroll-bar:vertical,
 .list-view .virtual-flow .scroll-bar:horizontal
 {
-    -fx-background-color: -rt-scroll-bar-background;
+    -fx-background-color: transparent;
     -fx-opacity: 30%;
 }
 
@@ -207,14 +81,14 @@ TODO
 .list-view .virtual-flow .scroll-bar:vertical .track,
 .list-view .virtual-flow .scroll-bar:horizontal .track
 {
-    -fx-background-color: -rt-scroll-bar-background;
-    -fx-border-color: -rt-scroll-bar-background;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 .list-view .virtual-flow .scroll-bar:vertical .thumb,
 .list-view .virtual-flow .scroll-bar:horizontal .thumb
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: transparent;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
 }
@@ -271,13 +145,13 @@ TODO
 
 .list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: transparent;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
 .list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: transparent;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
@@ -311,18 +185,18 @@ TODO
 
 .list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: transparent;
     -fx-shape: "M10,17L15,12L10,7V17Z";
 }
 
 .list-view .virtual-flow .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-scroll-bar-foreground;
+    -fx-background-color: transparent;
     -fx-shape: "M14,7L9,12L14,17V7Z";
 }
 
 /*-- ############################### List View Scroll Bar Corner Style ############################### */
 .list-view .virtual-flow .corner
 {
-    -fx-background-color: -rt-scroll-bar-background;
+    -fx-background-color: transparent;
 }

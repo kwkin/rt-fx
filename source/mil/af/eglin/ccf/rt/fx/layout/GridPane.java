@@ -1,6 +1,9 @@
 package mil.af.eglin.ccf.rt.fx.layout;
 
+import com.sun.javafx.css.StyleManager;
+
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class GridPane extends javafx.scene.layout.GridPane
@@ -34,7 +37,7 @@ public class GridPane extends javafx.scene.layout.GridPane
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     private void initialize()
@@ -44,5 +47,10 @@ public class GridPane extends javafx.scene.layout.GridPane
         {
             getStyleClass().add(this.accent.getCssName());
         }
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 }

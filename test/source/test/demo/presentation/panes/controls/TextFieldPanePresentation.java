@@ -18,7 +18,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
     
     public TextFieldPanePresentation(PaneController controller)
     {
-        super(TITLE, TitledCardSize.SIZE_1x1);
+        super(TITLE, TitledCardSize.SIZE_1x2);
 
         VBox stackPane = new VBox();
         

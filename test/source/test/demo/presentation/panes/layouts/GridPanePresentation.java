@@ -2,10 +2,12 @@ package test.demo.presentation.panes.layouts;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
+import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
@@ -20,8 +22,11 @@ public class GridPanePresentation extends SizedTitledCard
         super(TITLE, TitledCardSize.SIZE_1x1);
 
         Node pane = createGridPane();
+        VBox vBox = new VBox();
+        vBox.getChildren().add(pane);
+        vBox.getChildren().add(new TitledSeparator("TITLED"));
 
-        setContent(pane);
+        setContent(vBox);
     }
     
     private Node createGridPane()
@@ -43,6 +48,6 @@ public class GridPanePresentation extends SizedTitledCard
             }
         }
         descriptionPane.setContent(iconButtonPane);
-        return descriptionPane;
+        return iconButtonPane;
     }
 }

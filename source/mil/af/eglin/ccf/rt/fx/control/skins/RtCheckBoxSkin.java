@@ -29,7 +29,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane selectedMark = new StackPane();
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
-    
+
     // TODO should skinnable or a reference be kept?
     private CheckBox checkBox;
 
@@ -72,7 +72,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
         this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
                 (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
-        
+
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
     }
@@ -183,14 +183,14 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         }
         this.wasIndeterminate = false;
     }
-    
+
     private void updateColors()
     {
         // TODO null checks
         boolean isSelected = this.checkBox.isSelected();
         BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
         CornerRadii borderRadii = box.getBorder().getStrokes().get(0).getRadii();
-        
+
         Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
         this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, borderRadii, borderWidths)));
         this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,

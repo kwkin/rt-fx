@@ -102,47 +102,22 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         updateSelectionState();
 
         // TODO use property's name rather than hardcoding the name
-        registerChangeListener(toggleSwitch.selectedColorProperty(), "SELECTED_COLOR");
-        registerChangeListener(toggleSwitch.unselectedColorProperty(), "UNSELECTED_COLOR");
-        registerChangeListener(toggleSwitch.selectedLineColorProperty(), "SELECTED_LINE_COLOR");
-        registerChangeListener(toggleSwitch.unselectedLineColorProperty(), "UNSELECTED_LINE_COLOR");
+        registerChangeListener(toggleSwitch.selectedColorProperty(), toggleSwitch.selectedColorProperty().getName());
+        registerChangeListener(toggleSwitch.unselectedColorProperty(), toggleSwitch.unselectedColorProperty().getName());
+        registerChangeListener(toggleSwitch.selectedLineColorProperty(), toggleSwitch.selectedLineColorProperty().getName());
+        registerChangeListener(toggleSwitch.unselectedLineColorProperty(), toggleSwitch.unselectedLineColorProperty().getName());
     }
     
     @Override
     protected void handleControlPropertyChanged(String property) 
     {
         super.handleControlPropertyChanged(property);
-        if ("SELECTED_COLOR".equals(property)) 
+        if (toggleSwitch.selectedColorProperty().getName().equals(property)
+                || toggleSwitch.unselectedColorProperty().getName().equals(property)
+                || toggleSwitch.selectedLineColorProperty().getName().equals(property)
+                || toggleSwitch.unselectedLineColorProperty().getName().equals(property)) 
         {
-            Paint paint = determineCircleColor(this.toggleSwitch.isSelected());
-            if (paint != null)
-            {
-                circle.setFill(paint);
-            }
-        } 
-        else if ("UNSELECTED_COLOR".equals(property)) 
-        {
-            Paint paint = determineCircleColor(this.toggleSwitch.isSelected());
-            if (paint != null)
-            {
-                circle.setFill(paint);
-            }
-        }
-        else if ("SELECTED_LINE_COLOR".equals(property)) 
-        {
-            Paint paint = determineLineColor(this.toggleSwitch.isSelected());
-            if (paint != null)
-            {
-                line.setStroke(paint);
-            }
-        } 
-        else if ("UNSELECTED_LINE_COLOR".equals(property)) 
-        {
-            Paint paint = determineLineColor(this.toggleSwitch.isSelected());
-            if (paint != null)
-            {
-                line.setStroke(paint);
-            }
+            updateColors();
         }
     }
     

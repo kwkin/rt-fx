@@ -4,6 +4,7 @@ import com.sun.javafx.css.StyleManager;
 
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TextStyle;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Text extends javafx.scene.text.Text implements RtComponent
@@ -106,11 +107,13 @@ public class Text extends javafx.scene.text.Text implements RtComponent
     
     private void initialize()
     {
-        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
-        
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

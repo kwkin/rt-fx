@@ -4,6 +4,7 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.scene.control.MenuItem;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ContextMenu extends javafx.scene.control.ContextMenu implements RtComponent
@@ -68,9 +69,12 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtC
 
     private void initialize()
     {
-        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

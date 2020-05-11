@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 
 import javafx.beans.property.BooleanProperty;
@@ -17,6 +18,7 @@ import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ToggleButton extends javafx.scene.control.ToggleButton implements RtComponent
@@ -122,7 +124,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     @Override
@@ -178,5 +180,10 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

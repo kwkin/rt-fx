@@ -1,10 +1,13 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtColorPickerSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class IconColorPicker extends javafx.scene.control.ColorPicker implements RtComponent
@@ -74,7 +77,7 @@ public class IconColorPicker extends javafx.scene.control.ColorPicker implements
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
@@ -83,5 +86,10 @@ public class IconColorPicker extends javafx.scene.control.ColorPicker implements
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

@@ -4,6 +4,7 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtComponent
@@ -72,14 +73,17 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     @Override
     public String getUserAgentStylesheet() 
     {
-        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
-        return cssContextMenu;
+        return null;
     }
     
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

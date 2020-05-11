@@ -1,8 +1,11 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.SpinnerStyle;
+import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtComponent
@@ -70,7 +73,7 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     private void initialize()
@@ -79,5 +82,10 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
         getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

@@ -1,11 +1,10 @@
 package mil.af.eglin.ccf.rt.fx.style;
 
-import java.util.List;
-
 import com.sun.javafx.css.StyleManager;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.scene.Scene;
+import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO use nio paths instead of strings and check if file exists
@@ -13,10 +12,14 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class ThemeManager
 {
     private Theme theme;
-    private List<Scene> scenes = FXCollections.observableArrayList();
+    private ObservableList<String> sheets = FXCollections.observableArrayList();
+    private boolean isLoaded;
 
     private ThemeManager() 
     {
+        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
     }
 
     private static class InstanceHolder 
@@ -32,6 +35,13 @@ public class ThemeManager
     public boolean load(Theme theme)
     {
         boolean isChanged = false;
+//        if (isLoaded)
+//        {
+//            for (String sheet : this.sheets)
+//            {
+//                StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
+//            }
+//        }
         if (theme != this.theme)
         {
             String newFilePath = ResourceLoader.loadFile(theme.getPath());
@@ -44,12 +54,8 @@ public class ThemeManager
             }
             this.theme = theme;
         }
+        this.isLoaded = true;
         return isChanged;
-    }
-    
-    public void addScene(Scene scene)
-    {
-        this.scenes.add(scene);
     }
     
     public Theme getCurrentTheme()
