@@ -4,7 +4,6 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.scene.control.TreeItem;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class TreeView<T> extends javafx.scene.control.TreeView<T>

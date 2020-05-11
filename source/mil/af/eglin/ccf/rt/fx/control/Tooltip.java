@@ -2,7 +2,6 @@ package mil.af.eglin.ccf.rt.fx.control;
 
 import com.sun.javafx.css.StyleManager;
 
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Tooltip extends javafx.scene.control.Tooltip

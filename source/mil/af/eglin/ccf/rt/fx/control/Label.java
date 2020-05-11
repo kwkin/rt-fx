@@ -5,7 +5,6 @@ import com.sun.javafx.css.StyleManager;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Label extends javafx.scene.control.Label implements RtComponent

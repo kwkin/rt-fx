@@ -4,7 +4,6 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.stage.StageStyle;
 import mil.af.eglin.ccf.rt.fx.layout.DialogPane;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO rt-fx alert dialog

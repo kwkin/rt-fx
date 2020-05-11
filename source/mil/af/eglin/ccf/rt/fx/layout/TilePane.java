@@ -5,7 +5,6 @@ import com.sun.javafx.css.StyleManager;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class TilePane extends javafx.scene.layout.TilePane

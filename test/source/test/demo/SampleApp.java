@@ -1,7 +1,6 @@
 package test.demo;
 
 import com.jfoenix.controls.JFXDecorator;
-import com.sun.javafx.css.StyleManager;
 
 import javafx.application.Application;
 import javafx.application.Platform;

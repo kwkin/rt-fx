@@ -70,8 +70,8 @@ public class MainPresentation extends BorderPane
         });
         setTop(toolBar);
 
-        this.panes.add(new LayoutsPresentation());
         this.panes.add(new ComponentsPresentation(paneController));
+        this.panes.add(new LayoutsPresentation());
         this.panes.add(new TableComparison(paneController));
         this.panes.add(new ListViewComparison(paneController));
         this.panes.add(new ButtonComparison(paneController));

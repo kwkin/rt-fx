@@ -5,7 +5,6 @@ import com.sun.javafx.css.StyleManager;
 import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.SpinnerStyle;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtComponent

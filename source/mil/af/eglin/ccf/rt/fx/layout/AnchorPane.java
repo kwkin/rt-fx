@@ -3,7 +3,6 @@ package mil.af.eglin.ccf.rt.fx.layout;
 import com.sun.javafx.css.StyleManager;
 
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class AnchorPane extends javafx.scene.layout.AnchorPane

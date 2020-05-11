@@ -27,7 +27,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO Add a maintain aspect ratio flag

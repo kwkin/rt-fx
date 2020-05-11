@@ -5,7 +5,6 @@ import com.sun.javafx.css.StyleManager;
 import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtComponent

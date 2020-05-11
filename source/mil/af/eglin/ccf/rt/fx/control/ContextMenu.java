@@ -4,7 +4,6 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.scene.control.MenuItem;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ContextMenu extends javafx.scene.control.ContextMenu implements RtComponent

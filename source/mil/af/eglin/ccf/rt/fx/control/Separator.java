@@ -4,7 +4,6 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.geometry.Orientation;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Separator extends javafx.scene.control.Separator implements RtComponent

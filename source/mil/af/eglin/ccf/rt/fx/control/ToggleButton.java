@@ -18,7 +18,6 @@ import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ToggleButton extends javafx.scene.control.ToggleButton implements RtComponent

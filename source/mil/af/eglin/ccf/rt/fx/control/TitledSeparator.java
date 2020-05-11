@@ -27,7 +27,6 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTitledSeparatorSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class TitledSeparator extends Labeled

@@ -71,11 +71,11 @@ TODO add animations to the check box
 } 
  
 .rt-check-box .box .indeterminate-mark 
-{ 
-    -fx-shape: "M19 13H5v-2h14v2z"; 
+{
+    -fx-shape: "M19 13H5v-2h14v2z";  
  
-    -fx-max-width: 10; 
-    -fx-max-height: 2; 
+    -fx-max-width: 12; 
+    -fx-max-height: 2;
  
     -fx-background-color: -rt-base-light-color; 
     -fx-border-color: -rt-base-light-color; 
