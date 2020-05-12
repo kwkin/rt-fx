@@ -17,12 +17,12 @@ TODO
 .rt-tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label 
 {
     -fx-alignment: CENTER;
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-text-fill: -var-base-mid-text-color;
 }
 
 .rt-tab-pane .tab-header-area .headers-region .tab 
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 4 16 4 16;
@@ -33,8 +33,8 @@ TODO
 .rt-tab-pane .tab-header-area .headers-region .tab:bottom,
 .rt-tab-pane .tab-header-area .headers-region .tab:left 
 {
-    -fx-background-color: -rt-main-light-color;
-    -fx-border-color: -rt-base-dark-color;
+    -fx-background-color: -var-main-light-color;
+    -fx-border-color: -var-base-dark-color;
 }
 
 .rt-tab-pane .tab-header-area .headers-region .tab:top
@@ -64,7 +64,7 @@ TODO
 
 .rt-tab-pane .tab-header-area .tab-header-background 
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
 }
 
 .rt-tab-pane .tab-content-area

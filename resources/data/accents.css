@@ -1,63 +1,63 @@
 /*-- ############################### Raised Button Accents ############################### */
 .primary-light
 {
-    -var-accent-color: -rt-primary-light-color;
-    -var-accent-text-color: -rt-primary-light-text-color;
-    -var-overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -var-primary-light-color;
+    -var-accent-text-color: -var-primary-light-text-color;
+    -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-mid
 {
-    -var-accent-color: -rt-primary-mid-color;
-    -var-accent-text-color: -rt-primary-mid-text-color;
-    -var-overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -var-primary-mid-color;
+    -var-accent-text-color: -var-primary-mid-text-color;
+    -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-dark
 {
-    -var-accent-color: -rt-primary-dark-color;
-    -var-accent-text-color: -rt-primary-dark-text-color;
-    -var-overlay-color: -rt-primary-overlay-color;
+    -var-accent-color: -var-primary-dark-color;
+    -var-accent-text-color: -var-primary-dark-text-color;
+    -var-overlay-color: -var-primary-overlay-color;
 }
 
 .secondary-light
 {
-    -var-accent-color: -rt-secondary-light-color;
-    -var-accent-text-color: -rt-secondary-light-text-color;
-    -var-overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -var-secondary-light-color;
+    -var-accent-text-color: -var-secondary-light-text-color;
+    -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-mid
 {
-    -var-accent-color: -rt-secondary-mid-color;
-    -var-accent-text-color: -rt-secondary-mid-text-color;
-    -var-overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -var-secondary-mid-color;
+    -var-accent-text-color: -var-secondary-mid-text-color;
+    -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-dark
 {
-    -var-accent-color: -rt-secondary-dark-color;
-    -var-accent-text-color: -rt-secondary-dark-text-color;
-    -var-overlay-color: -rt-secondary-overlay-color;
+    -var-accent-color: -var-secondary-dark-color;
+    -var-accent-text-color: -var-secondary-dark-text-color;
+    -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .base-light
 {
-    -var-accent-color: -rt-base-light-color;
-    -var-accent-text-color: -rt-base-light-text-color;
-    -var-overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -var-base-light-color;
+    -var-accent-text-color: -var-base-light-text-color;
+    -var-overlay-color: -var-base-overlay-color;
 }
 
 .base-mid
 {
-    -var-accent-color: -rt-base-mid-color;
-    -var-accent-text-color: -rt-base-mid-text-color;
-    -var-overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -var-base-mid-color;
+    -var-accent-text-color: -var-base-mid-text-color;
+    -var-overlay-color: -var-base-overlay-color;
 }
 
 .base-dark
 {
-    -var-accent-color: -rt-base-dark-color;
-    -var-accent-text-color: -rt-base-dark-text-color;
-    -var-overlay-color: -rt-base-overlay-color;
+    -var-accent-color: -var-base-dark-color;
+    -var-accent-text-color: -var-base-dark-text-color;
+    -var-overlay-color: -var-base-overlay-color;
 }

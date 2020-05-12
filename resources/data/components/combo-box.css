@@ -14,16 +14,16 @@ TODO
 /*-- ############################### Combo Box Style ############################### */
 .rt-combo-box
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -rt-base-dark-color;
+    -fx-border-color: -var-base-dark-color;
     -fx-border-radius: 2.0;
     -fx-border-width: 0 0 2 0;
     -fx-cursor: hand;
     -fx-min-height: 56;
     -fx-max-width: 1000000;
     -fx-padding: 1 1 1 1;
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-text-fill: -var-base-light-text-color;
 }
 
 .combo-box-base .text-input,
@@ -33,13 +33,13 @@ TODO
 .combo-box-base:editable .arrow-button,
 .combo-box-popup .list-view .placeholder .label 
 {
-    -fx-text-fill: -rt-base-light-text-color;
+    -fx-text-fill: -var-base-light-text-color;
 }
 
 .combo-box-base:editable:focused,
 .rt-combo-box:focused
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
     -fx-border-color: -var-accent-color;
 }
 
@@ -55,10 +55,10 @@ TODO
 
 .rt-combo-box .combo-box-popup .list-view 
 {
-    -fx-background: -rt-main-light-color;
-    -fx-background-color: -rt-main-light-color;
+    -fx-background: -var-main-light-color;
+    -fx-background-color: -var-main-light-color;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -rt-main-light-color;
+    -fx-border-color: -var-main-light-color;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 0 0 4 0;
@@ -71,7 +71,7 @@ TODO
     -fx-cursor: hand;
     -fx-font-size: 14;
     -fx-padding: 8 8 8 8;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 }
 
 /* Change derive color */
@@ -103,9 +103,9 @@ TODO
 .combo-box-base:editable .text-field
 {
     /* TODO use accent colors*/
-    -fx-background-color: -rt-base-light-color;
-    -fx-control-inner-background: -rt-base-light-color;
-    -fx-faint-focus-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
+    -fx-control-inner-background: -var-base-light-color;
+    -fx-faint-focus-color: -var-base-light-color;
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius: 0 0 0 0;
     -fx-effect: null;
@@ -122,14 +122,14 @@ TODO
 /*-- ############################### Combo Box Popup Style ############################### */
 .combo-box-popup .list-view 
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 12, 0.0 , 0 , 8 );
 }
 
 .combo-box-popup .rt-list-view:focused
 {
-	-fx-background-color: -rt-main-light-color;
+	-fx-background-color: -var-main-light-color;
 }
 
 .combo-box-popup .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,

@@ -6,56 +6,56 @@ TODO
 /*-- ############################### Progress Bar Accents ############################### */
 .rt-progress-bar.primary-light
 {
-    -rt-progress-color: -rt-primary-light-color;
-    -rt-remaining-color: derive(-rt-primary-light-color, 75.0%);
+    -rt-progress-color: -var-primary-light-color;
+    -rt-remaining-color: derive(-var-primary-light-color, 75.0%);
 }
 
 .rt-progress-bar.primary-mid
 {
-    -rt-progress-color: -rt-primary-mid-color;
-    -rt-remaining-color: derive(-rt-primary-mid-color, 75.0%);
+    -rt-progress-color: -var-primary-mid-color;
+    -rt-remaining-color: derive(-var-primary-mid-color, 75.0%);
 }
 
 .rt-progress-bar.primary-dark
 {
-    -rt-progress-color: -rt-primary-dark-color;
+    -rt-progress-color: -var-primary-dark-color;
     -rt-remaining-color: derive(-rt-primary-darkr-color, 75.0%);
 }
 
 .rt-progress-bar.secondary-light
 {
-    -rt-progress-color: -rt-secondary-light-color;
-    -rt-remaining-color: derive(-rt-secondary-light-color, 75.0%);
+    -rt-progress-color: -var-secondary-light-color;
+    -rt-remaining-color: derive(-var-secondary-light-color, 75.0%);
 }
 
 .rt-progress-bar.secondary-mid
 {
-    -rt-progress-color: -rt-secondary-mid-color;
-    -rt-remaining-color: derive(-rt-secondary-mid-color, 75.0%);
+    -rt-progress-color: -var-secondary-mid-color;
+    -rt-remaining-color: derive(-var-secondary-mid-color, 75.0%);
 }
 
 .rt-progress-bar.secondary-dark
 {
-    -rt-progress-color: -rt-primary-dark-color;
+    -rt-progress-color: -var-primary-dark-color;
     -rt-remaining-color: derive(-rt-primary-darkr-color, 75.0%);
 }
 
 .rt-progress-bar.base-light
 {
-    -rt-progress-color: -rt-base-dark-color;
-    -rt-remaining-color: derive(-rt-base-light-color, 75.0%);
+    -rt-progress-color: -var-base-dark-color;
+    -rt-remaining-color: derive(-var-base-light-color, 75.0%);
 }
 
 .rt-progress-bar.base-mid
 {
-    -rt-progress-color: -rt-base-dark-color;
-    -rt-remaining-color: derive(-rt-base-mid-color, 75.0%);
+    -rt-progress-color: -var-base-dark-color;
+    -rt-remaining-color: derive(-var-base-mid-color, 75.0%);
 }
 
 .rt-progress-bar.base-dark
 {
-    -rt-progress-color: -rt-base-dark-color;
-    -rt-remaining-color: derive(-rt-base-dark-color, 75.0%);
+    -rt-progress-color: -var-base-dark-color;
+    -rt-remaining-color: derive(-var-base-dark-color, 75.0%);
 } 
 
 /*-- ############################### Progress Bar Style ############################### */

@@ -2,26 +2,26 @@
 .rt-text.small
 {
     -fx-font-size: 12px;
-    -fx-fill: -rt-main-mid-text-color;
+    -fx-fill: -var-main-mid-text-color;
 }
 
 /*-- ############################### Normal ############################### */
 .rt-text.normal
 {
     -fx-font-size: 14px;
-    -fx-fill: -rt-main-mid-text-color;
+    -fx-fill: -var-main-mid-text-color;
 }
 
 /*-- ############################### Large ############################### */
 .rt-text.large
 {
     -fx-font-size: 16px;
-    -fx-fill: -rt-main-mid-text-color;
+    -fx-fill: -var-main-mid-text-color;
 }
 
 /*-- ############################### Title ############################### */
 .rt-text.title
 {
     -fx-font-size: 18px;
-    -fx-fill: -rt-main-mid-text-color;
+    -fx-fill: -var-main-mid-text-color;
 }

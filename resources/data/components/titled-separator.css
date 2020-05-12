@@ -8,7 +8,7 @@
     -fx-content-display: CENTER;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
-    -fx-text-fill: -rt-main-mid-text-color;
+    -fx-text-fill: -var-main-mid-text-color;
 
     -rt-separator-content-gap: 8;
 }

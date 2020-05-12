@@ -9,20 +9,20 @@ TODO
 /*-- ############################### Text Area Style ############################### */
 .rt-text-area
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -rt-base-dark-color;
+    -fx-border-color: -var-base-dark-color;
     -fx-border-radius: 2.0;
     -fx-border-width: 0 0 2 0;
     -fx-max-width: 1000000;
 	-fx-padding: 8 8 8 8;
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-text-fill: -var-base-mid-text-color;
 }
 
 .rt-text-area:focused,
 .rt-text-area:focused:hover
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
     -fx-border-color: -var-accent-color;
 }
 
@@ -30,7 +30,7 @@ TODO
 .rt-text-area .scroll-pane
 {
     -fx-border-width: 0.0;
-	-fx-background-color: -rt-base-light-color;
+	-fx-background-color: -var-base-light-color;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 8 16 8 16;
@@ -49,7 +49,7 @@ TODO
 .rt-text-area:focused .content,
 .rt-text-area:focused .scroll-pane
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
     -fx-border-color: -var-accent-color;
 	-fx-effect: null;
     -fx-background-insets: 0;

@@ -426,13 +426,13 @@
 
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -rt-primary-light-color;
+    -fx-background-color: -var-primary-light-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -rt-primary-light-color;
+    -fx-background-color: -var-primary-light-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
@@ -808,13 +808,13 @@
 /*-- ############################### Separator Style ############################### */
 .rt-separator 
 {
-    -fx-border-color: -rt-base-mid-color;
+    -fx-border-color: -var-base-mid-color;
 	-fx-padding: 8 0 8 0;
 }
 
 .rt-separator:vertical
 {
-    -fx-border-color: -rt-base-mid-color;
+    -fx-border-color: -var-base-mid-color;
 	-fx-padding: 0 8 0 8;
 }
 
@@ -907,7 +907,7 @@
 	-fx-border-width: 0 0 2 0;
     -fx-border-radius: 0;
     -fx-max-width: 1000000;
-    -fx-text-fill: -rt-main-mid-text-color;
+    -fx-text-fill: -var-main-mid-text-color;
 }
 
 .spinner .text-field

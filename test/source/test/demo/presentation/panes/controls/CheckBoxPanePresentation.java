@@ -22,7 +22,6 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         VBox vBox = new VBox();
         
         vBox.getChildren().add(createCheckBoxes());
-        vBox.getChildren().add(new TitledSeparator("Titled"));
         
         setContent(vBox);
     }
