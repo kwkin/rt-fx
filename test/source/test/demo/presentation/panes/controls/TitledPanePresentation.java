@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.Accordion;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
+import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.TitledPane;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
@@ -23,8 +24,8 @@ public class TitledPanePresentation extends SizedTitledCard
 
         VBox stackPane = new VBox();
         stackPane.getChildren().add(createTitledPane());
-//        stackPane.getChildren().add(new Separator());
-//        stackPane.getChildren().add(createAccordion());
+        stackPane.getChildren().add(new Separator());
+        stackPane.getChildren().add(createAccordion());
         
         setContent(stackPane);
     }
@@ -35,14 +36,10 @@ public class TitledPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("A titled pane is a panel with a titled that can be opened and closed.");
         
         VBox vBox = new VBox();
-        Button primaryLightRaisedButton = new Button("BUTTON 1", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
-        Button primaryMidRaisedButton = new Button("BUTTON 2", ButtonStyle.RAISED, Accent.PRIMARY_MID);
-        Button primaryDarkRaisedButton = new Button("BUTTON 3", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
+        Button secondaryMidRaisedButton = new Button("BUTTON 1", ButtonStyle.RAISED, Accent.SECONDARY_MID);
 
         TitledPane titledPane = new TitledPane("Titled Pane", vBox);
-        vBox.getChildren().add(primaryLightRaisedButton);
-        vBox.getChildren().add(primaryMidRaisedButton);
-        vBox.getChildren().add(primaryDarkRaisedButton);
+        vBox.getChildren().add(secondaryMidRaisedButton);
         
         titledPane.setContent(vBox);
         descriptionPane.setContent(titledPane);
@@ -63,13 +60,8 @@ public class TitledPanePresentation extends SizedTitledCard
         CheckBox secondaryMidCheckBox = new CheckBox("Two State");
         secondaryMidCheckBox.setSelected(false);
         TitledPane titled2 = new TitledPane("Titled 2", secondaryMidCheckBox);
-        
-        CheckBox secondaryDarkCheckBox = new CheckBox("Three State");
-        secondaryDarkCheckBox.setAllowIndeterminate(true);
-        secondaryDarkCheckBox.setIndeterminate(true);
-        TitledPane titled3 = new TitledPane("Titled 3", secondaryDarkCheckBox);
 
-        Accordion accordion = new Accordion(titled1, titled2, titled3);
+        Accordion accordion = new Accordion(titled1, titled2);
         descriptionPane.setContent(accordion);
         
         return accordion;
