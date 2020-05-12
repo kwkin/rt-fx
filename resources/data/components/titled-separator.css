@@ -12,7 +12,12 @@
     -fx-padding: 0 8 0 8;
     -fx-text-fill: -rt-main-mid-text-color;
 
-    -rt-separator-content-gap: 8.0;
+    /* -rt-separator-content-gap: 8.0; */
+}
+
+.rt-titled-separator .text
+{
+    -fx-padding: 0 8 0 8;
 }
 
 .rt-titled-separator:horizontal .left-line,

@@ -36,7 +36,7 @@ public class StackPane extends javafx.scene.layout.StackPane
      */
     public StackPane(Node... children)
     {
-        super();
+        super(children);
         initialize();
     }
 

@@ -8,6 +8,8 @@ public enum SvgFile
 {
     // @formatter:off
     ACCOUNT("account.svg"),
+    ADD_ANSWER_CARD("add-answer-card.svg"),
+    ADD_ANSWER_PLOT("add-answer-plot.svg"),
     ALERT_CIRCLE_OUTLINE("alert-circle-outline.svg"),
     ALERT_CIRCLE("alert-circle.svg"),
     ARROW_DOWN_DROP_CIRCLE("arrow-down-drop-circle.svg"),
@@ -34,6 +36,8 @@ public enum SvgFile
     CLOUD_QUESTION("cloud-question.svg"),
     CLOUD_UPLOAD("cloud-upload.svg"),
     COG("cog.svg"),
+    DOTS_HORIZONTAL("dots-horizontal.svg"),
+    DOTS_VERTICAL("dots-vertical.svg"),
     EMOTICON_EXCITED_OUTLINE("emoticon-excited-outline.svg"),
     EMOTICON_EXCITED("emoticon-excited.svg"),
     EYEDROPPER_VARIANT("eyedropper-variant.svg"),
