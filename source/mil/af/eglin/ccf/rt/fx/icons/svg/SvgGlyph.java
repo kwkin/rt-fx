@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +40,30 @@ public class SvgGlyph extends StackPane
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
     private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
             StyleableProperties.SIZE, this, "size", (double)IconSize.SIZE_32.getIconSize());
+
+    public SvgGlyph(URL icon) throws IOException
+    {
+        initialize(extractSvgPath(icon.openStream()));
+    }
+
+    public SvgGlyph(URL icon, IconSize size) throws IOException
+    {
+        this.size.setValue(size.getIconSize());
+        initialize(extractSvgPath(icon.openStream()));
+    }
+
+    public SvgGlyph(URL icon, Paint fill) throws IOException
+    {
+        this.fill.setValue(fill);
+        initialize(extractSvgPath(icon.openStream()));
+    }
+
+    public SvgGlyph(URL icon, Paint fill, IconSize size) throws IOException
+    {
+        this.fill.setValue(fill);
+        this.size.setValue(size.getIconSize());
+        initialize(extractSvgPath(icon.openStream()));
+    }
     
     public SvgGlyph(SvgFile icon)
     {
