@@ -29,14 +29,16 @@ public class StackPane extends javafx.scene.layout.StackPane
         initialize();
     }
 
-    /**
-     * Creates a StackPane layout with default CENTER alignment.
-     * 
-     * @param children The initial set of children for this pane.
-     */
     public StackPane(Node... children)
     {
-        super();
+        super(children);
+        initialize();
+    }
+
+    public StackPane(Accent accent, Node... children)
+    {
+        super(children);
+        this.accent = accent;
         initialize();
     }
 

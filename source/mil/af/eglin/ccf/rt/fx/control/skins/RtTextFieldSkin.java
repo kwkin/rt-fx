@@ -15,7 +15,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private TextField textField;
 
     private StackPane promptTextContainer = new StackPane();
-    private Text promptText;
+    private Text promptText = new Text();
     private Pane textPane;
 
     private PromptLinesWrapper linesWrapper;

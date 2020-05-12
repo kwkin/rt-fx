@@ -46,6 +46,7 @@ public class ComponentsPresentation extends ScrollPane implements TitledContentP
         componentPanes.add(new TextAreaPanePresentation(controller));
         componentPanes.add(new SpinnerPanePresentation(controller));
         componentPanes.add(new ColorPickerPanePresentation(controller));
+        componentPanes.add(new SeparatorPanePresentation(controller));
         componentPanes.add(new ProgressPanePresentation(controller));
         componentPanes.add(new TitledPanePresentation(controller));
         componentPanes.add(new TabPanePresentation(controller));
