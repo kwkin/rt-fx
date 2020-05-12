@@ -73,6 +73,10 @@ public class IconPanePresentation extends SizedTitledCard
         iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.BELL, IconSize.SIZE_32));
         iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.BELL_OFF, IconSize.SIZE_32));
         iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.COG, IconSize.SIZE_32));
+        iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.DOTS_HORIZONTAL, IconSize.SIZE_32));
+        iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.DOTS_VERTICAL, IconSize.SIZE_32));
+        iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.ADD_ANSWER_CARD, IconSize.SIZE_32));
+        iconButtonPane.getChildren().add(new SvgGlyph(SvgFile.ADD_ANSWER_PLOT, IconSize.SIZE_32));
         
         descriptionPane.setContent(iconButtonPane);
         return descriptionPane;

@@ -55,7 +55,6 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
         double labelWidth = 0;
         if (sep.getOrientation() == Orientation.HORIZONTAL)
         {
-            
             double textWidth = text.getLayoutBounds().getWidth() + this.separator.getSparatorContentGap() * 2;
             labelWidth = w / 2 - textWidth / 2;
             leftLine.resize(labelWidth, leftLine.prefHeight(-1));
