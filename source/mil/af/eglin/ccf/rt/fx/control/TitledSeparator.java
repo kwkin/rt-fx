@@ -23,6 +23,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Orientation;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTitledSeparatorSkin;
@@ -88,7 +89,7 @@ public class TitledSeparator extends Labeled
         initialize();
     }
 
-    public TitledSeparator(Accent accent, Orientation orientation)
+    public TitledSeparator(Orientation orientation, Accent accent)
     {
         super();
         this.accent = accent;
@@ -96,7 +97,7 @@ public class TitledSeparator extends Labeled
         initialize();
     }
 
-    public TitledSeparator(String title, Accent accent, Orientation orientation)
+    public TitledSeparator(String title, Orientation orientation, Accent accent)
     {
         super(title);
         this.accent = accent;
@@ -186,8 +187,18 @@ public class TitledSeparator extends Labeled
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+        setContentDisplay(ContentDisplay.LEFT);
+        
         pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, orientation.getValue() != Orientation.VERTICAL);
         pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, orientation.getValue() == Orientation.VERTICAL);
+        if (orientation.getValue() == Orientation.VERTICAL)
+        {
+            setMinWidth(TitledSeparator.USE_PREF_SIZE);
+        }
+        else
+        {
+            setMinHeight(TitledSeparator.USE_PREF_SIZE);
+        }
     }
 
     private static class StyleableProperties
