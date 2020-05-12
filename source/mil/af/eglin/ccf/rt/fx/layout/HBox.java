@@ -29,11 +29,6 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
-    /**
-     * Creates an HBox layout with the specified spacing between children.
-     * 
-     * @param spacing the amount of horizontal space between each child
-     */
     public HBox(double spacing)
     {
         super(spacing);
@@ -47,11 +42,6 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
-    /**
-     * Creates an HBox layout with spacing = 0.
-     * 
-     * @param children The initial set of children for this pane.
-     */
     public HBox(Node... children)
     {
         super(children);
@@ -65,12 +55,6 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
-    /**
-     * Creates an HBox layout with the specified spacing between children.
-     * 
-     * @param spacing the amount of horizontal space between each child
-     * @param children The initial set of children for this pane.
-     */
     public HBox(double spacing, Node... children)
     {
         super(spacing, children);
