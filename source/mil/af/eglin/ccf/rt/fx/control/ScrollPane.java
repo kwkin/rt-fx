@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -43,7 +45,7 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
@@ -53,5 +55,10 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
         {
             getStyleClass().add(this.accent.getCssName());
         }
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

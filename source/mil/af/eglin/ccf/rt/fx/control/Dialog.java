@@ -22,10 +22,11 @@ public class Dialog<R> extends javafx.scene.control.Dialog<R>
     
     private void initialize()
     {
-        
-        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
-        
         initStyle(StageStyle.UNIFIED);
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

@@ -1,12 +1,14 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.geometry.Orientation;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Separator extends javafx.scene.control.Separator implements RtComponent
 {
-    protected Accent accent = Accent.BASE_MID;
+    protected Accent accent = Accent.BASE_DARK;
     
     private static final String USER_AGENT_STYLESHEET = "separator.css";
     private static final String CSS_CLASS = "rt-separator";
@@ -70,12 +72,17 @@ public class Separator extends javafx.scene.control.Separator implements RtCompo
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

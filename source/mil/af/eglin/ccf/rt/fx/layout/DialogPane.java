@@ -3,6 +3,8 @@ package mil.af.eglin.ccf.rt.fx.layout;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar;
@@ -41,7 +43,7 @@ public class DialogPane extends javafx.scene.control.DialogPane
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     // TODO expandable handler
@@ -90,5 +92,10 @@ public class DialogPane extends javafx.scene.control.DialogPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 }

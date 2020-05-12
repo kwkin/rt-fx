@@ -1,43 +1,39 @@
 package test.demo.presentation.panes.samples;
 
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
-import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.Label;
-import mil.af.eglin.ccf.rt.fx.control.PasswordField;
 import mil.af.eglin.ccf.rt.fx.control.RadioButton;
+import mil.af.eglin.ccf.rt.fx.control.TabPane;
 import mil.af.eglin.ccf.rt.fx.control.Text;
 import mil.af.eglin.ccf.rt.fx.control.TextArea;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.TextFlow;
-import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.demo.control.SizedTitledCard;
 
-public class LogonPresentation extends GridPane
+public class LoginPresentation extends BorderPane
 {
-    private static final String TITLE = "Login";
 
-    public LogonPresentation()
+    public LoginPresentation()
     {
+        TabPane tabPane = new TabPane();
+        Tab tab = new Tab("Login");
+        
+        
+        GridPane gridPane = new GridPane();
         ColumnConstraints constraints = new ColumnConstraints();
         constraints.setFillWidth(true);
         constraints.setPercentWidth(50);
 
-        setVgap(16);
-        setHgap(24);
-        getColumnConstraints().addAll(constraints, constraints);
+        gridPane.setVgap(16);
+        gridPane.setHgap(24);
+        gridPane.getColumnConstraints().addAll(constraints, constraints);
 
         TextField firstName = new TextField();
         firstName.setPromptText("First Name");
@@ -89,14 +85,18 @@ public class LogonPresentation extends GridPane
         notificationsLayout.setRight(notify);
 
         int row = 0;
-        add(firstName, 0, row, 1, 1);
-        add(lastName, 1, row++, 1, 1);
-        add(email, 0, row++, 2, 1);
-        add(streetAddress, 0, row++, 2, 1);
-        add(zipCode, 0, row, 1, 1);
-        add(city, 1, row++, 1, 1);
-        add(additionalInfo, 0, row++, 2, 1);
-        add(shippingLayout, 0, row++, 2, 1);
-        add(notificationsLayout, 0, row++, 2, 1);
+        gridPane.add(firstName, 0, row, 1, 1);
+        gridPane.add(lastName, 1, row++, 1, 1);
+        gridPane.add(email, 0, row++, 2, 1);
+        gridPane.add(streetAddress, 0, row++, 2, 1);
+        gridPane.add(zipCode, 0, row, 1, 1);
+        gridPane.add(city, 1, row++, 1, 1);
+        gridPane.add(additionalInfo, 0, row++, 2, 1);
+        gridPane.add(shippingLayout, 0, row++, 2, 1);
+        gridPane.add(notificationsLayout, 0, row++, 2, 1);
+        
+        tab.setContent(gridPane);
+        tabPane.getTabs().add(tab);
+        setCenter(tabPane);
     }
 }

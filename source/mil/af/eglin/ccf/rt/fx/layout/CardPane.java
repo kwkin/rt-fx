@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.layout;
 
+import com.sun.javafx.css.StyleManager;
+
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -29,7 +31,7 @@ public class CardPane extends VBox
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
@@ -39,5 +41,10 @@ public class CardPane extends VBox
         {
             getStyleClass().add(this.accent.getCssName());
         }
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 }

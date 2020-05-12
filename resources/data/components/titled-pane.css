@@ -3,77 +3,6 @@ TODO
 - Hover state
 - Icon color
 */
-/*-- ############################### Slider Accents ############################### */
-.rt-titled-pane
-{
-    -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.primary-light
-{
-    -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.primary-mid
-{
-    -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.primary-dark
-{
-    -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.secondary-light
-{
-    -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.secondary-mid
-{
-    -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.secondary-dark
-{
-    -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.base-light
-{
-    -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.base-mid
-{
-    -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-titled-pane.base-dark
-{
-    -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
 /*-- ############################### Titled Pane Style ############################### */
 .rt-titled-pane
 {
@@ -93,7 +22,7 @@ TODO
 .rt-titled-pane .title
 {
     -fx-background-color: transparent;
-    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-color: -rt-base-mid-color;
     -fx-border-width: 0 0 2 0;
     -fx-background-insets: 0;
     -fx-background-radius: 0;

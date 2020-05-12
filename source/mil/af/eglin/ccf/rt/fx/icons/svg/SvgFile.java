@@ -1,7 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.icons.svg;
 
 import java.io.InputStream;
-import java.nio.file.Path;
 
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 

@@ -2,6 +2,8 @@ package mil.af.eglin.ccf.rt.fx.control;
 
 import java.time.LocalDate;
 
+import com.sun.javafx.css.StyleManager;
+
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -71,12 +73,17 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtCom
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

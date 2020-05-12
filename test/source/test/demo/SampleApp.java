@@ -1,7 +1,6 @@
 package test.demo;
 
 import com.jfoenix.controls.JFXDecorator;
-import com.sun.javafx.css.StyleManager;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -44,6 +43,7 @@ public class SampleApp extends Application
     @Override
     public void start(Stage stage)
     {
+        ThemeManager.getInstance().load(Theme.LIGHT);
         this.stage = stage;
         
         SampleSession session = new SampleSession();
@@ -61,20 +61,9 @@ public class SampleApp extends Application
         // TODO THIS SHOULD REALLY BE DONE BEFORE RT-FX IS BASELINED:
         // TODO Set the default sheet to the appropriate theme, and remove any reference to Modena.
         // TODO maybe the default can be set to rt-fx, and Modena is added as a secondary sheet?
-//        StyleManager.getInstance().setDefaultUserAgentStylesheet(ResourceLoader.loadFile("light-theme.css"));
-
-        // TODO clean this up
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
         scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
-        
-        ThemeManager.getInstance().load(Theme.LIGHT);
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
-//        ThemeManager.getInstance().load(Theme.DARK_MATERIAL);
-//        ThemeManager.getInstance().load(Theme.EMERALD_COAST);
-//        ThemeManager.getInstance().load(Theme.DEEP_SEA);
-//        ThemeManager.getInstance().load(Theme.CELESTIAL_QUASAR);
-//        ThemeManager.getInstance().load(Theme.PINE_TREES_AND_LOG_CABINS);
+       
         
         this.stage.setScene(scene);
         this.stage.show();

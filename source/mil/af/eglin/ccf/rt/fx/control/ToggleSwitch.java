@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
@@ -175,7 +176,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     @Override
@@ -301,5 +302,10 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

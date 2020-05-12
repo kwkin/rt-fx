@@ -1,11 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.style;
 
-import java.util.List;
-
 import com.sun.javafx.css.StyleManager;
 
-import javafx.collections.FXCollections;
-import javafx.scene.Scene;
+import javafx.application.Application;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO use nio paths instead of strings and check if file exists
@@ -13,10 +10,14 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class ThemeManager
 {
     private Theme theme;
-    private List<Scene> scenes = FXCollections.observableArrayList();
 
     private ThemeManager() 
     {
+        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+//        sheets.add(ResourceLoader.loadFile("accents.css"));
+//        sheets.add(ResourceLoader.loadFile("fonts.css"));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
     }
 
     private static class InstanceHolder 
@@ -43,13 +44,9 @@ public class ThemeManager
                 StyleManager.getInstance().removeUserAgentStylesheet(oldFilePath);
             }
             this.theme = theme;
+            isChanged = true;
         }
         return isChanged;
-    }
-    
-    public void addScene(Scene scene)
-    {
-        this.scenes.add(scene);
     }
     
     public Theme getCurrentTheme()

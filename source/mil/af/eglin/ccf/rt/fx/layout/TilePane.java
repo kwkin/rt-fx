@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.layout;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -122,7 +124,7 @@ public class TilePane extends javafx.scene.layout.TilePane
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     private void initialize()
@@ -132,5 +134,10 @@ public class TilePane extends javafx.scene.layout.TilePane
         {
             getStyleClass().add(this.accent.getCssName());
         }
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 }

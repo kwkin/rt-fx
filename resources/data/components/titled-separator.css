@@ -1,0 +1,42 @@
+/*-- ############################### Separator Style ############################### */
+.rt-titled-separator
+{
+    -fx-corus-traversable: false;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-content-display: CENTER;
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+    -fx-min-height: 24;
+    -fx-padding: 0 8 0 8;
+    -fx-text-fill: -rt-main-mid-text-color;
+
+    -rt-separator-content-gap: 8.0;
+}
+
+.rt-titled-separator:horizontal .left-line,
+.rt-titled-separator:vertical .left-line,
+.rt-titled-separator:horizontal .right-line,
+.rt-titled-separator:vertical .right-line
+{
+    -fx-background-color: -var-accent-color;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.rt-titled-separator:horizontal .left-line,
+.rt-titled-separator:horizontal .right-line
+{
+    -var-height: 1;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
+}
+
+.rt-titled-separator:vertical .left-line,
+.rt-titled-separator:vertical .right-line
+{
+    -var-width: 1;
+    -fx-pref-width: -var-width;
+    -fx-max-width: -var-width;
+}

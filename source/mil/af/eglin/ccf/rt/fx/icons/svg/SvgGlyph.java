@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.DoubleProperty;
@@ -112,8 +112,7 @@ public class SvgGlyph extends StackPane
     @Override
     public String getUserAgentStylesheet()
     {
-        String style = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        return style;
+        return null;
     }
 
     private void initialize(String svgPath)
@@ -236,5 +235,10 @@ public class SvgGlyph extends StackPane
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

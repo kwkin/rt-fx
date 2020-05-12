@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
@@ -195,7 +196,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     /**
@@ -330,5 +331,10 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         {
             setText(isSelected() ? this.selectedText : this.unselectedText);
         }
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

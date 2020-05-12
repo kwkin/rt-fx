@@ -27,6 +27,7 @@ public class SingleCssDemo extends Application
     @Override
     public void start(Stage stage)
     {
+        ThemeManager.getInstance().load(Theme.LIGHT_SINGLE);
         this.stage = stage;
         this.stage.setTitle("RT-FX Single CSS");
 
@@ -37,8 +38,6 @@ public class SingleCssDemo extends Application
         MainPresentation presentation = new MainPresentation(controller);
         Scene scene = new Scene(presentation, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
 
-        ThemeManager.getInstance().addScene(scene);
-        ThemeManager.getInstance().load(Theme.LIGHT_SINGLE);
         
         this.stage.setScene(scene);
         this.stage.show();

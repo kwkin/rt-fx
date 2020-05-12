@@ -1,49 +1,3 @@
-/*-- ############################### Scroll Pane Accents ############################### */
-.rt-scroll-pane.primary-light
-{
-    -var-accent-color: -rt-primary-light-color;
-}
-
-.rt-scroll-pane.primary-mid
-{
-    -var-accent-color: -rt-primary-mid-color;
-}
-
-.rt-scroll-pane.primary-dark
-{
-    -var-accent-color: -rt-primary-dark-color;
-}
-
-.rt-scroll-pane.secondary-light
-{
-    -var-accent-color: -rt-secondary-light-color;
-}
-
-.rt-scroll-pane.secondary-mid
-{
-    -var-accent-color: -rt-secondary-mid-color;
-}
-
-.rt-scroll-pane.secondary-dark
-{
-    -var-accent-color: -rt-secondary-dark-color;
-}
-
-.rt-scroll-pane.base-light
-{
-    -var-accent-color: -rt-base-light-color;
-}
-
-.rt-scroll-pane.base-mid
-{
-    -var-accent-color: -rt-base-mid-color;
-}
-
-.rt-scroll-pane.base-dark
-{
-    -var-accent-color: -rt-base-dark-color;
-}
-
 /*-- ############################### Scroll Pane Styles ############################### */
 .rt-scroll-pane
 {
@@ -216,7 +170,7 @@
 }
 
 /*-- ############################### List View Scroll Bar Corner Style ############################### */
-.scroll-pane .corner
+.rt-scroll-pane .corner
 {
     -fx-background-color: transparent;
 }

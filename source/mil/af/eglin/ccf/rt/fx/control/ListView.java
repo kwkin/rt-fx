@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
@@ -101,7 +103,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtC
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
@@ -109,5 +111,10 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtC
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

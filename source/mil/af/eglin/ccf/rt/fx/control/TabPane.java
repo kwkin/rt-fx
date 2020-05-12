@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.scene.control.Tab;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -70,12 +72,17 @@ public class TabPane extends javafx.scene.control.TabPane implements RtComponent
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
     
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

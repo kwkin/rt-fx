@@ -2,203 +2,26 @@
 .rt-text.small
 {
     -fx-font-size: 12px;
-}
-
-.rt-text.small.base-light
-{
-    -fx-fill: -rt-base-light-text-color;
-}
-
-.rt-text.small.base-mid
-{
-    -fx-fill: -rt-base-mid-text-color;
-}
-
-.rt-text.small.base-dark
-{
-    -fx-fill: -rt-base-dark-text-color;
-}
-
-.rt-text.small.primary-light
-{
-    -fx-fill: -rt-primary-light-color;
-}
-
-.rt-text.small.primary-mid
-{
-    -fx-fill: -rt-primary-mid-color;
-}
-
-.rt-text.small.primary-dark
-{
-    -fx-fill: -rt-primary-dark-color;
-}
-
-.rt-text.small.secondary-light
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.small.secondary-mid
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.small.secondary-dark
-{
-    -fx-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-main-mid-text-color;
 }
 
 /*-- ############################### Normal ############################### */
 .rt-text.normal
 {
     -fx-font-size: 14px;
-}
-
-.rt-text.normal.base-light
-{
-    -fx-fill: -rt-base-light-text-color;
-}
-
-.rt-text.normal.base-mid
-{
-    -fx-fill: -rt-base-mid-text-color;
-}
-
-.rt-text.normal.base-dark
-{
-    -fx-fill: -rt-base-dark-text-color;
-}
-
-.rt-text.normal.primary-light
-{
-    -fx-fill: -rt-primary-light-color;
-}
-
-.rt-text.normal.primary-mid
-{
-    -fx-fill: -rt-primary-mid-color;
-}
-
-.rt-text.normal.primary-dark
-{
-    -fx-fill: -rt-primary-dark-color;
-}
-
-.rt-text.normal.secondary-light
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.normal.secondary-mid
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.normal.secondary-dark
-{
-    -fx-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-main-mid-text-color;
 }
 
 /*-- ############################### Large ############################### */
 .rt-text.large
 {
     -fx-font-size: 16px;
-    -fx-fill: white;
-}
-
-.rt-text.large.base-light
-{
-    -fx-fill: -rt-base-light-text-color;
-}
-
-.rt-text.large.base-mid
-{
-    -fx-fill: -rt-base-mid-text-color;
-}
-
-.rt-text.large.base-dark
-{
-    -fx-fill: -rt-base-dark-text-color;
-}
-
-.rt-text.large.primary-light
-{
-    -fx-fill: -rt-primary-light-color;
-}
-
-.rt-text.large.primary-mid
-{
-    -fx-fill: -rt-primary-mid-color;
-}
-
-.rt-text.large.primary-dark
-{
-    -fx-fill: -rt-primary-dark-color;
-}
-
-.rt-text.large.secondary-light
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.large.secondary-mid
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.large.secondary-dark
-{
-    -fx-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-main-mid-text-color;
 }
 
 /*-- ############################### Title ############################### */
 .rt-text.title
 {
     -fx-font-size: 18px;
-}
-
-.rt-text.title.base-light
-{
-    -fx-fill: -rt-base-light-text-color;
-}
-
-.rt-text.title.base-mid
-{
-    -fx-fill: -rt-base-mid-text-color;
-}
-
-.rt-text.title.base-dark
-{
-    -fx-fill: -rt-base-dark-text-color;
-}
-
-.rt-text.title.primary-light
-{
-    -fx-fill: -rt-primary-light-color;
-}
-
-.rt-text.title.primary-mid
-{
-    -fx-fill: -rt-primary-mid-color;
-}
-
-.rt-text.title.primary-dark
-{
-    -fx-fill: -rt-primary-dark-color;
-}
-
-.rt-text.title.secondary-light
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.title.secondary-mid
-{
-    -fx-fill: -rt-secondary-mid-color;
-}
-
-.rt-text.title.secondary-dark
-{
-    -fx-fill: -rt-secondary-dark-color;
+    -fx-fill: -rt-main-mid-text-color;
 }

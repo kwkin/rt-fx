@@ -23,8 +23,11 @@ public class Tooltip extends javafx.scene.control.Tooltip
 
     private void initialize()
     {
-        String cssContextMenu = ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-        StyleManager.getInstance().addUserAgentStylesheet(cssContextMenu);
         getStyleClass().add(CSS_CLASS);
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

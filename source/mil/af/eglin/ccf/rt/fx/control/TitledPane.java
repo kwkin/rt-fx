@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 
 import javafx.beans.property.BooleanProperty;
@@ -79,7 +80,7 @@ public class TitledPane extends javafx.scene.control.TitledPane
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     private void initialize()
@@ -125,5 +126,10 @@ public class TitledPane extends javafx.scene.control.TitledPane
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

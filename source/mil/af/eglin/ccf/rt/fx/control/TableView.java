@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import com.sun.javafx.css.StyleManager;
+
 import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TableViewStyle;
@@ -80,7 +82,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     private void initialize()
@@ -88,5 +90,10 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

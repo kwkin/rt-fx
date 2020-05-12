@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
@@ -133,7 +134,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
     @Override
     public String getUserAgentStylesheet() 
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return null;
     }
 
     /**
@@ -219,5 +220,10 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+    
+    static
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

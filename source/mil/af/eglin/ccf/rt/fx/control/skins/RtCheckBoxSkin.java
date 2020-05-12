@@ -29,7 +29,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane selectedMark = new StackPane();
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
-    
+
     // TODO should skinnable or a reference be kept?
     private CheckBox checkBox;
 
@@ -57,6 +57,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.box.getStyleClass().setAll("box");
         this.box.getChildren().setAll(indeterminateMark, selectedMark);
         this.boxAndMarks.getChildren().add(box);
+        getChildren().add(boxAndMarks);
 
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
@@ -66,13 +67,12 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             playIndeterminateAnimation(checkBox.isIndeterminate(), true);
         });
-        updateChildren();
 
         this.transition = new CheckBoxTransition(selectedMark, ANIMATION_DURATION);
         this.indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
         this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
                 (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
-        
+
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
     }
@@ -88,16 +88,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         else if (checkBox.unselectedColorProperty().getName().equals(property))
         {
             updateColors();
-        }
-    }
-
-    @Override
-    protected void updateChildren()
-    {
-        super.updateChildren();
-        if (boxAndMarks != null)
-        {
-            getChildren().add(boxAndMarks);
         }
     }
 
@@ -160,6 +150,19 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     }
 
+    private void updateColors()
+    {
+        // TODO null checks
+        boolean isSelected = this.checkBox.isSelected();
+        BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
+        CornerRadii borderRadii = box.getBorder().getStrokes().get(0).getRadii();
+
+        Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
+        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, borderRadii, borderWidths)));
+        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
+                (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
+    }
+
     private void playSelectAnimation(Boolean selection, boolean playAnimation)
     {
         if (selection == null)
@@ -182,19 +185,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             transition.playFrom(transition.getCycleDuration());
         }
         this.wasIndeterminate = false;
-    }
-    
-    private void updateColors()
-    {
-        // TODO null checks
-        boolean isSelected = this.checkBox.isSelected();
-        BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
-        CornerRadii borderRadii = box.getBorder().getStrokes().get(0).getRadii();
-        
-        Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
-        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, borderRadii, borderWidths)));
-        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
-                (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
     }
 
     private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
@@ -230,7 +220,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         }
     }
 
-    // TODO change other animations to cached transition
     private final static class CheckBoxTransition extends CachedTransition
     {
         CheckBoxTransition(Node mark, Duration duration)

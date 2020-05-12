@@ -16,7 +16,7 @@ import test.demo.control.LoginDialog;
 import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
-import test.demo.presentation.panes.samples.LogonPresentation;
+import test.demo.presentation.panes.samples.LoginPresentation;
 
 public class DialogPanePresentation extends SizedTitledCard
 {
@@ -156,8 +156,9 @@ public class DialogPanePresentation extends SizedTitledCard
         {
             Stage newStage = new Stage();
             newStage.setTitle("New Window");
-            newStage.setScene(new Scene(new LogonPresentation(), 600, 600));
+            newStage.setScene(new Scene(new LoginPresentation(), 600, 600));
             newStage.show();
+
         });
 
         pane.getChildren().add(customDialogButton);
