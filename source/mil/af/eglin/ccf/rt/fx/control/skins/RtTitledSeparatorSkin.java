@@ -52,21 +52,71 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
         final TitledSeparator sep = getSkinnable();
 
         Node text = separator.lookup(".text");
+        Node graphic = separator.getGraphic();
+        double textWidth = text == null ? 0 : text.getLayoutBounds().getWidth();
+        double textHeight = text == null ? 0 : text.getLayoutBounds().getHeight();
+        double graphicWidth = graphic == null ? 0 : graphic.getLayoutBounds().getWidth();
+        double graphicHeight = graphic == null ? 0 : graphic.getLayoutBounds().getHeight();
         double labelWidth = 0;
+        double labelHeight = 0;
+        double lineWidth = w;
+        double lineHeight = h;
+        
+        
         if (sep.getOrientation() == Orientation.HORIZONTAL)
         {
-            double textWidth = text.getLayoutBounds().getWidth() + this.separator.getSparatorContentGap() * 2;
-            labelWidth = w / 2 - textWidth / 2;
-            leftLine.resize(labelWidth, leftLine.prefHeight(-1));
-            rightLine.resize(labelWidth, rightLine.prefHeight(-1));
+            switch (sep.getContentDisplay())
+            {
+                case BOTTOM:
+                case TOP:
+                case CENTER:
+                    labelWidth = Math.max(textWidth, graphicWidth);
+                    break;
+                case LEFT:
+                case RIGHT:
+                    labelWidth = textWidth + graphicWidth;
+                    break;
+                default:
+                    break;
+            }
+            
+            if (labelWidth != 0)
+            {
+                labelWidth += this.separator.getSparatorContentGap() * 2;
+            }
+            lineWidth = w / 2 - labelWidth / 2;
+            leftLine.resize(lineWidth, leftLine.prefHeight(-1));
+            rightLine.resize(lineWidth, rightLine.prefHeight(-1));
+            positionInArea(leftLine, x, y, lineWidth, h, 0, sep.getHalignment(), sep.getValignment());
+            positionInArea(rightLine, x + lineWidth + labelWidth, y, lineWidth, h, 0, sep.getHalignment(), sep.getValignment());
         }
         else
         {
-            leftLine.resize(leftLine.prefWidth(-1), h);
-            rightLine.resize(rightLine.prefWidth(-1), h);
+            switch (sep.getContentDisplay())
+            {
+                case BOTTOM:
+                case TOP:
+                    labelHeight = textHeight + graphicHeight;
+                    break;
+                case CENTER:
+                case LEFT:
+                case RIGHT:
+                    labelHeight = Math.max(textHeight, graphicHeight);
+                    break;
+                default:
+                    break;
+            }
+            
+            if (labelHeight != 0)
+            {
+                labelHeight += this.separator.getSparatorContentGap() * 2;
+            }
+            lineHeight = h / 2 - labelHeight / 2;
+            leftLine.resize(leftLine.prefWidth(-1), lineHeight);
+            rightLine.resize(rightLine.prefWidth(-1), lineHeight);
+            positionInArea(leftLine, x, y, w, lineHeight, 0, sep.getHalignment(), sep.getValignment());
+            positionInArea(rightLine, x, y + lineHeight + labelHeight, w, lineHeight, 0, sep.getHalignment(), sep.getValignment());
         }
-        positionInArea(leftLine, x, y, labelWidth, h, 0, sep.getHalignment(), sep.getValignment());
-        positionInArea(rightLine, x + labelWidth + text.getLayoutBounds().getWidth() + this.separator.getSparatorContentGap() * 2, y, labelWidth, h, 0, sep.getHalignment(), sep.getValignment());
     }
 
     @Override
