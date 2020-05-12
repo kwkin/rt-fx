@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
+import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -29,7 +30,7 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         
         VBox stackPane = new VBox();
         stackPane.getChildren().add(createToggleButtons());
-        stackPane.getChildren().add(new Separator());
+        stackPane.getChildren().add(new TitledSeparator("Toggle Switches"));
         stackPane.getChildren().add(createToggleSwitches());
         stackPane.getChildren().add(new Separator());
         stackPane.getChildren().add(createToggleIcons());

@@ -16,13 +16,11 @@
 .rt-titled-separator:horizontal
 {
     -fx-padding: 4 0 4 0;
-    -fx-min-height: 24;
 }
 
 .rt-titled-separator:vertical
 {
 	-fx-padding: 0 4 0 4;
-    -fx-min-width: 24;
 }
 
 .rt-titled-separator:horizontal .left-line,
