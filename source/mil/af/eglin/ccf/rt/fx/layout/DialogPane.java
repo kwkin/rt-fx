@@ -6,11 +6,13 @@ import java.util.List;
 import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import mil.af.eglin.ccf.rt.fx.control.Button;
+import mil.af.eglin.ccf.rt.fx.control.Dialog;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -23,16 +25,19 @@ public class DialogPane extends javafx.scene.control.DialogPane
     private static final String CSS_CLASS = "rt-dialog-pane";
 
     private ButtonBar buttonBar;
+    private Dialog<?> dialog;
 
-    public DialogPane()
+    public DialogPane(Dialog<?> dialog)
     {
         super();
+        this.dialog = dialog;
         initialize();
     }
 
-    public DialogPane(Accent accent)
+    public DialogPane(Dialog<?> dialog, Accent accent)
     {
         super();
+        this.dialog = dialog;
         this.accent = accent;
         initialize();
     }
@@ -69,6 +74,13 @@ public class DialogPane extends javafx.scene.control.DialogPane
         ButtonBar.setButtonData(button, buttonData);
         button.setDefaultButton(buttonType != null && buttonData.isDefaultButton());
         button.setCancelButton(buttonType != null && buttonData.isCancelButton());
+        button.addEventHandler(ActionEvent.ACTION, ae -> {
+            if (ae.isConsumed()) return;
+            if (dialog != null) {
+                dialog.resultAndClose(buttonType, true);
+            }
+        });
+
         ButtonBar.setButtonUniformSize(button, false);
         return button;
     }
