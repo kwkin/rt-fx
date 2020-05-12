@@ -1,6 +1,6 @@
 .rt-svg-icon
 {
-    -fx-background-color: -rt-main-mid-text-color;
+    -fx-background-color: -var-main-mid-text-color;
     -fx-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }

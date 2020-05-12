@@ -18,7 +18,7 @@ TODO
     -fx-border-width: 0 0 0 0;
     -fx-cursor: hand;
     -fx-padding: 4 16 4 16;
-    -fx-text-fill: -rt-main-dark-text-color;
+    -fx-text-fill: -var-main-dark-text-color;
 }
 
 .rt-table-view .table-row-cell
@@ -30,12 +30,12 @@ TODO
 
 .rt-table-view.plain .table-row-cell
 {
-    -fx-background: -rt-main-light-color;
+    -fx-background: -var-main-light-color;
 }
 
 .rt-table-view.zebra .table-row-cell
 {
-    -fx-background: -rt-main-mid-color;
+    -fx-background: -var-main-mid-color;
 }
 
 .rt-table-view .table-row-cell:odd 
@@ -46,12 +46,12 @@ TODO
 
 .rt-table-view.plain .table-row-cell:odd 
 {
-    -fx-background: -rt-main-light-color;
+    -fx-background: -var-main-light-color;
 }
 
 .rt-table-view.zebra .table-row-cell:odd 
 {
-    -fx-background: -rt-main-light-color;
+    -fx-background: -var-main-light-color;
 }
 
 /*-- ############################### Table View Header Style ############################### */
@@ -85,7 +85,7 @@ TODO
 .tree-table-view .column-drag-header .label
 {
 	-fx-alignment: center-left;
-    -fx-text-fill: -rt-main-dark-text-color;
+    -fx-text-fill: -var-main-dark-text-color;
 }
 
 .rt-table-view .column-header-background, 
@@ -100,7 +100,7 @@ TODO
     -fx-shape: "M7,10L12,15L17,10H7Z";
     -fx-padding: 4;
     -fx-translate-x: 24;
-    -fx-background-color: -rt-main-dark-text-color;
+    -fx-background-color: -var-main-dark-text-color;
 }
 
 /*-- ############################### Table View Column Style ############################### */
@@ -122,7 +122,7 @@ TODO
 /*-- ############################### Table View Drag Style ############################### */
 .rt-table-view .column-overlay 
 {
-    -fx-background-color: -rt-base-dark-color;
+    -fx-background-color: -var-base-dark-color;
 }
 
 .rt-table-view .column-resize-line, .rt-table-view .column-drag-header 
@@ -146,9 +146,9 @@ TODO
 .table-row-cell:filled .table-cell:hover,
 .tree-table-row-cell:filled .tree-table-cell:hover 
 {
-    -fx-background: derive(-rt-main-light-color, -10%);
-    -fx-background-color: derive(-rt-main-light-color, -10%);
-    -fx-table-cell-border-color:  derive(-rt-main-light-color, -10%);
+    -fx-background: derive(-var-main-light-color, -10%);
+    -fx-background-color: derive(-var-main-light-color, -10%);
+    -fx-table-cell-border-color:  derive(-var-main-light-color, -10%);
 }
 
 
@@ -167,9 +167,9 @@ TODO
 .table-row-cell:filled .table-cell:selected,
 .tree-table-row-cell:filled .tree-table-cell:selected 
 {
-    -fx-background: derive(-rt-main-light-color, -20%);;
-    -fx-background-color: derive(-rt-main-light-color, -20%);;
-    -fx-table-cell-border-color:  derive(-rt-main-light-color, -20%);;
+    -fx-background: derive(-var-main-light-color, -20%);;
+    -fx-background-color: derive(-var-main-light-color, -20%);;
+    -fx-table-cell-border-color:  derive(-var-main-light-color, -20%);;
 }
 
 .table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
@@ -177,7 +177,7 @@ TODO
 .table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused,
 .tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused 
 {
-    -fx-background: derive(-rt-main-light-color, -20%);;
-    -fx-background-color: derive(-rt-main-light-color, -20%);;
-    -fx-table-cell-border-color:  derive(-rt-main-light-color, -20%);;
+    -fx-background: derive(-var-main-light-color, -20%);;
+    -fx-background-color: derive(-var-main-light-color, -20%);;
+    -fx-table-cell-border-color:  derive(-var-main-light-color, -20%);;
 }

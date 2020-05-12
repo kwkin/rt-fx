@@ -17,10 +17,10 @@ TODO
     -fx-background-insets: 0;
     -fx-graphic-text-gap: 8;
     -fx-padding: 0;
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-text-fill: -var-base-mid-text-color;
 
     -rt-selected-color: -var-accent-color;
-    -rt-unselected-color: -rt-base-mid-color;
+    -rt-unselected-color: -var-base-mid-color;
     -rt-selected-line-color: derive(-var-accent-color, 50%);
-    -rt-unselected-line-color: -rt-base-light-color;
+    -rt-unselected-line-color: -var-base-light-color;
 }

@@ -27,8 +27,8 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
         leftLine.getStyleClass().setAll("left-line");
         rightLine = new Region();
         rightLine.getStyleClass().setAll("right-line");
-        getChildren().add(0, leftLine);
-        getChildren().add(0, rightLine);
+        getChildren().add(leftLine);
+        getChildren().add(rightLine);
         registerChangeListener(separator.orientationProperty(), "ORIENTATION");
         registerChangeListener(separator.halignmentProperty(), "HALIGNMENT");
         registerChangeListener(separator.valignmentProperty(), "VALIGNMENT");
@@ -137,18 +137,22 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
     protected double computePrefWidth(double h, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
+        double labeledPrefWidth = super.computePrefWidth(h, topInset, rightInset, bottomInset, leftInset);
         final TitledSeparator sep = getSkinnable();
         double w = sep.getOrientation() == Orientation.VERTICAL ? leftLine.prefWidth(-1) : DEFAULT_LENGTH;
-        return w + leftInset + rightInset;
+        double separatorPrefWidth = w + leftInset + rightInset;
+        return Math.max(labeledPrefWidth, separatorPrefWidth);
     }
 
     @Override
     protected double computePrefHeight(double w, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
+        double labeledPrefHeight = super.computePrefHeight(w, topInset, rightInset, bottomInset, leftInset);
         final TitledSeparator sep = getSkinnable();
         double h = sep.getOrientation() == Orientation.VERTICAL ? DEFAULT_LENGTH : leftLine.prefHeight(-1);
-        return h + topInset + bottomInset;
+        double separatorPrefHeight = h + topInset + bottomInset;
+        return Math.max(labeledPrefHeight, separatorPrefHeight);
     }
 
     @Override

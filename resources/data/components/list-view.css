@@ -9,12 +9,12 @@ TODO
 /*-- ############################### List View Styles ############################### */
 .rt-list-view
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
 }
 
 .rt-list-view:focused
 {
-	-fx-background-color: -rt-main-light-color;
+	-fx-background-color: -var-main-light-color;
 }
 
 .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
@@ -30,10 +30,10 @@ TODO
 /*-- ############################### List Cell Styles ############################### */
 .list-cell 
 {
-    -fx-background-color: -rt-main-light-color;
-    -fx-text-fill: -rt-main-light-text-color;
+    -fx-background-color: -var-main-light-color;
+    -fx-text-fill: -var-main-light-text-color;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -rt-main-light-text-color;
+    -fx-text-fill: -var-main-light-text-color;
 }
 
 .rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
@@ -45,7 +45,7 @@ TODO
 .rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell,
 .rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
 {
-    -fx-border-color: -rt-main-light-color;
+    -fx-border-color: -var-main-light-color;
 }
 
 .rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
@@ -55,7 +55,7 @@ TODO
 
 .rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd
 {
-    -fx-background-color: -rt-main-mid-color;
+    -fx-background-color: -var-main-mid-color;
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */

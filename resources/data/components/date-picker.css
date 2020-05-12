@@ -7,83 +7,83 @@ TODO
 /*-- ############################### Color Picker Accents ############################### */
 .rt-date-picker.primary-light
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-primary-light-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.primary-mid
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-primary-mid-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.primary-dark
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-primary-dark-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.secondary-light
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-secondary-light-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.secondary-mid
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-secondary-mid-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.secondary-dark
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-secondary-dark-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.base-light
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-base-light-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.base-mid
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-base-mid-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 .rt-date-picker.base-dark
 {
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
+    -rt-unselected-border-color: -var-base-light-color;
+    -rt-selected-border-color: -var-base-dark-color;
+    -rt-unselected-background-color: -var-base-light-color;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -rt-main-mid-text-color;
+    -rt-text-color: -var-main-mid-text-color;
 }
 
 /*-- ############################### Color Picker Styles ############################### */
@@ -145,8 +145,8 @@ TODO
 .rt-date-picker:focused .prompt-pane,
 .rt-date-picker:focused:hover .prompt-pane
 {
-    -fx-background-color: -rt-main-light-color;
-    -fx-fill: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
+    -fx-fill: -var-main-light-color;
 	-fx-background-radius: 2.0;
     -fx-border-width: 0 0 0 0;
 }
@@ -196,9 +196,9 @@ TODO
 .date-picker-popup
 {
     -fx-spacing: 0.833333em;
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -rt-main-light-color;
+    -fx-border-color: -var-main-light-color;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 8 8 8 8;

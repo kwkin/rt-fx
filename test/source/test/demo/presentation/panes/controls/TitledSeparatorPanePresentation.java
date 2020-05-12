@@ -15,11 +15,11 @@ import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 
-public class SeparatorPanePresentation extends SizedTitledCard
+public class TitledSeparatorPanePresentation extends SizedTitledCard
 {
     private static final String TITLE = "Titled Separators";
     
-    public SeparatorPanePresentation(PaneController controller)
+    public TitledSeparatorPanePresentation(PaneController controller)
     {
         super(TITLE, TitledCardSize.SIZE_1x1);
 
@@ -36,7 +36,6 @@ public class SeparatorPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Titled separators can be labled with both text and an icon.");
 
         VBox buttonVBox = new VBox();
-        buttonVBox.setSpacing(16);
         
         TitledSeparator primaryDarkTitledSeparator = new TitledSeparator("TITLED", Accent.PRIMARY_DARK);
         TitledSeparator secondaryDarkTitledSeparator = new TitledSeparator("", Accent.SECONDARY_DARK);
@@ -64,18 +63,13 @@ public class SeparatorPanePresentation extends SizedTitledCard
 
         HBox buttonHBox = new HBox();
         buttonHBox.setMinHeight(80);
-        buttonHBox.setSpacing(16);
        
-
         TitledSeparator primaryDarkTitledSeparator = new TitledSeparator("TITLED", Orientation.VERTICAL, Accent.PRIMARY_DARK);
-        primaryDarkTitledSeparator.setPrefWidth(100);
         TitledSeparator secondaryDarkTitledSeparator = new TitledSeparator("", Orientation.VERTICAL, Accent.SECONDARY_DARK);
-        secondaryDarkTitledSeparator.setPrefWidth(50);
         SvgGlyph iconNoTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         secondaryDarkTitledSeparator.setGraphic(iconNoTitle);
         secondaryDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
         TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Orientation.VERTICAL, Accent.BASE_DARK);
-        baseDarkTitledSeparator.setPrefWidth(150);
         SvgGlyph iconTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         baseDarkTitledSeparator.setGraphic(iconTitle);
         baseDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);

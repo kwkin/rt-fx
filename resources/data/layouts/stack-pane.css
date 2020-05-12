@@ -7,45 +7,45 @@
 /*-- ############################### Stack Pane Accents ############################### */
 .rt-stack-pane.primary-light
 {
-    -fx-background-color: -rt-primary-light-color;
+    -fx-background-color: -var-primary-light-color;
 }
 
 .rt-stack-pane.primary-mid
 {
-    -fx-background-color: -rt-primary-mid-color;
+    -fx-background-color: -var-primary-mid-color;
 }
 
 .rt-stack-pane.primary-dark
 {
-    -fx-background-color: -rt-primary-dark-color;
+    -fx-background-color: -var-primary-dark-color;
 }
 
 .rt-stack-pane.secondary-light
 {
-    -fx-background-color: -rt-secondary-light-color;
+    -fx-background-color: -var-secondary-light-color;
 }
 
 .rt-stack-pane.secondary-mid
 {
-    -fx-background-color: -rt-secondary-mid-color;
+    -fx-background-color: -var-secondary-mid-color;
 }
 
 .rt-stack-pane.secondary-dark
 {
-    -fx-background-color: -rt-secondary-dark-color;
+    -fx-background-color: -var-secondary-dark-color;
 }
 
 .rt-stack-pane.base-light
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
 }
 
 .rt-stack-pane.base-mid
 {
-    -fx-background-color: -rt-base-mid-color;
+    -fx-background-color: -var-base-mid-color;
 }
 
 .rt-stack-pane.base-dark
 {
-    -fx-background-color: -rt-base-dark-color;
+    -fx-background-color: -var-base-dark-color;
 }

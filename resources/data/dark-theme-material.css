@@ -10,76 +10,76 @@
 
     /* Main colors are used on backgrounds and overlays */
     /*-- ############################### Main Color ############################### */
-    -rt-main-light-color: #1d1d1d;
-    -rt-main-mid-color: #1a1a1a;
-    -rt-main-dark-color: #212121;
+    -var-main-light-color: #1d1d1d;
+    -var-main-mid-color: #1a1a1a;
+    -var-main-dark-color: #212121;
 
-    -rt-main-light-text-color: #ffffff;
-    -rt-main-mid-text-color: #ffffff;
-    -rt-main-dark-text-color: #ffffff;
+    -var-main-light-text-color: #ffffff;
+    -var-main-mid-text-color: #ffffff;
+    -var-main-dark-text-color: #ffffff;
 
     /* Base colors are used on components */
     /*-- ############################### Base Color ############################### */
-    -rt-base-light-color: #2c2c2c;
-    -rt-base-mid-color: #323232;
-    -rt-base-dark-color: #373737;
+    -var-base-light-color: #2c2c2c;
+    -var-base-mid-color: #323232;
+    -var-base-dark-color: #373737;
 
-    -rt-base-light-text-color: #ffffff;
-    -rt-base-mid-text-color: #ffffff;
-    -rt-base-dark-text-color: #ffffff;
+    -var-base-light-text-color: #ffffff;
+    -var-base-mid-text-color: #ffffff;
+    -var-base-dark-text-color: #ffffff;
 
-    -rt-base-overlay-color: rgba(255, 255, 255, 0.35);
+    -var-base-overlay-color: rgba(255, 255, 255, 0.35);
 
     /* Primary colors are used to accent components */
     /*-- ############################### Primary Color ############################### */
-    -rt-primary-light-color: #c8a1f8;
-    -rt-primary-mid-color: #bb86fc;
-    -rt-primary-dark-color: #3700b3;
+    -var-primary-light-color: #c8a1f8;
+    -var-primary-mid-color: #bb86fc;
+    -var-primary-dark-color: #3700b3;
     
-    -rt-primary-light-text-color: #000000;
-    -rt-primary-mid-text-color: #000000;
-    -rt-primary-dark-text-color: #ffffff;
+    -var-primary-light-text-color: #000000;
+    -var-primary-mid-text-color: #000000;
+    -var-primary-dark-text-color: #ffffff;
     
-    -rt-primary-overlay-color: rgba(255, 255, 255, 0.55);
+    -var-primary-overlay-color: rgba(255, 255, 255, 0.55);
 
     /* Secondary colors are used to accent components */
     /*-- ############################### Secondary Color ############################### */
-    -rt-secondary-light-color: #85fff3;
-    -rt-secondary-mid-color: #03dac6;
-    -rt-secondary-dark-color: #008b7e;
+    -var-secondary-light-color: #85fff3;
+    -var-secondary-mid-color: #03dac6;
+    -var-secondary-dark-color: #008b7e;
     
-    -rt-secondary-light-text-color: #000000;
-    -rt-secondary-mid-text-color: #000000;
-    -rt-secondary-dark-text-color: #ffffff;
+    -var-secondary-light-text-color: #000000;
+    -var-secondary-mid-text-color: #000000;
+    -var-secondary-dark-text-color: #ffffff;
     
-    -rt-secondary-overlay-color: rgba(255, 255, 255, 0.55);
+    -var-secondary-overlay-color: rgba(255, 255, 255, 0.55);
 }
 
 .rt-label.block-title.primary-mid
 {
-    -fx-background-color: -rt-main-dark-color;
-    -fx-text-fill: -rt-base-mid-text-color;
+    -fx-background-color: -var-main-dark-color;
+    -fx-text-fill: -var-base-mid-text-color;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.18, 0, 2);
 }
 
 .jfx-decorator 
 {
-    -fx-decorator-color: -rt-main-dark-color;
+    -fx-decorator-color: -var-main-dark-color;
 }
 
 .jfx-tool-bar 
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
 }
 
 .jfx-popup-container 
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
 }
 
 .jfx-drawer-side-pane
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
 }
 
 
@@ -87,5 +87,5 @@
 .combo-box-base,
 .combo-box-base:editable .text-field
 {
-    -fx-text-fill: -rt-main-mid-text-color;
+    -fx-text-fill: -var-main-mid-text-color;
 }

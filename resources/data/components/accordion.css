@@ -2,12 +2,22 @@
 .rt-accordion .titled-pane .title,
 .rt-accordion .rt-titled-pane .title
 {
-    -fx-background-color: -rt-main-base-color;
-    -fx-border-color: -rt-base-mid-color;
+    -fx-background-color: -var-main-light-color;
+    -fx-border-color: -var-base-mid-color;
     -fx-border-width: 0 0 2 0;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 8 16 8 16;
+}
+
+.rt-accordion .rt-titled-pane:expanded .title
+{
+    -fx-border-color: -var-accent-color;
+}
+
+.rt-accordion .first-titled-pane .title 
+{
+    -fx-background-insets: 0;
 }
 
 .rt-accordion .first-titled-pane .title 

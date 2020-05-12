@@ -2,7 +2,6 @@ package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
-import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -22,7 +21,6 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         VBox vBox = new VBox();
         
         vBox.getChildren().add(createCheckBoxes());
-        vBox.getChildren().add(new TitledSeparator("Titled"));
         
         setContent(vBox);
     }

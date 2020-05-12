@@ -8,56 +8,56 @@ TODO
 /*-- ############################### Table View Accents ############################### */
 .rt-context-menu.primary-light
 {
-    -var-accent-color: -rt-primary-light-color;
+    -var-accent-color: -var-primary-light-color;
 }
 
 .rt-context-menu.primary-mid
 {
-    -var-accent-color: -rt-primary-mid-color;
+    -var-accent-color: -var-primary-mid-color;
 }
 
 .rt-context-menu.primary-dark
 {
-    -var-accent-color: -rt-primary-dark-color;
+    -var-accent-color: -var-primary-dark-color;
 }
 
 .rt-context-menu.secondary-light
 {
-    -var-accent-color: -rt-secondary-light-color;
+    -var-accent-color: -var-secondary-light-color;
 }
 
 .rt-context-menu.secondary-mid
 {
-    -var-accent-color: -rt-secondary-mid-color;
+    -var-accent-color: -var-secondary-mid-color;
 }
 
 .rt-context-menu.secondary-dark
 {
-    -var-accent-color: -rt-secondary-dark-color;
+    -var-accent-color: -var-secondary-dark-color;
 }
 
 .rt-context-menu.base-light
 {
-    -var-accent-color: -rt-base-light-color;
+    -var-accent-color: -var-base-light-color;
 }
 
 .rt-context-menu.base-mid
 {
-    -var-accent-color: -rt-base-mid-color;
+    -var-accent-color: -var-base-mid-color;
 }
 
 .rt-context-menu.base-dark
 {
-    -var-accent-color: -rt-base-dark-color;
+    -var-accent-color: -var-base-dark-color;
 }
 
 /*-- ############################### Table View Accents ############################### */
 /* TODO still a lot of work. Padding, hover state foreground for radio buttons, sub menu icon */
 .rt-context-menu
 {
-    -fx-background-color: -rt-main-light-color;
+    -fx-background-color: -var-main-light-color;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -rt-main-light-color;
+    -fx-border-color: -var-main-light-color;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 4 0 4 0;
@@ -74,7 +74,7 @@ TODO
 
 .rt-context-menu .separator:horizontal .line
 {
-    -fx-border-color: -rt-base-dark-text-color;
+    -fx-border-color: -var-base-dark-text-color;
     -fx-border-width: 1 0 0 0;
 }
 
@@ -102,14 +102,14 @@ TODO
     -fx-cursor: hand;
     -fx-font-size: 14;
     -fx-min-height: 28;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 }
 
 .menu-item:focused .label 
 {
     -fx-font-size: 14;
     -fx-min-height: 28;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 }
 
 .check-menu-item:checked .left-container .check 

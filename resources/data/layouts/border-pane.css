@@ -1,47 +1,47 @@
 /*-- ############################### Border Pane Accents ############################### */
 .rt-border-pane.primary-light
 {
-    -fx-background-color: -rt-primary-light-color;
+    -fx-background-color: -var-primary-light-color;
 }
 
 .rt-border-pane.primary-mid
 {
-    -fx-background-color: -rt-primary-mid-color;
+    -fx-background-color: -var-primary-mid-color;
 }
 
 .rt-border-pane.primary-dark
 {
-    -fx-background-color: -rt-primary-dark-color;
+    -fx-background-color: -var-primary-dark-color;
 }
 
 .rt-border-pane.secondary-light
 {
-    -fx-background-color: -rt-secondary-light-color;
+    -fx-background-color: -var-secondary-light-color;
 }
 
 .rt-border-pane.secondary-mid
 {
-    -fx-background-color: -rt-secondary-mid-color;
+    -fx-background-color: -var-secondary-mid-color;
 }
 
 .rt-border-pane.secondary-dark
 {
-    -fx-background-color: -rt-secondary-dark-color;
+    -fx-background-color: -var-secondary-dark-color;
 }
 
 .rt-border-pane.base-light
 {
-    -fx-background-color: -rt-base-light-color;
+    -fx-background-color: -var-base-light-color;
 }
 
 .rt-border-pane.base-mid
 {
-    -fx-background-color: -rt-base-mid-color;
+    -fx-background-color: -var-base-mid-color;
 }
 
 .rt-border-pane.base-dark
 {
-    -fx-background-color: -rt-base-dark-color;
+    -fx-background-color: -var-base-dark-color;
 }
 
 /*-- ############################### Border Pane Style ############################### */

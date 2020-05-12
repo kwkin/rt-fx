@@ -49,7 +49,7 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 
     -fx-padding: 4;
 }
@@ -77,10 +77,10 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 
     -rt-selected-icon-color: -var-accent-color;
-    -rt-unselected-icon-color: -rt-base-dark-text-color;
+    -rt-unselected-icon-color: -var-base-dark-text-color;
 
     -fx-padding: 4;
 }
@@ -109,10 +109,10 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -rt-base-dark-text-color;
+    -fx-text-fill: -var-base-dark-text-color;
 
     -rt-selected-icon-color: -var-accent-color;
-    -rt-unselected-icon-color: -rt-base-dark-text-color;
+    -rt-unselected-icon-color: -var-base-dark-text-color;
     -fx-background-insets: 0;
 
     -fx-padding: 4;
