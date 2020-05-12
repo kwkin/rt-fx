@@ -13,7 +13,6 @@
     -fx-text-fill: -rt-main-mid-text-color;
 
     -rt-separator-content-gap: 8.0;
-
 }
 
 .rt-titled-separator:horizontal .left-line,

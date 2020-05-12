@@ -104,9 +104,6 @@ TODO
     -fx-border-color: derive(-rt-selected-border-color, 80%);
 }
 
-.combo-box-base .arrow-button,
-.combo-box-base:editable .arrow-button,
-.combo-box-base:editable:focused .arrow-button,
 .rt-date-picker .arrow-button
 {
     -fx-background-color: transparent;
@@ -138,7 +135,6 @@ TODO
     -fx-shape: "M14,14H7V16H14M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M17,10H7V12H17V10Z";
 }
 
-.combo-box-base:editable:focused,
 .rt-date-picker:focused,
 .rt-date-picker:focused:hover
 {
@@ -177,7 +173,6 @@ TODO
 }
 
 /* Date Picker Text Field*/
-.combo-box-base:editable .text-field,
 .rt-date-picker .text-field 
 {
     -fx-background-color: -rt-unselected-background-color;
@@ -189,8 +184,6 @@ TODO
     -fx-effect: null;
 }
 
-.combo-box-base:editable:focused .text-field,
-.combo-box-base:editable .text-field:focused,
 .rt-date-picker:focused .text-field,
 .rt-date-picker .text-field:focused 
 {

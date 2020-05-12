@@ -138,15 +138,6 @@ TODO
     -fx-background-color: -var-accent-color;
 }
 
-.list-cell 
-{
-    -fx-background-color: -rt-main-light-color;
-    -fx-text-fill: -rt-main-light-text-color;
-    -fx-padding: 8 16 8 16;
-    -fx-text-fill: -rt-main-light-text-color;
-    -fx-border-width: 0;
-}
-
 /*-- ############################### List View Vertical Scroll Bar Style ############################### */
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical,
 .combo-box-popup .list-view .virtual-flow .scroll-bar:vertical .track,

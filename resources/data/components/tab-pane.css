@@ -6,166 +6,75 @@ TODO
 - Tab selected and hover state transitions
 */
 
-/*-- ############################### Tab Pane Accents ############################### */
-.rt-tab-pane
-{
-    -var-accent-color: -rt-primary-mid-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.primary-light
-{
-    -var-accent-color: -rt-primary-light-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.primary-mid
-{
-    -var-accent-color: -rt-primary-mid-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.primary-dark
-{
-    -var-accent-color: -rt-primary-dark-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.secondary-light
-{
-    -var-accent-color: -rt-secondary-light-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.secondary-mid
-{
-    -var-accent-color: -rt-secondary-mid-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.secondary-dark
-{
-    -var-accent-color: -rt-secondary-dark-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.base-light
-{
-    -var-accent-color: -rt-main-light-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.base-mid
-{
-    -var-accent-color: -rt-base-mid-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
-.rt-tab-pane.base-dark
-{
-    -var-accent-color: -rt-base-dark-color;
-
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-background-color: -rt-main-light-color;
-    -rt-unselected-border-color: -rt-base-mid-color;
-}
-
 /*-- ############################### Tab Pane Styles ############################### */
-.tab-pane 
+.rt-tab-pane
 {
     -fx-tab-min-height: 32px;
     -fx-tab-max-height: 32px;
     -fx-tab-min-width: 64px;
 }
 
-.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label 
+.rt-tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label 
 {
     -fx-alignment: CENTER;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -rt-base-mid-text-color;
 }
 
-.tab-pane .tab-header-area .headers-region .tab 
+.rt-tab-pane .tab-header-area .headers-region .tab 
 {
-    -fx-background-color: -rt-background-color;
+    -fx-background-color: -rt-main-light-color;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 4 16 4 16;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:top,
-.tab-pane .tab-header-area .headers-region .tab:right,
-.tab-pane .tab-header-area .headers-region .tab:bottom,
-.tab-pane .tab-header-area .headers-region .tab:left 
+.rt-tab-pane .tab-header-area .headers-region .tab:top,
+.rt-tab-pane .tab-header-area .headers-region .tab:right,
+.rt-tab-pane .tab-header-area .headers-region .tab:bottom,
+.rt-tab-pane .tab-header-area .headers-region .tab:left 
 {
-    -fx-background-color: -rt-background-color;
-    -fx-border-color: -rt-unselected-border-color;
+    -fx-background-color: -rt-main-light-color;
+    -fx-border-color: -rt-base-dark-color;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:top
+.rt-tab-pane .tab-header-area .headers-region .tab:top
 {
     -fx-border-width: 0 0 2 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:right
+.rt-tab-pane .tab-header-area .headers-region .tab:right
 {
     -fx-border-width: 0 0 0 2;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:bottom
+.rt-tab-pane .tab-header-area .headers-region .tab:bottom
 {
     -fx-border-width: 2 0 0 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:left 
+.rt-tab-pane .tab-header-area .headers-region .tab:left 
 {
     -fx-border-width: 0 2 0 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab:selected
+.rt-tab-pane .tab-header-area .headers-region .tab:selected
 {
     -fx-border-color: -var-accent-color;
 }
 
-.tab-pane .tab-header-area .tab-header-background 
+.rt-tab-pane .tab-header-area .tab-header-background 
 {
-    -fx-background-color: -rt-background-color;
+    -fx-background-color: -rt-main-light-color;
 }
 
-.tab-pane .tab-content-area
+.rt-tab-pane .tab-content-area
  {
     -fx-padding: 16;
     -fx-background-color: transparent;
 }
 
 /*-- ############################### Tab Pane Arrow ############################### */
-.tab-pane .tab-header-area .control-buttons-tab .container .tab-down-button .arrow  
+.rt-tab-pane .tab-header-area .control-buttons-tab .container .tab-down-button .arrow  
 {
     -fx-background-color: -var-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";

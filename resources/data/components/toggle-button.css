@@ -2,142 +2,6 @@
 TODO
 - Icon button glowing accent API
 */
-
-/*-- ############################### Raised Toggle Button Accents ############################### */
-.rt-toggle-button.raised
-{
-    -var-accent-color: -rt-primary-mid-color;
-    -rt-text-color: -rt-primary-mid-text-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
-}
-
-.rt-toggle-button.raised.primary-light
-{
-    -var-accent-color: -rt-primary-light-color;
-    -rt-text-color: -rt-primary-light-text-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
-}
-
-.rt-toggle-button.raised.primary-mid
-{
-    -var-accent-color: -rt-primary-mid-color;
-    -rt-text-color: -rt-primary-mid-text-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
-}
-
-.rt-toggle-button.raised.primary-dark
-{
-    -var-accent-color: -rt-primary-dark-color;
-    -rt-text-color: -rt-primary-dark-text-color;
-    -rt-overlay-color: -rt-primary-overlay-color;
-}
-
-.rt-toggle-button.raised.secondary-light
-{
-    -var-accent-color: -rt-secondary-light-color;
-    -rt-text-color: -rt-secondary-light-text-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
-}
-
-.rt-toggle-button.raised.secondary-mid
-{
-    -var-accent-color: -rt-secondary-mid-color;
-    -rt-text-color: -rt-secondary-mid-text-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
-}
-
-.rt-toggle-button.raised.secondary-dark
-{
-    -var-accent-color: -rt-secondary-dark-color;
-    -rt-text-color: -rt-secondary-dark-text-color;
-    -rt-overlay-color: -rt-secondary-overlay-color;
-}
-
-.rt-toggle-button.raised.base-light
-{
-    -var-accent-color: -rt-base-light-color;
-    -rt-text-color: -rt-base-light-text-color;
-    -rt-overlay-color: -rt-base-overlay-color;
-}
-
-.rt-toggle-button.raised.base-mid
-{
-    -var-accent-color: -rt-base-mid-color;
-    -rt-text-color: -rt-base-mid-text-color;
-    -rt-overlay-color: -rt-base-overlay-color;
-}
-
-.rt-toggle-button.raised.base-dark
-{
-    -var-accent-color: -rt-base-dark-color;
-    -rt-text-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-overlay-color;
-}
-
-/*-- ############################### Icon Toggle Button ############################### */
-.rt-icon-toggle-button.primary-light
-{
-    -selected-color: -rt-primary-light-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.primary-mid
-{
-    -selected-color: -rt-primary-mid-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.primary-dark
-{
-    -selected-color: -rt-primary-dark-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.secondary-light
-{
-    -selected-color: -rt-secondary-light-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.secondary-mid
-{
-    -selected-color: -rt-secondary-mid-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.secondary-dark
-{
-    -selected-color: -rt-secondary-dark-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.base-light
-{
-    -selected-color: -rt-base-light-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.base-mid
-{
-    -selected-color: -rt-primary-mid-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
-.rt-icon-toggle-button.base-dark
-{
-    -selected-color: -rt-primary-dark-color;
-    -unselected-color: -rt-base-dark-text-color;
-    -rt-overlay-color: -rt-base-dark-color;
-}
-
 /*-- ############################### Toggle Button Style ############################### */
 .rt-toggle-button
 {
@@ -153,14 +17,13 @@ TODO
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
-
-    -fx-font-family: "Roboto Medium";
-    -fx-font-size: 14;
-    -fx-text-fill: -rt-text-color;
+    -fx-text-fill: -var-accent-text-color;
 }
 
 .rt-toggle-button.raised:focused
@@ -173,7 +36,7 @@ TODO
 
 .rt-toggle-button.raised .state-box
 {
-    -fx-background-color: -rt-overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;
@@ -186,14 +49,14 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -unselected-color;
+    -fx-text-fill: -rt-base-dark-text-color;
 
     -fx-padding: 4;
 }
 
 .rt-icon-toggle-button.normal .state-box
 {
-    -fx-background-color: -rt-overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;
@@ -214,17 +77,17 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -unselected-color;
+    -fx-text-fill: -rt-base-dark-text-color;
 
-    -rt-selected-icon-color: -selected-color;
-    -rt-unselected-icon-color: -unselected-color;
+    -rt-selected-icon-color: -var-accent-color;
+    -rt-unselected-icon-color: -rt-base-dark-text-color;
 
     -fx-padding: 4;
 }
 
 .rt-icon-toggle-button.accented .state-box
 {
-    -fx-background-color: -rt-overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;
@@ -236,7 +99,7 @@ TODO
 {
     -fx-border-width: 0;
     -fx-background-color: transparent;
-    -fx-text-fill: -selected-color;
+    -fx-text-fill: -var-accent-color;
 }
 
 /*-- ############################### Glowing Icon Toggle Button Style ############################### */
@@ -246,10 +109,10 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -unselected-color;
+    -fx-text-fill: -rt-base-dark-text-color;
 
-    -rt-selected-icon-color: -selected-color;
-    -rt-unselected-icon-color: -unselected-color;
+    -rt-selected-icon-color: -var-accent-color;
+    -rt-unselected-icon-color: -rt-base-dark-text-color;
     -fx-background-insets: 0;
 
     -fx-padding: 4;
@@ -257,7 +120,7 @@ TODO
 
 .rt-icon-toggle-button.glowing .state-box
 {
-    -fx-background-color: -rt-overlay-color;
+    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;
@@ -272,6 +135,6 @@ TODO
     -fx-background-insets: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: -selected-color;
-    -rt-fill-color: -selected-color;
+    -fx-text-fill: -var-accent-color;
+    -rt-fill-color: -var-accent-color;
 }

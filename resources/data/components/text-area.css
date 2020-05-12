@@ -6,119 +6,31 @@ TODO
 - Text color
 - Text font
 */
-
-/*-- ############################### Text Area Accent ############################### */
-.rt-text-area.primary-light
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.primary-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.primary-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-primary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.secondary-light
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.secondary-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.secondary-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-secondary-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.base-light
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-light-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.base-mid
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-mid-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
-.rt-text-area.base-dark
-{
-    -rt-unselected-border-color: -rt-base-light-color;
-    -rt-selected-border-color: -rt-base-dark-color;
-    -rt-unselected-background-color: -rt-base-light-color;
-    -rt-selected-background-color: -rt-main-light-color;
-    -rt-text-color: -rt-main-mid-text-color;
-}
-
 /*-- ############################### Text Area Style ############################### */
 .rt-text-area
 {
-    -fx-background-color: -rt-unselected-background-color;
+    -fx-background-color: -rt-base-light-color;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -rt-unselected-border-color;
+    -fx-border-color: -rt-base-dark-color;
     -fx-border-radius: 2.0;
-    -fx-border-width: 2 2 2 2;
+    -fx-border-width: 0 0 2 0;
     -fx-max-width: 1000000;
 	-fx-padding: 8 8 8 8;
-    -fx-text-fill: -rt-text-color;
-}
-
-.rt-text-area:hover
-{
-    -fx-border-color: derive(-rt-selected-border-color, 80%);
+    -fx-text-fill: -rt-base-mid-text-color;
 }
 
 .rt-text-area:focused,
 .rt-text-area:focused:hover
 {
-    -fx-background-color: -rt-selected-background-color;
-    -fx-border-color: -rt-selected-border-color;
+    -fx-background-color: -rt-base-light-color;
+    -fx-border-color: -var-accent-color;
 }
 
 .rt-text-area .content,
 .rt-text-area .scroll-pane
 {
     -fx-border-width: 0.0;
-	-fx-background-color: -rt-unselected-background-color;
+	-fx-background-color: -rt-base-light-color;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 8 16 8 16;
@@ -137,8 +49,8 @@ TODO
 .rt-text-area:focused .content,
 .rt-text-area:focused .scroll-pane
 {
-    -fx-background-color: -rt-selected-background-color;
-    -fx-border-color: -rt-selected-border-color;
+    -fx-background-color: -rt-base-light-color;
+    -fx-border-color: -var-accent-color;
 	-fx-effect: null;
     -fx-background-insets: 0;
     -fx-background-radius: 0;

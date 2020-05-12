@@ -1,56 +1,18 @@
-/*-- ############################### Separator Accents ############################### */
-.rt-separator.primary-light .line
-{
-    -fx-border-color: -rt-primary-light-color;
-}
-
-.rt-separator.primary-mid .line
-{
-    -fx-border-color: -rt-primary-mid-color;
-}
-
-.rt-separator.primary-dark .line
-{
-    -fx-border-color: -rt-primary-dark-color;
-}
-
-.rt-separator.secondary- .line
-{
-    -fx-border-color: -rt-secondary-light-color;
-}
-
-.rt-separator.secondary-mid .line
-{
-    -fx-border-color: -rt-secondary-mid-color;
-}
-
-.rt-separator.secondary-dark .line
-{
-    -fx-border-color: -rt-secondary-dark-color;
-}
-
-.rt-separator.base-light .line
-{
-    -fx-border-color: -rt-base-light-color;
-}
-
-.rt-separator.base-mid .line
-{
-    -fx-border-color: -rt-base-mid-color;
-}
-
-.rt-separator.base-dark .line
-{
-    -fx-border-color: -rt-base-dark-color;
-}
-
 /*-- ############################### Separator Style ############################### */
-.rt-separator 
+.rt-separator:horizontal .line,
+.rt-separator:vertical .line
 {
-	-fx-padding: 8 0 8 0;
+    -fx-border-color: -var-accent-color;
+    -fx-border-color: -var-accent-color;
+    -fx-border-width: 0.5;
+}
+
+.rt-separator:horizontal
+{
+    -fx-padding: 4 0 4 0;
 }
 
 .rt-separator:vertical
 {
-	-fx-padding: 0 8 0 8;
+	-fx-padding: 0 4 0 4;
 }

@@ -4,12 +4,10 @@ import com.sun.javafx.css.StyleManager;
 
 import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.SpinnerStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtComponent
 {
-    protected SpinnerStyle style = SpinnerStyle.RAISED;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "spinner.css";
@@ -32,11 +30,6 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
         super(valueFactory);
         this.accent = accent;
         initialize();
-    }
-    
-    public SpinnerStyle getSpinnerStyle()
-    {
-        return this.style;
     }
 
     /**
@@ -78,7 +71,6 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
         getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
     }
