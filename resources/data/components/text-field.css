@@ -4,6 +4,8 @@ TODO
 - Padding
 - Add bottom border
 - Text color
+- Animate background color when focused
+- Add property to change text prompt font size
 */
 
 /*-- ############################### Text Field Style ############################### */
@@ -18,13 +20,23 @@ TODO
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
     -fx-max-width: 1000000;
-    -fx-min-height: 56;
-    -fx-padding: 18 16 0 16;
+    -fx-min-height: 48;
+    -fx-padding: 16;
     -fx-prompt-text-fill: -var-base-dark-color;
     -fx-text-fill: -var-base-mid-text-color;
 
     -rt-focus-color: -var-accent-color;
     -rt-unfocus-color: -var-base-dark-color;
+}
+
+.rt-text-field:floating
+{
+    -fx-padding: 22 16 6 16;
+}
+
+.rt-text-field .prompt-container
+{
+    -fx-padding: 16;
 }
 
 .rt-text-field .input-focused-line
@@ -44,7 +56,7 @@ TODO
 	-fx-background-radius: 0;
     -fx-border-radius: 0;
     
-    -var-height: 2;
+    -var-height: 1;
     -fx-pref-height: -var-height;
     -fx-max-height: -var-height;
 }

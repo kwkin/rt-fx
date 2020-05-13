@@ -9,12 +9,14 @@ import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.css.CssMetaData;
+import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
@@ -26,6 +28,8 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 // TODO add an option to have a trailing icon
 public class TextField extends javafx.scene.control.TextField implements RtComponent
 {
+    private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    
     protected TextFieldStyle style = TextFieldStyle.FILLED;
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -198,6 +202,12 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        
+        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.getValue());
+        this.labelFloating.addListener((ov, oldVal, newVal) -> 
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
+        });
     }
 
     private static class StyleableProperties
@@ -214,7 +224,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             @Override
             public StyleableBooleanProperty getStyleableProperty(TextField control)
             {
-                return control.labelFloatProperty();
+                return control.labelFloating;
             }
         };
         private static final CssMetaData<TextField, Paint> UNFOCUS_COLOR = new CssMetaData<TextField, Paint>(
@@ -229,7 +239,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             @Override
             public StyleableProperty<Paint> getStyleableProperty(TextField control)
             {
-                return control.unfocusProperty();
+                return control.unfocusColor;
             }
         };
         private static final CssMetaData<TextField, Paint> FOCUS_COLOR = new CssMetaData<TextField, Paint>(
@@ -244,7 +254,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             @Override
             public StyleableProperty<Paint> getStyleableProperty(TextField control)
             {
-                return control.focusColorProperty();
+                return control.focusColor;
             }
         };
         private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = new CssMetaData<TextField, Boolean>(
@@ -259,7 +269,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             @Override
             public StyleableBooleanProperty getStyleableProperty(TextField control)
             {
-                return control.disableAnimationProperty();
+                return control.disableAnimation;
             }
         };
 
