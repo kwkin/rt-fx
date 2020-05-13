@@ -24,7 +24,8 @@ public class RtTextFieldSkin extends TextFieldSkin
     {
         super(textField);
         this.textField = textField;
-        textPane = (Pane) this.getChildren().get(0);
+        
+        textPane = (Pane) getChildren().get(0);
 
         linesWrapper = new PromptLinesWrapper(textField, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText);
@@ -32,28 +33,27 @@ public class RtTextFieldSkin extends TextFieldSkin
         promptTextContainer.getStyleClass().add("prompt-text-container");
         linesWrapper.init(() -> createPromptNode(), textPane);
 
-        
-        getChildren().addAll(linesWrapper.focusedLine, promptTextContainer, linesWrapper.promptContainer);
+        getChildren().addAll(linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptTextContainer, linesWrapper.promptContainer);
 
-        registerChangeListener(textField.labelFloatProperty(), "LABEL_FLOAT");
-        registerChangeListener(textField.focusColorProperty(), "FOCUS_COLOR");
-        registerChangeListener(textField.unFocusColorProperty(), "UNFOCUS_COLOR");
+        registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
+        registerChangeListener(textField.focusColorProperty(),  textField.focusColorProperty().getName());
+        registerChangeListener(textField.unfocusProperty(),  textField.unfocusProperty().getName());
     }
 
     @Override
     protected void handleControlPropertyChanged(String propertyReference)
     {
-        if ("FOCUS_COLOR".equals(propertyReference))
+        super.handleControlPropertyChanged(propertyReference);
+        if (textField.focusColorProperty().getName().equals(propertyReference))
         {
             linesWrapper.updateFocusColor();
         }
-        else if ("LABEL_FLOAT".equals(propertyReference))
+        else if (textField.unfocusProperty().getName().equals(propertyReference))
         {
-            
+            linesWrapper.updateUnfocusColor();
         }
-        else
+        else if (textField.labelFloatProperty().getName().equals(propertyReference))
         {
-            super.handleControlPropertyChanged(propertyReference);
         }
     }
 
@@ -61,13 +61,14 @@ public class RtTextFieldSkin extends TextFieldSkin
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
         super.layoutChildren(x, y, w, h);
-        double height = textField.getHeight();
-        double width = textField.getWidth();
         
-        this.linesWrapper.layoutLines(x, y, w, h, height, width, height - h - 8);
+        double controlHeight = textField.getHeight();
+        double controlWidth = textField.getWidth();
+        
+        this.linesWrapper.layoutComponents(x, y, w, h, controlHeight, controlWidth);
         this.linesWrapper.updateLabelFloatLayout();
         
-        this.promptTextContainer.resizeRelocate(x, 0, w, height);
+        this.promptTextContainer.resizeRelocate(x, 0, w, controlHeight);
         this.promptText.resizeRelocate(0, y + 2, w, h);
     }
 

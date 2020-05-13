@@ -34,9 +34,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
 
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, this, "lableFloat", false);
-    private StyleableObjectProperty<Paint> unFocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unFocusColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.LABEL_FLOAT, this, "labelFloat", false);
+    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
@@ -112,19 +112,19 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.focusColor.set(color);
     }
 
-    public StyleableObjectProperty<Paint> unFocusColorProperty()
+    public StyleableObjectProperty<Paint> unfocusProperty()
     {
-        return this.unFocusColor;
+        return this.unfocusColor;
     }
 
-    public Paint getUnFocusColor()
+    public Paint getUnfocusColor()
     {
-        return unFocusColor.getValue();
+        return unfocusColor.getValue();
     }
 
-    public void setUnFocusColor(Paint color)
+    public void setUnfocusColor(Paint color)
     {
-        this.unFocusColor.set(color);
+        this.unfocusColor.set(color);
     }
 
     public final StyleableBooleanProperty disableAnimationProperty()
@@ -223,13 +223,13 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             @Override
             public boolean isSettable(TextField control)
             {
-                return control.unFocusColor == null || !control.unFocusColor.isBound();
+                return control.unfocusColor == null || !control.unfocusColor.isBound();
             }
 
             @Override
             public StyleableProperty<Paint> getStyleableProperty(TextField control)
             {
-                return control.unFocusColorProperty();
+                return control.unfocusProperty();
             }
         };
         private static final CssMetaData<TextField, Paint> FOCUS_COLOR = new CssMetaData<TextField, Paint>(

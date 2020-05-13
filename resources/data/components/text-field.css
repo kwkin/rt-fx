@@ -13,9 +13,8 @@ TODO
 {
     -fx-background-color: -var-base-light-color;
 	-fx-background-radius: 4 4 0 0;
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: -var-base-dark-color;
-    -fx-border-radius: 2 2 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
     -fx-max-width: 1000000;
@@ -30,9 +29,22 @@ TODO
 
 .rt-text-field .input-focused-line
 {
-    -fx-background-color: transparent;
-	-fx-background-radius: 4 4 0 0;
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: -var-accent-color;
-    -fx-border-radius: 2 2 0 0;
+    -fx-background-color: -var-accent-color;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+
+    -var-height: 2;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
+}
+
+.rt-text-field .input-unfocused-line
+{
+    -fx-background-color: -var-base-dark-color;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+    
+    -var-height: 2;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
 }

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -30,7 +31,8 @@ public class PromptLinesWrapper
     private final Supplier<Text> promptTextSupplier;
     private TextField control;
 
-    public StackPane focusedLine = new StackPane();
+    public Region focusedLine = new Region();
+    public Region unfocusedLine = new Region();
     public StackPane promptContainer = new StackPane();
 
     private RtAnimationTimer focusTimer;
@@ -65,23 +67,14 @@ public class PromptLinesWrapper
         usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
                 control.labelFloatProperty(), promptTextFill);
 
-        // focused line
+        unfocusedLine.setManaged(false);
+        unfocusedLine.getStyleClass().add("input-unfocused-line");
+        unfocusedLine.setOpacity(1);
+        
         focusedLine.setManaged(false);
         focusedLine.getStyleClass().add("input-focused-line");
-        focusedLine.setBackground(
-                new Background(new BackgroundFill(control.getFocusColor(), CornerRadii.EMPTY, Insets.EMPTY)));
         focusedLine.setOpacity(0);
         focusedLine.getTransforms().add(scale);
-
-        if (usePromptText.get())
-        {
-            createPromptNodeRunnable.run();
-        }
-        usePromptText.addListener(observable ->
-        {
-            createPromptNodeRunnable.run();
-            control.requestLayout();
-        });
 
         final Supplier<WritableValue<Number>> promptTargetSupplier = () -> promptTextSupplier.get() == null ? null
                 : promptTextSupplier.get().translateYProperty();
@@ -138,11 +131,17 @@ public class PromptLinesWrapper
         promptContainer.setManaged(false);
         promptContainer.setMouseTransparent(true);
 
-        focusTimer.setOnFinished(() -> animating = false);
-        unfocusTimer.setOnFinished(() -> animating = false);
+        focusTimer.setOnFinished(() -> 
+        {
+            animating = false;
+        });
+        unfocusTimer.setOnFinished(() -> 
+        {
+            animating = false;
+        });
         focusTimer.setCacheNodes(cachedNodes);
         unfocusTimer.setCacheNodes(cachedNodes);
-
+        
         // handle animation on focus gained/lost event
         control.focusedProperty().addListener(observable ->
         {
@@ -199,10 +198,19 @@ public class PromptLinesWrapper
     public void updateFocusColor()
     {
         Paint paint = control.getFocusColor();
-        focusedLine.setBackground(paint == null ? Background.EMPTY
-                : new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
+        Background background = paint == null ?
+                Background.EMPTY : new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY));
+        focusedLine.setBackground(background);
     }
 
+    public void updateUnfocusColor()
+    {
+        Paint paint = control.getUnfocusColor();
+        Background background = paint == null ? 
+                Background.EMPTY : new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY));
+        unfocusedLine.setBackground(background);
+    }
+    
     private void updateLabelFloat(boolean animation)
     {
         if (control.isLabelFloat())
@@ -267,14 +275,17 @@ public class PromptLinesWrapper
                 && !promptTextFill.get().equals(Color.TRANSPARENT));
     }
 
-    public void layoutLines(double x, double y, double w, double h, double controlHeight, double controlWidth, double translateY)
+    public void layoutComponents(double x, double y, double w, double h, double controlHeight, double controlWidth)
     {
-        this.contentHeight = translateY;
-        focusedLine.resizeRelocate(0, controlHeight - 2, controlWidth, 2);
-        
+        this.contentHeight = controlHeight;
+
+        double unfocusedLineHeight = unfocusedLine.getPrefHeight();
+        unfocusedLine.resizeRelocate(0, controlHeight - unfocusedLineHeight, controlWidth, unfocusedLineHeight);
+        double focusedLineHeight = focusedLine.getPrefHeight();
+        focusedLine.resizeRelocate(0, controlHeight - focusedLineHeight, controlWidth, focusedLineHeight);
         promptContainer.resizeRelocate(x, y, w, h);
         
-        scale.setPivotX(w / 2);
+        scale.setPivotX(controlWidth / 2);
     }
 
     public void updateLabelFloatLayout()
