@@ -63,7 +63,7 @@ public class PromptLinesWrapper
         this.promptTextProperty = promptTextProperty;
     }
 
-    public void init(Runnable createPromptNodeRunnable)
+    public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
     {
         animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
         usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
@@ -170,11 +170,9 @@ public class PromptLinesWrapper
 
         focusTimer.setOnFinished(() ->  animating = false);
         normalTimer.setOnFinished(() -> animating = false);
-        
-        // TODO debug issues with this changing the font render
-//        focusTimer.setCacheNodes(cachedNodes);
-//        normalTimer.setCacheNodes(cachedNodes);
-//        unfocusLabelTimer.setCacheNodes(cachedNodes);
+        focusTimer.setCacheNodes(cachedNodes);
+        normalTimer.setCacheNodes(cachedNodes);
+        unfocusLabelTimer.setCacheNodes(cachedNodes);
         
         control.focusedProperty().addListener((ov, oldVal, newVal) ->
         {
