@@ -2,6 +2,11 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -14,8 +19,10 @@ public class RtTextFieldSkin extends TextFieldSkin
 {
     private TextField textField;
 
-    private StackPane promptTextContainer = new StackPane();
-    private Text promptText = new Text();
+    private StackPane overlayContainer = new StackPane();
+    private StackPane inputContainer = new StackPane();
+    private StackPane promptContainer = new StackPane();
+    private Text promptText;
     private Pane textPane;
 
     private PromptLinesWrapper linesWrapper;
@@ -26,14 +33,21 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.textField = textField;
         
         textPane = (Pane) getChildren().get(0);
+        getChildren().remove(textPane);
+        inputContainer.getStyleClass().add("input-container");
+        inputContainer.getChildren().add(textPane);
 
-        linesWrapper = new PromptLinesWrapper(textField, this.promptTextFill, textField.textProperty(),
+        overlayContainer.getStyleClass().add("overlay-container");
+        overlayContainer.setOpacity(0);
+        
+        linesWrapper = new PromptLinesWrapper(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText);
 
-        promptTextContainer.getStyleClass().add("prompt-text-container");
+        promptContainer.getStyleClass().add("prompt-container");
         linesWrapper.init(() -> createPromptNode(), textPane);
 
-        getChildren().addAll(linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptTextContainer, linesWrapper.promptContainer);
+        updateOverlayColor();
+        getChildren().addAll(overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, inputContainer);
 
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(),  textField.focusColorProperty().getName());
@@ -65,11 +79,13 @@ public class RtTextFieldSkin extends TextFieldSkin
         double controlHeight = textField.getHeight();
         double controlWidth = textField.getWidth();
         
-        this.linesWrapper.layoutComponents(x, y, w, h, controlHeight, controlWidth);
+        double translateY = (controlHeight / 2) - x;
+        
+        this.linesWrapper.layoutComponents(x, y, w, h, controlHeight, controlWidth, translateY);
         this.linesWrapper.updateLabelFloatLayout();
         
-        this.promptTextContainer.resizeRelocate(x, 0, w, controlHeight);
-        this.promptText.resizeRelocate(0, y + 2, w, h);
+        this.promptContainer.resizeRelocate(0, 0, controlWidth, controlHeight);
+        this.overlayContainer.resizeRelocate(0, 0, controlWidth, controlHeight);
     }
 
     private void createPromptNode()
@@ -79,15 +95,15 @@ public class RtTextFieldSkin extends TextFieldSkin
             return;
         }
         this.promptText = new Text();
-        this.promptText.getStyleClass().add("text");
-        this.promptText.setManaged(false);
+        this.promptText.getStyleClass().add("prompt-text");
         this.promptText.visibleProperty().bind(linesWrapper.usePromptText);
         this.promptText.fontProperty().bind(this.textField.fontProperty());
         this.promptText.textProperty().bind(this.textField.promptTextProperty());
+        this.promptText.translateXProperty().set(1);
         this.promptText.fillProperty().bind(this.linesWrapper.animatedPromptTextFill);
-        this.promptText.setTranslateX(1);
         this.promptText.getTransforms().add(this.linesWrapper.promptTextScale);
-        this.promptTextContainer.getChildren().add(this.promptText);
+        StackPane.setAlignment(promptText, Pos.CENTER_LEFT);
+        this.promptContainer.getChildren().add(this.promptText);
         
         if (this.textField.isFocused() && this.textField.isLabelFloat())
         {
@@ -114,5 +130,11 @@ public class RtTextFieldSkin extends TextFieldSkin
         catch (Exception e)
         {
         }
+    }
+    
+    private void updateOverlayColor()
+    {
+        CornerRadii radii = this.textField.getBackground() == null ? null : this.textField.getBackground().getFills().get(0).getRadii(); 
+        this.overlayContainer.setBackground(new Background(new BackgroundFill(this.textField.getOverlayColor(), radii, Insets.EMPTY)));
     }
 }

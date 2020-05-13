@@ -13,7 +13,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -31,12 +30,14 @@ public class PromptLinesWrapper
     private final Supplier<Text> promptTextSupplier;
     private TextField control;
 
+    public Region overlayContainer = new Region();
     public Region focusedLine = new Region();
     public Region unfocusedLine = new Region();
-    public StackPane promptContainer = new StackPane();
 
     private RtAnimationTimer focusTimer;
-    private RtAnimationTimer unfocusTimer;
+    private RtAnimationTimer normalTimer;
+    private RtAnimationTimer unfocusLabelTimer;
+    private RtAnimationTimer hoverTimer;
 
     private double initScale = 0.05;
     public final Scale promptTextScale = new Scale(1, 1, 0, 0);
@@ -49,12 +50,13 @@ public class PromptLinesWrapper
     private ObservableValue<String> promptTextProperty;
 
     private boolean animating = false;
-    private double contentHeight = 0;
+    private double promptTranslateY = 0;
 
-    public PromptLinesWrapper(TextField control, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
+    public PromptLinesWrapper(TextField control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
             ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier)
     {
         this.control = control;
+        this.overlayContainer = overlaycontainer;
         this.promptTextSupplier = promptTextSupplier;
         this.promptTextFill = promptTextFill;
         this.valueProperty = valueProperty;
@@ -76,9 +78,21 @@ public class PromptLinesWrapper
         focusedLine.setOpacity(0);
         focusedLine.getTransforms().add(scale);
 
+        if (usePromptText.get()) 
+        {
+            createPromptNodeRunnable.run();
+        }
+        usePromptText.addListener(observable -> 
+        {
+            createPromptNodeRunnable.run();
+            control.requestLayout();
+        });
+        
+        
         final Supplier<WritableValue<Number>> promptTargetSupplier = () -> promptTextSupplier.get() == null ? null
                 : promptTextSupplier.get().translateYProperty();
 
+        // @formatter:off
         focusTimer = new RtAnimationTimer(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(1))
@@ -105,8 +119,13 @@ public class PromptLinesWrapper
                             .setAnimateCondition(() -> control.isFocused() && control.isLabelFloat())
                         .build(),
                         RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
-                            .setEndValueSupplier(() -> -contentHeight)
+                            .setEndValueSupplier(() -> -promptTranslateY)
                             .setAnimateCondition(() -> control.isLabelFloat())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
+                            .setEndValueSupplier(() -> 0.5)
+                            .setAnimateCondition(() -> control.isFocused())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(promptTextScale.xProperty()).setEndValue(0.85)
@@ -118,40 +137,52 @@ public class PromptLinesWrapper
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                    .build());
+        // @formatter:on
 
-        unfocusTimer = new RtAnimationTimer(new RtKeyFrame(Duration.millis(160),
-                RtKeyValue.builder().setTargetSupplier(promptTargetSupplier).setEndValue(0)
-                        .setInterpolator(Interpolator.EASE_BOTH).build(),
-                        RtKeyValue.builder().setTarget(promptTextScale.xProperty()).setEndValue(1)
-                        .setInterpolator(Interpolator.EASE_BOTH).build(),
-                        RtKeyValue.builder().setTarget(promptTextScale.yProperty()).setEndValue(1)
-                        .setInterpolator(Interpolator.EASE_BOTH).build()));
+        // @formatter:off
+        unfocusLabelTimer = new RtAnimationTimer(new RtKeyFrame(Duration.millis(160),
+                RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
+                    .setEndValue(0)
+                    .setInterpolator(Interpolator.EASE_BOTH)
+                .build(),
+                RtKeyValue.builder().setTarget(promptTextScale.xProperty())
+                    .setEndValue(1)
+                    .setInterpolator(Interpolator.EASE_BOTH)
+                .build(),
+                RtKeyValue.builder().setTarget(promptTextScale.yProperty())
+                    .setEndValue(1)
+                    .setInterpolator(Interpolator.EASE_BOTH)
+                .build()));
+        normalTimer = new RtAnimationTimer(new RtKeyFrame(Duration.millis(160),
+                RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
+                    .setEndValueSupplier(() -> 0)
+                    .setInterpolator(Interpolator.EASE_BOTH)
+                .build()));
+        // @formatter:on
 
-        promptContainer.getStyleClass().add("input-container");
-        promptContainer.setManaged(false);
-        promptContainer.setMouseTransparent(true);
+        // @formatter:off
+        hoverTimer = new RtAnimationTimer(new RtKeyFrame(Duration.millis(80),
+                RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
+                    .setEndValueSupplier(() -> 0.2)
+                    .setInterpolator(Interpolator.EASE_BOTH)
+                .build()));
+        // @formatter:on
 
-        focusTimer.setOnFinished(() -> 
-        {
-            animating = false;
-        });
-        unfocusTimer.setOnFinished(() -> 
-        {
-            animating = false;
-        });
+        focusTimer.setOnFinished(() ->  animating = false);
+        normalTimer.setOnFinished(() -> animating = false);
         focusTimer.setCacheNodes(cachedNodes);
-        unfocusTimer.setCacheNodes(cachedNodes);
+        normalTimer.setCacheNodes(cachedNodes);
+        unfocusLabelTimer.setCacheNodes(cachedNodes);
         
-        // handle animation on focus gained/lost event
-        control.focusedProperty().addListener(observable ->
+        control.focusedProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (control.isFocused())
+            updateState();
+        });
+        control.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (!this.control.isFocused())
             {
-                focus();
-            }
-            else
-            {
-                unFocus();
+                updateState();
             }
         });
 
@@ -164,35 +195,46 @@ public class PromptLinesWrapper
         });
     }
 
+    private void updateState()
+    {
+        if (this.control.isFocused())
+        {
+            normalTimer.stop();
+            hoverTimer.stop();
+            unfocusLabelTimer.stop();
+            runTimer(focusTimer, true);
+        }
+        else if (this.control.isHover())
+        {
+            normalTimer.stop();
+            focusTimer.stop();
+            unfocusLabelTimer.stop();
+            runTimer(hoverTimer, true);
+        }
+        else
+        {
+            hoverTimer.stop();
+            focusTimer.stop();
+            scale.setX(initScale);
+            focusedLine.setOpacity(0);
+            if (control.isLabelFloat())
+            {
+                animatedPromptTextFill.set(promptTextFill.get());
+                Object text = getControlValue();
+                if (text == null || text.toString().isEmpty())
+                {
+                    runTimer(unfocusLabelTimer, true);
+                }
+            }
+            runTimer(normalTimer, true);
+        }
+        animating = true;
+    }
+    
     private Object getControlValue()
     {
         Object text = valueProperty.getValue();
         return text;
-    }
-
-    private void focus()
-    {
-        unfocusTimer.stop();
-        animating = true;
-        runTimer(focusTimer, true);
-    }
-
-    private void unFocus()
-    {
-        focusTimer.stop();
-        scale.setX(initScale);
-        focusedLine.setOpacity(0);
-        if (control.isLabelFloat())
-        {
-            animatedPromptTextFill.set(promptTextFill.get());
-            Object text = getControlValue();
-            if (text == null || text.toString().isEmpty())
-            {
-                animating = true;
-                runTimer(unfocusTimer, true);
-            }
-            
-        }
     }
 
     public void updateFocusColor()
@@ -235,9 +277,9 @@ public class PromptLinesWrapper
         }
         if (up)
         {
-            if (promptTextSupplier.get().getTranslateY() != -contentHeight)
+            if (promptTextSupplier.get().getTranslateY() != -promptTranslateY)
             {
-                unfocusTimer.stop();
+                unfocusLabelTimer.stop();
                 runTimer(focusTimer, animation);
             }
         }
@@ -246,19 +288,15 @@ public class PromptLinesWrapper
             if (promptTextSupplier.get().getTranslateY() != 0)
             {
                 focusTimer.stop();
-                runTimer(unfocusTimer, animation);
+                runTimer(unfocusLabelTimer, animation);
             }
         }
     }
-
     private void runTimer(RtAnimationTimer timer, boolean animation)
     {
-        if (animation)
+        if (animation && !timer.isRunning())
         {
-            if (!timer.isRunning())
-            {
-                timer.start();
-            }
+            timer.start();
         }
         else
         {
@@ -275,15 +313,14 @@ public class PromptLinesWrapper
                 && !promptTextFill.get().equals(Color.TRANSPARENT));
     }
 
-    public void layoutComponents(double x, double y, double w, double h, double controlHeight, double controlWidth)
+    public void layoutComponents(double x, double y, double w, double h, double controlHeight, double controlWidth, double translateY)
     {
-        this.contentHeight = controlHeight;
+        this.promptTranslateY = translateY;
 
         double unfocusedLineHeight = unfocusedLine.getPrefHeight();
         unfocusedLine.resizeRelocate(0, controlHeight - unfocusedLineHeight, controlWidth, unfocusedLineHeight);
         double focusedLineHeight = focusedLine.getPrefHeight();
         focusedLine.resizeRelocate(0, controlHeight - focusedLineHeight, controlWidth, focusedLineHeight);
-        promptContainer.resizeRelocate(x, y, w, h);
         
         scale.setPivotX(controlWidth / 2);
     }
@@ -294,9 +331,9 @@ public class PromptLinesWrapper
         {
             updateLabelFloat(false);
         }
-        else if (unfocusTimer.isRunning())
+        else if (unfocusLabelTimer.isRunning())
         {
-            unfocusTimer.stop();
+            unfocusLabelTimer.stop();
             updateLabelFloat(true);
         }
     }
