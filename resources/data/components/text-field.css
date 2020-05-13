@@ -30,6 +30,12 @@ TODO
     -rt-unfocus-color: -var-base-dark-color;
 }
 
+.rt-text-field .input-container
+{
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+}
+
 .rt-text-field:floating
 {
     -fx-padding: 22 16 6 16;
@@ -42,8 +48,9 @@ TODO
 
 .rt-text-field .prompt-container
 {
-    -fx-border-color: red;
+	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
+    -fx-border-radius: 0;
 }
 
 .rt-text-field .input-focused-line

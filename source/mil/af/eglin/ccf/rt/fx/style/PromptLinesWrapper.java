@@ -63,7 +63,7 @@ public class PromptLinesWrapper
         this.promptTextProperty = promptTextProperty;
     }
 
-    public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
+    public void init(Runnable createPromptNodeRunnable)
     {
         animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
         usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
@@ -168,26 +168,24 @@ public class PromptLinesWrapper
                 .build()));
         // @formatter:on
 
-        focusTimer.setOnFinished(() -> 
-        {
-            animating = false;
-        });
-        normalTimer.setOnFinished(() -> 
-        {
-            animating = false;
-        });
-        focusTimer.setCacheNodes(cachedNodes);
-        normalTimer.setCacheNodes(cachedNodes);
-        unfocusLabelTimer.setCacheNodes(cachedNodes);
+        focusTimer.setOnFinished(() ->  animating = false);
+        normalTimer.setOnFinished(() -> animating = false);
         
-        // handle animation on focus gained/lost event
+        // TODO debug issues with this changing the font render
+//        focusTimer.setCacheNodes(cachedNodes);
+//        normalTimer.setCacheNodes(cachedNodes);
+//        unfocusLabelTimer.setCacheNodes(cachedNodes);
+        
         control.focusedProperty().addListener((ov, oldVal, newVal) ->
         {
             updateState();
         });
         control.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            if (!this.control.isFocused())
+            {
+                updateState();
+            }
         });
 
         promptTextFill.addListener(observable ->

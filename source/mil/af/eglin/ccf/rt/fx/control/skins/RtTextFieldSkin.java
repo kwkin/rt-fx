@@ -40,12 +40,11 @@ public class RtTextFieldSkin extends TextFieldSkin
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
         
-
         linesWrapper = new PromptLinesWrapper(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText);
 
         promptContainer.getStyleClass().add("prompt-container");
-        linesWrapper.init(() -> createPromptNode(), textPane);
+        linesWrapper.init(() -> createPromptNode());
 
         updateOverlayColor();
         getChildren().addAll(overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, inputContainer);
