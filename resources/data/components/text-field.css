@@ -25,6 +25,7 @@ TODO
     -fx-prompt-text-fill: -var-base-dark-color;
     -fx-text-fill: -var-base-mid-text-color;
 
+    -rt-overlay-color: -var-overlay-color;
     -rt-focus-color: -var-accent-color;
     -rt-unfocus-color: -var-base-dark-color;
 }
@@ -37,6 +38,12 @@ TODO
 .rt-text-field .prompt-container
 {
     -fx-padding: 16;
+}
+
+.rt-text-field .prompt-container
+{
+    -fx-border-color: red;
+    -fx-border-width: 0;
 }
 
 .rt-text-field .input-focused-line

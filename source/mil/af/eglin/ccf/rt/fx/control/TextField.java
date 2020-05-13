@@ -8,6 +8,7 @@ import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
@@ -16,7 +17,6 @@ import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
@@ -43,6 +43,8 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
     // @formatter:on
@@ -131,6 +133,21 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.unfocusColor.set(color);
     }
 
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return overlayColor.getValue();
+    }
+
+    public void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.setValue(overlayColor);
+    }
+
     public final StyleableBooleanProperty disableAnimationProperty()
     {
         return this.disableAnimation;
@@ -212,6 +229,22 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
 
     private static class StyleableProperties
     {
+        private static final CssMetaData<TextField, Paint> OVERLAY_COLOR = new CssMetaData<TextField, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
+        {
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(TextField control)
+            {
+                return control.overlayColor;
+            }
+        };
+        
         private static final CssMetaData<TextField, Boolean> LABEL_FLOAT = new CssMetaData<TextField, Boolean>(
                 "-rt-label-float", BooleanConverter.getInstance(), false)
         {
