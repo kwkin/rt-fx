@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
-import mil.af.eglin.ccf.rt.fx.style.PromptLinesWrapper;
+import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 
@@ -25,7 +25,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private Text promptText;
     private Pane textPane;
 
-    private PromptLinesWrapper linesWrapper;
+    private PromptInput linesWrapper;
 
     public RtTextFieldSkin(final TextField textField)
     {
@@ -40,7 +40,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
         
-        linesWrapper = new PromptLinesWrapper(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
+        linesWrapper = new PromptInput(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText);
 
         promptContainer.getStyleClass().add("prompt-container");

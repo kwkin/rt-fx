@@ -25,7 +25,7 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 import java.util.function.Supplier;
 
-public class PromptLinesWrapper
+public class PromptInput
 {
     private final Supplier<Text> promptTextSupplier;
     private TextField control;
@@ -52,7 +52,7 @@ public class PromptLinesWrapper
     private boolean animating = false;
     private double promptTranslateY = 0;
 
-    public PromptLinesWrapper(TextField control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
+    public PromptInput(TextField control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
             ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier)
     {
         this.control = control;
@@ -111,7 +111,12 @@ public class PromptLinesWrapper
                             .setTarget(scale.xProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> control.isFocused())
+                            .setAnimateCondition(() -> !control.isDisableAnimation())
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
+                            .setEndValueSupplier(() -> 0.5)
+                            .setAnimateCondition(() -> !control.isDisableAnimation())
+                            .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(animatedPromptTextFill)
                             .setEndValueSupplier(() -> control.getFocusColor())
@@ -121,11 +126,6 @@ public class PromptLinesWrapper
                         RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
                             .setEndValueSupplier(() -> -promptTranslateY)
                             .setAnimateCondition(() -> control.isLabelFloat())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
-                            .setEndValueSupplier(() -> 0.5)
-                            .setAnimateCondition(() -> control.isFocused())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(promptTextScale.xProperty()).setEndValue(0.85)

@@ -69,25 +69,21 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                         .setTarget(this.radio.strokeProperty())
                         .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.opacityProperty())
                         .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.scaleXProperty())
                         .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.scaleYProperty())
                         .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build())
                 .build());
         timer.applyEndValues();
