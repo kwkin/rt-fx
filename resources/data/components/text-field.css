@@ -1,11 +1,9 @@
 /*
 TODO
-- Change usage of main to base colors
-- Padding
-- Add bottom border
-- Text color
-- Animate background color when focused
-- Add property to change text prompt font size
+- Add trailing icon
+- Add help text
+- Add validation text and validator API
+- Add text limit
 */
 
 /*-- ############################### Text Field Style ############################### */
@@ -28,11 +26,6 @@ TODO
     -rt-overlay-color: -var-overlay-color;
     -rt-focus-color: -var-accent-color;
     -rt-unfocus-color: -var-base-dark-color;
-}
-
-.rt-text-field .text
-{
-    -fx-font-smoothing-type: gray;
 }
 
 .rt-text-field .input-container
