@@ -61,6 +61,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(),  textField.focusColorProperty().getName());
+        registerChangeListener(textField.getOverlayColorProperty(),  textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusProperty(),  textField.unfocusProperty().getName());
         registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
         
@@ -78,6 +79,10 @@ public class RtTextFieldSkin extends TextFieldSkin
         else if (textField.unfocusProperty().getName().equals(propertyReference))
         {
             linesWrapper.updateUnfocusColor();
+        }
+        else if (textField.getOverlayColorProperty().getName().equals(propertyReference))
+        {
+            updateOverlayColor();
         }
         else if (textField.labelFloatProperty().getName().equals(propertyReference))
         {

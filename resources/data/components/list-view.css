@@ -31,9 +31,9 @@ TODO
 .list-cell 
 {
     -fx-background-color: -var-main-light-color;
-    -fx-text-fill: -var-main-light-text-color;
+    -fx-text-fill: -var-main-mid-text-color;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -var-main-light-text-color;
+    -fx-text-fill: -var-main-mid-text-color;
 }
 
 .rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell,

@@ -14,7 +14,7 @@
     -var-main-mid-color: #202023;
     -var-main-dark-color: #28282c;
 
-    -var-main-light-text-color: #f1f1f1;
+    -var-main-light-text-color: #a0a0a0;
     -var-main-mid-text-color: #f1f1f1;
     -var-main-dark-text-color: #f1f1f1;
 
@@ -40,7 +40,7 @@
     -var-primary-mid-text-color: #f1f1f1;
     -var-primary-dark-text-color: #f1f1f1;
     
-    -var-primary-overlay-color: rgba(255, 255, 255, 0.45);
+    -var-primary-overlay-color: rgba(255, 255, 255, 0.25);
 
     /* Secondary colors are used to accent components */
     /*-- ############################### Secondary Color ############################### */
@@ -52,7 +52,7 @@
     -var-secondary-mid-text-color: #f1f1f1;
     -var-secondary-dark-text-color: #f1f1f1;
     
-    -var-secondary-overlay-color: rgba(255, 255, 255, 0.45);
+    -var-secondary-overlay-color: rgba(255, 255, 255, 0.25);
 }
 
 .rt-label.block-title.primary-mid

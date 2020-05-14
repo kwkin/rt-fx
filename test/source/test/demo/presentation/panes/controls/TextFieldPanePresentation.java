@@ -53,14 +53,14 @@ public class TextFieldPanePresentation extends SizedTitledCard
 
         SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, Color.valueOf("#ababab"), IconSize.SIZE_24);
         IconButton folderButton = new IconButton(folder);
-        TextField secondaryLightTextBox = new TextField(Accent.PRIMARY_DARK);
+        TextField secondaryLightTextBox = new TextField(Accent.SECONDARY_LIGHT);
         secondaryLightTextBox.setPromptText("Button Icon");
         secondaryLightTextBox.setTrailingGlyph(folderButton);
 
         SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, Color.valueOf("#ababab"), IconSize.SIZE_24);
         SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, Color.valueOf("#ababab"), IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
-        TextField secondaryMidTextBox = new TextField(Accent.PRIMARY_DARK);
+        TextField secondaryMidTextBox = new TextField(Accent.SECONDARY_DARK);
         secondaryMidTextBox.setPromptText("Toggle Button Icon");
         secondaryMidTextBox.setTrailingGlyph(eyeToggleButton);
         

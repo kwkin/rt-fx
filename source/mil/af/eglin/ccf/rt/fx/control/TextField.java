@@ -345,7 +345,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.TextField.getClassCssMetaData());
             // @formatter:off
-            Collections.addAll(styleables, LABEL_FLOAT, UNFOCUS_COLOR, FOCUS_COLOR, TRAILING_ICON_PADDING, DISABLE_ANIMATION);
+            Collections.addAll(styleables, LABEL_FLOAT, UNFOCUS_COLOR, FOCUS_COLOR, OVERLAY_COLOR, TRAILING_ICON_PADDING, DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
