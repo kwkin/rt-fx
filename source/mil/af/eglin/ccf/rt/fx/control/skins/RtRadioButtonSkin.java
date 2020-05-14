@@ -15,14 +15,15 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
+    private final RadioButton radioButton;
     private final Circle radio = new Circle();
     private final Circle dot = new Circle();
     private final StackPane container = new StackPane();
 
+    // TODO remove padding
     private double padding = 12;
     
     private RtAnimationTimer timer;
-    private RadioButton radioButton;
     
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
@@ -69,25 +70,21 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                         .setTarget(this.radio.strokeProperty())
                         .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.opacityProperty())
                         .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.scaleXProperty())
                         .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.dot.scaleYProperty())
                         .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((RadioButton) getSkinnable()).getIsAnimationDisabled())
                         .build())
                 .build());
         timer.applyEndValues();

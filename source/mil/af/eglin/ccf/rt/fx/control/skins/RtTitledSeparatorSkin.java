@@ -12,11 +12,9 @@ import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 
 public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, BehaviorBase<TitledSeparator>>
 {
-    private static final double DEFAULT_LENGTH = 10;
-
+    private final TitledSeparator separator;
     private final Region leftLine;
     private final Region rightLine;
-    private final TitledSeparator separator;
 
     public RtTitledSeparatorSkin(final TitledSeparator separator)
     {
@@ -138,9 +136,7 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
             double leftInset)
     {
         double labeledPrefWidth = super.computePrefWidth(h, topInset, rightInset, bottomInset, leftInset);
-        final TitledSeparator sep = getSkinnable();
-        double w = sep.getOrientation() == Orientation.VERTICAL ? leftLine.prefWidth(-1) : DEFAULT_LENGTH;
-        double separatorPrefWidth = w + leftInset + rightInset;
+        double separatorPrefWidth = leftLine.prefWidth(-1) + leftInset + rightInset;
         return Math.max(labeledPrefWidth, separatorPrefWidth);
     }
 
@@ -149,9 +145,7 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
             double leftInset)
     {
         double labeledPrefHeight = super.computePrefHeight(w, topInset, rightInset, bottomInset, leftInset);
-        final TitledSeparator sep = getSkinnable();
-        double h = sep.getOrientation() == Orientation.VERTICAL ? DEFAULT_LENGTH : leftLine.prefHeight(-1);
-        double separatorPrefHeight = h + topInset + bottomInset;
+        double separatorPrefHeight = leftLine.prefHeight(-1) + topInset + bottomInset;
         return Math.max(labeledPrefHeight, separatorPrefHeight);
     }
 

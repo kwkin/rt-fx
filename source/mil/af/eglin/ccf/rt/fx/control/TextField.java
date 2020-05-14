@@ -7,21 +7,25 @@ import java.util.List;
 import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
+import com.sun.javafx.css.converters.SizeConverter;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
+import javafx.css.SimpleStyleableDoubleProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
+import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -30,12 +34,13 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
 {
     private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     
-    protected TextFieldStyle style = TextFieldStyle.FILLED;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
-
+    
+    private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
+    
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
             StyleableProperties.LABEL_FLOAT, this, "labelFloat", false);
@@ -45,6 +50,8 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
+    private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
+            StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 12.0);
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
     // @formatter:on
@@ -61,13 +68,6 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
-    public TextField(TextFieldStyle style)
-    {
-        this();
-        this.style = style;
-        initialize();
-    }
-
     public TextField(Accent accent)
     {
         super();
@@ -75,30 +75,17 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
-    public TextField(TextFieldStyle style, Accent accent)
-    {
-        super();
-        this.style = style;
-        this.accent = accent;
-        initialize();
-    }
-
-    public TextFieldStyle getButtonStyle()
-    {
-        return this.style;
-    }
-
-    public final StyleableBooleanProperty labelFloatProperty()
+    public StyleableBooleanProperty labelFloatProperty()
     {
         return this.labelFloating;
     }
 
-    public final boolean isLabelFloat()
+    public boolean isLabelFloat()
     {
         return labelFloating.getValue();
     }
 
-    public final void setLabelFloat(final boolean labelFloat)
+    public void setLabelFloat(final boolean labelFloat)
     {
         labelFloating.setValue(labelFloat);
     }
@@ -148,21 +135,51 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.overlayColor.setValue(overlayColor);
     }
 
-    public final StyleableBooleanProperty disableAnimationProperty()
+    public StyleableBooleanProperty disableAnimationProperty()
     {
         return this.disableAnimation;
     }
 
-    public final Boolean isDisableAnimation()
+    public Boolean isDisableAnimation()
     {
         return this.disableAnimation.getValue();
     }
 
-    public final void setDisableAnimation(final Boolean disabled)
+    public void setDisableAnimation(Boolean disabled)
     {
         this.disableAnimation.set(disabled);
     }
 
+    public ObjectProperty<RtGlyph> trailingGlyphProperty()
+    {
+        return this.trailingIcon;
+    }
+
+    public RtGlyph getTrailingGlyph()
+    {
+        return this.trailingIcon.getValue();
+    }
+
+    public void setTrailingGlyph(RtGlyph glyph)
+    {
+        this.trailingIcon.setValue(glyph);
+    }
+
+    public DoubleProperty trailingIconGapProperty()
+    {
+        return this.trailingIconGap;
+    }
+
+    public double getTrailingIconGap()
+    {
+        return this.trailingIconGap.getValue();
+    }
+
+    public void setTrailingIconGap(double trailingIconGap)
+    {
+        this.trailingIconGap.setValue(trailingIconGap);
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -217,7 +234,6 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.getValue());
@@ -290,6 +306,22 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
                 return control.focusColor;
             }
         };
+        private static final CssMetaData<TextField, Number> TRAILING_ICON_PADDING = new CssMetaData<TextField, Number>(
+                "-rt-trailing-icon-gap", SizeConverter.getInstance(), 12.0)
+        {
+
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.trailingIconGap == null || !control.trailingIconGap.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Number> getStyleableProperty(TextField control)
+            {
+                return control.trailingIconGap;
+            }
+        };
         private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = new CssMetaData<TextField, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -312,7 +344,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.TextField.getClassCssMetaData());
-            Collections.addAll(styleables, LABEL_FLOAT, UNFOCUS_COLOR, FOCUS_COLOR, DISABLE_ANIMATION);
+            // @formatter:off
+            Collections.addAll(styleables, LABEL_FLOAT, UNFOCUS_COLOR, FOCUS_COLOR, OVERLAY_COLOR, TRAILING_ICON_PADDING, DISABLE_ANIMATION);
+            // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

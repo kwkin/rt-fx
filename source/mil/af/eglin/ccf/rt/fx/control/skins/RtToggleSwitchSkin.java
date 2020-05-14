@@ -19,12 +19,12 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 // TODO add toggle switch to checkbox in order to allow for an indeterminate state
 public class RtToggleSwitchSkin extends ToggleButtonSkin
 {
+    private final ToggleSwitch toggleSwitch;
     private final StackPane main;
     private final Circle circle;
     private final Line line;
 
     private RtAnimationTimer timer;
-    private ToggleSwitch toggleSwitch;
     
     public RtToggleSwitchSkin(final ToggleSwitch toggleSwitch) 
     {

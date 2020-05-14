@@ -16,9 +16,9 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 // TODO change armed to selected
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
+    private final ToggleButton button;
     private final StackPane stateBox = new StackPane();
 
-    private ToggleButton button;
     private RtAnimationTimer timer;
     
     public RtToggleButtonSkin(final ToggleButton button)

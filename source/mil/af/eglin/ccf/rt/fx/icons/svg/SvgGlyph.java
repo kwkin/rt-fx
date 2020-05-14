@@ -20,18 +20,20 @@ import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableDoubleProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
+import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
+import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO Add a maintain aspect ratio flag
-public class SvgGlyph extends StackPane
+public class SvgGlyph extends StackPane implements RtGlyph
 {
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
@@ -96,17 +98,26 @@ public class SvgGlyph extends StackPane
         initialize(svgPath);
     }
 
-    public double getSize()
+    @Override
+    public Node getGlyph()
+    {
+        return this;
+    }
+    
+    @Override
+    public double getGlyphSize()
     {
         return size.get();
     }
 
-    public Paint getFill()
+    @Override
+    public Paint getGlyphFill()
     {
         return this.fill.getValue();
     }
 
-    public void setFill(Paint fill)
+    @Override
+    public void setGlyphFill(Paint fill)
     {
         this.fill.setValue(fill);
     }
@@ -145,9 +156,9 @@ public class SvgGlyph extends StackPane
         getStyleClass().add(CSS_CLASS);
 
         // TODO add binding and property conversions for background
-        if (getFill() != null)
+        if (getGlyphFill() != null)
         {
-            setBackground(new Background(new BackgroundFill(getFill(), null, null)));
+            setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
         }
         this.fill.addListener((ov, oldVal, newVal) -> 
         {
@@ -157,7 +168,7 @@ public class SvgGlyph extends StackPane
         {
             if (this.fill.getValue() != null)
             {
-                setBackground(new Background(new BackgroundFill(getFill(), null, null)));
+                setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
             }
         });
         shapeProperty().addListener((ov, oldVal, newVal) ->
@@ -165,9 +176,9 @@ public class SvgGlyph extends StackPane
             if (newVal != null)
             {
                 this.widthHeightRatio.setValue(newVal.prefWidth(-1) / newVal.prefHeight(-1));
-                if (getSize() != Region.USE_COMPUTED_SIZE)
+                if (getGlyphSize() != Region.USE_COMPUTED_SIZE)
                 {
-                    setSizeRatio(getSize());
+                    setSizeRatio(getGlyphSize());
                 }
             }
         });

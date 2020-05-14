@@ -16,6 +16,7 @@ import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
+import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
@@ -29,7 +30,7 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO add armed color before the icon
-public class IconButton extends Button
+public class IconButton extends Button implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE_MID;
@@ -37,7 +38,7 @@ public class IconButton extends Button
     
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
-    private StyleableObjectProperty<Paint> iconFill = new SimpleStyleableObjectProperty<>(
+    private StyleableObjectProperty<Paint> glyphFill = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
@@ -77,21 +78,6 @@ public class IconButton extends Button
         return this.icon;
     }
 
-    public StyleableObjectProperty<Paint> iconFillProperty()
-    {
-        return this.iconFill;
-    }
-
-    public void setIconFill(Paint color)
-    {
-        this.iconFill.setValue(color);
-    }
-
-    public Paint getIconFill()
-    {
-        return iconFill.getValue();
-    }
-
     public BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
@@ -105,6 +91,35 @@ public class IconButton extends Button
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
         this.isAnimationDisabled.setValue(isAnimationDisabled);
+    }
+
+    public StyleableObjectProperty<Paint> glyphFillProperty()
+    {
+        return this.glyphFill;
+    }
+
+    @Override
+    public void setGlyphFill(Paint fill)
+    {
+        this.glyphFill.set(fill);
+    }
+
+    @Override
+    public Paint getGlyphFill()
+    {
+        return this.glyphFill.get();
+    }
+
+    @Override
+    public double getGlyphSize()
+    {
+        return this.icon.getGlyphSize();
+    }
+
+    @Override
+    public Node getGlyph()
+    {
+        return this;
     }
 
     @Override
@@ -134,8 +149,8 @@ public class IconButton extends Button
     private void initialize()
     {
         this.iconPane.getChildren().addAll(this.icon);
-        double width = this.icon.getSize();
-        double height = this.icon.getSize();
+        double width = this.icon.getGlyphSize();
+        double height = this.icon.getGlyphSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
         
@@ -157,13 +172,13 @@ public class IconButton extends Button
             @Override
             public boolean isSettable(IconButton control)
             {
-                return control.iconFill == null || !control.iconFill.isBound();
+                return control.glyphFill == null || !control.glyphFill.isBound();
             }
 
             @Override
             public StyleableProperty<Paint> getStyleableProperty(IconButton control)
             {
-                return control.iconFill;
+                return control.glyphFill;
             }
         };
         

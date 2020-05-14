@@ -21,6 +21,12 @@
     src: url("'fonts/Roboto/Roboto-Bold.ttf");
 }
 
+.text
+{
+    -fx-font-smoothing-type: gray;
+}
+
+
 /* @font-face
 {
     font-family: "Roboto";

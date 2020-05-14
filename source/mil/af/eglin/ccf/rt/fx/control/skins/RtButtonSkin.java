@@ -20,9 +20,10 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 public class RtButtonSkin extends ButtonSkin
 {
     private final static Duration ANIMATION_DURATION = Duration.millis(200);
+
+    private final Button button;
     private final StackPane stateBox = new StackPane();
 
-    private Button button;
     private CachedTransition normalTransition;
     private CachedTransition armedTransition;
     private CachedTransition hoverTransition;
@@ -57,7 +58,7 @@ public class RtButtonSkin extends ButtonSkin
         // TODO use property's name rather than hardcoding the name
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
     }
-
+    
     @Override
     protected void handleControlPropertyChanged(String property)
     {
