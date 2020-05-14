@@ -225,7 +225,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     {
         CheckBoxTransition(Node mark, Duration duration)
         {
-            // @formatter:off 
+            // @formatter:off
             super(null, new Timeline( 
                     new KeyFrame(Duration.ZERO,  
                             new KeyValue(mark.opacityProperty(), 0, Interpolator.EASE_OUT), 
@@ -238,7 +238,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                     new KeyFrame(Duration.millis(1000),  
                             new KeyValue(mark.scaleXProperty(), 1, Interpolator.EASE_OUT), 
                             new KeyValue(mark.scaleYProperty(), 1, Interpolator.EASE_OUT)))); 
-            // @formatter:on 
+            // @formatter:on
             setCycleDuration(duration);
         }
     }

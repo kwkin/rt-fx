@@ -16,6 +16,7 @@ import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
+import javafx.scene.Node;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -29,7 +30,7 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO change some of this stuff to be in the skin instead
-public class IconToggleButton extends javafx.scene.control.ToggleButton
+public class IconToggleButton extends javafx.scene.control.ToggleButton implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();
     protected SvgGlyph selectedIcon;
@@ -185,6 +186,37 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
     }
 
     @Override
+    public void setGlyphFill(Paint fill)
+    {
+        if (isSelected())
+        {
+            this.selectedIcon.setGlyphFill(fill);
+        }
+        else
+        {
+            this.unselectedIcon.setGlyphFill(fill);
+        }
+    }
+
+    @Override
+    public Paint getGlyphFill()
+    {
+        return isSelected() ? getSelectedFill() : getUnselectedFill();
+    }
+
+    @Override
+    public double getGlyphSize()
+    {
+        return isSelected() ? this.selectedIcon.getGlyphSize() : this.unselectedIcon.getGlyphSize();
+    }
+
+    @Override
+    public Node getGlyph()
+    {
+        return this;
+    }
+
+    @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return getClassCssMetaData();
@@ -226,15 +258,15 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton
         });
         this.selectedFill.addListener((ov, oldVal, newVal) -> 
         {
-            this.selectedIcon.setFill(newVal);
+            this.selectedIcon.setGlyphFill(newVal);
         });
         this.unselectedFill.addListener((ov, oldVal, newVal) -> 
         {
-            this.unselectedIcon.setFill(newVal);
+            this.unselectedIcon.setGlyphFill(newVal);
         });
         
-        double width = this.selectedIcon.getSize();
-        double height = this.selectedIcon.getSize();
+        double width = this.selectedIcon.getGlyphSize();
+        double height = this.selectedIcon.getGlyphSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
         

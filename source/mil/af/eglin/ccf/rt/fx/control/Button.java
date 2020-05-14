@@ -295,8 +295,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
             // @formatter:off
-            Collections.addAll(styleables, OVERLAY_COLOR);
-            Collections.addAll(styleables, DISABLE_ANIMATION);
+            Collections.addAll(styleables, OVERLAY_COLOR, DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }

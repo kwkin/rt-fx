@@ -9,6 +9,7 @@ import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
@@ -21,7 +22,6 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -30,12 +30,13 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
 {
     private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     
-    protected TextFieldStyle style = TextFieldStyle.FILLED;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
-
+    
+    private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
+    
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
             StyleableProperties.LABEL_FLOAT, this, "labelFloat", false);
@@ -61,13 +62,6 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
-    public TextField(TextFieldStyle style)
-    {
-        this();
-        this.style = style;
-        initialize();
-    }
-
     public TextField(Accent accent)
     {
         super();
@@ -75,30 +69,17 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
-    public TextField(TextFieldStyle style, Accent accent)
-    {
-        super();
-        this.style = style;
-        this.accent = accent;
-        initialize();
-    }
-
-    public TextFieldStyle getButtonStyle()
-    {
-        return this.style;
-    }
-
-    public final StyleableBooleanProperty labelFloatProperty()
+    public StyleableBooleanProperty labelFloatProperty()
     {
         return this.labelFloating;
     }
 
-    public final boolean isLabelFloat()
+    public boolean isLabelFloat()
     {
         return labelFloating.getValue();
     }
 
-    public final void setLabelFloat(final boolean labelFloat)
+    public void setLabelFloat(final boolean labelFloat)
     {
         labelFloating.setValue(labelFloat);
     }
@@ -158,11 +139,26 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         return this.disableAnimation.getValue();
     }
 
-    public final void setDisableAnimation(final Boolean disabled)
+    public final void setDisableAnimation(Boolean disabled)
     {
         this.disableAnimation.set(disabled);
     }
 
+    public final ObjectProperty<RtGlyph> trailingGlyphProperty()
+    {
+        return this.trailingIcon;
+    }
+
+    public final RtGlyph getTrailingGlyph()
+    {
+        return this.trailingIcon.getValue();
+    }
+
+    public final void setTrailingGlyph(RtGlyph glyph)
+    {
+        this.trailingIcon.setValue(glyph);
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -217,7 +213,6 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.getValue());
@@ -312,7 +307,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.TextField.getClassCssMetaData());
+            // @formatter:off
             Collections.addAll(styleables, LABEL_FLOAT, UNFOCUS_COLOR, FOCUS_COLOR, DISABLE_ANIMATION);
+            // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

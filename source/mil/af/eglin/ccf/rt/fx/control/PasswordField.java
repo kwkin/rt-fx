@@ -3,12 +3,10 @@ package mil.af.eglin.ccf.rt.fx.control;
 import com.sun.javafx.css.StyleManager;
 
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class PasswordField extends javafx.scene.control.PasswordField implements RtComponent
 {
-    protected TextFieldStyle style = TextFieldStyle.FILLED;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
@@ -18,11 +16,6 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     {
         super();
         initialize();
-    }
-    
-    public TextFieldStyle getButtonStyle()
-    {
-        return this.style;
     }
 
     /**
@@ -64,7 +57,6 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
     }
     
