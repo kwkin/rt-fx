@@ -1,6 +1,9 @@
+/*
+TODO fix padding
+*/
 .rt-svg-icon
 {
     -fx-background-color: -var-main-mid-text-color;
-    -fx-insets: 0 0 0 0;
-    -fx-padding: 0 0 0 0;
+    -fx-insets: 0;
+    -fx-padding: 0;
 }

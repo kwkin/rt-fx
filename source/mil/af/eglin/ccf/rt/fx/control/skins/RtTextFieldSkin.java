@@ -110,7 +110,8 @@ public class RtTextFieldSkin extends TextFieldSkin
         if (graphic != null)
         {
             double graphicWidth = graphic.getGlyph().getLayoutBounds().getWidth();
-            positionInArea(graphic.getGlyph(), w - graphicWidth, h / 2, graphicWidth - 16, 0, 0, HPos.CENTER, VPos.CENTER);
+            double xPosition = w - graphicWidth - textField.getTrailingIconGap();
+            positionInArea(graphic.getGlyph(), xPosition, controlHeight / 2, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
         }
     }
 

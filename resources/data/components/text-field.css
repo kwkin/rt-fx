@@ -23,9 +23,17 @@ TODO
     -fx-prompt-text-fill: -var-base-dark-color;
     -fx-text-fill: -var-base-mid-text-color;
 
-    -rt-overlay-color: -var-overlay-color;
     -rt-focus-color: -var-accent-color;
+    -rt-overlay-color: -var-overlay-color;
     -rt-unfocus-color: -var-base-dark-color;
+    -rt-trailing-icon-gap: 10;
+}
+
+.rt-text-field .rt-svg-icon,
+.rt-text-field .rt-button.icon,
+.rt-text-field .rt-icon-toggle-button
+{
+    -fx-padding: 4;
 }
 
 .rt-text-field .input-container

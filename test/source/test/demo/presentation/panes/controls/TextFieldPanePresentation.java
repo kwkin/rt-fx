@@ -51,11 +51,11 @@ public class TextFieldPanePresentation extends SizedTitledCard
         primaryDarkTextBox.setLabelFloat(true);
         primaryDarkTextBox.setTrailingGlyph(cog);
 
-        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, Color.valueOf("#ababab"), IconSize.SIZE_24);
-        IconButton bellButton = new IconButton(bell);
+        SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        IconButton folderButton = new IconButton(folder);
         TextField secondaryLightTextBox = new TextField(Accent.PRIMARY_DARK);
         secondaryLightTextBox.setPromptText("Button Icon");
-        secondaryLightTextBox.setTrailingGlyph(bellButton);
+        secondaryLightTextBox.setTrailingGlyph(folderButton);
 
         SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, Color.valueOf("#ababab"), IconSize.SIZE_24);
         SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, Color.valueOf("#ababab"), IconSize.SIZE_24);
