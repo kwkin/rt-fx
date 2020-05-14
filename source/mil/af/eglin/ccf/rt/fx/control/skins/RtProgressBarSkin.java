@@ -22,6 +22,7 @@ import mil.af.eglin.ccf.rt.fx.utils.JFXNodeUtils;
 
 public class RtProgressBarSkin extends ProgressIndicatorSkin
 {
+    private final ProgressBar progressBar;
     private final StackPane track = new StackPane();
     private final StackPane bar = new StackPane();
     private final StackPane textPane = new StackPane();
@@ -32,6 +33,7 @@ public class RtProgressBarSkin extends ProgressIndicatorSkin
     public RtProgressBarSkin(final ProgressBar progressBar)
     {
         super(progressBar);
+        this.progressBar = progressBar;
 
         track.getStyleClass().setAll("track");
         bar.getStyleClass().setAll("bar");
@@ -78,14 +80,14 @@ public class RtProgressBarSkin extends ProgressIndicatorSkin
     protected double computeMaxWidth(double height, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        return getSkinnable().prefWidth(height);
+        return progressBar.prefWidth(height);
     }
 
     @Override
     protected double computeMaxHeight(double width, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        return getSkinnable().prefHeight(width);
+        return progressBar.prefHeight(width);
     }
 
     @Override

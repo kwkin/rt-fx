@@ -17,8 +17,6 @@ public class RtColorPickerSkin extends ColorPickerSkin
     {
         super(colorPicker);
 
-        
-        
         colorPicker.getChildrenUnmodifiable().addListener(new ListChangeListener<Node>() 
         {
             @Override

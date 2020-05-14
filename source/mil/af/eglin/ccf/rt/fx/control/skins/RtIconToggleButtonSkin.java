@@ -14,10 +14,10 @@ import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 // TODO combine with toggle button skin
 public class RtIconToggleButtonSkin extends ToggleButtonSkin
 {
+    private final IconToggleButton button;
     private final StackPane stateBox = new StackPane();
 
     private IconToggleButtonStyle style;
-    private IconToggleButton button;
     private RtAnimationTimer timer;
     
     public RtIconToggleButtonSkin(final IconToggleButton button)
@@ -37,7 +37,6 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
                         .setTarget(stateBox.opacityProperty())
                         .setEndValueSupplier(() -> determineOpacity())
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                         .build())
                 .build());
         timer.setCacheNodes(stateBox);
@@ -57,7 +56,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         
         updateChildren();
     }
-
+    
     // TODO check if this should be overridden, or if this can just be added during the constructor.
     @Override
     protected void updateChildren()

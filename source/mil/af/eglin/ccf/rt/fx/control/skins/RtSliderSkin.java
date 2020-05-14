@@ -15,14 +15,13 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 // TODO bind colors to rt style properties
 public class RtSliderSkin extends SliderSkin
 {
-    private Slider slider;
+    private final Slider slider;
+    private final Circle stateThumb = new Circle();
+    private final Circle circleThumb = new Circle();
+    private final StackPane track;
+    private final StackPane filledTrack;
+    private final StackPane thumb;
     
-    private Circle stateThumb = new Circle();
-    private Circle circleThumb = new Circle();
-    
-    private StackPane coloredTrack;
-    private StackPane thumb;
-    private StackPane track;
     private RtAnimationTimer timer;
 
     public RtSliderSkin(final Slider slider)
@@ -39,9 +38,9 @@ public class RtSliderSkin extends SliderSkin
         thumb = (StackPane) getSkinnable().lookup(".thumb");
         thumb.getChildren().addAll(stateThumb, circleThumb);
 
-        coloredTrack = new StackPane();
-        coloredTrack.getStyleClass().add("colored-track");
-        coloredTrack.setMouseTransparent(true);
+        filledTrack = new StackPane();
+        filledTrack.getStyleClass().add("colored-track");
+        filledTrack.setMouseTransparent(true);
 
 
         slider.setPickOnBounds(false);
@@ -74,7 +73,7 @@ public class RtSliderSkin extends SliderSkin
             updateState();
         });
         
-        getChildren().add(getChildren().indexOf(thumb), coloredTrack);
+        getChildren().add(getChildren().indexOf(thumb), filledTrack);
 //        getChildren().add(getChildren().indexOf(thumb), stateThumb);
     }
 
@@ -103,7 +102,7 @@ public class RtSliderSkin extends SliderSkin
         stateThumb.setCenterX(thumb.getLayoutX() + thumb.getWidth() / 2);
         stateThumb.setCenterY(thumb.getLayoutY() + thumb.getHeight() / 2);
 
-        coloredTrack.resizeRelocate(layoutX, layoutY, width, height);
+        filledTrack.resizeRelocate(layoutX, layoutY, width, height);
     }
     
     private void updateState()

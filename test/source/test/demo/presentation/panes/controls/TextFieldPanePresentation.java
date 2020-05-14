@@ -1,10 +1,15 @@
 package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
+import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.TextFieldStyle;
+import mil.af.eglin.ccf.rt.fx.icons.IconSize;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -25,6 +30,11 @@ public class TextFieldPanePresentation extends SizedTitledCard
         stackPane.getChildren().add(createTextBoxes());
         stackPane.getChildren().add(new Separator());
         stackPane.getChildren().add(createAccentTextBoxes());
+
+        SvgGlyph play = new SvgGlyph(SvgFile.PLAY, IconSize.SIZE_32);
+        SvgGlyph pause = new SvgGlyph(SvgFile.PAUSE, IconSize.SIZE_32);
+        IconToggleButton accented = new IconToggleButton(play, pause, IconToggleButtonStyle.ACCENTED);
+        stackPane.getChildren().add(accented);
         
         setContent(stackPane);
     }

@@ -15,14 +15,15 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
+    private final RadioButton radioButton;
     private final Circle radio = new Circle();
     private final Circle dot = new Circle();
     private final StackPane container = new StackPane();
 
+    // TODO remove padding
     private double padding = 12;
     
     private RtAnimationTimer timer;
-    private RadioButton radioButton;
     
     public RtRadioButtonSkin(final RadioButton radioButton)
     {

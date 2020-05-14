@@ -17,14 +17,13 @@ import java.lang.reflect.Field;
 
 public class RtTextFieldSkin extends TextFieldSkin
 {
-    private TextField textField;
-
-    private StackPane overlayContainer = new StackPane();
-    private StackPane inputContainer = new StackPane();
-    private StackPane promptContainer = new StackPane();
+    private final TextField textField;
+    private final StackPane overlayContainer = new StackPane();
+    private final StackPane inputContainer = new StackPane();
+    private final StackPane promptContainer = new StackPane();
+    
     private Text promptText;
     private Pane textPane;
-
     private PromptInput linesWrapper;
 
     public RtTextFieldSkin(final TextField textField)
