@@ -14,6 +14,7 @@ TODO
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-border-radius: 0;
+    -fx-cursor: default;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 14;
     -fx-max-width: 1000000;
@@ -41,6 +42,7 @@ TODO
 
 .rt-text-field .input-container
 {
+    -fx-cursor: text;
     -fx-background-color: -var-base-light-color;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
@@ -51,6 +53,7 @@ TODO
 
 .rt-text-field .prompt-container
 {
+    -fx-cursor: text;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
