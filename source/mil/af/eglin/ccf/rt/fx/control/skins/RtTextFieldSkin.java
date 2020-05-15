@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidableContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
@@ -24,7 +25,10 @@ public class RtTextFieldSkin extends TextFieldSkin
     private final StackPane overlayContainer = new StackPane();
     private final StackPane inputContainer = new StackPane();
     private final StackPane promptContainer = new StackPane();
+    
+    private final StackPane textContainer = new StackPane();
     private final StackPane helperContainer = new StackPane();
+    private final ValidableContainer errorContainer;
     
     private Text promptText;
     private Text helperText;
@@ -51,16 +55,22 @@ public class RtTextFieldSkin extends TextFieldSkin
         linesWrapper.init(() -> createPromptText(), textPane);
 
         helperContainer.getStyleClass().add("helper-container");
-        
-        createHelperText();
+
         updateOverlayColor();
-        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, helperContainer);
+        createHelperText();
+        this.errorContainer = new ValidableContainer(this.textField);
+        this.textContainer.getChildren().addAll(helperContainer, errorContainer);
+        this.helperContainer.visibleProperty().bind(this.textField.isValidProperty());
+        this.errorContainer.visibleProperty().bind(this.textField.isValidProperty().not());
+        
+        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, textContainer);
         RtGlyph glyph = this.textField.getTrailingGlyph();
         if (glyph != null)
         {
             getChildren().add(glyph.getGlyph());
         }
-
+        
+        
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(),  textField.focusColorProperty().getName());
         registerChangeListener(textField.getOverlayColorProperty(),  textField.getOverlayColorProperty().getName());
@@ -111,7 +121,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.promptContainer.resizeRelocate(x, y, w, inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
-        this.helperContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
+        this.textContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
         
         RtGlyph graphic = this.textField.getTrailingGlyph();
         if (graphic != null)

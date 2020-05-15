@@ -12,10 +12,12 @@ import com.sun.javafx.css.converters.SizeConverter;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
@@ -26,17 +28,25 @@ import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
+import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
+import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+// TODO clean up validation text and API
 // TODO add error and helper text
-// TODO add validation API
+// TODO if helper text not specified, but error text is possible, reserve space for the textfield
+// TODO add icon color option in the textfield CSS
+//
 
-public class TextField extends javafx.scene.control.TextField implements RtComponent
+public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
 {
     private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     private static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -46,9 +56,13 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
 
+    private BooleanProperty isValid = new SimpleBooleanProperty(true);
     private BooleanProperty isShowHelperText = new SimpleBooleanProperty();
     private StringProperty helperText = new SimpleStringProperty();
+    private StringProperty errorText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
+    
+    private ValidableHandler<String> validationHandler = new ValidableHandler<String>(this);
     
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
@@ -242,6 +256,61 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     {
         this.isShowHelperText.set(isShowHelperText);
     }
+
+    public ObservableList<Validator<String>> getValidators()
+    {
+        return this.validationHandler.getValidators();
+    }
+
+    public boolean validate()
+    {
+        this.isValid.set(this.validationHandler.validate(getText()));
+        return isValid();
+    }
+    
+    public ReadOnlyBooleanProperty isValidProperty()
+    {
+        return this.isValid;
+    }
+    
+    public boolean isValid()
+    {
+        return this.isValid.get();
+    }
+    
+    public void setValidateCondition(ValidateCondition validateCondition)
+    {
+        this.validationHandler.setValidateCondition(validateCondition);
+    }
+    
+    public void getValidateCondition(ValidateCondition validateCondition)
+    {
+        this.validationHandler.getValidateCondition();
+    }
+
+    @Override
+    public Control getControl()
+    {
+        return this;
+    }
+
+    @Override
+    public StringProperty errorMessageProperty()
+    {
+        return this.errorText;
+    }
+
+    @Override
+    public void setErrorMessage(String message)
+    {
+        this.errorText.set(message);
+    }
+
+    @Override
+    public String getErrorMessage()
+    {
+        return this.errorText.get();
+    }
     
     /**
      * {@inheritDoc}
@@ -269,7 +338,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     {
         return this.accent.getCssName();
     }
-
+    
     /**
      * {@inheritDoc}
      */

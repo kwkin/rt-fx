@@ -2,10 +2,13 @@ package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
+import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.control.validation.RequiredFieldValidator;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
@@ -69,6 +72,14 @@ public class TextFieldPanePresentation extends SizedTitledCard
         secondaryDarkTextBox.setIsShowHelperText(true);
         secondaryDarkTextBox.setHelperText("Helper Text");
 
+        RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.");
+        TextField validableTextField = new TextField(Accent.SECONDARY_DARK);
+        validableTextField.setPromptText("Required");
+        validableTextField.setIsShowHelperText(true);
+        validableTextField.setHelperText("Helper Text");
+        validableTextField.setValidateCondition(ValidateCondition.MANUAL);
+        validableTextField.getValidators().add(requiredValidator);
+        
         SvgGlyph bell = new SvgGlyph(SvgFile.BELL, Color.valueOf("#ababab"), IconSize.SIZE_24);
         TextField allEnabledTextBox = new TextField(Accent.SECONDARY_MID);
         allEnabledTextBox.setPromptText("Label");
@@ -77,55 +88,24 @@ public class TextFieldPanePresentation extends SizedTitledCard
         allEnabledTextBox.setHelperText("Helper Text");
         allEnabledTextBox.setTrailingGlyph(bell);
         
+        Button testButton = new Button("Test");
+        testButton.setOnAction(event -> 
+        {
+            validableTextField.validate();
+        });
+        
         vBox.getChildren().add(primaryLightTextBox);
         vBox.getChildren().add(primaryMidTextBox);
         vBox.getChildren().add(primaryDarkTextBox);
         vBox.getChildren().add(secondaryLightTextBox);
         vBox.getChildren().add(secondaryMidTextBox);
         vBox.getChildren().add(secondaryDarkTextBox);
+        vBox.getChildren().add(validableTextField);
         vBox.getChildren().add(allEnabledTextBox);
+        vBox.getChildren().add(testButton);
 
         descriptionPane.setContent(vBox);
         
         return descriptionPane;
     }
-    
-//    private Node createAccentTextBoxes()
-//    {
-//        DescriptionPane descriptionPane = new DescriptionPane();
-//        descriptionPane.setDescription("This group contains accented text boxes, which defaults the text line with the primary or secondary color.");
-//
-//        GridPane textboxGridPane = new GridPane();
-//        TextField primaryLightAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_LIGHT);
-//        primaryLightAccentTextBox.setPromptText("First Name");
-//        primaryLightAccentTextBox.setLabelFloat(true);
-//        TextField primaryMidAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_MID);
-//        primaryMidAccentTextBox.setPromptText("Last Name");
-//        primaryMidAccentTextBox.setLabelFloat(true);
-//        TextField primaryDarkAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.PRIMARY_DARK);
-//        primaryDarkAccentTextBox.setPromptText("Email");
-//        primaryDarkAccentTextBox.setLabelFloat(true);
-//
-//        TextField secondaryLightAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_LIGHT);
-//        secondaryLightAccentTextBox.setPromptText("First Name");
-//        secondaryLightAccentTextBox.setLabelFloat(true);
-//        TextField secondaryMidAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_MID);
-//        secondaryMidAccentTextBox.setPromptText("Last Name");
-//        secondaryMidAccentTextBox.setLabelFloat(true);
-//        TextField secondaryDarkAccentTextBox = new TextField(TextFieldStyle.FILLED, Accent.SECONDARY_DARK);
-//        secondaryDarkAccentTextBox.setPromptText("Email");
-//        secondaryDarkAccentTextBox.setLabelFloat(true);
-//        
-//        textboxGridPane.add(primaryLightAccentTextBox, 0, 0);
-//        textboxGridPane.add(primaryMidAccentTextBox, 0, 1);
-//        textboxGridPane.add(primaryDarkAccentTextBox, 0, 2);
-//        
-//        textboxGridPane.add(secondaryLightAccentTextBox, 1, 0);
-//        textboxGridPane.add(secondaryMidAccentTextBox, 1, 1);
-//        textboxGridPane.add(secondaryDarkAccentTextBox, 1, 2);
-//
-//        descriptionPane.setContent(textboxGridPane);
-//        
-//        return descriptionPane;
-//    }
 }

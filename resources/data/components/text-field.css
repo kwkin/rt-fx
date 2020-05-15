@@ -1,12 +1,3 @@
-/*
-TODO
-- Add trailing icon
-- Add help text
-- Add validation text and validator API
-- Add text limit
-- Trailing icon color
-*/
-
 /*-- ############################### Text Field Style ############################### */
 
 .rt-text-field
@@ -113,4 +104,21 @@ TODO
 .rt-text-field:floating .input-container
 {
     -fx-padding: 22 16 6 16;
+}
+
+
+
+.rt-text-field:helper .error-container
+{
+    -fx-border-width: 2;
+    -fx-min-height: 16;
+    -fx-padding: 2 16 2 16;
+}
+
+.rt-text-field:helper .error-container .error-text
+{
+    -fx-fill: red;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
 }
