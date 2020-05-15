@@ -4,15 +4,14 @@ TODO
 - Add help text
 - Add validation text and validator API
 - Add text limit
+- Trailing icon color
 */
 
 /*-- ############################### Text Field Style ############################### */
 
-.rt-text-field,
-.rt-text-field:focused
+.rt-text-field
 {
-    -fx-background-color: -var-base-light-color;
-	-fx-background-radius: 4 4 0 0;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-border-radius: 0;
     -fx-font-family: "Roboto Regular";
@@ -27,28 +26,27 @@ TODO
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-base-dark-color;
     -rt-trailing-icon-gap: 10;
+    -rt-helper-text-height: 24;
 }
 
-.rt-text-field .rt-svg-icon,
-.rt-text-field .rt-button.icon,
-.rt-text-field .rt-icon-toggle-button
+.rt-text-field:focused
 {
-    -fx-padding: 4;
+    -fx-background-color: transparent;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 14;
+    -fx-prompt-text-fill: -var-main-light-text-color;
+    -fx-text-fill: -var-base-mid-text-color;
+    -fx-padding: 0;
 }
 
 .rt-text-field .input-container
 {
+    -fx-background-color: -var-base-light-color;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
     -fx-padding: 16;
-}
-
-.rt-text-field:floating .input-container
-{
-    -fx-padding: 22 16 6 16;
-}
-
-.rt-text-field .prompt-container
-{
-    -fx-padding: 16;
+    -fx-min-height: 48;
 }
 
 .rt-text-field .prompt-container
@@ -56,6 +54,7 @@ TODO
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
+    -fx-padding: 16;
 }
 
 .rt-text-field .input-focused-line
@@ -78,4 +77,37 @@ TODO
     -var-height: 1;
     -fx-pref-height: -var-height;
     -fx-max-height: -var-height;
+}
+
+.rt-text-field .rt-svg-icon,
+.rt-text-field .rt-button.icon,
+.rt-text-field .rt-icon-toggle-button
+{
+    -fx-padding: 4;
+}
+
+/*-- ############################### Pseudo State Padding ############################### */
+.rt-text-field:helper
+{
+    -fx-min-height: 72;
+}
+
+.rt-text-field:helper .helper-container
+{
+    -fx-border-width: 2;
+    -fx-min-height: 16;
+    -fx-padding: 2 16 2 16;
+}
+
+.rt-text-field:helper .helper-container .helper-text
+{
+    -fx-fill: -var-main-light-text-color;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+.rt-text-field:floating .input-container
+{
+    -fx-padding: 22 16 6 16;
 }

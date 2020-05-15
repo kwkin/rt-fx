@@ -9,9 +9,13 @@ import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 import com.sun.javafx.css.converters.SizeConverter;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
@@ -35,12 +39,15 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class TextField extends javafx.scene.control.TextField implements RtComponent
 {
     private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    private static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
     
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
-    
+
+    private BooleanProperty isShowHelperText = new SimpleBooleanProperty();
+    private StringProperty helperText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
     
     // @formatter:off
@@ -53,7 +60,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
-            StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 12.0);
+            StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 10.0);
+    private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
+            StyleableProperties.HELPER_TEXT_HEIGHT, TextField.this, "helperTextHeight", 16.0);
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
     // @formatter:on
@@ -188,6 +197,51 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     {
         this.trailingIconGap.set(trailingIconGap);
     }
+
+    public DoubleProperty helperTextHeightProperty()
+    {
+        return this.helperTextHeight;
+    }
+
+    public double getHelperTextHeight()
+    {
+        return this.helperTextHeight.get();
+    }
+
+    public void setHelperTextHeight(double helperTextHeight)
+    {
+        this.helperTextHeight.set(helperTextHeight);
+    }
+
+    public StringProperty helperTextProperty()
+    {
+        return this.helperText;
+    }
+
+    public String getHelperText()
+    {
+        return this.helperText.get();
+    }
+
+    public void setHelperText(String helperText)
+    {
+        this.helperText.set(helperText);
+    }
+
+    public BooleanProperty isShowHelperTextProperty()
+    {
+        return this.isShowHelperText;
+    }
+
+    public boolean getIsShowHelperText()
+    {
+        return this.isShowHelperText.get();
+    }
+
+    public void setIsShowHelperText(boolean isShowHelperText)
+    {
+        this.isShowHelperText.set(isShowHelperText);
+    }
     
     /**
      * {@inheritDoc}
@@ -246,9 +300,14 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get());
         this.labelFloating.addListener((ov, oldVal, newVal) -> 
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
+        });
+        this.isShowHelperText.addListener((ov, oldVal, newVal) -> 
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
         });
     }
 
@@ -316,7 +375,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             }
         };
         private static final CssMetaData<TextField, Number> TRAILING_ICON_PADDING = new CssMetaData<TextField, Number>(
-                "-rt-trailing-icon-gap", SizeConverter.getInstance(), 12.0)
+                "-rt-trailing-icon-gap", SizeConverter.getInstance(), 10.0)
         {
 
             @Override
@@ -329,6 +388,22 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             public StyleableProperty<Number> getStyleableProperty(TextField control)
             {
                 return control.trailingIconGap;
+            }
+        };
+        private static final CssMetaData<TextField, Number> HELPER_TEXT_HEIGHT = new CssMetaData<TextField, Number>(
+                "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
+        {
+
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.helperTextHeight == null || !control.helperTextHeight.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Number> getStyleableProperty(TextField control)
+            {
+                return control.helperTextHeight;
             }
         };
         private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = new CssMetaData<TextField, Boolean>(
@@ -359,6 +434,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
             styleables.add(TRAILING_ICON_PADDING);
+            styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);

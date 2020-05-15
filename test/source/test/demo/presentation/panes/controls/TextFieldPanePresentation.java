@@ -60,15 +60,30 @@ public class TextFieldPanePresentation extends SizedTitledCard
         SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, Color.valueOf("#ababab"), IconSize.SIZE_24);
         SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, Color.valueOf("#ababab"), IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
-        TextField secondaryMidTextBox = new TextField(Accent.SECONDARY_DARK);
+        TextField secondaryMidTextBox = new TextField(Accent.SECONDARY_MID);
         secondaryMidTextBox.setPromptText("Toggle Button Icon");
         secondaryMidTextBox.setTrailingGlyph(eyeToggleButton);
+
+        TextField secondaryDarkTextBox = new TextField(Accent.SECONDARY_DARK);
+        secondaryDarkTextBox.setPromptText("Label");
+        secondaryDarkTextBox.setIsShowHelperText(true);
+        secondaryDarkTextBox.setHelperText("Helper Text");
+
+        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        TextField allEnabledTextBox = new TextField(Accent.SECONDARY_MID);
+        allEnabledTextBox.setPromptText("Label");
+        allEnabledTextBox.setLabelFloat(true);
+        allEnabledTextBox.setIsShowHelperText(true);
+        allEnabledTextBox.setHelperText("Helper Text");
+        allEnabledTextBox.setTrailingGlyph(bell);
         
         vBox.getChildren().add(primaryLightTextBox);
         vBox.getChildren().add(primaryMidTextBox);
         vBox.getChildren().add(primaryDarkTextBox);
         vBox.getChildren().add(secondaryLightTextBox);
         vBox.getChildren().add(secondaryMidTextBox);
+        vBox.getChildren().add(secondaryDarkTextBox);
+        vBox.getChildren().add(allEnabledTextBox);
 
         descriptionPane.setContent(vBox);
         
