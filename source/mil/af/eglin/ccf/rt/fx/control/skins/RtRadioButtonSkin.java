@@ -13,6 +13,7 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+// TODO change select animation to slide from left to right
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
     private final RadioButton radioButton;
@@ -92,15 +93,15 @@ public class RtRadioButtonSkin extends RadioButtonSkin
 
         updateChildren();
         
-        registerChangeListener(radioButton.selectedColorProperty(), "SELECTED_COLOR");
-        registerChangeListener(radioButton.unselectedColorProperty(), "UNSELECTED_COLOR");
+        registerChangeListener(radioButton.selectedColorProperty(), radioButton.selectedColorProperty().getName());
+        registerChangeListener(radioButton.unselectedColorProperty(), radioButton.unselectedColorProperty().getName());
     }
     
     @Override
     protected void handleControlPropertyChanged(String property) 
     {
         super.handleControlPropertyChanged(property);
-        if ("SELECTED_COLOR".equals(property)) 
+        if (radioButton.selectedColorProperty().getName().equals(property)) 
         {
             Paint paint = determineColor(this.radioButton.isSelected());
             if (paint != null)
@@ -109,7 +110,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
             }
             this.dot.setFill(this.radioButton.getSelectedColor());
         } 
-        else if ("UNSELECTED_COLOR".equals(property)) 
+        else if (radioButton.unselectedColorProperty().getName().equals(property)) 
         {
             Paint paint = determineColor(this.radioButton.isSelected());
             if (paint != null)

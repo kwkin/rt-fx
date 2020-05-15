@@ -77,12 +77,12 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
     
     public ToggleButtonStyle getButtonStyle()

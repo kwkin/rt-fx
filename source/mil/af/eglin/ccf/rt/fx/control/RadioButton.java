@@ -63,12 +63,12 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
     
     public Paint getSelectedColor()
     {
-        return selectedColor.getValue();
+        return selectedColor.get();
     }
 
     public void setSelectedColor(Paint color)
     {
-        this.selectedColor.setValue(color);
+        this.selectedColor.set(color);
     }
 
     public StyleableObjectProperty<Paint> unselectedColorProperty()
@@ -78,7 +78,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
 
     public Paint getUnselectedColor()
     {
-        return unselectedColor.getValue();
+        return unselectedColor.get();
     }
 
     public void setUnselectedColor(Paint color)
@@ -93,12 +93,12 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     /**

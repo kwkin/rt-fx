@@ -1,5 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 
 public class MenuItem extends javafx.scene.control.MenuItem implements RtComponent
@@ -20,10 +21,22 @@ public class MenuItem extends javafx.scene.control.MenuItem implements RtCompone
         initialize();
     }
     
+    public MenuItem(String text, Node graphic)
+    {
+        super(text, graphic);
+        initialize();
+    }
+    
     public MenuItem(String text, Accent accent)
     {
         super(text);
         this.accent = accent;
+        initialize();
+    }
+    
+    public MenuItem(String text, Node graphic, Accent accent)
+    {
+        super(text, graphic);
         initialize();
     }
 

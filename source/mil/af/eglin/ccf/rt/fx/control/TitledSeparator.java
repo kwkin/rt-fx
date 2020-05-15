@@ -30,6 +30,19 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtTitledSeparatorSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+// TODO add option to align the label to the left/right/top/bottom of the separator
+
+/**
+ * A horizontal or vertical separator line with a label.
+ * <p>
+ * The label can contain text and/or a graphic. The separator can be oriented
+ * horizontally or vertically.
+ * <p>
+ * A titled separator will belong to one of two mutually exclusive
+ * pseudo-classes: "horizontal" or "vertical". The "horizontal pseudo-class
+ * applies if the separator is horizontal, and the "vertical" pseudo-class
+ * applies if the separator is vertical.
+ */
 public class TitledSeparator extends Labeled
 {
     private static final PseudoClass VERTICAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("vertical");
@@ -49,6 +62,9 @@ public class TitledSeparator extends Labeled
     private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.SEPARATOR_CONTENT_GAP, TitledSeparator.this, "separatorContentGap", 0.0);
 
+    /**
+     * Creates a new horizontal separator.
+     */
     public TitledSeparator()
     {
         super();
@@ -85,7 +101,7 @@ public class TitledSeparator extends Labeled
     public TitledSeparator(String title, Orientation orientation)
     {
         super(title);
-        this.orientation.setValue(orientation);
+        this.orientation.set(orientation);
         initialize();
     }
 
@@ -93,7 +109,7 @@ public class TitledSeparator extends Labeled
     {
         super();
         this.accent = accent;
-        this.orientation.setValue(orientation);
+        this.orientation.set(orientation);
         initialize();
     }
 
@@ -101,7 +117,7 @@ public class TitledSeparator extends Labeled
     {
         super(title);
         this.accent = accent;
-        this.orientation.setValue(orientation);
+        this.orientation.set(orientation);
         initialize();
     }
 
@@ -188,17 +204,9 @@ public class TitledSeparator extends Labeled
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
         setContentDisplay(ContentDisplay.LEFT);
-        
+
         pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, orientation.getValue() != Orientation.VERTICAL);
         pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, orientation.getValue() == Orientation.VERTICAL);
-        if (orientation.getValue() == Orientation.VERTICAL)
-        {
-            setMinWidth(TitledSeparator.USE_PREF_SIZE);
-        }
-        else
-        {
-            setMinHeight(TitledSeparator.USE_PREF_SIZE);
-        }
     }
 
     private static class StyleableProperties
@@ -278,7 +286,7 @@ public class TitledSeparator extends Labeled
         };
 
         private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
-        
+
         static
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(
@@ -301,7 +309,7 @@ public class TitledSeparator extends Labeled
     {
         return StyleableProperties.STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

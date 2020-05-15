@@ -85,12 +85,12 @@ public class IconButton extends Button implements RtGlyph
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     public StyleableObjectProperty<Paint> glyphFillProperty()
@@ -204,11 +204,8 @@ public class IconButton extends Button implements RtGlyph
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     Button.getClassCssMetaData());
-            // @formatter:off
-            Collections.addAll(styleables, 
-                    SELECTED_ICON_COLOR,
-                    DISABLE_ANIMATION);
-            // @formatter:on
+            styleables.add(SELECTED_ICON_COLOR);
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

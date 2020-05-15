@@ -27,16 +27,18 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
         rightLine.getStyleClass().setAll("right-line");
         getChildren().add(leftLine);
         getChildren().add(rightLine);
-        registerChangeListener(separator.orientationProperty(), "ORIENTATION");
-        registerChangeListener(separator.halignmentProperty(), "HALIGNMENT");
-        registerChangeListener(separator.valignmentProperty(), "VALIGNMENT");
+        registerChangeListener(separator.orientationProperty(), separator.orientationProperty().getName());
+        registerChangeListener(separator.halignmentProperty(), separator.halignmentProperty().getName());
+        registerChangeListener(separator.valignmentProperty(), separator.valignmentProperty().getName());
     }
 
     @Override
-    protected void handleControlPropertyChanged(String p)
+    protected void handleControlPropertyChanged(String changed)
     {
-        super.handleControlPropertyChanged(p);
-        if ("ORIENTATION".equals(p) || "HALIGNMENT".equals(p) || "VALIGNMENT".equals(p))
+        super.handleControlPropertyChanged(changed);
+        if (separator.orientationProperty().getName().equals(changed) 
+                || separator.halignmentProperty().getName().equals(changed) 
+                || separator.valignmentProperty().getName().equals(changed))
         {
             getSkinnable().requestLayout();
         }

@@ -60,12 +60,12 @@ public class TitledPane extends javafx.scene.control.TitledPane
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     @Override
@@ -116,9 +116,7 @@ public class TitledPane extends javafx.scene.control.TitledPane
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
-            // @formatter:off
-            Collections.addAll(styleables, DISABLE_ANIMATION);
-            // @formatter:on
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

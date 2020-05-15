@@ -107,12 +107,12 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
 
     public void setSelectedFill(Paint color)
     {
-        this.selectedFill.setValue(color);
+        this.selectedFill.set(color);
     }
 
     public Paint getSelectedFill()
     {
-        return selectedFill.getValue();
+        return selectedFill.get();
     }
 
     public StyleableObjectProperty<Paint> unselectedFillProperty()
@@ -122,12 +122,12 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
 
     public void setUnselectedFill(Paint color)
     {
-        this.unselectedFill.setValue(color);
+        this.unselectedFill.set(color);
     }
 
     public Paint getUnselectedFill()
     {
-        return unselectedFill.getValue();
+        return unselectedFill.get();
     }
     
     public SvgGlyph getSelectedIcon()
@@ -177,12 +177,12 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     @Override
@@ -338,12 +338,9 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
-            // @formatter:off
-            Collections.addAll(styleables, 
-                    SELECTED_ICON_COLOR,
-                    UNSELECTED_ICON_COLOR,
-                    DISABLE_ANIMATION);
-            // @formatter:on
+            styleables.add(SELECTED_ICON_COLOR);
+            styleables.add(UNSELECTED_ICON_COLOR);
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
