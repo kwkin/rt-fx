@@ -226,54 +226,54 @@
 
 .rt-label.block-title.base-light
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
     -fx-text-fill: -var-base-light-text-color;
 }
 
 .rt-label.block-title.base-mid
 {
-    -fx-background-color: -var-base-mid-color;
+    -fx-background-color: -var-main-color-l3;
     -fx-text-fill: -var-base-mid-text-color;
 }
 
 .rt-label.block-title.base-dark
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
     -fx-text-fill: -var-base-dark-text-color;
 }
 
 .rt-label.block-title.primary-light
 {
     -fx-background-color: -var-primary-light-color;
-    -fx-text-fill: -var-primary-light-text-color;
+    -fx-text-fill: -var-on-primary-light-color;
 }
 
 .rt-label.block-title.primary-mid
 {
     -fx-background-color: -var-primary-mid-color;
-    -fx-text-fill: -var-primary-mid-text-color;
+    -fx-text-fill: -var-on-primary-mid-color;
 }
 
 .rt-label.block-title.primary-dark
 {
     -fx-background-color: -var-primary-dark-color;
-    -fx-text-fill: -var-primary-dark-text-color;
+    -fx-text-fill: -var-on-primary-dark-color;
 }
 
 .rt-label.block-title.secondary-light
 {
     -fx-background-color: -var-secondary-light-color;
-    -fx-text-fill: -var-secondary-light-text-color;
+    -fx-text-fill: -var-on-secondary-light-color;
 }
 
 .rt-label.block-title.secondary-mid
 {
     -fx-background-color: -var-secondary-mid-color;
-    -fx-text-fill: -var-secondary-mid-text-color;
+    -fx-text-fill: -var-on-secondary-mid-color;
 }
 
 .rt-label.block-title.secondary-dark
 {
     -fx-background-color: -var-secondary-dark-color;
-    -fx-text-fill: -var-secondary-dark-text-color;
+    -fx-text-fill: -var-on-secondary-text-color;
 }

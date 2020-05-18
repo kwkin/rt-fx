@@ -7,7 +7,6 @@ public enum Theme
     EMERALD_COAST("Emerald Coast", "emerald-coast.css"),
     LIGHT("Light", "light-theme.css"),
     LIGHT_SINGLE("Light", "light-theme-single.css"),
-    PINE_TREES_AND_LOG_CABINS("Pine Trees and Log Cabins", "pine-trees-and-log-cabins.css"),
     CELESTIAL_QUASAR("Celestial Quasar", "celestial-quasar.css");
 
     private String name;

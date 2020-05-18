@@ -24,34 +24,34 @@ TODO
 .rt-table-view .table-row-cell
 {
 	-fx-cell-size: 48px;
-	-fx-border-color: #e4e4e4;
+	-fx-border-color: -var-main-color-l3;
 	-fx-border-width: 0 0 1 0;
 }
 
 .rt-table-view.plain .table-row-cell
 {
-    -fx-background: -var-main-light-color;
+    -fx-background: -var-main-color-l1;
 }
 
 .rt-table-view.zebra .table-row-cell
 {
-    -fx-background: -var-main-mid-color;
+    -fx-background: -var-main-color-l2;
 }
 
 .rt-table-view .table-row-cell:odd 
 {
-	-fx-border-color: #e4e4e4;
+	-fx-border-color: -var-main-color-l3;
 	-fx-border-width: 0 0 1 0;
 }
 
 .rt-table-view.plain .table-row-cell:odd 
 {
-    -fx-background: -var-main-light-color;
+    -fx-background: -var-main-color-l1;
 }
 
 .rt-table-view.zebra .table-row-cell:odd 
 {
-    -fx-background: -var-main-light-color;
+    -fx-background: -var-main-color-l1;
 }
 
 /*-- ############################### Table View Header Style ############################### */
@@ -63,7 +63,7 @@ TODO
 	-fx-background-color: transparent;
     /* -fx-border-style: solid solid solid solid; */
     -fx-border-style: solid segments(0, 12, 24, 30) solid solid;
-	-fx-border-color: #e4e4e4;
+	-fx-border-color: -var-main-color-l3;
 	-fx-border-width: 0 2 1 0;
     -fx-cursor: hand;
     -fx-font-family: "Roboto Black";
@@ -122,7 +122,7 @@ TODO
 /*-- ############################### Table View Drag Style ############################### */
 .rt-table-view .column-overlay 
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
 }
 
 .rt-table-view .column-resize-line, .rt-table-view .column-drag-header 
@@ -146,9 +146,9 @@ TODO
 .table-row-cell:filled .table-cell:hover,
 .tree-table-row-cell:filled .tree-table-cell:hover 
 {
-    -fx-background: derive(-var-main-light-color, -10%);
-    -fx-background-color: derive(-var-main-light-color, -10%);
-    -fx-table-cell-border-color:  derive(-var-main-light-color, -10%);
+    -fx-background: derive(-var-main-color-l1, -10%);
+    -fx-background-color: derive(-var-main-color-l1, -10%);
+    -fx-table-cell-border-color:  derive(-var-main-color-l1, -10%);
 }
 
 
@@ -167,9 +167,9 @@ TODO
 .table-row-cell:filled .table-cell:selected,
 .tree-table-row-cell:filled .tree-table-cell:selected 
 {
-    -fx-background: derive(-var-main-light-color, -20%);;
-    -fx-background-color: derive(-var-main-light-color, -20%);;
-    -fx-table-cell-border-color:  derive(-var-main-light-color, -20%);;
+    -fx-background: derive(-var-main-color-l1, -20%);;
+    -fx-background-color: derive(-var-main-color-l1, -20%);;
+    -fx-table-cell-border-color:  derive(-var-main-color-l1, -20%);;
 }
 
 .table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
@@ -177,7 +177,7 @@ TODO
 .table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused,
 .tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused 
 {
-    -fx-background: derive(-var-main-light-color, -20%);;
-    -fx-background-color: derive(-var-main-light-color, -20%);;
-    -fx-table-cell-border-color:  derive(-var-main-light-color, -20%);;
+    -fx-background: derive(-var-main-color-l1, -20%);;
+    -fx-background-color: derive(-var-main-color-l1, -20%);;
+    -fx-table-cell-border-color:  derive(-var-main-color-l1, -20%);;
 }

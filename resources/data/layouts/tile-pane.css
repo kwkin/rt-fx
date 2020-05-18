@@ -31,17 +31,17 @@
 
 .rt-tile-pane.base-light
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 }
 
 .rt-tile-pane.base-mid
 {
-    -fx-background-color: -var-base-mid-color;
+    -fx-background-color: -var-main-color-l3;
 }
 
 .rt-tile-pane.base-dark
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
 }
 
 /*-- ############################### Tile Pane Style ############################### */

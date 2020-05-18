@@ -42,20 +42,20 @@ TODO
 
 .rt-progress-bar.base-light
 {
-    -rt-progress-color: -var-base-dark-color;
-    -rt-remaining-color: derive(-var-base-light-color, 75.0%);
+    -rt-progress-color: -var-main-color-l4;
+    -rt-remaining-color: derive(-var-main-color-l2, 75.0%);
 }
 
 .rt-progress-bar.base-mid
 {
-    -rt-progress-color: -var-base-dark-color;
-    -rt-remaining-color: derive(-var-base-mid-color, 75.0%);
+    -rt-progress-color: -var-main-color-l4;
+    -rt-remaining-color: derive(-var-main-color-l3, 75.0%);
 }
 
 .rt-progress-bar.base-dark
 {
-    -rt-progress-color: -var-base-dark-color;
-    -rt-remaining-color: derive(-var-base-dark-color, 75.0%);
+    -rt-progress-color: -var-main-color-l4;
+    -rt-remaining-color: derive(-var-main-color-l4, 75.0%);
 } 
 
 /*-- ############################### Progress Bar Style ############################### */

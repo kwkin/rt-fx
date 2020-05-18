@@ -31,17 +31,17 @@
 
 .rt-anchor-pane.base-light
 {
-    -var-accent-color: -var-base-light-color;
+    -var-accent-color: -var-main-color-l2;
 }
 
 .rt-anchor-pane.base-mid
 {
-    -var-accent-color: -var-base-mid-color;
+    -var-accent-color: -var-main-color-l3;
 }
 
 .rt-anchor-pane.base-dark
 {
-    -var-accent-color: -var-base-dark-color;
+    -var-accent-color: -var-main-color-l4;
 }
 
 /*-- ############################### Anchor Pane Styles ############################### */

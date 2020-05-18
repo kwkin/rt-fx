@@ -16,7 +16,7 @@
 
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
-    -rt-unfocus-color: -var-base-dark-color;
+    -rt-unfocus-color: -var-main-color-l4;
     -rt-trailing-icon-gap: 10;
     -rt-helper-text-height: 24;
 }
@@ -34,7 +34,7 @@
 .rt-text-field .input-container
 {
     -fx-cursor: text;
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
@@ -64,7 +64,7 @@
 
 .rt-text-field .input-unfocused-line
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
 	-fx-background-radius: 0;
     -fx-border-radius: 0;
     

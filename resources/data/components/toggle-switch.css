@@ -20,7 +20,7 @@ TODO
     -fx-text-fill: -var-base-mid-text-color;
 
     -rt-selected-color: -var-accent-color;
-    -rt-unselected-color: -var-base-mid-color;
+    -rt-unselected-color: -var-main-color-l4;
     -rt-selected-line-color: derive(-var-accent-color, 50%);
-    -rt-unselected-line-color: -var-base-light-color;
+    -rt-unselected-line-color: -var-main-color-l3;
 }

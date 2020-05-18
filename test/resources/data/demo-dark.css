@@ -1,29 +1,29 @@
 
 .rt-label.block-title.primary-mid
 {
-    -fx-background-color: -var-main-dark-color;
+    -fx-background-color: -var-main-color-l3;
     -fx-text-fill: -var-base-mid-text-color;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.18, 0, 2);
 }
 
 .jfx-decorator 
 {
-    -fx-decorator-color: -var-main-dark-color;
+    -fx-decorator-color: -var-main-color-l3;
 }
 
 .jfx-tool-bar 
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
 }
 
 .jfx-popup-container 
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
 }
 
 .jfx-drawer-side-pane
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
 }
 
 

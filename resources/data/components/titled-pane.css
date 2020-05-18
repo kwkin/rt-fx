@@ -22,7 +22,7 @@ TODO
 .rt-titled-pane .title
 {
     -fx-background-color: transparent;
-    -fx-border-color: -var-base-mid-color;
+    -fx-border-color: -var-main-color-l3;
     -fx-border-width: 0 0 2 0;
     -fx-background-insets: 0;
     -fx-background-radius: 0;

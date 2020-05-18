@@ -2,6 +2,7 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 
 public enum Accent
 {
+    // TODO remove base light and dark
     BASE_DARK("base-dark"),
     BASE_LIGHT("base-light"),
     BASE_MID("base-mid"),

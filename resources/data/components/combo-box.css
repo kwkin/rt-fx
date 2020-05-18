@@ -14,9 +14,9 @@ TODO
 /*-- ############################### Combo Box Style ############################### */
 .rt-combo-box
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -var-base-dark-color;
+    -fx-border-color: -var-main-color-l4;
     -fx-border-radius: 2.0;
     -fx-border-width: 0 0 2 0;
     -fx-cursor: hand;
@@ -39,7 +39,7 @@ TODO
 .combo-box-base:editable:focused,
 .rt-combo-box:focused
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
     -fx-border-color: -var-accent-color;
 }
 
@@ -55,10 +55,10 @@ TODO
 
 .rt-combo-box .combo-box-popup .list-view 
 {
-    -fx-background: -var-main-light-color;
-    -fx-background-color: -var-main-light-color;
+    -fx-background: -var-main-color-l1;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -var-main-light-color;
+    -fx-border-color: -var-main-color-l1;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 0 0 4 0;
@@ -103,9 +103,9 @@ TODO
 .combo-box-base:editable .text-field
 {
     /* TODO use accent colors*/
-    -fx-background-color: -var-base-light-color;
-    -fx-control-inner-background: -var-base-light-color;
-    -fx-faint-focus-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
+    -fx-control-inner-background: -var-main-color-l2;
+    -fx-faint-focus-color: -var-main-color-l2;
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius: 0 0 0 0;
     -fx-effect: null;
@@ -122,14 +122,14 @@ TODO
 /*-- ############################### Combo Box Popup Style ############################### */
 .combo-box-popup .list-view 
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 12, 0.0 , 0 , 8 );
 }
 
 .combo-box-popup .rt-list-view:focused
 {
-	-fx-background-color: -var-main-light-color;
+	-fx-background-color: -var-main-color-l1;
 }
 
 .combo-box-popup .list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,

@@ -30,17 +30,17 @@
 
 .rt-vbox.base-light
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 }
 
 .rt-vbox.base-mid
 {
-    -fx-background-color: -var-base-mid-color;
+    -fx-background-color: -var-main-color-l3;
 }
 
 .rt-vbox.base-dark
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
 }
 
 /*-- ############################### HBox Style ############################### */
