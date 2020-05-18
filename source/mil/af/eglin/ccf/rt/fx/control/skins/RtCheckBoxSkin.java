@@ -22,6 +22,7 @@ import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtFillTransition;
 
+//TODO change select animation to slide from left to right
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
     private final static Duration ANIMATION_DURATION = Duration.millis(120);

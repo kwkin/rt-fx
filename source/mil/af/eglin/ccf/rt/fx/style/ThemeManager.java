@@ -6,7 +6,6 @@ import javafx.application.Application;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO use nio paths instead of strings and check if file exists
-// TODO remove reference to scene
 public class ThemeManager
 {
     private Theme theme;
@@ -14,8 +13,6 @@ public class ThemeManager
     private ThemeManager() 
     {
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
-//        sheets.add(ResourceLoader.loadFile("accents.css"));
-//        sheets.add(ResourceLoader.loadFile("fonts.css"));
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("accents.css"));
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadFile("fonts.css"));
     }
