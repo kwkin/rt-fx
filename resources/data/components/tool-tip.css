@@ -10,5 +10,5 @@
     -fx-padding: 8 16 8 16;
     -fx-min-height: 44;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.26), 10, 0.24, 0, 3);
-    -fx-text-fill: -var-main-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }

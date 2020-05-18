@@ -49,7 +49,7 @@ TODO
 
 .rt-slider .axis 
 {
-    -fx-tick-label-fill: -var-base-mid-text-color;
+    -fx-tick-label-fill: -var-on-main-mid-color;
     -fx-tick-label-gap: 4;
     -fx-tick-length: 5px;
     -fx-minor-tick-length: 4px;
@@ -59,7 +59,7 @@ TODO
 .rt-slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark 
 {
     -fx-fill: null;
-    -fx-stroke: -var-base-mid-text-color;
+    -fx-stroke: -var-on-main-mid-color;
 }
 
 /*-- ############################### RT SubStructure Style ############################### */

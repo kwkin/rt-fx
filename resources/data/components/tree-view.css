@@ -19,14 +19,14 @@
     -fx-padding: 8 0 8 0;
     -fx-font-size: 14px;
     -fx-background-color: transparent;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-tree-view:focused .virtual-flow .clipped-container > .sheet .tree-cell:filled:selected
 {
     -fx-background: derive(-var-primary-light-color, 90%);
     -fx-background-color: derive(-var-primary-light-color, 90%);
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .tree-cell:filled:hover
@@ -38,5 +38,5 @@
 {
     -fx-background: derive(-var-primary-light-color, 90%);
     -fx-background-color: derive(-var-primary-light-color, 90%);
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }

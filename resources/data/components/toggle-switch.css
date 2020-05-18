@@ -17,7 +17,7 @@ TODO
     -fx-background-insets: 0;
     -fx-graphic-text-gap: 8;
     -fx-padding: 0;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 
     -rt-selected-color: -var-accent-color;
     -rt-unselected-color: -var-main-color-l4;

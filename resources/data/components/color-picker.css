@@ -15,7 +15,7 @@ TODO
     -fx-border-width: 0 0 2 0;
     -fx-max-width: 1000000;
 	-fx-padding: 4 8 4 4;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-color-picker.filled:hover
@@ -99,7 +99,7 @@ TODO
     -fx-border-radius: 2.0;
     -fx-border-width: 2 2 2 2;
 	-fx-padding: 2 8 2 2;
-    -fx-text-fill: -var-main-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
     
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 4, 0.06, 0, 2);
 }
@@ -158,7 +158,7 @@ TODO
     -fx-border-color: transparent;
     -fx-border-radius: 2.0;
 	-fx-padding: 4 4 4 4;
-    -fx-text-fill: -var-main-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
     -fx-color-label-visible: false;
 
     -fx-effect: null;

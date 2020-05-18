@@ -11,7 +11,7 @@ TODO
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-min-height: 36;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-titled-pane:focused 

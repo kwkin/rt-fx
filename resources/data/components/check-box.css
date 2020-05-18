@@ -7,7 +7,7 @@ TODO add animations to the check box
     -fx-cursor: hand; 
     -fx-label-padding: 0 0 0 12; 
     -fx-padding: 4 8 4 8; 
-    -fx-text-fill: -var-main-mid-text-color; 
+    -fx-text-fill: -var-on-main-mid-color; 
      
     -rt-selected-color: -var-accent-color; 
     -rt-unselected-color: -var-main-color-l4; 

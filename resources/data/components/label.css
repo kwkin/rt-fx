@@ -3,7 +3,7 @@
 {
     -fx-alignment: center-left;
     -fx-padding: 2 2 2 2;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
     -fx-text-alignment: center;
 }
 
@@ -15,17 +15,17 @@
 
 .rt-label.small.base-light
 {
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.small.base-mid
 {
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.small.base-dark
 {
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.small.primary-light
@@ -66,17 +66,17 @@
 
 .rt-label.normal.base-light
 {
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.normal.base-mid
 {
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.normal.base-dark
 {
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.normal.primary-light
@@ -117,17 +117,17 @@
 
 .rt-label.large.base-light
 {
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.large.base-mid
 {
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.large.base-dark
 {
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.large.primary-light
@@ -168,17 +168,17 @@
 
 .rt-label.title.base-light
 {
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.title.base-mid
 {
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.title.base-dark
 {
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.title.primary-light
@@ -227,19 +227,19 @@
 .rt-label.block-title.base-light
 {
     -fx-background-color: -var-main-color-l2;
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.block-title.base-mid
 {
     -fx-background-color: -var-main-color-l3;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.block-title.base-dark
 {
     -fx-background-color: -var-main-color-l4;
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-label.block-title.primary-light

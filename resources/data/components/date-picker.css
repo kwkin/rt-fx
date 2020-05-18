@@ -11,7 +11,7 @@ TODO
     -rt-selected-border-color: -var-primary-light-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.primary-mid
@@ -20,7 +20,7 @@ TODO
     -rt-selected-border-color: -var-primary-mid-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.primary-dark
@@ -29,7 +29,7 @@ TODO
     -rt-selected-border-color: -var-primary-dark-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.secondary-light
@@ -38,7 +38,7 @@ TODO
     -rt-selected-border-color: -var-secondary-light-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.secondary-mid
@@ -47,7 +47,7 @@ TODO
     -rt-selected-border-color: -var-secondary-mid-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.secondary-dark
@@ -56,7 +56,7 @@ TODO
     -rt-selected-border-color: -var-secondary-dark-color;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.base-light
@@ -65,7 +65,7 @@ TODO
     -rt-selected-border-color: -var-main-color-l2;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.base-mid
@@ -74,7 +74,7 @@ TODO
     -rt-selected-border-color: -var-main-color-l3;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 .rt-date-picker.base-dark
@@ -83,7 +83,7 @@ TODO
     -rt-selected-border-color: -var-main-color-l4;
     -rt-unselected-background-color: -var-main-color-l2;
     -rt-selected-background-color: transparent;
-    -rt-text-color: -var-main-mid-text-color;
+    -rt-text-color: -var-on-main-mid-color;
 }
 
 /*-- ############################### Color Picker Styles ############################### */

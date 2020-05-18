@@ -47,7 +47,6 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        // TODO use snapSize
         super.layoutChildren(x, y, w, h);
         final TitledSeparator sep = getSkinnable();
 
@@ -87,6 +86,8 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
             lineWidth = w / 2 - labelWidth / 2;
             leftLine.resize(lineWidth, leftLine.prefHeight(-1));
             rightLine.resize(lineWidth, rightLine.prefHeight(-1));
+            
+            
             positionInArea(leftLine, x, y, lineWidth, h, 0, sep.getHalignment(), sep.getValignment());
             positionInArea(rightLine, x + lineWidth + labelWidth, y, lineWidth, h, 0, sep.getHalignment(), sep.getValignment());
         }

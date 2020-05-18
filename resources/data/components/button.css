@@ -73,7 +73,7 @@
     -fx-padding: 4;
     -fx-insets: 0;
     -fx-font-family: "Roboto Medium";
-    -fx-text-fill: -var-main-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
     
     -rt-overlay-color: -var-overlay-color;
 }

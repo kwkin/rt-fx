@@ -32,8 +32,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
 
-    // TODO should skinnable or a reference be kept?
-
     private Transition transition;
     private Transition indeterminateTransition;
     private RtFillTransition select;

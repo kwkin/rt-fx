@@ -23,7 +23,7 @@ TODO
     -fx-min-height: 56;
     -fx-max-width: 1000000;
     -fx-padding: 1 1 1 1;
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .combo-box-base .text-input,
@@ -33,7 +33,7 @@ TODO
 .combo-box-base:editable .arrow-button,
 .combo-box-popup .list-view .placeholder .label 
 {
-    -fx-text-fill: -var-base-light-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .combo-box-base:editable:focused,
@@ -71,7 +71,7 @@ TODO
     -fx-cursor: hand;
     -fx-font-size: 14;
     -fx-padding: 8 8 8 8;
-    -fx-text-fill: -var-base-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 /* Change derive color */
