@@ -73,8 +73,9 @@ public class TextFieldPanePresentation extends SizedTitledCard
         secondaryDarkTextBox.setHelperText("Helper Text");
 
         RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.");
-        TextField validableTextField = new TextField(Accent.SECONDARY_DARK);
+        TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
+        validableTextField.setLabelFloat(true);
         validableTextField.setIsShowHelperText(true);
         validableTextField.setHelperText("Helper Text");
         validableTextField.setValidateCondition(ValidateCondition.MANUAL);

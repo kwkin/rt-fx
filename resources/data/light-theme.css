@@ -1,4 +1,7 @@
-/* TODO import font file here */ 
+/*
+TODO rename light/mid/dark naming
+TODO change "text-color" naming to something like "on-color"
+*/
 .root
 {
     -fx-focus-color: transparent;
@@ -50,6 +53,11 @@
     -var-secondary-dark-text-color: #ffffff;
 
     -var-secondary-overlay-color: rgba(255, 255, 255, 0.35);
+    
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #b9717e;
+    -var-error-color: #b00020;
+    -var-on-error-color: #ffffff
 }
 
 /* Remove when JFeonix Dependency is gone */

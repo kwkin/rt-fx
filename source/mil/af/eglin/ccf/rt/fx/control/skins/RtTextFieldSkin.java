@@ -1,9 +1,11 @@
 package mil.af.eglin.ccf.rt.fx.control.skins;
 
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
+import com.sun.javafx.scene.text.HitInfo;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.Background;
@@ -42,6 +44,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         
         textPane = (Pane) getChildren().get(0);
         getChildren().remove(textPane);
+        inputContainer.setManaged(false);
         inputContainer.getStyleClass().add("input-container");
         inputContainer.getChildren().add(textPane);
 
@@ -70,12 +73,25 @@ public class RtTextFieldSkin extends TextFieldSkin
             getChildren().add(glyph.getGlyph());
         }
         
-        
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(),  textField.focusColorProperty().getName());
         registerChangeListener(textField.getOverlayColorProperty(),  textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusProperty(),  textField.unfocusProperty().getName());
         registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
+    }
+
+    @Override
+    public HitInfo getIndex(double x, double y) 
+    {
+        Point2D p;
+        p = new Point2D(x - snappedLeftInset() - this.inputContainer.getPadding().getLeft(),
+                        y - snappedTopInset() - (2 * this.inputContainer.getPadding().getTop()));
+
+        Text text = ((Text)textPane.getChildren().get(1));
+        // TODO replace with text.hitTest(p) when using future JavaFX versions (9+)
+        @SuppressWarnings("deprecation")
+        HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
+        return hitInfo;
     }
 
     @Override

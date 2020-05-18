@@ -106,8 +106,6 @@
     -fx-padding: 22 16 6 16;
 }
 
-
-
 .rt-text-field:helper .error-container
 {
     -fx-border-width: 2;
@@ -117,8 +115,20 @@
 
 .rt-text-field:helper .error-container .error-text
 {
-    -fx-fill: red;
+    -fx-fill: -var-error-color;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;
+}
+
+.rt-text-field:error
+{
+    -rt-focus-color: -var-error-color;
+    -rt-unfocus-color: -var-error-color;
+    -fx-prompt-text-fill: -var-error-color;
+}
+
+.rt-text-field:error .input-container
+{
+    -fx-background-color: #f3dade;
 }
