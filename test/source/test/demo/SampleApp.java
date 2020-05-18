@@ -16,7 +16,7 @@ import test.demo.presentation.MainPresentation;
 
 public class SampleApp extends Application
 {
-    private Stage stage;
+    private static Stage stage;
     private SampleSession session;
     private Settings settings;
 
@@ -25,9 +25,9 @@ public class SampleApp extends Application
         launch(args);
     }
 
-    public Stage getStage()
+    public static Stage getStage()
     {
-        return this.stage;
+        return stage;
     }
     
     public SampleSession getSession()
@@ -44,7 +44,7 @@ public class SampleApp extends Application
     public void start(Stage stage)
     {
         ThemeManager.getInstance().load(Theme.LIGHT);
-        this.stage = stage;
+        SampleApp.stage = stage;
         
         SampleSession session = new SampleSession();
         Settings settings = new Settings();
@@ -65,8 +65,8 @@ public class SampleApp extends Application
         scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
        
         
-        this.stage.setScene(scene);
-        this.stage.show();
+        SampleApp.stage.setScene(scene);
+        SampleApp.stage.show();
     }
 
     @Override

@@ -130,5 +130,5 @@
 
 .rt-text-field:error .input-container
 {
-    -fx-background-color: #f3dade;
+    -fx-background-color: -var-light-error-color;
 }

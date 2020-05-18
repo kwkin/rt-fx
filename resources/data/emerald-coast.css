@@ -54,6 +54,11 @@
     -var-secondary-dark-text-color: #000000;
     
     -var-secondary-overlay-color: rgba(255, 255, 255, 0.25);
+
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #58222c;
+    -var-error-color: #cf6679;
+    -var-on-error-color: #ffffff;
 }
 
 .rt-label.block-title.primary-mid

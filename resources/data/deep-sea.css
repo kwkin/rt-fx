@@ -53,35 +53,9 @@
     -var-secondary-dark-text-color: #fdf8df;
     
     -var-secondary-overlay-color: rgba(255, 255, 255, 0.45);
-}
 
-.rt-label.block-title.primary-mid
-{
-    -fx-background-color: derive(-var-base-dark-color, -30%);
-    -fx-text-fill: -var-base-mid-text-color;
-}
-
-.jfx-decorator 
-{
-    -fx-decorator-color: derive(-var-base-dark-color, -40%);
-}
-
-.jfx-tool-bar 
-{
-    -fx-background-color: derive(-var-base-dark-color, -20%);
-}
-
-.jfx-popup-container 
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.jfx-drawer-side-pane
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.rt-combo-box.filled
-{
-    -fx-text-fill: -var-main-mid-text-color;
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #58222c;
+    -var-error-color: #cf6679;
+    -var-on-error-color: #ffffff;
 }

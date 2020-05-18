@@ -53,30 +53,9 @@
     -var-secondary-dark-text-color: #f1f1f1;
     
     -var-secondary-overlay-color: rgba(255, 255, 255, 0.25);
-}
 
-.rt-label.block-title.primary-mid
-{
-    -fx-background-color: -var-main-dark-color;
-    -fx-text-fill: -var-base-mid-text-color;
-}
-
-.jfx-decorator 
-{
-    -fx-decorator-color: -var-main-dark-color;
-}
-
-.jfx-tool-bar 
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.jfx-popup-container 
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.jfx-drawer-side-pane
-{
-    -fx-background-color: -var-main-light-color;
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #58222c;
+    -var-error-color: #cf6679;
+    -var-on-error-color: #ffffff;
 }

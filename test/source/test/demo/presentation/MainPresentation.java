@@ -14,8 +14,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
-import mil.af.eglin.ccf.rt.fx.style.Theme;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
+import mil.af.eglin.ccf.rt.util.ResourceLoader;
+import test.demo.SampleApp;
+import test.demo.abstraction.immutable.DemoTheme;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
 import test.demo.presentation.panes.controls.ComponentsPresentation;
@@ -40,7 +42,7 @@ public class MainPresentation extends BorderPane
     private StackPane centerPane;
     private JFXDrawer drawer;
     private IconToggleButton toggleButton;
-    private ComboBox<Theme> comboBoxTheme;
+    private ComboBox<DemoTheme> comboBoxTheme;
     private Label titled;
 
     private ObservableList<TitledContentPane> panes = FXCollections.observableArrayList();
@@ -56,18 +58,23 @@ public class MainPresentation extends BorderPane
         SvgGlyph arrowLeft = new SvgGlyph(SvgFile.ARROW_LEFT, Color.WHITE, IconSize.SIZE_16);
         this.toggleButton = new IconToggleButton(arrowLeft, arrowRight);
         this.titled = new Label("Components");
-        Label noticeMessage = new Label("Notice: Some component skins do not update dynamically (yet!).");
-        Label themeLabel = new Label("    Theme:");
+        Label themeLabel = new Label("Theme:");
 
-        this.comboBoxTheme = new ComboBox<Theme>(FXCollections.observableArrayList(Theme.values()));
-        // this.comboBoxTheme.setEditable(true);
-        this.comboBoxTheme.setValue(Theme.LIGHT);
+        this.comboBoxTheme = new ComboBox<DemoTheme>(FXCollections.observableArrayList(DemoTheme.values()));
+        this.comboBoxTheme.setValue(DemoTheme.LIGHT);
         toolBar.setLeftItems(this.toggleButton, this.titled);
-        toolBar.setRightItems(noticeMessage, themeLabel, this.comboBoxTheme);
+        toolBar.setRightItems(themeLabel, this.comboBoxTheme);
 
         this.comboBoxTheme.valueProperty().addListener((ov, oldVal, newVal) ->
         {
-            ThemeManager.getInstance().load(newVal);
+            ThemeManager.getInstance().load(newVal.getTheme());
+            if (!newVal.getDemoFile().equals(oldVal.getDemoFile()))
+            {
+                String oldDemoFile = ResourceLoader.loadDemoFile(oldVal.getDemoFile());
+                String newDemoFile = ResourceLoader.loadDemoFile(newVal.getDemoFile());
+                SampleApp.getStage().getScene().getStylesheets().remove(oldDemoFile);
+                SampleApp.getStage().getScene().getStylesheets().add(newDemoFile);
+            }
         });
         setTop(toolBar);
 
