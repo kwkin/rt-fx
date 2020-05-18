@@ -2,62 +2,62 @@
 .primary-light
 {
     -var-accent-color: -var-primary-light-color;
-    -var-accent-text-color: -var-primary-light-text-color;
+    -var-accent-text-color: -var-on-primary-light-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-mid
 {
     -var-accent-color: -var-primary-mid-color;
-    -var-accent-text-color: -var-primary-mid-text-color;
+    -var-accent-text-color: -var-on-primary-mid-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-dark
 {
     -var-accent-color: -var-primary-dark-color;
-    -var-accent-text-color: -var-primary-dark-text-color;
+    -var-accent-text-color: -var-on-primary-dark-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .secondary-light
 {
     -var-accent-color: -var-secondary-light-color;
-    -var-accent-text-color: -var-secondary-light-text-color;
+    -var-accent-text-color: -var-on-secondary-light-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-mid
 {
     -var-accent-color: -var-secondary-mid-color;
-    -var-accent-text-color: -var-secondary-mid-text-color;
+    -var-accent-text-color: -var-on-secondary-mid-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-dark
 {
     -var-accent-color: -var-secondary-dark-color;
-    -var-accent-text-color: -var-secondary-dark-text-color;
+    -var-accent-text-color: -var-on-secondary-text-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .base-light
 {
-    -var-accent-color: -var-base-light-color;
+    -var-accent-color: -var-main-color-l2;
     -var-accent-text-color: -var-base-light-text-color;
     -var-overlay-color: -var-base-overlay-color;
 }
 
 .base-mid
 {
-    -var-accent-color: -var-base-mid-color;
+    -var-accent-color: -var-main-color-l3;
     -var-accent-text-color: -var-base-mid-text-color;
     -var-overlay-color: -var-base-overlay-color;
 }
 
 .base-dark
 {
-    -var-accent-color: -var-base-dark-color;
+    -var-accent-color: -var-main-color-l4;
     -var-accent-text-color: -var-base-dark-text-color;
     -var-overlay-color: -var-base-overlay-color;
 }

@@ -20,7 +20,7 @@ TODO
 .rt-slider:horizontal .track,
 .rt-slider:vertical .track 
 {
-	-fx-background-color: -var-base-mid-color;
+	-fx-background-color: -var-main-color-l3;
     -fx-background-insets: 1.5;
 }
 

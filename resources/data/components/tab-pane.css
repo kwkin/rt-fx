@@ -22,7 +22,7 @@ TODO
 
 .rt-tab-pane .tab-header-area .headers-region .tab 
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-padding: 4 16 4 16;
@@ -33,8 +33,8 @@ TODO
 .rt-tab-pane .tab-header-area .headers-region .tab:bottom,
 .rt-tab-pane .tab-header-area .headers-region .tab:left 
 {
-    -fx-background-color: -var-main-light-color;
-    -fx-border-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l1;
+    -fx-border-color: -var-main-color-l4;
 }
 
 .rt-tab-pane .tab-header-area .headers-region .tab:top
@@ -64,7 +64,7 @@ TODO
 
 .rt-tab-pane .tab-header-area .tab-header-background 
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
 }
 
 .rt-tab-pane .tab-content-area

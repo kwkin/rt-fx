@@ -8,9 +8,9 @@ TODO
 /*-- ############################### Color Picker Style ############################### */
 .rt-color-picker.filled
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -var-base-light-color;
+    -fx-border-color: -var-main-color-l2;
     -fx-border-radius: 2.0;
     -fx-border-width: 0 0 2 0;
     -fx-max-width: 1000000;
@@ -37,7 +37,7 @@ TODO
 .rt-color-picker.filled:focused,
 .rt-color-picker.filled:focused:hover
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
     -fx-background-insets: 0;
     -fx-border-color: -var-accent-color;
 }
@@ -45,8 +45,8 @@ TODO
 .rt-color-picker.filled:focused .prompt-pane,
 .rt-color-picker.filled:focused:hover .prompt-pane
 {
-    -fx-background-color: -var-main-light-color;
-    -fx-fill: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
+    -fx-fill: -var-main-color-l1;
 	-fx-background-radius: 2.0;
     -fx-border-width: 0 0 0 0;
 }
@@ -93,9 +93,9 @@ TODO
 /*-- ############################### Color Picker Icon Text ############################### */
 .rt-color-picker.icon
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -var-base-light-color;
+    -fx-border-color: -var-main-color-l2;
     -fx-border-radius: 2.0;
     -fx-border-width: 2 2 2 2;
 	-fx-padding: 2 8 2 2;
@@ -106,7 +106,7 @@ TODO
 
 .rt-color-picker.icon:hover
 {
-    -fx-border-color: -var-base-light-color;
+    -fx-border-color: -var-main-color-l2;
 }
 
 .rt-color-picker.icon .arrow-button .arrow
@@ -215,9 +215,9 @@ TODO
 .color-palette 
 {
     -fx-spacing: 0.833333em;
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -var-main-light-color;
+    -fx-border-color: -var-main-color-l1;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 8 8 8 8;

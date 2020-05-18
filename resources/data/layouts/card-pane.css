@@ -31,25 +31,25 @@
 
 .rt-card-pane.base-light
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 }
 
 .rt-card-pane.base-mid
 {
-    -fx-background-color: -var-base-mid-color;
+    -fx-background-color: -var-main-color-l3;
 }
 
 .rt-card-pane.base-dark
 {
-    -fx-background-color: -var-base-dark-color;
+    -fx-background-color: -var-main-color-l4;
 }
 
 /*-- ############################### Card Pane Styles ############################### */
 .rt-card-pane
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 4;
-    -fx-border-color: -var-main-light-color;
+    -fx-border-color: -var-main-color-l1;
     -fx-border-width: 0 0 0 0;
     -fx-hgap: 10;
     -fx-padding: 0;

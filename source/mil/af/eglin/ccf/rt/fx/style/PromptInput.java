@@ -313,16 +313,16 @@ public class PromptInput
                 && !promptTextFill.get().equals(Color.TRANSPARENT));
     }
 
-    public void layoutComponents(double x, double y, double w, double h, double controlHeight, double controlWidth, double translateY)
+    public void layoutComponents(double x, double y, double inputContainerWidth, double inputContainerHeight, double translateY)
     {
         this.promptTranslateY = translateY;
 
         double unfocusedLineHeight = unfocusedLine.getPrefHeight();
-        unfocusedLine.resizeRelocate(0, controlHeight - unfocusedLineHeight, controlWidth, unfocusedLineHeight);
+        unfocusedLine.resizeRelocate(x, y + inputContainerHeight - unfocusedLineHeight, inputContainerWidth, unfocusedLineHeight);
         double focusedLineHeight = focusedLine.getPrefHeight();
-        focusedLine.resizeRelocate(0, controlHeight - focusedLineHeight, controlWidth, focusedLineHeight);
+        focusedLine.resizeRelocate(x, y + inputContainerHeight - focusedLineHeight, inputContainerWidth, focusedLineHeight);
         
-        scale.setPivotX(controlWidth / 2);
+        scale.setPivotX(inputContainerWidth / 2);
     }
 
     public void updateLabelFloatLayout()

@@ -1,6 +1,5 @@
 package test.demo.control;
 
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;

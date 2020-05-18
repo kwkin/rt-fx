@@ -33,24 +33,10 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
         this.style = style;
         initialize();
     }
-    
-    public TableView(TableViewStyle style, ObservableList<S> items)
-    {
-        super(items);
-        this.style = style;
-        initialize();
-    }
 
     public TableView(Accent accent)
     {
         super();
-        this.accent = accent;
-        initialize();
-    }
-    
-    public TableView(Accent accent, ObservableList<S> items)
-    {
-        super(items);
         this.accent = accent;
         initialize();
     }
@@ -63,7 +49,21 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
         initialize();
     }
     
-    public TableView(TableViewStyle style, Accent accent, ObservableList<S> items)
+    public TableView(ObservableList<S> items, TableViewStyle style)
+    {
+        super(items);
+        this.style = style;
+        initialize();
+    }
+    
+    public TableView(ObservableList<S> items, Accent accent)
+    {
+        super(items);
+        this.accent = accent;
+        initialize();
+    }
+    
+    public TableView(ObservableList<S> items, TableViewStyle style, Accent accent)
     {
         super(items);
         this.style = style;

@@ -18,17 +18,17 @@ public class Separator extends javafx.scene.control.Separator implements RtCompo
         super();
         initialize();
     }
+
+    public Separator(Orientation orientation)
+    {
+        super(orientation);
+        initialize();
+    }
     
     public Separator(Accent accent)
     {
         super();
         this.accent = accent;
-        initialize();
-    }
-
-    public Separator(Orientation orientation)
-    {
-        super(orientation);
         initialize();
     }
 

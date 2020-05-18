@@ -1,29 +1,21 @@
 .root 
 {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-background-color : #101011;
-
     /*-- ############################### Font ############################### */
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
 
     /* Main colors are used on backgrounds and overlays */
     /*-- ############################### Main Color ############################### */
-    -var-main-light-color: #1a1a1d;
-    -var-main-mid-color: #202023;
-    -var-main-dark-color: #28282c;
+    -var-main-color-l0: #101011;
+    -var-main-color-l1: #1a1a1d;
+    -var-main-color-l2: #202023;
+    -var-main-color-l3: #28282c;
+    -var-main-color-l3: #2f2f37;
+    -var-main-color-l4: #323239;
 
     -var-main-light-text-color: #a0a0a0;
     -var-main-mid-text-color: #f1f1f1;
     -var-main-dark-text-color: #f1f1f1;
-
-    /* Base colors are used on components */
-    /*-- ############################### Base Color ############################### */
-    -var-base-light-color: #2d2d31;
-    -var-base-mid-color: #2f2f37;
-    -var-base-dark-color: #323239;
-
     -var-base-light-text-color: #f1f1f1;
     -var-base-mid-text-color: #f1f1f1;
     -var-base-dark-text-color: #f1f1f1;
@@ -36,9 +28,9 @@
     -var-primary-mid-color: #42a5f5;
     -var-primary-dark-color: #0077c2;
     
-    -var-primary-light-text-color: #000000;
-    -var-primary-mid-text-color: #f1f1f1;
-    -var-primary-dark-text-color: #f1f1f1;
+    -var-on-primary-light-color: #000000;
+    -var-on-primary-mid-color: #f1f1f1;
+    -var-on-primary-dark-color: #f1f1f1;
     
     -var-primary-overlay-color: rgba(255, 255, 255, 0.25);
 
@@ -48,35 +40,19 @@
     -var-secondary-mid-color: #7e57c2;
     -var-secondary-dark-color: #4d2c91;
     
-    -var-secondary-light-text-color: #000000;
-    -var-secondary-mid-text-color: #f1f1f1;
-    -var-secondary-dark-text-color: #f1f1f1;
+    -var-on-secondary-light-color: #000000;
+    -var-on-secondary-mid-color: #f1f1f1;
+    -var-on-secondary-text-color: #f1f1f1;
     
     -var-secondary-overlay-color: rgba(255, 255, 255, 0.25);
-}
 
-.rt-label.block-title.primary-mid
-{
-    -fx-background-color: -var-main-dark-color;
-    -fx-text-fill: -var-base-mid-text-color;
-}
-
-.jfx-decorator 
-{
-    -fx-decorator-color: -var-main-dark-color;
-}
-
-.jfx-tool-bar 
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.jfx-popup-container 
-{
-    -fx-background-color: -var-main-light-color;
-}
-
-.jfx-drawer-side-pane
-{
-    -fx-background-color: -var-main-light-color;
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #58222c;
+    -var-error-color: #cf6679;
+    -var-on-error-color: #ffffff;
+    
+    /*-- ############################### Root Colors ############################### */
+    -fx-background-color: -var-main-color-l0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }

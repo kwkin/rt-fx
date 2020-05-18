@@ -9,9 +9,9 @@ TODO
 /*-- ############################### Filled Spinner Styles ############################### */
 .rt-spinner
 {
-    -fx-background-color: -var-base-light-color;
+    -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 2.0;
-    -fx-border-color: -var-base-dark-color;
+    -fx-border-color: -var-main-color-l4;
     -fx-border-radius: 0;
 	-fx-border-width: 0 0 2 0;
     -fx-border-radius: 0;

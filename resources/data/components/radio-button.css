@@ -7,7 +7,7 @@
     -fx-text-fill: -var-main-mid-text-color; 
      
     -rt-selected-color: -var-accent-color; 
-	-rt-unselected-color: -var-base-dark-color;
+	-rt-unselected-color: -var-main-color-l4;
 } 
  
 .rt-radio-button .radio,  
@@ -35,7 +35,7 @@
  
 .rt-radio-button:hover .radio  
 { 
-	-fx-border-color: -var-base-mid-color; 
+	-fx-border-color: -var-main-color-l3; 
 	-fx-background-insets: 0; 
 } 
  

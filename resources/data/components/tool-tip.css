@@ -1,8 +1,8 @@
 /*-- ############################### Tree View Accents ############################### */
 .rt-tool-tip
 {
-    -fx-background: -var-main-light-color;
-    -fx-background-color: -var-main-light-color;
+    -fx-background: -var-main-color-l1;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 4px;
     -fx-background-insets: 0;
     -fx-font-family: "Roboto Medium";

@@ -57,9 +57,6 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, Button.this, "disableAnimation", false);
 
-    /**
-     * Creates a button with an empty string for its label.
-     */
     public Button()
     {
         super();
@@ -88,12 +85,6 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    /**
-     * Creates a button with the specified text as its label.
-     *
-     * @param text
-     *            A text string for its label.
-     */
     public Button(String text)
     {
         super(text);
@@ -122,14 +113,6 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    /**
-     * Creates a button with the specified text and icon for its label.
-     *
-     * @param text
-     *            A text string for its label.
-     * @param graphic
-     *            the icon for its label.
-     */
     public Button(String text, Node graphic)
     {
         super(text, graphic);
@@ -165,12 +148,12 @@ public class Button extends javafx.scene.control.Button implements RtComponent
 
     public Paint getOverlayColor()
     {
-        return overlayColor.getValue();
+        return overlayColor.get();
     }
 
     public void setOverlayColor(Paint overlayColor)
     {
-        this.overlayColor.setValue(overlayColor);
+        this.overlayColor.set(overlayColor);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -180,12 +163,12 @@ public class Button extends javafx.scene.control.Button implements RtComponent
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     public ButtonStyle getButtonStyle()
@@ -294,9 +277,8 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
-            // @formatter:off
-            Collections.addAll(styleables, OVERLAY_COLOR, DISABLE_ANIMATION);
-            // @formatter:on
+            styleables.add(OVERLAY_COLOR);
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

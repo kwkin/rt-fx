@@ -7,6 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+// TODO change label style to pseudo class
 public class Label extends javafx.scene.control.Label implements RtComponent
 {
     protected LabelStyle style = LabelStyle.NORMAL;
@@ -27,13 +28,6 @@ public class Label extends javafx.scene.control.Label implements RtComponent
         initialize();
     }
     
-    public Label(String text, Node graphic)
-    {
-        super(text, graphic);
-        initialize();
-    }
-    
-    // TODO other constructors
     // TODO java doc
     public Label(String text, LabelStyle style)
     {
@@ -52,6 +46,34 @@ public class Label extends javafx.scene.control.Label implements RtComponent
     public Label(String text, LabelStyle style, Accent accent)
     {
         super(text);
+        this.style = style;
+        this.accent = accent;
+        initialize();
+    }
+    
+    public Label(String text, Node graphic)
+    {
+        super(text, graphic);
+        initialize();
+    }
+    
+    public Label(String text, Node graphic, LabelStyle style)
+    {
+        super(text, graphic);
+        this.style = style;
+        initialize();
+    }
+    
+    public Label(String text, Node graphic, Accent accent)
+    {
+        super(text, graphic);
+        this.accent = accent;
+        initialize();
+    }
+    
+    public Label(String text, Node graphic, LabelStyle style, Accent accent)
+    {
+        super(text, graphic);
         this.style = style;
         this.accent = accent;
         initialize();

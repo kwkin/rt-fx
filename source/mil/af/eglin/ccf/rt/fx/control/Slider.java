@@ -71,12 +71,12 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
 
     public Paint getThumbColor()
     {
-        return thumbColor.getValue();
+        return thumbColor.get();
     }
 
     public void setThumbColor(Paint color)
     {
-        this.thumbColor.setValue(color);
+        this.thumbColor.set(color);
     }
 
     public StyleableObjectProperty<Paint> filledTrackColorProperty()
@@ -86,12 +86,12 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
 
     public Paint getFilledTrackColor()
     {
-        return filledTrackColor.getValue();
+        return filledTrackColor.get();
     }
 
     public void setFilledTrackColor(Paint color)
     {
-        this.filledTrackColor.setValue(color);
+        this.filledTrackColor.set(color);
     }
 
     public StyleableObjectProperty<Paint> unfilledTrackColorProperty()
@@ -101,12 +101,12 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
 
     public Paint getUnfilledTrackColor()
     {
-        return unfilledTrackColor.getValue();
+        return unfilledTrackColor.get();
     }
 
     public void setUnfilledTrackColor(Paint color)
     {
-        this.unfilledTrackColor.setValue(color);
+        this.unfilledTrackColor.set(color);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -116,12 +116,12 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     /**

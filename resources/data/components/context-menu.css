@@ -38,26 +38,26 @@ TODO
 
 .rt-context-menu.base-light
 {
-    -var-accent-color: -var-base-light-color;
+    -var-accent-color: -var-main-color-l2;
 }
 
 .rt-context-menu.base-mid
 {
-    -var-accent-color: -var-base-mid-color;
+    -var-accent-color: -var-main-color-l3;
 }
 
 .rt-context-menu.base-dark
 {
-    -var-accent-color: -var-base-dark-color;
+    -var-accent-color: -var-main-color-l4;
 }
 
 /*-- ############################### Table View Accents ############################### */
 /* TODO still a lot of work. Padding, hover state foreground for radio buttons, sub menu icon */
 .rt-context-menu
 {
-    -fx-background-color: -var-main-light-color;
+    -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 2 2 2 2;
-    -fx-border-color: -var-main-light-color;
+    -fx-border-color: -var-main-color-l1;
     -fx-border-width: 0 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
     -fx-padding: 4 0 4 0;

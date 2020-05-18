@@ -31,6 +31,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     private static final String USER_AGENT_STYLESHEET = "toggle-switch.css";
     private static final String CSS_CLASS = "rt-toggle-switch";
 
+    // @formatter:off
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
@@ -41,6 +42,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             StyleableProperties.UNSELECTED_LINE_COLOR, this, "unselectedLineColor", DefaultPalette.getInstance().getLightBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+    // @formatter:on
 
     public ToggleSwitch()
     {
@@ -75,12 +77,12 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     public Paint getSelectedColor()
     {
-        return selectedColor.getValue();
+        return selectedColor.get();
     }
 
     public void setSelectedColor(Paint color)
     {
-        this.selectedColor.setValue(color);
+        this.selectedColor.set(color);
     }
 
     public ObjectProperty<Paint> unselectedColorProperty()
@@ -90,12 +92,12 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     public Paint getUnselectedColor()
     {
-        return unselectedColor.getValue();
+        return unselectedColor.get();
     }
 
     public void setUnselectedColor(Paint color)
     {
-        this.unselectedColor.setValue(color);
+        this.unselectedColor.set(color);
     }
 
     public ObjectProperty<Paint> selectedLineColorProperty()
@@ -105,12 +107,12 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     public Paint getSelectedLineColor()
     {
-        return selectedLineColor.getValue();
+        return selectedLineColor.get();
     }
 
     public void setSelectedLineColor(Paint color)
     {
-        this.selectedLineColor.setValue(color);
+        this.selectedLineColor.set(color);
     }
 
     public StyleableObjectProperty<Paint> unselectedLineColorProperty()
@@ -120,12 +122,12 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     public Paint getUnselectedLineColor()
     {
-        return unselectedLineColor.getValue();
+        return unselectedLineColor.get();
     }
 
     public void setUnselectedLineColor(Paint color)
     {
-        this.unselectedLineColor.setValue(color);
+        this.unselectedLineColor.set(color);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -135,12 +137,12 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     /**
@@ -287,14 +289,11 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
-            // @formatter:off
-            Collections.addAll(styleables, 
-                    SELECTED_COLOR, 
-                    UNSELECTED_COLOR, 
-                    SELECTED_LINE_COLOR, 
-                    UNSELECTED_LINE_COLOR, 
-                    DISABLE_ANIMATION);
-            // @formatter:on
+            styleables.add(SELECTED_COLOR);
+            styleables.add(UNSELECTED_COLOR);
+            styleables.add(SELECTED_LINE_COLOR);
+            styleables.add(UNSELECTED_LINE_COLOR);
+            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

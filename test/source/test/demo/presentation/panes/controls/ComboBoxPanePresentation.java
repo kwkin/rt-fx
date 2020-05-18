@@ -80,6 +80,7 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         GridPane textboxGridPane = new GridPane();
         ComboBox<String> primaryLightComboBox = new ComboBox<String>(Accent.PRIMARY_LIGHT);
         primaryLightComboBox.setPromptText("First Name:");
+        
         ComboBox<String> primaryMidComboBox = new ComboBox<String>(Accent.PRIMARY_MID);
         primaryMidComboBox.setPromptText("Last Name:");
         ComboBox<String> primaryDarkComboBox = new ComboBox<String>(Accent.PRIMARY_DARK);

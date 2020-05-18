@@ -10,14 +10,14 @@ TODO add animations to the check box
     -fx-text-fill: -var-main-mid-text-color; 
      
     -rt-selected-color: -var-accent-color; 
-    -rt-unselected-color: -var-base-dark-color; 
+    -rt-unselected-color: -var-main-color-l4; 
 } 
  
 .rt-check-box .box 
 { 
     -fx-background-color: transparent; 
     -fx-background-radius: 2; 
-    -fx-border-color: -var-base-dark-color; 
+    -fx-border-color: -var-main-color-l4; 
     -fx-border-style: solid; 
     -fx-border-radius: 2; 
     -fx-border-width: 2; 
@@ -32,7 +32,7 @@ TODO add animations to the check box
  
 .rt-check-box:hover .box 
 { 
-    -fx-border-color: -var-base-mid-color; 
+    -fx-border-color: -var-main-color-l3; 
 } 
  
 .rt-check-box:armed .box 
@@ -66,8 +66,8 @@ TODO add animations to the check box
     -fx-max-height: 12;  
     */ 
  
-    -fx-background-color: -var-base-light-color; 
-    -fx-border-color: -var-base-light-color; 
+    -fx-background-color: -var-main-color-l2; 
+    -fx-border-color: -var-main-color-l2; 
 } 
  
 .rt-check-box .box .indeterminate-mark 
@@ -77,6 +77,6 @@ TODO add animations to the check box
     -fx-max-width: 12; 
     -fx-max-height: 2;
  
-    -fx-background-color: -var-base-light-color; 
-    -fx-border-color: -var-base-light-color; 
+    -fx-background-color: -var-main-color-l2; 
+    -fx-border-color: -var-main-color-l2; 
 } 

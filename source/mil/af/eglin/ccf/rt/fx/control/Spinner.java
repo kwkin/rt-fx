@@ -19,6 +19,13 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
         initialize();
     }
     
+    public Spinner(Accent accent)
+    {
+        super();
+        this.accent = accent;
+        initialize();
+    }
+    
     public Spinner(SpinnerValueFactory<T> valueFactory)
     {
         super(valueFactory);

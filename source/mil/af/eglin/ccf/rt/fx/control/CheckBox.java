@@ -75,9 +75,9 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
     /**
      * {@inheritDoc}
      */
-    public CheckBox(String string)
+    public CheckBox(String text)
     {
-        super(string);
+        super(text);
         initialize();
     }
 
@@ -95,12 +95,12 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
     
     public Paint getSelectedColor()
     {
-        return selectedColor.getValue();
+        return selectedColor.get();
     }
 
     public void setSelectedColor(Paint color)
     {
-        this.selectedColor.setValue(color);
+        this.selectedColor.set(color);
     }
 
     public ObjectProperty<Paint> unselectedColorProperty()
@@ -110,7 +110,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
 
     public Paint getUnselectedColor()
     {
-        return unselectedColor.getValue();
+        return unselectedColor.get();
     }
 
     public void setUnselectedColor(Paint color)
@@ -125,12 +125,12 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
 
     public boolean getIsAnimationDisabled()
     {
-        return isAnimationDisabled.getValue();
+        return isAnimationDisabled.get();
     }
 
     public void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
-        this.isAnimationDisabled.setValue(isAnimationDisabled);
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     /**
