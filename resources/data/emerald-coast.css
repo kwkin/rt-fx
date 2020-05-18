@@ -1,8 +1,7 @@
-/* TODO find a better naming scheme instead of "light, mid, dark */
 .root 
 {
     /*-- ############################### Font ############################### */
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
 
     /* Main colors are used on backgrounds and overlays */
@@ -13,12 +12,8 @@
     -var-main-color-l3: #303235;
     -var-main-color-l4: #999ea4;
 
-    -var-main-light-text-color: #a0a0a0;
-    -var-main-mid-text-color: #ffffff;
-    -var-main-dark-text-color: #ffffff;
-    -var-base-light-text-color: #ffffff;
-    -var-base-mid-text-color: #ffffff;
-    -var-base-dark-text-color: #ffffff;
+    -var-on-main-light-color: #a0a0a0;
+    -var-on-main-mid-color: #ffffff;
 
     -var-base-overlay-color: rgba(255, 255, 255, 0.25);
 

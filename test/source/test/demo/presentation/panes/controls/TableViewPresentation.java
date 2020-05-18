@@ -54,10 +54,6 @@ public class TableViewPresentation extends SizedTitledCard
         isSubscribedColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Boolean>("isSubscribed"));
         isSubscribedColumn.setPrefWidth(60);
 
-        // TODO the architectural styling for this application introduces an
-        // absurd amount of plumbing. Improve this
-        // TODO second, the way this updates is also absurd. It updates in the
-        // presentation and the abstraction in two different paths.
         isSubscribedColumn.setCellFactory(column ->
         {
             CheckBoxTableCell<TablePerson, Boolean> ctCell = new CheckBoxTableCell<>();
@@ -147,10 +143,6 @@ public class TableViewPresentation extends SizedTitledCard
         isSubscribedColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Boolean>("isSubscribed"));
         isSubscribedColumn.setPrefWidth(60);
 
-        // TODO the architectural styling for this application introduces an
-        // absurd amount of plumbing. Improve this
-        // TODO second, the way this updates is also absurd. It updates in the
-        // presentation and the abstraction in two different paths.
         isSubscribedColumn.setCellFactory(column ->
         {
             CheckBoxTableCell<TablePerson, Boolean> ctCell = new CheckBoxTableCell<>();

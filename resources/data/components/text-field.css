@@ -11,8 +11,8 @@
     -fx-max-width: 1000000;
     -fx-min-height: 48;
     -fx-padding: 0;
-    -fx-prompt-text-fill: -var-main-light-text-color;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-prompt-text-fill: -var-on-main-light-color;
+    -fx-text-fill: -var-on-main-mid-color;
 
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
@@ -26,8 +26,8 @@
     -fx-background-color: transparent;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 14;
-    -fx-prompt-text-fill: -var-main-light-text-color;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-prompt-text-fill: -var-on-main-light-color;
+    -fx-text-fill: -var-on-main-mid-color;
     -fx-padding: 0;
 }
 
@@ -95,7 +95,7 @@
 
 .rt-text-field:helper .helper-container .helper-text
 {
-    -fx-fill: -var-main-light-text-color;
+    -fx-fill: -var-on-main-light-color;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;

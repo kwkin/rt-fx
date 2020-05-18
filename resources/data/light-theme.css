@@ -1,7 +1,3 @@
-/*
-TODO rename light/mid/dark naming
-TODO change "text-color" naming to something like "on-color"
-*/
 .root
 {
     /*-- ############################### Font ############################### */
@@ -49,12 +45,8 @@ TODO change "text-color" naming to something like "on-color"
     -var-main-color-l3: #dcdcdc;
     -var-main-color-l4: #ababab;
 
-    -var-main-light-text-color: #ababab;
-    -var-main-mid-text-color: #202020;
-    -var-main-dark-text-color: #202020;
-    -var-base-light-text-color: #202020;
-    -var-base-mid-text-color: #202020;
-    -var-base-dark-text-color: #202020;
+    -var-on-main-light-color: #ababab;
+    -var-on-main-mid-color: #202020;
 
     -var-base-overlay-color: rgba(0, 0, 0, 0.1);
 

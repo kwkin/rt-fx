@@ -18,7 +18,7 @@ TODO
     -fx-border-width: 0 0 0 0;
     -fx-cursor: hand;
     -fx-padding: 4 16 4 16;
-    -fx-text-fill: -var-main-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-table-view .table-row-cell
@@ -85,7 +85,7 @@ TODO
 .tree-table-view .column-drag-header .label
 {
 	-fx-alignment: center-left;
-    -fx-text-fill: -var-main-dark-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-table-view .column-header-background, 
@@ -100,7 +100,7 @@ TODO
     -fx-shape: "M7,10L12,15L17,10H7Z";
     -fx-padding: 4;
     -fx-translate-x: 24;
-    -fx-background-color: -var-main-dark-text-color;
+    -fx-background-color: -var-on-main-mid-color;
 }
 
 /*-- ############################### Table View Column Style ############################### */

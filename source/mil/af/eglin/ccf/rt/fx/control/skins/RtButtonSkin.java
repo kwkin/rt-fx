@@ -55,7 +55,6 @@ public class RtButtonSkin extends ButtonSkin
         });
         updateStateBoxColor();
 
-        // TODO use property's name rather than hardcoding the name
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
     }
     

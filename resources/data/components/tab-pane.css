@@ -17,7 +17,7 @@ TODO
 .rt-tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label 
 {
     -fx-alignment: CENTER;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-tab-pane .tab-header-area .headers-region .tab 

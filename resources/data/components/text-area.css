@@ -16,7 +16,7 @@ TODO
     -fx-border-width: 0 0 2 0;
     -fx-max-width: 1000000;
 	-fx-padding: 8 8 8 8;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
 }
 
 .rt-text-area:focused,

@@ -12,12 +12,8 @@
     -var-main-color-l3: #2a2d35;
     -var-main-color-l4: #3e424e;
 
-    -var-main-light-text-color: #cfccba;
-    -var-main-mid-text-color: #fdf8df;
-    -var-main-dark-text-color: #fdf8df;
-    -var-base-light-text-color: #fdf8df;
-    -var-base-mid-text-color: #fdf8df;
-    -var-base-dark-text-color: #fdf8df;
+    -var-on-main-light-color: #cfccba;
+    -var-on-main-mid-color: #fdf8df;
 
     -var-base-overlay-color: rgba(255, 255, 255, 0.25);
 

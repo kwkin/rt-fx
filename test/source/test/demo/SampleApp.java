@@ -58,9 +58,6 @@ public class SampleApp extends Application
         JFXDecorator decorator = new JFXDecorator(stage, presentation, false, true, true);
         stage.setTitle("RT-FX Demo");
         
-        // TODO THIS SHOULD REALLY BE DONE BEFORE RT-FX IS BASELINED:
-        // TODO Set the default sheet to the appropriate theme, and remove any reference to Modena.
-        // TODO maybe the default can be set to rt-fx, and Modena is added as a secondary sheet?
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
        
