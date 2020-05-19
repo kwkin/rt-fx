@@ -18,6 +18,7 @@
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
     -rt-trailing-icon-gap: 10;
+    -rt-trailing-icon-color: -var-on-main-light-color;
     -rt-helper-text-height: 24;
 }
 

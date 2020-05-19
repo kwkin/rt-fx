@@ -41,7 +41,6 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO clean up validation text and API
-// TODO add error and helper text
 // TODO if helper text not specified, but error text is possible, reserve space for the textfield
 // TODO add icon color option in the textfield CSS
 // TODO Fix text input padding when a trailing icon is present
@@ -75,6 +74,8 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 10.0);
+    private StyleableObjectProperty<Paint> trailingIconColor = new SimpleStyleableObjectProperty<Paint>(
+            StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor", DefaultPalette.getInstance().getLightBaseColor());
     private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
             StyleableProperties.HELPER_TEXT_HEIGHT, TextField.this, "helperTextHeight", 16.0);
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
@@ -195,6 +196,21 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     public void setTrailingGlyph(RtGlyph glyph)
     {
         this.trailingIcon.set(glyph);
+    }
+
+    public ObjectProperty<Paint> trailingGlyphColorProperty()
+    {
+        return this.trailingIconColor;
+    }
+
+    public Paint getTrailingGlyphColor()
+    {
+        return trailingIconColor.get();
+    }
+
+    public void setTrailingGlyphColor(Paint color)
+    {
+        this.trailingIconColor.set(color);
     }
 
     public DoubleProperty trailingIconGapProperty()
@@ -459,6 +475,22 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
                 return control.trailingIconGap;
             }
         };
+        private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = new CssMetaData<TextField, Paint>(
+                "-rt-trailing-icon-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getLightBaseColor())
+        {
+
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.trailingIconColor == null || !control.trailingIconColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(TextField control)
+            {
+                return control.trailingIconColor;
+            }
+        };
         private static final CssMetaData<TextField, Number> HELPER_TEXT_HEIGHT = new CssMetaData<TextField, Number>(
                 "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
         {
@@ -503,6 +535,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
             styleables.add(TRAILING_ICON_PADDING);
+            styleables.add(TRAILING_ICON_COLOR);
             styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on

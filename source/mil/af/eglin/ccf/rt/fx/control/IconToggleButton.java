@@ -185,17 +185,22 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
         this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
+    public boolean isGlyphColorManaged()
+    {
+        return this.isSelected() ? this.selectedIcon.isGlyphColorManaged() : this.unselectedIcon.isGlyphColorManaged();
+    }
+
+    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    {
+        this.selectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
+        this.unselectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
+    }
+
     @Override
     public void setGlyphFill(Paint fill)
     {
-        if (isSelected())
-        {
-            this.selectedIcon.setGlyphFill(fill);
-        }
-        else
-        {
-            this.unselectedIcon.setGlyphFill(fill);
-        }
+        this.unselectedIcon.setGlyphFill(fill);
+        this.selectedIcon.setGlyphFill(fill);
     }
 
     @Override

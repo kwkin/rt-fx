@@ -60,6 +60,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         helperContainer.getStyleClass().add("helper-container");
 
         updateOverlayColor();
+        updateTrailingIconColor();
         createHelperText();
         this.errorContainer = new ValidableContainer(this.textField);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
@@ -78,6 +79,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         registerChangeListener(textField.getOverlayColorProperty(),  textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusProperty(),  textField.unfocusProperty().getName());
         registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
+        registerChangeListener(textField.trailingGlyphColorProperty(),  textField.trailingGlyphColorProperty().getName());
     }
 
     @Override
@@ -112,10 +114,15 @@ public class RtTextFieldSkin extends TextFieldSkin
         }
         else if (textField.labelFloatProperty().getName().equals(propertyReference))
         {
+            // TODO complete this
         }
         else if (textField.trailingGlyphProperty().getName().equals(propertyReference))
         {
             this.textField.layout();
+        }
+        else if (textField.trailingGlyphColorProperty().getName().equals(propertyReference))
+        {
+            updateTrailingIconColor();
         }
     }
 
@@ -146,6 +153,7 @@ public class RtTextFieldSkin extends TextFieldSkin
             double xPosition = w - graphicWidth - textField.getTrailingIconGap();
             double inputYCenter = y + inputHeight / 2;
             positionInArea(graphic.getGlyph(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
+            updateTrailingIconColor();
         }
     }
 
@@ -211,5 +219,14 @@ public class RtTextFieldSkin extends TextFieldSkin
     {
         CornerRadii radii = this.textField.getBackground() == null ? null : this.textField.getBackground().getFills().get(0).getRadii(); 
         this.overlayContainer.setBackground(new Background(new BackgroundFill(this.textField.getOverlayColor(), radii, Insets.EMPTY)));
+    }
+    
+    private void updateTrailingIconColor()
+    {
+        RtGlyph graphic = this.textField.getTrailingGlyph();
+        if (graphic != null && graphic.isGlyphColorManaged())
+        {
+            graphic.setGlyphFill(this.textField.getTrailingGlyphColor());
+        }
     }
 }

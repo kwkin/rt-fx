@@ -48,20 +48,20 @@ public class TextFieldPanePresentation extends SizedTitledCard
         primaryMidTextBox.setPromptText("Floating");
         primaryMidTextBox.setLabelFloat(true);
 
-        SvgGlyph cog = new SvgGlyph(SvgFile.COG, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        SvgGlyph cog = new SvgGlyph(SvgFile.COG, IconSize.SIZE_24);
         TextField primaryDarkTextBox = new TextField(Accent.PRIMARY_DARK);
         primaryDarkTextBox.setPromptText("Floating and Icon");
         primaryDarkTextBox.setLabelFloat(true);
         primaryDarkTextBox.setTrailingGlyph(cog);
 
-        SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, IconSize.SIZE_24);
         IconButton folderButton = new IconButton(folder);
         TextField secondaryLightTextBox = new TextField(Accent.SECONDARY_LIGHT);
         secondaryLightTextBox.setPromptText("Button Icon");
         secondaryLightTextBox.setTrailingGlyph(folderButton);
 
-        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, Color.valueOf("#ababab"), IconSize.SIZE_24);
-        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_24);
+        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
         TextField secondaryMidTextBox = new TextField(Accent.SECONDARY_MID);
         secondaryMidTextBox.setPromptText("Toggle Button Icon");
@@ -81,7 +81,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         validableTextField.setValidateCondition(ValidateCondition.MANUAL);
         validableTextField.getValidators().add(requiredValidator);
         
-        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, Color.valueOf("#ababab"), IconSize.SIZE_24);
+        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_24);
         TextField allEnabledTextBox = new TextField(Accent.SECONDARY_MID);
         allEnabledTextBox.setPromptText("Label");
         allEnabledTextBox.setLabelFloat(true);
