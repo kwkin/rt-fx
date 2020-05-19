@@ -73,8 +73,8 @@ public class TextFieldPanePresentation extends SizedTitledCard
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
         validableTextField.setLabelFloat(true);
-        validableTextField.setValidateCondition(ValidateCondition.MANUAL);
         validableTextField.getValidators().add(requiredValidator);
+        validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);
         
         SvgGlyph bell = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_24);
         TextField allEnabledTextBox = new TextField(Accent.SECONDARY_MID);

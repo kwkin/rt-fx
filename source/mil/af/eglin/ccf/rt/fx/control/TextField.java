@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
@@ -42,7 +43,7 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO truncate floating label and helper/error text
-public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
+public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -58,7 +59,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private StringProperty errorText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
     
-    private ValidableHandler<String> validationHandler = new ValidableHandler<String>(this);
+    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
     
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
@@ -290,6 +291,12 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     {
         return this.isValid.get();
     }
+
+    @Override
+    public boolean setValid(boolean isValid)
+    {
+        return isValid;
+    }
     
     public void setValidateCondition(ValidateCondition validateCondition)
     {
@@ -306,24 +313,36 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         return isShowHelperText.get() || getValidators().size() > 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Control getControl()
     {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StringProperty errorMessageProperty()
     {
         return this.errorText;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setErrorMessage(String message)
     {
         this.errorText.set(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getErrorMessage()
     {
@@ -364,6 +383,15 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     protected Skin<?> createDefaultSkin()
     {
         return new RtTextFieldSkin(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObservableValue<String> getObservable()
+    {
+        return textProperty();
     }
 
     /**
