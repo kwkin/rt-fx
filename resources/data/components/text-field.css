@@ -1,6 +1,7 @@
 /*-- ############################### Text Field Style ############################### */
 
-.rt-text-field
+.rt-text-field,
+.rt-text-field:focused
 {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -20,16 +21,6 @@
     -rt-trailing-icon-gap: 10;
     -rt-trailing-icon-color: -var-on-main-light-color;
     -rt-helper-text-height: 24;
-}
-
-.rt-text-field:focused
-{
-    -fx-background-color: transparent;
-    -fx-font-family: "Roboto Regular";
-    -fx-font-size: 14;
-    -fx-prompt-text-fill: -var-on-main-light-color;
-    -fx-text-fill: -var-on-main-mid-color;
-    -fx-padding: 0;
 }
 
 .rt-text-field .input-container

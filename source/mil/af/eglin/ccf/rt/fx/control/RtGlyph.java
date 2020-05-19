@@ -7,7 +7,7 @@ public interface RtGlyph
 {
     public boolean isGlyphColorManaged();
     
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged);
+    public void setIsGlyphColorManaged(boolean isGlyphColorManaged);
     
     public void setGlyphFill(Paint fill);
     

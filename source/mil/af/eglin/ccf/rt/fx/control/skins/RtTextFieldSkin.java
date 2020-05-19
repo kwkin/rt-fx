@@ -26,6 +26,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private final TextField textField;
     private final StackPane overlayContainer = new StackPane();
     private final StackPane inputContainer = new StackPane();
+    private final StackPane inputTextContainer = new StackPane();
     private final StackPane promptContainer = new StackPane();
     
     private final StackPane textContainer = new StackPane();
@@ -46,7 +47,8 @@ public class RtTextFieldSkin extends TextFieldSkin
         getChildren().remove(textPane);
         inputContainer.setManaged(false);
         inputContainer.getStyleClass().add("input-container");
-        inputContainer.getChildren().add(textPane);
+        inputContainer.getChildren().add(inputTextContainer);
+        inputTextContainer.getChildren().add(textPane);
 
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
@@ -144,6 +146,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.promptContainer.resizeRelocate(x, y, w, inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
+        
         this.textContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
         
         RtGlyph graphic = this.textField.getTrailingGlyph();
@@ -154,6 +157,10 @@ public class RtTextFieldSkin extends TextFieldSkin
             double inputYCenter = y + inputHeight / 2;
             positionInArea(graphic.getGlyph(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
             updateTrailingIconColor();
+            
+            double inputRightPadding = graphicWidth + 2 * textField.getTrailingIconGap() - this.inputContainer.getPadding().getRight();
+            inputRightPadding = Math.max(inputRightPadding, this.inputContainer.getPadding().getRight());
+            inputTextContainer.setPadding(new Insets(0, inputRightPadding, 0, 0));
         }
     }
 

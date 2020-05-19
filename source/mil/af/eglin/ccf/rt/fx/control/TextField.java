@@ -42,8 +42,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO clean up validation text and API
 // TODO if helper text not specified, but error text is possible, reserve space for the textfield
-// TODO add icon color option in the textfield CSS
-// TODO Fix text input padding when a trailing icon is present
 
 public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
 {
