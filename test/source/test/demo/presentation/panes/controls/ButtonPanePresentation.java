@@ -80,7 +80,6 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Flat buttons behave the same as regular buttons, but they appear to be on the same level as its container.");
 
-        // TODO figure out why these are linked to the other VBox properties
         VBox buttonVBox = new VBox();
         buttonVBox.setSpacing(16);
         

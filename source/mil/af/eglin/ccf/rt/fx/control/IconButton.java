@@ -29,7 +29,6 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO add armed color before the icon
 public class IconButton extends Button implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();

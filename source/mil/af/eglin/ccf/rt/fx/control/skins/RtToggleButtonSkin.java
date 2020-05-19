@@ -13,7 +13,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO change armed to selected
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
     private final ToggleButton button;
