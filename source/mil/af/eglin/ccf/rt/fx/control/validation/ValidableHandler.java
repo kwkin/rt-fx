@@ -68,7 +68,8 @@ public class ValidableHandler<T>
                 }
             }
         }
-        control.getControl().pseudoClassStateChanged(ERROR_PSEUDOCLASS_STATE, true);
+        System.out.println("IsValid: " + isValid);
+        control.getControl().pseudoClassStateChanged(ERROR_PSEUDOCLASS_STATE, !isValid);
         control.setErrorMessage(errorMessage.toString());
         return isValid;
     }
