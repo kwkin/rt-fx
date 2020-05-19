@@ -107,8 +107,11 @@ public class Text extends javafx.scene.text.Text implements RtComponent
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        for (TextStyle labelStyle : TextStyle.values())
+        {
+            pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
+        }
     }
     
     static

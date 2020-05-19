@@ -1,21 +1,23 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+import javafx.css.PseudoClass;
+
 public enum TextStyle
 {
     SMALL("small"),
     NORMAL("normal"),
     LARGE("large"),
     TITLE("title");
-    
-    private String cssName;
+
+    private PseudoClass pseudoClass;
     
     TextStyle(String cssName)
     {
-        this.cssName = cssName;
+        this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
     
-    public String getCssName()
+    public PseudoClass getPseudoClass()
     {
-        return this.cssName;
+        return this.pseudoClass;
     }
 }
