@@ -1,22 +1,30 @@
 package mil.af.eglin.ccf.rt.fx.control.validation;
 
-public class RequiredFieldValidator implements Validator<String>
+public class RegexValidator implements Validator<String>
 {
+    private String regex;
     private String message = "";
-    
-    public RequiredFieldValidator()
+
+    public RegexValidator(String regex)
     {
+        this.regex = regex;
     }
     
-    public RequiredFieldValidator(String errorMessage)
+    public RegexValidator(String regex, String errorMessage)
     {
         this.message = errorMessage;
+        this.regex = regex;
+    }
+    
+    public String getRegex()
+    {
+        return this.getRegex();
     }
 
+    @Override
     public boolean validate(String value)
     {
-        boolean isValid = value != null && "".equals(value);
-        return isValid;
+        return value.matches(regex);
     }
     
     public String getMessage()

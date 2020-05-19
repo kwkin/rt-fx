@@ -1,22 +1,29 @@
 package mil.af.eglin.ccf.rt.fx.control.validation;
 
-public class RequiredFieldValidator implements Validator<String>
+public class MaxCharLimitValidator implements Validator<String>
 {
+    private int max;
     private String message = "";
     
-    public RequiredFieldValidator()
+    public MaxCharLimitValidator(int max)
     {
+        this.max = max;
     }
     
-    public RequiredFieldValidator(String errorMessage)
+    public MaxCharLimitValidator(int max, String errorMessage)
     {
+        this.max = max;
         this.message = errorMessage;
     }
 
+    public int getMax()
+    {
+        return this.max;
+    }
+    
     public boolean validate(String value)
     {
-        boolean isValid = value != null && "".equals(value);
-        return isValid;
+        return value.length() > max;
     }
     
     public String getMessage()

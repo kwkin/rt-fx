@@ -92,7 +92,7 @@ public class RtTextFieldSkin extends TextFieldSkin
                         y - snappedTopInset() - (2 * this.inputContainer.getPadding().getTop()));
 
         Text text = ((Text)textPane.getChildren().get(1));
-        // TODO replace with text.hitTest(p) when using future JavaFX versions (9+)
+        // TODO replace with text.hitTest(p) JavaFX versions 9+
         @SuppressWarnings("deprecation")
         HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
         return hitInfo;
