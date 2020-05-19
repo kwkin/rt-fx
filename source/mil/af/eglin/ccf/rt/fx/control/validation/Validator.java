@@ -1,13 +1,19 @@
 package mil.af.eglin.ccf.rt.fx.control.validation;
 
-// TODO add text limit validator
-// TODO add number validator
-// TODO add regex validator
 public interface Validator<T>
 {
+    /**
+     * Checks if the provided value passes the validation condition
+     * 
+     * @param value The value to validate
+     * @return True if the value is valid
+     */
     public boolean validate(T value);
     
-    public String getMessage();
-    
-    public void setMessage(String message);
+    /**
+     * Gets the message detailing the last validation check
+     * 
+     * @return The error message
+     */
+    public String getErrorMessage();
 }

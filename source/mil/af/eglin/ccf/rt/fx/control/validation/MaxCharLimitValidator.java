@@ -26,7 +26,7 @@ public class MaxCharLimitValidator implements Validator<String>
         return value.length() > max;
     }
     
-    public String getMessage()
+    public String getErrorMessage()
     {
         return message;
     }

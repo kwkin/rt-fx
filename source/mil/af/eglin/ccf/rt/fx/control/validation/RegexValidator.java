@@ -27,7 +27,7 @@ public class RegexValidator implements Validator<String>
         return value.matches(regex);
     }
     
-    public String getMessage()
+    public String getErrorMessage()
     {
         return message;
     }

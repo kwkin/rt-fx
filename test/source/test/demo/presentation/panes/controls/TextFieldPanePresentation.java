@@ -1,7 +1,6 @@
 package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
@@ -29,8 +28,6 @@ public class TextFieldPanePresentation extends SizedTitledCard
         VBox stackPane = new VBox();
         
         stackPane.getChildren().add(createTextBoxes());
-//        stackPane.getChildren().add(new Separator());
-//        stackPane.getChildren().add(createAccentTextBoxes());
         
         setContent(stackPane);
     }

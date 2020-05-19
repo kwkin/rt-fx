@@ -2,26 +2,19 @@ package mil.af.eglin.ccf.rt.fx.control.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
-public class ContainsValidator implements Validator<String>
+/**
+ * Validation for checking forbidden substrings
+ */
+public class ForbiddenTextValidator implements Validator<String>
 {
-    private List<String> requiredStrings = new ArrayList<>();
     private List<String> forbiddenStrings = new ArrayList<>();
     private String message = "";
 
-    public ContainsValidator(String errorMessage)
+    public ForbiddenTextValidator(List<String> forbiddenStrings)
     {
-        this.message = errorMessage;
-    }
-    
-    public List<String> getRequiredStrings()
-    {
-        return this.requiredStrings;
-    }
-    
-    public void addRequiredString(String required)
-    {
-        this.requiredStrings.add(required);
+        this.forbiddenStrings = forbiddenStrings;
     }
     
     public List<String> getForbiddenString()
@@ -34,40 +27,45 @@ public class ContainsValidator implements Validator<String>
         this.forbiddenStrings.add(forbidden);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean validate(String value)
     {
         boolean isValid = true;
-        for (String required : requiredStrings)
-        {
-            if (!value.contains(required) && isValid)
-            {
-                isValid = false;
-                break;
-            }
-        }
         
+        StringJoiner forbiddenFields = new StringJoiner(", ");
         if (isValid)
         {
             for (String forbidden : forbiddenStrings)
             {
                 if (value.contains(forbidden))
                 {
+                    forbiddenFields.add(forbidden);
                     isValid = false;
-                    break;
                 }
             }
         }
+        if (!isValid)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Cannot contain ");
+            builder.append(forbiddenFields);
+        }
+        else
+        {
+            this.message = "";
+        }
         return isValid;
     }
-    
-    public String getMessage()
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getErrorMessage()
     {
         return message;
-    }
-    
-    public void setMessage(String message)
-    {
-        this.message = message;
     }
 }

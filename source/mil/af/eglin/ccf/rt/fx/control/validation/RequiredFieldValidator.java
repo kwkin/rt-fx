@@ -19,7 +19,7 @@ public class RequiredFieldValidator implements Validator<String>
         return isValid;
     }
     
-    public String getMessage()
+    public String getErrorMessage()
     {
         return message;
     }

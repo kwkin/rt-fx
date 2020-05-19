@@ -41,8 +41,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO clean up validation text and API
-
+// TODO truncate floating label and helper/error text
 public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");

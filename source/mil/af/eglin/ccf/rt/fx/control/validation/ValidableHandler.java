@@ -61,14 +61,13 @@ public class ValidableHandler<T>
         {
             if (validator.validate(value))
             {
-                errorMessage.add(validator.getMessage());
+                errorMessage.add(validator.getErrorMessage());
                 if (isValid)
                 {
                     isValid = false;
                 }
             }
         }
-        System.out.println("IsValid: " + isValid);
         control.getControl().pseudoClassStateChanged(ERROR_PSEUDOCLASS_STATE, !isValid);
         control.setErrorMessage(errorMessage.toString());
         return isValid;
