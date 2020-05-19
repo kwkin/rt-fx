@@ -33,7 +33,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class IconButton extends Button implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();
-    protected Accent accent = Accent.BASE_MID;
+    protected Accent accent = Accent.BASE;
     protected SvgGlyph icon;
     
     private static final String USER_AGENT_STYLESHEET = "button.css";

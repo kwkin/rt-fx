@@ -42,7 +42,7 @@ public class TitledSeparatorPanePresentation extends SizedTitledCard
         SvgGlyph iconNoTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         secondaryDarkTitledSeparator.setGraphic(iconNoTitle);
         secondaryDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
-        TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Accent.BASE_DARK);
+        TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Accent.BASE);
         SvgGlyph iconTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         baseDarkTitledSeparator.setGraphic(iconTitle);
         baseDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
@@ -69,7 +69,7 @@ public class TitledSeparatorPanePresentation extends SizedTitledCard
         SvgGlyph iconNoTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         secondaryDarkTitledSeparator.setGraphic(iconNoTitle);
         secondaryDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
-        TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Orientation.VERTICAL, Accent.BASE_DARK);
+        TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Orientation.VERTICAL, Accent.BASE);
         SvgGlyph iconTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
         baseDarkTitledSeparator.setGraphic(iconTitle);
         baseDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);

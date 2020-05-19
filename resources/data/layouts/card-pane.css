@@ -1,59 +1,17 @@
-/*-- ############################### Card Pane Accents ############################### */
-.rt-card-pane.primary-light
-{
-    -fx-background-color: -var-primary-light-color;
-}
-
-.rt-card-pane.primary-mid
-{
-    -fx-background-color: -var-primary-mid-color;
-}
-
-.rt-card-pane.primary-dark
-{
-    -fx-background-color: -var-primary-dark-color;
-}
-
-.rt-card-pane.secondary-light
-{
-    -fx-background-color: -var-secondary-light-color;
-}
-
-.rt-card-pane.secondary-mid
-{
-    -fx-background-color: -var-secondary-mid-color;
-}
-
-.rt-card-pane.secondary-dark
-{
-    -fx-background-color: -var-secondary-dark-color;
-}
-
-.rt-card-pane.base-light
-{
-    -fx-background-color: -var-main-color-l2;
-}
-
-.rt-card-pane.base-mid
-{
-    -fx-background-color: -var-main-color-l3;
-}
-
-.rt-card-pane.base-dark
-{
-    -fx-background-color: -var-main-color-l4;
-}
-
 /*-- ############################### Card Pane Styles ############################### */
 .rt-card-pane
 {
-    -fx-background-color: -var-main-color-l1;
+    -fx-background-color: -var-accent-color;
     -fx-background-radius: 4;
     -fx-border-color: -var-main-color-l1;
     -fx-border-width: 0 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 7, 0.06, 0, 2);
     -fx-hgap: 10;
     -fx-padding: 0;
-    
-    /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 17, 0.45, 0, 4); */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 7, 0.06, 0, 2);
+}
+
+/*-- ############################### Card Pane Accents ############################### */
+.rt-card-pane.base
+{
+    -fx-background-color: -var-main-color-l1;
 }

@@ -11,7 +11,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class Label extends javafx.scene.control.Label implements RtComponent
 {
     protected LabelStyle style = LabelStyle.NORMAL;
-    protected Accent accent = Accent.BASE_MID;
+    protected Accent accent = Accent.BASE;
     
     private static final String USER_AGENT_STYLESHEET = "label.css";
     private static final String CSS_CLASS = "rt-label";
@@ -123,8 +123,11 @@ public class Label extends javafx.scene.control.Label implements RtComponent
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        for (LabelStyle labelStyle : LabelStyle.values())
+        {
+            pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
+        }
     }
     
     static

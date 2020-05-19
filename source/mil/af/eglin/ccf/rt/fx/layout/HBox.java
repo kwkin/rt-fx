@@ -8,7 +8,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class HBox extends javafx.scene.layout.HBox
 {
-    protected Accent accent;
+    protected Accent accent = Accent.BASE;
 
     private static final String USER_AGENT_STYLESHEET = "hbox.css";
     private static final String CSS_CLASS = "rt-hbox";
@@ -80,10 +80,7 @@ public class HBox extends javafx.scene.layout.HBox
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        if (this.accent != null)
-        {
-            getStyleClass().add(this.accent.getCssName());
-        }
+        getStyleClass().add(this.accent.getCssName());
     }
     
     static

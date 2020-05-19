@@ -19,7 +19,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class DialogPane extends javafx.scene.control.DialogPane
 {
-    protected Accent accent;
+    protected Accent accent = Accent.BASE;
 
     private static final String USER_AGENT_STYLESHEET = "dialog-pane.css";
     private static final String CSS_CLASS = "rt-dialog-pane";
@@ -104,6 +104,7 @@ public class DialogPane extends javafx.scene.control.DialogPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getCssName());
     }
     
     static

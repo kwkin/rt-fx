@@ -11,7 +11,7 @@ public class Text extends javafx.scene.text.Text implements RtComponent
     private static final String USER_AGENT_STYLESHEET = "text.css";
     
     protected TextStyle style = TextStyle.NORMAL;
-    protected Accent accent = Accent.BASE_MID;
+    protected Accent accent = Accent.BASE;
     
     private static final String CSS_CLASS = "rt-text";
 

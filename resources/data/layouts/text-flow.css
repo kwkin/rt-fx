@@ -1,50 +1,12 @@
+/*-- ############################### Text Flow Styles ############################### */
 .rt-text-flow
 {
-    -fx-padding: 8 0 16 0;
+    -fx-background-color: -var-accent-color;
+    -fx-padding: 4 0 16 0;
 }
 
 /*-- ############################### Text Flow Accents ############################### */
-.rt-text-flow.primary-light
+.rt-text-flow.base
 {
-    -fx-background-color: -var-primary-light-color;
-}
-
-.rt-text-flow.primary-mid
-{
-    -fx-background-color: -var-primary-mid-color;
-}
-
-.rt-text-flow.primary-dark
-{
-    -fx-background-color: -var-primary-dark-color;
-}
-
-.rt-text-flow.secondary-light
-{
-    -fx-background-color: -var-secondary-light-color;
-}
-
-.rt-text-flow.secondary-mid
-{
-    -fx-background-color: -var-secondary-mid-color;
-}
-
-.rt-text-flow.secondary-dark
-{
-    -fx-background-color: -var-secondary-dark-color;
-}
-
-.rt-text-flow.base-light
-{
-    -fx-background-color: -var-main-color-l2;
-}
-
-.rt-text-flow.base-mid
-{
-    -fx-background-color: -var-main-color-l3;
-}
-
-.rt-text-flow.base-dark
-{
-    -fx-background-color: -var-main-color-l4;
+    -var-accent-color: transparent;
 }

@@ -9,10 +9,16 @@
 
 .rt-separator:horizontal
 {
-    -fx-padding: 4 0 4 0;
+    -fx-padding: 8 0 8 0;
 }
 
 .rt-separator:vertical
 {
-	-fx-padding: 0 4 0 4;
+	-fx-padding: 0 8 0 8;
+}
+
+/*-- ############################### Separator Accent ############################### */
+.rt-separator.base
+{
+    -var-accent-color: -var-main-color-l4;
 }

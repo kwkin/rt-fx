@@ -41,23 +41,9 @@
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
-.base-light
-{
-    -var-accent-color: -var-main-color-l2;
-    -var-accent-text-color: -var-on-main-mid-color;
-    -var-overlay-color: -var-base-overlay-color;
-}
-
-.base-mid
+.base
 {
     -var-accent-color: -var-main-color-l3;
-    -var-accent-text-color: -var-on-main-mid-color;
-    -var-overlay-color: -var-base-overlay-color;
-}
-
-.base-dark
-{
-    -var-accent-color: -var-main-color-l4;
     -var-accent-text-color: -var-on-main-mid-color;
     -var-overlay-color: -var-base-overlay-color;
 }

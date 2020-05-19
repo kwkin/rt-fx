@@ -48,7 +48,7 @@ public class TitledSeparator extends Labeled
     private static final PseudoClass VERTICAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("vertical");
     private static final PseudoClass HORIZONTAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("horizontal");
 
-    protected Accent accent = Accent.BASE_DARK;
+    protected Accent accent = Accent.BASE;
 
     private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
     private static final String CSS_CLASS = "rt-titled-separator";

@@ -48,3 +48,9 @@
     -fx-pref-width: -var-width;
     -fx-max-width: -var-width;
 }
+
+/*-- ############################### Titled Separator Accent ############################### */
+.rt-titled-separator.base
+{
+    -var-accent-color: -var-main-color-l4;
+}

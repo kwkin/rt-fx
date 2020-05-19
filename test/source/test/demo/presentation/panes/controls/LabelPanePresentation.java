@@ -34,10 +34,10 @@ public class LabelPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("All RT-FX text components default to Google's Roboto font. Additionally, many of the components can be accented using primary and secondary colors define in a CSS file.");
         
         GridPane normalLabelsGridPane = new GridPane();
-        Label mainSmallLabel = new Label("Main Small", LabelStyle.SMALL, Accent.BASE_MID);
-        Label mainMidLabel = new Label("Main Mid", LabelStyle.NORMAL, Accent.BASE_MID);
-        Label mainLargeLabel = new Label("Main Large", LabelStyle.LARGE, Accent.BASE_MID);
-        Label mainTitleLabel = new Label("Main Title", LabelStyle.TITLE, Accent.BASE_MID);
+        Label mainSmallLabel = new Label("Main Small", LabelStyle.SMALL);
+        Label mainMidLabel = new Label("Main Mid", LabelStyle.NORMAL);
+        Label mainLargeLabel = new Label("Main Large", LabelStyle.LARGE);
+        Label mainTitleLabel = new Label("Main Title", LabelStyle.TITLE);
 
         Label primarySmallLabel = new Label("Prim. Small", LabelStyle.SMALL, Accent.PRIMARY_MID);
         Label primaryMidLabel = new Label("Prim. Mid", LabelStyle.NORMAL, Accent.PRIMARY_MID);

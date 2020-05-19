@@ -1,7 +1,12 @@
 package test.demo.presentation.panes.controls;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
@@ -63,13 +68,8 @@ public class ButtonPanePresentation extends SizedTitledCard
 
         HBox baseButtonPane = new HBox();
         baseButtonPane.setSpacing(14);
-        Button baseLightButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE_LIGHT);
-        baseLightButton.setDefaultButton(true);
-        Button baseMidButton = new Button("CANCEL", ButtonStyle.RAISED, Accent.BASE_MID);
-        Button baseDarkButton = new Button("APPLY", ButtonStyle.RAISED, Accent.BASE_DARK);
-        baseButtonPane.getChildren().add(baseLightButton);
-        baseButtonPane.getChildren().add(baseMidButton);
-        baseButtonPane.getChildren().add(baseDarkButton);
+        Button baseButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE);
+        baseButtonPane.getChildren().add(baseButton);
 
         buttonVBox.getChildren().add(primaryButtonPane);
         buttonVBox.getChildren().add(secondaryButtonPane);

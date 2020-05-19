@@ -1,53 +1,14 @@
-/*-- ############################### Grid Pane Accents ############################### */
-.rt-grid-pane.primary-light
-{
-    -fx-background-color: -var-primary-light-color;
-}
-
-.rt-grid-pane.primary-mid
-{
-    -fx-background-color: -var-primary-mid-color;
-}
-
-.rt-grid-pane.primary-dark
-{
-    -fx-background-color: -var-primary-dark-color;
-}
-
-.rt-grid-pane.secondary-light
-{
-    -fx-background-color: -var-secondary-light-color;
-}
-
-.rt-grid-pane.secondary-mid
-{
-    -fx-background-color: -var-secondary-mid-color;
-}
-
-.rt-grid-pane.secondary-dark
-{
-    -fx-background-color: -var-secondary-dark-color;
-}
-
-.rt-grid-pane.base-light
-{
-    -fx-background-color: -var-main-color-l2;
-}
-
-.rt-grid-pane.base-mid
-{
-    -fx-background-color: -var-main-color-l3;
-}
-
-.rt-grid-pane.base-dark
-{
-    -fx-background-color: -var-main-color-l4;
-}
-
 /*-- ############################### Grid Pane Styles ############################### */
 .rt-grid-pane
 {
+    -fx-background-color: -var-accent-color;
     -fx-hgap: 10;
     -fx-padding: 16;
     -fx-vgap: 10;
+}
+
+/*-- ############################### Grid Pane Accents ############################### */
+.rt-grid-pane.base
+{
+    -var-accent-color: transparent;
 }

@@ -1,53 +1,7 @@
-/*-- ############################### Anchor Pane Accents ############################### */
-.rt-dialog-pane.primary-light
-{
-    -var-accent-color: -var-primary-light-color;
-}
-
-.rt-dialog-pane.primary-mid
-{
-    -var-accent-color: -var-primary-mid-color;
-}
-
-.rt-dialog-pane.primary-dark
-{
-    -var-accent-color: -var-primary-dark-color;
-}
-
-.rt-dialog-pane.secondary-light
-{
-    -var-accent-color: -var-secondary-light-color;
-}
-
-.rt-dialog-pane.secondary-mid
-{
-    -var-accent-color: -var-secondary-mid-color;
-}
-
-.rt-dialog-pane.secondary-dark
-{
-    -var-accent-color: -var-secondary-dark-color;
-}
-
-.rt-dialog-pane.base-light
-{
-    -var-accent-color: -var-main-color-l2;
-}
-
-.rt-dialog-pane.base-mid
-{
-    -var-accent-color: -var-main-color-l3;
-}
-
-.rt-dialog-pane.base-dark
-{
-    -var-accent-color: -var-main-color-l4;
-}
-
-/*-- ############################### Anchor Pane Styles ############################### */
+/*-- ############################### Dialog Pane Styles ############################### */
 .rt-dialog-pane
 {
-    -fx-background-color: -var-main-color-l1;
+    -fx-background-color: -var-accent-color;
 }
 
 .rt-dialog-pane .button-bar .container 
@@ -64,4 +18,10 @@
 .rt-dialog-pane .content 
 {
     -fx-padding: 0;
+}
+
+/*-- ############################### Dialog Pane Accents ############################### */
+.rt-dialog-pane.base
+{
+    -var-accent-color: transparent;
 }

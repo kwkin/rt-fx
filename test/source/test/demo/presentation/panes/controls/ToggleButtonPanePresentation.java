@@ -53,9 +53,7 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
         ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
 
-        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_LIGHT);
-        ToggleButton baseMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_MID);
-        ToggleButton baseDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE_DARK);
+        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE);
 
         toggleButtonGridPane.add(primaryLightToggleButton, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleButton, 1, 0);
@@ -66,8 +64,6 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         toggleButtonGridPane.add(secondaryDarkToggleButton, 2, 1);
 
         toggleButtonGridPane.add(baseLightToggleButton, 0, 2);
-        toggleButtonGridPane.add(baseMidToggleButton, 1, 2);
-        toggleButtonGridPane.add(baseDarkToggleButton, 2, 2);
         
         descriptionPane.setContent(toggleButtonGridPane);
         

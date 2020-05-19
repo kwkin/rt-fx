@@ -8,7 +8,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class TextFlow extends javafx.scene.text.TextFlow
 {
-    protected Accent accent;
+    protected Accent accent = Accent.BASE;
     
     private static final String USER_AGENT_STYLESHEET = "text-flow.css";
     private static final String CSS_CLASS = "rt-text-flow";
@@ -51,10 +51,7 @@ public class TextFlow extends javafx.scene.text.TextFlow
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        if (this.accent != null)
-        {
-            getStyleClass().add(this.accent.getCssName());
-        }
+        getStyleClass().add(this.accent.getCssName());
     }
     
     static

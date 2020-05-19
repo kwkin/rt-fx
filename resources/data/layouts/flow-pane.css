@@ -1,54 +1,14 @@
-/*-- ############################### Flow Pane Accents ############################### */
-.rt-flow-pane.primary-light
-{
-    -fx-background-color: -var-primary-light-color;
-}
-
-.rt-flow-pane.primary-mid
-{
-    -fx-background-color: -var-primary-mid-color;
-}
-
-.rt-flow-pane.primary-dark
-{
-    -fx-background-color: -var-primary-dark-color;
-}
-
-.rt-flow-pane.secondary-light
-{
-    -fx-background-color: -var-secondary-light-color;
-}
-
-.rt-flow-pane.secondary-mid
-{
-    -fx-background-color: -var-secondary-mid-color;
-}
-
-.rt-flow-pane.secondary-dark
-{
-    -fx-background-color: -var-secondary-dark-color;
-}
-
-.rt-flow-pane.base-light
-{
-    -fx-background-color: -var-main-color-l2;
-}
-
-.rt-flow-pane.base-mid
-{
-    -fx-background-color: -var-main-color-l3;
-}
-
-.rt-flow-pane.base-dark
-{
-    -fx-background-color: -var-main-color-l4;
-}
-
-/*-- ############################### Flow Pane Style ############################### */
+/*-- ############################### Flow Pane Styles ############################### */
 .rt-flow-pane
 {
+    -fx-background-color: -var-accent-color;
     -fx-hgap: 10;
-    -fx-vgap: 10;
     -fx-padding: 10;
-    -fx-background-color: transparent;
+    -fx-vgap: 10;
+}
+
+/*-- ############################### Flow Pane Accents ############################### */
+.rt-flow-pane.base
+{
+    -var-accent-color: transparent;
 }
