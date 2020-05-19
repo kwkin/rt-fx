@@ -18,7 +18,7 @@ public class RegexValidator implements Validator<String>
     
     public String getRegex()
     {
-        return this.getRegex();
+        return this.regex;
     }
 
     @Override
