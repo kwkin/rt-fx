@@ -76,8 +76,6 @@ public class TextFieldPanePresentation extends SizedTitledCard
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
         validableTextField.setLabelFloat(true);
-        validableTextField.setIsShowHelperText(true);
-        validableTextField.setHelperText("Helper Text");
         validableTextField.setValidateCondition(ValidateCondition.MANUAL);
         validableTextField.getValidators().add(requiredValidator);
         

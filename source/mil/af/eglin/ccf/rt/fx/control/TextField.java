@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
@@ -41,12 +42,11 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO clean up validation text and API
-// TODO if helper text not specified, but error text is possible, reserve space for the textfield
 
 public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
 {
-    private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
-    private static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
+    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
     
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -301,6 +301,11 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     {
         this.validationHandler.getValidateCondition();
     }
+    
+    public boolean isHelperTextVisible()
+    {
+        return isShowHelperText.get() || getValidators().size() > 0;
+    }
 
     @Override
     public Control getControl()
@@ -383,7 +388,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
-        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get());
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get() || getValidators().size() > 0);
         this.labelFloating.addListener((ov, oldVal, newVal) -> 
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
@@ -391,6 +396,14 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.isShowHelperText.addListener((ov, oldVal, newVal) -> 
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
+        });
+        this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<String>>()
+        {
+            @Override
+            public void onChanged(javafx.collections.ListChangeListener.Change<? extends Validator<String>> c)
+            {
+                pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
+            }
         });
     }
 

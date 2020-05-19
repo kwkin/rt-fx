@@ -138,7 +138,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         double inputTopPadding = this.inputContainer.getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 2;
 
-        double inputHeight = this.textField.getIsShowHelperText() ? h - this.textField.getHelperTextHeight() : h;
+        double inputHeight = this.textField.isHelperTextVisible() ? h - this.textField.getHelperTextHeight() : h;
         this.linesWrapper.layoutComponents(x, y, w, inputHeight, translateY);
         this.linesWrapper.updateLabelFloatLayout();
 
@@ -146,7 +146,6 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.promptContainer.resizeRelocate(x, y, w, inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
-        
         this.textContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
         
         RtGlyph graphic = this.textField.getTrailingGlyph();
