@@ -1,12 +1,7 @@
 package test.demo.presentation.panes.controls;
 
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;

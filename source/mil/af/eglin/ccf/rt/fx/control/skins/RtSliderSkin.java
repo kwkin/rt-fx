@@ -72,9 +72,9 @@ public class RtSliderSkin extends SliderSkin
         {
             updateState();
         });
-        
-        getChildren().add(getChildren().indexOf(thumb), filledTrack);
-//        getChildren().add(getChildren().indexOf(thumb), stateThumb);
+
+        int insertIndex = getChildren().indexOf(thumb);
+        getChildren().add(insertIndex, filledTrack);
     }
 
     @Override

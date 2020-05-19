@@ -94,6 +94,17 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     }
 
     @Override
+    protected void updateChildren()
+    {
+        super.updateChildren();
+        if (container != null)
+        {
+            removeRadio();
+            getChildren().add(container);
+        }
+    }
+
+    @Override
     protected void handleControlPropertyChanged(String property)
     {
         super.handleControlPropertyChanged(property);
@@ -113,17 +124,6 @@ public class RtRadioButtonSkin extends RadioButtonSkin
             {
                 radio.setStroke(paint);
             }
-        }
-    }
-
-    @Override
-    protected void updateChildren()
-    {
-        super.updateChildren();
-        if (container != null)
-        {
-            removeRadio();
-            getChildren().add(container);
         }
     }
 
@@ -155,7 +155,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        final javafx.scene.control.RadioButton radioButton = getSkinnable();
+        final javafx.scene.control.RadioButton radioButton = this.radioButton;
         final double contWidth = snapSize(container.prefWidth(-1));
         final double contHeight = snapSize(container.prefHeight(-1));
         final double computeWidth = Math.max(radioButton.prefWidth(-1), radioButton.minWidth(-1));

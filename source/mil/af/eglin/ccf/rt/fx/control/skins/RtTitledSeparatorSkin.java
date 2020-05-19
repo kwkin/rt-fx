@@ -25,11 +25,26 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
         leftLine.getStyleClass().setAll("left-line");
         rightLine = new Region();
         rightLine.getStyleClass().setAll("right-line");
-        getChildren().add(leftLine);
-        getChildren().add(rightLine);
+        
+        updateChildren();
+        
         registerChangeListener(separator.orientationProperty(), separator.orientationProperty().getName());
         registerChangeListener(separator.halignmentProperty(), separator.halignmentProperty().getName());
         registerChangeListener(separator.valignmentProperty(), separator.valignmentProperty().getName());
+    }
+    
+    @Override
+    protected void updateChildren()
+    {
+        super.updateChildren();
+        if (leftLine != null)
+        {
+            getChildren().add(leftLine);
+        }
+        if (rightLine != null)
+        {
+            getChildren().add(rightLine);
+        }
     }
 
     @Override

@@ -7,7 +7,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO change label style to pseudo class
 public class Label extends javafx.scene.control.Label implements RtComponent
 {
     protected LabelStyle style = LabelStyle.NORMAL;

@@ -57,7 +57,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.box.getStyleClass().setAll("box");
         this.box.getChildren().setAll(indeterminateMark, selectedMark);
         this.boxAndMarks.getChildren().add(box);
-        getChildren().add(boxAndMarks);
 
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
@@ -73,8 +72,20 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
                 (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
 
+        updateChildren();
+        
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
+    }
+    
+    @Override
+    protected void updateChildren()
+    {
+        super.updateChildren();
+        if (this.boxAndMarks != null)
+        {
+            getChildren().add(boxAndMarks);
+        }
     }
 
     @Override
