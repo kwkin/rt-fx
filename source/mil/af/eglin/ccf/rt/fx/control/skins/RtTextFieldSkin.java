@@ -36,7 +36,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private Text promptText;
     private Text helperText;
     private Pane textPane;
-    private PromptInput linesWrapper;
+    private PromptInput<TextField> linesWrapper;
 
     public RtTextFieldSkin(final TextField textField)
     {
@@ -53,7 +53,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
         
-        linesWrapper = new PromptInput(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
+        linesWrapper = new PromptInput<>(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText);
 
         promptContainer.getStyleClass().add("prompt-container");
@@ -64,13 +64,13 @@ public class RtTextFieldSkin extends TextFieldSkin
         updateOverlayColor();
         updateTrailingIconColor();
         createHelperText();
-        this.errorContainer = new ValidableContainer(this.textField);
+        this.errorContainer = new ValidableContainer(textField);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
-        this.helperContainer.visibleProperty().bind(this.textField.isValidProperty());
-        this.errorContainer.visibleProperty().bind(this.textField.isValidProperty().not());
+        this.helperContainer.visibleProperty().bind(textField.isValidProperty());
+        this.errorContainer.visibleProperty().bind(textField.isValidProperty().not());
         
         getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, textContainer);
-        RtGlyph glyph = this.textField.getTrailingGlyph();
+        RtGlyph glyph = textField.getTrailingGlyph();
         if (glyph != null)
         {
             getChildren().add(glyph.getGlyph());
@@ -133,7 +133,6 @@ public class RtTextFieldSkin extends TextFieldSkin
     {
         super.layoutChildren(x, y, w, h);
 
-        
         double promptTopPadding = this.promptContainer.getPadding().getTop();
         double inputTopPadding = this.inputContainer.getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 2;

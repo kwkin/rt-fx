@@ -43,7 +43,7 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO truncate floating label and helper/error text
-public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl<String>
+public class TextField extends javafx.scene.control.TextField implements RtComponent, RtLabelFloatControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -106,46 +106,82 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableBooleanProperty labelFloatProperty()
     {
         return this.labelFloating;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isLabelFloat()
     {
         return labelFloating.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setLabelFloat(final boolean labelFloat)
     {
         labelFloating.set(labelFloat);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableObjectProperty<Paint> focusColorProperty()
     {
         return this.focusColor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Paint getFocusColor()
     {
         return this.focusColor.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setFocusColor(Paint color)
     {
         this.focusColor.set(color);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableObjectProperty<Paint> unfocusProperty()
     {
         return this.unfocusColor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Paint getUnfocusColor()
     {
         return unfocusColor.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setUnfocusColor(Paint color)
     {
         this.unfocusColor.set(color);
@@ -166,16 +202,28 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.overlayColor.set(overlayColor);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableBooleanProperty disableAnimationProperty()
     {
         return this.disableAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Boolean isDisableAnimation()
     {
         return this.disableAnimation.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setDisableAnimation(Boolean disabled)
     {
         this.disableAnimation.set(disabled);
@@ -276,33 +324,48 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         return this.validationHandler.getValidators();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean validate()
     {
         this.isValid.set(this.validationHandler.validate(getText()));
         return isValid();
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ReadOnlyBooleanProperty isValidProperty()
     {
         return this.isValid;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isValid()
     {
         return this.isValid.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean setValid(boolean isValid)
     {
         return isValid;
     }
-    
+
     public void setValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.setValidateCondition(validateCondition);
     }
-    
+
     public void getValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.getValidateCondition();

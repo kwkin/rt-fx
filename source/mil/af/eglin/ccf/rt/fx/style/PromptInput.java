@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Control;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -18,17 +19,17 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
-import mil.af.eglin.ccf.rt.fx.control.TextField;
+import mil.af.eglin.ccf.rt.fx.control.RtLabelFloatControl;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 import java.util.function.Supplier;
 
-public class PromptInput
+public class PromptInput<T extends Control & RtLabelFloatControl> 
 {
     private final Supplier<Text> promptTextSupplier;
-    private TextField control;
+    private T control;
 
     public Region overlayContainer = new Region();
     public Region focusedLine = new Region();
@@ -52,7 +53,7 @@ public class PromptInput
     private boolean animating = false;
     private double promptTranslateY = 0;
 
-    public PromptInput(TextField control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
+    public PromptInput(T control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
             ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier)
     {
         this.control = control;
@@ -176,13 +177,13 @@ public class PromptInput
         
         control.focusedProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            updateState(true);
         });
         control.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
             if (!this.control.isFocused())
             {
-                updateState();
+                updateState(true);
             }
         });
 
@@ -193,23 +194,25 @@ public class PromptInput
                 animatedPromptTextFill.set(promptTextFill.get());
             }
         });
+        updateState(false);
+        updateLabelFloat(false);
     }
 
-    private void updateState()
+    private void updateState(boolean animate)
     {
         if (this.control.isFocused())
         {
             normalTimer.stop();
             hoverTimer.stop();
             unfocusLabelTimer.stop();
-            runTimer(focusTimer, true);
+            runTimer(focusTimer, animate);
         }
         else if (this.control.isHover())
         {
             normalTimer.stop();
             focusTimer.stop();
             unfocusLabelTimer.stop();
-            runTimer(hoverTimer, true);
+            runTimer(hoverTimer, animate);
         }
         else
         {
@@ -223,12 +226,12 @@ public class PromptInput
                 Object text = getControlValue();
                 if (text == null || text.toString().isEmpty())
                 {
-                    runTimer(unfocusLabelTimer, true);
+                    runTimer(unfocusLabelTimer, animate);
                 }
             }
-            runTimer(normalTimer, true);
+            runTimer(normalTimer, animate);
         }
-        animating = true;
+        animating = animate;
     }
     
     private Object getControlValue()
@@ -306,10 +309,10 @@ public class PromptInput
 
     private boolean usePromptText()
     {
-        Object txt = getControlValue();
-        String promptTxt = promptTextProperty.getValue();
+        Object text = getControlValue();
+        String promptText = promptTextProperty.getValue();
         boolean isLabelFloat = control.isLabelFloat();
-        return isLabelFloat || (promptTxt != null && (txt == null || txt.toString().isEmpty()) && !promptTxt.isEmpty()
+        return isLabelFloat || (promptText != null && (text == null || text.toString().isEmpty()) && !promptText.isEmpty()
                 && !promptTextFill.get().equals(Color.TRANSPARENT));
     }
 

@@ -4,9 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
-import mil.af.eglin.ccf.rt.fx.control.Separator;
+import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -23,8 +22,6 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         VBox stackPane = new VBox();
         
         stackPane.getChildren().add(createFilledComboBoxes());
-        stackPane.getChildren().add(new Separator());
-        stackPane.getChildren().add(createFlatComboBoxes());
         
         setContent(stackPane);
     }
@@ -40,68 +37,29 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         items.add("Item 3");
         items.add("Item 4");
         items.add("Item 5");
-        
-        GridPane textboxGridPane = new GridPane();
-        ComboBox<String> primaryLightComboBox = new ComboBox<String>(items, Accent.PRIMARY_LIGHT);
-        primaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> primaryMidComboBox = new ComboBox<String>(items, Accent.PRIMARY_MID);
-        primaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(items, Accent.PRIMARY_DARK);
-        primaryDarkComboBox.setPromptText("Images and Text");
 
-        GridPane.setFillWidth(primaryLightComboBox, true);
-        GridPane.setFillWidth(primaryMidComboBox, true);
-        
-        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(items, Accent.SECONDARY_LIGHT);
-        secondaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(items, Accent.SECONDARY_MID);
-        secondaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(items, Accent.SECONDARY_DARK);
-        secondaryDarkComboBox.setPromptText("Images and Text:");
-        
-        textboxGridPane.add(primaryLightComboBox, 0, 0);
-        textboxGridPane.add(primaryMidComboBox, 0, 1);
-        textboxGridPane.add(primaryDarkComboBox, 0, 2);
-        
-        textboxGridPane.add(secondaryLightComboBox, 1, 0);
-        textboxGridPane.add(secondaryMidComboBox, 1, 1);
-        textboxGridPane.add(secondaryDarkComboBox, 1, 2);
+        VBox vBox = new VBox();
+        vBox.setSpacing(16);
 
-        descriptionPane.setContent(textboxGridPane);
-        
-        return descriptionPane;
-    }
+        ComboBox<String> primaryLightComboBox = new ComboBox<>(Accent.PRIMARY_LIGHT);
+        primaryLightComboBox.setItems(items);
+        primaryLightComboBox.setPromptText("Prompt Text");
+        primaryLightComboBox.setValue(items.get(0));
+        ComboBox<String> primaryMidComboBox = new ComboBox<>(Accent.PRIMARY_MID);
+        primaryMidComboBox.setItems(items);
+        primaryMidComboBox.setPromptText("Floating");
+        primaryMidComboBox.setLabelFloat(true);
+        primaryMidComboBox.setValue(items.get(0));
 
-    private Node createFlatComboBoxes()
-    {
-        DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("Text boxes come in many permutations: accented, filled, and areas. The group below contains non-accented, filled and non-filled text boxes.");
+        TextField primaryMidTextBox = new TextField(Accent.PRIMARY_MID);
+        primaryMidTextBox.setPromptText("Floating");
+        primaryMidTextBox.setLabelFloat(true);
 
-        GridPane textboxGridPane = new GridPane();
-        ComboBox<String> primaryLightComboBox = new ComboBox<String>(Accent.PRIMARY_LIGHT);
-        primaryLightComboBox.setPromptText("First Name:");
-        
-        ComboBox<String> primaryMidComboBox = new ComboBox<String>(Accent.PRIMARY_MID);
-        primaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> primaryDarkComboBox = new ComboBox<String>(Accent.PRIMARY_DARK);
-        primaryDarkComboBox.setPromptText("Images and Text");
+        vBox.getChildren().add(primaryLightComboBox);
+        vBox.getChildren().add(primaryMidComboBox);
+        vBox.getChildren().add(primaryMidTextBox);
 
-        ComboBox<String> secondaryLightComboBox = new ComboBox<String>(Accent.SECONDARY_LIGHT);
-        secondaryLightComboBox.setPromptText("First Name:");
-        ComboBox<String> secondaryMidComboBox = new ComboBox<String>(Accent.SECONDARY_MID);
-        secondaryMidComboBox.setPromptText("Last Name:");
-        ComboBox<String> secondaryDarkComboBox = new ComboBox<String>(Accent.SECONDARY_DARK);
-        secondaryDarkComboBox.setPromptText("Images and Text:");
-        
-        textboxGridPane.add(primaryLightComboBox, 0, 0);
-        textboxGridPane.add(primaryMidComboBox, 0, 1);
-        textboxGridPane.add(primaryDarkComboBox, 0, 2);
-        
-        textboxGridPane.add(secondaryLightComboBox, 1, 0);
-        textboxGridPane.add(secondaryMidComboBox, 1, 1);
-        textboxGridPane.add(secondaryDarkComboBox, 1, 2);
-
-        descriptionPane.setContent(textboxGridPane);
+        descriptionPane.setContent(vBox);
         
         return descriptionPane;
     }

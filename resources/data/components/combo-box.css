@@ -14,16 +14,70 @@ TODO
 /*-- ############################### Combo Box Style ############################### */
 .rt-combo-box
 {
-    -fx-background-color: -var-main-color-l2;
-	-fx-background-radius: 2.0;
-    -fx-border-color: -var-main-color-l4;
-    -fx-border-radius: 2.0;
-    -fx-border-width: 0 0 2 0;
-    -fx-cursor: hand;
-    -fx-min-height: 56;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: default;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 14;
     -fx-max-width: 1000000;
-    -fx-padding: 1 1 1 1;
+    -fx-min-height: 48;
+    -fx-padding: 0;
+    -fx-prompt-text-fill: -var-on-main-light-color;
     -fx-text-fill: -var-on-main-mid-color;
+
+    -rt-focus-color: -var-accent-color;
+    -rt-overlay-color: -var-base-overlay-color;
+    -rt-unfocus-color: -var-main-color-l4;
+    -rt-helper-text-height: 24;
+}
+
+.rt-combo-box .list-cell
+{
+    -fx-text-fill: -var-on-main-mid-color;
+    -fx-padding: 0;
+}
+
+.rt-combo-box .input-container
+{
+    -fx-cursor: text;
+    -fx-background-color: -var-main-color-l2;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 16;
+    -fx-min-height: 48;
+}
+
+.rt-combo-box .prompt-container
+{
+    -fx-cursor: text;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 16;
+}
+
+.rt-combo-box .input-focused-line
+{
+    -fx-background-color: -var-accent-color;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+
+    -var-height: 2;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
+}
+
+.rt-combo-box .input-unfocused-line
+{
+    -fx-background-color: -var-main-color-l4;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+    
+    -var-height: 1;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
 }
 
 .combo-box-base .text-input,
@@ -53,6 +107,80 @@ TODO
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
+/*-- ############################### Pseudo State Padding ############################### */
+.rt-combo-box:helper
+{
+    -fx-min-height: 72;
+}
+
+.rt-combo-box:helper .helper-container
+{
+    -fx-border-width: 2;
+    -fx-min-height: 16;
+    -fx-padding: 2 16 2 16;
+}
+
+.rt-combo-box:helper .helper-container .helper-text
+{
+    -fx-fill: -var-on-main-light-color;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+.rt-combo-box:floating .input-container
+{
+    -fx-padding: 22 16 6 16;
+}
+
+.rt-combo-box:helper .error-container
+{
+    -fx-border-width: 2;
+    -fx-min-height: 16;
+    -fx-padding: 2 16 2 16;
+}
+
+.rt-combo-box:helper .error-container .error-text
+{
+    -fx-fill: -var-error-color;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+.rt-combo-box:error
+{
+    -rt-focus-color: -var-error-color;
+    -rt-unfocus-color: -var-error-color;
+    -fx-prompt-text-fill: -var-error-color;
+}
+
+.rt-combo-box:error .input-container
+{
+    -fx-background-color: -var-light-error-color;
+}
+
+ 
+/*-- ############################### Editable Style ############################### */
+.combo-box-base:editable .text-field
+{
+    -fx-background-color: -var-main-color-l2;
+    -fx-control-inner-background: -var-main-color-l2;
+    -fx-faint-focus-color: -var-main-color-l2;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-effect: null;
+}
+
+.combo-box-base:editable:focused .text-field,
+.combo-box-base:editable .text-field:focused
+{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+/*-- ############################### Combo-box List View Style ############################### */
 .rt-combo-box .combo-box-popup .list-view 
 {
     -fx-background: -var-main-color-l1;
@@ -74,7 +202,7 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-/* Change derive color */
+/* TODO Change derive color */
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
     -fx-background: derive(-var-accent-color, 50%);
@@ -98,25 +226,6 @@ TODO
     -fx-min-width: -rt-size;
     -fx-max-height: -rt-size;
     -fx-max-width: -rt-size;
-}
- 
-.combo-box-base:editable .text-field
-{
-    /* TODO use accent colors*/
-    -fx-background-color: -var-main-color-l2;
-    -fx-control-inner-background: -var-main-color-l2;
-    -fx-faint-focus-color: -var-main-color-l2;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
-    -fx-effect: null;
-}
-
-.combo-box-base:editable:focused .text-field,
-.combo-box-base:editable .text-field:focused
-{
-    -fx-background-color: transparent;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
 }
 
 /*-- ############################### Combo Box Popup Style ############################### */
