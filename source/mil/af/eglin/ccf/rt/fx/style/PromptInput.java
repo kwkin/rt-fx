@@ -195,7 +195,6 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             }
         });
         updateState(false);
-        updateLabelFloat(false);
     }
 
     private void updateState(boolean animate)
@@ -268,6 +267,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             {
                 Object text = getControlValue();
                 animateFloatingLabel(!(text == null || text.toString().isEmpty()), animation);
+                runTimer(normalTimer, animation);
             }
         }
     }
