@@ -1,6 +1,7 @@
 /*
 TODO
 - Label visibility property
+- Change derive to ladder
 */
 
 /*-- ############################### Progress Bar Accents ############################### */
@@ -85,11 +86,3 @@ TODO
 {
 	-fx-fill: white;
 }
-
-/* .rt-progress-bar:indeterminate>.bar {
-	-fx-background-color: -rt-remaining-color;
-	-fx-background-radius: 2.0;
-	-fx-background-insets: 0.0;
-	-fx-border-width: 0.0;
-	-fx-effect: null;
-} */

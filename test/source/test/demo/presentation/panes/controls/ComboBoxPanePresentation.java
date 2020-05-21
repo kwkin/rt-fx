@@ -44,12 +44,12 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         ComboBox<String> primaryLightComboBox = new ComboBox<>(Accent.PRIMARY_LIGHT);
         primaryLightComboBox.setItems(items);
         primaryLightComboBox.setPromptText("Prompt Text");
-        primaryLightComboBox.setValue(items.get(0));
+        primaryLightComboBox.setValue(items.get(2));
         ComboBox<String> primaryMidComboBox = new ComboBox<>(Accent.PRIMARY_MID);
         primaryMidComboBox.setItems(items);
         primaryMidComboBox.setPromptText("Floating");
         primaryMidComboBox.setLabelFloat(true);
-        primaryMidComboBox.setValue(items.get(0));
+        primaryMidComboBox.setValue(items.get(2));
 
         TextField primaryMidTextBox = new TextField(Accent.PRIMARY_MID);
         primaryMidTextBox.setPromptText("Floating");

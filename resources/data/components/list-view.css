@@ -17,14 +17,31 @@ TODO
 	-fx-background-color: -var-main-color-l1;
 }
 
-.rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
+.rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd:filled:selected,
+.rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:focused,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:focused,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover
 {
-    -fx-background-color: derive(-var-accent-color, 90%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-border-color: transparent;
 }
 
-.rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused
+.rt-list-view .virtual-flow .clipped-container .sheet .list-cell:hover,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:hover,
+.rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd:hover,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:hover,
+.rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd:hover
 {
-    -fx-background-color: derive(-var-accent-color, 90%);
+    -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
+    -fx-border-color: transparent;
 }
 
 /*-- ############################### List Cell Styles ############################### */
@@ -46,16 +63,19 @@ TODO
 .rt-list-view.plain .virtual-flow .clipped-container .sheet .list-cell:odd
 {
     -fx-border-color: -var-main-color-l1;
+	-fx-border-width: 0 0 1 0;
 }
 
 .rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell
 {
-    -fx-border-color: #e4e4e4;
+	-fx-border-color: -var-main-color-l3;
+	-fx-border-width: 0 0 1 0;
 }
 
 .rt-list-view.zebra .virtual-flow .clipped-container .sheet .list-cell:odd
 {
     -fx-background-color: -var-main-color-l2;
+	-fx-border-width: 0 0 1 0;
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */

@@ -85,16 +85,10 @@ TODO
     -fx-padding: 4 8 4 8;
 }
 
-.menu-item:hover
-{
-    -fx-background: derive(-var-accent-color, 90%);
-    -fx-background-color: derive(-var-accent-color, 90%);
-}
-
 .menu-item:focused
 {
-    -fx-background: derive(-var-accent-color, 90%);
-    -fx-background-color: derive(-var-accent-color, 90%);
+    -fx-background: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
 }
 
 .menu-item .label 
@@ -105,11 +99,9 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-.menu-item:focused .label 
+.menu-item:focused .label
 {
-    -fx-font-size: 14;
-    -fx-min-height: 28;
-    -fx-text-fill: -var-on-main-mid-color;
+    -fx-text-fill: -var-on-accent-color;
 }
 
 .check-menu-item:checked .left-container .check 

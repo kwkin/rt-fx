@@ -75,7 +75,7 @@ TODO
 	-fx-background-radius: 0;
     -fx-border-radius: 0;
     
-    -var-height: 1;
+    -var-height: 2;
     -fx-pref-height: -var-height;
     -fx-max-height: -var-height;
 }
@@ -209,7 +209,7 @@ TODO
 
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
-    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
     -fx-text-fill: -var-on-accent-color;
 }
 

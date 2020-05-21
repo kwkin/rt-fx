@@ -84,12 +84,6 @@ public class TextFieldPanePresentation extends SizedTitledCard
         allEnabledTextBox.setHelperText("Helper Text");
         allEnabledTextBox.setTrailingGlyph(bell);
         
-        Button testButton = new Button("Test");
-        testButton.setOnAction(event -> 
-        {
-            validableTextField.validate();
-        });
-        
         vBox.getChildren().add(primaryLightTextBox);
         vBox.getChildren().add(primaryMidTextBox);
         vBox.getChildren().add(primaryDarkTextBox);
@@ -98,7 +92,6 @@ public class TextFieldPanePresentation extends SizedTitledCard
         vBox.getChildren().add(secondaryDarkTextBox);
         vBox.getChildren().add(validableTextField);
         vBox.getChildren().add(allEnabledTextBox);
-        vBox.getChildren().add(testButton);
 
         descriptionPane.setContent(vBox);
         

@@ -56,6 +56,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         linesWrapper = new PromptInput<>(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty());
 
+        
         promptContainer.getStyleClass().add("prompt-container");
         linesWrapper.init(() -> createPromptText(), textPane);
 
@@ -87,9 +88,8 @@ public class RtTextFieldSkin extends TextFieldSkin
     @Override
     public HitInfo getIndex(double x, double y) 
     {
-        Point2D p;
-        p = new Point2D(x - snappedLeftInset() - this.inputContainer.getPadding().getLeft(),
-                        y - snappedTopInset() - (2 * this.inputContainer.getPadding().getTop()));
+        Point2D p = new Point2D(x - snappedLeftInset() - this.inputContainer.getPadding().getLeft(),
+                y - snappedTopInset() - (2 * this.inputContainer.getPadding().getTop()));
 
         Text text = ((Text)textPane.getChildren().get(1));
         // TODO replace with text.hitTest(p) JavaFX versions 9+

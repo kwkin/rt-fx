@@ -66,7 +66,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         this.toggleFlag = toggleFlag;
     }
 
-    public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
+    public void init(Runnable createPromptNodeRunnable, Node clip, Node... cachedNodes)
     {
         animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
         usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
@@ -80,7 +80,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         focusedLine.getStyleClass().add("input-focused-line");
         focusedLine.setOpacity(0);
         focusedLine.getTransforms().add(scale);
-
+        
         if (usePromptText.get()) 
         {
             createPromptNodeRunnable.run();

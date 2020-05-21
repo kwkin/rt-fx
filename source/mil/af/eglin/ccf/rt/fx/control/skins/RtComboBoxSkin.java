@@ -48,8 +48,11 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
                 comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty());
         
+        StackPane clip = new StackPane();
+        clip.setBackground(inputContainer.getBackground());
+        
         promptContainer.getStyleClass().add("prompt-container");
-        linesWrapper.init(() -> createPromptText());
+        linesWrapper.init(() -> createPromptText(), clip);
 
         helperContainer.getStyleClass().add("helper-container");
 
