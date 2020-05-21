@@ -49,12 +49,13 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     private ObjectProperty<Paint> promptTextFill;
     private ObservableValue<?> valueProperty;
     private ObservableValue<String> promptTextProperty;
+    private ObservableValue<Boolean> toggleFlag;
 
     private boolean animating = false;
     private double promptTranslateY = 0;
 
     public PromptInput(T control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
-            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier)
+            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier, ObservableValue<Boolean> toggleFlag)
     {
         this.control = control;
         this.overlayContainer = overlaycontainer;
@@ -62,6 +63,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         this.promptTextFill = promptTextFill;
         this.valueProperty = valueProperty;
         this.promptTextProperty = promptTextProperty;
+        this.toggleFlag = toggleFlag;
     }
 
     public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
@@ -102,7 +104,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(focusedLine.opacityProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> control.isFocused())
+                            .setAnimateCondition(() -> this.toggleFlag.getValue())
                         .build())
                     .build(), 
                 RtKeyFrame.builder()
@@ -122,7 +124,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                         RtKeyValue.builder().setTarget(animatedPromptTextFill)
                             .setEndValueSupplier(() -> control.getFocusColor())
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> control.isFocused() && control.isLabelFloat())
+                            .setAnimateCondition(() -> this.toggleFlag.getValue() && control.isLabelFloat())
                         .build(),
                         RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
                             .setEndValueSupplier(() -> -promptTranslateY)
@@ -175,13 +177,13 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         normalTimer.setCacheNodes(cachedNodes);
         unfocusLabelTimer.setCacheNodes(cachedNodes);
         
-        control.focusedProperty().addListener((ov, oldVal, newVal) ->
+        this.toggleFlag.addListener((ov, oldVal, newVal) ->
         {
             updateState(true);
         });
         control.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!this.control.isFocused())
+            if (!this.toggleFlag.getValue())
             {
                 updateState(true);
             }
@@ -199,7 +201,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
 
     private void updateState(boolean animate)
     {
-        if (this.control.isFocused())
+        if (this.toggleFlag.getValue())
         {
             normalTimer.stop();
             hoverTimer.stop();
@@ -211,6 +213,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             normalTimer.stop();
             focusTimer.stop();
             unfocusLabelTimer.stop();
+            focusedLine.setOpacity(0);
             runTimer(hoverTimer, animate);
         }
         else
@@ -259,7 +262,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     {
         if (control.isLabelFloat())
         {
-            if (control.isFocused())
+            if (this.toggleFlag.getValue())
             {
                 animateFloatingLabel(true, animation);
             }

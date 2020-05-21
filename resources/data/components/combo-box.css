@@ -40,7 +40,7 @@ TODO
 
 .rt-combo-box .input-container
 {
-    -fx-cursor: text;
+    -fx-cursor: hand;
     -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
@@ -51,7 +51,7 @@ TODO
 
 .rt-combo-box .prompt-container
 {
-    -fx-cursor: text;
+    -fx-cursor: hand;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
@@ -80,31 +80,36 @@ TODO
     -fx-max-height: -var-height;
 }
 
-.combo-box-base .text-input,
-.combo-box-base,
-.combo-box-base .label,
-.rt-combo-box .label,
-.combo-box-base:editable .arrow-button,
-.combo-box-popup .list-view .placeholder .label 
+.combo-box .arrow, 
+.combo-box .arrow-button .arrow 
 {
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.combo-box-base:editable:focused,
-.rt-combo-box:focused
-{
-    -fx-background-color: -var-main-color-l2;
-    -fx-border-color: -var-accent-color;
-}
-
-.rt-combo-box .arrow-button .arrow
-{
+    -fx-background-color: -var-on-main-light-color;
+    -fx-cursor: hand;
     -fx-shape: "M7,10L12,15L17,10H7Z";
+
+    -var-height: 4;
+    -fx-min-height: -var-height;
+    -fx-max-height: -var-height;
+
+    -var-width: 10;
+    -fx-min-width: -var-width;
+    -fx-max-width: -var-width;
 }
 
-.rt-combo-box:showing .arrow-button .arrow
+.combo-box-base:showing .arrow, 
+.combo-box-base:showing .arrow-button .arrow 
 {
+    -fx-cursor: hand;
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
+
+    -var-height: 4;
+    -fx-min-height: -var-height;
+    -fx-max-height: -var-height;
+
+    -var-width: 10;
+    -fx-min-width: -var-width;
+    -fx-max-width: -var-width;
 }
 
 /*-- ############################### Pseudo State Padding ############################### */
