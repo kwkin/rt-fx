@@ -36,6 +36,7 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtComboBoxSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
 import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -385,6 +386,16 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     public void setIsShowHelperText(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
+    }
+
+    public void setValidateCondition(ValidateCondition validateCondition)
+    {
+        this.validationHandler.setValidateCondition(validateCondition);
+    }
+
+    public void getValidateCondition(ValidateCondition validateCondition)
+    {
+        this.validationHandler.getValidateCondition();
     }
     
     /**

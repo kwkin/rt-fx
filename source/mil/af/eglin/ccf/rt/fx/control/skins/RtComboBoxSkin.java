@@ -3,8 +3,10 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 
 import com.sun.javafx.scene.control.skin.ComboBoxListViewSkin;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -18,11 +20,12 @@ import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 {
     private final ComboBox<T> comboBox;
-
+    
+    private final Node arrowButton;
+    private final Node listView;
     private final StackPane overlayContainer = new StackPane();
     private final StackPane inputContainer = new StackPane();
     private final StackPane promptContainer = new StackPane();
-
     private final StackPane textContainer = new StackPane();
     private final StackPane helperContainer = new StackPane();
     private final ValidableContainer errorContainer;
@@ -48,32 +51,32 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
                 comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty());
         
-        StackPane clip = new StackPane();
-        clip.setBackground(inputContainer.getBackground());
-        
         promptContainer.getStyleClass().add("prompt-container");
-        linesWrapper.init(() -> createPromptText(), clip);
+        linesWrapper.init(() -> createPromptText());
 
         helperContainer.getStyleClass().add("helper-container");
 
-        
         this.errorContainer = new ValidableContainer(comboBox);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
         this.helperContainer.visibleProperty().bind(comboBox.isValidProperty());
         this.errorContainer.visibleProperty().bind(comboBox.isValidProperty().not());
 
-        StackPane arrows = (StackPane) this.getChildren().get(0);
-        getChildren().remove(arrows);
-        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, arrows, textContainer);
-        
+        this.arrowButton = (StackPane)this.comboBox.lookup(".arrow-button");
+        this.listView = this.comboBox.lookup(".list-view");
+        getChildren().remove(arrowButton);
+        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, arrowButton, textContainer);
+
         updateDisplayArea();
         updateOverlayColor();
         createHelperText();
+        updatePopupLocation();
         
         registerChangeListener(comboBox.labelFloatProperty(), comboBox.labelFloatProperty().getName());
         registerChangeListener(comboBox.focusColorProperty(),  comboBox.focusColorProperty().getName());
         registerChangeListener(comboBox.getOverlayColorProperty(),  comboBox.getOverlayColorProperty().getName());
         registerChangeListener(comboBox.unfocusProperty(),  comboBox.unfocusProperty().getName());
+        registerChangeListener(comboBox.helperTextHeightProperty(), comboBox.helperTextHeightProperty().getName());
+        registerChangeListener(comboBox.isShowHelperTextProperty(), comboBox.isShowHelperTextProperty().getName());
     }
     
     @Override 
@@ -116,6 +119,14 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         {
             this.linesWrapper.updateLabelFloatLayout();
         }
+        else if (comboBox.helperTextHeightProperty().getName().equals(propertyReference))
+        {
+            updatePopupLocation();
+        }
+        else if (comboBox.isShowHelperTextProperty().getName().equals(propertyReference))
+        {
+            updatePopupLocation();
+        }
     }
 
     @Override
@@ -137,7 +148,15 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
         this.textContainer.resizeRelocate(x, inputHeight, w, this.comboBox.getHelperTextHeight());
         
-        // TODO attempt to remove this (currently needed because the display node CSS is not applying upon init)
+        if (arrowButton != null)
+        {
+            double graphicWidth = arrowButton.getLayoutBounds().getWidth();
+            double xPosition = w - graphicWidth;
+            double inputYCenter = y + inputHeight / 2;
+            positionInArea(arrowButton, xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
+        }
+        
+        // TODO attempt to remove this function call (currently needed because the display node CSS is not applying upon init)
         updateDisplayArea();
         if (displayNode != null) 
         {
@@ -167,30 +186,10 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         
         if (this.comboBox.isFocused() && this.comboBox.isLabelFloat())
         {
-//            this.promptText.setTranslateY(-Math.floor(this.textPane.getHeight()));
             this.linesWrapper.promptTextScale.setX(0.85);
             this.linesWrapper.promptTextScale.setY(0.85);
         }
-//        updatePromptText();
     }
-    
-//    private void updatePromptText()
-//    {
-//        try
-//        {
-//            Field field = TextFieldSkin.class.getDeclaredField("promptNode");
-//            field.setAccessible(true);
-//            Object oldValue = field.get(this);
-//            if (oldValue != null)
-//            {
-//                textPane.getChildren().remove(oldValue);
-//            }
-//            field.set(this, promptText);
-//        }
-//        catch (Exception e)
-//        {
-//        }
-//    }
     
     private void createHelperText()
     {
@@ -210,5 +209,13 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
     {
         CornerRadii radii = this.comboBox.getBackground() == null ? null : this.comboBox.getBackground().getFills().get(0).getRadii(); 
         this.overlayContainer.setBackground(new Background(new BackgroundFill(this.comboBox.getOverlayColor(), radii, Insets.EMPTY)));
+    }
+    
+    private void updatePopupLocation()
+    {
+        if (this.comboBox.isHelperTextVisible())
+        {
+            listView.setTranslateY(-1 * this.comboBox.getHelperTextHeight());
+        }
     }
 }
