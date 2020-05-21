@@ -63,13 +63,8 @@ public class ButtonPanePresentation extends SizedTitledCard
 
         HBox baseButtonPane = new HBox();
         baseButtonPane.setSpacing(14);
-        Button baseLightButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE_LIGHT);
-        baseLightButton.setDefaultButton(true);
-        Button baseMidButton = new Button("CANCEL", ButtonStyle.RAISED, Accent.BASE_MID);
-        Button baseDarkButton = new Button("APPLY", ButtonStyle.RAISED, Accent.BASE_DARK);
-        baseButtonPane.getChildren().add(baseLightButton);
-        baseButtonPane.getChildren().add(baseMidButton);
-        baseButtonPane.getChildren().add(baseDarkButton);
+        Button baseButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE);
+        baseButtonPane.getChildren().add(baseButton);
 
         buttonVBox.getChildren().add(primaryButtonPane);
         buttonVBox.getChildren().add(secondaryButtonPane);
@@ -85,7 +80,6 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Flat buttons behave the same as regular buttons, but they appear to be on the same level as its container.");
 
-        // TODO figure out why these are linked to the other VBox properties
         VBox buttonVBox = new VBox();
         buttonVBox.setSpacing(16);
         

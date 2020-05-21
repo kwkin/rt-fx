@@ -34,22 +34,22 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         
         double circleRadius = 8;
         
-        line = new Line();
-        line.getStyleClass().add("line");
-        line.setStartX(0);
-        line.setStartY(0);
-        line.setEndX(circleRadius * 2.2);
-        line.setEndY(0);
-        line.setStrokeWidth(circleRadius * 2.8);
-        line.setStrokeLineCap(StrokeLineCap.ROUND);
-        line.setSmooth(true);
+        this.line = new Line();
+        this.line.getStyleClass().add("line");
+        this.line.setStartX(0);
+        this.line.setStartY(0);
+        this.line.setEndX(circleRadius * 2.2);
+        this.line.setEndY(0);
+        this.line.setStrokeWidth(circleRadius * 2.8);
+        this.line.setStrokeLineCap(StrokeLineCap.ROUND);
+        this.line.setSmooth(true);
 
-        circle = new Circle();
-        circle.getStyleClass().add("circle");
-        circle.setCenterX(-circleRadius);
-        circle.setCenterY(0);
-        circle.setRadius(circleRadius);
-        circle.setSmooth(true);
+        this.circle = new Circle();
+        this.circle.getStyleClass().add("circle");
+        this.circle.setCenterX(-circleRadius);
+        this.circle.setCenterY(0);
+        this.circle.setRadius(circleRadius);
+        this.circle.setSmooth(true);
 
         StackPane circlePane = new StackPane();
         circlePane.getChildren().add(circle);

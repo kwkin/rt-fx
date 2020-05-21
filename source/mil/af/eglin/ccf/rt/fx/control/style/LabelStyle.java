@@ -1,5 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+import javafx.css.PseudoClass;
+
 public enum LabelStyle
 {
     SMALL("small"),
@@ -8,15 +10,15 @@ public enum LabelStyle
     TITLE("title"),
     BLOCK_TITLE("block-title");
     
-    private String cssName;
+    private PseudoClass pseudoClass;
     
     LabelStyle(String cssName)
     {
-        this.cssName = cssName;
+        this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
     
-    public String getCssName()
+    public PseudoClass getPseudoClass()
     {
-        return this.cssName;
+        return this.pseudoClass;
     }
 }

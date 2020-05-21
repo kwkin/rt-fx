@@ -29,16 +29,15 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO add armed color before the icon
 public class IconButton extends Button implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();
-    protected Accent accent = Accent.BASE_MID;
+    protected Accent accent = Accent.BASE;
     protected SvgGlyph icon;
     
     private static final String USER_AGENT_STYLESHEET = "button.css";
-
-    private StyleableObjectProperty<Paint> glyphFill = new SimpleStyleableObjectProperty<>(
+    
+    private StyleableObjectProperty<Paint> selectedGlyphFill = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
@@ -95,19 +94,39 @@ public class IconButton extends Button implements RtGlyph
 
     public StyleableObjectProperty<Paint> glyphFillProperty()
     {
-        return this.glyphFill;
+        return this.selectedGlyphFill;
+    }
+
+    public boolean isGlyphColorManaged()
+    {
+        return this.icon.isGlyphColorManaged();
+    }
+
+    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    {
+        this.icon.setIsGlyphColorManaged(isGlyphFillManaged);
+    }
+
+    public void setSelectedGlyphFill(Paint fill)
+    {
+        this.selectedGlyphFill.set(fill);
+    }
+
+    public Paint getSelectedGlyphFill()
+    {
+        return this.selectedGlyphFill.get();
     }
 
     @Override
     public void setGlyphFill(Paint fill)
     {
-        this.glyphFill.set(fill);
+        this.icon.setGlyphFill(fill);
     }
 
     @Override
     public Paint getGlyphFill()
     {
-        return this.glyphFill.get();
+        return this.icon.getGlyphFill();
     }
 
     @Override
@@ -172,13 +191,13 @@ public class IconButton extends Button implements RtGlyph
             @Override
             public boolean isSettable(IconButton control)
             {
-                return control.glyphFill == null || !control.glyphFill.isBound();
+                return control.selectedGlyphFill == null || !control.selectedGlyphFill.isBound();
             }
 
             @Override
             public StyleableProperty<Paint> getStyleableProperty(IconButton control)
             {
-                return control.glyphFill;
+                return control.selectedGlyphFill;
             }
         };
         

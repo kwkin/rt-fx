@@ -3,277 +3,52 @@
 {
     -fx-alignment: center-left;
     -fx-padding: 2 2 2 2;
-    -fx-text-fill: -var-on-main-mid-color;
     -fx-text-alignment: center;
+}
+
+.rt-label.base
+{
+    -var-accent-color: -var-on-main-mid-color;
 }
 
 /*-- ############################### Small ############################### */
-.rt-label.small
+.rt-label:small
 {
     -fx-font-size: 12px;
-}
-
-.rt-label.small.base-light
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.small.base-mid
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.small.base-dark
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.small.primary-light
-{
-    -fx-text-fill: -var-primary-light-color;
-}
-
-.rt-label.small.primary-mid
-{
-    -fx-text-fill: -var-primary-mid-color;
-}
-
-.rt-label.small.primary-dark
-{
-    -fx-text-fill: -var-primary-dark-color;
-}
-
-.rt-label.small.secondary-light
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.small.secondary-mid
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.small.secondary-dark
-{
-    -fx-text-fill: -var-secondary-dark-color;
+    -fx-text-fill: -var-accent-color;
 }
 
 /*-- ############################### Normal ############################### */
-.rt-label.normal
+.rt-label:normal
 {
     -fx-font-size: 14px;
-}
-
-.rt-label.normal.base-light
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.normal.base-mid
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.normal.base-dark
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.normal.primary-light
-{
-    -fx-text-fill: -var-primary-light-color;
-}
-
-.rt-label.normal.primary-mid
-{
-    -fx-text-fill: -var-primary-mid-color;
-}
-
-.rt-label.normal.primary-dark
-{
-    -fx-text-fill: -var-primary-dark-color;
-}
-
-.rt-label.normal.secondary-light
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.normal.secondary-mid
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.normal.secondary-dark
-{
-    -fx-text-fill: -var-secondary-dark-color;
+    -fx-text-fill: -var-accent-color;
 }
 
 /*-- ############################### Large ############################### */
-.rt-label.large
+.rt-label:large
 {
     -fx-font-size: 16px;
-}
-
-.rt-label.large.base-light
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.large.base-mid
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.large.base-dark
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.large.primary-light
-{
-    -fx-text-fill: -var-primary-light-color;
-}
-
-.rt-label.large.primary-mid
-{
-    -fx-text-fill: -var-primary-mid-color;
-}
-
-.rt-label.large.primary-dark
-{
-    -fx-text-fill: -var-primary-dark-color;
-}
-
-.rt-label.large.secondary-light
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.large.secondary-mid
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.large.secondary-dark
-{
-    -fx-text-fill: -var-secondary-dark-color;
+    -fx-text-fill: -var-accent-color;
 }
 
 /*-- ############################### Title ############################### */
-.rt-label.title
+.rt-label:title
 {
     -fx-font-size: 18px;
+    -fx-text-fill: -var-accent-color;
 }
-
-.rt-label.title.base-light
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.title.base-mid
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.title.base-dark
-{
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.title.primary-light
-{
-    -fx-text-fill: -var-primary-light-color;
-}
-
-.rt-label.title.primary-mid
-{
-    -fx-text-fill: -var-primary-mid-color;
-}
-
-.rt-label.title.primary-dark
-{
-    -fx-text-fill: -var-primary-dark-color;
-}
-
-.rt-label.title.secondary-light
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.title.secondary-mid
-{
-    -fx-text-fill: -var-secondary-mid-color;
-}
-
-.rt-label.title.secondary-dark
-{
-    -fx-text-fill: -var-secondary-dark-color;
-}
-
 
 /*-- ############################### Block Title ############################### */
-.rt-label.block-title
+.rt-label:block-title
 {
     -fx-alignment: center;
+    -fx-background-color: -var-accent-color;
     -fx-font-size: 18px;
     -fx-font-family: "Roboto Medium";
     -fx-max-width: 1000000;
-    -fx-padding: 10 15 10 15;
+    -fx-padding: 10 16 10 16;
     -fx-text-alignment: center;
+    -fx-text-fill: -var-on-accent-color;
     -fx-wrap-text: true;
-}
-
-.rt-label.block-title.base-light
-{
-    -fx-background-color: -var-main-color-l2;
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.block-title.base-mid
-{
-    -fx-background-color: -var-main-color-l3;
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.block-title.base-dark
-{
-    -fx-background-color: -var-main-color-l4;
-    -fx-text-fill: -var-on-main-mid-color;
-}
-
-.rt-label.block-title.primary-light
-{
-    -fx-background-color: -var-primary-light-color;
-    -fx-text-fill: -var-on-primary-light-color;
-}
-
-.rt-label.block-title.primary-mid
-{
-    -fx-background-color: -var-primary-mid-color;
-    -fx-text-fill: -var-on-primary-mid-color;
-}
-
-.rt-label.block-title.primary-dark
-{
-    -fx-background-color: -var-primary-dark-color;
-    -fx-text-fill: -var-on-primary-dark-color;
-}
-
-.rt-label.block-title.secondary-light
-{
-    -fx-background-color: -var-secondary-light-color;
-    -fx-text-fill: -var-on-secondary-light-color;
-}
-
-.rt-label.block-title.secondary-mid
-{
-    -fx-background-color: -var-secondary-mid-color;
-    -fx-text-fill: -var-on-secondary-mid-color;
-}
-
-.rt-label.block-title.secondary-dark
-{
-    -fx-background-color: -var-secondary-dark-color;
-    -fx-text-fill: -var-on-secondary-text-color;
 }

@@ -13,7 +13,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO change armed to selected
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
     private final ToggleButton button;
@@ -29,14 +28,6 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         stateBox.getStyleClass().setAll("state-box");
         stateBox.setOpacity(0);
         
-        Node text = getSkinnable().lookup(".text");
-        int index = getChildren().indexOf(text);
-        index = index == -1 ? getChildren().size() - 1 : index;
-        if (stateBox != null)
-        {
-            getChildren().add(index, stateBox);
-        }
-
         // TODO generate shadow automatically
         button.setPickOnBounds(false);
         DepthManager.getInstance().setDepth(button, 2);
@@ -71,6 +62,21 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         {
             updateState();
         });
+        
+        updateChildren();
+    }
+    
+    @Override
+    protected void updateChildren()
+    {
+        super.updateChildren();
+        if (stateBox != null)
+        {
+            Node text = getSkinnable().lookup(".text");
+            int insertIndex = getChildren().indexOf(text);
+            insertIndex = insertIndex == -1 ? getChildren().size() - 1 : insertIndex;
+            getChildren().add(insertIndex, stateBox);
+        }
     }
 
     @Override

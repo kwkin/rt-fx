@@ -57,7 +57,6 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         updateChildren();
     }
     
-    // TODO check if this should be overridden, or if this can just be added during the constructor.
     @Override
     protected void updateChildren()
     {

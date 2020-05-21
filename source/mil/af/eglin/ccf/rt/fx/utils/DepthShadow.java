@@ -38,11 +38,6 @@ public class DepthShadow extends DropShadow implements Interpolatable<DepthShado
             getOffsetX() + (endValue.getOffsetX() - getOffsetX()) * ft,
             getOffsetY() + (endValue.getOffsetY() - getOffsetY()) * ft
         );
-//        setRadius(getRadius() + (endValue.getRadius() - getRadius()) * ft);
-//        setSpread(getSpread() + (endValue.getSpread() - getSpread()) * ft);
-//        setOffsetX(getOffsetX() + (endValue.getOffsetX() - getOffsetX()) * ft);
-//        setOffsetY(getOffsetY() + (endValue.getOffsetY() - getOffsetY()) * ft);
-//        return this;
     }
 
 }

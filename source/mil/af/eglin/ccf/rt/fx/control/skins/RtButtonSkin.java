@@ -36,14 +36,6 @@ public class RtButtonSkin extends ButtonSkin
         stateBox.getStyleClass().setAll("state-box");
         stateBox.setOpacity(0);
 
-        Node text = getSkinnable().lookup(".text");
-        int index = getChildren().indexOf(text);
-        index = index == -1 ? getChildren().size() - 1 : index;
-        if (stateBox != null)
-        {
-            getChildren().add(index, stateBox);
-        }
-
         createAnimation();
         button.armedProperty().addListener((ov, oldVal, newVal) ->
         {
@@ -54,8 +46,23 @@ public class RtButtonSkin extends ButtonSkin
             updateState();
         });
         updateStateBoxColor();
+        updateChildren();
 
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
+        
+    }
+    
+    @Override
+    protected void updateChildren()
+    {
+        super.updateChildren();
+        if (stateBox != null)
+        {
+            Node text = getSkinnable().lookup(".text");
+            int insertIndex = getChildren().indexOf(text);
+            insertIndex = insertIndex == -1 ? getChildren().size() - 1 : insertIndex;
+            getChildren().add(insertIndex, stateBox);
+        }
     }
     
     @Override

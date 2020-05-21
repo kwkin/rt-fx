@@ -5,6 +5,10 @@ import javafx.scene.paint.Paint;
 
 public interface RtGlyph
 {
+    public boolean isGlyphColorManaged();
+    
+    public void setIsGlyphColorManaged(boolean isGlyphColorManaged);
+    
     public void setGlyphFill(Paint fill);
     
     public Paint getGlyphFill();

@@ -17,6 +17,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
@@ -40,16 +42,11 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO clean up validation text and API
-// TODO add error and helper text
-// TODO if helper text not specified, but error text is possible, reserve space for the textfield
-// TODO add icon color option in the textfield CSS
-// TODO Fix text input padding when a trailing icon is present
-
-public class TextField extends javafx.scene.control.TextField implements RtComponent, ValidableControl
+// TODO truncate floating label and helper/error text
+public class TextField extends javafx.scene.control.TextField implements RtComponent, RtLabelFloatControl, ValidableControl<String>
 {
-    private static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
-    private static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
+    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
     
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -62,7 +59,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private StringProperty errorText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
     
-    private ValidableHandler<String> validationHandler = new ValidableHandler<String>(this);
+    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
     
     // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
@@ -75,6 +72,8 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 10.0);
+    private StyleableObjectProperty<Paint> trailingIconColor = new SimpleStyleableObjectProperty<Paint>(
+            StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor", DefaultPalette.getInstance().getLightBaseColor());
     private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
             StyleableProperties.HELPER_TEXT_HEIGHT, TextField.this, "helperTextHeight", 16.0);
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
@@ -107,46 +106,82 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableBooleanProperty labelFloatProperty()
     {
         return this.labelFloating;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isLabelFloat()
     {
         return labelFloating.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setLabelFloat(final boolean labelFloat)
     {
         labelFloating.set(labelFloat);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableObjectProperty<Paint> focusColorProperty()
     {
         return this.focusColor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Paint getFocusColor()
     {
         return this.focusColor.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setFocusColor(Paint color)
     {
         this.focusColor.set(color);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableObjectProperty<Paint> unfocusProperty()
     {
         return this.unfocusColor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Paint getUnfocusColor()
     {
         return unfocusColor.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setUnfocusColor(Paint color)
     {
         this.unfocusColor.set(color);
@@ -167,16 +202,28 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.overlayColor.set(overlayColor);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StyleableBooleanProperty disableAnimationProperty()
     {
         return this.disableAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Boolean isDisableAnimation()
     {
         return this.disableAnimation.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setDisableAnimation(Boolean disabled)
     {
         this.disableAnimation.set(disabled);
@@ -195,6 +242,21 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     public void setTrailingGlyph(RtGlyph glyph)
     {
         this.trailingIcon.set(glyph);
+    }
+
+    public ObjectProperty<Paint> trailingGlyphColorProperty()
+    {
+        return this.trailingIconColor;
+    }
+
+    public Paint getTrailingGlyphColor()
+    {
+        return trailingIconColor.get();
+    }
+
+    public void setTrailingGlyphColor(Paint color)
+    {
+        this.trailingIconColor.set(color);
     }
 
     public DoubleProperty trailingIconGapProperty()
@@ -262,50 +324,88 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         return this.validationHandler.getValidators();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean validate()
     {
         this.isValid.set(this.validationHandler.validate(getText()));
         return isValid();
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ReadOnlyBooleanProperty isValidProperty()
     {
         return this.isValid;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isValid()
     {
         return this.isValid.get();
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean setValid(boolean isValid)
+    {
+        return isValid;
+    }
+
     public void setValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.setValidateCondition(validateCondition);
     }
-    
+
     public void getValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.getValidateCondition();
     }
+    
+    public boolean isHelperTextVisible()
+    {
+        return isShowHelperText.get() || getValidators().size() > 0;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Control getControl()
     {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StringProperty errorMessageProperty()
     {
         return this.errorText;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setErrorMessage(String message)
     {
         this.errorText.set(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getErrorMessage()
     {
@@ -352,6 +452,15 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
      * {@inheritDoc}
      */
     @Override
+    public ObservableValue<String> getObservable()
+    {
+        return textProperty();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getUserAgentStylesheet()
     {
         return null;
@@ -369,7 +478,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
-        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get());
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get() || getValidators().size() > 0);
         this.labelFloating.addListener((ov, oldVal, newVal) -> 
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
@@ -377,6 +486,14 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.isShowHelperText.addListener((ov, oldVal, newVal) -> 
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
+        });
+        this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<String>>()
+        {
+            @Override
+            public void onChanged(javafx.collections.ListChangeListener.Change<? extends Validator<String>> c)
+            {
+                pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
+            }
         });
     }
 
@@ -459,6 +576,22 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
                 return control.trailingIconGap;
             }
         };
+        private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = new CssMetaData<TextField, Paint>(
+                "-rt-trailing-icon-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getLightBaseColor())
+        {
+
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.trailingIconColor == null || !control.trailingIconColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(TextField control)
+            {
+                return control.trailingIconColor;
+            }
+        };
         private static final CssMetaData<TextField, Number> HELPER_TEXT_HEIGHT = new CssMetaData<TextField, Number>(
                 "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
         {
@@ -503,6 +636,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
             styleables.add(TRAILING_ICON_PADDING);
+            styleables.add(TRAILING_ICON_COLOR);
             styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on

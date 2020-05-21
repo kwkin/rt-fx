@@ -26,6 +26,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private final TextField textField;
     private final StackPane overlayContainer = new StackPane();
     private final StackPane inputContainer = new StackPane();
+    private final StackPane inputTextContainer = new StackPane();
     private final StackPane promptContainer = new StackPane();
     
     private final StackPane textContainer = new StackPane();
@@ -35,7 +36,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private Text promptText;
     private Text helperText;
     private Pane textPane;
-    private PromptInput linesWrapper;
+    private PromptInput<TextField> linesWrapper;
 
     public RtTextFieldSkin(final TextField textField)
     {
@@ -46,13 +47,14 @@ public class RtTextFieldSkin extends TextFieldSkin
         getChildren().remove(textPane);
         inputContainer.setManaged(false);
         inputContainer.getStyleClass().add("input-container");
-        inputContainer.getChildren().add(textPane);
+        inputContainer.getChildren().add(inputTextContainer);
+        inputTextContainer.getChildren().add(textPane);
 
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
         
-        linesWrapper = new PromptInput(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
-                textField.promptTextProperty(), () -> promptText);
+        linesWrapper = new PromptInput<>(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
+                textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty());
 
         promptContainer.getStyleClass().add("prompt-container");
         linesWrapper.init(() -> createPromptText(), textPane);
@@ -60,14 +62,15 @@ public class RtTextFieldSkin extends TextFieldSkin
         helperContainer.getStyleClass().add("helper-container");
 
         updateOverlayColor();
+        updateTrailingIconColor();
         createHelperText();
-        this.errorContainer = new ValidableContainer(this.textField);
+        this.errorContainer = new ValidableContainer(textField);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
-        this.helperContainer.visibleProperty().bind(this.textField.isValidProperty());
-        this.errorContainer.visibleProperty().bind(this.textField.isValidProperty().not());
+        this.helperContainer.visibleProperty().bind(textField.isValidProperty());
+        this.errorContainer.visibleProperty().bind(textField.isValidProperty().not());
         
         getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, textContainer);
-        RtGlyph glyph = this.textField.getTrailingGlyph();
+        RtGlyph glyph = textField.getTrailingGlyph();
         if (glyph != null)
         {
             getChildren().add(glyph.getGlyph());
@@ -78,6 +81,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         registerChangeListener(textField.getOverlayColorProperty(),  textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusProperty(),  textField.unfocusProperty().getName());
         registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
+        registerChangeListener(textField.trailingGlyphColorProperty(),  textField.trailingGlyphColorProperty().getName());
     }
 
     @Override
@@ -88,7 +92,7 @@ public class RtTextFieldSkin extends TextFieldSkin
                         y - snappedTopInset() - (2 * this.inputContainer.getPadding().getTop()));
 
         Text text = ((Text)textPane.getChildren().get(1));
-        // TODO replace with text.hitTest(p) when using future JavaFX versions (9+)
+        // TODO replace with text.hitTest(p) JavaFX versions 9+
         @SuppressWarnings("deprecation")
         HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
         return hitInfo;
@@ -112,10 +116,15 @@ public class RtTextFieldSkin extends TextFieldSkin
         }
         else if (textField.labelFloatProperty().getName().equals(propertyReference))
         {
+            // TODO complete this
         }
         else if (textField.trailingGlyphProperty().getName().equals(propertyReference))
         {
             this.textField.layout();
+        }
+        else if (textField.trailingGlyphColorProperty().getName().equals(propertyReference))
+        {
+            updateTrailingIconColor();
         }
     }
 
@@ -124,12 +133,11 @@ public class RtTextFieldSkin extends TextFieldSkin
     {
         super.layoutChildren(x, y, w, h);
 
-        
         double promptTopPadding = this.promptContainer.getPadding().getTop();
         double inputTopPadding = this.inputContainer.getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 2;
 
-        double inputHeight = this.textField.getIsShowHelperText() ? h - this.textField.getHelperTextHeight() : h;
+        double inputHeight = this.textField.isHelperTextVisible() ? h - this.textField.getHelperTextHeight() : h;
         this.linesWrapper.layoutComponents(x, y, w, inputHeight, translateY);
         this.linesWrapper.updateLabelFloatLayout();
 
@@ -146,6 +154,11 @@ public class RtTextFieldSkin extends TextFieldSkin
             double xPosition = w - graphicWidth - textField.getTrailingIconGap();
             double inputYCenter = y + inputHeight / 2;
             positionInArea(graphic.getGlyph(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
+            updateTrailingIconColor();
+            
+            double inputRightPadding = graphicWidth + 2 * textField.getTrailingIconGap() - this.inputContainer.getPadding().getRight();
+            inputRightPadding = Math.max(inputRightPadding, this.inputContainer.getPadding().getRight());
+            inputTextContainer.setPadding(new Insets(0, inputRightPadding, 0, 0));
         }
     }
 
@@ -211,5 +224,14 @@ public class RtTextFieldSkin extends TextFieldSkin
     {
         CornerRadii radii = this.textField.getBackground() == null ? null : this.textField.getBackground().getFills().get(0).getRadii(); 
         this.overlayContainer.setBackground(new Background(new BackgroundFill(this.textField.getOverlayColor(), radii, Insets.EMPTY)));
+    }
+    
+    private void updateTrailingIconColor()
+    {
+        RtGlyph graphic = this.textField.getTrailingGlyph();
+        if (graphic != null && graphic.isGlyphColorManaged())
+        {
+            graphic.setGlyphFill(this.textField.getTrailingGlyphColor());
+        }
     }
 }

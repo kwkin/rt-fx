@@ -8,7 +8,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class Separator extends javafx.scene.control.Separator implements RtComponent
 {
-    protected Accent accent = Accent.BASE_DARK;
+    protected Accent accent = Accent.BASE;
     
     private static final String USER_AGENT_STYLESHEET = "separator.css";
     private static final String CSS_CLASS = "rt-separator";

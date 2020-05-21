@@ -23,7 +23,7 @@ TODO
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-pref-width: 200.0;
-    -fx-text-fill: -var-accent-text-color;
+    -fx-text-fill: -var-on-accent-color;
 }
 
 .rt-toggle-button.raised:focused

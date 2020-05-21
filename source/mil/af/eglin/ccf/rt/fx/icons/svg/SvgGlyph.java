@@ -38,6 +38,8 @@ public class SvgGlyph extends StackPane implements RtGlyph
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
 
+    private boolean isGlyphFillManaged = true;
+    
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
     private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
@@ -57,6 +59,7 @@ public class SvgGlyph extends StackPane implements RtGlyph
     public SvgGlyph(URL icon, Paint fill) throws IOException
     {
         this.fill.setValue(fill);
+        setIsGlyphColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
 
@@ -64,6 +67,7 @@ public class SvgGlyph extends StackPane implements RtGlyph
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
+        setIsGlyphColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
     
@@ -81,6 +85,7 @@ public class SvgGlyph extends StackPane implements RtGlyph
     public SvgGlyph(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
+        setIsGlyphColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
@@ -88,6 +93,7 @@ public class SvgGlyph extends StackPane implements RtGlyph
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
+        setIsGlyphColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
@@ -142,6 +148,16 @@ public class SvgGlyph extends StackPane implements RtGlyph
         return this.widthHeightRatio;
     }
 
+    public boolean isGlyphColorManaged()
+    {
+        return this.isGlyphFillManaged;
+    }
+
+    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    {
+        this.isGlyphFillManaged = isGlyphFillManaged;
+    }
+    
     /**
      * {@inheritDoc}
      */

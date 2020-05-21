@@ -20,8 +20,8 @@ import test.demo.SampleApp;
 import test.demo.abstraction.immutable.DemoTheme;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
+import test.demo.presentation.panes.controls.ComboBoxPanePresentation;
 import test.demo.presentation.panes.controls.ComponentsPresentation;
-import test.demo.presentation.panes.controls.TextFieldPanePresentation;
 import test.demo.presentation.panes.layouts.LayoutsPresentation;
 import test.demo.presentation.sidebar.SideBarPresentation;
 import test.jfoenix.presentation.panes.controls.ButtonComparison;
@@ -78,7 +78,7 @@ public class MainPresentation extends BorderPane
         });
         setTop(toolBar);
 
-        this.panes.add(new TextFieldPanePresentation(paneController));
+        this.panes.add(new ComboBoxPanePresentation(paneController));
         this.panes.add(new ComponentsPresentation(paneController));
         this.panes.add(new LayoutsPresentation());
         this.panes.add(new TableComparison(paneController));

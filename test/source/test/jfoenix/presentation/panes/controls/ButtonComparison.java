@@ -88,7 +88,7 @@ public class ButtonComparison extends SizedTitledCard
     public Node createRtButtons()
     {
         HBox box = new HBox();
-        box.getChildren().add(new Button("BUTTON", ButtonStyle.FLAT, Accent.BASE_MID));
+        box.getChildren().add(new Button("BUTTON", ButtonStyle.FLAT, Accent.BASE));
         box.getChildren().add(new Button("ACCENT", ButtonStyle.FLAT, Accent.PRIMARY_MID));
         Button rtDisabledButton = new Button("DISABLED", ButtonStyle.FLAT);
         rtDisabledButton.setDisable(true);
@@ -117,9 +117,9 @@ public class ButtonComparison extends SizedTitledCard
     {
         HBox box = new HBox();
         
-        box.getChildren().add(new Button("BUTTON", ButtonStyle.RAISED, Accent.BASE_LIGHT));
+        box.getChildren().add(new Button("BUTTON", ButtonStyle.RAISED, Accent.BASE));
         box.getChildren().add(new Button("ACCENT", ButtonStyle.RAISED, Accent.PRIMARY_MID));
-        Button rtDisabledButton = new Button("DISABLED", ButtonStyle.RAISED, Accent.BASE_MID);
+        Button rtDisabledButton = new Button("DISABLED", ButtonStyle.RAISED, Accent.BASE);
         rtDisabledButton.setDisable(true);
         box.getChildren().add(rtDisabledButton);
         return box;

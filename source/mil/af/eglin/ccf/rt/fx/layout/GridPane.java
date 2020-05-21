@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class GridPane extends javafx.scene.layout.GridPane
 {
-    protected Accent accent;
+    protected Accent accent = Accent.BASE;
 
     private static final String USER_AGENT_STYLESHEET = "grid-pane.css";
     private static final String CSS_CLASS = "rt-grid-pane";
@@ -42,10 +42,7 @@ public class GridPane extends javafx.scene.layout.GridPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        if (this.accent != null)
-        {
-            getStyleClass().add(this.accent.getCssName());
-        }
+        getStyleClass().add(this.accent.getCssName());
     }
     
     static

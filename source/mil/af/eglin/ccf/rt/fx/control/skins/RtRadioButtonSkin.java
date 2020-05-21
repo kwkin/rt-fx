@@ -13,7 +13,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
-// TODO change select animation to slide from left to right
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
     private final RadioButton radioButton;
@@ -21,16 +20,13 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private final Circle dot = new Circle();
     private final StackPane container = new StackPane();
 
-    // TODO remove padding
-    private double padding = 12;
-    
     private RtAnimationTimer timer;
-    
+
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
         super(radioButton);
         this.radioButton = radioButton;
-        
+
         double radioRadius = 8;
         this.radio.setRadius(radioRadius);
         this.radio.getStyleClass().setAll("radio");
@@ -50,7 +46,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         this.container.getChildren().addAll(radio, dot);
         this.container.getStyleClass().add("radio-container");
 
-        getSkinnable().selectedProperty().addListener(observable -> 
+        getSkinnable().selectedProperty().addListener(observable ->
         {
             if (!radioButton.getIsAnimationDisabled())
             {
@@ -92,32 +88,9 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         // @formatter:on
 
         updateChildren();
-        
+
         registerChangeListener(radioButton.selectedColorProperty(), radioButton.selectedColorProperty().getName());
         registerChangeListener(radioButton.unselectedColorProperty(), radioButton.unselectedColorProperty().getName());
-    }
-    
-    @Override
-    protected void handleControlPropertyChanged(String property) 
-    {
-        super.handleControlPropertyChanged(property);
-        if (radioButton.selectedColorProperty().getName().equals(property)) 
-        {
-            Paint paint = determineColor(this.radioButton.isSelected());
-            if (paint != null)
-            {
-                radio.setStroke(paint);
-            }
-            this.dot.setFill(this.radioButton.getSelectedColor());
-        } 
-        else if (radioButton.unselectedColorProperty().getName().equals(property)) 
-        {
-            Paint paint = determineColor(this.radioButton.isSelected());
-            if (paint != null)
-            {
-                radio.setStroke(paint);
-            }
-        }
     }
 
     @Override
@@ -132,28 +105,48 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     }
 
     @Override
-    protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return super.computeMinWidth(height,
-            topInset,
-            rightInset,
-            bottomInset,
-            leftInset) + snapSize(radio.minWidth(-1)) + padding / 3;
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (radioButton.selectedColorProperty().getName().equals(property))
+        {
+            Paint paint = determineColor(this.radioButton.isSelected());
+            if (paint != null)
+            {
+                radio.setStroke(paint);
+            }
+            this.dot.setFill(this.radioButton.getSelectedColor());
+        }
+        else if (radioButton.unselectedColorProperty().getName().equals(property))
+        {
+            Paint paint = determineColor(this.radioButton.isSelected());
+            if (paint != null)
+            {
+                radio.setStroke(paint);
+            }
+        }
     }
 
     @Override
-    protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return super.computePrefWidth(height,
-            topInset,
-            rightInset,
-            bottomInset,
-            leftInset) + snapSize(radio.prefWidth(-1)) + padding / 3;
+    protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset,
+            double leftInset)
+    {
+        return computePrefWidth(height, topInset, rightInset, bottomInset, leftInset);
     }
-    
+
+    @Override
+    protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset,
+            double leftInset)
+    {
+        double radioWidth = snapSize(radio.prefWidth(-1));
+        return super.computePrefWidth(height, topInset, rightInset, bottomInset, leftInset) + radioWidth;
+    }
+
     private Paint determineColor(boolean isSelected)
     {
         return isSelected ? this.radioButton.getSelectedColor() : this.radioButton.getUnselectedColor();
     }
-    
+
     private double determineSize(boolean isSelected)
     {
         return isSelected ? 0.55 : 0;
@@ -162,7 +155,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        final javafx.scene.control.RadioButton radioButton = getSkinnable();
+        final javafx.scene.control.RadioButton radioButton = this.radioButton;
         final double contWidth = snapSize(container.prefWidth(-1));
         final double contHeight = snapSize(container.prefHeight(-1));
         final double computeWidth = Math.max(radioButton.prefWidth(-1), radioButton.minWidth(-1));
@@ -175,15 +168,18 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                 + x;
         final double yOffset = Utils.computeYOffset(h, maxHeight, radioButton.getAlignment().getVpos()) + x;
 
-        layoutLabelInArea(xOffset + contWidth + padding / 3, yOffset, labelWidth, maxHeight, radioButton.getAlignment());
+        layoutLabelInArea(xOffset + contWidth, yOffset, labelWidth, maxHeight, radioButton.getAlignment());
         this.container.resize(width, height);
         positionInArea(container, xOffset, yOffset, contWidth, maxHeight, 0, radioButton.getAlignment().getHpos(),
                 radioButton.getAlignment().getVpos());
     }
 
-    private void removeRadio() {
-        for (int i = 0; i < getChildren().size(); i++) {
-            if (getChildren().get(i).getStyleClass().contains("radio")) {
+    private void removeRadio()
+    {
+        for (int i = 0; i < getChildren().size(); i++)
+        {
+            if (getChildren().get(i).getStyleClass().contains("radio"))
+            {
                 getChildren().remove(i);
                 break;
             }

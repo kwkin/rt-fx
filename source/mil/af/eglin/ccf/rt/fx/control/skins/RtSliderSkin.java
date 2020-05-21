@@ -34,8 +34,8 @@ public class RtSliderSkin extends SliderSkin
         circleThumb.getStyleClass().setAll("circle-thumb");
         circleThumb.setRadius(8);
         
-        track = (StackPane) getSkinnable().lookup(".track");
-        thumb = (StackPane) getSkinnable().lookup(".thumb");
+        track = (StackPane) slider.lookup(".track");
+        thumb = (StackPane) slider.lookup(".thumb");
         thumb.getChildren().addAll(stateThumb, circleThumb);
 
         filledTrack = new StackPane();
@@ -72,9 +72,9 @@ public class RtSliderSkin extends SliderSkin
         {
             updateState();
         });
-        
-        getChildren().add(getChildren().indexOf(thumb), filledTrack);
-//        getChildren().add(getChildren().indexOf(thumb), stateThumb);
+
+        int insertIndex = getChildren().indexOf(thumb);
+        getChildren().add(insertIndex, filledTrack);
     }
 
     @Override
