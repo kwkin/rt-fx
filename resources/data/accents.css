@@ -2,48 +2,48 @@
 .primary-light
 {
     -var-accent-color: -var-primary-light-color;
-    -var-accent-text-color: -var-on-primary-light-color;
+    -var-on-accent-color: -var-on-primary-light-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-mid
 {
     -var-accent-color: -var-primary-mid-color;
-    -var-accent-text-color: -var-on-primary-mid-color;
+    -var-on-accent-color: -var-on-primary-mid-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .primary-dark
 {
     -var-accent-color: -var-primary-dark-color;
-    -var-accent-text-color: -var-on-primary-dark-color;
+    -var-on-accent-color: -var-on-primary-dark-color;
     -var-overlay-color: -var-primary-overlay-color;
 }
 
 .secondary-light
 {
     -var-accent-color: -var-secondary-light-color;
-    -var-accent-text-color: -var-on-secondary-light-color;
+    -var-on-accent-color: -var-on-secondary-light-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-mid
 {
     -var-accent-color: -var-secondary-mid-color;
-    -var-accent-text-color: -var-on-secondary-mid-color;
+    -var-on-accent-color: -var-on-secondary-mid-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .secondary-dark
 {
     -var-accent-color: -var-secondary-dark-color;
-    -var-accent-text-color: -var-on-secondary-text-color;
+    -var-on-accent-color: -var-on-secondary-text-color;
     -var-overlay-color: -var-secondary-overlay-color;
 }
 
 .base
 {
     -var-accent-color: -var-main-color-l3;
-    -var-accent-text-color: -var-on-main-mid-color;
+    -var-on-accent-color: -var-on-main-mid-color;
     -var-overlay-color: -var-base-overlay-color;
 }

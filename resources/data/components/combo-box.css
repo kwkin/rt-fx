@@ -207,18 +207,17 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-/* TODO Change derive color */
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
-    -fx-background: derive(-var-accent-color, 50%);
-    -fx-background-color: derive(-var-accent-color, 50%);
+    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
+    -fx-text-fill: -var-on-accent-color;
 }
 
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
 .rt-combo-box .combo-box-popup  .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected:hover 
 {
-    -fx-background: -var-accent-color;
     -fx-background-color: -var-accent-color;
+    -fx-text-fill: -var-on-accent-color;
 }
 
 .combo-box-base:editable .arrow-button,

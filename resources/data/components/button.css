@@ -23,7 +23,7 @@
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -var-accent-text-color;
+    -fx-text-fill: -var-on-accent-color;
 
     -rt-overlay-color: -var-overlay-color;
 }
@@ -49,7 +49,7 @@
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -var-accent-text-color;
+    -fx-text-fill: -var-on-accent-color;
     
     -rt-overlay-color: -var-overlay-color;
 }
