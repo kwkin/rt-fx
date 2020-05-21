@@ -25,7 +25,7 @@
 
 .rt-text-field .input-container
 {
-    -fx-cursor: text;
+    -fx-cursor: hand;
     -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
@@ -36,11 +36,17 @@
 
 .rt-text-field .prompt-container
 {
-    -fx-cursor: text;
+    -fx-cursor: hand;
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
     -fx-padding: 16;
+}
+
+.rt-text-field:focused .input-container,
+.rt-text-field:focused .prompt-container
+{
+    -fx-cursor: text;
 }
 
 .rt-text-field .input-focused-line
