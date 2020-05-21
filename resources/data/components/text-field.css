@@ -7,7 +7,6 @@
     -fx-border-width: 0;
     -fx-border-radius: 0;
     -fx-cursor: default;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 14;
     -fx-max-width: 1000000;
     -fx-min-height: 48;
@@ -94,7 +93,6 @@
 .rt-text-field:helper .helper-container .helper-text
 {
     -fx-fill: -var-on-main-light-color;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
@@ -114,7 +112,6 @@
 .rt-text-field:helper .error-container .error-text
 {
     -fx-fill: -var-error-color;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
