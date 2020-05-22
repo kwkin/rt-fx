@@ -6,7 +6,10 @@ TODO
 - Derive border color
 */
 /*-- ############################### Table View Style ############################### */
-.rt-table-view, .tree-table-view 
+.rt-table-view,
+.rt-table-view:focused,
+.tree-table-view,
+.tree-table-view:focused
 {
     -fx-background-color: transparent;
     -fx-padding: 4 4 4 4;
@@ -136,9 +139,9 @@ TODO
 .table-view:focused .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:selected,
 .tree-table-view:focused .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:selected 
 {
-    -fx-background: derive(-var-accent-color, 90%);
-    -fx-background-color: derive(-var-accent-color, 90%);
-    -fx-table-cell-border-color: derive(-var-accent-color, 90%);
+    -fx-background: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-table-cell-border-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
 }
 
 .table-row-cell:filled:hover,
@@ -146,9 +149,9 @@ TODO
 .table-row-cell:filled .table-cell:hover,
 .tree-table-row-cell:filled .tree-table-cell:hover 
 {
-    -fx-background: derive(-var-main-color-l1, -10%);
-    -fx-background-color: derive(-var-main-color-l1, -10%);
-    -fx-table-cell-border-color:  derive(-var-main-color-l1, -10%);
+    -fx-background: ladder(#222222, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#222222, transparent 0%, -var-accent-color 100%);
+    -fx-table-cell-border-color: ladder(#222222, transparent 0%, -var-accent-color 100%);
 }
 
 
@@ -157,9 +160,9 @@ TODO
 .table-row-cell:filled:selected .table-cell:hover,
 .tree-table-row-cell:filled:selected .tree-table-cell:hover 
 {
-    -fx-background: derive(-var-accent-color, 90%);
-    -fx-background-color: derive(-var-accent-color, 90%);
-    -fx-table-cell-border-color:  derive(-var-accent-color, 90%);
+    -fx-background: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-table-cell-border-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
 }
 
 .table-row-cell:filled:selected,
@@ -167,9 +170,9 @@ TODO
 .table-row-cell:filled .table-cell:selected,
 .tree-table-row-cell:filled .tree-table-cell:selected 
 {
-    -fx-background: derive(-var-main-color-l1, -20%);;
-    -fx-background-color: derive(-var-main-color-l1, -20%);;
-    -fx-table-cell-border-color:  derive(-var-main-color-l1, -20%);;
+    -fx-background: ladder(#444444, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
+    -fx-table-cell-border-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
 }
 
 .table-view:focused:row-selection .virtual-flow .clipped-container .sheet .table-row-cell:focused,
@@ -177,7 +180,7 @@ TODO
 .table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .table-row-cell .table-cell:focused,
 .tree-table-view:focused:cell-selection .virtual-flow .clipped-container .sheet .tree-table-row-cell .tree-table-cell:focused 
 {
-    -fx-background: derive(-var-main-color-l1, -20%);;
-    -fx-background-color: derive(-var-main-color-l1, -20%);;
-    -fx-table-cell-border-color:  derive(-var-main-color-l1, -20%);;
+    -fx-background: ladder(#444444, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
+    -fx-table-cell-border-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
 }

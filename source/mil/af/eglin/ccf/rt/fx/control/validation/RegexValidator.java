@@ -24,7 +24,7 @@ public class RegexValidator implements Validator<String>
     @Override
     public boolean validate(String value)
     {
-        return value.matches(regex);
+        return !value.matches(regex);
     }
     
     public String getErrorMessage()

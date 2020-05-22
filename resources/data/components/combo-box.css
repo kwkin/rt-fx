@@ -1,24 +1,16 @@
 /*
 TODO
-- Dropbdown arror background and border color
-- Text color
-- Menu background color
-- Menu scroll bar color
-- Padding
-- Add bottom border
-- Rename color inheritance
-- Combo box height
-- Change to a dense combo box?
+- Fix scroll bar style
 */
 
 /*-- ############################### Combo Box Style ############################### */
-.rt-combo-box
+.rt-combo-box,
+.rt-combo-box:focused
 {
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-border-radius: 0;
     -fx-cursor: default;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 14;
     -fx-max-width: 1000000;
     -fx-min-height: 48;
@@ -45,7 +37,7 @@ TODO
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-padding: 16;
+    -fx-padding: 16 32 16 16;
     -fx-min-height: 48;
 }
 
@@ -75,14 +67,15 @@ TODO
 	-fx-background-radius: 0;
     -fx-border-radius: 0;
     
-    -var-height: 1;
+    -var-height: 2;
     -fx-pref-height: -var-height;
     -fx-max-height: -var-height;
 }
 
-.combo-box .arrow, 
-.combo-box .arrow-button .arrow 
+.rt-combo-box .arrow, 
+.rt-combo-box .arrow-button .arrow 
 {
+    -fx-cursor: hand;
     -fx-background-color: -var-on-main-light-color;
     -fx-cursor: hand;
     -fx-shape: "M7,10L12,15L17,10H7Z";
@@ -96,20 +89,11 @@ TODO
     -fx-max-width: -var-width;
 }
 
-.combo-box-base:showing .arrow, 
-.combo-box-base:showing .arrow-button .arrow 
+.rt-combo-box:showing .arrow, 
+.rt-combo-box:showing .arrow-button .arrow 
 {
-    -fx-cursor: hand;
     -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
-
-    -var-height: 4;
-    -fx-min-height: -var-height;
-    -fx-max-height: -var-height;
-
-    -var-width: 10;
-    -fx-min-width: -var-width;
-    -fx-max-width: -var-width;
 }
 
 /*-- ############################### Pseudo State Padding ############################### */
@@ -128,14 +112,13 @@ TODO
 .rt-combo-box:helper .helper-container .helper-text
 {
     -fx-fill: -var-on-main-light-color;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
 
 .rt-combo-box:floating .input-container
 {
-    -fx-padding: 22 16 6 16;
+    -fx-padding: 22 32 6 16;
 }
 
 .rt-combo-box:helper .error-container
@@ -148,7 +131,6 @@ TODO
 .rt-combo-box:helper .error-container .error-text
 {
     -fx-fill: -var-error-color;
-    -fx-font-family: "Roboto Regular";
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
@@ -167,22 +149,26 @@ TODO
 
  
 /*-- ############################### Editable Style ############################### */
-.combo-box-base:editable .text-field
-{
-    -fx-background-color: -var-main-color-l2;
-    -fx-control-inner-background: -var-main-color-l2;
-    -fx-faint-focus-color: -var-main-color-l2;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
-    -fx-effect: null;
-}
-
-.combo-box-base:editable:focused .text-field,
-.combo-box-base:editable .text-field:focused
+.rt-combo-box:editable .text-input,
+.rt-combo-box:editable .text-field
 {
     -fx-background-color: transparent;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
+    -fx-control-inner-background: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-effect: null;
+    -fx-faint-focus-color: transparent;
+    -fx-padding: 0;
+    -fx-text-fill: -var-on-main-mid-color;
+}
+
+.rt-combo-box:editable:focused .text-field,
+.rt-combo-box:editable .text-field:focused
+{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
 }
 
 /*-- ############################### Combo-box List View Style ############################### */
@@ -192,9 +178,9 @@ TODO
     -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 2 2 2 2;
     -fx-border-color: -var-main-color-l1;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
-    -fx-padding: 0 0 4 0;
+    -fx-padding: 0;
 
     -fx-min-height: 28;
 }
@@ -209,7 +195,7 @@ TODO
 
 .rt-combo-box .combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover 
 {
-    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
     -fx-text-fill: -var-on-accent-color;
 }
 
@@ -220,8 +206,8 @@ TODO
     -fx-text-fill: -var-on-accent-color;
 }
 
-.combo-box-base:editable .arrow-button,
-.combo-box-base:editable:focused .arrow-button
+.rt-combo-box:editable .arrow-button,
+.rt-combo-box:editable:focused .arrow-button
 {
     -fx-background-color: transparent;
 
@@ -249,6 +235,62 @@ TODO
 .combo-box-popup .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected
 {
     -fx-background-color: -var-accent-color;
+}
+
+/*-- ############################### Combo Box Scroll Bar Styles ############################### */
+.combo-box-popup .list-view .virtual-flow .scroll-bar
+{
+    -fx-background-color: transparent;
+    -fx-opacity: 30%;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:hover
+{
+    -fx-opacity: 50%;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar:pressed
+{
+    -fx-opacity: 100%;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .track
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .thumb
+{
+    -fx-background-color: -var-accent-color;
+    -fx-background-radius: 6;
+    -fx-border-width: 0 0 0 0;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .thumb:hover
+{
+    -fx-cursor: open_hand;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .thumb:pressed
+{
+    -fx-cursor: closed_hand;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .increment-button,
+.combo-box-popup .list-view .virtual-flow .scroll-bar .decrement-button
+{
+    -fx-cursor: hand;
+    -fx-padding: 2 2 2 2;
+    -fx-border-width: 0;
+}
+
+.combo-box-popup .list-view .virtual-flow .scroll-bar .increment-button:hover,
+.combo-box-popup .list-view .virtual-flow .scroll-bar .decrement-button:hover,
+.combo-box-popup .list-view .virtual-flow .scroll-bar .increment-button:pressed,
+.combo-box-popup .list-view .virtual-flow .scroll-bar .decrement-button:pressed
+{
+    -fx-color: transparent;
 }
 
 /*-- ############################### List View Vertical Scroll Bar Style ############################### */
@@ -311,3 +353,4 @@ TODO
 {
     -fx-background-color: transparent;
 }
+

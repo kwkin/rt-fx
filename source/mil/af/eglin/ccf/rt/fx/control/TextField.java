@@ -356,9 +356,9 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
      * {@inheritDoc}
      */
     @Override
-    public boolean setValid(boolean isValid)
+    public void setValid(boolean isValid)
     {
-        return isValid;
+        this.isValid.set(isValid);
     }
 
     public void setValidateCondition(ValidateCondition validateCondition)

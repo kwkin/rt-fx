@@ -24,19 +24,17 @@
 
 .rt-tree-view:focused .virtual-flow .clipped-container > .sheet .tree-cell:filled:selected
 {
-    -fx-background: derive(-var-primary-light-color, 90%);
-    -fx-background-color: derive(-var-primary-light-color, 90%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
     -fx-text-fill: -var-on-main-mid-color;
 }
 
 .tree-cell:filled:hover
 {
-    -fx-background: derive(-var-primary-light-color, 50%);
+    -fx-background-color: ladder(#222222, transparent 0%, -var-accent-color 100%);
 }
 
 .tree-cell:filled:selected
 {
-    -fx-background: derive(-var-primary-light-color, 90%);
-    -fx-background-color: derive(-var-primary-light-color, 90%);
+    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
     -fx-text-fill: -var-on-main-mid-color;
 }

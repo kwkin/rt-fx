@@ -1,7 +1,6 @@
 package test.demo.presentation.panes.controls;
 
 import javafx.scene.Node;
-import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
@@ -35,39 +34,47 @@ public class TextFieldPanePresentation extends SizedTitledCard
     private Node createTextBoxes()
     {
         DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("Text boxes come in two permutations: filled and flat. The group below contains filled text fields.");
+        descriptionPane.setDescription("Text Fields include many new features, including floating prompt text, trailing icons, helper text, and error states. Additionally, textfields allow for accents.");
 
         VBox vBox = new VBox();
         vBox.setSpacing(16);
-        TextField primaryLightTextBox = new TextField(Accent.PRIMARY_LIGHT);
-        primaryLightTextBox.setPromptText("Prompt Text");
-        TextField primaryMidTextBox = new TextField(Accent.PRIMARY_MID);
-        primaryMidTextBox.setPromptText("Floating");
-        primaryMidTextBox.setLabelFloat(true);
+        TextField textField = new TextField(Accent.PRIMARY_LIGHT);
+        textField.setPromptText("Prompt Text");
+        TextField floatingTextField = new TextField(Accent.PRIMARY_MID);
+        floatingTextField.setPromptText("Floating");
+        floatingTextField.setLabelFloat(true);
 
         SvgGlyph cog = new SvgGlyph(SvgFile.COG, IconSize.SIZE_24);
-        TextField primaryDarkTextBox = new TextField(Accent.PRIMARY_DARK);
-        primaryDarkTextBox.setPromptText("Floating and Icon");
-        primaryDarkTextBox.setLabelFloat(true);
-        primaryDarkTextBox.setTrailingGlyph(cog);
+        TextField trailingIconTextField = new TextField(Accent.PRIMARY_DARK);
+        trailingIconTextField.setPromptText("Floating and Icon");
+        trailingIconTextField.setLabelFloat(true);
+        trailingIconTextField.setTrailingGlyph(cog);
 
         SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, IconSize.SIZE_24);
         IconButton folderButton = new IconButton(folder);
-        TextField secondaryLightTextBox = new TextField(Accent.SECONDARY_LIGHT);
-        secondaryLightTextBox.setPromptText("Button Icon");
-        secondaryLightTextBox.setTrailingGlyph(folderButton);
+        TextField trailingButtonTextField = new TextField(Accent.SECONDARY_LIGHT);
+        trailingButtonTextField.setPromptText("Button Icon");
+        trailingButtonTextField.setTrailingGlyph(folderButton);
 
         SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_24);
         SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
-        TextField secondaryMidTextBox = new TextField(Accent.SECONDARY_MID);
-        secondaryMidTextBox.setPromptText("Toggle Button Icon");
-        secondaryMidTextBox.setTrailingGlyph(eyeToggleButton);
+        TextField trailingToggleTextField = new TextField(Accent.SECONDARY_MID);
+        trailingToggleTextField.setPromptText("Toggle Button Icon");
+        trailingToggleTextField.setTrailingGlyph(eyeToggleButton);
 
-        TextField secondaryDarkTextBox = new TextField(Accent.SECONDARY_DARK);
-        secondaryDarkTextBox.setPromptText("Label");
-        secondaryDarkTextBox.setIsShowHelperText(true);
-        secondaryDarkTextBox.setHelperText("Helper Text");
+        TextField helperTextField = new TextField(Accent.SECONDARY_DARK);
+        helperTextField.setPromptText("Label");
+        helperTextField.setIsShowHelperText(true);
+        helperTextField.setHelperText("Helper Text");
+        
+        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_24);
+        TextField allTextField = new TextField(Accent.SECONDARY_MID);
+        allTextField.setPromptText("Label");
+        allTextField.setLabelFloat(true);
+        allTextField.setIsShowHelperText(true);
+        allTextField.setHelperText("Helper Text");
+        allTextField.setTrailingGlyph(bell);
 
         RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.");
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
@@ -76,29 +83,14 @@ public class TextFieldPanePresentation extends SizedTitledCard
         validableTextField.getValidators().add(requiredValidator);
         validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);
         
-        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_24);
-        TextField allEnabledTextBox = new TextField(Accent.SECONDARY_MID);
-        allEnabledTextBox.setPromptText("Label");
-        allEnabledTextBox.setLabelFloat(true);
-        allEnabledTextBox.setIsShowHelperText(true);
-        allEnabledTextBox.setHelperText("Helper Text");
-        allEnabledTextBox.setTrailingGlyph(bell);
-        
-        Button testButton = new Button("Test");
-        testButton.setOnAction(event -> 
-        {
-            validableTextField.validate();
-        });
-        
-        vBox.getChildren().add(primaryLightTextBox);
-        vBox.getChildren().add(primaryMidTextBox);
-        vBox.getChildren().add(primaryDarkTextBox);
-        vBox.getChildren().add(secondaryLightTextBox);
-        vBox.getChildren().add(secondaryMidTextBox);
-        vBox.getChildren().add(secondaryDarkTextBox);
+        vBox.getChildren().add(textField);
+        vBox.getChildren().add(floatingTextField);
+        vBox.getChildren().add(trailingIconTextField);
+        vBox.getChildren().add(trailingButtonTextField);
+        vBox.getChildren().add(trailingToggleTextField);
+        vBox.getChildren().add(helperTextField);
+        vBox.getChildren().add(allTextField);
         vBox.getChildren().add(validableTextField);
-        vBox.getChildren().add(allEnabledTextBox);
-        vBox.getChildren().add(testButton);
 
         descriptionPane.setContent(vBox);
         

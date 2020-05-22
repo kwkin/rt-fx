@@ -21,6 +21,6 @@ TODO
 
     -rt-selected-color: -var-accent-color;
     -rt-unselected-color: -var-main-color-l4;
-    -rt-selected-line-color: derive(-var-accent-color, 50%);
+    -rt-selected-line-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
     -rt-unselected-line-color: -var-main-color-l3;
 }

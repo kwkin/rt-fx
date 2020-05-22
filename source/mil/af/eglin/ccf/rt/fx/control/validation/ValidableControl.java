@@ -23,5 +23,5 @@ public interface ValidableControl<T>
     
     public ObservableValue<T> getObservable();
     
-    boolean setValid(boolean isValid);
+    void setValid(boolean isValid);
 }
