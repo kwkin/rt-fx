@@ -64,7 +64,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         this.arrowButton = (StackPane)this.comboBox.lookup(".arrow-button");
         this.listView = this.comboBox.lookup(".list-view");
         getChildren().remove(arrowButton);
-        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, arrowButton, textContainer);
+        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, arrowButton, promptContainer, textContainer);
 
         updateDisplayArea();
         updateOverlayColor();

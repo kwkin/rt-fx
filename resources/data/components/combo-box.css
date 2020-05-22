@@ -72,9 +72,10 @@ TODO
     -fx-max-height: -var-height;
 }
 
-.combo-box .arrow, 
-.combo-box .arrow-button .arrow 
+.rt-combo-box .arrow, 
+.rt-combo-box .arrow-button .arrow 
 {
+    -fx-cursor: hand;
     -fx-background-color: -var-on-main-light-color;
     -fx-cursor: hand;
     -fx-shape: "M7,10L12,15L17,10H7Z";
@@ -91,17 +92,8 @@ TODO
 .combo-box-base:showing .arrow, 
 .combo-box-base:showing .arrow-button .arrow 
 {
-    -fx-cursor: hand;
     -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
-
-    -var-height: 4;
-    -fx-min-height: -var-height;
-    -fx-max-height: -var-height;
-
-    -var-width: 10;
-    -fx-min-width: -var-width;
-    -fx-max-width: -var-width;
 }
 
 /*-- ############################### Pseudo State Padding ############################### */
