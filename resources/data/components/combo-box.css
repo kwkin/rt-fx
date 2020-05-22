@@ -37,7 +37,7 @@ TODO
 	-fx-background-radius: 4 4 0 0;
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-padding: 16;
+    -fx-padding: 16 32 16 16;
     -fx-min-height: 48;
 }
 
@@ -89,8 +89,8 @@ TODO
     -fx-max-width: -var-width;
 }
 
-.combo-box-base:showing .arrow, 
-.combo-box-base:showing .arrow-button .arrow 
+.rt-combo-box:showing .arrow, 
+.rt-combo-box:showing .arrow-button .arrow 
 {
     -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
@@ -118,7 +118,7 @@ TODO
 
 .rt-combo-box:floating .input-container
 {
-    -fx-padding: 22 16 6 16;
+    -fx-padding: 22 32 6 16;
 }
 
 .rt-combo-box:helper .error-container
@@ -149,22 +149,26 @@ TODO
 
  
 /*-- ############################### Editable Style ############################### */
-.combo-box-base:editable .text-field
-{
-    -fx-background-color: -var-main-color-l2;
-    -fx-control-inner-background: -var-main-color-l2;
-    -fx-faint-focus-color: -var-main-color-l2;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
-    -fx-effect: null;
-}
-
-.combo-box-base:editable:focused .text-field,
-.combo-box-base:editable .text-field:focused
+.rt-combo-box:editable .text-input,
+.rt-combo-box:editable .text-field
 {
     -fx-background-color: transparent;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0 0 0 0;
+    -fx-control-inner-background: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-effect: null;
+    -fx-faint-focus-color: transparent;
+    -fx-padding: 0;
+    -fx-text-fill: -var-on-main-mid-color;
+}
+
+.rt-combo-box:editable:focused .text-field,
+.rt-combo-box:editable .text-field:focused
+{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
 }
 
 /*-- ############################### Combo-box List View Style ############################### */
@@ -174,9 +178,9 @@ TODO
     -fx-background-color: -var-main-color-l1;
     -fx-background-radius: 2 2 2 2;
     -fx-border-color: -var-main-color-l1;
-    -fx-border-width: 0 0 0 0;
+    -fx-border-width: 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 12, 0.06, 0, 6);
-    -fx-padding: 0 0 4 0;
+    -fx-padding: 0;
 
     -fx-min-height: 28;
 }
@@ -202,8 +206,8 @@ TODO
     -fx-text-fill: -var-on-accent-color;
 }
 
-.combo-box-base:editable .arrow-button,
-.combo-box-base:editable:focused .arrow-button
+.rt-combo-box:editable .arrow-button,
+.rt-combo-box:editable:focused .arrow-button
 {
     -fx-background-color: transparent;
 

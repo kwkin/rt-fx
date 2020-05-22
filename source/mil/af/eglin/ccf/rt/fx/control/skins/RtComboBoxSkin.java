@@ -2,6 +2,7 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 
 
 import com.sun.javafx.scene.control.skin.ComboBoxListViewSkin;
+import com.sun.javafx.scene.text.HitInfo;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -21,14 +22,14 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 {
     private final ComboBox<T> comboBox;
     
-    private final Node arrowButton;
-    private final Node listView;
-    private final StackPane overlayContainer = new StackPane();
-    private final StackPane inputContainer = new StackPane();
-    private final StackPane promptContainer = new StackPane();
-    private final StackPane textContainer = new StackPane();
-    private final StackPane helperContainer = new StackPane();
-    private final ValidableContainer errorContainer;
+    private Node arrowButton;
+    private Node listView;
+    private StackPane overlayContainer = new StackPane();
+    private StackPane inputContainer = new StackPane();
+    private StackPane promptContainer = new StackPane();
+    private StackPane textContainer = new StackPane();
+    private StackPane helperContainer = new StackPane();
+    private ValidableContainer errorContainer;
 
     private Text promptText;
     private Text helperText;
@@ -41,15 +42,23 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         super(comboBox);
         this.comboBox = comboBox;
         
-        
         inputContainer.setManaged(false);
         inputContainer.getStyleClass().add("input-container");
         
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
 
-        linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
-                comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty());
+        // TODO dynamically change this
+        if (this.comboBox.isEditable())
+        {
+            linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
+                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.focusedProperty());
+        }
+        else
+        {
+            linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
+                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty());
+        }
         
         promptContainer.getStyleClass().add("prompt-container");
         linesWrapper.init(() -> createPromptText());
@@ -70,6 +79,10 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         updateOverlayColor();
         createHelperText();
         updatePopupLocation();
+        
+        final Node newDisplayNode = getDisplayNode();
+        getChildren().remove(newDisplayNode);
+        getChildren().add(newDisplayNode);
         
         registerChangeListener(comboBox.labelFloatProperty(), comboBox.labelFloatProperty().getName());
         registerChangeListener(comboBox.focusColorProperty(),  comboBox.focusColorProperty().getName());
@@ -93,6 +106,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
                     inputContainer.getChildren().remove(displayNode);
                 }
                 getChildren().remove(newDisplayNode);
+                getChildren().add(newDisplayNode);
                 inputContainer.getChildren().add(newDisplayNode);
                 displayNode = newDisplayNode;
             }
@@ -156,18 +170,25 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
             positionInArea(arrowButton, xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
         }
         
-        // TODO attempt to remove this function call (currently needed because the display node CSS is not applying upon init)
-        updateDisplayArea();
         if (displayNode != null) 
         {
             final double inputX = this.inputContainer.snappedLeftInset();
             final double inputY = this.inputContainer.snappedTopInset();
             final double inputW = snapSize(this.inputContainer.getWidth()) - inputX - this.inputContainer.snappedRightInset();
             final double inputH = snapSize(this.inputContainer.getHeight()) - inputY - this.inputContainer.snappedBottomInset();
-            displayNode.resizeRelocate(inputX, inputY, inputW, inputH);
+            if (this.comboBox.isEditable())
+            {
+                // TODO find a better solution to aligning editable textfields with the floating prompt. 
+                displayNode.resizeRelocate(inputX, y, inputW, inputHeight);
+                ((javafx.scene.control.TextField)displayNode).setPadding(new Insets(inputY - 1, 0, this.inputContainer.snappedBottomInset() - 1, 0));
+            }
+            else
+            {
+                displayNode.resizeRelocate(inputX, inputY, inputW, inputH);
+            }
         }
     }
-
+    
     private void createPromptText()
     {
         if (this.promptText != null || !this.linesWrapper.usePromptText.get())
