@@ -79,60 +79,59 @@ TODO
 }
 
 /*-- ############################### List View Scroll Bar Styles ############################### */
-.rt-list-view .virtual-flow .scroll-bar:vertical,
-.rt-list-view .virtual-flow .scroll-bar:horizontal
+.rt-list-view .virtual-flow .scroll-bar
 {
     -fx-background-color: transparent;
     -fx-opacity: 30%;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical:hover,
-.rt-list-view .virtual-flow .scroll-bar:horizontal:hover
+.rt-list-view .virtual-flow .scroll-bar:hover
 {
     -fx-opacity: 50%;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical:pressed,
-.rt-list-view .virtual-flow .scroll-bar:horizontal:pressed
+.rt-list-view .virtual-flow .scroll-bar:pressed
 {
     -fx-opacity: 100%;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical .track,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .track
+.rt-list-view .virtual-flow .scroll-bar .track
 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical .thumb,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .thumb
+.rt-list-view .virtual-flow .scroll-bar .thumb
 {
     -fx-background-color: -var-accent-color;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical .thumb:hover,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .thumb:hover
+.rt-list-view .virtual-flow .scroll-bar .thumb:hover
 {
     -fx-cursor: open_hand;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical .thumb:pressed,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .thumb:pressed
+.rt-list-view .virtual-flow .scroll-bar .thumb:pressed
 {
     -fx-cursor: closed_hand;
 }
 
-.rt-list-view .virtual-flow .scroll-bar:vertical .increment-button,
-.rt-list-view .virtual-flow .scroll-bar:vertical .decrement-button,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .increment-button,
-.rt-list-view .virtual-flow .scroll-bar:horizontal .decrement-button
+.rt-list-view .virtual-flow .scroll-bar .increment-button,
+.rt-list-view .virtual-flow .scroll-bar .decrement-button
 {
     -fx-cursor: hand;
     -fx-padding: 2 2 2 2;
     -fx-border-width: 0;
+}
+
+.rt-list-view .virtual-flow .scroll-bar .increment-button:hover,
+.rt-list-view .virtual-flow .scroll-bar .decrement-button:hover,
+.rt-list-view .virtual-flow .scroll-bar .increment-button:pressed,
+.rt-list-view .virtual-flow .scroll-bar .decrement-button:pressed
+{
+    -fx-color: transparent;
 }
 
 /*-- ############################### List View Vertical Scroll Bar Style ############################### */
