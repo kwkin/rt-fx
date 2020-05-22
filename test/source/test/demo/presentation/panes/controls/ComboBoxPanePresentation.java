@@ -84,7 +84,7 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         validatableComboBox.setValue("Valid");
         validatableComboBox.getValidators().add(regexValidator);
         validatableComboBox.setValidateCondition(ValidateCondition.CHANGED);
-
+        
         vBox.getChildren().add(comboBox);
         vBox.getChildren().add(floatingComboBox);
         vBox.getChildren().add(helperComboBox);
