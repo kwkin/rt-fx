@@ -78,7 +78,7 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         allComboBox.setIsShowHelperText(true);
         allComboBox.setPromptText("Floating");
         
-        RegexValidator regexValidator = new RegexValidator("Valid");
+        RegexValidator regexValidator = new RegexValidator("Valid", "Invalid value selected");
         ComboBox<String> validatableComboBox = new ComboBox<>(Accent.PRIMARY_MID);
         validatableComboBox.setItems(validItems);
         validatableComboBox.setValue("Valid");

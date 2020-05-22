@@ -408,9 +408,9 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     }
 
     @Override
-    public boolean setValid(boolean isValid)
+    public void setValid(boolean isValid)
     {
-        return isValid;
+        this.isValid.set(isValid);
     }
     
     private void initialize()
