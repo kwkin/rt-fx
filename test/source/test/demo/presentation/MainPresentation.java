@@ -23,6 +23,7 @@ import test.demo.controller.PaneController;
 import test.demo.presentation.panes.controls.ComboBoxPanePresentation;
 import test.demo.presentation.panes.controls.ComponentsPresentation;
 import test.demo.presentation.panes.controls.ListViewPanePresentation;
+import test.demo.presentation.panes.controls.TextFieldPanePresentation;
 import test.demo.presentation.panes.layouts.LayoutsPresentation;
 import test.demo.presentation.sidebar.SideBarPresentation;
 import test.jfoenix.presentation.panes.controls.ButtonComparison;

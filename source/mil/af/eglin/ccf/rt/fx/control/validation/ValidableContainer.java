@@ -4,12 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 
-public class ValidableContainer extends StackPane
+public class ValidableContainer<T> extends StackPane
 {
-    private ValidableControl control;
+    private ValidableControl<T> control;
     private Text errorText;
     
-    public ValidableContainer(ValidableControl control)
+    public ValidableContainer(ValidableControl<T> control)
     {
         this.control = control;
         getStyleClass().add("error-container");

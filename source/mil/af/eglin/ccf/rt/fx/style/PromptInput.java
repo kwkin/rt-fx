@@ -14,8 +14,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
@@ -34,6 +36,8 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     public Region overlayContainer = new Region();
     public Region focusedLine = new Region();
     public Region unfocusedLine = new Region();
+    public final Rectangle clip = new Rectangle();
+    public StackPane promptContainer = new StackPane();
 
     private RtAnimationTimer focusTimer;
     private RtAnimationTimer normalTimer;
@@ -55,7 +59,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     private double promptTranslateY = 0;
 
     public PromptInput(T control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
-            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier, ObservableValue<Boolean> toggleFlag)
+            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier, ObservableValue<Boolean> toggleFlag, StackPane promptContainer)
     {
         this.control = control;
         this.overlayContainer = overlaycontainer;
@@ -64,6 +68,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         this.valueProperty = valueProperty;
         this.promptTextProperty = promptTextProperty;
         this.toggleFlag = toggleFlag;
+        this.promptContainer = promptContainer;
     }
 
     public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
@@ -90,7 +95,6 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             createPromptNodeRunnable.run();
             control.requestLayout();
         });
-        
         
         final Supplier<WritableValue<Number>> promptTargetSupplier = () -> promptTextSupplier.get() == null ? null
                 : promptTextSupplier.get().translateYProperty();
@@ -170,7 +174,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                     .setInterpolator(Interpolator.EASE_BOTH)
                 .build()));
         // @formatter:on
-
+        
         focusTimer.setOnFinished(() ->  animating = false);
         normalTimer.setOnFinished(() -> animating = false);
         focusTimer.setCacheNodes(cachedNodes);
@@ -197,6 +201,13 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             }
         });
         updateState(false);
+
+        clip.setSmooth(false);
+        clip.setX(0);
+        clip.setY(0);
+        clip.widthProperty().bind(this.promptContainer.widthProperty());
+        clip.heightProperty().bind(this.promptContainer.heightProperty());
+        promptContainer.setClip(clip);
     }
 
     private void updateState(boolean animate)

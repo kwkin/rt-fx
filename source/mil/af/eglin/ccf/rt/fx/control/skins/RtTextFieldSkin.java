@@ -21,6 +21,7 @@ import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 
+// TODO generalize input container, prompt container, prompt text, etc into another class that can be used by combo-box and text area
 public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
@@ -31,7 +32,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     
     private final StackPane textContainer = new StackPane();
     private final StackPane helperContainer = new StackPane();
-    private final ValidableContainer errorContainer;
+    private final ValidableContainer<String> errorContainer;
     
     private Text promptText;
     private Text helperText;
@@ -52,20 +53,23 @@ public class RtTextFieldSkin extends TextFieldSkin
 
         overlayContainer.getStyleClass().add("overlay-container");
         overlayContainer.setOpacity(0);
+
+        promptContainer.getStyleClass().add("prompt-container");
+        promptContainer.setManaged(false);
+        
+        helperContainer.getStyleClass().add("helper-container");
         
         linesWrapper = new PromptInput<>(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
-                textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty());
+                textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty(), this.promptContainer);
 
         
-        promptContainer.getStyleClass().add("prompt-container");
         linesWrapper.init(() -> createPromptText(), textPane);
 
-        helperContainer.getStyleClass().add("helper-container");
 
         updateOverlayColor();
         updateTrailingIconColor();
         createHelperText();
-        this.errorContainer = new ValidableContainer(textField);
+        this.errorContainer = new ValidableContainer<String>(textField);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
         this.helperContainer.visibleProperty().bind(textField.isValidProperty());
         this.errorContainer.visibleProperty().bind(textField.isValidProperty().not());
@@ -143,7 +147,6 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.linesWrapper.updateLabelFloatLayout();
 
         this.inputContainer.resizeRelocate(x, y, w, inputHeight);
-        this.promptContainer.resizeRelocate(x, y, w, inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
         this.textContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
@@ -157,9 +160,16 @@ public class RtTextFieldSkin extends TextFieldSkin
             positionInArea(graphic.getGlyph(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
             updateTrailingIconColor();
             
-            double inputRightPadding = graphicWidth + 2 * textField.getTrailingIconGap() - this.inputContainer.getPadding().getRight();
+            double graphicLeftGap = graphicWidth + 2 * textField.getTrailingIconGap();
+            double inputRightPadding = graphicLeftGap - this.inputContainer.getPadding().getRight();
             inputRightPadding = Math.max(inputRightPadding, this.inputContainer.getPadding().getRight());
             inputTextContainer.setPadding(new Insets(0, inputRightPadding, 0, 0));
+
+            this.promptContainer.resizeRelocate(x, y, w - graphicLeftGap, inputHeight);
+        }
+        else
+        {
+            this.promptContainer.resizeRelocate(x, y, w, inputHeight);
         }
     }
 

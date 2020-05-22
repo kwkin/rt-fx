@@ -28,7 +28,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
     private StackPane promptContainer = new StackPane();
     private StackPane textContainer = new StackPane();
     private StackPane helperContainer = new StackPane();
-    private ValidableContainer errorContainer;
+    private ValidableContainer<T> errorContainer;
 
     private Text promptText;
     private Text helperText;
@@ -51,20 +51,22 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         if (this.comboBox.isEditable())
         {
             linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
-                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.focusedProperty());
+                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.focusedProperty(), this.promptContainer);
         }
         else
         {
             linesWrapper = new PromptInput<>(comboBox, overlayContainer, comboBox.promptTextFillProperty(), comboBox.valueProperty(),
-                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty());
+                    comboBox.promptTextProperty(), () -> promptText, this.comboBox.showingProperty(), this.promptContainer);
         }
         
         promptContainer.getStyleClass().add("prompt-container");
+        promptContainer.setManaged(false);
+        
         linesWrapper.init(() -> createPromptText());
 
         helperContainer.getStyleClass().add("helper-container");
 
-        this.errorContainer = new ValidableContainer(comboBox);
+        this.errorContainer = new ValidableContainer<T>(comboBox);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
         this.helperContainer.visibleProperty().bind(comboBox.isValidProperty());
         this.errorContainer.visibleProperty().bind(comboBox.isValidProperty().not());
@@ -156,7 +158,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         this.linesWrapper.updateLabelFloatLayout();
 
         this.inputContainer.resizeRelocate(x, y, w, inputHeight);
-        this.promptContainer.resizeRelocate(x, y, w, inputHeight);
+        this.promptContainer.resizeRelocate(x, y, w - this.arrowButton.getLayoutBounds().getWidth(), inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
         this.textContainer.resizeRelocate(x, inputHeight, w, this.comboBox.getHelperTextHeight());

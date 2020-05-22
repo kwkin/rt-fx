@@ -50,7 +50,6 @@ public class ComboBoxPanePresentation extends SizedTitledCard
 
         ComboBox<String> comboBox = new ComboBox<>(Accent.PRIMARY_LIGHT);
         comboBox.setItems(items);
-        comboBox.setPromptText("Prompt Text");
         comboBox.setValue(items.get(2));
         ComboBox<String> floatingComboBox = new ComboBox<>(Accent.PRIMARY_MID);
         floatingComboBox.setItems(items);
@@ -67,8 +66,8 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         ComboBox<String> editableFloatingComboBox = new ComboBox<>(Accent.SECONDARY_MID);
         editableFloatingComboBox.setItems(items);
         editableFloatingComboBox.setEditable(true);
-        floatingComboBox.setPromptText("Floating");
-        floatingComboBox.setLabelFloat(true);
+        editableFloatingComboBox.setPromptText("Floating");
+        editableFloatingComboBox.setLabelFloat(true);
 
         ComboBox<String> allComboBox = new ComboBox<>(Accent.SECONDARY_DARK);
         allComboBox.setItems(items);
