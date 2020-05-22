@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
@@ -22,6 +23,7 @@ import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 import java.lang.reflect.Field;
 
 // TODO generalize input container, prompt container, prompt text, etc into another class that can be used by combo-box and text area
+// TODO add a description class combining helper text and error text
 public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
@@ -69,10 +71,20 @@ public class RtTextFieldSkin extends TextFieldSkin
         updateOverlayColor();
         updateTrailingIconColor();
         createHelperText();
+        this.textContainer.setManaged(false);
         this.errorContainer = new ValidableContainer<String>(textField);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
         this.helperContainer.visibleProperty().bind(textField.isValidProperty());
         this.errorContainer.visibleProperty().bind(textField.isValidProperty().not());
+
+        StackPane.setAlignment(this.helperContainer, Pos.CENTER_LEFT);
+        StackPane.setAlignment(this.errorContainer, Pos.CENTER_LEFT);
+        Rectangle descriptionClip = new Rectangle();
+        descriptionClip.setX(0);
+        descriptionClip.setY(0);
+        descriptionClip.widthProperty().bind(this.textContainer.widthProperty());
+        descriptionClip.heightProperty().bind(this.textContainer.heightProperty());
+        this.textContainer.setClip(descriptionClip);
         
         getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, textContainer);
         RtGlyph glyph = textField.getTrailingGlyph();

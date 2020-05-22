@@ -12,6 +12,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.validation.ValidableContainer;
@@ -66,11 +67,21 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
         helperContainer.getStyleClass().add("helper-container");
 
+        this.textContainer.setManaged(false);
         this.errorContainer = new ValidableContainer<T>(comboBox);
         this.textContainer.getChildren().addAll(helperContainer, errorContainer);
         this.helperContainer.visibleProperty().bind(comboBox.isValidProperty());
         this.errorContainer.visibleProperty().bind(comboBox.isValidProperty().not());
 
+        StackPane.setAlignment(this.helperContainer, Pos.CENTER_LEFT);
+        StackPane.setAlignment(this.errorContainer, Pos.CENTER_LEFT);
+        Rectangle descriptionClip = new Rectangle();
+        descriptionClip.setX(0);
+        descriptionClip.setY(0);
+        descriptionClip.widthProperty().bind(this.textContainer.widthProperty());
+        descriptionClip.heightProperty().bind(this.textContainer.heightProperty());
+        this.textContainer.setClip(descriptionClip);
+        
         this.arrowButton = (StackPane)this.comboBox.lookup(".arrow-button");
         this.listView = this.comboBox.lookup(".list-view");
         getChildren().remove(arrowButton);
