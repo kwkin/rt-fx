@@ -22,6 +22,11 @@
     -rt-helper-text-height: 24;
 }
 
+.rt-text-field .wtf
+{
+    -fx-background-color: pink;
+}
+
 .rt-text-field .input-container
 {
     -fx-cursor: hand;

@@ -8,9 +8,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -63,8 +60,6 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         registerChangeListener(comboBox.helperTextHeightProperty(), comboBox.helperTextHeightProperty().getName());
         registerChangeListener(comboBox.isShowHelperTextProperty(), comboBox.isShowHelperTextProperty().getName());
     }
-
-    private Node displayNode;
     
     @Override
     protected void updateDisplayArea()
@@ -157,25 +152,19 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
     private void createPromptText()
     {
-        if (this.promptText != null || !this.linesWrapper.usePromptText.get())
+        if (this.promptText != null || !this.linesWrapper.isUsingPromptTextProperty().get())
         {
             return;
         }
         // TODO bind font
         this.promptText = new Text();
         this.promptText.getStyleClass().add("prompt-text");
-        this.promptText.visibleProperty().bind(linesWrapper.usePromptText);
+        this.promptText.visibleProperty().bind(linesWrapper.isUsingPromptTextProperty());
         this.promptText.textProperty().bind(this.comboBox.promptTextProperty());
-        this.promptText.fillProperty().bind(this.linesWrapper.animatedPromptTextFill);
-        this.promptText.getTransforms().add(this.linesWrapper.promptTextScale);
+        this.promptText.fillProperty().bind(this.linesWrapper.animatedPromptTextFillProperty());
+        this.promptText.getTransforms().add(this.linesWrapper.getPromptTextScale());
         StackPane.setAlignment(promptText, Pos.CENTER_LEFT);
         this.linesWrapper.addPromptText(this.promptText);
-
-        if (this.comboBox.isFocused() && this.comboBox.isLabelFloat())
-        {
-            this.linesWrapper.promptTextScale.setX(0.85);
-            this.linesWrapper.promptTextScale.setY(0.85);
-        }
     }
 
     private void updatePopupLocation()

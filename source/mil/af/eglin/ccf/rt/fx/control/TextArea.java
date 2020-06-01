@@ -2,11 +2,15 @@ package mil.af.eglin.ccf.rt.fx.control;
 
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.PseudoClass;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class TextArea extends javafx.scene.control.TextArea implements RtComponent
 {
+    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
+    
     protected Accent accent = Accent.PRIMARY_MID;
     
     private static final String USER_AGENT_STYLESHEET = "text-area.css";
