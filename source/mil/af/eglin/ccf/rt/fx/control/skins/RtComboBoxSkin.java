@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableContainer;
+import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
@@ -27,9 +27,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
     private StackPane overlayContainer = new StackPane();
     private StackPane inputContainer = new StackPane();
     private StackPane promptContainer = new StackPane();
-    private StackPane textContainer = new StackPane();
-    private StackPane helperContainer = new StackPane();
-    private ValidableContainer<T> errorContainer;
+    private DescriptionContainer<ComboBox<T>> descriptionContainer;
 
     private Text promptText;
     private Text helperText;
@@ -65,31 +63,16 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         
         linesWrapper.init(() -> createPromptText());
 
-        helperContainer.getStyleClass().add("helper-container");
-
-        this.textContainer.setManaged(false);
-        this.errorContainer = new ValidableContainer<T>(comboBox);
-        this.textContainer.getChildren().addAll(helperContainer, errorContainer);
-        this.helperContainer.visibleProperty().bind(comboBox.isValidProperty());
-        this.errorContainer.visibleProperty().bind(comboBox.isValidProperty().not());
-
-        StackPane.setAlignment(this.helperContainer, Pos.CENTER_LEFT);
-        StackPane.setAlignment(this.errorContainer, Pos.CENTER_LEFT);
-        Rectangle descriptionClip = new Rectangle();
-        descriptionClip.setX(0);
-        descriptionClip.setY(0);
-        descriptionClip.widthProperty().bind(this.textContainer.widthProperty());
-        descriptionClip.heightProperty().bind(this.textContainer.heightProperty());
-        this.textContainer.setClip(descriptionClip);
+        this.descriptionContainer = new DescriptionContainer<ComboBox<T>>(comboBox);
+        this.descriptionContainer.visibleProperty().bind(comboBox.isValidProperty().not());
         
         this.arrowButton = (StackPane)this.comboBox.lookup(".arrow-button");
         this.listView = this.comboBox.lookup(".list-view");
         getChildren().remove(arrowButton);
-        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, arrowButton, textContainer);
+        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, arrowButton, descriptionContainer);
 
         updateDisplayArea();
         updateOverlayColor();
-        createHelperText();
         updatePopupLocation();
         
         final Node newDisplayNode = getDisplayNode();
@@ -172,7 +155,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         this.promptContainer.resizeRelocate(x, y, w - this.arrowButton.getLayoutBounds().getWidth(), inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
-        this.textContainer.resizeRelocate(x, inputHeight, w, this.comboBox.getHelperTextHeight());
+        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.comboBox.getHelperTextHeight());
         
         if (arrowButton != null)
         {
@@ -222,20 +205,6 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
             this.linesWrapper.promptTextScale.setX(0.85);
             this.linesWrapper.promptTextScale.setY(0.85);
         }
-    }
-    
-    private void createHelperText()
-    {
-        if (this.helperText != null || !this.comboBox.getIsShowHelperText())
-        {
-            return;
-        }
-        this.helperText = new Text();
-        this.helperText.getStyleClass().add("helper-text");
-        this.helperText.visibleProperty().bind(this.comboBox.isShowHelperTextProperty());
-        this.helperText.textProperty().bind(this.comboBox.helperTextProperty());
-        StackPane.setAlignment(this.helperText, Pos.CENTER_LEFT);
-        this.helperContainer.getChildren().add(this.helperText);
     }
     
     private void updateOverlayColor()

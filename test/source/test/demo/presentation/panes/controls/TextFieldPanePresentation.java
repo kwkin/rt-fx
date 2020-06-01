@@ -38,10 +38,11 @@ public class TextFieldPanePresentation extends SizedTitledCard
 
         VBox vBox = new VBox();
         vBox.setSpacing(16);
-        TextField textField = new TextField(Accent.PRIMARY_LIGHT);
-        textField.setPromptText("Prompt Text");
+//        TextField textField = new TextField(Accent.PRIMARY_LIGHT);
+//        textField.setPromptText("Prompt Text");
         TextField floatingTextField = new TextField(Accent.PRIMARY_MID);
         floatingTextField.setPromptText("Floating");
+        floatingTextField.setText("Input text");
         floatingTextField.setLabelFloat(true);
 
         SvgGlyph cog = new SvgGlyph(SvgFile.COG, IconSize.SIZE_24);
@@ -83,7 +84,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         validableTextField.getValidators().add(requiredValidator);
         validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);
         
-        vBox.getChildren().add(textField);
+//        vBox.getChildren().add(textField);
         vBox.getChildren().add(floatingTextField);
         vBox.getChildren().add(trailingIconTextField);
         vBox.getChildren().add(trailingButtonTextField);

@@ -13,17 +13,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableContainer;
+import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 
 // TODO generalize input container, prompt container, prompt text, etc into another class that can be used by combo-box and text area
-// TODO add a description class combining helper text and error text
 public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
@@ -32,12 +30,9 @@ public class RtTextFieldSkin extends TextFieldSkin
     private final StackPane inputTextContainer = new StackPane();
     private final StackPane promptContainer = new StackPane();
     
-    private final StackPane textContainer = new StackPane();
-    private final StackPane helperContainer = new StackPane();
-    private final ValidableContainer<String> errorContainer;
+    private final DescriptionContainer<TextField> descriptionContainer;
     
     private Text promptText;
-    private Text helperText;
     private Pane textPane;
     private PromptInput<TextField> linesWrapper;
 
@@ -59,7 +54,6 @@ public class RtTextFieldSkin extends TextFieldSkin
         promptContainer.getStyleClass().add("prompt-container");
         promptContainer.setManaged(false);
         
-        helperContainer.getStyleClass().add("helper-container");
         
         linesWrapper = new PromptInput<>(textField, overlayContainer, this.promptTextFill, textField.textProperty(),
                 textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty(), this.promptContainer);
@@ -67,26 +61,12 @@ public class RtTextFieldSkin extends TextFieldSkin
         
         linesWrapper.init(() -> createPromptText(), textPane);
 
-
         updateOverlayColor();
         updateTrailingIconColor();
-        createHelperText();
-        this.textContainer.setManaged(false);
-        this.errorContainer = new ValidableContainer<String>(textField);
-        this.textContainer.getChildren().addAll(helperContainer, errorContainer);
-        this.helperContainer.visibleProperty().bind(textField.isValidProperty());
-        this.errorContainer.visibleProperty().bind(textField.isValidProperty().not());
+        this.descriptionContainer = new DescriptionContainer<TextField>(textField);
 
-        StackPane.setAlignment(this.helperContainer, Pos.CENTER_LEFT);
-        StackPane.setAlignment(this.errorContainer, Pos.CENTER_LEFT);
-        Rectangle descriptionClip = new Rectangle();
-        descriptionClip.setX(0);
-        descriptionClip.setY(0);
-        descriptionClip.widthProperty().bind(this.textContainer.widthProperty());
-        descriptionClip.heightProperty().bind(this.textContainer.heightProperty());
-        this.textContainer.setClip(descriptionClip);
         
-        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, textContainer);
+        getChildren().addAll(inputContainer, overlayContainer, linesWrapper.unfocusedLine, linesWrapper.focusedLine, promptContainer, descriptionContainer);
         RtGlyph glyph = textField.getTrailingGlyph();
         if (glyph != null)
         {
@@ -161,7 +141,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.inputContainer.resizeRelocate(x, y, w, inputHeight);
         this.overlayContainer.resizeRelocate(x, y, w, inputHeight);
 
-        this.textContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
+        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
         
         RtGlyph graphic = this.textField.getTrailingGlyph();
         if (graphic != null)
@@ -227,20 +207,6 @@ public class RtTextFieldSkin extends TextFieldSkin
         catch (Exception e)
         {
         }
-    }
-    
-    private void createHelperText()
-    {
-        if (this.helperText != null || !this.textField.getIsShowHelperText())
-        {
-            return;
-        }
-        this.helperText = new Text();
-        this.helperText.getStyleClass().add("helper-text");
-        this.helperText.visibleProperty().bind(this.textField.isShowHelperTextProperty());
-        this.helperText.textProperty().bind(this.textField.helperTextProperty());
-        StackPane.setAlignment(this.helperText, Pos.CENTER_LEFT);
-        this.helperContainer.getChildren().add(this.helperText);
     }
     
     private void updateOverlayColor()

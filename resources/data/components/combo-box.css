@@ -102,14 +102,14 @@ TODO
     -fx-min-height: 72;
 }
 
-.rt-combo-box:helper .helper-container
+.rt-combo-box:helper .description-text
 {
     -fx-border-width: 2;
     -fx-min-height: 16;
     -fx-padding: 2 16 2 16;
 }
 
-.rt-combo-box:helper .helper-container .helper-text
+.rt-combo-box:helper .description-container .helper-container .helper-text
 {
     -fx-fill: -var-on-main-light-color;
     -fx-font-size: 12;

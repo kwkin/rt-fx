@@ -41,7 +41,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtComponent, RtLabelFloatControl, ValidableControl<T>
+public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<T>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -358,31 +358,55 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
         this.overlayColor.set(overlayColor);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public StringProperty helperTextProperty()
     {
         return this.helperText;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getHelperText()
     {
         return this.helperText.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setHelperText(String helperText)
     {
         this.helperText.set(helperText);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public BooleanProperty isShowHelperTextProperty()
     {
         return this.isShowHelperText;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean getIsShowHelperText()
     {
         return this.isShowHelperText.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setIsShowHelperText(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
