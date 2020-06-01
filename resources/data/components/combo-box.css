@@ -102,7 +102,7 @@ TODO
     -fx-min-height: 72;
 }
 
-.rt-combo-box:helper .description-text
+.rt-combo-box:helper .description-container
 {
     -fx-border-width: 2;
     -fx-min-height: 16;
@@ -125,7 +125,6 @@ TODO
 {
     -fx-border-width: 2;
     -fx-min-height: 16;
-    -fx-padding: 2 16 2 16;
 }
 
 .rt-combo-box:helper .error-container .error-text

@@ -19,8 +19,10 @@ public class DescriptionContainer<T extends ValidableControl<?> & RtDescriptionC
     {
         this.setManaged(false);
         this.control = control;
+        
         getStyleClass().add("description-container");
-        getStyleClass().add("helper-container");
+        helperContainer.getStyleClass().add("helper-container");
+        errorContainer.getStyleClass().add("error-container");
 
         createHelperText();
         createErrorText();
@@ -37,7 +39,7 @@ public class DescriptionContainer<T extends ValidableControl<?> & RtDescriptionC
         
         this.helperContainer.visibleProperty().bind(control.isValidProperty());
         this.errorContainer.visibleProperty().bind(control.isValidProperty().not());
-        this.errorContainer.getChildren().addAll(helperContainer, errorContainer);
+        getChildren().addAll(helperContainer, errorContainer);
     }
     
     private void createHelperText()

@@ -28,16 +28,20 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 import java.util.function.Supplier;
 
-public class PromptInput<T extends Control & RtLabelFloatControl> 
+public class PromptInput<T extends Control & RtLabelFloatControl> extends StackPane
 {
     private final Supplier<Text> promptTextSupplier;
     private T control;
 
-    public Region overlayContainer = new Region();
-    public Region focusedLine = new Region();
-    public Region unfocusedLine = new Region();
-    public final Rectangle clip = new Rectangle();
-    public StackPane promptContainer = new StackPane();
+    private final StackPane inputContainer = new StackPane();
+    private final StackPane inputTextContainer = new StackPane();
+    private final StackPane overlayContainer = new StackPane();
+    private final StackPane promptContainer = new StackPane();
+    private Node displayNode;
+    
+    private final Region focusedLine = new Region();
+    private final Region unfocusedLine = new Region();
+    private final Rectangle clip = new Rectangle();
 
     private RtAnimationTimer focusTimer;
     private RtAnimationTimer normalTimer;
@@ -45,47 +49,56 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     private RtAnimationTimer hoverTimer;
 
     private double initScale = 0.05;
-    public final Scale promptTextScale = new Scale(1, 1, 0, 0);
     private final Scale scale = new Scale(initScale, 1);
 
-    public ObjectProperty<Paint> animatedPromptTextFill;
-    public BooleanBinding usePromptText;
     private ObjectProperty<Paint> promptTextFill;
     private ObservableValue<?> valueProperty;
     private ObservableValue<String> promptTextProperty;
-    private ObservableValue<Boolean> toggleFlag;
+    private ObservableValue<Boolean> activeStateProperty;
 
     private boolean animating = false;
     private double promptTranslateY = 0;
 
-    public PromptInput(T control, Region overlaycontainer, ObjectProperty<Paint> promptTextFill, ObservableValue<?> valueProperty,
-            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier, ObservableValue<Boolean> toggleFlag, StackPane promptContainer)
+    public ObjectProperty<Paint> animatedPromptTextFill;
+    public BooleanBinding usePromptText;
+    public final Scale promptTextScale = new Scale(1, 1, 0, 0);
+    
+    public PromptInput(T control, ObservableValue<?> valueProperty, ObjectProperty<Paint> promptTextFill,
+            ObservableValue<String> promptTextProperty, Supplier<Text> promptTextSupplier, ObservableValue<Boolean> activeStateProperty)
     {
         this.control = control;
-        this.overlayContainer = overlaycontainer;
-        this.promptTextSupplier = promptTextSupplier;
         this.promptTextFill = promptTextFill;
+        this.promptTextSupplier = promptTextSupplier;
         this.valueProperty = valueProperty;
         this.promptTextProperty = promptTextProperty;
-        this.toggleFlag = toggleFlag;
-        this.promptContainer = promptContainer;
+        this.activeStateProperty = activeStateProperty;
+        
+        this.inputContainer.setManaged(false);
+        this.inputContainer.getStyleClass().add("input-container");
+        this.inputContainer.getChildren().add(inputTextContainer);
+
+        this.overlayContainer.getStyleClass().add("overlay-container");
+        this.overlayContainer.setOpacity(0);
+
+        this.unfocusedLine.setManaged(false);
+        this.unfocusedLine.getStyleClass().add("input-unfocused-line");
+        
+        this.focusedLine.setManaged(false);
+        this.focusedLine.getStyleClass().add("input-focused-line");
+        this.focusedLine.setOpacity(0);
+        this.focusedLine.getTransforms().add(scale);
+
+        this.promptContainer.getStyleClass().add("prompt-container");
+        this.promptContainer.setManaged(false);
+        this.animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
+        this.usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
+                control.labelFloatProperty(), promptTextFill);
+        
+        getChildren().addAll(inputContainer, overlayContainer, unfocusedLine, focusedLine, promptContainer);
     }
 
     public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
     {
-        animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
-        usePromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
-                control.labelFloatProperty(), promptTextFill);
-
-        unfocusedLine.setManaged(false);
-        unfocusedLine.getStyleClass().add("input-unfocused-line");
-        unfocusedLine.setOpacity(1);
-        
-        focusedLine.setManaged(false);
-        focusedLine.getStyleClass().add("input-focused-line");
-        focusedLine.setOpacity(0);
-        focusedLine.getTransforms().add(scale);
-        
         if (usePromptText.get()) 
         {
             createPromptNodeRunnable.run();
@@ -96,7 +109,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             control.requestLayout();
         });
         
-        final Supplier<WritableValue<Number>> promptTargetSupplier = () -> promptTextSupplier.get() == null ? null
+        Supplier<WritableValue<Number>> promptTargetSupplier = () -> promptTextSupplier.get() == null ? null
                 : promptTextSupplier.get().translateYProperty();
 
         // @formatter:off
@@ -108,7 +121,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(focusedLine.opacityProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.toggleFlag.getValue())
+                            .setAnimateCondition(() -> this.activeStateProperty.getValue())
                         .build())
                     .build(), 
                 RtKeyFrame.builder()
@@ -128,7 +141,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                         RtKeyValue.builder().setTarget(animatedPromptTextFill)
                             .setEndValueSupplier(() -> control.getFocusColor())
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.toggleFlag.getValue() && control.isLabelFloat())
+                            .setAnimateCondition(() -> this.activeStateProperty.getValue() && control.isLabelFloat())
                         .build(),
                         RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
                             .setEndValueSupplier(() -> -promptTranslateY)
@@ -181,13 +194,13 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         normalTimer.setCacheNodes(cachedNodes);
         unfocusLabelTimer.setCacheNodes(cachedNodes);
         
-        this.toggleFlag.addListener((ov, oldVal, newVal) ->
+        this.activeStateProperty.addListener((ov, oldVal, newVal) ->
         {
             updateState(true);
         });
         control.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            if (!this.toggleFlag.getValue())
+            if (!this.activeStateProperty.getValue())
             {
                 updateState(true);
             }
@@ -212,7 +225,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
 
     private void updateState(boolean animate)
     {
-        if (this.toggleFlag.getValue())
+        if (this.activeStateProperty.getValue())
         {
             normalTimer.stop();
             hoverTimer.stop();
@@ -273,7 +286,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     {
         if (control.isLabelFloat())
         {
-            if (this.toggleFlag.getValue())
+            if (this.activeStateProperty.getValue())
             {
                 animateFloatingLabel(true, animation);
             }
@@ -330,16 +343,39 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                 && !promptTextFill.get().equals(Color.TRANSPARENT));
     }
 
-    public void layoutComponents(double x, double y, double inputContainerWidth, double inputContainerHeight, double translateY)
+    public void layoutComponents(double x, double y, double width, double height)
     {
+        resizeRelocate(x, y, width, height);
+        double promptTopPadding = this.promptContainer.getPadding().getTop();
+        double inputTopPadding = this.inputContainer.getPadding().getTop();
+        double translateY = inputTopPadding - promptTopPadding + 2;
+        
         this.promptTranslateY = translateY;
 
         double unfocusedLineHeight = unfocusedLine.getPrefHeight();
-        unfocusedLine.resizeRelocate(x, y + inputContainerHeight - unfocusedLineHeight, inputContainerWidth, unfocusedLineHeight);
+        unfocusedLine.resizeRelocate(x, y + height - unfocusedLineHeight, width, unfocusedLineHeight);
         double focusedLineHeight = focusedLine.getPrefHeight();
-        focusedLine.resizeRelocate(x, y + inputContainerHeight - focusedLineHeight, inputContainerWidth, focusedLineHeight);
+        focusedLine.resizeRelocate(x, y + height - focusedLineHeight, width, focusedLineHeight);
         
-        scale.setPivotX(inputContainerWidth / 2);
+        scale.setPivotX(width / 2);
+
+        this.inputContainer.resizeRelocate(x, y, width, height);
+        this.overlayContainer.resizeRelocate(x, y, width, height);
+    }
+
+    public void resizePrompt(double x, double y, double width, double height)
+    {
+        this.promptContainer.resizeRelocate(x, y, width, height);
+    }
+
+    public void setInputPadding(double inputRightPadding)
+    {
+        inputTextContainer.setPadding(new Insets(0, inputRightPadding, 0, 0));
+    }
+    
+    public Insets getInputPadding()
+    {
+        return this.inputContainer.getPadding();
     }
 
     public void updateLabelFloatLayout()
@@ -353,5 +389,46 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             unfocusLabelTimer.stop();
             updateLabelFloat(true);
         }
+    }
+    
+    public void updateOverlayColor(Paint overlayColor)
+    {
+        CornerRadii radii = this.control.getBackground() == null ? null
+                : this.control.getBackground().getFills().get(0).getRadii();
+        this.overlayContainer.setBackground(
+                new Background(new BackgroundFill(overlayColor, radii, Insets.EMPTY)));
+    }
+    
+    public void addPromptText(Text promptText)
+    {
+        this.promptContainer.getChildren().add(promptText);
+    }
+    
+    public void addInput(Node node)
+    {
+        if (this.displayNode != node)
+        {
+            if (this.displayNode != null)
+            {
+                inputTextContainer.getChildren().add(this.displayNode);
+            }
+            inputTextContainer.getChildren().add(node);
+            this.displayNode = node;
+        }
+    }
+    
+    public StackPane getInputContainer()
+    {
+        return this.inputContainer;
+    }
+    
+    public Node getDisplayNode()
+    {
+        return this.displayNode;
+    }
+    
+    public Node getPromptContainer()
+    {
+        return this.promptContainer;
     }
 }
