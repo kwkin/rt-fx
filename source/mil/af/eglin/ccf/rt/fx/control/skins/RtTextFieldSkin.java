@@ -25,39 +25,43 @@ public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
 
-    private final PromptInput<TextField> linesWrapper;
+    private final PromptInput<TextField> input;
     private final DescriptionContainer<TextField> descriptionContainer;
 
     private Text textNode;
     private Text promptText;
-    private Pane textPane;
+    private Pane textGroup;
 
     public RtTextFieldSkin(final TextField textField)
     {
         super(textField);
         this.textField = textField;
 
-        textPane = (Pane) getChildren().get(0);
-        for (Node node : this.textPane.getChildren())
+        this.textGroup = (Pane) getChildren().get(0);
+        for (Node node : this.textGroup.getChildren())
         {
             if (node instanceof Text)
             {
-                textNode = (Text)node;
+                this.textNode = (Text)node;
             }
         }
-        getChildren().remove(textPane);
         
-        linesWrapper = new PromptInput<>(textField, textField.textProperty(), this.promptTextFill, 
-                textField.promptTextProperty(), () -> promptText, this.textField.focusedProperty());
-
-        linesWrapper.init(() -> createPromptText(), textPane);
-
-        linesWrapper.updateOverlayColor(this.textField.getOverlayColor());
+        this.input = new PromptInput<>(textField, textField.textProperty(), this.promptTextFill, 
+                textField.promptTextProperty(), () -> this.promptText, this.textField.focusedProperty());
+        this.input.init(() -> createPromptText(), this.textGroup);
+        this.input.updateOverlayColor(this.textField.getOverlayColor());
+        this.descriptionContainer = new DescriptionContainer<>(textField);
+        
         updateTrailingIconColor();
-        this.descriptionContainer = new DescriptionContainer<TextField>(textField);
 
-        linesWrapper.addInput(textPane);
-        getChildren().addAll(linesWrapper, descriptionContainer);
+        getChildren().remove(this.textGroup);
+        this.input.addInput(this.textGroup);
+        getChildren().addAll(this.input.getInputContainer(), 
+                this.input.getOverlayContainer(), 
+                this.input.getUnfocusedLine(), 
+                this.input.getFocusedLine(),
+                this.input.getPromptContainer(),
+                this.descriptionContainer);
         RtGlyph glyph = textField.getTrailingGlyph();
         if (glyph != null)
         {
@@ -77,11 +81,12 @@ public class RtTextFieldSkin extends TextFieldSkin
     @Override
     public HitInfo getIndex(double x, double y)
     {
-        Pane inputContainer = this.linesWrapper.getInputContainer();
-        Point2D p = new Point2D(x - snappedLeftInset() - inputContainer.getPadding().getLeft(),
+        Pane inputContainer = this.input.getInputContainer();
+        Point2D p = new Point2D(
+                x - snappedLeftInset() - inputContainer.getPadding().getLeft(),
                 y - snappedTopInset() - (2 * inputContainer.getPadding().getTop()));
 
-        Text text = ((Text) textPane.getChildren().get(1));
+        Text text = ((Text) textGroup.getChildren().get(1));
         // TODO replace with text.hitTest(p) JavaFX versions 9+
         @SuppressWarnings("deprecation")
         HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
@@ -94,15 +99,15 @@ public class RtTextFieldSkin extends TextFieldSkin
         super.handleControlPropertyChanged(propertyReference);
         if (textField.focusColorProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateFocusColor();
+            input.updateFocusColor();
         }
         else if (textField.unfocusProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateUnfocusColor();
+            input.updateUnfocusColor();
         }
         else if (textField.getOverlayColorProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateOverlayColor(this.textField.getOverlayColor());
+            input.updateOverlayColor(this.textField.getOverlayColor());
         }
         else if (textField.labelFloatProperty().getName().equals(propertyReference))
         {
@@ -124,12 +129,15 @@ public class RtTextFieldSkin extends TextFieldSkin
         super.layoutChildren(x, y, w, h);
 
         double inputHeight = this.textField.isHelperTextVisible() ? h - this.textField.getHelperTextHeight() : h;
-        this.linesWrapper.layoutComponents(x, y, w, inputHeight);
-        this.linesWrapper.updateLabelFloatLayout();
+        double promptTopPadding = this.input.getPromptContainer().getPadding().getTop();
+        double inputTopPadding = this.input.getInputContainer().getPadding().getTop();
+        double translateY = inputTopPadding - promptTopPadding + 2;
+        this.input.layoutComponents(x, y, w, inputHeight, translateY);
+        this.input.updateLabelFloatLayout();
 
         this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
 
-        Pane inputContainer = this.linesWrapper.getInputContainer();
+        Pane inputContainer = this.input.getInputContainer();
         RtGlyph graphic = this.textField.getTrailingGlyph();
         double promptWidth = w;
         if (graphic != null)
@@ -143,13 +151,12 @@ public class RtTextFieldSkin extends TextFieldSkin
             double graphicLeftGap = graphicWidth + 2 * textField.getTrailingIconGap();
             double inputRightPadding = graphicLeftGap - inputContainer.getPadding().getRight();
             inputRightPadding = Math.max(inputRightPadding, inputContainer.getPadding().getRight());
-            this.linesWrapper.getInputDisplayContainer().setPadding(new Insets(0, inputRightPadding, 0, 0));
+            this.input.getInputDisplayContainer().setPadding(new Insets(0, inputRightPadding, 0, 0));
 
             promptWidth -= graphicLeftGap;
         }
-        linesWrapper.getPromptContainer().resizeRelocate(x, y, promptWidth, inputHeight);
+        input.getPromptContainer().resizeRelocate(x, y, promptWidth, inputHeight);
 
-        // TODO Try to remove code required to fix an error with JavaFX computing text node height
         if (textNode != null) 
         {
             double textY;
@@ -177,24 +184,24 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private void createPromptText()
     {
-        if (this.promptText != null || !this.linesWrapper.isUsingPromptTextProperty().get())
+        if (this.promptText != null || !this.input.isUsingPromptTextProperty().get())
         {
             return;
         }
         this.promptText = new Text();
         this.promptText.getStyleClass().add("prompt-text");
-        this.promptText.visibleProperty().bind(linesWrapper.isUsingPromptTextProperty());
+        this.promptText.visibleProperty().bind(input.isUsingPromptTextProperty());
         this.promptText.fontProperty().bind(this.textField.fontProperty());
         this.promptText.textProperty().bind(this.textField.promptTextProperty());
         this.promptText.translateXProperty().set(1);
-        this.promptText.fillProperty().bind(this.linesWrapper.animatedPromptTextFillProperty());
-        this.promptText.getTransforms().add(this.linesWrapper.getPromptTextScale());
+        this.promptText.fillProperty().bind(this.input.animatedPromptTextFillProperty());
+        this.promptText.getTransforms().add(this.input.getPromptTextScale());
         StackPane.setAlignment(promptText, Pos.CENTER_LEFT);
-        this.linesWrapper.addPromptText(this.promptText);
+        this.input.addPromptText(this.promptText);
 
         if (this.textField.isFocused() && this.textField.isLabelFloat())
         {
-            this.promptText.setTranslateY(-Math.floor(this.textPane.getHeight()));
+            this.promptText.setTranslateY(-Math.floor(this.textGroup.getHeight()));
         }
         try
         {
@@ -203,7 +210,7 @@ public class RtTextFieldSkin extends TextFieldSkin
             Object oldValue = field.get(this);
             if (oldValue != null)
             {
-                textPane.getChildren().remove(oldValue);
+                textGroup.getChildren().remove(oldValue);
             }
             field.set(this, promptText);
         }

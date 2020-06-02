@@ -57,8 +57,13 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
         }
     }
     
-    static
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+    
+    static
+    {
+        ScrollPane.loadStyleSheet();
     }
 }

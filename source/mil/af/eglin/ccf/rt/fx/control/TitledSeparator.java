@@ -53,8 +53,17 @@ public class TitledSeparator extends Labeled
     private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
     private static final String CSS_CLASS = "rt-titled-separator";
 
-    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL);
+    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
+            StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL)
+    {
+        @Override
+        protected void invalidated()
+        {
+            final boolean isVertical = (get() == Orientation.VERTICAL);
+            pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, isVertical);
+            pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, !isVertical);
+        }
+    };
     private StyleableObjectProperty<HPos> halignment = new SimpleStyleableObjectProperty<>(
             StyleableProperties.HALIGNMENT, TitledSeparator.this, "halignment", HPos.CENTER);
     private StyleableObjectProperty<VPos> valignment = new SimpleStyleableObjectProperty<>(

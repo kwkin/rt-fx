@@ -21,7 +21,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
     private final Node arrowButton;
     private final Node listView;
-    private final PromptInput<ComboBox<T>> linesWrapper;
+    private final PromptInput<ComboBox<T>> input;
     private final DescriptionContainer<ComboBox<T>> descriptionContainer;
 
     private Text promptText;
@@ -33,20 +33,26 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
         ObservableValue<Boolean> toggleFlag = this.comboBox.isEditable() ? this.comboBox.focusedProperty()
                 : this.comboBox.showingProperty();
-        linesWrapper = new PromptInput<>(comboBox, comboBox.valueProperty(), comboBox.promptTextFillProperty(),
+        input = new PromptInput<>(comboBox, comboBox.valueProperty(), comboBox.promptTextFillProperty(),
                 comboBox.promptTextProperty(), () -> promptText, toggleFlag);
 
-        linesWrapper.init(() -> createPromptText());
+        input.init(() -> createPromptText());
 
         this.descriptionContainer = new DescriptionContainer<ComboBox<T>>(comboBox);
 
         this.arrowButton = (StackPane) this.comboBox.lookup(".arrow-button");
         this.listView = this.comboBox.lookup(".list-view");
         getChildren().remove(arrowButton);
-        getChildren().addAll(linesWrapper, arrowButton, descriptionContainer);
+        getChildren().addAll(this.input.getInputContainer(), 
+                this.input.getOverlayContainer(), 
+                this.input.getUnfocusedLine(), 
+                this.input.getFocusedLine(),
+                this.input.getPromptContainer(),
+                arrowButton,
+                this.descriptionContainer);
 
         updateDisplayArea();
-        linesWrapper.updateOverlayColor(this.comboBox.getOverlayColor());
+        input.updateOverlayColor(this.comboBox.getOverlayColor());
         updatePopupLocation();
 
         final Node newDisplayNode = getDisplayNode();
@@ -65,14 +71,14 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
     protected void updateDisplayArea()
     {
         super.updateDisplayArea();
-        if (this.linesWrapper != null)
+        if (this.input != null)
         {
             final Node newDisplayNode = getDisplayNode();
             if (newDisplayNode != null)
             {
                 getChildren().remove(newDisplayNode);
                 getChildren().add(newDisplayNode);
-                this.linesWrapper.addInput(newDisplayNode);
+                this.input.addInput(newDisplayNode);
             }
         }
     }
@@ -83,19 +89,19 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         super.handleControlPropertyChanged(propertyReference);
         if (comboBox.focusColorProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateFocusColor();
+            input.updateFocusColor();
         }
         else if (comboBox.unfocusProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateUnfocusColor();
+            input.updateUnfocusColor();
         }
         else if (comboBox.getOverlayColorProperty().getName().equals(propertyReference))
         {
-            linesWrapper.updateOverlayColor(this.comboBox.getOverlayColor());
+            input.updateOverlayColor(this.comboBox.getOverlayColor());
         }
         else if (comboBox.labelFloatProperty().getName().equals(propertyReference))
         {
-            this.linesWrapper.updateLabelFloatLayout();
+            this.input.updateLabelFloatLayout();
         }
         else if (comboBox.helperTextHeightProperty().getName().equals(propertyReference))
         {
@@ -113,11 +119,14 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         super.layoutChildren(x, y, w, h);
 
         double inputHeight = this.comboBox.isHelperTextVisible() ? h - this.comboBox.getHelperTextHeight() : h;
-        this.linesWrapper.layoutComponents(x, y, w, inputHeight);
-        this.linesWrapper.updateLabelFloatLayout();
+        double promptTopPadding = this.input.getPromptContainer().getPadding().getTop();
+        double inputTopPadding = this.input.getInputContainer().getPadding().getTop();
+        double translateY = inputTopPadding - promptTopPadding + 2;
+        this.input.layoutComponents(x, y, w, inputHeight, translateY);
+        this.input.updateLabelFloatLayout();
 
         this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.comboBox.getHelperTextHeight());
-        this.linesWrapper.getPromptContainer().resizeRelocate(x, y, w - this.arrowButton.getLayoutBounds().getWidth(), inputHeight);
+        this.input.getPromptContainer().resizeRelocate(x, y, w - this.arrowButton.getLayoutBounds().getWidth(), inputHeight);
 
         if (arrowButton != null)
         {
@@ -127,10 +136,10 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
             positionInArea(arrowButton, xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
         }
 
-        Node displayNode = this.linesWrapper.getDisplayNode();
+        Node displayNode = this.input.getDisplayNode();
         if (displayNode != null)
         {
-            Region inputContainer = this.linesWrapper.getInputContainer();
+            Region inputContainer = this.input.getInputContainer();
             
             double inputX = inputContainer.snappedLeftInset();
             double inputY = inputContainer.snappedTopInset();
@@ -152,19 +161,19 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
     private void createPromptText()
     {
-        if (this.promptText != null || !this.linesWrapper.isUsingPromptTextProperty().get())
+        if (this.promptText != null || !this.input.isUsingPromptTextProperty().get())
         {
             return;
         }
         // TODO bind font
         this.promptText = new Text();
         this.promptText.getStyleClass().add("prompt-text");
-        this.promptText.visibleProperty().bind(linesWrapper.isUsingPromptTextProperty());
+        this.promptText.visibleProperty().bind(input.isUsingPromptTextProperty());
         this.promptText.textProperty().bind(this.comboBox.promptTextProperty());
-        this.promptText.fillProperty().bind(this.linesWrapper.animatedPromptTextFillProperty());
-        this.promptText.getTransforms().add(this.linesWrapper.getPromptTextScale());
+        this.promptText.fillProperty().bind(this.input.animatedPromptTextFillProperty());
+        this.promptText.getTransforms().add(this.input.getPromptTextScale());
         StackPane.setAlignment(promptText, Pos.CENTER_LEFT);
-        this.linesWrapper.addPromptText(this.promptText);
+        this.input.addPromptText(this.promptText);
     }
 
     private void updatePopupLocation()

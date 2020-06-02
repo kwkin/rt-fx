@@ -1,21 +1,26 @@
 /*-- ############################### Scroll Pane Styles ############################### */
-.rt-scroll-pane
+.rt-scroll-pane,
+.rt-text-area .scroll-pane
 {
     -fx-background-color: transparent;
 }
 
-.rt-scroll-pane:focused
+.rt-scroll-pane:focused,
+.rt-text-area:focused .scroll-pane
 {
     -fx-background-color: transparent;
 }
 
-.rt-scroll-pane .viewport
+.rt-scroll-pane .viewport,
+.rt-text-area:focused .scroll-pane .viewport
 {
     -fx-background-color: transparent;
 }
 
-.rt-scroll-pane .scroll-bar 
+.rt-scroll-pane .scroll-bar,
+.rt-text-area .scroll-pane .scroll-bar 
 {
+    -fx-background-color: transparent;
     -rt-size: 12;
     -fx-min-height: -rt-size;
     -fx-min-width: -rt-size;
@@ -23,8 +28,11 @@
 }
 
 .rt-scroll-pane .scroll-bar .increment-button,
-.rt-scroll-pane .scroll-bar .decrement-button 
+.rt-scroll-pane .scroll-bar .decrement-button,
+.rt-text-area .scroll-pane .increment-button,
+.rt-text-area .scroll-pane .decrement-button
 {
+    -fx-background-color: transparent;
     -rt-size: 12;
     -fx-min-height: -rt-size;
     -fx-min-width: -rt-size;
@@ -33,47 +41,60 @@
 }
 
 /*-- ############################### Scroll Pane Scroll Bar Styles ############################### */
-.rt-scroll-pane .scroll-bar
+.rt-scroll-pane .scroll-bar,
+.rt-text-area .rt-scroll-pane .scroll-bar
 {
     -fx-background-color: transparent;
     -fx-opacity: 30%;
 }
 
-.rt-scroll-pane .scroll-bar:hover
+.rt-scroll-pane .scroll-bar:hover,
+.rt-text-area .scroll-pane .scroll-bar:hover
 {
     -fx-opacity: 50%;
 }
 
-.rt-scroll-pane .scroll-bar:pressed
+.rt-scroll-pane .scroll-bar:pressed,
+.rt-text-area .scroll-pane .scroll-bar:pressed
 {
     -fx-opacity: 100%;
 }
 
-.rt-scroll-pane .scroll-bar .track
+.rt-scroll-pane .scroll-bar .track,
+.rt-text-area .scroll-pane .scroll-bar .track
 {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
-.rt-scroll-pane .scroll-bar .thumb
+.rt-scroll-pane .scroll-bar .thumb,
+.rt-text-area .scroll-pane .scroll-bar .thumb
 {
-    -fx-background-color: -var-accent-color;
     -fx-background-radius: 6;
     -fx-border-width: 0 0 0 0;
 }
 
-.rt-scroll-pane .scroll-bar .thumb:hover
+.rt-scroll-pane .scroll-bar .thumb
+{
+    -fx-background-color: -var-accent-color;
+}
+
+.rt-scroll-pane .scroll-bar .thumb:hover,
+.rt-text-area .scroll-pane .scroll-bar .thumb:hover
 {
     -fx-cursor: open_hand;
 }
 
-.rt-scroll-pane .scroll-bar .thumb:pressed
+.rt-scroll-pane .scroll-bar .thumb:pressed,
+.rt-text-area .scroll-pane .scroll-bar .thumb:pressed
 {
     -fx-cursor: closed_hand;
 }
 
 .rt-scroll-pane .scroll-bar .increment-button,
-.rt-scroll-pane .scroll-bar .decrement-button
+.rt-scroll-pane .scroll-bar .decrement-button,
+.rt-text-area .scroll-pane .scroll-bar .increment-button,
+.rt-text-area .scroll-pane .scroll-bar .decrement-button
 {
     -fx-cursor: hand;
     -fx-padding: 2 2 2 2;
@@ -83,13 +104,18 @@
 .rt-scroll-pane .scroll-bar .increment-button:hover,
 .rt-scroll-pane .scroll-bar .decrement-button:hover,
 .rt-scroll-pane .scroll-bar .increment-button:pressed,
-.rt-scroll-pane .scroll-bar .decrement-button:pressed
+.rt-scroll-pane .scroll-bar .decrement-button:pressed,
+.rt-text-area .scroll-pane .scroll-bar .increment-button:hover,
+.rt-text-area .scroll-pane .scroll-bar .decrement-button:hover,
+.rt-text-area .scroll-pane .scroll-bar .increment-button:pressed,
+.rt-text-area .scroll-pane .scroll-bar .decrement-button:pressed
 {
     -fx-color: transparent;
 }
 
 /*-- ############################### Scroll Pane Vertical Scroll Bar Style ############################### */
-.rt-scroll-pane .scroll-bar:vertical 
+.rt-scroll-pane .scroll-bar:vertical,
+.rt-text-area .scroll-pane .scroll-bar:vertical
 {
     -rt-size: 12;
     -fx-min-height: -rt-size;
@@ -98,7 +124,8 @@
     -fx-max-width: -rt-size;
 }
 
-.rt-scroll-pane .scroll-bar:vertical .track
+.rt-scroll-pane .scroll-bar:vertical .track,
+.rt-text-area .scroll-pane .scroll-bar:vertical .track
 {
     -rt-size: 12;
     -fx-min-height: -rt-size;
@@ -107,7 +134,8 @@
     -fx-max-width: -rt-size;
 }
 
-.rt-scroll-pane .scroll-bar:vertical .thumb
+.rt-scroll-pane .scroll-bar:vertical .thumb,
+.rt-text-area .scroll-pane .scroll-bar:vertical .thumb
 {
     -rt-size: 12;
     -fx-min-height: -rt-size;
@@ -116,60 +144,76 @@
     -fx-max-width: -rt-size;
 }
 
-.rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
+.rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow,
+.rt-text-area .scroll-pane .scroll-bar:vertical .increment-button .increment-arrow
 {
-    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
-.rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
+.rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow,
+.rt-text-area .scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
 {
-    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
-/*-- ############################### Scroll Pane Horizontal Scroll Bar Style ############################### */
-.rt-scroll-pane .scroll-bar:horizontal 
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-scroll-pane .scroll-bar:horizontal .track
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-scroll-pane .scroll-bar:horizontal .thumb
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow
+.rt-scroll-pane .scroll-bar:vertical .increment-button .increment-arrow,
+.rt-scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow
 {
     -fx-background-color: -var-accent-color;
+}
+
+/*-- ############################### Scroll Pane Horizontal Scroll Bar Style ############################### */
+.rt-scroll-pane .scroll-bar:horizontal,
+.rt-text-area .scroll-pane .scroll-bar:horizontal
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .track,
+.rt-text-area .scroll-pane .scroll-bar:horizontal .track
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .thumb,
+.rt-text-area .scroll-pane .scroll-bar:horizontal .thumb
+{
+    -rt-size: 12;
+    -fx-min-width: -rt-size;
+    -fx-min-height: -rt-size;
+    -fx-pref-height: -rt-size;
+    -fx-max-height: -rt-size;
+}
+
+.rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow,
+.rt-text-area .scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow
+{
     -fx-shape: "M10,17L15,12L10,7V17Z";
 }
 
-.rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
+.rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow,
+.rt-text-area .scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
 {
-    -fx-background-color: -var-accent-color;
     -fx-shape: "M14,7L9,12L14,17V7Z";
 }
 
+.rt-scroll-pane .scroll-bar:horizontal .increment-button .increment-arrow,
+.rt-scroll-pane .scroll-bar:horizontal .decrement-button .decrement-arrow
+{
+    -fx-background-color: -var-accent-color;
+}
+
 /*-- ############################### List View Scroll Bar Corner Style ############################### */
-.rt-scroll-pane .corner
+.rt-scroll-pane .corner,
+.rt-text-area .scroll-pane .corner
 {
     -fx-background-color: transparent;
 }

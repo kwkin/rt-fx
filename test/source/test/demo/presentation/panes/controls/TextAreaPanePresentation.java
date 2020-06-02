@@ -16,7 +16,7 @@ public class TextAreaPanePresentation extends SizedTitledCard
     
     public TextAreaPanePresentation(PaneController controller)
     {
-        super(TITLE, TitledCardSize.SIZE_1x1);
+        super(TITLE, TitledCardSize.SIZE_1x2);
 
         VBox stackPane = new VBox();
         
@@ -30,14 +30,17 @@ public class TextAreaPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Unliked text fields, text areas are filled. Text areas are alos taller and have automatically word wrap.");
 
-        double textAreaHeight = 60;
+        double textAreaHeight = 100;
         GridPane textboxGridPane = new GridPane();
         TextArea primaryLightTextArea = new TextArea(Accent.PRIMARY_LIGHT);
         primaryLightTextArea.setPrefHeight(textAreaHeight);
         primaryLightTextArea.setText("This is a sentence in a text area.");
         primaryLightTextArea.setWrapText(true);
+        
         TextArea primaryMidTextArea = new TextArea(Accent.PRIMARY_MID);
         primaryMidTextArea.setPrefHeight(textAreaHeight);
+        primaryMidTextArea.setPromptText("Prompt Text");
+        primaryMidTextArea.setLabelFloat(true);
         TextArea primaryDarkTextArea = new TextArea(Accent.PRIMARY_DARK);
         primaryDarkTextArea.setPrefHeight(textAreaHeight);
 
@@ -49,11 +52,10 @@ public class TextAreaPanePresentation extends SizedTitledCard
         secondaryDarkTextArea.setPrefHeight(textAreaHeight);
         
         textboxGridPane.add(primaryLightTextArea, 0, 0);
-        textboxGridPane.add(primaryMidTextArea, 0, 1);
-        textboxGridPane.add(primaryDarkTextArea, 0, 2);
-        
-        textboxGridPane.add(secondaryLightTextArea, 1, 0);
-        textboxGridPane.add(secondaryMidTextArea, 1, 1);
+        textboxGridPane.add(primaryMidTextArea, 1, 0);
+        textboxGridPane.add(primaryDarkTextArea, 0, 1);
+        textboxGridPane.add(secondaryLightTextArea, 1, 1);
+        textboxGridPane.add(secondaryMidTextArea, 0, 2);
         textboxGridPane.add(secondaryDarkTextArea, 1, 2);
 
         descriptionPane.setContent(textboxGridPane);
