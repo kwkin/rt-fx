@@ -51,14 +51,28 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     private static final String USER_AGENT_STYLESHEET = "combo-box.css";
     private static final String CSS_CLASS = "rt-combo-box";
 
+    private ValidableHandler<T> validationHandler = new ValidableHandler<>(this);
+    
     private BooleanProperty isValid = new SimpleBooleanProperty(true);
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty();
+    private BooleanProperty isShowHelperText = new SimpleBooleanProperty()
+    {
+        @Override 
+        protected void invalidated() 
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
+        }
+    };
     private StringProperty helperText = new SimpleStringProperty();
     private StringProperty errorText = new SimpleStringProperty();    
-    private ValidableHandler<T> validationHandler = new ValidableHandler<>(this);
-
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, this, "labelFloat", false);
+            StyleableProperties.LABEL_FLOAT, this, "labelFloat", false)
+    {
+        @Override 
+        protected void invalidated() 
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
+        }
+    };
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNFOCUS_COLOR, ComboBox.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(

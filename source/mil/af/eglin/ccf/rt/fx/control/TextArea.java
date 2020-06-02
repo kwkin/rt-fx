@@ -65,7 +65,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
     private StringProperty helperText = new SimpleStringProperty();
     private StringProperty errorText = new SimpleStringProperty();
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, TextArea.this, "disableAnimation", false)
+            StyleableProperties.LABEL_FLOAT, TextArea.this, "disableAnimation", false)
     {
         @Override 
         protected void invalidated() 

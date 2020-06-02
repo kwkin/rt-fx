@@ -68,7 +68,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
     private StringProperty errorText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false)
+            StyleableProperties.LABEL_FLOAT, TextField.this, "disableAnimation", false)
     {
         @Override 
         protected void invalidated() 

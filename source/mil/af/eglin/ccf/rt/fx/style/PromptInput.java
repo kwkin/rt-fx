@@ -91,8 +91,6 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         this.animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
         this.isUsingPromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
                 control.labelFloatProperty(), promptTextFill);
-        
-//        getChildren().addAll(inputContainer, overlayContainer, unfocusedLine, focusedLine, promptContainer);
     }
 
     public void init(Runnable createPromptNodeRunnable, Node... cachedNodes)
@@ -123,7 +121,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                         .build())
                     .build(), 
                 RtKeyFrame.builder()
-                    .setDuration(Duration.millis(160))
+                    .setDuration(Duration.millis(100))
                     .setKeyValues(
                         RtKeyValue.builder()
                             .setTarget(this.focusedLineScale.xProperty())
@@ -157,7 +155,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                    .build());
         this.unfocusLabelTimer = new RtAnimationTimer(
                 RtKeyFrame.builder()
-                    .setDuration(Duration.millis(160))
+                    .setDuration(Duration.millis(100))
                     .setKeyValues(
                         RtKeyValue.builder()
                             .setTargetSupplier(promptTargetSupplier)
@@ -177,7 +175,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                     .build());
         this.normalTimer = new RtAnimationTimer(
                 RtKeyFrame.builder()
-                    .setDuration(Duration.millis(160))
+                    .setDuration(Duration.millis(100))
                     .setKeyValues(
                         RtKeyValue.builder()
                             .setTarget(this.overlayContainer.opacityProperty())
@@ -187,7 +185,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                     .build());
         this.hoverTimer = new RtAnimationTimer(
                 RtKeyFrame.builder()
-                    .setDuration(Duration.millis(160))
+                    .setDuration(Duration.millis(100))
                     .setKeyValues(
                         RtKeyValue.builder()
                             .setTarget(this.overlayContainer.opacityProperty())
