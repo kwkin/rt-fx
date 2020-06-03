@@ -72,7 +72,7 @@ public class ValidableHandler<T>
                 errorMessage.add(validator.getErrorMessage());
                 if (isValid)
                 {
-                    isValid = false;
+                    isValid = false; 
                 }
             }
         }

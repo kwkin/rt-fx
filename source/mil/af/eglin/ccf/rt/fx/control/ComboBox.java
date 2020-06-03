@@ -316,7 +316,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> unfocusProperty()
+    public StyleableObjectProperty<Paint> unfocusColorProperty()
     {
         return this.unfocusColor;
     }

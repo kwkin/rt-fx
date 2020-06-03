@@ -176,7 +176,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> unfocusProperty()
+    public StyleableObjectProperty<Paint> unfocusColorProperty()
     {
         return this.unfocusColor;
     }

@@ -169,7 +169,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> unfocusProperty()
+    public StyleableObjectProperty<Paint> unfocusColorProperty()
     {
         return this.unfocusColor;
     }

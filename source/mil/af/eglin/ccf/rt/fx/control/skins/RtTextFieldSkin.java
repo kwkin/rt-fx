@@ -20,7 +20,6 @@ import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 
-// TODO generalize input container, prompt container, prompt text, etc into another class that can be used by combo-box and text area
 public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
@@ -71,7 +70,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(), textField.focusColorProperty().getName());
         registerChangeListener(textField.getOverlayColorProperty(), textField.getOverlayColorProperty().getName());
-        registerChangeListener(textField.unfocusProperty(), textField.unfocusProperty().getName());
+        registerChangeListener(textField.unfocusColorProperty(), textField.unfocusColorProperty().getName());
         registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
         registerChangeListener(textField.trailingGlyphColorProperty(),
                 textField.trailingGlyphColorProperty().getName());
@@ -101,7 +100,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             input.updateFocusColor();
         }
-        else if (textField.unfocusProperty().getName().equals(propertyReference))
+        else if (textField.unfocusColorProperty().getName().equals(propertyReference))
         {
             input.updateUnfocusColor();
         }

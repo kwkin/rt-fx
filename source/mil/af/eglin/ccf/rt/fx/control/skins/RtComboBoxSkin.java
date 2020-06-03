@@ -62,7 +62,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         registerChangeListener(comboBox.labelFloatProperty(), comboBox.labelFloatProperty().getName());
         registerChangeListener(comboBox.focusColorProperty(), comboBox.focusColorProperty().getName());
         registerChangeListener(comboBox.getOverlayColorProperty(), comboBox.getOverlayColorProperty().getName());
-        registerChangeListener(comboBox.unfocusProperty(), comboBox.unfocusProperty().getName());
+        registerChangeListener(comboBox.unfocusColorProperty(), comboBox.unfocusColorProperty().getName());
         registerChangeListener(comboBox.helperTextHeightProperty(), comboBox.helperTextHeightProperty().getName());
         registerChangeListener(comboBox.isShowHelperTextProperty(), comboBox.isShowHelperTextProperty().getName());
     }
@@ -91,7 +91,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         {
             input.updateFocusColor();
         }
-        else if (comboBox.unfocusProperty().getName().equals(propertyReference))
+        else if (comboBox.unfocusColorProperty().getName().equals(propertyReference))
         {
             input.updateUnfocusColor();
         }

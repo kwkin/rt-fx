@@ -1,10 +1,9 @@
 /*
-TODO
-- Change usage of main to base colors
-- Padding
-- Add bottom border
-- Text color
-- Text font
+TODO 
+- Fix overlay color being incorrect
+- Fix inconsistenties with textfield CSS (-rt-focus-color, rt-unfocus-color)
+- Fix prompt text fill not updating (need workaround to accomodate JavaFX issue)
+- Fix issue with error text not having correct left padding
 */
 /*-- ############################### Text Area Style ############################### */
 .rt-text-area,
@@ -24,8 +23,6 @@ TODO
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
-    -rt-trailing-icon-gap: 10;
-    -rt-trailing-icon-color: -var-on-main-light-color;
     -rt-helper-text-height: 24;
 }
 
@@ -89,11 +86,21 @@ TODO
     -fx-padding: 2 16 2 16;
 }
 
-.rt-text-area:helper .description-container .helper-container .helper-text
+.rt-text-area .description-container .helper-container .helper-text,
+.rt-text-area .description-container .error-container .error-text
 {
-    -fx-fill: -var-on-main-light-color;
     -fx-font-size: 12;
     -fx-text-alignment: left;
+}
+
+.rt-text-area .description-container .helper-container .helper-text
+{
+    -fx-fill: -var-on-main-light-color;
+}
+
+.rt-text-area .description-container .error-container .error-text
+{
+    -fx-fill: -var-error-color;
 }
 
 .rt-text-area:floating .input-container
@@ -101,23 +108,23 @@ TODO
     -fx-padding: 22 16 6 16;
 }
 
-.rt-text-area:helper .error-container
+.rt-text-area .error-container
 {
     -fx-min-height: 16;
 }
 
-.rt-text-area:helper .error-container .error-text
-{
-    -fx-fill: -var-error-color;
-    -fx-font-size: 12;
-    -fx-text-alignment: left;
-}
-
 .rt-text-area:error
 {
+    -fx-prompt-text-fill: -var-error-color;
     -rt-focus-color: -var-error-color;
     -rt-unfocus-color: -var-error-color;
-    -fx-prompt-text-fill: -var-error-color;
+}
+
+/* TODO remove this. Currently cannot use properties */
+.rt-text-area:error .input-focused-line,
+.rt-text-area:error .input-unfocused-line
+{
+    -fx-background-color: -var-error-color;
 }
 
 .rt-text-area:error .input-container
@@ -125,13 +132,13 @@ TODO
     -fx-background-color: -var-light-error-color;
 }
 
-
 /*-- ############################### Text Area Scroll Bar ############################### */
 .rt-text-area .content,
 .rt-text-area .scroll-pane
 {
     -fx-border-width: 0.0;
 	-fx-background-color: transparent;
+	-fx-background: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 	-fx-effect: null;
@@ -152,6 +159,7 @@ TODO
 .rt-text-area:focused .scroll-pane
 {
     -fx-background-color: transparent;
+	-fx-background: transparent;
     -fx-border-color: transparent;
 	-fx-effect: null;
     -fx-background-insets: 0;

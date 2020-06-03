@@ -439,6 +439,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             }
         }
     }
+    
     private void runTimer(RtAnimationTimer timer, boolean animation)
     {
         if (animation && !timer.isRunning())

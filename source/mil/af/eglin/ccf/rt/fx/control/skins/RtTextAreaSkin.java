@@ -61,7 +61,7 @@ public class RtTextAreaSkin extends TextAreaSkin
         registerChangeListener(textArea.labelFloatProperty(), textArea.labelFloatProperty().getName());
         registerChangeListener(textArea.focusColorProperty(), textArea.focusColorProperty().getName());
         registerChangeListener(textArea.getOverlayColorProperty(), textArea.getOverlayColorProperty().getName());
-        registerChangeListener(textArea.unfocusProperty(), textArea.unfocusProperty().getName());
+        registerChangeListener(textArea.unfocusColorProperty(), textArea.unfocusColorProperty().getName());
         registerChangeListener(textArea.isShowHelperTextProperty(), textArea.isShowHelperTextProperty().getName());
     }
 
@@ -104,7 +104,7 @@ public class RtTextAreaSkin extends TextAreaSkin
         {
             input.updateFocusColor();
         }
-        else if (textArea.unfocusProperty().getName().equals(propertyReference))
+        else if (textArea.unfocusColorProperty().getName().equals(propertyReference))
         {
             input.updateUnfocusColor();
         }
@@ -128,6 +128,7 @@ public class RtTextAreaSkin extends TextAreaSkin
         double inputTopPadding = this.input.getInputContainer().getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 4;
         this.input.layoutComponents(x, y, w, inputHeight, translateY);
+        this.scrollPane.resizeRelocate(x, y, w, inputHeight);
         this.input.updateLabelFloatLayout();
 
         this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textArea.getHelperTextHeight());
