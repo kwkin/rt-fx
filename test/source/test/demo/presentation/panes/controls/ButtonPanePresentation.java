@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
-import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
@@ -12,6 +11,7 @@ import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
+import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -41,37 +41,29 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Normal buttons come in several varieties: raised, flat, icon, and icon with text. Here are some raised buttons.");
 
-        VBox buttonVBox = new VBox();
-        buttonVBox.setSpacing(16);
+        GridPane toggleButtonGridPane = new GridPane();
         
-        HBox primaryButtonPane = new HBox();
-        primaryButtonPane.setSpacing(14);
         Button primaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
         Button primaryMidButton = new Button("CANCEL", ButtonStyle.RAISED, Accent.PRIMARY_MID);
         Button primaryDarkButton = new Button("APPLY", ButtonStyle.RAISED, Accent.PRIMARY_DARK);
-        primaryButtonPane.getChildren().add(primaryLightButton);
-        primaryButtonPane.getChildren().add(primaryMidButton);
-        primaryButtonPane.getChildren().add(primaryDarkButton);
 
-        HBox secondaryButtonPane = new HBox();
-        secondaryButtonPane.setSpacing(14);
         Button secondaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
         Button secondaryMidButton = new Button("CANCEL", ButtonStyle.RAISED, Accent.SECONDARY_MID);
         Button secondaryDarkButton = new Button("APPLY", ButtonStyle.RAISED, Accent.SECONDARY_DARK);
-        secondaryButtonPane.getChildren().add(secondaryLightButton);
-        secondaryButtonPane.getChildren().add(secondaryMidButton);
-        secondaryButtonPane.getChildren().add(secondaryDarkButton);
 
-        HBox baseButtonPane = new HBox();
-        baseButtonPane.setSpacing(14);
         Button baseButton = new Button("OK", ButtonStyle.RAISED, Accent.BASE);
-        baseButtonPane.getChildren().add(baseButton);
 
-        buttonVBox.getChildren().add(primaryButtonPane);
-        buttonVBox.getChildren().add(secondaryButtonPane);
-        buttonVBox.getChildren().add(baseButtonPane);
+        toggleButtonGridPane.add(primaryLightButton, 0, 0);
+        toggleButtonGridPane.add(primaryMidButton, 1, 0);
+        toggleButtonGridPane.add(primaryDarkButton, 2, 0);
+
+        toggleButtonGridPane.add(secondaryLightButton, 0, 1);
+        toggleButtonGridPane.add(secondaryMidButton, 1, 1);
+        toggleButtonGridPane.add(secondaryDarkButton, 2, 1);
+
+        toggleButtonGridPane.add(baseButton, 0, 2);
         
-        descriptionPane.setContent(buttonVBox);
+        descriptionPane.setContent(toggleButtonGridPane);
         
         return descriptionPane;
     }
@@ -81,31 +73,25 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Flat buttons behave the same as regular buttons, but they appear to be on the same level as its container.");
 
-        VBox buttonVBox = new VBox();
-        buttonVBox.setSpacing(16);
+        GridPane toggleButtonGridPane = new GridPane();
         
-        HBox primaryButtonBar = new HBox();
-        primaryButtonBar.setSpacing(14);
         Button primaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
         Button primaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.PRIMARY_MID);
         Button primaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
-        primaryButtonBar.getChildren().add(primaryLightFlatButton);
-        primaryButtonBar.getChildren().add(primaryMidFlatButton);
-        primaryButtonBar.getChildren().add(primaryDarkFlatButton);
-
-        HBox secondaryButtonBar = new HBox();
-        secondaryButtonBar.setSpacing(14);
+;
         Button secondaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
         Button secondaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.SECONDARY_MID);
         Button secondaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
-        secondaryButtonBar.getChildren().add(secondaryLightFlatButton);
-        secondaryButtonBar.getChildren().add(secondaryMidFlatButton);
-        secondaryButtonBar.getChildren().add(secondaryDarkFlatButton);
-        
-        buttonVBox.getChildren().add(primaryButtonBar);
-        buttonVBox.getChildren().add(secondaryButtonBar);
 
-        descriptionPane.setContent(buttonVBox);
+        toggleButtonGridPane.add(primaryLightFlatButton, 0, 0);
+        toggleButtonGridPane.add(primaryMidFlatButton, 1, 0);
+        toggleButtonGridPane.add(primaryDarkFlatButton, 2, 0);
+
+        toggleButtonGridPane.add(secondaryLightFlatButton, 0, 1);
+        toggleButtonGridPane.add(secondaryMidFlatButton, 1, 1);
+        toggleButtonGridPane.add(secondaryDarkFlatButton, 2, 1);
+
+        descriptionPane.setContent(toggleButtonGridPane);
         
         return descriptionPane;
     }

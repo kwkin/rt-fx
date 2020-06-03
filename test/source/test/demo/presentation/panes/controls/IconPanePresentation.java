@@ -5,6 +5,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
+import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
@@ -27,7 +28,7 @@ public class IconPanePresentation extends SizedTitledCard
 
         VBox vBox = new VBox();
         vBox.getChildren().add(createIcons());
-        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(new TitledSeparator("Icon Features"));
         vBox.getChildren().add(createIconSizesButtons());
         
         setContent(vBox);

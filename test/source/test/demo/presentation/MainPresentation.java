@@ -82,9 +82,6 @@ public class MainPresentation extends BorderPane
         setTop(toolBar);
 
 //        this.panes.add(new ComboBoxPanePresentation(paneController));
-        this.panes.add(new ToggleButtonPanePresentation(paneController));
-        this.panes.add(new TextAreaPanePresentation(paneController));
-        this.panes.add(new TextFieldPanePresentation(paneController));
         this.panes.add(new ComponentsPresentation(paneController));
         this.panes.add(new LayoutsPresentation());
         this.panes.add(new TableComparison(paneController));
