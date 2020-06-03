@@ -19,9 +19,8 @@ import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
-import javafx.geometry.HPos;
 import javafx.geometry.Orientation;
-import javafx.geometry.VPos;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Labeled;
@@ -53,12 +52,19 @@ public class TitledSeparator extends Labeled
     private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
     private static final String CSS_CLASS = "rt-titled-separator";
 
-    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL);
-    private StyleableObjectProperty<HPos> halignment = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.HALIGNMENT, TitledSeparator.this, "halignment", HPos.CENTER);
-    private StyleableObjectProperty<VPos> valignment = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.VALIGNMENT, TitledSeparator.this, "valignment", VPos.CENTER);
+    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
+            StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL)
+    {
+        @Override
+        protected void invalidated()
+        {
+            final boolean isVertical = (get() == Orientation.VERTICAL);
+            pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, isVertical);
+            pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, !isVertical);
+        }
+    };
+    private StyleableObjectProperty<Pos> titleAlignment = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.TITLE_ALIGNMENT, TitledSeparator.this, "titleAlignment", Pos.CENTER);
     private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.SEPARATOR_CONTENT_GAP, TitledSeparator.this, "separatorContentGap", 0.0);
 
@@ -136,34 +142,19 @@ public class TitledSeparator extends Labeled
         return orientation.get();
     }
 
-    public ObjectProperty<HPos> halignmentProperty()
+    public ObjectProperty<Pos> titleAlignmentProperty()
     {
-        return halignment;
+        return titleAlignment;
     }
 
-    public void setOrientation(HPos value)
+    public void setTitleAlignment(Pos value)
     {
-        halignment.set(value);
+        titleAlignment.set(value);
     }
 
-    public HPos getHalignment()
+    public Pos getTitlealignment()
     {
-        return halignment.get();
-    }
-
-    public ObjectProperty<VPos> valignmentProperty()
-    {
-        return valignment;
-    }
-
-    public void setOrientation(VPos value)
-    {
-        valignment.set(value);
-    }
-
-    public VPos getValignment()
-    {
-        return valignment.get();
+        return titleAlignment.get();
     }
 
     public DoubleProperty separatorContentGapProperty()
@@ -234,37 +225,20 @@ public class TitledSeparator extends Labeled
             }
         };
 
-        private static final CssMetaData<TitledSeparator, HPos> HALIGNMENT = new CssMetaData<TitledSeparator, HPos>(
-                "-fx-halignment", new EnumConverter<HPos>(HPos.class), HPos.CENTER)
+        private static final CssMetaData<TitledSeparator, Pos> TITLE_ALIGNMENT = new CssMetaData<TitledSeparator, Pos>(
+                "-fx-title-alignment", new EnumConverter<Pos>(Pos.class), Pos.CENTER)
         {
 
             @Override
             public boolean isSettable(TitledSeparator control)
             {
-                return control.halignment == null || !control.halignment.isBound();
+                return control.titleAlignment == null || !control.titleAlignment.isBound();
             }
 
             @Override
-            public StyleableProperty<HPos> getStyleableProperty(TitledSeparator n)
+            public StyleableProperty<Pos> getStyleableProperty(TitledSeparator n)
             {
-                return (StyleableProperty<HPos>) (WritableValue<HPos>) n.halignmentProperty();
-            }
-        };
-
-        private static final CssMetaData<TitledSeparator, VPos> VALIGNMENT = new CssMetaData<TitledSeparator, VPos>(
-                "-fx-valignment", new EnumConverter<VPos>(VPos.class), VPos.CENTER)
-        {
-
-            @Override
-            public boolean isSettable(TitledSeparator n)
-            {
-                return n.valignment == null || !n.valignment.isBound();
-            }
-
-            @Override
-            public StyleableProperty<VPos> getStyleableProperty(TitledSeparator control)
-            {
-                return control.valignment;
+                return (StyleableProperty<Pos>) (WritableValue<Pos>) n.titleAlignment;
             }
         };
 
@@ -292,8 +266,7 @@ public class TitledSeparator extends Labeled
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(
                     Labeled.getClassCssMetaData());
             styleables.add(ORIENTATION);
-            styleables.add(HALIGNMENT);
-            styleables.add(VALIGNMENT);
+            styleables.add(TITLE_ALIGNMENT);
             styleables.add(SEPARATOR_CONTENT_GAP);
             STYLEABLES = Collections.unmodifiableList(styleables);
         }

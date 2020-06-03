@@ -34,8 +34,10 @@ TODO
     -fx-background-insets: 0;
     -fx-background-radius: 16;
     -fx-padding: 0;
-    -fx-pref-width: 16;
-    -fx-pref-height: 16;
+
+    -var-size: 16;
+    -fx-pref-width: -var-size;
+    -fx-pref-height: -var-size;
 }
 
 .rt-slider:focused .thumb

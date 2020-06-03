@@ -2,7 +2,7 @@
 .rt-text-flow
 {
     -fx-background-color: -var-accent-color;
-    -fx-padding: 4 0 16 0;
+    -fx-padding: 4 0 8 0;
 }
 
 /*-- ############################### Text Flow Accents ############################### */

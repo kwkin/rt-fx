@@ -64,8 +64,10 @@ public class TextFieldComparison extends SizedTitledCard
         
         int row = 0;
         javafx.scene.control.TextField fxComponent = new javafx.scene.control.TextField("JavaFX TextField");
+        javafx.scene.control.TextArea fxComponentTextArea = new javafx.scene.control.TextArea("JavaFX Text Area");
         GridPane.setHalignment(fxComponent, HPos.CENTER);
-        grid.add(fxComponent,                0, row++, 2, 1);
+        grid.add(fxComponent,           0, row++, 2, 1);
+        grid.add(fxComponentTextArea,   0, row++, 2, 1);
         grid.add(rtLabel,               0, row  , 1, 1);
         grid.add(jfxLabel,              1, row++, 1, 1);
         grid.add(createRtTextFields(),  0, row  , 1, 1);

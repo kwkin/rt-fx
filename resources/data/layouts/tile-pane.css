@@ -2,9 +2,9 @@
 .rt-tile-pane
 {
     -fx-background-color: -var-accent-color;
-    -fx-hgap: 10;
-    -fx-padding: 16;
-    -fx-vgap: 10;
+    -fx-hgap: 8;
+    -fx-padding: 8;
+    -fx-vgap: 8;
 }
 
 /*-- ############################### Tile Pane Accents ############################### */

@@ -42,6 +42,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         textField.setPromptText("Prompt Text");
         TextField floatingTextField = new TextField(Accent.PRIMARY_MID);
         floatingTextField.setPromptText("Floating");
+        floatingTextField.setText("Input text");
         floatingTextField.setLabelFloat(true);
 
         SvgGlyph cog = new SvgGlyph(SvgFile.COG, IconSize.SIZE_24);

@@ -20,9 +20,11 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 public class RtToggleSwitchSkin extends ToggleButtonSkin
 {
     private final ToggleSwitch toggleSwitch;
-    private final StackPane main;
-    private final Circle circle;
-    private final Line line;
+    
+    private final StackPane main = new StackPane();
+    private final StackPane circlePane = new StackPane();
+    private final Circle circle = new Circle();
+    private final Line line = new Line();
 
     private RtAnimationTimer timer;
     
@@ -32,30 +34,20 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         
         this.toggleSwitch = toggleSwitch;
         
-        double circleRadius = 8;
-        
-        this.line = new Line();
         this.line.getStyleClass().add("line");
         this.line.setStartX(0);
         this.line.setStartY(0);
-        this.line.setEndX(circleRadius * 2.2);
         this.line.setEndY(0);
-        this.line.setStrokeWidth(circleRadius * 2.8);
         this.line.setStrokeLineCap(StrokeLineCap.ROUND);
         this.line.setSmooth(true);
 
-        this.circle = new Circle();
         this.circle.getStyleClass().add("circle");
-        this.circle.setCenterX(-circleRadius);
         this.circle.setCenterY(0);
-        this.circle.setRadius(circleRadius);
         this.circle.setSmooth(true);
 
-        StackPane circlePane = new StackPane();
-        circlePane.getChildren().add(circle);
-        circlePane.setPadding(new Insets(circleRadius * 1.5));
+        this.circlePane.getChildren().add(circle);
 
-        this.main = new StackPane();
+        updateSizes();
         this.main.getChildren().setAll(line, circlePane);
 
         getSkinnable().selectedProperty().addListener(observable -> 
@@ -79,7 +71,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
                 .setKeyValues(
                     RtKeyValue.builder()
                         .setTarget(circle.translateXProperty())
-                        .setEndValueSupplier(() -> computeTranslation(circleRadius, line))
+                        .setEndValueSupplier(() -> computeTranslation())
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
                         .build(),
@@ -118,25 +110,26 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         {
             updateColors();
         }
+        else if (toggleSwitch.lineWidthProperty().getName().equals(property) 
+                    || toggleSwitch.lineLengthProperty().getName().equals(property)
+                    || toggleSwitch.thumbRadiusProperty().getName().equals(property))
+        {
+            updateSizes();
+        }
     }
     
     private void updateSelectionState()
     {
-        circle.setTranslateX(computeTranslation(8, line));
+        circle.setTranslateX(computeTranslation());
         updateColors();
     }
     
-    private double computeTranslation(double circleRadius, Line line) 
-    {
-        double translation = 0;
-        if (getSkinnable().isSelected())
-        {
-            translation = ((line.getLayoutBounds().getWidth() / 2) - circleRadius - 4);
-        }
-        else
-        {
-            translation = -((line.getLayoutBounds().getWidth() / 2) - circleRadius - 4);
-        }
+    private double computeTranslation() 
+    {        
+        double lineWidth = this.toggleSwitch.getLineWidth();
+        double lineLength = this.toggleSwitch.getLineLength();
+        int direction = getSkinnable().isSelected() ? 1 : -1;
+        double translation = direction * (lineLength - lineWidth / 2);
         return translation;
     }
     
@@ -162,5 +155,14 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
             circle.setFill(((ToggleSwitch)getSkinnable()).getUnselectedColor());
             line.setStroke(((ToggleSwitch)getSkinnable()).getUnselectedLineColor());
         }
+    }
+    
+    private void updateSizes()
+    {
+        this.line.setEndX(this.toggleSwitch.getLineLength());
+        this.line.setStrokeWidth(this.toggleSwitch.getLineWidth());
+        this.circle.setCenterX(-this.toggleSwitch.getThumbRadius());
+        this.circle.setRadius(this.toggleSwitch.getThumbRadius());
+        this.circlePane.setPadding(new Insets(this.toggleSwitch.getThumbRadius() * 1.5));
     }
 }

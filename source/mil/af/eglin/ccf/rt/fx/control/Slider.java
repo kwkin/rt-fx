@@ -29,6 +29,8 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
     private static final String USER_AGENT_STYLESHEET = "slider.css";
     private static final String CSS_CLASS = "rt-slider";
 
+
+    // @formatter:off
     private StyleableObjectProperty<Paint> thumbColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.THUMB_COLOR, this, "thumbColor");
     private StyleableObjectProperty<Paint> filledTrackColor = new SimpleStyleableObjectProperty<>(
@@ -37,6 +39,7 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
             StyleableProperties.UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+    // @formatter:on
 
     public Slider()
     {

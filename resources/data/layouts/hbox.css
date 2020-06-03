@@ -2,7 +2,8 @@
 .rt-hbox
 { 
     -fx-background-color: -var-accent-color;
-    -fx-spacing: 10;
+    -fx-padding: 8 0 8 0;
+    -fx-spacing: 4;
 }
 
 /*-- ############################### HBox Accents ############################### */

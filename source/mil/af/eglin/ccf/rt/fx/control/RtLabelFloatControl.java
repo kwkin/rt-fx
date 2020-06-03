@@ -18,7 +18,7 @@ public interface RtLabelFloatControl
 
     public void setFocusColor(Paint color);
 
-    public StyleableObjectProperty<Paint> unfocusProperty();
+    public StyleableObjectProperty<Paint> unfocusColorProperty();
 
     public Paint getUnfocusColor();
 

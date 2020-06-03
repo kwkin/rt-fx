@@ -2,9 +2,9 @@
 .rt-grid-pane
 {
     -fx-background-color: -var-accent-color;
-    -fx-hgap: 10;
-    -fx-padding: 16;
-    -fx-vgap: 10;
+    -fx-hgap: 16;
+    -fx-padding: 8 8 8 8;
+    -fx-vgap: 16;
 }
 
 /*-- ############################### Grid Pane Accents ############################### */

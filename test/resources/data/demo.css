@@ -18,7 +18,6 @@
 /* JFeonix Components Demo CSS */
 .jfx-text-field, .jfx-password-field {
     -fx-background-color: WHITE;
-    -fx-font-weight: BOLD;
     -fx-prompt-text-fill: #808080;
     -fx-alignment: top-left;
     -jfx-focus-color: #4059A9;
@@ -37,10 +36,6 @@
 .jfx-decorator .resize-border {
     -fx-border-color: -fx-decorator-color;
     -fx-border-width: 0 4 4 4;
-}
-
-.jfx-text-area, .text-area {
-    -fx-font-weight: BOLD;
 }
 
 .jfx-text-field:error, .jfx-password-field:error, .jfx-text-area:error {
@@ -77,10 +72,6 @@
 
 .icons-rippler:hover {
     -fx-cursor: hand;
-}
-
-.jfx-check-box {
-    -fx-font-weight: BOLD;
 }
 
 .custom-jfx-check-box {
@@ -184,7 +175,6 @@
 
 .jfx-tool-bar {
     -fx-font-size: 20;
-    -fx-font-weight: BOLD;
     -fx-background-color: derive(#8695ac, -20%);
     -fx-pref-width: 100%;
     -fx-pref-height: 48px;

@@ -19,8 +19,16 @@ TODO
     -fx-padding: 0;
     -fx-text-fill: -var-on-main-mid-color;
 
+    -rt-line-width: 14;
+    -rt-line-length: 16;
+    -rt-thumb-radius: 10;
     -rt-selected-color: -var-accent-color;
     -rt-unselected-color: -var-main-color-l4;
     -rt-selected-line-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
     -rt-unselected-line-color: -var-main-color-l3;
+}
+
+.rt-toggle-switch .circle
+{
+    -fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.26), 3, 0.15 , 0, 1);
 }

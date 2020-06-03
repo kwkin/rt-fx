@@ -2,8 +2,8 @@
 .rt-vbox
 { 
     -fx-background-color: -var-accent-color;
-    -fx-padding: 0 10 0 10;
-    -fx-spacing: 5;
+    -fx-padding: 0 8 0 8;
+    -fx-spacing: 4;
 }
 
 /*-- ############################### VBox Accents ############################### */

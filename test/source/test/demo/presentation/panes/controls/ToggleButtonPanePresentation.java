@@ -28,11 +28,11 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
     {
         super(TITLE);
         
-        VBox stackPane = new VBox();
+        VBox stackPane = new VBox(0);
         stackPane.getChildren().add(createToggleButtons());
         stackPane.getChildren().add(new TitledSeparator("Toggle Switches"));
         stackPane.getChildren().add(createToggleSwitches());
-        stackPane.getChildren().add(new Separator());
+        stackPane.getChildren().add(new TitledSeparator("Icon Toggle Buttons"));
         stackPane.getChildren().add(createToggleIcons());
         
         setContent(stackPane);
@@ -76,6 +76,7 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Toggle switches behave the same as toggle buttons, but they have a different style");
         
         GridPane toggleButtonGridPane = new GridPane();
+        toggleButtonGridPane.setVgap(0);
 
         ToggleSwitch primaryLightToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_LIGHT);
         primaryLightToggleSwitch.setSelected(true);
@@ -90,12 +91,12 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         secondaryDarkToggleSwitch.setSelected(true);
 
         toggleButtonGridPane.add(primaryLightToggleSwitch, 0, 0);
-        toggleButtonGridPane.add(primaryMidToggleSwitch, 1, 0);
-        toggleButtonGridPane.add(primaryDarkToggleSwitch, 2, 0);
+        toggleButtonGridPane.add(primaryMidToggleSwitch, 0, 1);
+        toggleButtonGridPane.add(primaryDarkToggleSwitch, 0, 2);
 
-        toggleButtonGridPane.add(secondaryLightToggleSwitch, 0, 1);
+        toggleButtonGridPane.add(secondaryLightToggleSwitch, 1, 0);
         toggleButtonGridPane.add(secondaryMidToggleSwitch, 1, 1);
-        toggleButtonGridPane.add(secondaryDarkToggleSwitch, 2, 1);
+        toggleButtonGridPane.add(secondaryDarkToggleSwitch, 1, 2);
         
         descriptionPane.setContent(toggleButtonGridPane);
 
@@ -105,7 +106,7 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
     private Node createToggleIcons()
     {
         DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("Toggle buttons can also be represented with icons with and without text. Additionally, the icon buttons can be accented or glowing.:");
+        descriptionPane.setDescription("Toggle buttons can also be represented with icons with and without text.");
         
         FlowPane pane = new FlowPane();
         pane.setPadding(new Insets(0));

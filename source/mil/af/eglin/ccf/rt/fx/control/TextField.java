@@ -42,8 +42,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO truncate floating label and helper/error text
-public class TextField extends javafx.scene.control.TextField implements RtComponent, RtLabelFloatControl, ValidableControl<String>
+public class TextField extends javafx.scene.control.TextField implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -52,18 +51,31 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
+    
+    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
 
+    // @formatter:off
     private BooleanProperty isValid = new SimpleBooleanProperty(true);
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty();
+    private BooleanProperty isShowHelperText = new SimpleBooleanProperty() 
+    {
+        @Override 
+        protected void invalidated() 
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
+        }
+    };
     private StringProperty helperText = new SimpleStringProperty();
     private StringProperty errorText = new SimpleStringProperty();
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
-    
-    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
-    
-    // @formatter:off
     private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, this, "labelFloat", false);
+            StyleableProperties.LABEL_FLOAT, TextField.this, "disableAnimation", false)
+    {
+        @Override 
+        protected void invalidated() 
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
+        }
+    };
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
@@ -164,7 +176,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> unfocusProperty()
+    public StyleableObjectProperty<Paint> unfocusColorProperty()
     {
         return this.unfocusColor;
     }
@@ -304,16 +316,31 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         this.helperText.set(helperText);
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public BooleanProperty isShowHelperTextProperty()
     {
         return this.isShowHelperText;
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean getIsShowHelperText()
     {
         return this.isShowHelperText.get();
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setIsShowHelperText(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
@@ -478,15 +505,7 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         getStyleClass().add(this.accent.getCssName());
         
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
-        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get() || getValidators().size() > 0);
-        this.labelFloating.addListener((ov, oldVal, newVal) -> 
-        {
-            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
-        });
-        this.isShowHelperText.addListener((ov, oldVal, newVal) -> 
-        {
-            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
-        });
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
         this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<String>>()
         {
             @Override
