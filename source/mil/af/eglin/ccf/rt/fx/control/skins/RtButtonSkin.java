@@ -95,14 +95,20 @@ public class RtButtonSkin extends ButtonSkin
         {
             if (button.isArmed())
             {
+                hoverTransition.stop();
+                normalTransition.stop();
                 armedTransition.play();
             }
             else if (button.isHover())
             {
+                armedTransition.stop();
+                normalTransition.stop();
                 hoverTransition.play();
             }
             else
             {
+                armedTransition.stop();
+                hoverTransition.stop();
                 normalTransition.play();
             }
         }
@@ -110,14 +116,20 @@ public class RtButtonSkin extends ButtonSkin
         {
             if (button.isArmed())
             {
+                hoverTransition.stop();
+                normalTransition.stop();
                 armedTransition.playFrom(ANIMATION_DURATION);
             }
             else if (button.isHover())
             {
+                armedTransition.stop();
+                normalTransition.stop();
                 hoverTransition.playFrom(ANIMATION_DURATION);
             }
             else
             {
+                armedTransition.stop();
+                hoverTransition.stop();
                 normalTransition.playFrom(ANIMATION_DURATION);
             }
         }
