@@ -7,14 +7,18 @@ import java.util.List;
 import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
+import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableBooleanProperty;
+import javafx.css.SimpleStyleableDoubleProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
+import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Skin;
@@ -32,16 +36,22 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     private static final String CSS_CLASS = "rt-toggle-switch";
 
     // @formatter:off
+    private StyleableDoubleProperty lineWidth = new SimpleStyleableDoubleProperty(
+            StyleableProperties.LINE_WIDTH, ToggleSwitch.this, "lineWidth", 22.0);
+    private StyleableDoubleProperty lineLength = new SimpleStyleableDoubleProperty(
+            StyleableProperties.LINE_LENGTH, ToggleSwitch.this, "lineLength", 18.0);
+    private StyleableDoubleProperty thumbRadius = new SimpleStyleableDoubleProperty(
+            StyleableProperties.THUMB_RADIUS, ToggleSwitch.this, "thumbRadius", 8.0);
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_COLOR, ToggleSwitch.this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNSELECTED_COLOR, ToggleSwitch.this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> selectedLineColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_LINE_COLOR, this, "selectedLineColor", DefaultPalette.getInstance().getLightAccentColor());
+            StyleableProperties.SELECTED_LINE_COLOR, ToggleSwitch.this, "selectedLineColor", DefaultPalette.getInstance().getLightAccentColor());
     private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_LINE_COLOR, this, "unselectedLineColor", DefaultPalette.getInstance().getLightBaseColor());
+            StyleableProperties.UNSELECTED_LINE_COLOR, ToggleSwitch.this, "unselectedLineColor", DefaultPalette.getInstance().getLightBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+            StyleableProperties.DISABLE_ANIMATION, ToggleSwitch.this, "disableAnimation", false);
     // @formatter:on
 
     public ToggleSwitch()
@@ -68,6 +78,51 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         super(text);
         this.accent = accent;
         initialize();
+    }
+
+    public DoubleProperty lineWidthProperty()
+    {
+        return this.lineWidth;
+    }
+
+    public double getLineWidth()
+    {
+        return this.lineWidth.get();
+    }
+
+    public void setLineWidth(double lineWidth)
+    {
+        this.lineWidth.set(lineWidth);
+    }
+
+    public DoubleProperty lineLengthProperty()
+    {
+        return this.lineLength;
+    }
+
+    public double getLineLength()
+    {
+        return this.lineLength.get();
+    }
+
+    public void setLineLength(double lineLength)
+    {
+        this.lineLength.set(lineLength);
+    }
+
+    public DoubleProperty thumbRadiusProperty()
+    {
+        return this.thumbRadius;
+    }
+
+    public double getThumbRadius()
+    {
+        return this.thumbRadius.get();
+    }
+
+    public void setThumbRadius(double thumbRadius)
+    {
+        this.thumbRadius.set(thumbRadius);
     }
 
     public ObjectProperty<Paint> selectedColorProperty()
@@ -204,6 +259,54 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
 
     private static class StyleableProperties
     {
+        private static final CssMetaData<ToggleSwitch, Number> LINE_WIDTH = new CssMetaData<ToggleSwitch, Number>(
+                "-rt-line-width", SizeConverter.getInstance(), 22.0)
+        {
+
+            @Override
+            public boolean isSettable(ToggleSwitch control)
+            {
+                return control.lineWidth == null || !control.lineWidth.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Number> getStyleableProperty(ToggleSwitch control)
+            {
+                return control.lineWidth;
+            }
+        };
+        private static final CssMetaData<ToggleSwitch, Number> LINE_LENGTH = new CssMetaData<ToggleSwitch, Number>(
+                "-rt-line-length", SizeConverter.getInstance(), 18.0)
+        {
+
+            @Override
+            public boolean isSettable(ToggleSwitch control)
+            {
+                return control.lineLength == null || !control.lineLength.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Number> getStyleableProperty(ToggleSwitch control)
+            {
+                return control.lineLength;
+            }
+        };
+        private static final CssMetaData<ToggleSwitch, Number> THUMB_RADIUS = new CssMetaData<ToggleSwitch, Number>(
+                "-rt-thumb-radius", SizeConverter.getInstance(), 8.0)
+        {
+
+            @Override
+            public boolean isSettable(ToggleSwitch control)
+            {
+                return control.thumbRadius == null || !control.thumbRadius.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Number> getStyleableProperty(ToggleSwitch control)
+            {
+                return control.thumbRadius;
+            }
+        };
         private static final CssMetaData<ToggleSwitch, Paint> SELECTED_COLOR = new CssMetaData<ToggleSwitch, Paint>(
                 "-rt-selected-color", PaintConverter.getInstance())
         {
@@ -289,6 +392,8 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
+            styleables.add(LINE_WIDTH);
+            styleables.add(THUMB_RADIUS);
             styleables.add(SELECTED_COLOR);
             styleables.add(UNSELECTED_COLOR);
             styleables.add(SELECTED_LINE_COLOR);

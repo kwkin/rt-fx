@@ -24,6 +24,7 @@ import test.demo.presentation.panes.controls.ComponentsPresentation;
 import test.demo.presentation.panes.controls.TextAreaPanePresentation;
 import test.demo.presentation.panes.controls.TextFieldPanePresentation;
 import test.demo.presentation.panes.controls.TitledSeparatorPanePresentation;
+import test.demo.presentation.panes.controls.ToggleButtonPanePresentation;
 import test.demo.presentation.panes.layouts.LayoutsPresentation;
 import test.demo.presentation.sidebar.SideBarPresentation;
 import test.jfoenix.presentation.panes.controls.ButtonComparison;
@@ -81,6 +82,7 @@ public class MainPresentation extends BorderPane
         setTop(toolBar);
 
 //        this.panes.add(new ComboBoxPanePresentation(paneController));
+        this.panes.add(new ToggleButtonPanePresentation(paneController));
         this.panes.add(new TextAreaPanePresentation(paneController));
         this.panes.add(new TextFieldPanePresentation(paneController));
         this.panes.add(new ComponentsPresentation(paneController));
