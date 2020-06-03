@@ -45,7 +45,11 @@
     -var-main-color-l3: #dcdcdc;
     -var-main-color-l4: #ababab;
 
-    -var-on-main-light-color: #ababab;
+
+    /*
+    - Text field, text area, combo box, and titled separator prompt text
+    */
+    -var-on-main-light-color: #9a9a9a;
     -var-on-main-mid-color: #202020;
 
     -var-base-overlay-color: rgba(0, 0, 0, 0.1);

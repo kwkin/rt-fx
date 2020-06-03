@@ -5,6 +5,7 @@ import javafx.scene.control.ContentDisplay;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.Separator;
+import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
@@ -27,9 +28,9 @@ public class ButtonPanePresentation extends SizedTitledCard
 
         VBox vBox = new VBox();
         vBox.getChildren().add(createNormalButtons());
-        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(new TitledSeparator("Flat Buttons"));
         vBox.getChildren().add(createFlatButtons());
-        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(new TitledSeparator("Icon Buttons"));
         vBox.getChildren().add(createIconButtons());
         
         setContent(vBox);

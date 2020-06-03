@@ -2,13 +2,13 @@
 .rt-titled-separator
 {
     -fx-corus-traversable: false;
-    -fx-alignment: CENTER;
+    -fx-title-alignment: BOTTOM_LEFT;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-content-display: CENTER;
-    -fx-font-family: "Roboto Medium";
-    -fx-font-size: 14;
-    -fx-text-fill: -var-on-main-mid-color;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12;
+    -fx-text-fill: -var-on-main-light-color;
 
     -rt-separator-content-gap: 8;
 }
@@ -16,11 +16,13 @@
 .rt-titled-separator:horizontal
 {
     -fx-padding: 4 0 4 0;
+    -fx-min-height: 32;
 }
 
 .rt-titled-separator:vertical
 {
 	-fx-padding: 0 4 0 4;
+    -fx-min-width: 32;
 }
 
 .rt-titled-separator:horizontal .left-line,
