@@ -31,6 +31,10 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         // TODO generate shadow automatically
         button.setPickOnBounds(false);
         DepthManager.getInstance().setDepth(button, 2);
+
+        updateChildren();
+        
+        // @formatter:off
         timer = new RtAnimationTimer(
             RtKeyFrame.builder()
                 .setDuration(Duration.millis(100))
@@ -48,6 +52,7 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
                         .setAnimateCondition(() -> !button.getIsAnimationDisabled())
                         .build())
                 .build());
+        // @formatter:on
         timer.setCacheNodes(stateBox);
         
         button.selectedProperty().addListener((ov, oldVal, newVal) ->
@@ -62,8 +67,6 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         {
             updateState();
         });
-        
-        updateChildren();
     }
     
     @Override

@@ -45,18 +45,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
 
         this.container.getChildren().addAll(radio, dot);
         this.container.getStyleClass().add("radio-container");
-
-        getSkinnable().selectedProperty().addListener(observable ->
-        {
-            if (!radioButton.getIsAnimationDisabled())
-            {
-                timer.reverseAndContinue();
-            }
-            else
-            {
-                timer.applyEndValues();
-            }
-        });
+        updateChildren();
 
         // @formatter:off
         timer = new RtAnimationTimer(
@@ -84,10 +73,19 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
-        timer.applyEndValues();
         // @formatter:on
-
-        updateChildren();
+        radioButton.selectedProperty().addListener(observable ->
+        {
+            if (!radioButton.getIsAnimationDisabled())
+            {
+                timer.reverseAndContinue();
+            }
+            else
+            {
+                timer.applyEndValues();
+            }
+        });
+        timer.applyEndValues();
 
         registerChangeListener(radioButton.selectedColorProperty(), radioButton.selectedColorProperty().getName());
         registerChangeListener(radioButton.unselectedColorProperty(), radioButton.unselectedColorProperty().getName());

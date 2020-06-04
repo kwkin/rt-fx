@@ -42,8 +42,12 @@ public class RtSliderSkin extends SliderSkin
         filledTrack.getStyleClass().add("colored-track");
         filledTrack.setMouseTransparent(true);
 
-
+        int insertIndex = getChildren().indexOf(thumb);
+        getChildren().add(insertIndex, filledTrack);
+        
         slider.setPickOnBounds(false);
+
+        // @formatter:off
         timer = new RtAnimationTimer(
             RtKeyFrame.builder()
                 .setDuration(Duration.millis(100))
@@ -61,9 +65,9 @@ public class RtSliderSkin extends SliderSkin
                         .setAnimateCondition(() -> !slider.getIsAnimationDisabled())
                         .build())
                 .build());
+        // @formatter:on
         timer.setCacheNodes(stateThumb);
 
-        
         thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
             updateState();
@@ -72,9 +76,6 @@ public class RtSliderSkin extends SliderSkin
         {
             updateState();
         });
-
-        int insertIndex = getChildren().indexOf(thumb);
-        getChildren().add(insertIndex, filledTrack);
     }
 
     @Override

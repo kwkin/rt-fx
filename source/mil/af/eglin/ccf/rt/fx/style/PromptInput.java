@@ -104,106 +104,8 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             createPromptNodeRunnable.run();
             this.control.requestLayout();
         });
-        
-        Supplier<WritableValue<Number>> promptTargetSupplier = () -> this.promptTextSupplier.get() == null ? null
-                : this.promptTextSupplier.get().translateYProperty();
 
-        // @formatter:off
-        this.focusTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(1))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(focusedLine.opacityProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.activeStateProperty.getValue())
-                        .build())
-                    .build(), 
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.focusedLineScale.xProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
-                        .build(),
-                        RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
-                            .setEndValueSupplier(() -> 0.5)
-                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder().setTarget(this.animatedPromptTextFill)
-                            .setEndValueSupplier(() -> this.control.getFocusColor())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.activeStateProperty.getValue() && this.control.isLabelFloat())
-                        .build(),
-                        RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
-                            .setEndValueSupplier(() -> -this.promptTranslateY)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder().setTarget(this.promptTextScale.xProperty()).setEndValue(0.85)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder().setTarget(this.promptTextScale.yProperty()).setEndValue(0.85)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                   .build());
-        this.unfocusLabelTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTargetSupplier(promptTargetSupplier)
-                            .setEndValue(0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.promptTextScale.xProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                        RtKeyValue.builder()
-                            .setTarget(promptTextScale.yProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                    .build());
-        this.normalTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.overlayContainer.opacityProperty())
-                            .setEndValueSupplier(() -> 0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                    .build());
-        this.hoverTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.overlayContainer.opacityProperty())
-                            .setEndValueSupplier(() -> 0.2)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build());
-        // @formatter:on
-        
-        this.focusTimer.setOnFinished(() ->  animating = false);
-        this.unfocusLabelTimer.setOnFinished(() -> animating = false);
-        this.normalTimer.setOnFinished(() -> animating = false);
-        this.hoverTimer.setOnFinished(() -> animating = false);
-        
-        this.focusTimer.setCacheNodes(cachedNodes);
-        this.unfocusLabelTimer.setCacheNodes(cachedNodes);
-        this.normalTimer.setCacheNodes(cachedNodes);
-        this.normalTimer.setCacheNodes(cachedNodes);
+        createAnimators(cachedNodes);
         
         this.activeStateProperty.addListener((ov, oldVal, newVal) ->
         {
@@ -341,8 +243,6 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
 
     public void layoutComponents(double x, double y, double width, double height, double translateY)
     {
-//        resizeRelocate(x, y, width, height);
-        
         this.promptTranslateY = translateY;
     
         double unfocusedLineHeight = unfocusedLine.getPrefHeight();
@@ -459,5 +359,108 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         boolean isLabelFloat = this.control.isLabelFloat();
         return isLabelFloat || (promptText != null && (text == null || text.toString().isEmpty()) && !promptText.isEmpty()
                 && !this.promptTextFill.get().equals(Color.TRANSPARENT));
+    }
+    
+    private void createAnimators(Node...cachedNodes)
+    {
+        Supplier<WritableValue<Number>> promptTargetSupplier = () -> this.promptTextSupplier.get() == null ? null
+                : this.promptTextSupplier.get().translateYProperty();
+        
+        // @formatter:off
+        this.focusTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(1))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(focusedLine.opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .setAnimateCondition(() -> this.activeStateProperty.getValue())
+                        .build())
+                    .build(), 
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.focusedLineScale.xProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
+                            .setEndValueSupplier(() -> 0.5)
+                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.animatedPromptTextFill)
+                            .setEndValueSupplier(() -> this.control.getFocusColor())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .setAnimateCondition(() -> this.activeStateProperty.getValue() && this.control.isLabelFloat())
+                        .build(),
+                        RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
+                            .setEndValueSupplier(() -> -this.promptTranslateY)
+                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.promptTextScale.xProperty()).setEndValue(0.85)
+                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder().setTarget(this.promptTextScale.yProperty()).setEndValue(0.85)
+                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                   .build());
+        this.unfocusLabelTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTargetSupplier(promptTargetSupplier)
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.promptTextScale.xProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                        RtKeyValue.builder()
+                            .setTarget(promptTextScale.yProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                    .build());
+        this.normalTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.overlayContainer.opacityProperty())
+                            .setEndValueSupplier(() -> 0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                    .build());
+        this.hoverTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.overlayContainer.opacityProperty())
+                            .setEndValueSupplier(() -> 0.2)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        // @formatter:on
+        
+        this.focusTimer.setOnFinished(() ->  animating = false);
+        this.unfocusLabelTimer.setOnFinished(() -> animating = false);
+        this.normalTimer.setOnFinished(() -> animating = false);
+        this.hoverTimer.setOnFinished(() -> animating = false);
+        
+        this.focusTimer.setCacheNodes(cachedNodes);
+        this.unfocusLabelTimer.setCacheNodes(cachedNodes);
+        this.normalTimer.setCacheNodes(cachedNodes);
+        this.normalTimer.setCacheNodes(cachedNodes);
     }
 }

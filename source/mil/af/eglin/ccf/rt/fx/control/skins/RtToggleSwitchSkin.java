@@ -46,24 +46,11 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         this.circle.setSmooth(true);
 
         this.circlePane.getChildren().add(circle);
-
-        updateSizes();
-        this.main.getChildren().setAll(line, circlePane);
-
-        getSkinnable().selectedProperty().addListener(observable -> 
-        {
-            if (!toggleSwitch.getIsAnimationDisabled())
-            {
-                timer.reverseAndContinue();
-            }
-            else
-            {
-                updateSelectionState();
-            }
-        });
-
-        getSkinnable().setGraphic(main);
+        toggleSwitch.setGraphic(main);
         
+        updateChildren();
+        updateSizes();
+
         // @formatter:off
         timer = new RtAnimationTimer(
             RtKeyFrame.builder()
@@ -90,13 +77,34 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
                 .build());
         timer.setCacheNodes(circle, line);
         // @formatter:on
-        
-        updateSelectionState();
+        timer.applyEndValues();
 
+        getSkinnable().selectedProperty().addListener(observable -> 
+        {
+            if (!toggleSwitch.getIsAnimationDisabled())
+            {
+                timer.reverseAndContinue();
+            }
+            else
+            {
+                updateSelectionState();
+            }
+        });
+        
         registerChangeListener(toggleSwitch.selectedColorProperty(), toggleSwitch.selectedColorProperty().getName());
         registerChangeListener(toggleSwitch.unselectedColorProperty(), toggleSwitch.unselectedColorProperty().getName());
         registerChangeListener(toggleSwitch.selectedLineColorProperty(), toggleSwitch.selectedLineColorProperty().getName());
         registerChangeListener(toggleSwitch.unselectedLineColorProperty(), toggleSwitch.unselectedLineColorProperty().getName());
+    }
+
+    @Override
+    protected void updateChildren()
+    {
+        super.updateChildren(); 
+        if (main != null && line != null && circlePane != null)
+        {
+            this.main.getChildren().setAll(line, circlePane);
+        }
     }
     
     @Override

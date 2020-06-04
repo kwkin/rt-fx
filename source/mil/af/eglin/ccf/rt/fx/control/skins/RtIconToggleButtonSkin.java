@@ -68,7 +68,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
     {
         if (!button.getIsAnimationDisabled())
         {
-            timer.start();
+            timer.skipAndContinue();
         }
         else
         {
