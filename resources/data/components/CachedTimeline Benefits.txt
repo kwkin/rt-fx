@@ -1,0 +1,16 @@
+CachedTimeline Benefits
+- Delegates most of the implementation to JavaFX
+- Enables rate changes, cue points
+
+CachedTimeline Concerns
+- Builder classes cannot be named to match key frame and value
+- Requires the animation class to be constructed every time property used by the timeline is changed
+- Unable to be extended
+
+RtAnimation Benefits
+- Less memory consumption (currently)
+- Can calculate end values dynamically
+- Can reduce the number of animator classes due to ability to compute end values dynamically
+
+RtAnimation Concerns
+- Lack of features, such as play rate, cue points, and number of interpolated frames (though probably implementable)

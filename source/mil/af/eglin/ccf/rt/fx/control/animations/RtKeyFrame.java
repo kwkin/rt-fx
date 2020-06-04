@@ -98,11 +98,11 @@ public class RtKeyFrame
 
         public RtKeyFrame build()
         {
-            RtKeyFrame jFXKeyFrame = new RtKeyFrame();
-            jFXKeyFrame.duration = this.duration;
-            jFXKeyFrame.keyValues = this.keyValues;
-            jFXKeyFrame.animateCondition = this.animateCondition;
-            return jFXKeyFrame;
+            RtKeyFrame keyFrame = new RtKeyFrame();
+            keyFrame.duration = this.duration;
+            keyFrame.keyValues = this.keyValues;
+            keyFrame.animateCondition = this.animateCondition;
+            return keyFrame;
         }
     }
 }

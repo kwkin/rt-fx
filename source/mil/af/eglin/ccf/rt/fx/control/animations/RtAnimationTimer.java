@@ -107,6 +107,9 @@ public class RtAnimationTimer extends AnimationTimer
         this.animationHandlers.clear();
     }
 
+    /**
+     * Plays the next animation from the current state.
+     */
     public void reverseAndContinue()
     {
         if (isRunning())
@@ -118,7 +121,29 @@ public class RtAnimationTimer extends AnimationTimer
             }
             this.startTime = -1;
             super.start();
-        } else
+        } 
+        else
+        {
+            start();
+        }
+    }
+    
+    /**
+     * Skips to the end of the currently played animation, and begins the next animation.
+     */
+    public void skipAndContinue()
+    {
+        if (isRunning())
+        {
+            super.stop();
+            for (AnimationHandler handler : this.animationHandlers)
+            {
+                handler.applyCurrentEndValues();
+            }
+            this.startTime = -1;
+            super.start();
+        }
+        else
         {
             start();
         }
@@ -291,6 +316,26 @@ public class RtAnimationTimer extends AnimationTimer
                     if (target != null)
                     {
                         final Object endValue = keyValue.getEndValue();
+                        if (endValue != null && !target.getValue().equals(endValue))
+                        {
+                            target.setValue(endValue);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void applyCurrentEndValues()
+        {
+            for (RtKeyValue<? extends Object> keyValue : this.keyValues)
+            {
+                if (keyValue.isValid())
+                {
+                    @SuppressWarnings("unchecked")
+                    WritableValue<Object> target = ((WritableValue<Object>) keyValue.getTarget());
+                    if (target != null)
+                    {
+                        final Object endValue = keyValue.getCurrentEndValue();
                         if (endValue != null && !target.getValue().equals(endValue))
                         {
                             target.setValue(endValue);

@@ -38,9 +38,15 @@ public class RtKeyValue<T>
         return new Builder();
     }
 
+    public WritableValue<T> getCurrentTarget()
+    {
+        return target;
+    }
+    
     public WritableValue<T> getTarget()
     {
-        return target == null ? targetSupplier.get() : target;
+        target = targetSupplier != null ? targetSupplier.get() : target;
+        return target;
     }
 
     public Supplier<WritableValue<T>> getTargetSupplier()
@@ -48,9 +54,15 @@ public class RtKeyValue<T>
         return this.targetSupplier;
     }
 
+    public T getCurrentEndValue()
+    {
+        return endValue;
+    }
+
     public T getEndValue()
     {
-        return endValue == null ? endValueSupplier.get() : endValue;
+        endValue = endValueSupplier != null ? endValueSupplier.get() : endValue;
+        return endValue;
     }
 
     public Supplier<T> getEndValueSupplier()

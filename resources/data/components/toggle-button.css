@@ -119,7 +119,7 @@ TODO
 
 .rt-icon-toggle-button.glowing .state-box
 {
-    -fx-background-color: -var-overlay-color;
+    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;

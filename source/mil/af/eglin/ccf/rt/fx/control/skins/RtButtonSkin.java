@@ -3,9 +3,6 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
@@ -14,19 +11,20 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Button;
-import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
+import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
 public class RtButtonSkin extends ButtonSkin
 {
-    private final static Duration ANIMATION_DURATION = Duration.millis(200);
+    private final static Duration ANIMATION_DURATION = Duration.millis(100);
 
     private final Button button;
     private final StackPane stateBox = new StackPane();
 
-    private CachedTransition normalTransition;
-    private CachedTransition armedTransition;
-    private CachedTransition hoverTransition;
+    private RtAnimationTimer timer;
 
     public RtButtonSkin(final Button button)
     {
@@ -93,48 +91,14 @@ public class RtButtonSkin extends ButtonSkin
     {
         if (!button.getIsAnimationDisabled())
         {
-            if (button.isArmed())
-            {
-                hoverTransition.stop();
-                normalTransition.stop();
-                armedTransition.play();
-            }
-            else if (button.isHover())
-            {
-                armedTransition.stop();
-                normalTransition.stop();
-                hoverTransition.play();
-            }
-            else
-            {
-                armedTransition.stop();
-                hoverTransition.stop();
-                normalTransition.play();
-            }
+            timer.skipAndContinue();
         }
         else
         {
-            if (button.isArmed())
-            {
-                hoverTransition.stop();
-                normalTransition.stop();
-                armedTransition.playFrom(ANIMATION_DURATION);
-            }
-            else if (button.isHover())
-            {
-                armedTransition.stop();
-                normalTransition.stop();
-                hoverTransition.playFrom(ANIMATION_DURATION);
-            }
-            else
-            {
-                armedTransition.stop();
-                hoverTransition.stop();
-                normalTransition.playFrom(ANIMATION_DURATION);
-            }
+            timer.applyEndValues();
         }
     }
-
+    
     private void createAnimation()
     {
         switch (button.getButtonStyle())
@@ -143,35 +107,71 @@ public class RtButtonSkin extends ButtonSkin
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
                 // @formatter:off
-                normalTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION,  
-                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(2), Interpolator.EASE_OUT), 
-                        new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT))));
-                armedTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION,  
-                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(5), Interpolator.EASE_OUT), 
-                        new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
-                hoverTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION,  
-                        new KeyValue(button.effectProperty(), DepthManager.getInstance().getShadowAt(3), Interpolator.EASE_OUT), 
-                        new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
+                timer = new RtAnimationTimer(
+                    RtKeyFrame.builder()
+                        .setDuration(ANIMATION_DURATION)
+                        .setKeyValues(
+                            RtKeyValue.builder()
+                                .setTarget(this.button.effectProperty())
+                                .setEndValueSupplier(() -> determineButtonShadow())
+                                .setInterpolator(Interpolator.EASE_OUT)
+                                .build(),
+                            RtKeyValue.builder()
+                                .setTarget(this.stateBox.opacityProperty())
+                                .setEndValueSupplier(() -> determineStateBoxOpacity())
+                                .setInterpolator(Interpolator.EASE_OUT)
+                                .build())
+                        .build());
                 // @formatter:on
                 break;
             default:
                 button.setPickOnBounds(true);
                 // @formatter:off
-                normalTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0, Interpolator.EASE_OUT))));
-                armedTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 1, Interpolator.EASE_OUT))));
-                hoverTransition = new CachedTransition(null, new Timeline(
-                    new KeyFrame(ANIMATION_DURATION, new KeyValue(this.stateBox.opacityProperty(), 0.4, Interpolator.EASE_OUT))));
+                timer = new RtAnimationTimer(
+                    RtKeyFrame.builder()
+                        .setDuration(ANIMATION_DURATION)
+                        .setKeyValues(
+                                RtKeyValue.builder()
+                                .setTarget(this.stateBox.opacityProperty())
+                                .setEndValue(0)
+                                .setInterpolator(Interpolator.EASE_OUT)
+                                .build())
+                        .build());
                 // @formatter:on
                 break;
         }
-        normalTransition.setCycle(ANIMATION_DURATION);
-        armedTransition.setCycle(ANIMATION_DURATION);
-        hoverTransition.setCycle(ANIMATION_DURATION);
+    }
+    
+    private double determineStateBoxOpacity()
+    {
+        double opacity = 0;
+        if (this.button.isArmed())
+        {
+            opacity = 1;
+        }
+        else if (this.button.isHover())
+        {
+            opacity = 0.4;
+        }
+        return opacity;
+    }
+    
+    private DepthShadow determineButtonShadow()
+    {
+        DepthShadow shadow;
+        if (this.button.isArmed())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(5);
+        }
+        else if (this.button.isHover())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(3);
+        }
+        else
+        {
+            shadow = DepthManager.getInstance().getShadowAt(2);
+        }
+        return shadow;
     }
     
     private void updateStateBoxColor()
