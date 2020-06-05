@@ -41,71 +41,76 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<T>
+public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
+        implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<T>
 {
+    protected Accent accent = Accent.PRIMARY_MID;
+
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
-    
-    protected Accent accent = Accent.PRIMARY_MID;
-    
+
     private static final String USER_AGENT_STYLESHEET = "combo-box.css";
     private static final String CSS_CLASS = "rt-combo-box";
 
     private ValidableHandler<T> validationHandler = new ValidableHandler<>(this);
-    
+
     private BooleanProperty isValid = new SimpleBooleanProperty(true);
     private BooleanProperty isShowHelperText = new SimpleBooleanProperty()
     {
-        @Override 
-        protected void invalidated() 
+        @Override
+        protected void invalidated()
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
         }
     };
     private StringProperty helperText = new SimpleStringProperty();
-    private StringProperty errorText = new SimpleStringProperty();    
-    private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, this, "labelFloat", false)
+    private StringProperty errorText = new SimpleStringProperty();
+    private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(StyleableProperties.LABEL_FLOAT,
+            this, "labelFloat", false)
     {
-        @Override 
-        protected void invalidated() 
+        @Override
+        protected void invalidated()
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
         }
     };
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, ComboBox.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNFOCUS_COLOR, ComboBox.this, "unfocusColor",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, ComboBox.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.FOCUS_COLOR, ComboBox.this, "focusColor",
+            DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, ComboBox.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.OVERLAY_COLOR, ComboBox.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
             StyleableProperties.HELPER_TEXT_HEIGHT, ComboBox.this, "helperTextHeight", 16.0);
     private StyleableObjectProperty<Paint> promptTextFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.PROMPT_TEXT_FILL, ComboBox.this, "prompteTxtFill", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.PROMPT_TEXT_FILL, ComboBox.this, "prompteTxtFill",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, ComboBox.this, "disableAnimation", false);
-    
+
     public ComboBox()
     {
         super();
         initialize();
     }
-    
-    public ComboBox(Accent accent) 
+
+    public ComboBox(Accent accent)
     {
         super();
         this.accent = accent;
         initialize();
     }
-    
-    public ComboBox(ObservableList<T> items) 
+
+    public ComboBox(ObservableList<T> items)
     {
         super(items);
         initialize();
     }
-    
-    public ComboBox(ObservableList<T> items, Accent accent) 
+
+    public ComboBox(ObservableList<T> items, Accent accent)
     {
         super(items);
         this.accent = accent;
@@ -143,7 +148,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
@@ -301,7 +306,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     {
         this.helperTextHeight.set(helperTextHeight);
     }
-    
+
     public boolean isHelperTextVisible()
     {
         return isShowHelperText.get() || getValidators().size() > 0;
@@ -311,7 +316,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     {
         return this.validationHandler.getValidators();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -435,7 +440,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     {
         this.validationHandler.getValidateCondition();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -450,7 +455,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
     {
         this.isValid.set(isValid);
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -458,11 +463,11 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
 
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
         pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get() || getValidators().size() > 0);
-        this.labelFloating.addListener((ov, oldVal, newVal) -> 
+        this.labelFloating.addListener((ov, oldVal, newVal) ->
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
         });
-        this.isShowHelperText.addListener((ov, oldVal, newVal) -> 
+        this.isShowHelperText.addListener((ov, oldVal, newVal) ->
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
         });
@@ -475,7 +480,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
             }
         });
     }
-    
+
     private static class StyleableProperties
     {
         private static final CssMetaData<ComboBox<?>, Paint> OVERLAY_COLOR = new CssMetaData<ComboBox<?>, Paint>(
@@ -493,7 +498,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
                 return control.overlayColor;
             }
         };
-        
+
         private static final CssMetaData<ComboBox<?>, Boolean> LABEL_FLOAT = new CssMetaData<ComboBox<?>, Boolean>(
                 "-rt-label-float", BooleanConverter.getInstance(), false)
         {
@@ -605,17 +610,25 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T> implements RtC
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return getClassCssMetaData();
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

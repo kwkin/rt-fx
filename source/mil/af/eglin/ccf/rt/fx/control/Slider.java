@@ -254,12 +254,20 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return getClassCssMetaData();
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;

@@ -663,6 +663,11 @@ public class TextField extends javafx.scene.control.TextField implements RtCompo
         }
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;

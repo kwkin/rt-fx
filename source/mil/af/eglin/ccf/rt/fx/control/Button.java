@@ -53,7 +53,8 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private static final String CSS_CLASS = "rt-button";
 
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, Button.this, "disableAnimation", false);
 
@@ -203,6 +204,9 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         return this.accent.getCssName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
@@ -254,7 +258,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
                 return control.overlayColor;
             }
         };
-        
+
         private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = new CssMetaData<Button, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -283,11 +287,16 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         }
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

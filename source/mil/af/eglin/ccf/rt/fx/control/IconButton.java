@@ -34,21 +34,22 @@ public class IconButton extends Button implements RtGlyph
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE;
     protected SvgGlyph icon;
-    
+
     private static final String USER_AGENT_STYLESHEET = "button.css";
-    
+
     private StyleableObjectProperty<Paint> selectedGlyphFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill",
+            DefaultPalette.getInstance().getAccentColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
-    
+
     public IconButton(SvgGlyph icon)
     {
         super(ButtonStyle.ICON);
         this.icon = icon;
         initialize();
     }
-    
+
     public IconButton(SvgGlyph icon, String text)
     {
         super(text, ButtonStyle.ICON);
@@ -63,7 +64,7 @@ public class IconButton extends Button implements RtGlyph
         setContentDisplay(display);
         initialize();
     }
-    
+
     public IconButton(SvgGlyph icon, String text, ContentDisplay display)
     {
         super(text, ButtonStyle.ICON);
@@ -71,7 +72,7 @@ public class IconButton extends Button implements RtGlyph
         setContentDisplay(display);
         initialize();
     }
-    
+
     public SvgGlyph getIcon()
     {
         return this.icon;
@@ -151,7 +152,7 @@ public class IconButton extends Button implements RtGlyph
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
@@ -160,11 +161,11 @@ public class IconButton extends Button implements RtGlyph
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin() 
+    protected Skin<?> createDefaultSkin()
     {
         return new RtButtonSkin(this);
     }
-    
+
     private void initialize()
     {
         this.iconPane.getChildren().addAll(this.icon);
@@ -172,17 +173,17 @@ public class IconButton extends Button implements RtGlyph
         double height = this.icon.getGlyphSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
-        
+
         getStyleClass().add(this.accent.getCssName());
     }
-    
+
     private void setIconPaneSize(double width, double height)
-    {   
+    {
         this.iconPane.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
         this.iconPane.setPrefSize(width, height);
         this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
-    
+
     private static class StyleableProperties
     {
         private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = new CssMetaData<IconButton, Paint>(
@@ -200,7 +201,7 @@ public class IconButton extends Button implements RtGlyph
                 return control.selectedGlyphFill;
             }
         };
-        
+
         private static final CssMetaData<IconButton, Boolean> DISABLE_ANIMATION = new CssMetaData<IconButton, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -221,19 +222,23 @@ public class IconButton extends Button implements RtGlyph
 
         static
         {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    Button.getClassCssMetaData());
+            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(Button.getClassCssMetaData());
             styleables.add(SELECTED_ICON_COLOR);
             styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
