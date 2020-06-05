@@ -101,12 +101,12 @@ public class RtButtonSkin extends ButtonSkin
     
     private void createAnimation()
     {
+        // @formatter:off
         switch (button.getButtonStyle())
         {
             case RAISED:
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
-                // @formatter:off
                 timer = new RtAnimationTimer(
                     RtKeyFrame.builder()
                         .setDuration(ANIMATION_DURATION)
@@ -122,24 +122,22 @@ public class RtButtonSkin extends ButtonSkin
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
                         .build());
-                // @formatter:on
                 break;
             default:
                 button.setPickOnBounds(true);
-                // @formatter:off
                 timer = new RtAnimationTimer(
                     RtKeyFrame.builder()
                         .setDuration(ANIMATION_DURATION)
                         .setKeyValues(
                                 RtKeyValue.builder()
                                 .setTarget(this.stateBox.opacityProperty())
-                                .setEndValue(0)
+                                .setEndValueSupplier(() -> determineStateBoxOpacity())
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
                         .build());
-                // @formatter:on
                 break;
         }
+        // @formatter:on
     }
     
     private double determineStateBoxOpacity()

@@ -13,7 +13,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
-//TODO change select animation to slide from left to right
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
     private final CheckBox checkBox;
@@ -63,113 +62,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.boxAndMarks.getChildren().addAll(this.box, coloredBox);
 
         updateChildren();
+        createAnimation();
         
-        // @formatter:off 
-        unselectedTimer = new RtAnimationTimer( 
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.selectedMark.opacityProperty())
-                            .setEndValue(0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.indeterminateMark.opacityProperty())
-                            .setEndValue(0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build(),
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.coloredBox.opacityProperty())
-                            .setEndValue(0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build());
-        selectedTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.ZERO)
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.slideTransition.translateXProperty())
-                            .setEndValue(0)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build(),
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.coloredBox.opacityProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.slideTransition.opacityProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTargetSupplier(() -> computeMark().opacityProperty())
-                            .setEndValue(1)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build(),
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.slideTransition.translateXProperty())
-                            .setEndValue(18)
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build());
-        indeterminateToSelectedTimer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.ZERO)
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.slideTransition.translateXProperty())
-                        .setEndValue(-18)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build(),
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.slideTransition.translateXProperty())
-                        .setEndValue(0)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build(),
-            RtKeyFrame.builder()
-                .setDuration(Duration.ZERO)
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.indeterminateMark.opacityProperty())
-                        .setEndValue(0)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.selectedMark.opacityProperty())
-                        .setEndValue(1)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build(),
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.slideTransition.translateXProperty())
-                        .setEndValue(18)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build());
-        // @formatter:on
         if (this.checkBox.isIndeterminate() || this.checkBox.isSelected())
         {
             selectedTimer.applyEndValues();
@@ -330,5 +224,115 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             mark = this.selectedMark;
         }
         return mark;
+    }
+    
+    private void createAnimation()
+    {
+        // @formatter:off 
+        unselectedTimer = new RtAnimationTimer( 
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.selectedMark.opacityProperty())
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.indeterminateMark.opacityProperty())
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        selectedTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.ZERO)
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.translateXProperty())
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTargetSupplier(() -> computeMark().opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.translateXProperty())
+                            .setEndValue(18)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        indeterminateToSelectedTimer = new RtAnimationTimer(
+            RtKeyFrame.builder()
+                .setDuration(Duration.ZERO)
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(-18)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.ZERO)
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.indeterminateMark.opacityProperty())
+                        .setEndValue(0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.selectedMark.opacityProperty())
+                        .setEndValue(1)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(18)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        // @formatter:on
     }
 }
