@@ -4,7 +4,9 @@ import com.sun.javafx.scene.control.behavior.ButtonBehavior;
 import com.sun.javafx.scene.control.skin.LabeledSkinBase;
 
 import javafx.animation.Interpolator;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
@@ -21,11 +23,12 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
 
-//    private final StackPane slideTransition = new StackPane();
-    
-    private RtAnimationTimer selectedTimer;
-    private RtAnimationTimer indeterminateTimer;
+    private final StackPane slideTransition = new StackPane();
 
+    private RtAnimationTimer unselectedTimer;
+    private RtAnimationTimer selectedTimer;
+    private RtAnimationTimer indeterminateToSelectedTimer;
+    
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
         super(checkBox, new ButtonBehavior<>(checkBox));
@@ -33,75 +36,144 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
         this.selectedMark.getStyleClass().setAll("mark");
         this.selectedMark.setOpacity(0);
-        this.selectedMark.setScaleX(0);
-        this.selectedMark.setScaleY(0);
 
         this.indeterminateMark.getStyleClass().setAll("indeterminate-mark");
         this.indeterminateMark.setOpacity(0);
-        this.indeterminateMark.setScaleX(0);
-        this.indeterminateMark.setScaleY(0);
 
         this.box.getStyleClass().setAll("box");
+        
         this.coloredBox.getStyleClass().setAll("colored-box");
         this.coloredBox.setOpacity(0);
-        this.coloredBox.getChildren().addAll(indeterminateMark, selectedMark);
+        this.coloredBox.getChildren().addAll(indeterminateMark, selectedMark, this.slideTransition);
+
+        Rectangle slideClip = new Rectangle();
+        slideClip.widthProperty().bind(this.coloredBox.widthProperty());
+        slideClip.heightProperty().bind(this.coloredBox.heightProperty());
+        this.coloredBox.backgroundProperty().addListener((ov, oldVal, newVal) -> 
+        {
+            this.slideTransition.backgroundProperty().bind(this.coloredBox.backgroundProperty());
+            CornerRadii radii = newVal.getFills().get(0) != null ? newVal.getFills().get(0).getRadii() : CornerRadii.EMPTY;
+            slideClip.setArcWidth(radii.getBottomLeftHorizontalRadius() * 2);
+            slideClip.setArcHeight(radii.getTopLeftVerticalRadius() * 2);
+        });
+        this.slideTransition.setOpacity(0);
+        this.coloredBox.setClip(slideClip);
+        
         this.boxAndMarks.getStyleClass().setAll("box-marks");
         this.boxAndMarks.getChildren().addAll(this.box, coloredBox);
 
         updateChildren();
-
-        // @formatter:off
-        selectedTimer = new RtAnimationTimer(
+        
+        // @formatter:off 
+        unselectedTimer = new RtAnimationTimer( 
                 RtKeyFrame.builder()
-                    .setDuration(Duration.millis(150))
+                    .setDuration(Duration.millis(100))
                     .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.coloredBox.opacityProperty())
-                            .setEndValueSupplier(() -> computeBoxOpacity())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
                         RtKeyValue.builder()
                             .setTarget(this.selectedMark.opacityProperty())
-                            .setEndValueSupplier(() -> computeSelectedOpacity())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.selectedMark.scaleXProperty())
-                            .setEndValueSupplier(() -> computeSelectedScale())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.selectedMark.scaleYProperty())
-                            .setEndValueSupplier(() -> computeSelectedScale())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build())
-                    .build());
-        indeterminateTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(150))
-                    .setKeyValues(
-                        RtKeyValue.builder()
-                            .setTarget(this.coloredBox.opacityProperty())
-                            .setEndValueSupplier(() -> computeBoxOpacity())
+                            .setEndValue(0)
                             .setInterpolator(Interpolator.EASE_BOTH)
                             .build(),
                         RtKeyValue.builder()
                             .setTarget(this.indeterminateMark.opacityProperty())
-                            .setEndValueSupplier(() -> computeIndeterminateOpacity())
+                            .setEndValue(0)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
                         RtKeyValue.builder()
-                            .setTarget(this.indeterminateMark.scaleXProperty())
-                            .setEndValueSupplier(() -> computeIndeterminateScale())
-                            .setInterpolator(Interpolator.EASE_BOTH)
-                            .build(),
-                        RtKeyValue.builder()
-                            .setTarget(this.indeterminateMark.scaleYProperty())
-                            .setEndValueSupplier(() -> computeIndeterminateScale())
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValue(0)
                             .setInterpolator(Interpolator.EASE_BOTH)
                             .build())
                     .build());
+        selectedTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.ZERO)
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.translateXProperty())
+                            .setEndValue(0)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTargetSupplier(() -> computeMark().opacityProperty())
+                            .setEndValue(1)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build(),
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.slideTransition.translateXProperty())
+                            .setEndValue(18)
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        indeterminateToSelectedTimer = new RtAnimationTimer(
+            RtKeyFrame.builder()
+                .setDuration(Duration.ZERO)
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(-18)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.ZERO)
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.indeterminateMark.opacityProperty())
+                        .setEndValue(0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.selectedMark.opacityProperty())
+                        .setEndValue(1)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build(),
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.slideTransition.translateXProperty())
+                        .setEndValue(18)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
         // @formatter:on
+        if (this.checkBox.isIndeterminate() || this.checkBox.isSelected())
+        {
+            selectedTimer.applyEndValues();
+        }
 
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
@@ -111,14 +183,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             playIndeterminateAnimation();
         });
-        if (checkBox.isIndeterminate())
-        {
-            indeterminateTimer.applyEndValues();
-        }
-        else
-        {
-            selectedTimer.applyEndValues();
-        }
 
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
@@ -183,20 +247,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-//        final double boxWidth = snapSize(box.prefWidth(-1));
-//        final double boxHeight = snapSize(box.prefHeight(-1));
-//        final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
-//        final double labelWidth = Math.min(computeWidth - boxWidth, w - snapSize(boxWidth));
-//        final double labelHeight = Math.min(checkBox.prefHeight(labelWidth), h);
-//        final double maxHeight = Math.max(boxHeight, labelHeight);
-//        final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
-//        final double yOffset = Utils.computeYOffset(h, maxHeight, checkBox.getAlignment().getVpos()) + x;
-//
-//        layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
-//        boxAndMarks.resize(boxWidth, boxHeight);
-//        positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, maxHeight, 0, checkBox.getAlignment().getHpos(),
-//                checkBox.getAlignment().getVpos());
-        
         final double boxWidth = snapSize(box.prefWidth(-1));
         final double boxHeight = snapSize(box.prefHeight(-1));
         final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
@@ -215,96 +265,70 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     private void playSelectAnimation()
     {
-        if (!this.checkBox.getIsAnimationDisabled())
+        if (!this.checkBox.isIndeterminate())
         {
-            selectedTimer.start();
+            if (!this.checkBox.getIsAnimationDisabled())
+            {
+                if (this.checkBox.isSelected())
+                {
+                    this.selectedTimer.start();
+                }
+                else
+                {
+                    this.unselectedTimer.start();
+                }
+            }
+            else
+            {
+                if (this.checkBox.isSelected())
+                {
+                    this.selectedTimer.applyEndValues();
+                }
+                else
+                {
+                    this.unselectedTimer.applyEndValues();
+                }
+            }
         }
-        else
-        {
-            selectedTimer.applyEndValues();
-        }
-
     }
 
     private void playIndeterminateAnimation()
     {
         if (!this.checkBox.getIsAnimationDisabled())
         {
-            indeterminateTimer.start();
+            if (this.checkBox.isIndeterminate())
+            {
+                this.selectedTimer.start();
+            }
+            else
+            {
+                this.indeterminateToSelectedTimer.start();
+            }
         }
         else
         {
-            indeterminateTimer.applyEndValues();
+            if (this.checkBox.isIndeterminate())
+            {
+                this.selectedTimer.applyEndValues();
+            }
+            else
+            {
+                this.indeterminateToSelectedTimer.applyEndValues();
+            }
         }
     }
 
-    private double computeBoxOpacity()
+    private StackPane computeMark()
     {
-        double opacity = 0;
-        if (this.checkBox.isSelected() || this.checkBox.isIndeterminate())
-        {
-            opacity = 1;
-        }
-        else
-        {
-            opacity = 0;
-        }
-        return opacity;
-    }
-
-    private double computeSelectedOpacity()
-    {
-        double opacity = 0;
-        if (this.checkBox.isSelected() && !this.checkBox.isIndeterminate())
-        {
-            opacity = 1;
-        }
-        else
-        {
-            opacity = 0;
-        }
-        return opacity;
-    }
-
-    private double computeSelectedScale()
-    {
-        double scale = 0;
-        if (this.checkBox.isSelected() && !this.checkBox.isIndeterminate())
-        {
-            scale = 1;
-        }
-        else
-        {
-            scale = 0;
-        }
-        return scale;
-    }
-
-    private double computeIndeterminateOpacity()
-    {
-        double opacity = 0;
+        StackPane mark = null;
         if (this.checkBox.isIndeterminate())
         {
-            opacity = 1;
+            mark = this.indeterminateMark;
         }
-        else
+        else if (this.checkBox.isSelected())
         {
-            opacity = 0;
+            mark = this.selectedMark;
         }
-        return opacity;
-    }
-
-    private double computeIndeterminateScale()
-    {
-        double scale = 0;
-        if (this.checkBox.isIndeterminate())
-        {
-            scale = 1;
-        }
-        else
-        {
-            scale = 0;
-        }
-        return scale;
+        return mark;
     }
 }

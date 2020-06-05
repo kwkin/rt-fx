@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
+// TODO fix issue with a single property across multiple subsequent frames not playing correctly
 public class RtAnimationTimer extends AnimationTimer
 {
     private Runnable onFinished = null;
-    private Set<AnimationHandler> animationHandlers = new HashSet<>();
+    private List<AnimationHandler> animationHandlers = new ArrayList<>();
     private long startTime = -1;
     private boolean running = false;
     private List<CachedFrame> caches = new ArrayList<>();
@@ -149,24 +150,37 @@ public class RtAnimationTimer extends AnimationTimer
         }
     }
 
+    private int currentHandlerIndex = 0;
+    private double lastFrameTime = 0;
+    
     @Override
     public void handle(long now)
     {
         this.startTime = this.startTime == -1 ? now : this.startTime;
         this.totalElapsedMilliseconds = (now - this.startTime) / 1000000.0;
-        boolean stop = true;
-        for (AnimationHandler handler : this.animationHandlers)
+        
+        AnimationHandler currentHandler = this.animationHandlers.get(currentHandlerIndex);
+//        System.out.println("totalElapsedMilliseconds: " + totalElapsedMilliseconds);
+//        System.out.println("currentHandlerIndex: " + currentHandlerIndex);
+//        System.out.println("lastKeyFrame: " + (this.totalElapsedMilliseconds - lastFrameTime));
+        currentHandler.animate(this.totalElapsedMilliseconds - lastFrameTime);
+
+        
+        if (totalElapsedMilliseconds - lastFrameTime > currentHandler.duration)
         {
-            handler.animate(this.totalElapsedMilliseconds);
-            if (!handler.finished)
+            lastFrameTime += currentHandler.duration;
+            currentHandlerIndex++;
+            if (currentHandlerIndex >= this.animationHandlers.size())
             {
-                stop = false;
+                lastFrameTime = 0;
+                stop();
+            }
+            else
+            {
+                this.animationHandlers.get(currentHandlerIndex).init();
             }
         }
-        if (stop)
-        {
-            this.stop();
-        }
+        
     }
 
     @Override
@@ -189,6 +203,7 @@ public class RtAnimationTimer extends AnimationTimer
     public void stop()
     {
         super.stop();
+        this.currentHandlerIndex = 0;
         this.running = false;
         for (AnimationHandler handler : this.animationHandlers)
         {
@@ -230,14 +245,8 @@ public class RtAnimationTimer extends AnimationTimer
             {
                 if (keyValue.getTarget() != null)
                 {
-                    if (!this.initialValuesMap.containsKey(keyValue.getTarget()))
-                    {
-                        this.initialValuesMap.put(keyValue.getTarget(), keyValue.getTarget().getValue());
-                    }
-                    if (!this.endValuesMap.containsKey(keyValue.getTarget()))
-                    {
-                        this.endValuesMap.put(keyValue.getTarget(), keyValue.getEndValue());
-                    }
+                    this.initialValuesMap.put(keyValue.getTarget(), keyValue.getTarget().getValue());
+                    this.endValuesMap.put(keyValue.getTarget(), keyValue.getEndValue());
                 }
             }
         }
@@ -274,12 +283,14 @@ public class RtAnimationTimer extends AnimationTimer
                         Object endValue = this.endValuesMap.get(target);
                         if (endValue != null && target != null && !target.getValue().equals(endValue))
                         {
+                            double time = this.currentDuration == 0 ? 0 : now / this.currentDuration;
                             target.setValue(keyValue.getInterpolator().interpolate(this.initialValuesMap.get(target),
-                                    endValue, now / this.currentDuration));
+                                    endValue, time));
                         }
                     }
                 }
-            } else
+            } 
+            else
             {
                 if (!this.finished)
                 {
