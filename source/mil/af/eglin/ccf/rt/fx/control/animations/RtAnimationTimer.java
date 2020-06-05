@@ -7,12 +7,10 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-// TODO fix issue with a single property across multiple subsequent frames not playing correctly
 public class RtAnimationTimer extends AnimationTimer
 {
     private Runnable onFinished = null;
