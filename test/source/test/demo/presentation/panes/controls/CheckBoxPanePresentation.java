@@ -1,5 +1,6 @@
 package test.demo.presentation.panes.controls;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -31,6 +32,7 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Check Boxes can have two or three states. By default, check boxes have two states, but the third state can be enabled by setting allowDeterminate to true:");
 
         GridPane iconButtonPane = new GridPane();
+        iconButtonPane.setPadding(new Insets(0));
         CheckBox primaryLightCheckBox = new CheckBox(Accent.PRIMARY_LIGHT);
         primaryLightCheckBox.setSelected(true);
         CheckBox primaryMidCheckBox = new CheckBox("Two State", Accent.PRIMARY_MID);

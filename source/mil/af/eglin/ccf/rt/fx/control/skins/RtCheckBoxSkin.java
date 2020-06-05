@@ -4,39 +4,27 @@ import com.sun.javafx.scene.control.behavior.ButtonBehavior;
 import com.sun.javafx.scene.control.skin.LabeledSkinBase;
 
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.animation.Transition;
-import javafx.scene.Node;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
-import mil.af.eglin.ccf.rt.fx.control.animations.CachedTransition;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtFillTransition;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 //TODO change select animation to slide from left to right
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
-    private final static Duration ANIMATION_DURATION = Duration.millis(120);
-    
     private final CheckBox checkBox;
     private final StackPane box = new StackPane();
+    private final StackPane coloredBox = new StackPane();
     private final StackPane selectedMark = new StackPane();
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
 
-    private Transition transition;
-    private Transition indeterminateTransition;
-    private RtFillTransition select;
-    private boolean wasIndeterminate;
+//    private final StackPane slideTransition = new StackPane();
+    
+    private RtAnimationTimer selectedTimer;
+    private RtAnimationTimer indeterminateTimer;
 
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
@@ -52,32 +40,90 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.indeterminateMark.setOpacity(0);
         this.indeterminateMark.setScaleX(0);
         this.indeterminateMark.setScaleY(0);
-        this.wasIndeterminate = false;
 
         this.box.getStyleClass().setAll("box");
-        this.box.getChildren().setAll(indeterminateMark, selectedMark);
-        this.boxAndMarks.getChildren().add(box);
+        this.coloredBox.getStyleClass().setAll("colored-box");
+        this.coloredBox.setOpacity(0);
+        this.coloredBox.getChildren().addAll(indeterminateMark, selectedMark);
+        this.boxAndMarks.getStyleClass().setAll("box-marks");
+        this.boxAndMarks.getChildren().addAll(this.box, coloredBox);
+
+        updateChildren();
+
+        // @formatter:off
+        selectedTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(150))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValueSupplier(() -> computeBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.selectedMark.opacityProperty())
+                            .setEndValueSupplier(() -> computeSelectedOpacity())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.selectedMark.scaleXProperty())
+                            .setEndValueSupplier(() -> computeSelectedScale())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.selectedMark.scaleYProperty())
+                            .setEndValueSupplier(() -> computeSelectedScale())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        indeterminateTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(150))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.coloredBox.opacityProperty())
+                            .setEndValueSupplier(() -> computeBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.indeterminateMark.opacityProperty())
+                            .setEndValueSupplier(() -> computeIndeterminateOpacity())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.indeterminateMark.scaleXProperty())
+                            .setEndValueSupplier(() -> computeIndeterminateScale())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.indeterminateMark.scaleYProperty())
+                            .setEndValueSupplier(() -> computeIndeterminateScale())
+                            .setInterpolator(Interpolator.EASE_BOTH)
+                            .build())
+                    .build());
+        // @formatter:on
 
         checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
         {
-            playSelectAnimation(checkBox.isSelected(), true);
+            playSelectAnimation();
         });
         checkBox.indeterminateProperty().addListener((ov, oldVal, newVal) ->
         {
-            playIndeterminateAnimation(checkBox.isIndeterminate(), true);
+            playIndeterminateAnimation();
         });
+        if (checkBox.isIndeterminate())
+        {
+            indeterminateTimer.applyEndValues();
+        }
+        else
+        {
+            selectedTimer.applyEndValues();
+        }
 
-        this.transition = new CheckBoxTransition(selectedMark, ANIMATION_DURATION);
-        this.indeterminateTransition = new CheckBoxTransition(indeterminateMark, ANIMATION_DURATION);
-        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
-                (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
-
-        updateChildren();
-        
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
     }
-    
+
     @Override
     protected void updateChildren()
     {
@@ -94,11 +140,11 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         super.handleControlPropertyChanged(property);
         if (checkBox.selectedColorProperty().getName().equals(property))
         {
-            updateColors();
+            // TODO implement
         }
         else if (checkBox.unselectedColorProperty().getName().equals(property))
         {
-            updateColors();
+            // TODO implement
         }
     }
 
@@ -129,14 +175,28 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        return Math.max(
-                super.computePrefHeight(width - box.prefWidth(-1), topInset, rightInset, bottomInset, leftInset),
-                topInset + box.prefHeight(-1) + bottomInset);
+        double labelHeight = super.computePrefHeight(width - box.prefWidth(-1), topInset, rightInset, bottomInset, leftInset);
+        double boxHeight = topInset + box.prefHeight(-1) + bottomInset;
+        return Math.max(labelHeight, boxHeight);
     }
 
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
+//        final double boxWidth = snapSize(box.prefWidth(-1));
+//        final double boxHeight = snapSize(box.prefHeight(-1));
+//        final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
+//        final double labelWidth = Math.min(computeWidth - boxWidth, w - snapSize(boxWidth));
+//        final double labelHeight = Math.min(checkBox.prefHeight(labelWidth), h);
+//        final double maxHeight = Math.max(boxHeight, labelHeight);
+//        final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
+//        final double yOffset = Utils.computeYOffset(h, maxHeight, checkBox.getAlignment().getVpos()) + x;
+//
+//        layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
+//        boxAndMarks.resize(boxWidth, boxHeight);
+//        positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, maxHeight, 0, checkBox.getAlignment().getHpos(),
+//                checkBox.getAlignment().getVpos());
+        
         final double boxWidth = snapSize(box.prefWidth(-1));
         final double boxHeight = snapSize(box.prefHeight(-1));
         final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
@@ -144,16 +204,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         final double labelHeight = Math.min(checkBox.prefHeight(labelWidth), h);
         final double maxHeight = Math.max(boxHeight, labelHeight);
         final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
-        final double yOffset = Utils.computeYOffset(h, maxHeight, checkBox.getAlignment().getVpos()) + x;
+        final double yOffset = Utils.computeYOffset(checkBox.getHeight(), maxHeight, checkBox.getAlignment().getVpos());
 
-        if (checkBox.isIndeterminate())
-        {
-            playIndeterminateAnimation(true, false);
-        }
-        else if (checkBox.isSelected())
-        {
-            playSelectAnimation(true, false);
-        }
         layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
         boxAndMarks.resize(boxWidth, boxHeight);
         positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, maxHeight, 0, checkBox.getAlignment().getHpos(),
@@ -161,95 +213,98 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     }
 
-    private void updateColors()
+    private void playSelectAnimation()
     {
-        // TODO null checks
-        boolean isSelected = this.checkBox.isSelected();
-        BorderWidths borderWidths = box.getBorder().getStrokes().get(0).getWidths();
-        CornerRadii borderRadii = box.getBorder().getStrokes().get(0).getRadii();
-
-        Paint color = isSelected ? this.checkBox.getSelectedColor() : this.checkBox.getUnselectedColor();
-        this.box.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, borderRadii, borderWidths)));
-        this.select = new RtFillTransition(ANIMATION_DURATION, box, Color.TRANSPARENT,
-                (Color) this.checkBox.getSelectedColor(), Interpolator.EASE_OUT);
-    }
-
-    private void playSelectAnimation(Boolean selection, boolean playAnimation)
-    {
-        if (selection == null)
+        if (!this.checkBox.getIsAnimationDisabled())
         {
-            selection = false;
-        }
-        transition.setRate(selection ? 1 : -1);
-        if (!this.wasIndeterminate)
-        {
-            select.setRate(selection ? 1 : -1);
-            select.play();
-        }
-        if (playAnimation)
-        {
-            transition.play();
-        }
-        else if (selection)
-        {
-            select.playFrom(select.getCycleDuration());
-            transition.playFrom(transition.getCycleDuration());
-        }
-        this.wasIndeterminate = false;
-    }
-
-    private void playIndeterminateAnimation(Boolean indeterminate, boolean playAnimation)
-    {
-        if (indeterminate == null)
-        {
-            indeterminate = false;
-        }
-        indeterminateTransition.setRate(indeterminate ? 1 : -1);
-        select.setRate(indeterminate ? 1 : -1);
-        if (playAnimation)
-        {
-            indeterminateTransition.play();
-            select.play();
-        }
-        else if (indeterminate)
-        {
-            select.playFrom(select.getCycleDuration());
-            indeterminateTransition.playFrom(indeterminateTransition.getCycleDuration());
-        }
-
-        if (this.checkBox.isSelected())
-        {
-            playSelectAnimation(!indeterminate, playAnimation);
-        }
-        else if (!indeterminate)
-        {
-            this.wasIndeterminate = false;
+            selectedTimer.start();
         }
         else
         {
-            this.wasIndeterminate = true;
+            selectedTimer.applyEndValues();
+        }
+
+    }
+
+    private void playIndeterminateAnimation()
+    {
+        if (!this.checkBox.getIsAnimationDisabled())
+        {
+            indeterminateTimer.start();
+        }
+        else
+        {
+            indeterminateTimer.applyEndValues();
         }
     }
 
-    private final static class CheckBoxTransition extends CachedTransition
+    private double computeBoxOpacity()
     {
-        CheckBoxTransition(Node mark, Duration duration)
+        double opacity = 0;
+        if (this.checkBox.isSelected() || this.checkBox.isIndeterminate())
         {
-            // @formatter:off
-            super(null, new Timeline( 
-                    new KeyFrame(Duration.ZERO,  
-                            new KeyValue(mark.opacityProperty(), 0, Interpolator.EASE_OUT), 
-                            new KeyValue(mark.scaleXProperty(), 0.5, Interpolator.EASE_OUT), 
-                            new KeyValue(mark.scaleYProperty(), 0.5, Interpolator.EASE_OUT)), 
-                    new KeyFrame(Duration.millis(500),  
-                            new KeyValue(mark.opacityProperty(), 1, Interpolator.EASE_OUT), 
-                            new KeyValue(mark.scaleXProperty(), 0.5, Interpolator.EASE_OUT), 
-                            new KeyValue(mark.scaleYProperty(), 0.5, Interpolator.EASE_OUT)), 
-                    new KeyFrame(Duration.millis(1000),  
-                            new KeyValue(mark.scaleXProperty(), 1, Interpolator.EASE_OUT), 
-                            new KeyValue(mark.scaleYProperty(), 1, Interpolator.EASE_OUT)))); 
-            // @formatter:on
-            setCycleDuration(duration);
+            opacity = 1;
         }
+        else
+        {
+            opacity = 0;
+        }
+        return opacity;
+    }
+
+    private double computeSelectedOpacity()
+    {
+        double opacity = 0;
+        if (this.checkBox.isSelected() && !this.checkBox.isIndeterminate())
+        {
+            opacity = 1;
+        }
+        else
+        {
+            opacity = 0;
+        }
+        return opacity;
+    }
+
+    private double computeSelectedScale()
+    {
+        double scale = 0;
+        if (this.checkBox.isSelected() && !this.checkBox.isIndeterminate())
+        {
+            scale = 1;
+        }
+        else
+        {
+            scale = 0;
+        }
+        return scale;
+    }
+
+    private double computeIndeterminateOpacity()
+    {
+        double opacity = 0;
+        if (this.checkBox.isIndeterminate())
+        {
+            opacity = 1;
+        }
+        else
+        {
+            opacity = 0;
+        }
+        return opacity;
+    }
+
+    private double computeIndeterminateScale()
+    {
+        double scale = 0;
+        if (this.checkBox.isIndeterminate())
+        {
+            scale = 1;
+        }
+        else
+        {
+            scale = 0;
+        }
+        return scale;
     }
 }
