@@ -23,6 +23,8 @@ TODO
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-text-fill: -var-on-accent-color;
+    
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-toggle-button.raised:focused
@@ -48,17 +50,10 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
-    -fx-padding: 4;
-}
-
-.rt-icon-toggle-button.normal .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-icon-toggle-button.normal:selected,
@@ -76,20 +71,13 @@ TODO
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-icon-color: -var-accent-color;
     -rt-unselected-icon-color: -var-on-main-mid-color;
 
-    -fx-padding: 4;
-}
-
-.rt-icon-toggle-button.accented .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
 }
 
 .rt-icon-toggle-button.accented:selected,
@@ -106,23 +94,15 @@ TODO
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
+    -fx-background-insets: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-icon-color: -var-accent-color;
     -rt-unselected-icon-color: -var-on-main-mid-color;
-    -fx-background-insets: 0;
-
-    -fx-padding: 4;
-}
-
-.rt-icon-toggle-button.glowing .state-box
-{
-    -fx-background-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
 }
 
 .rt-icon-toggle-button.glowing:selected,
@@ -135,5 +115,6 @@ TODO
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-text-fill: -var-accent-color;
+
     -rt-fill-color: -var-accent-color;
 }

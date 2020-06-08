@@ -21,6 +21,9 @@ public class RtAnimationTimer extends AnimationTimer
     private double totalElapsedMilliseconds;
     private HashMap<RtKeyFrame, AnimationHandler> mutableFrames = new HashMap<>();
 
+    private int currentHandlerIndex = 0;
+    private double lastFrameTime = 0;
+
     public RtAnimationTimer(RtKeyFrame... keyFrames)
     {
         for (RtKeyFrame keyFrame : keyFrames)
@@ -29,8 +32,8 @@ public class RtAnimationTimer extends AnimationTimer
             Set<RtKeyValue<?>> keyValuesSet = keyFrame.getKeyValues();
             if (!keyValuesSet.isEmpty())
             {
-                AnimationHandler handler = new AnimationHandler(duration, keyFrame.getAnimateCondition(),
-                        keyFrame.getKeyValues());
+                AnimationHandler handler = new AnimationHandler(duration, keyFrame.getApplyCondition(),
+                        keyFrame.getAnimateCondition(), keyFrame.getKeyValues());
                 this.animationHandlers.add(handler);
             }
         }
@@ -61,8 +64,8 @@ public class RtAnimationTimer extends AnimationTimer
             final Set<RtKeyValue<?>> keyValuesSet = keyFrame.getKeyValues();
             if (!keyValuesSet.isEmpty())
             {
-                final AnimationHandler handler = new AnimationHandler(duration, keyFrame.getAnimateCondition(),
-                        keyFrame.getKeyValues());
+                final AnimationHandler handler = new AnimationHandler(duration, keyFrame.getApplyCondition(),
+                        keyFrame.getAnimateCondition(), keyFrame.getKeyValues());
                 this.animationHandlers.add(handler);
                 this.mutableFrames.put(keyFrame, handler);
             }
@@ -114,12 +117,24 @@ public class RtAnimationTimer extends AnimationTimer
         if (isRunning())
         {
             super.stop();
+            boolean isPlaying = false;
             for (AnimationHandler handler : this.animationHandlers)
             {
                 handler.reverse(this.totalElapsedMilliseconds);
+                if (handler.useAnimation())
+                {
+                    isPlaying = true;
+                }
+                else
+                {
+                    handler.applyEndValues();
+                }
             }
             this.startTime = -1;
-            super.start();
+            if (isPlaying)
+            {
+                super.start();
+            }
         } 
         else
         {
@@ -135,21 +150,30 @@ public class RtAnimationTimer extends AnimationTimer
         if (isRunning())
         {
             super.stop();
+            boolean isPlaying = false;
             for (AnimationHandler handler : this.animationHandlers)
             {
-                handler.applyCurrentEndValues();
+                if (handler.useAnimation())
+                {
+                    isPlaying = true;
+                    handler.applyCurrentEndValues();
+                }
+                else
+                {
+                    handler.applyEndValues();
+                }
             }
             this.startTime = -1;
-            super.start();
+            if (isPlaying)
+            {
+                super.start();
+            }
         }
         else
         {
             start();
         }
     }
-
-    private int currentHandlerIndex = 0;
-    private double lastFrameTime = 0;
     
     @Override
     public void handle(long now)
@@ -158,9 +182,6 @@ public class RtAnimationTimer extends AnimationTimer
         this.totalElapsedMilliseconds = (now - this.startTime) / 1000000.0;
         
         AnimationHandler currentHandler = this.animationHandlers.get(currentHandlerIndex);
-//        System.out.println("totalElapsedMilliseconds: " + totalElapsedMilliseconds);
-//        System.out.println("currentHandlerIndex: " + currentHandlerIndex);
-//        System.out.println("lastKeyFrame: " + (this.totalElapsedMilliseconds - lastFrameTime));
         currentHandler.animate(this.totalElapsedMilliseconds - lastFrameTime);
 
         
@@ -222,23 +243,29 @@ public class RtAnimationTimer extends AnimationTimer
         private double duration;
         private double currentDuration;
         private Set<RtKeyValue<?>> keyValues;
-        private Supplier<Boolean> animationCondition = null;
+        private Supplier<Boolean> applyCondition = null;
+        private Supplier<Boolean> animateCondition = null;
+        
         private boolean finished = false;
+        private boolean useAnimation = true;
 
         private HashMap<WritableValue<?>, Object> initialValuesMap = new HashMap<>();
         private HashMap<WritableValue<?>, Object> endValuesMap = new HashMap<>();
 
-        AnimationHandler(Duration duration, Supplier<Boolean> animationCondition, Set<RtKeyValue<?>> keyValues)
+        AnimationHandler(Duration duration, Supplier<Boolean> applyCondition, Supplier<Boolean> animateCondition, Set<RtKeyValue<?>> keyValues)
         {
             this.duration = duration.toMillis();
             this.currentDuration = this.duration;
             this.keyValues = keyValues;
-            this.animationCondition = animationCondition;
+            this.applyCondition = applyCondition;
+            this.animateCondition = animateCondition;
         }
 
         public void init()
         {
-            this.finished = this.animationCondition == null ? false : !this.animationCondition.get();
+            this.finished = this.applyCondition == null ? false : !this.applyCondition.get();
+            this.useAnimation = this.animateCondition == null ? true : this.animateCondition.get();
+            
             for (RtKeyValue<?> keyValue : keyValues)
             {
                 if (keyValue.getTarget() != null)
@@ -248,11 +275,23 @@ public class RtAnimationTimer extends AnimationTimer
                 }
             }
         }
+        
+        boolean isFinished()
+        {
+            return this.finished;
+        }
+        
+        boolean useAnimation()
+        {
+            return this.useAnimation;
+        }
 
         void reverse(double now)
         {
-            this.finished = this.animationCondition == null ? false : !this.animationCondition.get();
+            this.finished = this.applyCondition == null ? false : !this.applyCondition.get();
+            this.useAnimation = this.animateCondition == null ? true : this.animateCondition.get();
             this.currentDuration = this.duration - (this.currentDuration - now);
+            
             for (RtKeyValue<?> keyValue : this.keyValues)
             {
                 WritableValue<?> target = keyValue.getTarget();
@@ -270,7 +309,7 @@ public class RtAnimationTimer extends AnimationTimer
             {
                 return;
             }
-            if (now <= this.currentDuration)
+            if (now <= this.currentDuration && this.useAnimation)
             {
                 for (RtKeyValue<?> keyValue : this.keyValues)
                 {
@@ -290,27 +329,24 @@ public class RtAnimationTimer extends AnimationTimer
             } 
             else
             {
-                if (!this.finished)
+                this.finished = true;
+                for (RtKeyValue<?> keyValue : this.keyValues)
                 {
-                    this.finished = true;
-                    for (RtKeyValue<?> keyValue : this.keyValues)
+                    if (keyValue.isValid())
                     {
-                        if (keyValue.isValid())
+                        @SuppressWarnings("unchecked")
+                        WritableValue<Object> target = (WritableValue<Object>) keyValue.getTarget();
+                        if (target != null)
                         {
-                            @SuppressWarnings("unchecked")
-                            WritableValue<Object> target = (WritableValue<Object>) keyValue.getTarget();
-                            if (target != null)
+                            final Object endValue = keyValue.getEndValue();
+                            if (endValue != null)
                             {
-                                final Object endValue = keyValue.getEndValue();
-                                if (endValue != null)
-                                {
-                                    target.setValue(endValue);
-                                }
+                                target.setValue(endValue);
                             }
                         }
                     }
-                    this.currentDuration = this.duration;
                 }
+                this.currentDuration = this.duration;
             }
         }
 
@@ -344,10 +380,13 @@ public class RtAnimationTimer extends AnimationTimer
                     WritableValue<Object> target = ((WritableValue<Object>) keyValue.getTarget());
                     if (target != null)
                     {
-                        final Object endValue = keyValue.getCurrentEndValue();
-                        if (endValue != null && !target.getValue().equals(endValue))
+                        final Object currentEndValue = keyValue.getCurrentEndValue();
+                        final Object endValue = keyValue.getEndValue();
+                        if (currentEndValue != null)
                         {
-                            target.setValue(endValue);
+                            target.setValue(currentEndValue);
+                            this.initialValuesMap.put(target, currentEndValue);
+                            this.endValuesMap.put(target, endValue);
                         }
                     }
                 }

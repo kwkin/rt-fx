@@ -9,6 +9,7 @@ import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
@@ -47,11 +48,14 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
     private static final String CSS_CLASS = "rt-icon-toggle-button";
     
     private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_ICON_COLOR, IconToggleButton.this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_ICON_COLOR, this, "unselectedFill", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNSELECTED_ICON_COLOR, IconToggleButton.this, "unselectedFill", DefaultPalette.getInstance().getBaseColor());
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, IconToggleButton.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+            StyleableProperties.DISABLE_ANIMATION, IconToggleButton.this, "disableAnimation", false);
     
     public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon)
     {
@@ -128,6 +132,21 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
     public Paint getUnselectedFill()
     {
         return unselectedFill.get();
+    }
+
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return overlayColor.get();
+    }
+
+    public void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
     }
     
     public SvgGlyph getSelectedIcon()
@@ -320,7 +339,22 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
                 return control.unselectedFill;
             }
         };
-        
+        private static final CssMetaData<IconToggleButton, Paint> OVERLAY_COLOR = new CssMetaData<IconToggleButton, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
+        {
+            @Override
+            public boolean isSettable(IconToggleButton control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(IconToggleButton control)
+            {
+                return control.overlayColor;
+            }
+        };
+
         private static final CssMetaData<IconToggleButton, Boolean> DISABLE_ANIMATION = new CssMetaData<IconToggleButton, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -345,6 +379,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
                     javafx.scene.control.ToggleButton.getClassCssMetaData());
             styleables.add(SELECTED_ICON_COLOR);
             styleables.add(UNSELECTED_ICON_COLOR);
+            styleables.add(OVERLAY_COLOR);
             styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }

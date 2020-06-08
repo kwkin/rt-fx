@@ -20,7 +20,7 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
 public class RtButtonSkin extends ButtonSkin
 {
-    private final static Duration ANIMATION_DURATION = Duration.millis(100);
+    private final static Duration ANIMATION_DURATION = Duration.millis(200);
 
     private final Button button;
     private final StackPane stateBox = new StackPane();
@@ -34,23 +34,31 @@ public class RtButtonSkin extends ButtonSkin
 
         stateBox.getStyleClass().setAll("state-box");
         stateBox.setOpacity(0);
+        updateStateBoxColor();
 
         createAnimation();
         button.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            if (oldVal)
+            {
+                timer.skipAndContinue();
+            }
+            else
+            {
+                timer.start();
+            }
         });
         button.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            updateState();
+            timer.start();
         });
-        updateStateBoxColor();
+        
         updateChildren();
 
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
-        
+
     }
-    
+
     @Override
     protected void updateChildren()
     {
@@ -63,7 +71,7 @@ public class RtButtonSkin extends ButtonSkin
             getChildren().add(insertIndex, stateBox);
         }
     }
-    
+
     @Override
     protected void handleControlPropertyChanged(String property)
     {
@@ -87,19 +95,7 @@ public class RtButtonSkin extends ButtonSkin
 
         layoutLabelInArea(x, y, w, h);
     }
-    
-    private void updateState()
-    {
-        if (!button.getIsAnimationDisabled())
-        {
-            timer.skipAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
-    }
-    
+
     private void createAnimation()
     {
         // @formatter:off
@@ -122,6 +118,7 @@ public class RtButtonSkin extends ButtonSkin
                                 .setEndValueSupplier(() -> determineStateBoxOpacity())
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
+                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build());
                 break;
             default:
@@ -135,12 +132,13 @@ public class RtButtonSkin extends ButtonSkin
                                 .setEndValueSupplier(() -> determineStateBoxOpacity())
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
+                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build());
                 break;
         }
         // @formatter:on
     }
-    
+
     private double determineStateBoxOpacity()
     {
         double opacity = 0;
@@ -154,7 +152,7 @@ public class RtButtonSkin extends ButtonSkin
         }
         return opacity;
     }
-    
+
     private DepthShadow determineButtonShadow()
     {
         DepthShadow shadow;
@@ -172,10 +170,11 @@ public class RtButtonSkin extends ButtonSkin
         }
         return shadow;
     }
-    
+
     private void updateStateBoxColor()
     {
-        CornerRadii radii = this.button.getBackground() == null ? null : this.button.getBackground().getFills().get(0).getRadii(); 
+        CornerRadii radii = this.button.getBackground() == null ? null
+                : this.button.getBackground().getFills().get(0).getRadii();
         Insets insets = this.stateBox.getInsets();
         this.stateBox.setBackground(new Background(new BackgroundFill(this.button.getOverlayColor(), radii, insets)));
     }

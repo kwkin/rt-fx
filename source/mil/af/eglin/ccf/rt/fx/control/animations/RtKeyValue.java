@@ -12,6 +12,7 @@ public class RtKeyValue<T>
     private Supplier<T> endValueSupplier;
     private Interpolator interpolator;
     private Supplier<Boolean> animateCondition;
+    private Supplier<Boolean> applyCondition;
 
     private RtKeyValue()
     {
@@ -25,12 +26,13 @@ public class RtKeyValue<T>
         this.interpolator = interpolator;
     }
     
-    public RtKeyValue(WritableValue<T> target, T endValue, Interpolator interpolator, Supplier<Boolean> animateCondition)
+    public RtKeyValue(WritableValue<T> target, T endValue, Interpolator interpolator, Supplier<Boolean> animateCondition, Supplier<Boolean> applyCondition)
     {
         this.target = target;
         this.endValue = endValue;
         this.interpolator = interpolator;
         this.animateCondition = animateCondition;
+        this.applyCondition = applyCondition;
     }
 
     public static Builder builder()
@@ -40,13 +42,13 @@ public class RtKeyValue<T>
 
     public WritableValue<T> getCurrentTarget()
     {
-        return target;
+        return this.target;
     }
     
     public WritableValue<T> getTarget()
     {
-        target = targetSupplier != null ? targetSupplier.get() : target;
-        return target;
+        this.target = this.targetSupplier != null ? this.targetSupplier.get() : this.target;
+        return this.target;
     }
 
     public Supplier<WritableValue<T>> getTargetSupplier()
@@ -56,13 +58,14 @@ public class RtKeyValue<T>
 
     public T getCurrentEndValue()
     {
-        return endValue;
+        this.endValue = this.endValue != null ? this.endValue : this.endValueSupplier.get();
+        return this.endValue;
     }
 
     public T getEndValue()
     {
-        endValue = endValueSupplier != null ? endValueSupplier.get() : endValue;
-        return endValue;
+        this.endValue = this.endValueSupplier != null ? this.endValueSupplier.get() : this.endValue;
+        return this.endValue;
     }
 
     public Supplier<T> getEndValueSupplier()
@@ -72,17 +75,22 @@ public class RtKeyValue<T>
 
     public Interpolator getInterpolator()
     {
-        return interpolator;
+        return this.interpolator;
     }
 
     public Supplier<Boolean> getAnimateCondition()
     {
-        return animateCondition;
+        return this.animateCondition;
+    }
+
+    public Supplier<Boolean> getApplyCondition()
+    {
+        return this.applyCondition;
     }
 
     public boolean isValid()
     {
-        return animateCondition == null ? true : animateCondition.get();
+        return this.applyCondition == null ? true : this.applyCondition.get();
     }
 
     public static final class Builder
@@ -128,6 +136,13 @@ public class RtKeyValue<T>
             builder.setAnimateCondition(animateCondition);
             return builder;
         }
+
+        public <T> RtKeyValueBuilder<T> setApplyCondiiton(Supplier<Boolean> applyCondition)
+        {
+            RtKeyValueBuilder<T> builder = new RtKeyValueBuilder<>();
+            builder.setAnimateCondition(applyCondition);
+            return builder;
+        }
     }
 
     public static final class RtKeyValueBuilder<T>
@@ -139,6 +154,7 @@ public class RtKeyValue<T>
         private T endValue;
         private Interpolator interpolator = Interpolator.EASE_BOTH;
         private Supplier<Boolean> animateCondition = () -> true;
+        private Supplier<Boolean> applyCondition = () -> true;
 
         private RtKeyValueBuilder()
         {
@@ -174,6 +190,12 @@ public class RtKeyValue<T>
             return this;
         }
 
+        public RtKeyValueBuilder<T> setApplyCondition(Supplier<Boolean> applyCondition)
+        {
+            this.applyCondition = applyCondition;
+            return this;
+        }
+
         public RtKeyValueBuilder<T> setInterpolator(Interpolator interpolator)
         {
             this.interpolator = interpolator;
@@ -189,6 +211,7 @@ public class RtKeyValue<T>
             keyValue.endValueSupplier = this.endValueSupplier;
             keyValue.interpolator = this.interpolator;
             keyValue.animateCondition = this.animateCondition;
+            keyValue.applyCondition = this.applyCondition;
             return keyValue;
         }
     }

@@ -3,6 +3,10 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
@@ -26,7 +30,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         
         stateBox.getStyleClass().setAll("state-box");
         stateBox.setOpacity(0);
-        updateChildren();
+        updateStateBoxColor();
         
         createAnimation();
         button.selectedProperty().addListener((ov, oldVal, newVal) ->
@@ -41,7 +45,9 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         {
             updateState();
         });
-        
+        updateChildren();
+
+        registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
     }
     
     @Override
@@ -51,6 +57,16 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         if (stateBox != null)
         {
             getChildren().add(0, stateBox);
+        }
+    }
+    
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (button.getOverlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
         }
     }
 
@@ -84,9 +100,45 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
                 .setKeyValues(
                         RtKeyValue.builder()
                         .setTarget(this.stateBox.opacityProperty())
-                        .setEndValue(0)
+                        .setEndValueSupplier(() -> determineOpacity())
                         .setInterpolator(Interpolator.EASE_OUT)
                         .build())
                 .build());
+    }
+
+    private double determineOpacity() 
+    {
+        double opacity = 0;
+        switch(this.button.getRtStyle())
+        {
+            case GLOWING:
+                if (this.button.isSelected() || this.button.isArmed())
+                {
+                    opacity = 1;
+                }
+                else if (this.button.isHover())
+                {
+                    opacity = 0.4;
+                }
+                break;
+            default:
+                if (button.isArmed())
+                {
+                    opacity = 1;
+                }
+                else if (button.isHover())
+                {
+                    opacity = 0.4;
+                }
+                break;
+        }
+        return opacity;
+    }
+    
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.button.getBackground() == null ? null : this.button.getBackground().getFills().get(0).getRadii(); 
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.button.getOverlayColor(), radii, insets)));
     }
 }
