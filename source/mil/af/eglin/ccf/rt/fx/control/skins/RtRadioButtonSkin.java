@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.RadioButton;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
@@ -51,49 +52,21 @@ public class RtRadioButtonSkin extends RadioButtonSkin
 
         this.stateBox.getStyleClass().setAll("state-box");
         this.stateBox.setOpacity(0);
+        Rectangle slideClip = new Rectangle();
+        slideClip.widthProperty().bind(this.container.widthProperty());
+        slideClip.heightProperty().bind(this.container.heightProperty());
+        this.stateBox.setClip(slideClip);
+        slideClip.setArcWidth(100);
+        slideClip.setArcHeight(100);
+        slideClip.setSmooth(true);
         updateStateBoxColor();
 
         this.container.getStyleClass().add("radio-container");
         this.container.getChildren().addAll(this.radio, this.dot, this.stateBox);
         updateChildren();
 
-        // @formatter:off
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(150))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.radio.strokeProperty())
-                        .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.opacityProperty())
-                        .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.scaleXProperty())
-                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.scaleYProperty())
-                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build());
-        stateTimer = new RtAnimationTimer(
-                RtKeyFrame.builder()
-                    .setDuration(Duration.millis(100))
-                    .setKeyValues(
-                            RtKeyValue.builder()
-                            .setTarget(this.stateBox.opacityProperty())
-                            .setEndValueSupplier(() -> determineStateBoxOpacity())
-                            .setInterpolator(Interpolator.EASE_OUT)
-                            .build())
-                    .build());
-        // @formatter:on
+        createAnimation();
+        
         radioButton.selectedProperty().addListener(observable ->
         {
             if (!radioButton.getIsAnimationDisabled())
@@ -243,5 +216,46 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         CornerRadii radii = this.radioButton.getBackground() == null ? null : this.radioButton.getBackground().getFills().get(0).getRadii(); 
         Insets insets = this.stateBox.getInsets();
         this.stateBox.setBackground(new Background(new BackgroundFill(this.radioButton.getOverlayColor(), radii, insets)));
+    }
+    
+    private void createAnimation()
+    {
+        // @formatter:off
+        timer = new RtAnimationTimer(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(150))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.radio.strokeProperty())
+                        .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.opacityProperty())
+                        .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.scaleXProperty())
+                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.scaleYProperty())
+                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        stateTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                            RtKeyValue.builder()
+                            .setTarget(this.stateBox.opacityProperty())
+                            .setEndValueSupplier(() -> determineStateBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
+        // @formatter:on
     }
 }

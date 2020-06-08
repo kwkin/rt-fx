@@ -60,8 +60,12 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         slideClip.heightProperty().bind(this.coloredBox.heightProperty());
         this.coloredBox.backgroundProperty().addListener((ov, oldVal, newVal) -> 
         {
-            this.slideTransition.backgroundProperty().bind(this.coloredBox.backgroundProperty());
-            CornerRadii radii = newVal.getFills().get(0) != null ? newVal.getFills().get(0).getRadii() : CornerRadii.EMPTY;
+            CornerRadii radii = CornerRadii.EMPTY;
+            if (newVal != null)
+            {
+                this.slideTransition.backgroundProperty().bind(this.coloredBox.backgroundProperty());
+                radii = newVal.getFills().get(0) != null ? newVal.getFills().get(0).getRadii() : CornerRadii.EMPTY;
+            }
             slideClip.setArcWidth(radii.getBottomLeftHorizontalRadius() * 2);
             slideClip.setArcHeight(radii.getTopLeftVerticalRadius() * 2);
         });
