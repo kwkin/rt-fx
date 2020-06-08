@@ -4,6 +4,9 @@ import com.sun.javafx.scene.control.behavior.ButtonBehavior;
 import com.sun.javafx.scene.control.skin.LabeledSkinBase;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
@@ -21,12 +24,14 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane selectedMark = new StackPane();
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
+    private final StackPane stateBox = new StackPane();
 
     private final StackPane slideTransition = new StackPane();
 
     private RtAnimationTimer unselectedTimer;
     private RtAnimationTimer selectedTimer;
     private RtAnimationTimer indeterminateToSelectedTimer;
+    private RtAnimationTimer hoverTimer;
     
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
@@ -43,8 +48,13 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         
         this.coloredBox.getStyleClass().setAll("colored-box");
         this.coloredBox.setOpacity(0);
-        this.coloredBox.getChildren().addAll(indeterminateMark, selectedMark, this.slideTransition);
 
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
+        updateStateBoxColor();
+        
+        this.coloredBox.getChildren().addAll(indeterminateMark, selectedMark, this.slideTransition);
+        
         Rectangle slideClip = new Rectangle();
         slideClip.widthProperty().bind(this.coloredBox.widthProperty());
         slideClip.heightProperty().bind(this.coloredBox.heightProperty());
@@ -59,8 +69,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         this.coloredBox.setClip(slideClip);
         
         this.boxAndMarks.getStyleClass().setAll("box-marks");
-        this.boxAndMarks.getChildren().addAll(this.box, coloredBox);
-
+        this.boxAndMarks.getChildren().addAll(this.box, this.coloredBox, this.stateBox);
+        
         updateChildren();
         createAnimation();
         
@@ -77,9 +87,18 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             playIndeterminateAnimation();
         });
+        checkBox.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playHoverAnimation();
+        });
+        checkBox.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playHoverAnimation();
+        });
 
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
+        registerChangeListener(checkBox.getOverlayColorProperty(), checkBox.getOverlayColorProperty().getName());
     }
 
     @Override
@@ -88,7 +107,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         super.updateChildren();
         if (this.boxAndMarks != null)
         {
-            getChildren().add(boxAndMarks);
+            getChildren().add(this.boxAndMarks);
         }
     }
 
@@ -103,6 +122,10 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         else if (checkBox.unselectedColorProperty().getName().equals(property))
         {
             // TODO implement
+        }
+        else if (checkBox.getOverlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
         }
     }
 
@@ -141,8 +164,8 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        final double boxWidth = snapSize(box.prefWidth(-1));
-        final double boxHeight = snapSize(box.prefHeight(-1));
+        final double boxWidth = snapSize(boxAndMarks.prefWidth(-1));
+        final double boxHeight = snapSize(boxAndMarks.prefHeight(-1));
         final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
         final double labelWidth = Math.min(computeWidth - boxWidth, w - snapSize(boxWidth));
         final double labelHeight = Math.min(checkBox.prefHeight(labelWidth), h);
@@ -150,9 +173,10 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
         final double yOffset = Utils.computeYOffset(checkBox.getHeight(), maxHeight, checkBox.getAlignment().getVpos());
 
+//        System.out.println("");
         layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
         boxAndMarks.resize(boxWidth, boxHeight);
-        positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, maxHeight, 0, checkBox.getAlignment().getHpos(),
+        positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, boxHeight, 0, checkBox.getAlignment().getHpos(),
                 checkBox.getAlignment().getVpos());
 
     }
@@ -208,6 +232,32 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             else
             {
                 this.indeterminateToSelectedTimer.applyEndValues();
+            }
+        }
+    }
+
+    private void playHoverAnimation()
+    {
+        if (!this.checkBox.getIsAnimationDisabled())
+        {
+            if (this.checkBox.isHover())
+            {
+                this.hoverTimer.start();
+            }
+            else
+            {
+                this.hoverTimer.start();
+            }
+        }
+        else
+        {
+            if (this.checkBox.isHover())
+            {
+                this.hoverTimer.applyEndValues();
+            }
+            else
+            {
+                this.hoverTimer.applyEndValues();
             }
         }
     }
@@ -333,6 +383,37 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
+        hoverTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                            RtKeyValue.builder()
+                            .setTarget(this.stateBox.opacityProperty())
+                            .setEndValueSupplier(() -> determineStateBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
         // @formatter:on
+    }
+    
+    private double determineStateBoxOpacity()
+    {
+        double opacity = 0;
+        if (this.checkBox.isArmed())
+        {
+            opacity = 1;
+        }
+        else if (this.checkBox.isHover())
+        {
+            opacity = 0.6;
+        }
+        return opacity;
+    }
+    
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.checkBox.getBackground() == null ? null : this.checkBox.getBackground().getFills().get(0).getRadii(); 
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.checkBox.getOverlayColor(), radii, insets)));
     }
 }

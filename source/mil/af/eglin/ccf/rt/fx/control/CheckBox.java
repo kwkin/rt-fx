@@ -55,6 +55,9 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             StyleableProperties.UNSELECTED_COLOR, CheckBox.this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, CheckBox.this, "disableAnimation", false);
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, CheckBox.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
 
     /**
      * {@inheritDoc}
@@ -116,6 +119,21 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
     public void setUnselectedColor(Paint color)
     {
         this.unselectedColor.set(color);
+    }
+
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return overlayColor.get();
+    }
+
+    public void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -231,6 +249,21 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
                 return control.isAnimationDisabled;
             }
         };
+        private static final CssMetaData<CheckBox, Paint> OVERLAY_COLOR = new CssMetaData<CheckBox, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
+        {
+            @Override
+            public boolean isSettable(CheckBox control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(CheckBox control)
+            {
+                return control.overlayColor;
+            }
+        };
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
 
         static
@@ -239,6 +272,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             styleables.add(SELECTED_COLOR);
             styleables.add(UNSELECTED_COLOR);
             styleables.add(DISABLE_ANIMATION);
+            styleables.add(OVERLAY_COLOR);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

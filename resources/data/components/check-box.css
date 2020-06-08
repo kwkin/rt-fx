@@ -1,6 +1,3 @@
-/*
-TODO add animations to the check box 
-*/
 /*-- ############################### Check Box Style ############################### */ 
 .rt-check-box 
 { 
@@ -9,10 +6,23 @@ TODO add animations to the check box
     -fx-padding: 4 8 4 8; 
     -fx-text-fill: -var-on-main-mid-color; 
      
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-color: -var-accent-color; 
-    -rt-unselected-color: -var-main-color-l4; 
+    -rt-unselected-color: -var-main-color-l4;
 } 
  
+.rt-check-box .box-marks
+{
+    -var-pref-width: 18; 
+    -var-pref-height: 18; 
+    -fx-max-width: -var-pref-width; 
+    -fx-min-width: -var-pref-width; 
+    -fx-pref-width: -var-pref-width; 
+    -fx-pref-height: -var-pref-width; 
+    -fx-max-height: -var-pref-height; 
+    -fx-min-height: -var-pref-height; 
+}
+
 .rt-check-box .box 
 { 
     -fx-background-color: transparent; 
@@ -23,23 +33,6 @@ TODO add animations to the check box
     -fx-border-width: 2; 
     -fx-padding: 0; 
     -fx-insets: 0;
- 
-    -var-pref-width: 18; 
-    -var-pref-height: 18; 
-    -fx-max-width: -var-pref-width; 
-    -fx-min-width: -var-pref-width; 
-    -fx-max-height: -var-pref-height; 
-    -fx-min-height: -var-pref-height; 
-} 
-
-.rt-check-box:hover .box 
-{ 
-    -fx-border-color: -var-main-color-l3; 
-} 
- 
-.rt-check-box:armed .box 
-{ 
-    -fx-border-color: -var-accent-color; 
 } 
 
 .rt-check-box .colored-box
@@ -48,13 +41,6 @@ TODO add animations to the check box
     -fx-background-radius: 2; 
     -fx-padding: 0; 
     -fx-insets: 0;
- 
-    -var-pref-width: 18; 
-    -var-pref-height: 18; 
-    -fx-max-width: -var-pref-width; 
-    -fx-min-width: -var-pref-width; 
-    -fx-max-height: -var-pref-height; 
-    -fx-min-height: -var-pref-height; 
 }
  
 .rt-check-box:selected .box, 

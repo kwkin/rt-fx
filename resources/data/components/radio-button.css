@@ -8,6 +8,8 @@
      
     -rt-selected-color: -var-accent-color; 
 	-rt-unselected-color: -var-main-color-l4;
+	
+    -rt-overlay-color: -var-overlay-color;
 } 
  
 .rt-radio-button .radio,  
@@ -30,16 +32,15 @@
 .rt-radio-button:focused:armed .radio  
 { 
 	-fx-background-color: transparent; 
-	-fx-padding: 3; 
+	-fx-padding: 3;
 } 
  
-.rt-radio-button:hover .radio  
+.rt-radio-button:hover .radio-container .radio
 { 
-	-fx-border-color: -var-main-color-l3; 
-	-fx-background-insets: 0; 
+	-fx-stroke: -var-main-color-l3;
 } 
  
-.rt-check-box:armed .box 
+.rt-radio-button:armed .radio-container .radio
 { 
-    -fx-border-color: -var-accent-color; 
+	-fx-stroke: -var-accent-color;
 }
