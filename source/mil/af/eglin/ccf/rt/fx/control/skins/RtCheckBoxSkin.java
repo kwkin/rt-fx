@@ -31,7 +31,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private RtAnimationTimer unselectedTimer;
     private RtAnimationTimer selectedTimer;
     private RtAnimationTimer indeterminateToSelectedTimer;
-    private RtAnimationTimer hoverTimer;
+    private RtAnimationTimer stateTimer;
     
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
@@ -89,11 +89,11 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         });
         checkBox.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            playHoverAnimation();
+            playStateAnimation();
         });
         checkBox.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            playHoverAnimation();
+            playStateAnimation();
         });
 
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
@@ -133,15 +133,15 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        return super.computeMinWidth(height, topInset, rightInset, bottomInset, leftInset) + snapSize(box.minWidth(-1));
+        return super.computeMinWidth(height, topInset, rightInset, bottomInset, leftInset) + snapSize(boxAndMarks.minWidth(-1));
     }
 
     @Override
     protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        return Math.max(super.computeMinHeight(width - box.minWidth(-1), topInset, rightInset, bottomInset, leftInset),
-                topInset + box.minHeight(-1) + bottomInset);
+        return Math.max(super.computeMinHeight(width - boxAndMarks.minWidth(-1), topInset, rightInset, bottomInset, leftInset),
+                topInset + boxAndMarks.minHeight(-1) + bottomInset);
     }
 
     @Override
@@ -149,15 +149,15 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             double leftInset)
     {
         return super.computePrefWidth(height, topInset, rightInset, bottomInset, leftInset)
-                + snapSize(box.prefWidth(-1));
+                + snapSize(boxAndMarks.prefWidth(-1));
     }
 
     @Override
     protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset,
             double leftInset)
     {
-        double labelHeight = super.computePrefHeight(width - box.prefWidth(-1), topInset, rightInset, bottomInset, leftInset);
-        double boxHeight = topInset + box.prefHeight(-1) + bottomInset;
+        double labelHeight = super.computePrefHeight(width - boxAndMarks.prefWidth(-1), topInset, rightInset, bottomInset, leftInset);
+        double boxHeight = topInset + boxAndMarks.prefHeight(-1) + bottomInset;
         return Math.max(labelHeight, boxHeight);
     }
 
@@ -173,7 +173,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
         final double yOffset = Utils.computeYOffset(checkBox.getHeight(), maxHeight, checkBox.getAlignment().getVpos());
 
-//        System.out.println("");
         layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
         boxAndMarks.resize(boxWidth, boxHeight);
         positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, boxHeight, 0, checkBox.getAlignment().getHpos(),
@@ -236,28 +235,28 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         }
     }
 
-    private void playHoverAnimation()
+    private void playStateAnimation()
     {
         if (!this.checkBox.getIsAnimationDisabled())
         {
             if (this.checkBox.isHover())
             {
-                this.hoverTimer.start();
+                this.stateTimer.start();
             }
             else
             {
-                this.hoverTimer.start();
+                this.stateTimer.start();
             }
         }
         else
         {
             if (this.checkBox.isHover())
             {
-                this.hoverTimer.applyEndValues();
+                this.stateTimer.applyEndValues();
             }
             else
             {
-                this.hoverTimer.applyEndValues();
+                this.stateTimer.applyEndValues();
             }
         }
     }
@@ -383,7 +382,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
-        hoverTimer = new RtAnimationTimer(
+        stateTimer = new RtAnimationTimer(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
