@@ -14,10 +14,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.RadioButton;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+// TODO change usage of shapes (circle) to stack pane
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
     private final RadioButton radioButton;
@@ -26,8 +27,8 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private final StackPane container = new StackPane();
     private final StackPane stateBox = new StackPane();
 
-    private RtAnimationTimer timer;
-    private RtAnimationTimer stateTimer;
+    private RtAnimationTimeline stateTimeline;
+    private RtAnimationTimeline interactionTimeline;
 
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
@@ -66,27 +67,8 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         updateChildren();
 
         createAnimation();
-        
-        radioButton.selectedProperty().addListener(observable ->
-        {
-            if (!radioButton.getIsAnimationDisabled())
-            {
-                timer.reverseAndContinue();
-            }
-            else
-            {
-                timer.applyEndValues();
-            }
-        });
-        radioButton.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playStateAnimation();
-        });
-        radioButton.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playStateAnimation();
-        });
-        timer.applyEndValues();
+        createAnimationListeners();
+        stateTimeline.applyEndValues();
 
         registerChangeListener(radioButton.selectedColorProperty(), radioButton.selectedColorProperty().getName());
         registerChangeListener(radioButton.unselectedColorProperty(), radioButton.unselectedColorProperty().getName());
@@ -177,11 +159,11 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     {
         if (!this.radioButton.getIsAnimationDisabled())
         {
-            this.stateTimer.start();
+            this.interactionTimeline.start();
         }
         else
         {
-            this.stateTimer.applyEndValues();
+            this.interactionTimeline.applyEndValues();
         }
     }
 
@@ -221,7 +203,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private void createAnimation()
     {
         // @formatter:off
-        timer = new RtAnimationTimer(
+        this.stateTimeline = new RtAnimationTimeline(
             RtKeyFrame.builder()
                 .setDuration(Duration.millis(150))
                 .setKeyValues(
@@ -246,7 +228,7 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
-        stateTimer = new RtAnimationTimer(
+        this.interactionTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -257,5 +239,30 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                             .build())
                     .build());
         // @formatter:on
+        this.stateTimeline.setAnimateCondition(() -> !this.radioButton.getIsAnimationDisabled());
+        this.interactionTimeline.setAnimateCondition(() -> !this.radioButton.getIsAnimationDisabled());
+    }
+
+    private void createAnimationListeners()
+    {
+        this.radioButton.selectedProperty().addListener(observable ->
+        {
+            if (!this.radioButton.getIsAnimationDisabled())
+            {
+                this.stateTimeline.reverseAndContinue();
+            }
+            else
+            {
+                this.stateTimeline.applyEndValues();
+            }
+        });
+        this.radioButton.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playStateAnimation();
+        });
+        this.radioButton.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playStateAnimation();
+        });
     }
 }

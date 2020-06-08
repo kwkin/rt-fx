@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class RtAnimationTimer extends AnimationTimer
+public class RtAnimationTimeline extends AnimationTimer
 {
     private Runnable onFinished = null;
     private List<AnimationHandler> animationHandlers = new ArrayList<>();
@@ -20,11 +20,12 @@ public class RtAnimationTimer extends AnimationTimer
     private List<CachedFrame> caches = new ArrayList<>();
     private double totalElapsedMilliseconds;
     private HashMap<RtKeyFrame, AnimationHandler> mutableFrames = new HashMap<>();
+    private Supplier<Boolean> animateCondition = () -> true;
 
     private int currentHandlerIndex = 0;
     private double lastFrameTime = 0;
 
-    public RtAnimationTimer(RtKeyFrame... keyFrames)
+    public RtAnimationTimeline(RtKeyFrame... keyFrames)
     {
         for (RtKeyFrame keyFrame : keyFrames)
         {
@@ -49,6 +50,11 @@ public class RtAnimationTimer extends AnimationTimer
                 this.caches.add(new CachedFrame(node));
             }
         }
+    }
+    
+    public void setAnimateCondition(Supplier<Boolean> animateCondition)
+    {
+        this.animateCondition = animateCondition;
     }
 
     public boolean isRunning()
@@ -131,14 +137,18 @@ public class RtAnimationTimer extends AnimationTimer
                 }
             }
             this.startTime = -1;
-            if (isPlaying)
+            if (isPlaying && this.animateCondition.get())
             {
                 super.start();
             }
         } 
-        else
+        else if (this.animateCondition.get())
         {
             start();
+        }
+        else
+        {
+            applyEndValues();
         }
     }
     
@@ -164,14 +174,18 @@ public class RtAnimationTimer extends AnimationTimer
                 }
             }
             this.startTime = -1;
-            if (isPlaying)
+            if (isPlaying && this.animateCondition.get())
             {
                 super.start();
             }
         }
-        else
+        else if (this.animateCondition.get())
         {
             start();
+        }
+        else
+        {
+            applyEndValues();
         }
     }
     
@@ -205,16 +219,23 @@ public class RtAnimationTimer extends AnimationTimer
     @Override
     public void start()
     {
-        super.start();
-        this.running = true;
-        this.startTime = -1;
-        for (AnimationHandler animationHandler : this.animationHandlers)
+        if (this.animateCondition.get())
         {
-            animationHandler.init();
+            super.start();
+            this.running = true;
+            this.startTime = -1;
+            for (AnimationHandler animationHandler : this.animationHandlers)
+            {
+                animationHandler.init();
+            }
+            for (CachedFrame cache : this.caches)
+            {
+                cache.cache();
+            }
         }
-        for (CachedFrame cache : this.caches)
+        else
         {
-            cache.cache();
+            applyEndValues();
         }
     }
 

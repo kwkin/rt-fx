@@ -10,7 +10,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
@@ -21,7 +21,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
     private final IconToggleButton button;
     private final StackPane stateBox = new StackPane();
 
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline interactionTimeline;
     
     public RtIconToggleButtonSkin(final IconToggleButton button)
     {
@@ -33,18 +33,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         updateStateBoxColor();
         
         createAnimation();
-        button.selectedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        button.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        button.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
+        createAnimationListeners();
         updateChildren();
 
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
@@ -73,28 +62,17 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
-        stateBox.resizeRelocate(
+       this. stateBox.resizeRelocate(
             getSkinnable().getLayoutBounds().getMinX(),
             getSkinnable().getLayoutBounds().getMinY(),
             getSkinnable().getWidth(), getSkinnable().getHeight());
         layoutLabelInArea(x, y, w, h);
     }
     
-    private void updateState()
-    {
-        if (!button.getIsAnimationDisabled())
-        {
-            timer.skipAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
-    }
-    
     private void createAnimation()
     {
-        timer = new RtAnimationTimer(
+        // @formatter:off
+        this.interactionTimeline = new RtAnimationTimeline(
             RtKeyFrame.builder()
                 .setDuration(ANIMATION_DURATION)
                 .setKeyValues(
@@ -104,6 +82,24 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
                         .setInterpolator(Interpolator.EASE_OUT)
                         .build())
                 .build());
+        // @formatter:on
+        this.interactionTimeline.setAnimateCondition(() -> !this.button.getIsAnimationDisabled());
+    }
+    
+    private void createAnimationListeners()
+    {
+        this.button.selectedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            interactionTimeline.skipAndContinue();
+        });
+        this.button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            interactionTimeline.skipAndContinue();
+        });
+        this.button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            interactionTimeline.skipAndContinue();
+        });
     }
 
     private double determineOpacity() 

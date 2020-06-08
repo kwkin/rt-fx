@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Slider;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
@@ -22,7 +22,7 @@ public class RtSliderSkin extends SliderSkin
     private final StackPane filledTrack;
     private final StackPane thumb;
     
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline interactionTimeline;
 
     public RtSliderSkin(final Slider slider)
     {
@@ -46,36 +46,9 @@ public class RtSliderSkin extends SliderSkin
         getChildren().add(insertIndex, filledTrack);
         
         slider.setPickOnBounds(false);
-
-        // @formatter:off
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(circleThumb.radiusProperty())
-                        .setEndValueSupplier(() -> determineThumbRadius())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !slider.getIsAnimationDisabled())
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(stateThumb.radiusProperty())
-                        .setEndValueSupplier(() -> determineStateRadius())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !slider.getIsAnimationDisabled())
-                        .build())
-                .build());
-        // @formatter:on
-        timer.setCacheNodes(stateThumb);
-
-        thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        slider.pressedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
+        
+        createAnimation();
+        createAnimationListeners();
     }
 
     @Override
@@ -105,18 +78,6 @@ public class RtSliderSkin extends SliderSkin
 
         filledTrack.resizeRelocate(layoutX, layoutY, width, height);
     }
-    
-    private void updateState()
-    {
-        if (!slider.getIsAnimationDisabled())
-        {
-            timer.reverseAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
-    }
 
     private double determineStateRadius() 
     {
@@ -136,5 +97,41 @@ public class RtSliderSkin extends SliderSkin
             radius = 9;
         }
         return radius;
+    }
+
+    private void createAnimation()
+    {
+
+        // @formatter:off
+        this.interactionTimeline = new RtAnimationTimeline(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.circleThumb.radiusProperty())
+                        .setEndValueSupplier(() -> determineThumbRadius())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.stateThumb.radiusProperty())
+                        .setEndValueSupplier(() -> determineStateRadius())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        // @formatter:on
+        this.interactionTimeline.setCacheNodes(this.stateThumb);
+        this.interactionTimeline.setAnimateCondition(() -> !slider.getIsAnimationDisabled());
+    }
+
+    private void createAnimationListeners()
+    {
+        this.thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            interactionTimeline.reverseAndContinue();
+        });
+        this.slider.pressedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            interactionTimeline.reverseAndContinue();
+        });
     }
 }

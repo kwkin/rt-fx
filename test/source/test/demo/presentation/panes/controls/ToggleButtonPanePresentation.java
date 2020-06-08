@@ -81,14 +81,13 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         ToggleSwitch primaryLightToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_LIGHT);
         primaryLightToggleSwitch.setSelected(true);
         ToggleSwitch primaryMidToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_MID);
-        primaryMidToggleSwitch.setSelected(true);
         ToggleSwitch primaryDarkToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_DARK);
+        primaryDarkToggleSwitch.setSelected(true);
 
         ToggleSwitch secondaryLightToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_LIGHT);
         ToggleSwitch secondaryMidToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_MID);
         secondaryMidToggleSwitch.setSelected(true);
         ToggleSwitch secondaryDarkToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_DARK);
-        secondaryDarkToggleSwitch.setSelected(true);
 
         toggleButtonGridPane.add(primaryLightToggleSwitch, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleSwitch, 0, 1);

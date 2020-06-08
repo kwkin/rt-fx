@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
@@ -28,10 +28,10 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
 
     private final StackPane slideTransition = new StackPane();
 
-    private RtAnimationTimer unselectedTimer;
-    private RtAnimationTimer selectedTimer;
-    private RtAnimationTimer indeterminateToSelectedTimer;
-    private RtAnimationTimer stateTimer;
+    private RtAnimationTimeline unselectedTimeline;
+    private RtAnimationTimeline selectedTimeline;
+    private RtAnimationTimeline indeterminateToSelectedTimeline;
+    private RtAnimationTimeline interactionTimeline;
     
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
@@ -77,28 +77,11 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         
         updateChildren();
         createAnimation();
-        
+        createAnimationListeners();
         if (this.checkBox.isIndeterminate() || this.checkBox.isSelected())
         {
-            selectedTimer.applyEndValues();
+            this.selectedTimeline.applyEndValues();
         }
-
-        checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playSelectAnimation();
-        });
-        checkBox.indeterminateProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playIndeterminateAnimation();
-        });
-        checkBox.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playStateAnimation();
-        });
-        checkBox.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            playStateAnimation();
-        });
 
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
@@ -181,74 +164,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         boxAndMarks.resize(boxWidth, boxHeight);
         positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, boxHeight, 0, checkBox.getAlignment().getHpos(),
                 checkBox.getAlignment().getVpos());
-
-    }
-
-    private void playSelectAnimation()
-    {
-        if (!this.checkBox.isIndeterminate())
-        {
-            if (!this.checkBox.getIsAnimationDisabled())
-            {
-                if (this.checkBox.isSelected())
-                {
-                    this.selectedTimer.start();
-                }
-                else
-                {
-                    this.unselectedTimer.start();
-                }
-            }
-            else
-            {
-                if (this.checkBox.isSelected())
-                {
-                    this.selectedTimer.applyEndValues();
-                }
-                else
-                {
-                    this.unselectedTimer.applyEndValues();
-                }
-            }
-        }
-    }
-
-    private void playIndeterminateAnimation()
-    {
-        if (!this.checkBox.getIsAnimationDisabled())
-        {
-            if (this.checkBox.isIndeterminate())
-            {
-                this.selectedTimer.start();
-            }
-            else
-            {
-                this.indeterminateToSelectedTimer.start();
-            }
-        }
-        else
-        {
-            if (this.checkBox.isIndeterminate())
-            {
-                this.selectedTimer.applyEndValues();
-            }
-            else
-            {
-                this.indeterminateToSelectedTimer.applyEndValues();
-            }
-        }
-    }
-
-    private void playStateAnimation()
-    {
-        if (!this.checkBox.getIsAnimationDisabled())
-        {
-            this.stateTimer.start();
-        }
-        else
-        {
-            this.stateTimer.applyEndValues();
-        }
     }
 
     private StackPane computeMark()
@@ -258,7 +173,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             mark = this.indeterminateMark;
         }
-        else if (this.checkBox.isSelected())
+        else
         {
             mark = this.selectedMark;
         }
@@ -268,7 +183,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private void createAnimation()
     {
         // @formatter:off 
-        unselectedTimer = new RtAnimationTimer( 
+        this.unselectedTimeline = new RtAnimationTimeline( 
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -292,7 +207,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                             .setInterpolator(Interpolator.EASE_BOTH)
                             .build())
                     .build());
-        selectedTimer = new RtAnimationTimer(
+        this.selectedTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.ZERO)
                     .setKeyValues(
@@ -330,7 +245,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                             .setInterpolator(Interpolator.EASE_BOTH)
                             .build())
                     .build());
-        indeterminateToSelectedTimer = new RtAnimationTimer(
+        this.indeterminateToSelectedTimeline = new RtAnimationTimeline(
             RtKeyFrame.builder()
                 .setDuration(Duration.ZERO)
                 .setKeyValues(
@@ -372,7 +287,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
-        stateTimer = new RtAnimationTimer(
+        this.interactionTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -383,6 +298,54 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
                             .build())
                     .build());
         // @formatter:on
+        this.unselectedTimeline.setAnimateCondition(() -> !this.checkBox.getIsAnimationDisabled());
+        this.selectedTimeline.setAnimateCondition(() -> !this.checkBox.getIsAnimationDisabled());
+        this.indeterminateToSelectedTimeline.setAnimateCondition(() -> !this.checkBox.getIsAnimationDisabled());
+        this.interactionTimeline.setAnimateCondition(() -> !this.checkBox.getIsAnimationDisabled());
+    }
+    
+    private void createAnimationListeners()
+    {
+        this.checkBox.selectedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (!this.checkBox.isIndeterminate())
+            {
+                if (this.checkBox.isSelected())
+                {
+                    this.selectedTimeline.start();
+                }
+                else
+                {
+                    this.unselectedTimeline.start();
+                }
+            }
+        });
+        this.checkBox.indeterminateProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (this.checkBox.isIndeterminate())
+            {
+                this.selectedTimeline.start();
+            }
+            else
+            {
+                this.indeterminateToSelectedTimeline.start();
+            }
+        });
+        this.checkBox.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (oldVal)
+            {
+                this.interactionTimeline.skipAndContinue();
+            }
+            else
+            {
+                this.interactionTimeline.start();
+            }
+        });
+        this.checkBox.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.interactionTimeline.start();
+        });
     }
     
     private double determineStateBoxOpacity()

@@ -10,7 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
@@ -26,7 +26,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     private final Circle circle = new Circle();
     private final Line line = new Line();
 
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline stateTimeline;
     
     public RtToggleSwitchSkin(final ToggleSwitch toggleSwitch) 
     {
@@ -45,51 +45,15 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         this.circle.setCenterY(0);
         this.circle.setSmooth(true);
 
-        this.circlePane.getChildren().add(circle);
-        toggleSwitch.setGraphic(main);
+        this.circlePane.getChildren().add(this.circle);
+        toggleSwitch.setGraphic(this.main);
         
         updateChildren();
         updateSizes();
 
-        // @formatter:off
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(circle.translateXProperty())
-                        .setEndValueSupplier(() -> computeTranslation())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(circle.fillProperty())
-                        .setEndValueSupplier(() -> determineCircleColor(this.toggleSwitch.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(line.strokeProperty())
-                        .setEndValueSupplier(() -> determineLineColor(this.toggleSwitch.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
-                        .build())
-                .build());
-        timer.setCacheNodes(circle, line);
-        // @formatter:on
-        timer.applyEndValues();
-
-        getSkinnable().selectedProperty().addListener(observable -> 
-        {
-            if (!toggleSwitch.getIsAnimationDisabled())
-            {
-                timer.reverseAndContinue();
-            }
-            else
-            {
-                updateSelectionState();
-            }
-        });
+        createAnimation();
+        createAnimationListeners();
+        this.stateTimeline.applyEndValues();
         
         registerChangeListener(toggleSwitch.selectedColorProperty(), toggleSwitch.selectedColorProperty().getName());
         registerChangeListener(toggleSwitch.unselectedColorProperty(), toggleSwitch.unselectedColorProperty().getName());
@@ -111,25 +75,19 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     protected void handleControlPropertyChanged(String property) 
     {
         super.handleControlPropertyChanged(property);
-        if (toggleSwitch.selectedColorProperty().getName().equals(property)
-                || toggleSwitch.unselectedColorProperty().getName().equals(property)
-                || toggleSwitch.selectedLineColorProperty().getName().equals(property)
-                || toggleSwitch.unselectedLineColorProperty().getName().equals(property)) 
+        if (this.toggleSwitch.selectedColorProperty().getName().equals(property)
+                || this.toggleSwitch.unselectedColorProperty().getName().equals(property)
+                || this.toggleSwitch.selectedLineColorProperty().getName().equals(property)
+                || this.toggleSwitch.unselectedLineColorProperty().getName().equals(property)) 
         {
             updateColors();
         }
-        else if (toggleSwitch.lineWidthProperty().getName().equals(property) 
-                    || toggleSwitch.lineLengthProperty().getName().equals(property)
-                    || toggleSwitch.thumbRadiusProperty().getName().equals(property))
+        else if (this.toggleSwitch.lineWidthProperty().getName().equals(property) 
+                    || this.toggleSwitch.lineLengthProperty().getName().equals(property)
+                    || this.toggleSwitch.thumbRadiusProperty().getName().equals(property))
         {
             updateSizes();
         }
-    }
-    
-    private void updateSelectionState()
-    {
-        circle.setTranslateX(computeTranslation());
-        updateColors();
     }
     
     private double computeTranslation() 
@@ -172,5 +130,43 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         this.circle.setCenterX(-this.toggleSwitch.getThumbRadius());
         this.circle.setRadius(this.toggleSwitch.getThumbRadius());
         this.circlePane.setPadding(new Insets(this.toggleSwitch.getThumbRadius() * 1.5));
+    }
+    
+    private void createAnimation()
+    {
+        // @formatter:off
+        this.stateTimeline = new RtAnimationTimeline(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.circle.translateXProperty())
+                        .setEndValueSupplier(() -> computeTranslation())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.circle.fillProperty())
+                        .setEndValueSupplier(() -> determineCircleColor(this.toggleSwitch.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .setAnimateCondition(() -> !((ToggleSwitch) getSkinnable()).getIsAnimationDisabled())
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.line.strokeProperty())
+                        .setEndValueSupplier(() -> determineLineColor(this.toggleSwitch.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        this.stateTimeline.setCacheNodes(this.circle, this.line);
+        this.stateTimeline.setAnimateCondition(() -> !this.toggleSwitch.getIsAnimationDisabled());
+        // @formatter:on
+    }
+
+    private void createAnimationListeners()
+    {
+        this.toggleSwitch.selectedProperty().addListener(observable -> 
+        {
+            this.stateTimeline.reverseAndContinue();
+        });
     }
 }

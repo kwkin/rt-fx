@@ -23,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.RtLabelFloatControl;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
@@ -53,10 +53,10 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     private Scale focusedLineScale = new Scale(0, 1);
     private Scale promptTextScale = new Scale(1, 1, 0, 0);
     
-    private RtAnimationTimer focusTimer;
-    private RtAnimationTimer normalTimer;
-    private RtAnimationTimer unfocusLabelTimer;
-    private RtAnimationTimer hoverTimer;
+    private RtAnimationTimeline focusTimeline;
+    private RtAnimationTimeline normalTimeline;
+    private RtAnimationTimeline unfocusLabelTimeline;
+    private RtAnimationTimeline hoverTimeline;
 
     private boolean animating = false;
     private double promptTranslateY = 0;
@@ -234,9 +234,9 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         {
             updateLabelFloat(false);
         }
-        else if (unfocusLabelTimer.isRunning())
+        else if (unfocusLabelTimeline.isRunning())
         {
-            this.unfocusLabelTimer.stop();
+            this.unfocusLabelTimeline.stop();
             updateLabelFloat(true);
         }
     }
@@ -260,23 +260,23 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
     {
         if (this.activeStateProperty.getValue())
         {
-            this.normalTimer.stop();
-            this.hoverTimer.stop();
-            this.unfocusLabelTimer.stop();
-            runTimer(this.focusTimer, animate);
+            this.normalTimeline.stop();
+            this.hoverTimeline.stop();
+            this.unfocusLabelTimeline.stop();
+            runTimer(this.focusTimeline, animate);
         }
         else if (this.control.isHover())
         {
-            this.normalTimer.stop();
-            this.focusTimer.stop();
-            this.unfocusLabelTimer.stop();
+            this.normalTimeline.stop();
+            this.focusTimeline.stop();
+            this.unfocusLabelTimeline.stop();
             this.focusedLine.setOpacity(0);
-            runTimer(this.hoverTimer, animate);
+            runTimer(this.hoverTimeline, animate);
         }
         else
         {
-            this.hoverTimer.stop();
-            this.focusTimer.stop();
+            this.hoverTimeline.stop();
+            this.focusTimeline.stop();
             this.focusedLineScale.setX(0);
             this.focusedLine.setOpacity(0);
             if (this.control.isLabelFloat())
@@ -285,10 +285,10 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                 Object text = getControlValue();
                 if (text == null || text.toString().isEmpty())
                 {
-                    runTimer(this.unfocusLabelTimer, animate);
+                    runTimer(this.unfocusLabelTimeline, animate);
                 }
             }
-            runTimer(this.normalTimer, animate);
+            runTimer(this.normalTimeline, animate);
         }
         this.animating = animate;
     }
@@ -311,7 +311,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             {
                 Object text = getControlValue();
                 animateFloatingLabel(!(text == null || text.toString().isEmpty()), animation);
-                runTimer(this.normalTimer, animation);
+                runTimer(this.normalTimeline, animation);
             }
         }
     }
@@ -326,21 +326,21 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
         {
             if (this.promptTextSupplier.get().getTranslateY() != -this.promptTranslateY)
             {
-                this.unfocusLabelTimer.stop();
-                runTimer(this.focusTimer, animation);
+                this.unfocusLabelTimeline.stop();
+                runTimer(this.focusTimeline, animation);
             }
         }
         else
         {
             if (this.promptTextSupplier.get().getTranslateY() != 0)
             {
-                this.focusTimer.stop();
-                runTimer(this.unfocusLabelTimer, animation);
+                this.focusTimeline.stop();
+                runTimer(this.unfocusLabelTimeline, animation);
             }
         }
     }
     
-    private void runTimer(RtAnimationTimer timer, boolean animation)
+    private void runTimer(RtAnimationTimeline timer, boolean animation)
     {
         if (animation && !timer.isRunning())
         {
@@ -367,7 +367,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                 : this.promptTextSupplier.get().translateYProperty();
         
         // @formatter:off
-        this.focusTimer = new RtAnimationTimer(
+        this.focusTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(1))
                     .setKeyValues(
@@ -411,7 +411,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                    .build());
-        this.unfocusLabelTimer = new RtAnimationTimer(
+        this.unfocusLabelTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -431,7 +431,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                     .build());
-        this.normalTimer = new RtAnimationTimer(
+        this.normalTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -441,7 +441,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                     .build());
-        this.hoverTimer = new RtAnimationTimer(
+        this.hoverTimeline = new RtAnimationTimeline(
                 RtKeyFrame.builder()
                     .setDuration(Duration.millis(100))
                     .setKeyValues(
@@ -453,14 +453,14 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                     .build());
         // @formatter:on
         
-        this.focusTimer.setOnFinished(() ->  animating = false);
-        this.unfocusLabelTimer.setOnFinished(() -> animating = false);
-        this.normalTimer.setOnFinished(() -> animating = false);
-        this.hoverTimer.setOnFinished(() -> animating = false);
+        this.focusTimeline.setOnFinished(() ->  animating = false);
+        this.unfocusLabelTimeline.setOnFinished(() -> animating = false);
+        this.normalTimeline.setOnFinished(() -> animating = false);
+        this.hoverTimeline.setOnFinished(() -> animating = false);
         
-        this.focusTimer.setCacheNodes(cachedNodes);
-        this.unfocusLabelTimer.setCacheNodes(cachedNodes);
-        this.normalTimer.setCacheNodes(cachedNodes);
-        this.normalTimer.setCacheNodes(cachedNodes);
+        this.focusTimeline.setCacheNodes(cachedNodes);
+        this.unfocusLabelTimeline.setCacheNodes(cachedNodes);
+        this.normalTimeline.setCacheNodes(cachedNodes);
+        this.normalTimeline.setCacheNodes(cachedNodes);
     }
 }

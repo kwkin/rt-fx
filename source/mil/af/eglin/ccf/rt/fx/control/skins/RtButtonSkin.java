@@ -12,7 +12,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Button;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
@@ -25,50 +25,34 @@ public class RtButtonSkin extends ButtonSkin
     private final Button button;
     private final StackPane stateBox = new StackPane();
 
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline interactionTimeline;
 
     public RtButtonSkin(final Button button)
     {
         super(button);
         this.button = button;
 
-        stateBox.getStyleClass().setAll("state-box");
-        stateBox.setOpacity(0);
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
         updateStateBoxColor();
 
-        createAnimation();
-        button.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            if (oldVal)
-            {
-                timer.skipAndContinue();
-            }
-            else
-            {
-                timer.start();
-            }
-        });
-        button.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            timer.start();
-        });
-        
         updateChildren();
+        createAnimation();
+        createAnimationListeners();
 
         registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
-
     }
 
     @Override
     protected void updateChildren()
     {
         super.updateChildren();
-        if (stateBox != null)
+        if (this.stateBox != null)
         {
             Node text = getSkinnable().lookup(".text");
             int insertIndex = getChildren().indexOf(text);
             insertIndex = insertIndex == -1 ? getChildren().size() - 1 : insertIndex;
-            getChildren().add(insertIndex, stateBox);
+            getChildren().add(insertIndex, this.stateBox);
         }
     }
 
@@ -86,11 +70,11 @@ public class RtButtonSkin extends ButtonSkin
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
         // @formatter:off
-        stateBox.resizeRelocate(
-            button.getLayoutBounds().getMinX(),
-            button.getLayoutBounds().getMinY(),
-            button.getWidth(), 
-            button.getHeight());
+        this.stateBox.resizeRelocate(
+            this.button.getLayoutBounds().getMinX(),
+            this.button.getLayoutBounds().getMinY(),
+            this.button.getWidth(), 
+            this.button.getHeight());
         // @formatter:on
 
         layoutLabelInArea(x, y, w, h);
@@ -104,7 +88,7 @@ public class RtButtonSkin extends ButtonSkin
             case RAISED:
                 button.setPickOnBounds(false);
                 DepthManager.getInstance().setDepth(button, 2);
-                timer = new RtAnimationTimer(
+                this.interactionTimeline = new RtAnimationTimeline(
                     RtKeyFrame.builder()
                         .setDuration(ANIMATION_DURATION)
                         .setKeyValues(
@@ -118,12 +102,11 @@ public class RtButtonSkin extends ButtonSkin
                                 .setEndValueSupplier(() -> determineStateBoxOpacity())
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
-                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build());
                 break;
             default:
-                button.setPickOnBounds(true);
-                timer = new RtAnimationTimer(
+                this.button.setPickOnBounds(true);
+                this.interactionTimeline = new RtAnimationTimeline(
                     RtKeyFrame.builder()
                         .setDuration(ANIMATION_DURATION)
                         .setKeyValues(
@@ -132,11 +115,30 @@ public class RtButtonSkin extends ButtonSkin
                                 .setEndValueSupplier(() -> determineStateBoxOpacity())
                                 .setInterpolator(Interpolator.EASE_OUT)
                                 .build())
-                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build());
                 break;
         }
         // @formatter:on
+        this.interactionTimeline.setAnimateCondition(() -> !this.button.getIsAnimationDisabled());
+    }
+    
+    private void createAnimationListeners()
+    {
+        this.button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (oldVal)
+            {
+                this.interactionTimeline.skipAndContinue();
+            }
+            else
+            {
+                this.interactionTimeline.start();
+            }
+        });
+        this.button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.interactionTimeline.start();
+        });
     }
 
     private double determineStateBoxOpacity()
