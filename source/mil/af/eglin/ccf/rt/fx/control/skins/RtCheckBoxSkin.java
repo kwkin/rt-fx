@@ -239,25 +239,11 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     {
         if (!this.checkBox.getIsAnimationDisabled())
         {
-            if (this.checkBox.isHover())
-            {
-                this.stateTimer.start();
-            }
-            else
-            {
-                this.stateTimer.start();
-            }
+            this.stateTimer.start();
         }
         else
         {
-            if (this.checkBox.isHover())
-            {
-                this.stateTimer.applyEndValues();
-            }
-            else
-            {
-                this.stateTimer.applyEndValues();
-            }
+            this.stateTimer.applyEndValues();
         }
     }
 

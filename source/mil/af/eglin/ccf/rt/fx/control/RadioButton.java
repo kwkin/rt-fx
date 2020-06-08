@@ -9,6 +9,7 @@ import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
@@ -31,11 +32,14 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
     private static final String CSS_CLASS = "rt-radio-button";
     
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_COLOR, this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_COLOR, RadioButton.this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_COLOR, this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNSELECTED_COLOR, RadioButton.this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, RadioButton.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+            StyleableProperties.DISABLE_ANIMATION, RadioButton.this, "disableAnimation", false);
     
     public RadioButton()
     {
@@ -84,6 +88,21 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
     public void setUnselectedColor(Paint color)
     {
         this.unselectedColor.set(color);
+    }
+
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return this.overlayColor.get();
+    }
+
+    public void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -184,6 +203,21 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
                 return control.unselectedColorProperty();
             }
         };
+        private static final CssMetaData<RadioButton, Paint> OVERLAY_COLOR = new CssMetaData<RadioButton, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
+        {
+            @Override
+            public boolean isSettable(RadioButton control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(RadioButton control)
+            {
+                return control.overlayColor;
+            }
+        };
         private static final CssMetaData<RadioButton, Boolean> DISABLE_ANIMATION = new CssMetaData<RadioButton, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -207,6 +241,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtC
             styleables.add(SELECTED_COLOR);
             styleables.add(UNSELECTED_COLOR);
             styleables.add(DISABLE_ANIMATION);
+            styleables.add(OVERLAY_COLOR);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

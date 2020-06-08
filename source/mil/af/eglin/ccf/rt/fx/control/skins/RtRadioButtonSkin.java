@@ -3,6 +3,10 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.RadioButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -19,8 +23,10 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private final Circle radio = new Circle();
     private final Circle dot = new Circle();
     private final StackPane container = new StackPane();
+    private final StackPane stateBox = new StackPane();
 
     private RtAnimationTimer timer;
+    private RtAnimationTimer stateTimer;
 
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
@@ -43,8 +49,12 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         this.dot.setScaleY(0);
         this.dot.setSmooth(true);
 
-        this.container.getChildren().addAll(radio, dot);
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
+        updateStateBoxColor();
+
         this.container.getStyleClass().add("radio-container");
+        this.container.getChildren().addAll(this.radio, this.dot, this.stateBox);
         updateChildren();
 
         // @formatter:off
@@ -73,6 +83,16 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                         .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                 .build());
+        stateTimer = new RtAnimationTimer(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                            RtKeyValue.builder()
+                            .setTarget(this.stateBox.opacityProperty())
+                            .setEndValueSupplier(() -> determineStateBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
         // @formatter:on
         radioButton.selectedProperty().addListener(observable ->
         {
@@ -84,6 +104,14 @@ public class RtRadioButtonSkin extends RadioButtonSkin
             {
                 timer.applyEndValues();
             }
+        });
+        radioButton.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playStateAnimation();
+        });
+        radioButton.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            playStateAnimation();
         });
         timer.applyEndValues();
 
@@ -172,6 +200,18 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                 radioButton.getAlignment().getVpos());
     }
 
+    private void playStateAnimation()
+    {
+        if (!this.radioButton.getIsAnimationDisabled())
+        {
+            this.stateTimer.start();
+        }
+        else
+        {
+            this.stateTimer.applyEndValues();
+        }
+    }
+
     private void removeRadio()
     {
         for (int i = 0; i < getChildren().size(); i++)
@@ -182,5 +222,26 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                 break;
             }
         }
+    }
+    
+    private double determineStateBoxOpacity()
+    {
+        double opacity = 0;
+        if (this.radioButton.isArmed())
+        {
+            opacity = 1;
+        }
+        else if (this.radioButton.isHover())
+        {
+            opacity = 0.6;
+        }
+        return opacity;
+    }
+    
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.radioButton.getBackground() == null ? null : this.radioButton.getBackground().getFills().get(0).getRadii(); 
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.radioButton.getOverlayColor(), radii, insets)));
     }
 }

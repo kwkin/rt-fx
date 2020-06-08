@@ -53,11 +53,11 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
             StyleableProperties.SELECTED_COLOR, CheckBox.this, "selectedColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_COLOR, CheckBox.this, "unselectedColor", DefaultPalette.getInstance().getBaseColor());
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, CheckBox.this, "disableAnimation", false);
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.OVERLAY_COLOR, CheckBox.this, "overlayColor",
             DefaultPalette.getInstance().getBaseColor());
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            StyleableProperties.DISABLE_ANIMATION, CheckBox.this, "disableAnimation", false);
 
     /**
      * {@inheritDoc}
@@ -128,7 +128,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtCompone
 
     public Paint getOverlayColor()
     {
-        return overlayColor.get();
+        return this.overlayColor.get();
     }
 
     public void setOverlayColor(Paint overlayColor)
