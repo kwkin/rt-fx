@@ -42,8 +42,8 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 /**
- * A selection control allowing the user to select one or more options from a
- * list of options.
+ * Combo boxes allow the user to select one or more options from a list of
+ * options.
  * <p>
  * A combo box is typically skinned as a text entry with a drop down button.
  * Selecting the drop down button will open a list of selectable options.

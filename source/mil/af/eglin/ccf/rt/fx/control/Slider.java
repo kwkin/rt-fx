@@ -22,6 +22,15 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtSliderSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+//TODO add range slide (2 dots)
+//TODO make the thumb color the same as the unfilled track color when set to the min value 
+//TODO discuss discrete sliders, bubble, and potentially adding the value inside the thumb
+/**
+ * A slider allow users to make a selection from a range of values.
+ * <p>
+ * A slider displays a continuous or discrete range of values along a track, and
+ * values are selected by dragging a thumb over the track.
+ */
 public class Slider extends javafx.scene.control.Slider implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -29,24 +38,51 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     private static final String USER_AGENT_STYLESHEET = "slider.css";
     private static final String CSS_CLASS = "rt-slider";
 
-
-    // @formatter:off
+    /**
+     * The color of the thumb.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
     private StyleableObjectProperty<Paint> thumbColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.THUMB_COLOR, this, "thumbColor");
+
+    /**
+     * The filled track color specifies the color of the track from the minimum
+     * end of the slider to the thumb.
+     */
     private StyleableObjectProperty<Paint> filledTrackColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.FILLED_TRACK_COLOR, this, "filledTrackColor");
+
+    /**
+     * The unfilled track color specifies the color of the track from the thumb
+     * to the maximum end of the slider.
+     */
     private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
-    // @formatter:on
 
+    /**
+     * Creates a default slider instance.
+     */
     public Slider()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a default slider instance with the specified accent.
+     * 
+     * @param accent The accent type used to change the component's color
+     *            scheme.
+     */
     public Slider(Accent accent)
     {
         super();
@@ -54,12 +90,30 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         initialize();
     }
 
+    /**
+     * Constructs a Slider control with the specified slider min, max and
+     * current value values.
+     * 
+     * @param min Slider minimum value.
+     * @param max Slider maximum value.
+     * @param value Slider current value.
+     */
     public Slider(double min, double max, double value)
     {
         super(min, max, value);
         initialize();
     }
 
+    /**
+     * Constructs a Slider control with the specified slider min, max and
+     * current value values.
+     * 
+     * @param min Slider minimum value.
+     * @param max Slider maximum value.
+     * @param value Slider current value.
+     * @param accent The accent type used to change the component's color
+     *            scheme.
+     */
     public Slider(double min, double max, double value, Accent accent)
     {
         super(min, max, value);
@@ -67,62 +121,62 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         initialize();
     }
 
-    public StyleableObjectProperty<Paint> thumbColorProperty()
+    public final StyleableObjectProperty<Paint> thumbColorProperty()
     {
         return this.thumbColor;
     }
 
-    public Paint getThumbColor()
+    public final Paint getThumbColor()
     {
         return thumbColor.get();
     }
 
-    public void setThumbColor(Paint color)
+    public final void setThumbColor(Paint color)
     {
         this.thumbColor.set(color);
     }
 
-    public StyleableObjectProperty<Paint> filledTrackColorProperty()
+    public final StyleableObjectProperty<Paint> filledTrackColorProperty()
     {
         return this.filledTrackColor;
     }
 
-    public Paint getFilledTrackColor()
+    public final Paint getFilledTrackColor()
     {
         return filledTrackColor.get();
     }
 
-    public void setFilledTrackColor(Paint color)
+    public final void setFilledTrackColor(Paint color)
     {
         this.filledTrackColor.set(color);
     }
 
-    public StyleableObjectProperty<Paint> unfilledTrackColorProperty()
+    public final StyleableObjectProperty<Paint> unfilledTrackColorProperty()
     {
         return this.unfilledTrackColor;
     }
 
-    public Paint getUnfilledTrackColor()
+    public final Paint getUnfilledTrackColor()
     {
         return unfilledTrackColor.get();
     }
 
-    public void setUnfilledTrackColor(Paint color)
+    public final void setUnfilledTrackColor(Paint color)
     {
         this.unfilledTrackColor.set(color);
     }
 
-    public BooleanProperty isAnimationDisabledProperty()
+    public final BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
 
-    public boolean getIsAnimationDisabled()
+    public final boolean getIsAnimationDisabled()
     {
         return isAnimationDisabled.get();
     }
 
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
+    public final void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
         this.isAnimationDisabled.set(isAnimationDisabled);
     }
@@ -158,7 +212,7 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin() 
+    protected Skin<?> createDefaultSkin()
     {
         return new RtSliderSkin(this);
     }
@@ -246,16 +300,8 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
-    /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
@@ -264,6 +310,15 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         return StyleableProperties.CHILD_STYLEABLES;
     }
     
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return getClassCssMetaData();
+    }
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

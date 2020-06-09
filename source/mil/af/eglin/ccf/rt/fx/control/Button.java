@@ -45,19 +45,11 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 // TODO if a logging name is required, consider renaming Button to RtButtton, since we lose the benefit of simply replacing the import statement
 // TODO default button style
 // TODO cancel button style
+// TODO use pseudo classes for styles
+// TODO link button styles in Java doc
 
 /**
  * A simple button control allows the user to take actions with a single press.
- * <p>
- * A button can contain text and/or a graphic. A button can have three styles:
- * <ul>
- * <li>Raised: Appears elevated from the surface. This is typically used for
- * high emphasis actions.</li>
- * <li>Flat: Appears to be built into the surface. This is typically used to be
- * more subtle and bring more attention to other elements.</li>
- * <li>Icon: Appears to be built into the surface. This is similar to the flat
- * button, but puts more emphasis on the icon instead of the button itself.</li>
- * </ul>
  * <p>
  * In general, icon buttons should be created using the {@link IconButton
  * IconButton} class whenever using a
@@ -214,6 +206,16 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
         initialize();
     }
 
+    /**
+     * Gets the style type of the button.
+     * 
+     * @return The style type of the button
+     */
+    public ButtonStyle getButtonStyle()
+    {
+        return this.style;
+    }
+
     public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
@@ -242,16 +244,6 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     public final void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
         this.isAnimationDisabled.set(isAnimationDisabled);
-    }
-
-    /**
-     * Gets the style type of the button.
-     * 
-     * @return The style type of the button
-     */
-    public ButtonStyle getButtonStyle()
-    {
-        return this.style;
     }
 
     /**

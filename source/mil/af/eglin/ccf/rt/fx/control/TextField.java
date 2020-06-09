@@ -42,68 +42,166 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class TextField extends javafx.scene.control.TextField implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
+/**
+ * Text fields allow users to enter and edit text.
+ * <p>
+ * A text field is typically skinned as a rounded box with a bottom border
+ * <p>
+ * A real-time text field can be several pseudostates in addition to the JavaFX
+ * text field pseudo states. Specifically, this class defines
+ * {@link TextField#islabelFloating floating}, {@link TextField#isShowHelperText
+ * helper}, and {@link TextField#isValid error} pseudo states.
+ */
+public class TextField extends javafx.scene.control.TextField
+        implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
-    
+
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
-    
+
     private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
 
-    // @formatter:off
+    /**
+     * Indicates if the current value is valid according to the validator
+     * conditions.
+     */
     private BooleanProperty isValid = new SimpleBooleanProperty(true);
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty() 
+
+    /**
+     * Indicates if the helper text should be shown.
+     * <p>
+     * Helper text is typically a short description conveying additional
+     * guidance about the input field. The helper text appears below the input.
+     */
+    private BooleanProperty isShowHelperText = new SimpleBooleanProperty()
     {
-        @Override 
-        protected void invalidated() 
+        @Override
+        protected void invalidated()
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
         }
     };
+
+    /**
+     * The text to use for the helper description located below the input field.
+     */
     private StringProperty helperText = new SimpleStringProperty();
+
+    /**
+     * The text to use for the error description located below the input field.
+     * The error description will override the helper text when the component is
+     * invalid. When valid, the helper text will be visible.
+     */
     private StringProperty errorText = new SimpleStringProperty();
+
+    /**
+     * A trailing icon adds an icon to the end of the text field. Input text
+     * will be clipped before overlapping with the trailing icon.
+     */
     private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
-    private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
+
+    /**
+     * When enabled, the prompt text will be positioned above the input text.
+     * When disabled, the prompt text will disappear when the input text is
+     * entered.
+     */
+    private StyleableBooleanProperty islabelFloating = new SimpleStyleableBooleanProperty(
             StyleableProperties.LABEL_FLOAT, TextField.this, "disableAnimation", false)
     {
-        @Override 
-        protected void invalidated() 
+        @Override
+        protected void invalidated()
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
         }
     };
+
+    /**
+     * The unfocus color specifies the accent colors used when the component is
+     * unfocused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor",
+            DefaultPalette.getInstance().getBaseColor());
+
+    /**
+     * The focus color specifies the accent colors used when the component is
+     * focused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor",
+            DefaultPalette.getInstance().getAccentColor());
+
+    /**
+     * The overlay color specifies the background color used when combobox is
+     * hovered over or focused
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
+
+    /**
+     * Sets the padding between the text field right border and the start of the
+     * trailing icon.
+     */
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 10.0);
+
+    /**
+     * Sets color of the trailing icon.
+     * <p>
+     * When unspecified, the trailing icon color will be specified by the color
+     * used when defining the icon.
+     */
     private StyleableObjectProperty<Paint> trailingIconColor = new SimpleStyleableObjectProperty<Paint>(
-            StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor", DefaultPalette.getInstance().getLightBaseColor());
+            StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor",
+            DefaultPalette.getInstance().getLightBaseColor());
+
+    // TODO remove this
     private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
             StyleableProperties.HELPER_TEXT_HEIGHT, TextField.this, "helperTextHeight", 16.0);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
-    // @formatter:on
 
+    /**
+     * Create a text field with an empty text input
+     */
     public TextField()
     {
         super();
         initialize();
     }
 
+    /**
+     * Create a text field with initial text content
+     */
     public TextField(String text)
     {
         super(text);
         initialize();
     }
 
+    /**
+     * Create a text field with the specified accent
+     */
     public TextField(Accent accent)
     {
         super();
@@ -111,6 +209,9 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
         initialize();
     }
 
+    /**
+     * Create a text field with initial text content and accent
+     */
     public TextField(String text, Accent accent)
     {
         super(text);
@@ -124,7 +225,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     @Override
     public StyleableBooleanProperty labelFloatProperty()
     {
-        return this.labelFloating;
+        return this.islabelFloating;
     }
 
     /**
@@ -133,7 +234,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     @Override
     public boolean isLabelFloat()
     {
-        return labelFloating.get();
+        return islabelFloating.get();
     }
 
     /**
@@ -142,7 +243,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     @Override
     public void setLabelFloat(final boolean labelFloat)
     {
-        labelFloating.set(labelFloat);
+        islabelFloating.set(labelFloat);
     }
 
     /**
@@ -316,7 +417,6 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
         this.helperText.set(helperText);
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -326,7 +426,6 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
         return this.isShowHelperText;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -335,7 +434,6 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         return this.isShowHelperText.get();
     }
-
 
     /**
      * {@inheritDoc}
@@ -397,7 +495,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         this.validationHandler.getValidateCondition();
     }
-    
+
     public boolean isHelperTextVisible()
     {
         return isShowHelperText.get() || getValidators().size() > 0;
@@ -438,7 +536,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         return this.errorText.get();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -456,7 +554,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         return CSS_CLASS;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -494,8 +592,8 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
-        
-        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.labelFloating.get());
+
+        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.islabelFloating.get());
         pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
         this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<String>>()
         {
@@ -524,20 +622,20 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
                 return control.overlayColor;
             }
         };
-        
+
         private static final CssMetaData<TextField, Boolean> LABEL_FLOAT = new CssMetaData<TextField, Boolean>(
                 "-rt-label-float", BooleanConverter.getInstance(), false)
         {
             @Override
             public boolean isSettable(TextField control)
             {
-                return control.labelFloating == null || !control.labelFloating.isBound();
+                return control.islabelFloating == null || !control.islabelFloating.isBound();
             }
 
             @Override
             public StyleableBooleanProperty getStyleableProperty(TextField control)
             {
-                return control.labelFloating;
+                return control.islabelFloating;
             }
         };
         private static final CssMetaData<TextField, Paint> UNFOCUS_COLOR = new CssMetaData<TextField, Paint>(
@@ -587,7 +685,8 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
             }
         };
         private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = new CssMetaData<TextField, Paint>(
-                "-rt-trailing-icon-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getLightBaseColor())
+                "-rt-trailing-icon-color", PaintConverter.getInstance(),
+                DefaultPalette.getInstance().getLightBaseColor())
         {
 
             @Override
@@ -663,7 +762,7 @@ public class TextField extends javafx.scene.control.TextField implements RtStyle
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

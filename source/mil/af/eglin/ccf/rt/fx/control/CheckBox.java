@@ -76,7 +76,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
      * The overlay color specifies the background color used when hovering and
      * arming the button.
      * <p>
-     * The color is added on top of the button to allow the base checkbox color
+     * The color is added on top of the button to allow the base component color
      * to be visible when a semi-opaque overlay color is provided.
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
