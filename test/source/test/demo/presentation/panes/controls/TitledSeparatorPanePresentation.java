@@ -8,7 +8,7 @@ import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -40,11 +40,11 @@ public class TitledSeparatorPanePresentation extends SizedTitledCard
         
         TitledSeparator primaryDarkTitledSeparator = new TitledSeparator("Titled", Accent.PRIMARY_DARK);
         TitledSeparator secondaryDarkTitledSeparator = new TitledSeparator("", Accent.SECONDARY_DARK);
-        SvgGlyph iconNoTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
+        SvgIcon iconNoTitle = new SvgIcon(SvgFile.BELL, IconSize.SIZE_16);
         secondaryDarkTitledSeparator.setGraphic(iconNoTitle);
         secondaryDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
         TitledSeparator baseDarkTitledSeparator = new TitledSeparator("With Icon", Accent.BASE);
-        SvgGlyph iconTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
+        SvgIcon iconTitle = new SvgIcon(SvgFile.BELL, IconSize.SIZE_16);
         baseDarkTitledSeparator.setGraphic(iconTitle);
         baseDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
 

@@ -210,7 +210,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public ReadOnlyBooleanProperty isValidProperty()
+    public final ReadOnlyBooleanProperty isValidProperty()
     {
         return this.isValid;
     }
@@ -219,7 +219,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean isValid()
+    public final boolean isValid()
     {
         return this.isValid.get();
     }
@@ -228,7 +228,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean validate()
+    public final boolean validate()
     {
         this.isValid.set(this.validationHandler.validate(getValue()));
         return isValid();
@@ -253,7 +253,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public StringProperty errorMessageProperty()
+    public final StringProperty errorMessageProperty()
     {
         return this.errorText;
     }
@@ -262,7 +262,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setErrorMessage(String message)
+    public final void setErrorMessage(String message)
     {
         this.errorText.set(message);
     }
@@ -271,7 +271,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public String getErrorMessage()
+    public final String getErrorMessage()
     {
         return this.errorText.get();
     }
@@ -280,7 +280,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public BooleanProperty isShowHelperTextProperty()
+    public final BooleanProperty isShowHelperTextProperty()
     {
         return this.isShowHelperText;
     }
@@ -289,7 +289,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean getIsShowHelperText()
+    public final boolean getIsShowHelperText()
     {
         return this.isShowHelperText.get();
     }
@@ -298,12 +298,12 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setIsShowHelperText(boolean isShowHelperText)
+    public final void setIsShowHelperText(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
     }
 
-    public boolean isHelperTextVisible()
+    public final boolean isHelperTextVisible()
     {
         return isShowHelperText.get() || getValidators().size() > 0;
     }
@@ -312,7 +312,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public StringProperty helperTextProperty()
+    public final StringProperty helperTextProperty()
     {
         return this.helperText;
     }
@@ -321,7 +321,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public String getHelperText()
+    public final String getHelperText()
     {
         return this.helperText.get();
     }
@@ -330,7 +330,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setHelperText(String helperText)
+    public final void setHelperText(String helperText)
     {
         this.helperText.set(helperText);
     }
@@ -339,7 +339,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public StyleableBooleanProperty labelFloatProperty()
+    public final StyleableBooleanProperty labelFloatProperty()
     {
         return this.isLabelFloating;
     }
@@ -348,7 +348,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public boolean isLabelFloat()
+    public final boolean isLabelFloat()
     {
         return isLabelFloating.get();
     }
@@ -357,7 +357,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setLabelFloat(final boolean labelFloat)
+    public final void setLabelFloat(final boolean labelFloat)
     {
         isLabelFloating.set(labelFloat);
     }
@@ -366,7 +366,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> focusColorProperty()
+    public final StyleableObjectProperty<Paint> focusColorProperty()
     {
         return this.focusColor;
     }
@@ -375,7 +375,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public Paint getFocusColor()
+    public final Paint getFocusColor()
     {
         return this.focusColor.get();
     }
@@ -384,7 +384,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setFocusColor(Paint color)
+    public final void setFocusColor(Paint color)
     {
         this.focusColor.set(color);
     }
@@ -393,7 +393,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public StyleableObjectProperty<Paint> unfocusColorProperty()
+    public final StyleableObjectProperty<Paint> unfocusColorProperty()
     {
         return this.unfocusColor;
     }
@@ -402,7 +402,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public Paint getUnfocusColor()
+    public final Paint getUnfocusColor()
     {
         return unfocusColor.get();
     }
@@ -411,52 +411,52 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public void setUnfocusColor(Paint color)
+    public final void setUnfocusColor(Paint color)
     {
         this.unfocusColor.set(color);
     }
 
-    public ObjectProperty<Paint> getOverlayColorProperty()
+    public final ObjectProperty<Paint> getOverlayColorProperty()
     {
         return this.overlayColor;
     }
 
-    public Paint getOverlayColor()
+    public final Paint getOverlayColor()
     {
         return overlayColor.get();
     }
 
-    public void setOverlayColor(Paint overlayColor)
+    public final void setOverlayColor(Paint overlayColor)
     {
         this.overlayColor.set(overlayColor);
     }
 
-    public DoubleProperty helperTextHeightProperty()
+    public final DoubleProperty helperTextHeightProperty()
     {
         return this.helperTextHeight;
     }
 
-    public double getHelperTextHeight()
+    public final double getHelperTextHeight()
     {
         return this.helperTextHeight.get();
     }
 
-    public void setHelperTextHeight(double helperTextHeight)
+    public final void setHelperTextHeight(double helperTextHeight)
     {
         this.helperTextHeight.set(helperTextHeight);
     }
 
-    public StyleableBooleanProperty disableAnimationProperty()
+    public final StyleableBooleanProperty disableAnimationProperty()
     {
         return this.isAnimationDisabled;
     }
 
-    public Boolean isDisableAnimation()
+    public final Boolean isDisableAnimation()
     {
         return this.isAnimationDisabled.get();
     }
 
-    public void setDisableAnimation(Boolean disabled)
+    public final void setDisableAnimation(Boolean disabled)
     {
         this.isAnimationDisabled.set(disabled);
     }

@@ -9,7 +9,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.RequiredFieldValidator;
 import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -45,20 +45,20 @@ public class TextFieldPanePresentation extends SizedTitledCard
         floatingTextField.setText("Input text");
         floatingTextField.setLabelFloat(true);
 
-        SvgGlyph cog = new SvgGlyph(SvgFile.COG, IconSize.SIZE_24);
+        SvgIcon cog = new SvgIcon(SvgFile.COG, IconSize.SIZE_24);
         TextField trailingIconTextField = new TextField(Accent.PRIMARY_DARK);
         trailingIconTextField.setPromptText("Floating and Icon");
         trailingIconTextField.setLabelFloat(true);
         trailingIconTextField.setTrailingGlyph(cog);
 
-        SvgGlyph folder = new SvgGlyph(SvgFile.FOLDER, IconSize.SIZE_24);
+        SvgIcon folder = new SvgIcon(SvgFile.FOLDER, IconSize.SIZE_24);
         IconButton folderButton = new IconButton(folder);
         TextField trailingButtonTextField = new TextField(Accent.SECONDARY_LIGHT);
         trailingButtonTextField.setPromptText("Button Icon");
         trailingButtonTextField.setTrailingGlyph(folderButton);
 
-        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_24);
-        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_24);
+        SvgIcon eyeOn = new SvgIcon(SvgFile.EYE, IconSize.SIZE_24);
+        SvgIcon eyeOff = new SvgIcon(SvgFile.EYE_OUTLINE, IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
         TextField trailingToggleTextField = new TextField(Accent.SECONDARY_MID);
         trailingToggleTextField.setPromptText("Toggle Button Icon");
@@ -69,7 +69,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         helperTextField.setIsShowHelperText(true);
         helperTextField.setHelperText("Helper Text");
         
-        SvgGlyph bell = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_24);
+        SvgIcon bell = new SvgIcon(SvgFile.BELL, IconSize.SIZE_24);
         TextField allTextField = new TextField(Accent.SECONDARY_MID);
         allTextField.setPromptText("Label");
         allTextField.setLabelFloat(true);

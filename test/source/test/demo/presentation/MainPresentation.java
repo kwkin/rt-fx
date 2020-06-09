@@ -10,7 +10,7 @@ import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
@@ -57,8 +57,8 @@ public class MainPresentation extends BorderPane
     {
         JFXToolbar toolBar = new JFXToolbar();
 
-        SvgGlyph arrowRight = new SvgGlyph(SvgFile.ARROW_RIGHT, Color.WHITE, IconSize.SIZE_16);
-        SvgGlyph arrowLeft = new SvgGlyph(SvgFile.ARROW_LEFT, Color.WHITE, IconSize.SIZE_16);
+        SvgIcon arrowRight = new SvgIcon(SvgFile.ARROW_RIGHT, Color.WHITE, IconSize.SIZE_16);
+        SvgIcon arrowLeft = new SvgIcon(SvgFile.ARROW_LEFT, Color.WHITE, IconSize.SIZE_16);
         this.toggleButton = new IconToggleButton(arrowLeft, arrowRight);
         this.titled = new Label("Components");
         Label themeLabel = new Label("Theme:");

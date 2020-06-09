@@ -2,7 +2,7 @@ package test.demo.presentation.panes.layouts;
 
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import test.demo.control.DescriptionPane;
@@ -33,7 +33,7 @@ public class FlowPanePresentation extends SizedTitledCard
         {
             for (int columnIndex = 0; columnIndex < columns; columnIndex++)
             {
-                SvgGlyph template = new SvgGlyph(SvgFile.SQUARE, IconSize.SIZE_32);
+                SvgIcon template = new SvgIcon(SvgFile.SQUARE, IconSize.SIZE_32);
                 iconButtonPane.getChildren().add(template);
             }
         }

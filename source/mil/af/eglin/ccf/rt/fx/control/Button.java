@@ -49,13 +49,24 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 /**
  * A simple button control allows the user to take actions with a single press.
  * <p>
- * A button can contain text and/or a graphic. A button can have two styles:
+ * A button can contain text and/or a graphic. A button can have three styles:
  * <ul>
  * <li>Raised: Appears elevated from the surface. This is typically used for
  * high emphasis actions.</li>
  * <li>Flat: Appears to be built into the surface. This is typically used to be
  * more subtle and bring more attention to other elements.</li>
+ * <li>Icon: Appears to be built into the surface. This is similar to the flat
+ * button, but puts more emphasis on the icon instead of the button itself.</li>
  * </ul>
+ * <p>
+ * In general, icon buttons should be created using the {@link IconButton
+ * IconButton} class whenever using a
+ * {@link RtIcon RtIcon} as the graphic. The
+ * {@link IconButton IconButton} class provides additional API for styling and
+ * using the icon inside the button. This class still allows the Icon type in
+ * case a generic node wants to be used instead of {@link RtIcon RtIcon}.
+ * 
+ * @see IconButton
  */
 public class Button extends javafx.scene.control.Button implements RtStyleableComponent
 {

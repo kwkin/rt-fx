@@ -5,14 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.css.CssMetaData;
-import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
@@ -24,47 +21,75 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+// TODO rename all instances of glyph to icon
+
+/**
+ * A simple button control allows the user to take actions with a single press.
+ * <p>
+ * An icon button contains an icon with an optional text string. Icon buttons
+ * appear to be build into the surface.
+ * <p>
+ * The icon button is similar to the {@link Button Button} class, but contains
+ * additional API for styling and using the icon inside the button.
+ * 
+ * @see Button
+ */
 public class IconButton extends Button implements RtGlyph
 {
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE;
-    protected SvgGlyph icon;
+    protected SvgIcon icon;
 
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
+    /**
+     * The color of the glyph when the button is armed.
+     * <p>
+     * When not armed, the glyph will retain the color speci
+     */
     private StyleableObjectProperty<Paint> selectedGlyphFill = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill",
             DefaultPalette.getInstance().getAccentColor());
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
 
-    public IconButton(SvgGlyph icon)
+    // TODO change SvgGlyph to use RtGlyph. Change curent solution for RtGlyph
+    // to RtTextFieldIcon
+    /**
+     * Creates an icon button with the specified icon as its label.
+     * 
+     * @param icon The icon for its label
+     */
+    public IconButton(SvgIcon icon)
     {
         super(ButtonStyle.ICON);
         this.icon = icon;
         initialize();
     }
 
-    public IconButton(SvgGlyph icon, String text)
+    /**
+     * Creates an icon button with the specified icon and text as its label.
+     * 
+     * @param icon The icon for its label
+     * @param text The text string for its label
+     */
+    public IconButton(SvgIcon icon, String text)
     {
         super(text, ButtonStyle.ICON);
         this.icon = icon;
         initialize();
     }
 
-    public IconButton(SvgGlyph icon, ContentDisplay display)
-    {
-        super(ButtonStyle.ICON);
-        this.icon = icon;
-        setContentDisplay(display);
-        initialize();
-    }
-
-    public IconButton(SvgGlyph icon, String text, ContentDisplay display)
+    /**
+     * Creates an icon button with the specified icon and text as its label.
+     * 
+     * @param icon The icon for its label
+     * @param text The text string for its label
+     * @param display The position of the text relative to the icon
+     */
+    public IconButton(SvgIcon icon, String text, ContentDisplay display)
     {
         super(text, ButtonStyle.ICON);
         this.icon = icon;
@@ -72,14 +97,24 @@ public class IconButton extends Button implements RtGlyph
         initialize();
     }
 
-    public SvgGlyph getIcon()
+    public SvgIcon getIcon()
     {
         return this.icon;
     }
 
-    public StyleableObjectProperty<Paint> glyphFillProperty()
+    public final StyleableObjectProperty<Paint> selectedGlyphFillProperty()
     {
         return this.selectedGlyphFill;
+    }
+
+    public final void setSelectedGlyphFill(Paint fill)
+    {
+        this.selectedGlyphFill.set(fill);
+    }
+
+    public final Paint getSelectedGlyphFill()
+    {
+        return this.selectedGlyphFill.get();
     }
 
     public boolean isGlyphColorManaged()
@@ -90,16 +125,6 @@ public class IconButton extends Button implements RtGlyph
     public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
     {
         this.icon.setIsGlyphColorManaged(isGlyphFillManaged);
-    }
-
-    public void setSelectedGlyphFill(Paint fill)
-    {
-        this.selectedGlyphFill.set(fill);
-    }
-
-    public Paint getSelectedGlyphFill()
-    {
-        return this.selectedGlyphFill.get();
     }
 
     @Override
@@ -124,12 +149,6 @@ public class IconButton extends Button implements RtGlyph
     public Node getGlyph()
     {
         return this;
-    }
-
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
     }
 
     /**
@@ -186,41 +205,34 @@ public class IconButton extends Button implements RtGlyph
             }
         };
 
-        private static final CssMetaData<IconButton, Boolean> DISABLE_ANIMATION = new CssMetaData<IconButton, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(IconButton control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(IconButton control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
 
         static
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(Button.getClassCssMetaData());
             styleables.add(SELECTED_ICON_COLOR);
-            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
 
     /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return getClassCssMetaData();
     }
 
     static

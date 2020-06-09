@@ -35,13 +35,6 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         initialize();
     }
     
-    public Label(String text, Accent accent)
-    {
-        super(text);
-        this.accent = accent;
-        initialize();
-    }
-    
     public Label(String text, LabelStyle style, Accent accent)
     {
         super(text);
@@ -60,13 +53,6 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     {
         super(text, graphic);
         this.style = style;
-        initialize();
-    }
-    
-    public Label(String text, Node graphic, Accent accent)
-    {
-        super(text, graphic);
-        this.accent = accent;
         initialize();
     }
     

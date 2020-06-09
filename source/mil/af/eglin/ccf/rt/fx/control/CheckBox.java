@@ -138,62 +138,62 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
         initialize();
     }
 
-    public ObjectProperty<Paint> selectedColorProperty()
+    public final ObjectProperty<Paint> selectedColorProperty()
     {
         return this.selectedColor;
     }
 
-    public Paint getSelectedColor()
+    public final Paint getSelectedColor()
     {
         return selectedColor.get();
     }
 
-    public void setSelectedColor(Paint color)
+    public final void setSelectedColor(Paint color)
     {
         this.selectedColor.set(color);
     }
 
-    public ObjectProperty<Paint> unselectedColorProperty()
+    public final ObjectProperty<Paint> unselectedColorProperty()
     {
         return this.unselectedColor;
     }
 
-    public Paint getUnselectedColor()
+    public final Paint getUnselectedColor()
     {
         return unselectedColor.get();
     }
 
-    public void setUnselectedColor(Paint color)
+    public final void setUnselectedColor(Paint color)
     {
         this.unselectedColor.set(color);
     }
 
-    public ObjectProperty<Paint> getOverlayColorProperty()
+    public final ObjectProperty<Paint> getOverlayColorProperty()
     {
         return this.overlayColor;
     }
 
-    public Paint getOverlayColor()
+    public final Paint getOverlayColor()
     {
         return this.overlayColor.get();
     }
 
-    public void setOverlayColor(Paint overlayColor)
+    public final void setOverlayColor(Paint overlayColor)
     {
         this.overlayColor.set(overlayColor);
     }
 
-    public BooleanProperty isAnimationDisabledProperty()
+    public final BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
 
-    public boolean getIsAnimationDisabled()
+    public final boolean getIsAnimationDisabled()
     {
         return isAnimationDisabled.get();
     }
 
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
+    public final void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
         this.isAnimationDisabled.set(isAnimationDisabled);
     }

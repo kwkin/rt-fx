@@ -2,7 +2,7 @@ package test.demo.presentation.panes.layouts;
 
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -30,7 +30,7 @@ public class VBoxPresentation extends SizedTitledCard
         int rows = 5;
         for (int rowIndex = 0; rowIndex < rows; rowIndex++)
         {
-            SvgGlyph template = new SvgGlyph(SvgFile.SQUARE, IconSize.SIZE_32);
+            SvgIcon template = new SvgIcon(SvgFile.SQUARE, IconSize.SIZE_32);
             pane.getChildren().add(template);
         }
         descriptionPane.setContent(pane);
