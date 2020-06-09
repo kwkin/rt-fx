@@ -6,7 +6,7 @@ import javafx.scene.control.Tab;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class TabPane extends javafx.scene.control.TabPane implements RtComponent
+public class TabPane extends javafx.scene.control.TabPane implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -55,15 +55,6 @@ public class TabPane extends javafx.scene.control.TabPane implements RtComponent
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

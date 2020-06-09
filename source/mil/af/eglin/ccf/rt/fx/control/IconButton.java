@@ -8,7 +8,6 @@ import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
@@ -76,21 +75,6 @@ public class IconButton extends Button implements RtGlyph
     public SvgGlyph getIcon()
     {
         return this.icon;
-    }
-
-    public BooleanProperty isAnimationDisabledProperty()
-    {
-        return this.isAnimationDisabled;
-    }
-
-    public boolean getIsAnimationDisabled()
-    {
-        return isAnimationDisabled.get();
-    }
-
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
-    {
-        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     public StyleableObjectProperty<Paint> glyphFillProperty()

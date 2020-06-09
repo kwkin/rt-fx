@@ -7,7 +7,7 @@ import com.sun.javafx.css.StyleManager;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class DatePicker extends javafx.scene.control.DatePicker implements RtComponent
+public class DatePicker extends javafx.scene.control.DatePicker implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
     
@@ -56,15 +56,6 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtCom
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

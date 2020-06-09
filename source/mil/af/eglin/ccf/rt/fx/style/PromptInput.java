@@ -263,7 +263,10 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             this.normalTimeline.stop();
             this.hoverTimeline.stop();
             this.unfocusLabelTimeline.stop();
-            runTimer(this.focusTimeline, animate);
+            if (this.control.isLabelFloat())
+            {
+                runTimer(this.focusTimeline, animate);
+            }
         }
         else if (this.control.isHover())
         {

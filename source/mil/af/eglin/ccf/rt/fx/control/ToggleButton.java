@@ -20,7 +20,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ToggleButton extends javafx.scene.control.ToggleButton implements RtComponent
+public class ToggleButton extends javafx.scene.control.ToggleButton implements RtStyleableComponent
 {
     protected ToggleButtonStyle style = ToggleButtonStyle.RAISED;
     protected Accent accent = Accent.PRIMARY_MID;
@@ -106,15 +106,6 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

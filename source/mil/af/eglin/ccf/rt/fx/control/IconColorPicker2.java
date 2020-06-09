@@ -11,7 +11,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO combine with other icon color picker
 // TODO add feature to change the icon size
-public class IconColorPicker2 extends javafx.scene.control.ColorPicker implements RtComponent
+public class IconColorPicker2 extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
     protected ColorPickerStyle style = ColorPickerStyle.ICON2;
     protected Accent accent = Accent.PRIMARY_MID;
@@ -60,15 +60,6 @@ public class IconColorPicker2 extends javafx.scene.control.ColorPicker implement
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

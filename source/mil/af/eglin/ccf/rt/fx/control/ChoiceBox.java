@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtComponent 
+public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtStyleableComponent 
 {
     protected Accent accent = Accent.PRIMARY_MID;
     
@@ -55,15 +55,6 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

@@ -9,7 +9,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class IconColorPicker extends javafx.scene.control.ColorPicker implements RtComponent
+public class IconColorPicker extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
     protected ColorPickerStyle style = ColorPickerStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;
@@ -50,15 +50,6 @@ public class IconColorPicker extends javafx.scene.control.ColorPicker implements
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

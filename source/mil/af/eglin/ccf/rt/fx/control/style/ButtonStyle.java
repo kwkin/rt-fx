@@ -1,5 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+// TOOD remove icon enum
 public enum ButtonStyle
 {
     FLAT("flat"),

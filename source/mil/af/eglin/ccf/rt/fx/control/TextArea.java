@@ -40,7 +40,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class TextArea extends javafx.scene.control.TextArea implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
+public class TextArea extends javafx.scene.control.TextArea implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -250,15 +250,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

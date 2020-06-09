@@ -18,6 +18,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
+/**
+ * The component skin for action and icon buttons
+ */
 public class RtButtonSkin extends ButtonSkin
 {
     private final static Duration ANIMATION_DURATION = Duration.millis(200);
@@ -40,7 +43,7 @@ public class RtButtonSkin extends ButtonSkin
         createAnimation();
         createAnimationListeners();
 
-        registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
+        registerChangeListener(button.overlayColorProperty(), button.overlayColorProperty().getName());
     }
 
     @Override
@@ -60,7 +63,7 @@ public class RtButtonSkin extends ButtonSkin
     protected void handleControlPropertyChanged(String property)
     {
         super.handleControlPropertyChanged(property);
-        if (button.getOverlayColorProperty().getName().equals(property))
+        if (button.overlayColorProperty().getName().equals(property))
         {
             updateStateBoxColor();
         }

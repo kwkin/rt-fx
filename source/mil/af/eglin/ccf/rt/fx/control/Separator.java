@@ -6,7 +6,7 @@ import javafx.geometry.Orientation;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class Separator extends javafx.scene.control.Separator implements RtComponent
+public class Separator extends javafx.scene.control.Separator implements RtStyleableComponent
 {
     protected Accent accent = Accent.BASE;
     
@@ -55,15 +55,6 @@ public class Separator extends javafx.scene.control.Separator implements RtCompo
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

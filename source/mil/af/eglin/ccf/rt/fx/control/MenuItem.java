@@ -3,7 +3,7 @@ package mil.af.eglin.ccf.rt.fx.control;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 
-public class MenuItem extends javafx.scene.control.MenuItem implements RtComponent
+public class MenuItem extends javafx.scene.control.MenuItem implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
     
@@ -56,15 +56,6 @@ public class MenuItem extends javafx.scene.control.MenuItem implements RtCompone
     public String getRtStyleCssName()
     {
         return DEFAULT_STYLE_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
     
     private void initialize()

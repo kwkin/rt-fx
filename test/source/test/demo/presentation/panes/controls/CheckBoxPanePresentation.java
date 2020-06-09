@@ -36,7 +36,6 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         CheckBox primaryLightCheckBox = new CheckBox(Accent.PRIMARY_LIGHT);
         primaryLightCheckBox.setSelected(true);
         CheckBox primaryMidCheckBox = new CheckBox("Two State", Accent.PRIMARY_MID);
-        primaryLightCheckBox.setSelected(false);
         CheckBox primaryDarkCheckBox = new CheckBox("Three State", Accent.PRIMARY_DARK);
         primaryDarkCheckBox.setAllowIndeterminate(true);
         primaryDarkCheckBox.setIndeterminate(true);
@@ -45,12 +44,12 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         iconButtonPane.add(primaryDarkCheckBox, 2, 0);
         
         CheckBox secondaryLightCheckBox = new CheckBox(Accent.SECONDARY_LIGHT);
-        secondaryLightCheckBox.setSelected(true);
+        secondaryLightCheckBox.setSelected(false);
         CheckBox secondaryMidCheckBox = new CheckBox("Two State", Accent.SECONDARY_MID);
-        secondaryMidCheckBox.setSelected(false);
+        secondaryMidCheckBox.setSelected(true);
         CheckBox secondaryDarkCheckBox = new CheckBox("Three State", Accent.SECONDARY_DARK);
+        secondaryDarkCheckBox.setSelected(true);
         secondaryDarkCheckBox.setAllowIndeterminate(true);
-        secondaryDarkCheckBox.setIndeterminate(true);
         iconButtonPane.add(secondaryLightCheckBox, 0, 1);
         iconButtonPane.add(secondaryMidCheckBox, 1, 1);
         iconButtonPane.add(secondaryDarkCheckBox, 2, 1);

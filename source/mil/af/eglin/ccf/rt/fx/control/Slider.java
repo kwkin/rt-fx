@@ -22,7 +22,7 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtSliderSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class Slider extends javafx.scene.control.Slider implements RtComponent
+public class Slider extends javafx.scene.control.Slider implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -143,15 +143,6 @@ public class Slider extends javafx.scene.control.Slider implements RtComponent
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

@@ -33,7 +33,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
         ObservableValue<Boolean> toggleFlag = this.comboBox.isEditable() ? this.comboBox.focusedProperty()
                 : this.comboBox.showingProperty();
-        input = new PromptInput<>(comboBox, comboBox.valueProperty(), comboBox.promptTextFillProperty(),
+        input = new PromptInput<>(comboBox, comboBox.valueProperty(), comboBox.unfocusColorProperty(),
                 comboBox.promptTextProperty(), () -> promptText, toggleFlag);
 
         input.init(() -> createPromptText());

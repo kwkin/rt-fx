@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class Label extends javafx.scene.control.Label implements RtComponent
+public class Label extends javafx.scene.control.Label implements RtStyleableComponent
 {
     protected LabelStyle style = LabelStyle.NORMAL;
     protected Accent accent = Accent.BASE;
@@ -99,15 +99,6 @@ public class Label extends javafx.scene.control.Label implements RtComponent
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**

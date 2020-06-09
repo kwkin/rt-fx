@@ -6,7 +6,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TextStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class Text extends javafx.scene.text.Text implements RtComponent
+public class Text extends javafx.scene.text.Text implements RtStyleableComponent
 {
     private static final String USER_AGENT_STYLESHEET = "text.css";
     
@@ -93,15 +93,6 @@ public class Text extends javafx.scene.text.Text implements RtComponent
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
     
     private void initialize()

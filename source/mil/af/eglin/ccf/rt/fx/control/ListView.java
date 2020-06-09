@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ListView<T> extends javafx.scene.control.ListView<T> implements RtComponent
+public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
     // TODO change to pseudoclass
     protected ListViewStyle style = ListViewStyle.PLAIN;
@@ -87,15 +87,6 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtC
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
     }
 
     /**
