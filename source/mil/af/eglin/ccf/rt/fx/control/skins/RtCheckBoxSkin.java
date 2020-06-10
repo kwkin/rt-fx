@@ -74,6 +74,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         
         this.boxAndMarks.getStyleClass().setAll("box-marks");
         this.boxAndMarks.getChildren().addAll(this.box, this.coloredBox, this.stateBox);
+        this.checkBox.setGraphic(this.boxAndMarks);
         
         updateChildren();
         createAnimation();
@@ -82,20 +83,9 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             this.selectedTimeline.applyEndValues();
         }
-
         registerChangeListener(checkBox.selectedColorProperty(), checkBox.selectedColorProperty().getName());
         registerChangeListener(checkBox.unselectedColorProperty(), checkBox.unselectedColorProperty().getName());
         registerChangeListener(checkBox.getOverlayColorProperty(), checkBox.getOverlayColorProperty().getName());
-    }
-
-    @Override
-    protected void updateChildren()
-    {
-        super.updateChildren();
-        if (this.boxAndMarks != null)
-        {
-            getChildren().add(this.boxAndMarks);
-        }
     }
 
     @Override
@@ -114,56 +104,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
         {
             updateStateBoxColor();
         }
-    }
-
-    @Override
-    protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset,
-            double leftInset)
-    {
-        return super.computeMinWidth(height, topInset, rightInset, bottomInset, leftInset) + snapSize(boxAndMarks.minWidth(-1));
-    }
-
-    @Override
-    protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset,
-            double leftInset)
-    {
-        return Math.max(super.computeMinHeight(width - boxAndMarks.minWidth(-1), topInset, rightInset, bottomInset, leftInset),
-                topInset + boxAndMarks.minHeight(-1) + bottomInset);
-    }
-
-    @Override
-    protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset,
-            double leftInset)
-    {
-        return super.computePrefWidth(height, topInset, rightInset, bottomInset, leftInset)
-                + snapSize(boxAndMarks.prefWidth(-1));
-    }
-
-    @Override
-    protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset,
-            double leftInset)
-    {
-        double labelHeight = super.computePrefHeight(width - boxAndMarks.prefWidth(-1), topInset, rightInset, bottomInset, leftInset);
-        double boxHeight = topInset + boxAndMarks.prefHeight(-1) + bottomInset;
-        return Math.max(labelHeight, boxHeight);
-    }
-
-    @Override
-    protected void layoutChildren(final double x, final double y, final double w, final double h)
-    {
-        final double boxWidth = snapSize(boxAndMarks.prefWidth(-1));
-        final double boxHeight = snapSize(boxAndMarks.prefHeight(-1));
-        final double computeWidth = Math.max(checkBox.prefWidth(-1), checkBox.minWidth(-1));
-        final double labelWidth = Math.min(computeWidth - boxWidth, w - snapSize(boxWidth));
-        final double labelHeight = Math.min(checkBox.prefHeight(labelWidth), h);
-        final double maxHeight = Math.max(boxHeight, labelHeight);
-        final double xOffset = Utils.computeXOffset(w, labelWidth + boxWidth, checkBox.getAlignment().getHpos()) + x;
-        final double yOffset = Utils.computeYOffset(checkBox.getHeight(), maxHeight, checkBox.getAlignment().getVpos());
-
-        layoutLabelInArea(xOffset + boxWidth, yOffset, labelWidth, maxHeight, checkBox.getAlignment());
-        boxAndMarks.resize(boxWidth, boxHeight);
-        positionInArea(boxAndMarks, xOffset, yOffset, boxWidth, boxHeight, 0, checkBox.getAlignment().getHpos(),
-                checkBox.getAlignment().getVpos());
     }
 
     private StackPane computeMark()

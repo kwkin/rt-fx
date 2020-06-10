@@ -2,6 +2,7 @@ package test.demo.presentation.panes.controls;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
@@ -74,18 +75,24 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Toggle switches behave the same as toggle buttons, but they have a different style");
         
         GridPane toggleButtonGridPane = new GridPane();
+        toggleButtonGridPane.setPadding(new Insets(0));
         toggleButtonGridPane.setVgap(0);
 
-        ToggleSwitch primaryLightToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_LIGHT);
+        ToggleSwitch primaryLightToggleSwitch = new ToggleSwitch("Two State", Accent.PRIMARY_LIGHT);
         primaryLightToggleSwitch.setSelected(true);
-        ToggleSwitch primaryMidToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_MID);
-        ToggleSwitch primaryDarkToggleSwitch = new ToggleSwitch("Toggle", Accent.PRIMARY_DARK);
+        ToggleSwitch primaryMidToggleSwitch = new ToggleSwitch("Left Text", Accent.PRIMARY_MID);
+        primaryMidToggleSwitch.setContentDisplay(ContentDisplay.RIGHT);
+        ToggleSwitch primaryDarkToggleSwitch = new ToggleSwitch("Three State", Accent.PRIMARY_DARK);
+        primaryDarkToggleSwitch.setAllowIndeterminate(true);
         primaryDarkToggleSwitch.setSelected(true);
 
-        ToggleSwitch secondaryLightToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_LIGHT);
-        ToggleSwitch secondaryMidToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_MID);
+        ToggleSwitch secondaryLightToggleSwitch = new ToggleSwitch("Two State", Accent.SECONDARY_LIGHT);
+        ToggleSwitch secondaryMidToggleSwitch = new ToggleSwitch("Left Text", Accent.SECONDARY_MID);
         secondaryMidToggleSwitch.setSelected(true);
-        ToggleSwitch secondaryDarkToggleSwitch = new ToggleSwitch("Toggle", Accent.SECONDARY_DARK);
+        secondaryMidToggleSwitch.setContentDisplay(ContentDisplay.RIGHT);
+        ToggleSwitch secondaryDarkToggleSwitch = new ToggleSwitch("Three State", Accent.SECONDARY_DARK);
+        secondaryDarkToggleSwitch.setAllowIndeterminate(true);
+        secondaryDarkToggleSwitch.setIndeterminate(true);
 
         toggleButtonGridPane.add(primaryLightToggleSwitch, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleSwitch, 0, 1);

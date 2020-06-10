@@ -1,6 +1,7 @@
 package mil.af.eglin.ccf.rt.fx.control.skins;
 
-import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
+import com.sun.javafx.scene.control.behavior.ButtonBehavior;
+import com.sun.javafx.scene.control.skin.LabeledSkinBase;
 
 import javafx.animation.Interpolator;
 import javafx.geometry.Insets;
@@ -15,12 +16,10 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 
-// TODO add style property for line width
 // TODO add toggle switch to checkbox in order to allow for an indeterminate state
-public class RtToggleSwitchSkin extends ToggleButtonSkin
+public class RtToggleSwitchSkin extends LabeledSkinBase<ToggleSwitch, ButtonBehavior<ToggleSwitch>>
 {
     private final ToggleSwitch toggleSwitch;
-    
     private final StackPane main = new StackPane();
     private final StackPane circlePane = new StackPane();
     private final Circle circle = new Circle();
@@ -30,8 +29,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     
     public RtToggleSwitchSkin(final ToggleSwitch toggleSwitch) 
     {
-        super(toggleSwitch);
-        
+        super(toggleSwitch, new ButtonBehavior<>(toggleSwitch));
         this.toggleSwitch = toggleSwitch;
         
         this.line.getStyleClass().add("line");
@@ -46,7 +44,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         this.circle.setSmooth(true);
 
         this.circlePane.getChildren().add(this.circle);
-        toggleSwitch.setGraphic(this.main);
+        this.toggleSwitch.setGraphic(this.main);
         
         updateChildren();
         updateSizes();
@@ -91,22 +89,52 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     }
     
     private double computeTranslation() 
-    {        
-        double lineWidth = this.toggleSwitch.getLineWidth();
-        double lineLength = this.toggleSwitch.getLineLength();
-        int direction = getSkinnable().isSelected() ? 1 : -1;
-        double translation = direction * (lineLength - lineWidth / 2);
+    {    
+        double translation = 0;
+        if (!this.toggleSwitch.isIndeterminate())
+        {
+            double lineWidth = this.toggleSwitch.getLineWidth();
+            double lineLength = this.toggleSwitch.getLineLength();
+            int direction = getSkinnable().isSelected() ? 1 : -1;
+            translation = direction * (lineLength - lineWidth / 2);   
+        }
         return translation;
     }
     
     private Paint determineCircleColor(boolean isSelected)
     {
-        return isSelected ? this.toggleSwitch.getSelectedThumbColor() : this.toggleSwitch.getUnselectedThumbColor();
+        Paint color;
+        if (this.toggleSwitch.isIndeterminate())
+        {
+            color = this.toggleSwitch.getUnselectedThumbColor();
+        }
+        else if (this.toggleSwitch.isSelected())
+        {
+            color = this.toggleSwitch.getSelectedThumbColor();
+        }
+        else
+        {
+            color = this.toggleSwitch.getUnselectedThumbColor();
+        }
+        return color;
     }
     
     private Paint determineLineColor(boolean isSelected)
     {
-        return isSelected ? this.toggleSwitch.getSelectedLineColor() : this.toggleSwitch.getUnselectedLineColor();
+        Paint color;
+        if (this.toggleSwitch.isIndeterminate())
+        {
+            color = this.toggleSwitch.getUnselectedLineColor();
+        }
+        else if (this.toggleSwitch.isSelected())
+        {
+            color = this.toggleSwitch.getSelectedLineColor();
+        }
+        else
+        {
+            color = this.toggleSwitch.getUnselectedLineColor();
+        }
+        return color;
     }
     
     private void updateColors()
@@ -167,6 +195,10 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
         this.toggleSwitch.selectedProperty().addListener(observable -> 
         {
             this.stateTimeline.reverseAndContinue();
+        });
+        this.toggleSwitch.indeterminateProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.stateTimeline.start();
         });
     }
 }

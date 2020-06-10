@@ -2,8 +2,11 @@ package test.demo.presentation.panes.controls;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import mil.af.eglin.ccf.rt.fx.control.CheckBox;
+import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -22,6 +25,8 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         VBox vBox = new VBox();
         
         vBox.getChildren().add(createCheckBoxes());
+        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(createDirectionalCheckBoxes());
         
         setContent(vBox);
     }
@@ -57,5 +62,30 @@ public class CheckBoxPanePresentation extends SizedTitledCard
         descriptionPane.setContent(iconButtonPane);
         
         return descriptionPane;
+    }
+    
+    private Node createDirectionalCheckBoxes()
+    {
+        FlowPane iconButtonPane = new FlowPane();
+        
+        CheckBox primaryMidCheckBox = new CheckBox("Left Text", Accent.PRIMARY_MID);
+        primaryMidCheckBox.setSelected(true);
+        primaryMidCheckBox.setContentDisplay(ContentDisplay.LEFT);
+        CheckBox primaryDarkCheckBox = new CheckBox("Right Text", Accent.PRIMARY_DARK);
+        primaryDarkCheckBox.setSelected(true);
+        primaryMidCheckBox.setContentDisplay(ContentDisplay.RIGHT);
+        iconButtonPane.getChildren().add(primaryMidCheckBox);
+        iconButtonPane.getChildren().add(primaryDarkCheckBox);
+        
+        CheckBox secondaryMidCheckBox = new CheckBox("Top Text", Accent.SECONDARY_MID);
+        secondaryMidCheckBox.setSelected(true);
+        secondaryMidCheckBox.setContentDisplay(ContentDisplay.TOP);
+        CheckBox secondaryDarkCheckBox = new CheckBox("Bottom Text", Accent.SECONDARY_DARK);
+        secondaryDarkCheckBox.setSelected(true);
+        secondaryDarkCheckBox.setContentDisplay(ContentDisplay.BOTTOM);
+        iconButtonPane.getChildren().add(secondaryMidCheckBox);
+        iconButtonPane.getChildren().add(secondaryDarkCheckBox);
+        
+        return iconButtonPane;
     }
 }

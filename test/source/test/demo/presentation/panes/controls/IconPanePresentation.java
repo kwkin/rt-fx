@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.Label;
-import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;

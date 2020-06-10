@@ -28,9 +28,8 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO convert to checkbox
 /**
- * A bi-state selection control allowing the user to toggle options.
+ * A bi-state or tri-state selection control allowing the user to toggle options.
  * <p>
  * A toggle switch is typically skinned as a short line with a thumb on top. The
  * thumb is positioned to the left when unselected and to the right when
@@ -41,7 +40,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * should be use when presented a list of multiple related options, while toggle
  * switches should be used when one more independent options are present. 
  */
-public class ToggleSwitch extends javafx.scene.control.ToggleButton implements RtStyleableComponent
+public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -49,20 +48,19 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
     private static final String CSS_CLASS = "rt-toggle-switch";
 
     /**
-     * The width of the line
+     * The width of the line in pixels
      */
     private StyleableDoubleProperty lineWidth = new SimpleStyleableDoubleProperty(StyleableProperties.LINE_WIDTH,
             ToggleSwitch.this, "lineWidth", 22.0);
 
-    // TODO check if non-pixel values can be entered (10em)
     /**
-     * The length of the line
+     * The length of the line in pixels
      */
     private StyleableDoubleProperty lineLength = new SimpleStyleableDoubleProperty(StyleableProperties.LINE_LENGTH,
             ToggleSwitch.this, "lineLength", 18.0);
 
     /**
-     * The radius of the thumb
+     * The radius of the thumb in pixels
      */
     private StyleableDoubleProperty thumbRadius = new SimpleStyleableDoubleProperty(StyleableProperties.THUMB_RADIUS,
             ToggleSwitch.this, "thumbRadius", 8.0);
@@ -75,7 +73,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             DefaultPalette.getInstance().getAccentColor());
 
     /**
-     * The color used by the thumb when in the unselected state.
+     * The color used by the thumb when in the unselected or indeterminate state.
      */
     private StyleableObjectProperty<Paint> unselectedThumbColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_COLOR, ToggleSwitch.this, "unselectedThumbColor",
@@ -88,7 +86,7 @@ public class ToggleSwitch extends javafx.scene.control.ToggleButton implements R
             StyleableProperties.SELECTED_LINE_COLOR, ToggleSwitch.this, "selectedLineColor",
             DefaultPalette.getInstance().getLightAccentColor());
     /**
-     * The color used by the line when in the unselected state.
+     * The color used by the line when in the unselected or indeterminate state.
      */
     private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.UNSELECTED_LINE_COLOR, ToggleSwitch.this, "unselectedLineColor",

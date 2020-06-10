@@ -14,6 +14,7 @@ TODO
     -fx-cursor: hand;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
+    -fx-graphic-text-gap: 12;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;

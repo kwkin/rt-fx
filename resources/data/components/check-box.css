@@ -1,8 +1,8 @@
 /*-- ############################### Check Box Style ############################### */ 
 .rt-check-box 
 { 
-    -fx-cursor: hand; 
-    -fx-label-padding: 0 0 0 12; 
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 12;
     -fx-padding: 4 8 4 8; 
     -fx-text-fill: -var-on-main-mid-color; 
      
