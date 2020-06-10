@@ -4,6 +4,11 @@ TODO
 */
 
 /*-- ############################### Slider Style ############################### */
+.rt-slider
+{
+    -rt-overlay-color: -var-overlay-color;
+}
+
 .rt-slider:horizontal
 {
     -fx-padding: 8 0 8 0;
@@ -69,12 +74,6 @@ TODO
 {
     -fx-background-color: -var-accent-color;
     -fx-background-radius: 4
-}
-
-.rt-slider .state-thumb 
-{
-    -fx-fill: -var-accent-color;
-    -fx-opacity: 0.3;
 }
 
 .rt-slider .circle-thumb

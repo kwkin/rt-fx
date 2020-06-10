@@ -186,13 +186,13 @@ public class RtToggleSwitchSkin extends LabeledSkinBase<ToggleSwitch, ButtonBeha
     {
         if (getSkinnable().isSelected())
         {
-            this.circle.setFill(((ToggleSwitch)getSkinnable()).getSelectedThumbColor());
-            this.line.setStroke(((ToggleSwitch)getSkinnable()).getSelectedLineColor());
+            this.circle.setFill(this.toggleSwitch.getSelectedThumbColor());
+            this.line.setStroke(this.toggleSwitch.getSelectedLineColor());
         }
         else
         {
-            this.circle.setFill(((ToggleSwitch)getSkinnable()).getUnselectedThumbColor());
-            this.line.setStroke(((ToggleSwitch)getSkinnable()).getUnselectedLineColor());
+            this.circle.setFill(this.toggleSwitch.getUnselectedThumbColor());
+            this.line.setStroke(this.toggleSwitch.getUnselectedLineColor());
         }
     }
     
