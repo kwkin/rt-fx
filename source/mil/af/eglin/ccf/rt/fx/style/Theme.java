@@ -3,6 +3,7 @@ package mil.af.eglin.ccf.rt.fx.style;
 public enum Theme
 {
     DARK_MATERIAL("Dark Material", "dark-theme-material.css"),
+    DEEP_OCEAN("Deep Ocean", "deep-ocean.css"),
     DEEP_SEA("Deep Sea", "deep-sea.css"),
     EMERALD_COAST("Emerald Coast", "emerald-coast.css"),
     LIGHT("Light", "light-theme.css"),

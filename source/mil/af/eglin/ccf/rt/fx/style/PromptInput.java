@@ -263,10 +263,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
             this.normalTimeline.stop();
             this.hoverTimeline.stop();
             this.unfocusLabelTimeline.stop();
-            if (this.control.isLabelFloat())
-            {
-                runTimer(this.focusTimeline, animate);
-            }
+            runTimer(this.focusTimeline, animate);
         }
         else if (this.control.isHover())
         {
@@ -378,7 +375,6 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(focusedLine.opacityProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.activeStateProperty.getValue())
                         .build())
                     .build(), 
                 RtKeyFrame.builder()
@@ -388,29 +384,27 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(this.focusedLineScale.xProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
                         .build(),
                         RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
                             .setEndValueSupplier(() -> 0.5)
-                            .setAnimateCondition(() -> !this.control.isDisableAnimation())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(this.animatedPromptTextFill)
                             .setEndValueSupplier(() -> this.control.getFocusColor())
                             .setInterpolator(Interpolator.EASE_BOTH)
-                            .setAnimateCondition(() -> this.activeStateProperty.getValue() && this.control.isLabelFloat())
+                            .setApplyCondition(() -> this.activeStateProperty.getValue() && this.control.isLabelFloat())
                         .build(),
                         RtKeyValue.builder().setTargetSupplier(promptTargetSupplier)
                             .setEndValueSupplier(() -> -this.promptTranslateY)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setApplyCondition(() -> this.control.isLabelFloat())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(this.promptTextScale.xProperty()).setEndValue(0.85)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setApplyCondition(() -> this.control.isLabelFloat())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(this.promptTextScale.yProperty()).setEndValue(0.85)
-                            .setAnimateCondition(() -> this.control.isLabelFloat())
+                            .setApplyCondition(() -> this.control.isLabelFloat())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                    .build());
@@ -455,6 +449,10 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .build())
                     .build());
         // @formatter:on
+        this.focusTimeline.setAnimateCondition(() -> !this.control.isDisableAnimation());
+        this.unfocusLabelTimeline.setAnimateCondition(() -> !this.control.isDisableAnimation());
+        this.normalTimeline.setAnimateCondition(() -> !this.control.isDisableAnimation());
+        this.hoverTimeline.setAnimateCondition(() -> !this.control.isDisableAnimation());
         
         this.focusTimeline.setOnFinished(() ->  animating = false);
         this.unfocusLabelTimeline.setOnFinished(() -> animating = false);
