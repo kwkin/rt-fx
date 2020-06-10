@@ -1,7 +1,5 @@
 /*-- ############################### Button Style ############################### */
-.rt-button,
-.rt-button.raised,
-.rt-button.icon
+.rt-button
 {
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
@@ -11,7 +9,7 @@
 }
 
 /*-- ############################### Raised Button Style ############################### */
-.rt-button.raised
+.rt-button:raised
 {
     -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
@@ -28,7 +26,7 @@
     -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-button.raised:focused
+.rt-button:raised:focused
 {
     -fx-background-insets: 0;
     -fx-background-radius: 4;
@@ -37,7 +35,7 @@
 }
 
 /*-- ############################### Flat Button Style ############################### */
-.rt-button.flat
+.rt-button:flat
 {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
@@ -54,7 +52,7 @@
     -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-button.flat:focused
+.rt-button:flat:focused
 {
     -fx-background-insets: 0;
     -fx-background-radius: 4;
@@ -63,7 +61,7 @@
 }
 
 /*-- ############################### Icon Button Style ############################### */
-.rt-button.icon
+.rt-button:icon
 {
     -fx-background-color: transparent;
     -fx-background-radius: 4;

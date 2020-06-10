@@ -22,6 +22,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
+import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -34,6 +35,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class ToggleButton extends javafx.scene.control.ToggleButton implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
+    protected ToggleButtonStyle style = ToggleButtonStyle.RAISED;
 
     private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
     private static final String CSS_CLASS = "rt-toggle-button";
@@ -69,10 +71,23 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     /**
      * Creates a toggle button with the specified accent.
      * 
+     * @param style The style type used to change the component's look.
+     */
+    public ToggleButton(ToggleButtonStyle style)
+    {
+        super();
+        this.style = style;
+        initialize();
+    }
+
+    /**
+     * Creates a toggle button with the specified accent.
+     * 
+     * @param style The style type used to change the component's look.
      * @param accent The accent type used to change the component's color
      *            scheme.
      */
-    public ToggleButton(Accent accent)
+    public ToggleButton(ToggleButtonStyle style, Accent accent)
     {
         super();
         this.accent = accent;
@@ -94,12 +109,27 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
      * Creates a toggle switch with the specified text and accent.
      *
      * @param text A text string for its label.
+     * @param style The style type used to change the component's look.
+     */
+    public ToggleButton(String text, ToggleButtonStyle style)
+    {
+        super(text);
+        this.style = style;
+        initialize();
+    }
+
+    /**
+     * Creates a toggle switch with the specified text and accent.
+     *
+     * @param text A text string for its label.
+     * @param style The style type used to change the component's look.
      * @param accent The accent type used to change the component's color
      *            scheme.
      */
-    public ToggleButton(String text, Accent accent)
+    public ToggleButton(String text, ToggleButtonStyle style, Accent accent)
     {
         super(text);
+        this.style = style;
         this.accent = accent;
         initialize();
     }
@@ -121,14 +151,40 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
      * 
      * @param text A text string for its label.
      * @param graphic The icon for its label.
+     * @param style The style type used to change the component's look.
+     */
+    public ToggleButton(String text, Node graphic, ToggleButtonStyle style)
+    {
+        super(text, graphic);
+        this.style = style;
+        initialize();
+    }
+
+    /**
+     * Creates a toggle switch with the specified text and graphic as its label.
+     * 
+     * @param text A text string for its label.
+     * @param graphic The icon for its label.
+     * @param style The style type used to change the component's look.
      * @param accent The accent type used to change the component's color
      *            scheme.
      */
-    public ToggleButton(String text, Node graphic, Accent accent)
+    public ToggleButton(String text, Node graphic, ToggleButtonStyle style, Accent accent)
     {
         super(text, graphic);
+        this.style = style;
         this.accent = accent;
         initialize();
+    }
+
+    /**
+     * Gets the style type of the toggle button.
+     * 
+     * @return The style type of the toggle button
+     */
+    public ToggleButtonStyle getButtonStyle()
+    {
+        return this.style;
     }
 
     public final ObjectProperty<Paint> overlayColorProperty()
@@ -202,6 +258,10 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
         getStyleClass().clear();;
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
+        for (ToggleButtonStyle buttonStyle : ToggleButtonStyle.values())
+        {
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
+        }
     }
 
     private static class StyleableProperties

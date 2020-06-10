@@ -3,7 +3,7 @@ TODO
 - Icon button glowing accent API
 */
 /*-- ############################### Raised Toggle Button Style ############################### */
-.rt-toggle-button
+.rt-toggle-button:raised
 {
     -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
@@ -23,8 +23,8 @@ TODO
     -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-toggle-button:focused,
-.rt-toggle-button:selected
+.rt-toggle-button:raised:focused,
+.rt-toggle-button:raised:selected
 {
     -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
@@ -34,7 +34,7 @@ TODO
 }
 
 /*-- ############################### Normal Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.normal
+.rt-toggle-button:icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
@@ -46,16 +46,16 @@ TODO
     -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-icon-toggle-button.normal:selected,
-.rt-icon-toggle-button.normal:focused,
-.rt-icon-toggle-button.normal:selected:focused
+.rt-toggle-button:icon:selected,
+.rt-toggle-button:icon:focused,
+.rt-toggle-button:icon:selected:focused
 {
     -fx-border-width: 0;
     -fx-background-color: transparent;
 }
 
 /*-- ############################### Accented Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.accented
+.rt-toggle-button:accented-icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
@@ -70,9 +70,9 @@ TODO
 
 }
 
-.rt-icon-toggle-button.accented:selected,
-.rt-icon-toggle-button.accented:focused,
-.rt-icon-toggle-button.accented:selected:focused
+.rt-toggle-button:accented-icon:selected,
+.rt-toggle-button:accented-icon:focused,
+.rt-toggle-button:accented-icon:selected:focused
 {
     -fx-border-width: 0;
     -fx-background-color: transparent;
@@ -80,7 +80,7 @@ TODO
 }
 
 /*-- ############################### Glowing Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.glowing
+.rt-toggle-button:glowing-icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
@@ -95,9 +95,9 @@ TODO
     -rt-unselected-icon-color: -var-on-main-mid-color;
 }
 
-.rt-icon-toggle-button.glowing:selected,
-.rt-icon-toggle-button.glowing:focused,
-.rt-icon-toggle-button.glowing:selected:focused
+.rt-toggle-button:glowing-icon:selected,
+.rt-toggle-button:glowing-icon:focused,
+.rt-toggle-button:glowing-icon:selected:focused
 {
     -fx-background: transparent;
     -fx-background-color: transparent;

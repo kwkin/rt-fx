@@ -30,7 +30,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 // TODO if a logging name is required, consider renaming Button to RtButtton, since we lose the benefit of simply replacing the import statement
 // TODO default button style
 // TODO cancel button style
-// TODO use pseudo classes for styles
 // TODO link button styles in Java doc
 
 /**
@@ -270,10 +269,10 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
-        if (this.accent != null)
+        getStyleClass().add(this.accent.getCssName());
+        for (ButtonStyle buttonStyle : ButtonStyle.values())
         {
-            getStyleClass().add(this.accent.getCssName());
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
     }
 

@@ -36,7 +36,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         createAnimationListeners();
         updateChildren();
 
-        registerChangeListener(button.getOverlayColorProperty(), button.getOverlayColorProperty().getName());
+        registerChangeListener(button.overlayColorProperty(), button.overlayColorProperty().getName());
     }
     
     @Override
@@ -53,7 +53,7 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
     protected void handleControlPropertyChanged(String property)
     {
         super.handleControlPropertyChanged(property);
-        if (button.getOverlayColorProperty().getName().equals(property))
+        if (button.overlayColorProperty().getName().equals(property))
         {
             updateStateBoxColor();
         }
@@ -107,10 +107,18 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
         double opacity = 0;
         switch(this.button.getRtStyle())
         {
-            case GLOWING:
-                if (this.button.isSelected() || this.button.isArmed())
+            case GLOWING_ICON:
+                if (this.button.isArmed())
                 {
                     opacity = 1;
+                }
+                else if (this.button.isHover() && this.button.isSelected())
+                {
+                    opacity = 0.8;
+                }
+                else if (this.button.isSelected())
+                {
+                    opacity = 0.6;
                 }
                 else if (this.button.isHover())
                 {
