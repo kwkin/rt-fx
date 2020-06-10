@@ -5,7 +5,6 @@ import java.util.List;
 
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
-import javafx.scene.paint.Color;
 
 public class DepthManager
 {
@@ -13,16 +12,10 @@ public class DepthManager
 
     private DepthManager() 
     {
-        // @formatter:off
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0),     0,    0, 0, 0));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  1, 0.12, 0, 1));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  3, 0.15, 0, 1));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  5, 0.18, 0, 2));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26),  7, 0.21, 0, 2));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 10, 0.24, 0, 3));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 13, 0.27, 0, 3));
-        depth.add(new DepthShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 16, 0.30, 0, 4));
-        // @formatter:on
+        for (Depth depthLevel : Depth.values())
+        {
+            depth.add(depthLevel.getShadow());
+        }
     }
 
     private static class InstanceHolder 

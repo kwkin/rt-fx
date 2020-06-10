@@ -16,7 +16,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 
-// TODO add toggle switch to checkbox in order to allow for an indeterminate state
 public class RtToggleSwitchSkin extends LabeledSkinBase<ToggleSwitch, ButtonBehavior<ToggleSwitch>>
 {
     private final ToggleSwitch toggleSwitch;

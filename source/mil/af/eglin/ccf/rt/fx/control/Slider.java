@@ -22,7 +22,7 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtSliderSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-//TODO add range slide (2 dots)
+//TODO add range slider (2 thumbs)
 //TODO make the thumb color the same as the unfilled track color when set to the min value 
 //TODO discuss discrete sliders, bubble, and potentially adding the value inside the thumb
 /**

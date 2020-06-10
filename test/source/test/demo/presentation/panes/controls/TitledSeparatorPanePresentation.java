@@ -1,6 +1,5 @@
 package test.demo.presentation.panes.controls;
 
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
@@ -9,7 +8,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
-import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
