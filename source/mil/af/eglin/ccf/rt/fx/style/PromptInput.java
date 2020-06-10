@@ -375,6 +375,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(focusedLine.opacityProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
+                            .setApplyCondition(() -> this.activeStateProperty.getValue())
                         .build())
                     .build(), 
                 RtKeyFrame.builder()
@@ -384,6 +385,7 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setTarget(this.focusedLineScale.xProperty())
                             .setEndValue(1)
                             .setInterpolator(Interpolator.EASE_BOTH)
+                            .setApplyCondition(() -> this.activeStateProperty.getValue())
                         .build(),
                         RtKeyValue.builder().setTarget(this.overlayContainer.opacityProperty())
                             .setEndValueSupplier(() -> 0.5)
@@ -400,11 +402,11 @@ public class PromptInput<T extends Control & RtLabelFloatControl>
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(this.promptTextScale.xProperty()).setEndValue(0.85)
-                            .setApplyCondition(() -> this.control.isLabelFloat())
+                        .setApplyCondition(() -> this.control.isLabelFloat())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build(),
                         RtKeyValue.builder().setTarget(this.promptTextScale.yProperty()).setEndValue(0.85)
-                            .setApplyCondition(() -> this.control.isLabelFloat())
+                        .setApplyCondition(() -> this.control.isLabelFloat())
                             .setInterpolator(Interpolator.EASE_BOTH)
                         .build())
                    .build());
