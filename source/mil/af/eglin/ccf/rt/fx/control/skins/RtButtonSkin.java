@@ -47,6 +47,16 @@ public class RtButtonSkin extends ButtonSkin
     }
 
     @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (button.overlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
+        }
+    }
+
+    @Override
     protected void updateChildren()
     {
         super.updateChildren();
@@ -56,16 +66,6 @@ public class RtButtonSkin extends ButtonSkin
             int insertIndex = getChildren().indexOf(text);
             insertIndex = insertIndex == -1 ? getChildren().size() - 1 : insertIndex;
             getChildren().add(insertIndex, this.stateBox);
-        }
-    }
-
-    @Override
-    protected void handleControlPropertyChanged(String property)
-    {
-        super.handleControlPropertyChanged(property);
-        if (button.overlayColorProperty().getName().equals(property))
-        {
-            updateStateBoxColor();
         }
     }
 

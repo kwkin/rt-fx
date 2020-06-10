@@ -22,8 +22,8 @@ TODO
     -rt-line-width: 14;
     -rt-line-length: 16;
     -rt-thumb-radius: 10;
-    -rt-selected-color: -var-accent-color;
-    -rt-unselected-color: -var-main-color-l4;
+    -rt-selected-thumb-color: -var-accent-color;
+    -rt-unselected-thumb-color: -var-main-color-l4;
     -rt-selected-line-color: ladder(#888888, -var-main-color-l1 0%, -var-accent-color 100%);
     -rt-unselected-line-color: -var-main-color-l3;
 }

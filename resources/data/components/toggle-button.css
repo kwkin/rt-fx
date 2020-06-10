@@ -2,14 +2,8 @@
 TODO
 - Icon button glowing accent API
 */
-/*-- ############################### Toggle Button Style ############################### */
-.rt-toggle-button
-{
-    -fx-cursor: hand;
-}
-
 /*-- ############################### Raised Toggle Button Style ############################### */
-.rt-toggle-button.raised
+.rt-toggle-button
 {
     -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
@@ -17,27 +11,22 @@ TODO
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
+    -fx-cursor: hand;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-text-fill: -var-on-accent-color;
-    
+
     -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-toggle-button.raised:focused
+.rt-toggle-button:focused,
+.rt-toggle-button:selected
 {
+    -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-toggle-button.raised .state-box
-{
-    -fx-background-color: -var-overlay-color;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;

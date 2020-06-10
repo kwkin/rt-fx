@@ -3,7 +3,11 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
@@ -13,7 +17,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO add overlay css property listener
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
     private final ToggleButton button;
@@ -28,14 +31,26 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         
         this.stateBox.getStyleClass().setAll("state-box");
         this.stateBox.setOpacity(0);
+        updateStateBoxColor();
         
-        // TODO generate shadow automatically
         button.setPickOnBounds(false);
         DepthManager.getInstance().setDepth(button, 2);
 
         updateChildren();
         createAnimation();
         createAnimationListeners();
+
+        registerChangeListener(button.overlayColorProperty(), button.overlayColorProperty().getName());
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (button.overlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
+        }
     }
     
     @Override
@@ -75,13 +90,11 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
                         .setTarget(this.button.effectProperty())
                         .setEndValueSupplier(() -> determineShadow())
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build(),
                     RtKeyValue.builder()
                         .setTarget(this.stateBox.opacityProperty())
                         .setEndValueSupplier(() -> determineOpacity())
                         .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !this.button.getIsAnimationDisabled())
                         .build())
                 .build());
         // @formatter:on
@@ -151,5 +164,13 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
             shadow = DepthManager.getInstance().getShadowAt(2);
         }
         return shadow;
+    }
+
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.button.getBackground() == null ? null
+                : this.button.getBackground().getFills().get(0).getRadii();
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.button.getOverlayColor(), radii, insets)));
     }
 }

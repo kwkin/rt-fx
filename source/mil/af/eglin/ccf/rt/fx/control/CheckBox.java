@@ -48,6 +48,11 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * <p>
  * A check box is typically skinned as a box with a check mark when selected or
  * a horizontal line when indeterminate.
+ * <p>
+ * {@link Checkbox Checkboxes) and {@link ToggleSwitch Toggleswitches} provide
+ * similar behavior, but should be used in different situations. Checkboxes
+ * should be use when presented a list of multiple related options, while toggle
+ * switches should be used when one more independent options are present. 
  */
 public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleableComponent
 {

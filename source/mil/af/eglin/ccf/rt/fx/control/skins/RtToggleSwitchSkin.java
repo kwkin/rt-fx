@@ -101,7 +101,7 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     
     private Paint determineCircleColor(boolean isSelected)
     {
-        return isSelected ? this.toggleSwitch.getSelectedColor() : this.toggleSwitch.getUnselectedColor();
+        return isSelected ? this.toggleSwitch.getSelectedThumbColor() : this.toggleSwitch.getUnselectedThumbColor();
     }
     
     private Paint determineLineColor(boolean isSelected)
@@ -113,12 +113,12 @@ public class RtToggleSwitchSkin extends ToggleButtonSkin
     {
         if (getSkinnable().isSelected())
         {
-            circle.setFill(((ToggleSwitch)getSkinnable()).getSelectedColor());
+            circle.setFill(((ToggleSwitch)getSkinnable()).getSelectedThumbColor());
             line.setStroke(((ToggleSwitch)getSkinnable()).getSelectedLineColor());
         }
         else
         {
-            circle.setFill(((ToggleSwitch)getSkinnable()).getUnselectedColor());
+            circle.setFill(((ToggleSwitch)getSkinnable()).getUnselectedThumbColor());
             line.setStroke(((ToggleSwitch)getSkinnable()).getUnselectedLineColor());
         }
     }

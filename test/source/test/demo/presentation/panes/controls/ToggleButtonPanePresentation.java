@@ -3,13 +3,11 @@ package test.demo.presentation.panes.controls;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
-import mil.af.eglin.ccf.rt.fx.control.Separator;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
@@ -45,15 +43,15 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
 
         GridPane toggleButtonGridPane = new GridPane();
 
-        ToggleButton primaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
-        ToggleButton primaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_MID);
-        ToggleButton primaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_DARK);
+        ToggleButton primaryLightToggleButton = new ToggleButton("TOGGLE", Accent.PRIMARY_LIGHT);
+        ToggleButton primaryMidToggleButton = new ToggleButton("TOGGLE", Accent.PRIMARY_MID);
+        ToggleButton primaryDarkToggleButton = new ToggleButton("TOGGLE", Accent.PRIMARY_DARK);
 
-        ToggleButton secondaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
-        ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
-        ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
+        ToggleButton secondaryLightToggleButton = new ToggleButton("TOGGLE", Accent.SECONDARY_LIGHT);
+        ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", Accent.SECONDARY_MID);
+        ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", Accent.SECONDARY_DARK);
 
-        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE);
+        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", Accent.BASE);
 
         toggleButtonGridPane.add(primaryLightToggleButton, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleButton, 1, 0);
