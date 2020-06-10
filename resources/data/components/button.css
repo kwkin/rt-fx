@@ -39,17 +39,17 @@
 /*-- ############################### Flat Button Style ############################### */
 .rt-button.flat
 {
-    -fx-background-color: -var-accent-color;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
-    -fx-border-width: 0;
+    -fx-border-width: 1;
     -fx-graphic-text-gap: 8;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 8 16 8 16;
-    -fx-text-fill: -var-on-accent-color;
+    -fx-text-fill: -var-accent-color;
     
     -rt-overlay-color: -var-overlay-color;
 }
@@ -59,7 +59,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
-    -fx-border-width: 0;
+    -fx-border-width: 1;
 }
 
 /*-- ############################### Icon Button Style ############################### */

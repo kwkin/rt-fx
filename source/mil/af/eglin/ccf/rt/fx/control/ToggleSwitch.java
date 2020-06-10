@@ -93,6 +93,17 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
             DefaultPalette.getInstance().getLightBaseColor());
 
     /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the toggle switch.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            StyleableProperties.OVERLAY_COLOR, ToggleSwitch.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
+
+    /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
@@ -250,6 +261,21 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     public void setUnselectedLineColor(Paint color)
     {
         this.unselectedLineColor.set(color);
+    }
+
+    public final ObjectProperty<Paint> overlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public final Paint getOverlayColor()
+    {
+        return overlayColor.get();
+    }
+
+    public final void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
     }
 
     public BooleanProperty isAnimationDisabledProperty()
@@ -422,6 +448,21 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
                 return control.unselectedLineColor;
             }
         };
+        private static final CssMetaData<ToggleSwitch, Paint> OVERLAY_COLOR = new CssMetaData<ToggleSwitch, Paint>(
+                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
+        {
+            @Override
+            public boolean isSettable(ToggleSwitch control)
+            {
+                return control.overlayColor == null || !control.overlayColor.isBound();
+            }
+
+            @Override
+            public StyleableProperty<Paint> getStyleableProperty(ToggleSwitch control)
+            {
+                return control.overlayColor;
+            }
+        };
         private static final CssMetaData<ToggleSwitch, Boolean> DISABLE_ANIMATION = new CssMetaData<ToggleSwitch, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -450,6 +491,7 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
             styleables.add(UNSELECTED_COLOR);
             styleables.add(SELECTED_LINE_COLOR);
             styleables.add(UNSELECTED_LINE_COLOR);
+            styleables.add(OVERLAY_COLOR);
             styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }

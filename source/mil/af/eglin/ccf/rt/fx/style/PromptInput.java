@@ -31,8 +31,7 @@ import java.util.function.Supplier;
 
 public class PromptInput<T extends Control & RtLabelFloatControl>
 {
-    private T control;
-
+    protected final T control;
     protected final StackPane inputContainer = new StackPane();
     protected final StackPane inputDisplayContainer = new StackPane();
     protected final StackPane overlayContainer = new StackPane();

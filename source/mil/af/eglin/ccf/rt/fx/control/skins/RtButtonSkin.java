@@ -23,8 +23,6 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
  */
 public class RtButtonSkin extends ButtonSkin
 {
-    private final static Duration ANIMATION_DURATION = Duration.millis(200);
-
     private final Button button;
     private final StackPane stateBox = new StackPane();
 
@@ -93,7 +91,7 @@ public class RtButtonSkin extends ButtonSkin
                 DepthManager.getInstance().setDepth(button, 2);
                 this.interactionTimeline = new RtAnimationTimeline(
                     RtKeyFrame.builder()
-                        .setDuration(ANIMATION_DURATION)
+                        .setDuration(Duration.millis(200))
                         .setKeyValues(
                             RtKeyValue.builder()
                                 .setTarget(this.button.effectProperty())
@@ -111,7 +109,7 @@ public class RtButtonSkin extends ButtonSkin
                 this.button.setPickOnBounds(true);
                 this.interactionTimeline = new RtAnimationTimeline(
                     RtKeyFrame.builder()
-                        .setDuration(ANIMATION_DURATION)
+                        .setDuration(Duration.millis(200))
                         .setKeyValues(
                                 RtKeyValue.builder()
                                 .setTarget(this.stateBox.opacityProperty())

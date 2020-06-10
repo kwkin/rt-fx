@@ -155,18 +155,6 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                 radioButton.getAlignment().getVpos());
     }
 
-    private void playStateAnimation()
-    {
-        if (!this.radioButton.getIsAnimationDisabled())
-        {
-            this.interactionTimeline.start();
-        }
-        else
-        {
-            this.interactionTimeline.applyEndValues();
-        }
-    }
-
     private void removeRadio()
     {
         for (int i = 0; i < getChildren().size(); i++)
@@ -258,11 +246,18 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         });
         this.radioButton.armedProperty().addListener((ov, oldVal, newVal) ->
         {
-            playStateAnimation();
+            if (oldVal)
+            {
+                this.interactionTimeline.skipAndContinue();
+            }
+            else
+            {
+                this.interactionTimeline.start();
+            }
         });
         this.radioButton.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
-            playStateAnimation();
+            this.interactionTimeline.start();
         });
     }
 }
