@@ -12,9 +12,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import test.demo.abstraction.immutable.Service;
+import test.demo.abstraction.data.immutable.Service;
 
-public class TablePerson  extends RecursiveTreeObject<TablePerson>
+public class TablePerson extends RecursiveTreeObject<TablePerson>
 {
     private StringProperty id = new SimpleStringProperty();
     private ObjectProperty<String> firstName = new SimpleObjectProperty<String>();

@@ -10,12 +10,12 @@ public enum Theme
     LIGHT_SINGLE("Light", "light-theme-single.css"),
     CELESTIAL_QUASAR("Celestial Quasar", "celestial-quasar.css");
 
-    private String name;
+    private String themeName;
     private String fileName;
     
-    Theme(String name, String fileName)
+    Theme(String themeName, String fileName)
     {
-        this.name = name;
+        this.themeName = themeName;
         this.fileName = fileName;
     }
     
@@ -41,6 +41,6 @@ public enum Theme
     @Override
     public String toString()
     {
-        return name; 
+        return themeName; 
     }
 }

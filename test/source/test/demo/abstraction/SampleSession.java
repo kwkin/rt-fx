@@ -4,17 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import test.demo.abstraction.data.Person;
-import test.demo.abstraction.immutable.Service;
+import javafx.util.Callback;
+import test.demo.abstraction.data.immutable.Person;
+import test.demo.abstraction.data.immutable.Service;
 
 public class SampleSession
 {
-    private ObservableList<Person> people = FXCollections.observableArrayList();
+    private ObservableList<Person> people;
     
     public SampleSession()
     {
+        this.people = FXCollections.observableArrayList(
+            new Callback<Person, Observable[]>() 
+            {
+                @Override
+                public Observable[] call(Person param) 
+                {
+                    return new Observable[]
+                    {
+                        param.getIdProperty(),
+                        param.getFirstNameProperty(),
+                        param.getLastNameProperty(),
+                        param.getEmailProperty(),
+                        param.getAgeProperty(),
+                        param.getCoolFactorProperty(),
+                        param.getServiceProperty(),
+                        param.getIsSubscribedProperty()
+                    };
+                }
+            }
+        );
+                
         for (int index = 0; index < 10; index++)
         {
             this.people.add(generateRandomPerson());

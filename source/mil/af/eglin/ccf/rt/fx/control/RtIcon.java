@@ -3,7 +3,7 @@ package mil.af.eglin.ccf.rt.fx.control;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 
-public interface RtGlyph
+public interface RtIcon
 {
     public boolean isGlyphColorManaged();
     

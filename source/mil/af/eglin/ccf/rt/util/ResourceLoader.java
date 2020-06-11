@@ -3,8 +3,6 @@ package mil.af.eglin.ccf.rt.util;
 import java.io.InputStream;
 import java.net.URL;
 
-// TODO replace with rt-util and fix up paths
-// the type of path separator appears to matter for resources in the JAR (i.e. / vs. \), so Path is not used
 public class ResourceLoader
 {
     private final static String DATA_DIRECTORY       = "data/";

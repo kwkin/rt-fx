@@ -1,4 +1,4 @@
-package test.demo.abstraction.immutable;
+package test.demo.abstraction.data.immutable;
 
 import mil.af.eglin.ccf.rt.fx.style.Theme;
 

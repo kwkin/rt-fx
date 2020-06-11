@@ -17,7 +17,7 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 import test.demo.SampleApp;
-import test.demo.abstraction.immutable.DemoTheme;
+import test.demo.abstraction.data.immutable.DemoTheme;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
 import test.demo.presentation.panes.controls.ComponentsPresentation;

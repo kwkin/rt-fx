@@ -13,7 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
+import mil.af.eglin.ccf.rt.fx.control.RtIcon;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
@@ -61,7 +61,7 @@ public class RtTextFieldSkin extends TextFieldSkin
                 this.input.getFocusedLine(),
                 this.input.getPromptContainer(),
                 this.descriptionContainer);
-        RtGlyph glyph = textField.getTrailingGlyph();
+        RtIcon glyph = textField.getTrailingGlyph();
         if (glyph != null)
         {
             getChildren().add(glyph.getGlyph());
@@ -86,7 +86,7 @@ public class RtTextFieldSkin extends TextFieldSkin
                 y - snappedTopInset() - (2 * inputContainer.getPadding().getTop()));
 
         Text text = ((Text) textGroup.getChildren().get(1));
-        // TODO replace with text.hitTest(p) JavaFX versions 9+
+        // Replace with text.hitTest(p) for JavaFX versions 9+
         @SuppressWarnings("deprecation")
         HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
         return hitInfo;
@@ -137,7 +137,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
 
         Pane inputContainer = this.input.getInputContainer();
-        RtGlyph graphic = this.textField.getTrailingGlyph();
+        RtIcon graphic = this.textField.getTrailingGlyph();
         double promptWidth = w;
         if (graphic != null)
         {
@@ -209,7 +209,7 @@ public class RtTextFieldSkin extends TextFieldSkin
             Object oldValue = field.get(this);
             if (oldValue != null)
             {
-                textGroup.getChildren().remove(oldValue);
+                this.textGroup.getChildren().remove(oldValue);
             }
             field.set(this, promptText);
         }
@@ -220,7 +220,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private void updateTrailingIconColor()
     {
-        RtGlyph graphic = this.textField.getTrailingGlyph();
+        RtIcon graphic = this.textField.getTrailingGlyph();
         if (graphic != null && graphic.isGlyphColorManaged())
         {
             graphic.setGlyphFill(this.textField.getTrailingGlyphColor());

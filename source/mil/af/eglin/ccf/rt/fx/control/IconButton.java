@@ -38,7 +38,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * 
  * @see Button
  */
-public class IconButton extends Button implements RtGlyph
+public class IconButton extends Button implements RtIcon
 {
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE;
@@ -55,7 +55,6 @@ public class IconButton extends Button implements RtGlyph
             StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill",
             DefaultPalette.getInstance().getAccentColor());
 
-    // TODO change SvgGlyph to use RtGlyph. Change curent solution for RtGlyph
     // to RtTextFieldIcon
     /**
      * Creates an icon button with the specified icon as its label.

@@ -27,13 +27,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
-import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
+import mil.af.eglin.ccf.rt.fx.control.RtIcon;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO Add a maintain aspect ratio flag
-public class SvgIcon extends StackPane implements RtGlyph
+public class SvgIcon extends StackPane implements RtIcon
 {
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";

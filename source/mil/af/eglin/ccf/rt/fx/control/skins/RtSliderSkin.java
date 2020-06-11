@@ -19,7 +19,6 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO bind colors to rt style properties
 public class RtSliderSkin extends SliderSkin
 {
     private final Slider slider;
@@ -78,17 +77,17 @@ public class RtSliderSkin extends SliderSkin
         boolean isHorizontal = getSkinnable().getOrientation() == Orientation.HORIZONTAL;
         if (isHorizontal)
         {
-            width = thumb.getLayoutX() - snappedLeftInset();
-            height = track.getHeight();
-            layoutX = track.getLayoutX();
-            layoutY = track.getLayoutY();
+            width = this.thumb.getLayoutX() - snappedLeftInset();
+            height = this.track.getHeight();
+            layoutX = this.track.getLayoutX();
+            layoutY = this.track.getLayoutY();
         } 
         else
         {
-            height = track.getLayoutBounds().getMaxY() + track.getLayoutY() - thumb.getLayoutY() - snappedBottomInset();
-            width = track.getWidth();
-            layoutX = track.getLayoutX();
-            layoutY = thumb.getLayoutY();
+            height = this.track.getLayoutBounds().getMaxY() + this.track.getLayoutY() - this.thumb.getLayoutY() - snappedBottomInset();
+            width = this.track.getWidth();
+            layoutX = this.track.getLayoutX();
+            layoutY = this.thumb.getLayoutY();
         }
 
         this.filledTrack.resizeRelocate(layoutX, layoutY, width, height);

@@ -2,8 +2,6 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 
 /**
  * An accent defines the standard color scheme used by a component.
- * 
- * @author kwkin
  */
 public enum Accent
 {

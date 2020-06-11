@@ -102,7 +102,7 @@ public class TextField extends javafx.scene.control.TextField
      * A trailing icon adds an icon to the end of the text field. Input text
      * will be clipped before overlapping with the trailing icon.
      */
-    private ObjectProperty<RtGlyph> trailingIcon = new SimpleObjectProperty<RtGlyph>();
+    private ObjectProperty<RtIcon> trailingIcon = new SimpleObjectProperty<RtIcon>();
 
     /**
      * When enabled, the prompt text will be positioned above the input text.
@@ -342,17 +342,17 @@ public class TextField extends javafx.scene.control.TextField
         this.disableAnimation.set(disabled);
     }
 
-    public ObjectProperty<RtGlyph> trailingGlyphProperty()
+    public ObjectProperty<RtIcon> trailingGlyphProperty()
     {
         return this.trailingIcon;
     }
 
-    public RtGlyph getTrailingGlyph()
+    public RtIcon getTrailingGlyph()
     {
         return this.trailingIcon.get();
     }
 
-    public void setTrailingGlyph(RtGlyph glyph)
+    public void setTrailingGlyph(RtIcon glyph)
     {
         this.trailingIcon.set(glyph);
     }

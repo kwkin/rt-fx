@@ -24,7 +24,7 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 
 // TODO change some of this stuff to be in the skin instead
-public class IconToggleButton extends ToggleButton implements RtGlyph
+public class IconToggleButton extends ToggleButton implements RtIcon
 {
     protected StackPane iconPane = new StackPane();
     protected SvgIcon selectedIcon;
