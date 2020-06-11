@@ -13,6 +13,11 @@ public class TitledCardPane extends CardPane
     private Label titleLabel;
     private Node content;
     
+    /**
+     * Creates a card pane with the specified title.
+     * 
+     * @param title The title of the card pane.
+     */
     public TitledCardPane(String title)
     {
         super();
@@ -20,7 +25,13 @@ public class TitledCardPane extends CardPane
         this.titleLabel.setTextAlignment(TextAlignment.CENTER);
         initialize();
     }
-    
+
+    /**
+     * Creates a card pane with the specified title and accent.
+     * 
+     * @param title The title of the card pane.
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public TitledCardPane(String title, Accent accent)
     {
         super(accent);

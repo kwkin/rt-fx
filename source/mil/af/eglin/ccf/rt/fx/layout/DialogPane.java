@@ -27,6 +27,11 @@ public class DialogPane extends javafx.scene.control.DialogPane
     private ButtonBar buttonBar;
     private Dialog<?> dialog;
 
+    /**
+     * Creates a dialog pane associated with the specified dialog.
+     * 
+     * @param dialog The dialog that this pane belongs to.
+     */
     public DialogPane(Dialog<?> dialog)
     {
         super();
@@ -34,6 +39,12 @@ public class DialogPane extends javafx.scene.control.DialogPane
         initialize();
     }
 
+    /**
+     * Creates a dialog pane associated with the specified dialog and accent.
+     * 
+     * @param dialog The dialog that this pane belongs to.
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public DialogPane(Dialog<?> dialog, Accent accent)
     {
         super();

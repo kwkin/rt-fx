@@ -12,12 +12,18 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane
     private static final String USER_AGENT_STYLESHEET = "anchor-pane.css";
     private static final String CSS_CLASS = "rt-anchor-pane";
 
+    /**
+     * Creates an AnchorPane layout.
+     */
     public AnchorPane()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates an AnchorPane layout with the specified accent.
+     */
     public AnchorPane(Accent accent)
     {
         super();

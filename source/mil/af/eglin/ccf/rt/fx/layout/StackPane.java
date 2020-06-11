@@ -22,6 +22,11 @@ public class StackPane extends javafx.scene.layout.StackPane
         initialize();
     }
 
+    /**
+     * Creates a StackPane layout with default CENTER alignment and specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public StackPane(Accent accent)
     {
         super();
@@ -29,12 +34,23 @@ public class StackPane extends javafx.scene.layout.StackPane
         initialize();
     }
 
+    /**
+     * Creates a StackPane layout with default CENTER alignment.
+     * 
+     * @param children The initial set of children for this pane.
+     */
     public StackPane(Node... children)
     {
         super(children);
         initialize();
     }
 
+    /**
+     * Creates a StackPane layout with default CENTER alignment and specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     * @param children The initial set of children for this pane.
+     */
     public StackPane(Accent accent, Node... children)
     {
         super(children);

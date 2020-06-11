@@ -12,12 +12,21 @@ public class GridPane extends javafx.scene.layout.GridPane
     private static final String USER_AGENT_STYLESHEET = "grid-pane.css";
     private static final String CSS_CLASS = "rt-grid-pane";
 
+    /**
+     * Creates a GridPane layout with hgap/vgap = 0 and TOP_LEFT alignment.
+     */
     public GridPane()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a GridPane layout with hgap/vgap = 0, TOP_LEFT alignment, and the
+     * specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public GridPane(Accent accent)
     {
         super();
@@ -52,7 +61,7 @@ public class GridPane extends javafx.scene.layout.GridPane
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
-    
+
     static
     {
         GridPane.loadStyleSheet();
