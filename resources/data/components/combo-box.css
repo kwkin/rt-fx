@@ -21,7 +21,6 @@ TODO
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
-    -rt-helper-text-height: 24;
 }
 
 .rt-combo-box .list-cell
@@ -104,34 +103,28 @@ TODO
 
 .rt-combo-box:helper .description-container
 {
-    -fx-border-width: 2;
     -fx-min-height: 16;
-    -fx-padding: 2 16 2 16;
+    -fx-padding: 4 16 4 16;
 }
 
-.rt-combo-box:helper .description-container .helper-container .helper-text
+.rt-combo-box:helper .description-container .helper-text
 {
     -fx-fill: -var-on-main-light-color;
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
 
-.rt-combo-box:floating .input-container
-{
-    -fx-padding: 22 32 6 16;
-}
-
-.rt-combo-box:helper .error-container
-{
-    -fx-border-width: 2;
-    -fx-min-height: 16;
-}
-
-.rt-combo-box:helper .error-container .error-text
+.rt-combo-box:helper .description-container .error-text
 {
     -fx-fill: -var-error-color;
     -fx-font-size: 12;
     -fx-text-alignment: left;
+}
+
+
+.rt-combo-box:floating .input-container
+{
+    -fx-padding: 22 32 6 16;
 }
 
 .rt-combo-box:error

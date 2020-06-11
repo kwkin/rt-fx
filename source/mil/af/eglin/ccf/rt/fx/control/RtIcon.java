@@ -5,15 +5,15 @@ import javafx.scene.paint.Paint;
 
 public interface RtIcon
 {
-    public boolean isGlyphColorManaged();
+    public boolean isColorManaged();
     
-    public void setIsGlyphColorManaged(boolean isGlyphColorManaged);
+    public void setIsColorManaged(boolean isFillManaged);
     
-    public void setGlyphFill(Paint fill);
+    public void setFill(Paint fill);
     
-    public Paint getGlyphFill();
+    public Paint getFill();
     
-    public double getGlyphSize();
+    public double getSize();
     
-    public Node getGlyph();
+    public Node getNode();
 }

@@ -55,25 +55,27 @@ public class RtTextFieldSkin extends TextFieldSkin
 
         getChildren().remove(this.textGroup);
         this.input.addInput(this.textGroup);
+        // @formatter:off
         getChildren().addAll(this.input.getInputContainer(), 
                 this.input.getOverlayContainer(), 
                 this.input.getUnfocusedLine(), 
                 this.input.getFocusedLine(),
                 this.input.getPromptContainer(),
                 this.descriptionContainer);
-        RtIcon glyph = textField.getTrailingGlyph();
-        if (glyph != null)
+        // @formatter:on
+        RtIcon icon = textField.getTrailingIcon();
+        if (icon != null)
         {
-            getChildren().add(glyph.getGlyph());
+            getChildren().add(icon.getNode());
         }
         
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(), textField.focusColorProperty().getName());
         registerChangeListener(textField.getOverlayColorProperty(), textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusColorProperty(), textField.unfocusColorProperty().getName());
-        registerChangeListener(textField.trailingGlyphProperty(), textField.trailingGlyphProperty().getName());
-        registerChangeListener(textField.trailingGlyphColorProperty(),
-                textField.trailingGlyphColorProperty().getName());
+        registerChangeListener(textField.trailingIconProperty(), textField.trailingIconProperty().getName());
+        registerChangeListener(textField.trailingIconColorProperty(),
+                textField.trailingIconColorProperty().getName());
         registerChangeListener(textField.isShowHelperTextProperty(), textField.isShowHelperTextProperty().getName());
     }
 
@@ -112,11 +114,11 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             // TODO complete this
         }
-        else if (textField.trailingGlyphProperty().getName().equals(propertyReference))
+        else if (textField.trailingIconProperty().getName().equals(propertyReference))
         {
             this.textField.layout();
         }
-        else if (textField.trailingGlyphColorProperty().getName().equals(propertyReference))
+        else if (textField.trailingIconColorProperty().getName().equals(propertyReference))
         {
             updateTrailingIconColor();
         }
@@ -126,25 +128,24 @@ public class RtTextFieldSkin extends TextFieldSkin
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
         super.layoutChildren(x, y, w, h);
-
-        double inputHeight = this.textField.isHelperTextVisible() ? h - this.textField.getHelperTextHeight() : h;
+        double inputHeight = this.textField.isHelperTextVisible() ? h - this.descriptionContainer.getHeight() : h;
         double promptTopPadding = this.input.getPromptContainer().getPadding().getTop();
         double inputTopPadding = this.input.getInputContainer().getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 2;
         this.input.layoutComponents(x, y, w, inputHeight, translateY);
         this.input.updateLabelFloatLayout();
 
-        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textField.getHelperTextHeight());
+        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.descriptionContainer.getHeight());
 
         Pane inputContainer = this.input.getInputContainer();
-        RtIcon graphic = this.textField.getTrailingGlyph();
+        RtIcon graphic = this.textField.getTrailingIcon();
         double promptWidth = w;
         if (graphic != null)
         {
-            double graphicWidth = graphic.getGlyph().getLayoutBounds().getWidth();
+            double graphicWidth = graphic.getNode().getLayoutBounds().getWidth();
             double xPosition = w - graphicWidth - textField.getTrailingIconGap();
             double inputYCenter = y + inputHeight / 2;
-            positionInArea(graphic.getGlyph(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
+            positionInArea(graphic.getNode(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
             updateTrailingIconColor();
 
             double graphicLeftGap = graphicWidth + 2 * textField.getTrailingIconGap();
@@ -220,10 +221,10 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private void updateTrailingIconColor()
     {
-        RtIcon graphic = this.textField.getTrailingGlyph();
-        if (graphic != null && graphic.isGlyphColorManaged())
+        RtIcon graphic = this.textField.getTrailingIcon();
+        if (graphic != null && graphic.isColorManaged())
         {
-            graphic.setGlyphFill(this.textField.getTrailingGlyphColor());
+            graphic.setFill(this.textField.getTrailingIconColor());
         }
     }
 }

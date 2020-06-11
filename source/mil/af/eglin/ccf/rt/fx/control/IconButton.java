@@ -25,8 +25,6 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO rename all instances of glyph to icon
-
 /**
  * A simple button control allows the user to take actions with a single press.
  * <p>
@@ -47,11 +45,11 @@ public class IconButton extends Button implements RtIcon
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
     /**
-     * The color of the glyph when the button is armed.
+     * The color of the icon when the button is armed.
      * <p>
-     * When not armed, the glyph will retain the color speci
+     * When not armed, the icon will retain the color specified by the icon
      */
-    private StyleableObjectProperty<Paint> selectedGlyphFill = new SimpleStyleableObjectProperty<>(
+    private StyleableObjectProperty<Paint> selectedIconFill = new SimpleStyleableObjectProperty<>(
             StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill",
             DefaultPalette.getInstance().getAccentColor());
 
@@ -101,51 +99,51 @@ public class IconButton extends Button implements RtIcon
         return this.icon;
     }
 
-    public final StyleableObjectProperty<Paint> selectedGlyphFillProperty()
+    public final StyleableObjectProperty<Paint> selectedIconFillProperty()
     {
-        return this.selectedGlyphFill;
+        return this.selectedIconFill;
     }
 
-    public final void setSelectedGlyphFill(Paint fill)
+    public final void setSelectedFill(Paint fill)
     {
-        this.selectedGlyphFill.set(fill);
+        this.selectedIconFill.set(fill);
     }
 
-    public final Paint getSelectedGlyphFill()
+    public final Paint getSelectedIconFill()
     {
-        return this.selectedGlyphFill.get();
+        return this.selectedIconFill.get();
     }
 
-    public boolean isGlyphColorManaged()
+    public boolean isColorManaged()
     {
-        return this.icon.isGlyphColorManaged();
+        return this.icon.isColorManaged();
     }
 
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    public void setIsColorManaged(boolean isFillManaged)
     {
-        this.icon.setIsGlyphColorManaged(isGlyphFillManaged);
-    }
-
-    @Override
-    public void setGlyphFill(Paint fill)
-    {
-        this.icon.setGlyphFill(fill);
+        this.icon.setIsColorManaged(isFillManaged);
     }
 
     @Override
-    public Paint getGlyphFill()
+    public void setFill(Paint fill)
     {
-        return this.icon.getGlyphFill();
+        this.icon.setFill(fill);
     }
 
     @Override
-    public double getGlyphSize()
+    public Paint getFill()
     {
-        return this.icon.getGlyphSize();
+        return this.icon.getFill();
     }
 
     @Override
-    public Node getGlyph()
+    public double getSize()
+    {
+        return this.icon.getSize();
+    }
+
+    @Override
+    public Node getNode()
     {
         return this;
     }
@@ -171,8 +169,8 @@ public class IconButton extends Button implements RtIcon
     private void initialize()
     {
         this.iconPane.getChildren().addAll(this.icon);
-        double width = this.icon.getGlyphSize();
-        double height = this.icon.getGlyphSize();
+        double width = this.icon.getSize();
+        double height = this.icon.getSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
 
@@ -194,13 +192,13 @@ public class IconButton extends Button implements RtIcon
             @Override
             public boolean isSettable(IconButton control)
             {
-                return control.selectedGlyphFill == null || !control.selectedGlyphFill.isBound();
+                return control.selectedIconFill == null || !control.selectedIconFill.isBound();
             }
 
             @Override
             public StyleableProperty<Paint> getStyleableProperty(IconButton control)
             {
-                return control.selectedGlyphFill;
+                return control.selectedIconFill;
             }
         };
 

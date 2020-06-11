@@ -162,38 +162,38 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         return this.isToggleText;
     }
 
-    public boolean isGlyphColorManaged()
+    public boolean isColorManaged()
     {
-        return this.isSelected() ? this.selectedIcon.isGlyphColorManaged() : this.unselectedIcon.isGlyphColorManaged();
+        return this.isSelected() ? this.selectedIcon.isColorManaged() : this.unselectedIcon.isColorManaged();
     }
 
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    public void setIsColorManaged(boolean isFillManaged)
     {
-        this.selectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
-        this.unselectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
-    }
-
-    @Override
-    public void setGlyphFill(Paint fill)
-    {
-        this.unselectedIcon.setGlyphFill(fill);
-        this.selectedIcon.setGlyphFill(fill);
+        this.selectedIcon.setIsColorManaged(isFillManaged);
+        this.unselectedIcon.setIsColorManaged(isFillManaged);
     }
 
     @Override
-    public Paint getGlyphFill()
+    public void setFill(Paint fill)
+    {
+        this.unselectedIcon.setFill(fill);
+        this.selectedIcon.setFill(fill);
+    }
+
+    @Override
+    public Paint getFill()
     {
         return isSelected() ? getSelectedFill() : getUnselectedFill();
     }
 
     @Override
-    public double getGlyphSize()
+    public double getSize()
     {
-        return isSelected() ? this.selectedIcon.getGlyphSize() : this.unselectedIcon.getGlyphSize();
+        return isSelected() ? this.selectedIcon.getSize() : this.unselectedIcon.getSize();
     }
 
     @Override
-    public Node getGlyph()
+    public Node getNode()
     {
         return this;
     }
@@ -240,15 +240,15 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         });
         this.selectedFill.addListener((ov, oldVal, newVal) ->
         {
-            this.selectedIcon.setGlyphFill(newVal);
+            this.selectedIcon.setFill(newVal);
         });
         this.unselectedFill.addListener((ov, oldVal, newVal) ->
         {
-            this.unselectedIcon.setGlyphFill(newVal);
+            this.unselectedIcon.setFill(newVal);
         });
 
-        double width = this.selectedIcon.getGlyphSize();
-        double height = this.selectedIcon.getGlyphSize();
+        double width = this.selectedIcon.getSize();
+        double height = this.selectedIcon.getSize();
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
     }

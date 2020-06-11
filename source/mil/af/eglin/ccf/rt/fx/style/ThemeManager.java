@@ -5,7 +5,6 @@ import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO use nio paths instead of strings and check if file exists
 public class ThemeManager
 {
     private Theme theme;

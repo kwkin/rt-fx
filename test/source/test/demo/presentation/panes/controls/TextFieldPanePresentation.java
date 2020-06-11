@@ -49,20 +49,20 @@ public class TextFieldPanePresentation extends SizedTitledCard
         TextField trailingIconTextField = new TextField(Accent.PRIMARY_DARK);
         trailingIconTextField.setPromptText("Floating and Icon");
         trailingIconTextField.setLabelFloat(true);
-        trailingIconTextField.setTrailingGlyph(cog);
+        trailingIconTextField.setTrailingIcon(cog);
 
         SvgIcon folder = new SvgIcon(SvgFile.FOLDER, IconSize.SIZE_24);
         IconButton folderButton = new IconButton(folder);
         TextField trailingButtonTextField = new TextField(Accent.SECONDARY_LIGHT);
         trailingButtonTextField.setPromptText("Button Icon");
-        trailingButtonTextField.setTrailingGlyph(folderButton);
+        trailingButtonTextField.setTrailingIcon(folderButton);
 
         SvgIcon eyeOn = new SvgIcon(SvgFile.EYE, IconSize.SIZE_24);
         SvgIcon eyeOff = new SvgIcon(SvgFile.EYE_OUTLINE, IconSize.SIZE_24);
         IconToggleButton eyeToggleButton = new IconToggleButton(eyeOn, eyeOff);
         TextField trailingToggleTextField = new TextField(Accent.SECONDARY_MID);
         trailingToggleTextField.setPromptText("Toggle Button Icon");
-        trailingToggleTextField.setTrailingGlyph(eyeToggleButton);
+        trailingToggleTextField.setTrailingIcon(eyeToggleButton);
 
         TextField helperTextField = new TextField(Accent.SECONDARY_DARK);
         helperTextField.setPromptText("Label");
@@ -75,12 +75,14 @@ public class TextFieldPanePresentation extends SizedTitledCard
         allTextField.setLabelFloat(true);
         allTextField.setIsShowHelperText(true);
         allTextField.setHelperText("Helper Text");
-        allTextField.setTrailingGlyph(bell);
+        allTextField.setTrailingIcon(bell);
 
-        RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.");
+        RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.asdasdasdadasdasdadasdasdasdasdasdasdasdadasdasd");
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
         validableTextField.setLabelFloat(true);
+        validableTextField.setIsShowHelperText(true);
+        validableTextField.setHelperText("This can be invalidated.");
         validableTextField.getValidators().add(requiredValidator);
         validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);
         

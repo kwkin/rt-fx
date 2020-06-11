@@ -38,7 +38,7 @@ public class SvgIcon extends StackPane implements RtIcon
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
 
-    private boolean isGlyphFillManaged = true;
+    private boolean isFillManaged = true;
     
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
@@ -59,7 +59,7 @@ public class SvgIcon extends StackPane implements RtIcon
     public SvgIcon(URL icon, Paint fill) throws IOException
     {
         this.fill.setValue(fill);
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
 
@@ -67,7 +67,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
     
@@ -85,7 +85,7 @@ public class SvgIcon extends StackPane implements RtIcon
     public SvgIcon(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
@@ -93,7 +93,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
@@ -105,25 +105,25 @@ public class SvgIcon extends StackPane implements RtIcon
     }
 
     @Override
-    public Node getGlyph()
+    public Node getNode()
     {
         return this;
     }
     
     @Override
-    public double getGlyphSize()
+    public double getSize()
     {
         return size.get();
     }
 
     @Override
-    public Paint getGlyphFill()
+    public Paint getFill()
     {
         return this.fill.getValue();
     }
 
     @Override
-    public void setGlyphFill(Paint fill)
+    public void setFill(Paint fill)
     {
         this.fill.setValue(fill);
     }
@@ -148,14 +148,14 @@ public class SvgIcon extends StackPane implements RtIcon
         return this.widthHeightRatio;
     }
 
-    public boolean isGlyphColorManaged()
+    public boolean isColorManaged()
     {
-        return this.isGlyphFillManaged;
+        return this.isFillManaged;
     }
 
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    public void setIsColorManaged(boolean isFillManaged)
     {
-        this.isGlyphFillManaged = isGlyphFillManaged;
+        this.isFillManaged = isFillManaged;
     }
     
     /**
@@ -172,9 +172,9 @@ public class SvgIcon extends StackPane implements RtIcon
         getStyleClass().add(CSS_CLASS);
 
         // TODO add binding and property conversions for background
-        if (getGlyphFill() != null)
+        if (getFill() != null)
         {
-            setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
+            setBackground(new Background(new BackgroundFill(getFill(), null, null)));
         }
         this.fill.addListener((ov, oldVal, newVal) -> 
         {
@@ -184,7 +184,7 @@ public class SvgIcon extends StackPane implements RtIcon
         {
             if (this.fill.getValue() != null)
             {
-                setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
+                setBackground(new Background(new BackgroundFill(getFill(), null, null)));
             }
         });
         shapeProperty().addListener((ov, oldVal, newVal) ->
@@ -192,9 +192,9 @@ public class SvgIcon extends StackPane implements RtIcon
             if (newVal != null)
             {
                 this.widthHeightRatio.setValue(newVal.prefWidth(-1) / newVal.prefHeight(-1));
-                if (getGlyphSize() != Region.USE_COMPUTED_SIZE)
+                if (getSize() != Region.USE_COMPUTED_SIZE)
                 {
-                    setSizeRatio(getGlyphSize());
+                    setSizeRatio(getSize());
                 }
             }
         });

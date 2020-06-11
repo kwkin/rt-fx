@@ -37,10 +37,10 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * <p>
  * In general, icon buttons should be created using the {@link IconButton
  * IconButton} class whenever using a
- * {@link RtIcon RtGlyph} as the graphic. The
+ * {@link RtIcon RtIcon} as the graphic. The
  * {@link IconButton IconButton} class provides additional API for styling and
  * using the icon inside the button. This class still allows the Icon type in
- * case a generic node wants to be used instead of {@link RtIcon RtGlyph}.
+ * case a generic node wants to be used instead of {@link RtIcon RtIcon}.
  * 
  * @see IconButton
  */

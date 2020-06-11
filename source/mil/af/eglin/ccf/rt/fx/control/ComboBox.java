@@ -7,10 +7,8 @@ import java.util.List;
 import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
-import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -22,11 +20,9 @@ import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
-import javafx.css.SimpleStyleableDoubleProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
-import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Control;
@@ -149,11 +145,6 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, ComboBox.this, "disableAnimation", false);
-
-    // TODO remove this property. Height should be determined by the size and
-    // padding of the helper text
-    private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
-            StyleableProperties.HELPER_TEXT_HEIGHT, ComboBox.this, "helperTextHeight", 16.0);
 
     /**
      * Creates a default ComboBox instance with an empty items list and default
@@ -431,21 +422,6 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         this.overlayColor.set(overlayColor);
     }
 
-    public final DoubleProperty helperTextHeightProperty()
-    {
-        return this.helperTextHeight;
-    }
-
-    public final double getHelperTextHeight()
-    {
-        return this.helperTextHeight.get();
-    }
-
-    public final void setHelperTextHeight(double helperTextHeight)
-    {
-        this.helperTextHeight.set(helperTextHeight);
-    }
-
     public final StyleableBooleanProperty disableAnimationProperty()
     {
         return this.isAnimationDisabled;
@@ -606,22 +582,6 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
                 return control.focusColor;
             }
         };
-        private static final CssMetaData<ComboBox<?>, Number> HELPER_TEXT_HEIGHT = new CssMetaData<ComboBox<?>, Number>(
-                "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
-        {
-
-            @Override
-            public boolean isSettable(ComboBox<?> control)
-            {
-                return control.helperTextHeight == null || !control.helperTextHeight.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Number> getStyleableProperty(ComboBox<?> control)
-            {
-                return control.helperTextHeight;
-            }
-        };
         private static final CssMetaData<ComboBox<?>, Boolean> DISABLE_ANIMATION = new CssMetaData<ComboBox<?>, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -649,7 +609,6 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
             styleables.add(UNFOCUS_COLOR);
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
-            styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);

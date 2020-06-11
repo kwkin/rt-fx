@@ -169,10 +169,6 @@ public class TextField extends javafx.scene.control.TextField
             StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor",
             DefaultPalette.getInstance().getLightBaseColor());
 
-    // TODO remove this
-    private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
-            StyleableProperties.HELPER_TEXT_HEIGHT, TextField.this, "helperTextHeight", 16.0);
-
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
@@ -342,32 +338,32 @@ public class TextField extends javafx.scene.control.TextField
         this.disableAnimation.set(disabled);
     }
 
-    public ObjectProperty<RtIcon> trailingGlyphProperty()
+    public ObjectProperty<RtIcon> trailingIconProperty()
     {
         return this.trailingIcon;
     }
 
-    public RtIcon getTrailingGlyph()
+    public RtIcon getTrailingIcon()
     {
         return this.trailingIcon.get();
     }
 
-    public void setTrailingGlyph(RtIcon glyph)
+    public void setTrailingIcon(RtIcon icon)
     {
-        this.trailingIcon.set(glyph);
+        this.trailingIcon.set(icon);
     }
 
-    public ObjectProperty<Paint> trailingGlyphColorProperty()
+    public ObjectProperty<Paint> trailingIconColorProperty()
     {
         return this.trailingIconColor;
     }
 
-    public Paint getTrailingGlyphColor()
+    public Paint getTrailingIconColor()
     {
         return trailingIconColor.get();
     }
 
-    public void setTrailingGlyphColor(Paint color)
+    public void setTrailingIconColor(Paint color)
     {
         this.trailingIconColor.set(color);
     }
@@ -385,21 +381,6 @@ public class TextField extends javafx.scene.control.TextField
     public void setTrailingIconGap(double trailingIconGap)
     {
         this.trailingIconGap.set(trailingIconGap);
-    }
-
-    public DoubleProperty helperTextHeightProperty()
-    {
-        return this.helperTextHeight;
-    }
-
-    public double getHelperTextHeight()
-    {
-        return this.helperTextHeight.get();
-    }
-
-    public void setHelperTextHeight(double helperTextHeight)
-    {
-        this.helperTextHeight.set(helperTextHeight);
     }
 
     public StringProperty helperTextProperty()
@@ -701,22 +682,6 @@ public class TextField extends javafx.scene.control.TextField
                 return control.trailingIconColor;
             }
         };
-        private static final CssMetaData<TextField, Number> HELPER_TEXT_HEIGHT = new CssMetaData<TextField, Number>(
-                "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
-        {
-
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.helperTextHeight == null || !control.helperTextHeight.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Number> getStyleableProperty(TextField control)
-            {
-                return control.helperTextHeight;
-            }
-        };
         private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = new CssMetaData<TextField, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -746,7 +711,6 @@ public class TextField extends javafx.scene.control.TextField
             styleables.add(OVERLAY_COLOR);
             styleables.add(TRAILING_ICON_PADDING);
             styleables.add(TRAILING_ICON_COLOR);
-            styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);

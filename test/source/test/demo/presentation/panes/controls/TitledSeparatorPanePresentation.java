@@ -24,7 +24,6 @@ public class TitledSeparatorPanePresentation extends SizedTitledCard
 
         VBox vBox = new VBox();
         vBox.getChildren().add(createHorizontalSeparators());
-//        vBox.getChildren().add(createVerticalSeparators());
         
         setContent(vBox);
     }
@@ -64,31 +63,4 @@ public class TitledSeparatorPanePresentation extends SizedTitledCard
         
         return descriptionPane;
     }
-    
-//    private Node createVerticalSeparators()
-//    {
-//        DescriptionPane descriptionPane = new DescriptionPane();
-//        descriptionPane.setDescription("Titled separators may also be oriented vertically.");
-//
-//        HBox buttonHBox = new HBox();
-//        buttonHBox.setMinHeight(60);
-//       
-//        TitledSeparator primaryDarkTitledSeparator = new TitledSeparator("TITLED", Orientation.VERTICAL, Accent.PRIMARY_DARK);
-//        TitledSeparator secondaryDarkTitledSeparator = new TitledSeparator("", Orientation.VERTICAL, Accent.SECONDARY_DARK);
-//        SvgGlyph iconNoTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
-//        secondaryDarkTitledSeparator.setGraphic(iconNoTitle);
-//        secondaryDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
-//        TitledSeparator baseDarkTitledSeparator = new TitledSeparator("WITH ICON", Orientation.VERTICAL, Accent.BASE);
-//        SvgGlyph iconTitle = new SvgGlyph(SvgFile.BELL, IconSize.SIZE_16);
-//        baseDarkTitledSeparator.setGraphic(iconTitle);
-//        baseDarkTitledSeparator.setContentDisplay(ContentDisplay.LEFT);
-//        
-//        buttonHBox.getChildren().add(primaryDarkTitledSeparator);
-//        buttonHBox.getChildren().add(secondaryDarkTitledSeparator);
-//        buttonHBox.getChildren().add(baseDarkTitledSeparator);
-//        
-//        descriptionPane.setContent(buttonHBox);
-//        
-//        return descriptionPane;
-//    }
 }
