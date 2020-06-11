@@ -164,8 +164,16 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         }
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        Label.loadStyleSheet();
     }
 }

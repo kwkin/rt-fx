@@ -133,8 +133,16 @@ public class FlowPane extends javafx.scene.layout.FlowPane
         getStyleClass().add(this.accent.getCssName());
     }
 
+    /**
+     * Loads the user agent stylesheet specific to this layout
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+        FlowPane.loadStyleSheet();
     }
 }

@@ -517,8 +517,16 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
         return getClassCssMetaData();
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        ToggleSwitch.loadStyleSheet();
     }
 }

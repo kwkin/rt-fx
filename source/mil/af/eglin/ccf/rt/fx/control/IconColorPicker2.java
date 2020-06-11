@@ -87,9 +87,17 @@ public class IconColorPicker2 extends javafx.scene.control.ColorPicker implement
         getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        IconColorPicker2.loadStyleSheet();
     }
 }

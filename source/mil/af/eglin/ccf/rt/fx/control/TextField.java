@@ -727,8 +727,16 @@ public class TextField extends javafx.scene.control.TextField
         return StyleableProperties.CHILD_STYLEABLES;
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        TextField.loadStyleSheet();
     }
 }

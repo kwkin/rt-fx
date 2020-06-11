@@ -26,11 +26,8 @@ import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO incorporate logging
-// TODO if a logging name is required, consider renaming Button to RtButtton, since we lose the benefit of simply replacing the import statement
 // TODO default button style
 // TODO cancel button style
-// TODO link button styles in Java doc
 
 /**
  * A simple button control allows the user to take actions with a single press.
@@ -43,6 +40,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * case a generic node wants to be used instead of {@link RtIcon RtIcon}.
  * 
  * @see IconButton
+ * @see mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle
  */
 public class Button extends javafx.scene.control.Button implements RtStyleableComponent
 {
@@ -341,9 +339,14 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     {
         return getClassCssMetaData();
     }
+    
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
 
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        Button.loadStyleSheet();
     }
 }

@@ -523,11 +523,18 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        // TODO load scroll pane component
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        TextArea.loadStyleSheet();
         ScrollPane.loadStyleSheet();
     }
 }

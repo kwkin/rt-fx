@@ -121,8 +121,16 @@ public class ColorPicker extends javafx.scene.control.ColorPicker implements RtS
         getStyleClass().add(this.accent.getCssName());
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        ColorPicker.loadStyleSheet();
     }
 }

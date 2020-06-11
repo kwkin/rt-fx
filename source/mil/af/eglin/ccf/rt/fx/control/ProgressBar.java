@@ -83,8 +83,16 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
         getStyleClass().add(this.accent.getCssName());
     }
     
-    static
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    static
+    {
+        ProgressBar.loadStyleSheet();
     }
 }

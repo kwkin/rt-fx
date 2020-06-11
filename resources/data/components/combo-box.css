@@ -210,6 +210,7 @@ TODO
     -fx-max-width: -rt-size;
 }
 
+/* Merge combo-box scroll bar with scroll pane */
 /*-- ############################### Combo Box Popup Style ############################### */
 .combo-box-popup .list-view 
 {

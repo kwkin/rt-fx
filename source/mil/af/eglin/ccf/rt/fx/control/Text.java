@@ -148,8 +148,16 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
         }
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        Text.loadStyleSheet();
     }
 }

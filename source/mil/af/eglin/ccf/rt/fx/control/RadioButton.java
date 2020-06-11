@@ -316,9 +316,17 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     {
         return getClassCssMetaData();
     }
-
-    static
+    
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    static
+    {
+        RadioButton.loadStyleSheet();
     }
 }

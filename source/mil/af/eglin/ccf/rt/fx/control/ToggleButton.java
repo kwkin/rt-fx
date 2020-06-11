@@ -327,8 +327,16 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
         return getClassCssMetaData();
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        ToggleButton.loadStyleSheet();
     }
 }

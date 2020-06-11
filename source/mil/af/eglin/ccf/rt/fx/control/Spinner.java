@@ -73,8 +73,16 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
         getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
     }
     
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+    
+    static
+    {
+        Spinner.loadStyleSheet();
     }
 }

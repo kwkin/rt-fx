@@ -616,7 +616,8 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
     }
 
     /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
@@ -634,8 +635,17 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         return getClassCssMetaData();
     }
 
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        ScrollPane.loadStyleSheet();
+        ComboBox.loadStyleSheet();
     }
 }

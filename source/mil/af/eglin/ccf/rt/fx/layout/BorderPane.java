@@ -40,9 +40,17 @@ public class BorderPane extends javafx.scene.layout.BorderPane
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this layout
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+        BorderPane.loadStyleSheet();
     }
 }

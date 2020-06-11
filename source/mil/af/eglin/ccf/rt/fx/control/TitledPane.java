@@ -130,9 +130,17 @@ public class TitledPane extends javafx.scene.control.TitledPane
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        TitledPane.loadStyleSheet();
     }
 }
