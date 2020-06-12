@@ -106,10 +106,6 @@ public class RtTextAreaSkin extends TextAreaSkin
         {
             input.updateOverlayColor(this.textArea.getOverlayColor());
         }
-        else if (textArea.labelFloatProperty().getName().equals(propertyReference))
-        {
-            // TODO complete this
-        }
     }
 
     @Override

@@ -18,7 +18,6 @@ import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import mil.af.eglin.ccf.rt.fx.control.ProgressBar;
 import mil.af.eglin.ccf.rt.fx.control.Text;
-import mil.af.eglin.ccf.rt.fx.utils.JFXNodeUtils;
 
 public class RtProgressBarSkin extends ProgressIndicatorSkin
 {
@@ -46,8 +45,7 @@ public class RtProgressBarSkin extends ProgressIndicatorSkin
         
         clip = new Region();
         clip.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        bar.backgroundProperty().addListener(observable -> JFXNodeUtils.updateBackground(bar.getBackground(), clip));
-        
+
         getChildren().addAll(track, bar, textPane);
 
         progressBar.widthProperty().addListener(observable ->

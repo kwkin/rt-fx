@@ -110,10 +110,6 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             input.updateOverlayColor(this.textField.getOverlayColor());
         }
-        else if (textField.labelFloatProperty().getName().equals(propertyReference))
-        {
-            // TODO complete this
-        }
         else if (textField.trailingIconProperty().getName().equals(propertyReference))
         {
             this.textField.layout();

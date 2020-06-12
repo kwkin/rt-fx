@@ -82,15 +82,15 @@ public class RtSliderSkin extends SliderSkin
         super.handleControlPropertyChanged(property);
         if (this.slider.thumbColorProperty().getName().equals(property))
         {
-            // TODO implement
+            updateColors();
         }
         else if (this.slider.filledTrackColorProperty().getName().equals(property))
         {
-            // TODO implement
+            updateColors();
         }
         else if (this.slider.unfilledTrackColorProperty().getName().equals(property))
         {
-            this.circleThumb.setFill(determineThumbColor());
+            updateColors();
         }
         else if (this.slider.overlayColorProperty().getName().equals(property))
         {
@@ -231,6 +231,13 @@ public class RtSliderSkin extends SliderSkin
         {
             this.stateTimeline.reverseAndContinue();
         });
+    }
+
+    private void updateColors()
+    {
+        this.circleThumb.setFill(determineThumbColor());
+        Utils.setBackgroundColor(this.track, this.slider.getUnfilledTrackColor());
+        Utils.setBackgroundColor(this.filledTrack, this.slider.getFilledTrackColor());
     }
 
     private void updateStateBoxColor()

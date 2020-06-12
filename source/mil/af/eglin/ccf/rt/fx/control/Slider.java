@@ -25,7 +25,6 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 //TODO add range slider (2 thumbs)
-//TODO make the thumb color the same as the unfilled track color when set to the min value 
 //TODO discuss discrete sliders, bubble, and potentially adding the value inside the thumb
 /**
  * A slider allow users to make a selection from a range of values.

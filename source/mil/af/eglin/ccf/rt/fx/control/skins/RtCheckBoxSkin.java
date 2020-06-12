@@ -25,7 +25,6 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private final StackPane indeterminateMark = new StackPane();
     private final StackPane boxAndMarks = new StackPane();
     private final StackPane stateBox = new StackPane();
-
     private final StackPane slideTransition = new StackPane();
 
     private RtAnimationTimeline unselectedTimeline;
@@ -37,7 +36,7 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     {
         super(checkBox, new ButtonBehavior<>(checkBox));
         this.checkBox = checkBox;
-
+        
         this.selectedMark.getStyleClass().setAll("mark");
         this.selectedMark.setOpacity(0);
 
@@ -92,15 +91,15 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     protected void handleControlPropertyChanged(String property)
     {
         super.handleControlPropertyChanged(property);
-        if (checkBox.selectedColorProperty().getName().equals(property))
+        if (this.checkBox.selectedColorProperty().getName().equals(property))
         {
-            // TODO implement
+            updateColors();
         }
-        else if (checkBox.unselectedColorProperty().getName().equals(property))
+        else if (this.checkBox.unselectedColorProperty().getName().equals(property))
         {
-            // TODO implement
+            updateColors();
         }
-        else if (checkBox.getOverlayColorProperty().getName().equals(property))
+        else if (this.checkBox.getOverlayColorProperty().getName().equals(property))
         {
             updateStateBoxColor();
         }
@@ -300,6 +299,12 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
             opacity = 0.6;
         }
         return opacity;
+    }
+    
+    private void updateColors()
+    {
+        Utils.setBackgroundColor(this.coloredBox, this.checkBox.getSelectedColor());
+        Utils.setBorderColor(this.box, this.checkBox.getUnselectedColor());
     }
     
     private void updateStateBoxColor()
