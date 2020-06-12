@@ -19,7 +19,7 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 
     -rt-focus-color: -var-accent-color;
-    -rt-overlay-color: -var-base-overlay-color;
+    -rt-overlay-color: -var-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
 }
 

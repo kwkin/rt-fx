@@ -136,7 +136,7 @@ public class VBox extends javafx.scene.layout.VBox
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 
     static

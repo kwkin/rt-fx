@@ -9,6 +9,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -29,6 +30,7 @@ public class RtSliderSkin extends SliderSkin
     private final StackPane stateBox = new StackPane();
     
     private RtAnimationTimeline interactionTimeline;
+    private RtAnimationTimeline stateTimeline;
 
     public RtSliderSkin(final Slider slider)
     {
@@ -37,6 +39,7 @@ public class RtSliderSkin extends SliderSkin
         
         this.circleThumb.getStyleClass().setAll("circle-thumb");
         this.circleThumb.setRadius(8);
+        this.circleThumb.setFill(determineThumbColor());
         
         this.track = (StackPane) slider.lookup(".track");
         this.thumb = (StackPane) slider.lookup(".thumb");
@@ -58,7 +61,7 @@ public class RtSliderSkin extends SliderSkin
         this.filledTrack = new StackPane();
         this.filledTrack.getStyleClass().add("colored-track");
         this.filledTrack.setMouseTransparent(true);
-
+        
         int insertIndex = getChildren().indexOf(this.thumb);
         getChildren().add(insertIndex, this.filledTrack);
         
@@ -66,6 +69,33 @@ public class RtSliderSkin extends SliderSkin
         
         createAnimation();
         createAnimationListeners();
+
+        registerChangeListener(slider.thumbColorProperty(), slider.thumbColorProperty().getName());
+        registerChangeListener(slider.filledTrackColorProperty(), slider.filledTrackColorProperty().getName());
+        registerChangeListener(slider.unfilledTrackColorProperty(), slider.unfilledTrackColorProperty().getName());
+        registerChangeListener(slider.overlayColorProperty(), slider.overlayColorProperty().getName());
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (this.slider.thumbColorProperty().getName().equals(property))
+        {
+            // TODO implement
+        }
+        else if (this.slider.filledTrackColorProperty().getName().equals(property))
+        {
+            // TODO implement
+        }
+        else if (this.slider.unfilledTrackColorProperty().getName().equals(property))
+        {
+            this.circleThumb.setFill(determineThumbColor());
+        }
+        else if (this.slider.overlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
+        }
     }
 
     @Override
@@ -110,7 +140,11 @@ public class RtSliderSkin extends SliderSkin
     private DepthShadow determineButtonShadow()
     {
         DepthShadow shadow;
-        if (this.slider.isPressed())
+        if (Double.compare(this.slider.getValue(), this.slider.getMin()) <= 0)
+        {
+            shadow = DepthManager.getInstance().getShadowAt(0);
+        }
+        else if (this.slider.isPressed())
         {
             shadow = DepthManager.getInstance().getShadowAt(5);
         }
@@ -123,6 +157,20 @@ public class RtSliderSkin extends SliderSkin
             shadow = DepthManager.getInstance().getShadowAt(2);
         }
         return shadow;
+    }
+    
+    private Paint determineThumbColor()
+    {
+        Paint thumbColor;
+        if (Double.compare(this.slider.getValue(), this.slider.getMin()) <= 0)
+        {
+            thumbColor = this.slider.getUnfilledTrackColor();
+        }
+        else
+        {
+            thumbColor = this.slider.getThumbColor();
+        }
+        return thumbColor;
     }
 
     private void createAnimation()
@@ -143,6 +191,21 @@ public class RtSliderSkin extends SliderSkin
                         .setInterpolator(Interpolator.EASE_OUT)
                         .build())
                 .build());
+        this.stateTimeline = new RtAnimationTimeline(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(200))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.circleThumb.fillProperty())
+                            .setEndValueSupplier(() -> determineThumbColor())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.thumb.effectProperty())
+                            .setEndValueSupplier(() -> determineButtonShadow())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
         // @formatter:on
         this.interactionTimeline.setAnimateCondition(() -> !this.slider.getIsAnimationDisabled());
     }
@@ -163,6 +226,10 @@ public class RtSliderSkin extends SliderSkin
         this.thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
         {
             this.interactionTimeline.start();
+        });
+        this.slider.valueChangingProperty().addListener((ov, oldVal, newVal) -> 
+        {
+            this.stateTimeline.reverseAndContinue();
         });
     }
 

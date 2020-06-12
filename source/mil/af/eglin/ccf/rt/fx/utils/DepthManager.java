@@ -35,21 +35,21 @@ public class DepthManager
         
         // @formatter:off
         control.setEffect(new DepthShadow(BlurType.GAUSSIAN,
-            depth.get(level).getColor(),
-            depth.get(level).getRadius(),
-            depth.get(level).getSpread(),
-            depth.get(level).getOffsetX(),
-            depth.get(level).getOffsetY()));
+            this.depth.get(level).getColor(),
+            this.depth.get(level).getRadius(),
+            this.depth.get(level).getSpread(),
+            this.depth.get(level).getOffsetX(),
+            this.depth.get(level).getOffsetY()));
         // @formatter:on
     }
 
     public int getLevels() 
     {
-        return depth.size();
+        return this.depth.size();
     }
 
     public DepthShadow getShadowAt(int level) 
     {
-        return depth.get(level);
+        return this.depth.get(level);
     }
 }

@@ -56,7 +56,7 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
     
     static

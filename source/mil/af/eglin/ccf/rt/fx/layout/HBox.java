@@ -129,7 +129,7 @@ public class HBox extends javafx.scene.layout.HBox
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
 
     static
