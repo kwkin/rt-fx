@@ -186,7 +186,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         }
         this.promptText = new Text();
         this.promptText.getStyleClass().add("prompt-text");
-        this.promptText.visibleProperty().bind(input.isUsingPromptTextProperty());
+        this.promptText.visibleProperty().bind(this.input.isUsingPromptTextProperty());
         this.promptText.fontProperty().bind(this.textField.fontProperty());
         this.promptText.textProperty().bind(this.textField.promptTextProperty());
         this.promptText.translateXProperty().set(1);
