@@ -26,9 +26,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO default button style
-// TODO cancel button style
-
 /**
  * A simple button control allows the user to take actions with a single press.
  * <p>

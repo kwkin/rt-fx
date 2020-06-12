@@ -74,13 +74,15 @@ public class ButtonPanePresentation extends SizedTitledCard
 
         GridPane toggleButtonGridPane = new GridPane();
         
-        Button primaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
-        Button primaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.PRIMARY_MID);
-        Button primaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
+        Button primaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
+        primaryLightFlatButton.setDefaultButton(true);
+        Button primaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_MID);
+        Button primaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
 ;
-        Button secondaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
-        Button secondaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.SECONDARY_MID);
-        Button secondaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
+        Button secondaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
+        secondaryLightFlatButton.setDefaultButton(true);
+        Button secondaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_MID);
+        Button secondaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
 
         toggleButtonGridPane.add(primaryLightFlatButton, 0, 0);
         toggleButtonGridPane.add(primaryMidFlatButton, 1, 0);

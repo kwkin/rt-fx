@@ -82,7 +82,6 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         
         if (!this.isAccentSpecified)
         {
-            // TODO need to add style change listeners for this to work
             if (getTableView() != null)
             {
                 if (getTableView() instanceof TableView)
