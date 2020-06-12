@@ -3,7 +3,12 @@ TODO fix padding
 */
 .rt-svg-icon
 {
-    -fx-background-color: -var-on-main-mid-color;
+    -fx-background-color: transparent;
     -fx-insets: 0;
-    -fx-padding: 0;
+    -fx-padding: 2;
+}
+
+.rt-svg-icon .icon
+{
+    -fx-background-color: -var-on-main-mid-color;
 }

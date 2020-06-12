@@ -138,7 +138,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         double promptWidth = w;
         if (graphic != null)
         {
-            double graphicWidth = graphic.getNode().getLayoutBounds().getWidth();
+            double graphicWidth = graphic.getSize();
             double xPosition = w - graphicWidth - textField.getTrailingIconGap();
             double inputYCenter = y + inputHeight / 2;
             positionInArea(graphic.getNode(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);

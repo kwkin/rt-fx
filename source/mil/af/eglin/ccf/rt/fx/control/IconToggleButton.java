@@ -13,27 +13,20 @@ import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtIconToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 
-// TODO change some of this stuff to be in the skin instead
 public class IconToggleButton extends ToggleButton implements RtIcon
 {
-    protected StackPane iconPane = new StackPane();
-    protected SvgIcon selectedIcon;
-    protected SvgIcon unselectedIcon;
-    protected IconSize iconSize = IconSize.SIZE_32;
     protected ToggleButtonStyle style = ToggleButtonStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;
 
-    protected boolean isToggleText = false;
+    protected SvgIcon selectedIcon;
+    protected SvgIcon unselectedIcon;
     protected String selectedText = "";
     protected String unselectedText = "";
 
@@ -44,7 +37,6 @@ public class IconToggleButton extends ToggleButton implements RtIcon
             StyleableProperties.UNSELECTED_ICON_COLOR, IconToggleButton.this, "unselectedFill",
             DefaultPalette.getInstance().getBaseColor());
 
-    // TODO complete remaining constructors
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
     {
         super(ToggleButtonStyle.ICON);
@@ -59,6 +51,7 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.selectedText = text;
+        this.unselectedText = text;
         initialize();
     }
 
@@ -69,7 +62,6 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         this.unselectedIcon = unselectedIcon;
         this.selectedText = selectedText;
         this.unselectedText = unselectedText;
-        this.isToggleText = true;
         initialize();
     }
 
@@ -81,12 +73,7 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         this.style = style;
         initialize();
     }
-
-    public IconSize getIconSizes()
-    {
-        return this.iconSize;
-    }
-
+    
     public ToggleButtonStyle getRtStyle()
     {
         return this.style;
@@ -152,16 +139,6 @@ public class IconToggleButton extends ToggleButton implements RtIcon
         return this.unselectedText;
     }
 
-    public void setToggleText(boolean isToggleText)
-    {
-        this.isToggleText = isToggleText;
-    }
-
-    public boolean isToggleText()
-    {
-        return this.isToggleText;
-    }
-
     public boolean isColorManaged()
     {
         return this.isSelected() ? this.selectedIcon.isColorManaged() : this.unselectedIcon.isColorManaged();
@@ -224,42 +201,12 @@ public class IconToggleButton extends ToggleButton implements RtIcon
 
     private void initialize()
     {
-        // TODO add binding for the icon sizes and padding
-        this.iconPane.getChildren().addAll(this.selectedIcon, this.unselectedIcon);
-
-        this.selectedIcon.visibleProperty().bind(selectedProperty());
-        this.unselectedIcon.visibleProperty().bind(selectedProperty().not());
-        selectedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateText();
-        });
-        updateText();
         textProperty().addListener((ov, oldVal, newVal) ->
         {
             this.selectedText = newVal;
+            this.unselectedText = newVal;
         });
-        this.selectedFill.addListener((ov, oldVal, newVal) ->
-        {
-            this.selectedIcon.setFill(newVal);
-        });
-        this.unselectedFill.addListener((ov, oldVal, newVal) ->
-        {
-            this.unselectedIcon.setFill(newVal);
-        });
-
-        double width = this.selectedIcon.getSize();
-        double height = this.selectedIcon.getSize();
-        setIconPaneSize(width, height);
-        setGraphic(this.iconPane);
     }
-
-    private void setIconPaneSize(double width, double height)
-    {
-        this.iconPane.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        this.iconPane.setPrefSize(width, height);
-        this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-    }
-
     private static class StyleableProperties
     {
         private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = new CssMetaData<IconToggleButton, Paint>(
@@ -309,17 +256,5 @@ public class IconToggleButton extends ToggleButton implements RtIcon
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
-    }
-
-    private void updateText()
-    {
-        if (!this.isToggleText)
-        {
-            setText(this.selectedText);
-        }
-        else
-        {
-            setText(isSelected() ? this.selectedText : this.unselectedText);
-        }
     }
 }

@@ -28,6 +28,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import mil.af.eglin.ccf.rt.fx.control.RtIcon;
+import mil.af.eglin.ccf.rt.fx.control.skins.Utils;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -38,12 +39,26 @@ public class SvgIcon extends StackPane implements RtIcon
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
 
+    private final StackPane iconBox = new StackPane();
+    private final StackPane icon = new StackPane();
+
     private boolean isFillManaged = true;
-    
+
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
-    private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
-    private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
-            StyleableProperties.SIZE, this, "size", (double)IconSize.SIZE_32.getIconSize());
+    private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>()
+    {
+        @Override
+        protected void invalidated()
+        {
+            Paint fill = icon.getBackground() == null ? null : icon.getBackground().getFills().get(0).getFill();
+            if (get() != null && !get().equals(fill))
+            {
+                Utils.setBackgroundColor(icon, get());
+            }
+        }
+    };
+    private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(StyleableProperties.SIZE, this, "size",
+            (double) IconSize.SIZE_32.getIconSize());
 
     public SvgIcon(URL icon) throws IOException
     {
@@ -70,7 +85,7 @@ public class SvgIcon extends StackPane implements RtIcon
         setIsColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
-    
+
     public SvgIcon(SvgFile icon)
     {
         initialize(extractSvgPath(icon.getIconInputStream()));
@@ -97,7 +112,6 @@ public class SvgIcon extends StackPane implements RtIcon
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-
     public SvgIcon(String svgPath)
     {
 
@@ -109,7 +123,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         return this;
     }
-    
+
     @Override
     public double getSize()
     {
@@ -127,7 +141,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         this.fill.setValue(fill);
     }
-    
+
     public ObjectProperty<Paint> fillProperty()
     {
         return this.fill;
@@ -157,7 +171,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         this.isFillManaged = isFillManaged;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -170,24 +184,23 @@ public class SvgIcon extends StackPane implements RtIcon
     private void initialize(String svgPath)
     {
         getStyleClass().add(CSS_CLASS);
+        this.icon.getStyleClass().setAll("icon");
 
-        // TODO add binding and property conversions for background
-        if (getFill() != null)
+        Paint fill = this.icon.getBackground() == null ? null
+                : this.icon.getBackground().getFills().get(0).getFill();
+        if (this.fill.get() != null && !this.fill.get().equals(fill))
         {
-            setBackground(new Background(new BackgroundFill(getFill(), null, null)));
+            Utils.setBackgroundColor(this.icon, this.fill.get());
         }
-        this.fill.addListener((ov, oldVal, newVal) -> 
-        {
-            setBackground(new Background(new BackgroundFill(newVal, null, null)));
-        });
-        backgroundProperty().addListener((ov, oldVal, newVal) -> 
+        this.icon.backgroundProperty().addListener((ov, oldVal, newVal) -> 
         {
             if (this.fill.getValue() != null)
             {
-                setBackground(new Background(new BackgroundFill(getFill(), null, null)));
+                this.icon.setBackground(new Background(new BackgroundFill(getFill(), null, null)));
             }
         });
-        shapeProperty().addListener((ov, oldVal, newVal) ->
+
+        this.icon.shapeProperty().addListener((ov, oldVal, newVal) ->
         {
             if (newVal != null)
             {
@@ -199,48 +212,57 @@ public class SvgIcon extends StackPane implements RtIcon
             }
         });
 
-        if (svgPath != null && !svgPath.isEmpty()) 
+        this.iconBox.getChildren().add(this.icon);
+        getChildren().add(this.iconBox);
+        if (svgPath != null && !svgPath.isEmpty())
         {
             SVGPath shape = new SVGPath();
             shape.setContent(svgPath);
-            setShape(shape);
+            this.widthHeightRatio.setValue(shape.prefWidth(-1) / shape.prefHeight(-1));
+            this.icon.setShape(shape);
+            setSizeRatio(getSize());
         }
     }
 
     private void setSizeRatio(double size)
     {
-        double width = widthHeightRatio.getValue() * size;
-        double height = size / widthHeightRatio.getValue();
+        double width = this.widthHeightRatio.getValue() * size;
+        double height = size / this.widthHeightRatio.getValue();
         if (width <= size)
         {
-            setSize(width, size);
-        } 
+            setIconSize(width, size);
+        }
         else if (height <= size)
         {
-            setSize(size, height);
-        } 
+            setIconSize(size, height);
+        }
         else
         {
-            setSize(size, size);
+            setIconSize(size, size);
         }
     }
 
-    public void setSize(double size) 
+    public void setIconSize(double size)
     {
         this.size.setValue(size);
     }
 
-    public void setSize(double width, double height) 
+    public void setIconSize(double width, double height)
     {
-        setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        setPrefSize(width, height);
-        setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.icon.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.icon.setPrefSize(width, height);
+        this.icon.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        
+        double size = Math.max(width, height);
+        this.iconBox.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.iconBox.setPrefSize(size, size);
+        this.iconBox.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
 
     private static String extractSvgPath(InputStream inputStream)
     {
         StringBuilder builder = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
         {
             String line;
             while ((line = reader.readLine()) != null)
@@ -251,7 +273,7 @@ public class SvgIcon extends StackPane implements RtIcon
         catch (IOException e)
         {
             e.printStackTrace();
-        } 
+        }
         String svgPath = builder.toString().replaceFirst(".*d=\"", "").replaceFirst("\".*", "");
         return svgPath;
     }
@@ -288,7 +310,7 @@ public class SvgIcon extends StackPane implements RtIcon
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
