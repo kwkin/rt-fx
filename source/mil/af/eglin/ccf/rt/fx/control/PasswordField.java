@@ -5,7 +5,7 @@ import com.sun.javafx.css.StyleManager;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class PasswordField extends javafx.scene.control.PasswordField implements RtComponent
+public class PasswordField extends javafx.scene.control.PasswordField implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -40,15 +40,6 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
@@ -60,8 +51,16 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
         getStyleClass().add(this.accent.getCssName());
     }
     
-    static
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    static
+    {
+        PasswordField.loadStyleSheet();
     }
 }

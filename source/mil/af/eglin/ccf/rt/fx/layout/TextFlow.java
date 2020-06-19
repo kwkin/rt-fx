@@ -13,12 +13,20 @@ public class TextFlow extends javafx.scene.text.TextFlow
     private static final String USER_AGENT_STYLESHEET = "text-flow.css";
     private static final String CSS_CLASS = "rt-text-flow";
 
+    /**
+     * Creates an empty TextFlow layout.
+     */
     public TextFlow()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates an empty TextFlow layout with the specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public TextFlow(Accent accent)
     {
         super();
@@ -26,12 +34,23 @@ public class TextFlow extends javafx.scene.text.TextFlow
         initialize();
     }
 
+    /**
+     * Creates a TextFlow layout with the given children.
+     *
+     * @param children children.
+     */
     public TextFlow(Node... children)
     {
         super(children);
         initialize();
     }
 
+    /**
+     * Creates a TextFlow layout with the given children and specified accent.
+     *
+     * @param children children.
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public TextFlow(Accent accent, Node... children)
     {
         super(children);
@@ -53,9 +72,17 @@ public class TextFlow extends javafx.scene.text.TextFlow
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this layout
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+        TextFlow.loadStyleSheet();
     }
 }

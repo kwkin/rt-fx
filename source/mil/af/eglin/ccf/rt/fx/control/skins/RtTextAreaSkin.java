@@ -4,20 +4,14 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-import com.sun.javafx.scene.control.skin.Utils;
 import com.sun.javafx.scene.text.HitInfo;
 
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.PathElement;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.TextArea;
 import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
@@ -112,18 +106,18 @@ public class RtTextAreaSkin extends TextAreaSkin
         {
             input.updateOverlayColor(this.textArea.getOverlayColor());
         }
-        else if (textArea.labelFloatProperty().getName().equals(propertyReference))
-        {
-            // TODO complete this
-        }
     }
 
     @Override
     protected void layoutChildren(final double x, final double y, final double w, final double h)
     {
         super.layoutChildren(x, y, w, h);
+        if (this.textArea.isHelperTextVisible())
+        {
+            layoutInArea(this.descriptionContainer, x, y, w, h, -1, HPos.CENTER, VPos.CENTER);
+        }
 
-        double inputHeight = this.textArea.isHelperTextVisible() ? h - this.textArea.getHelperTextHeight() : h;
+        double inputHeight = this.textArea.isHelperTextVisible() ? h - this.descriptionContainer.getHeight() : h;
         double promptTopPadding = this.input.getPromptContainer().getPadding().getTop();
         double inputTopPadding = this.input.getInputContainer().getPadding().getTop();
         double translateY = inputTopPadding - promptTopPadding + 4;
@@ -131,7 +125,7 @@ public class RtTextAreaSkin extends TextAreaSkin
         this.scrollPane.resizeRelocate(x, y, w, inputHeight);
         this.input.updateLabelFloatLayout();
 
-        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.textArea.getHelperTextHeight());
+        this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.descriptionContainer.getHeight());
         this.input.getPromptContainer().resizeRelocate(x, y, w, 48);
     }
 

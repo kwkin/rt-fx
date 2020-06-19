@@ -88,12 +88,23 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        for (TableViewStyle tableStyle : TableViewStyle.values())
+        {
+            pseudoClassStateChanged(tableStyle.getPseudoClass(), tableStyle == this.style);
+        }
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        TableView.loadStyleSheet();
     }
 }

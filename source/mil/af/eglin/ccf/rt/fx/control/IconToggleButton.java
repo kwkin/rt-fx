@@ -4,98 +4,77 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
-import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtIconToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
-import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
-import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO change some of this stuff to be in the skin instead
-public class IconToggleButton extends javafx.scene.control.ToggleButton implements RtGlyph
+public class IconToggleButton extends ToggleButton implements RtIcon
 {
-    protected StackPane iconPane = new StackPane();
-    protected SvgGlyph selectedIcon;
-    protected SvgGlyph unselectedIcon;
-    protected IconSize iconSize = IconSize.SIZE_32;
-    protected IconToggleButtonStyle style = IconToggleButtonStyle.NORMAL;
+    protected ToggleButtonStyle style = ToggleButtonStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;
-    
-    protected boolean isToggleText = false;
+
+    protected SvgIcon selectedIcon;
+    protected SvgIcon unselectedIcon;
     protected String selectedText = "";
     protected String unselectedText = "";
-    
-    private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
-    private static final String CSS_CLASS = "rt-icon-toggle-button";
-    
+
     private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill", DefaultPalette.getInstance().getAccentColor());
+            StyleableProperties.SELECTED_ICON_COLOR, IconToggleButton.this, "selectedFill",
+            DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_ICON_COLOR, this, "unselectedFill", DefaultPalette.getInstance().getBaseColor());
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
-    
-    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon)
+            StyleableProperties.UNSELECTED_ICON_COLOR, IconToggleButton.this, "unselectedFill",
+            DefaultPalette.getInstance().getBaseColor());
+
+    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
     {
-        super();
+        super(ToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         initialize();
     }
-    
-    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, String text)
+
+    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String text)
     {
-        super();
+        super(ToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.selectedText = text;
+        this.unselectedText = text;
         initialize();
     }
-    
-    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, String selectedText, String unselectedText)
+
+    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String selectedText, String unselectedText)
     {
-        super();
+        super(ToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.selectedText = selectedText;
         this.unselectedText = unselectedText;
-        this.isToggleText = true;
         initialize();
     }
 
-    public IconToggleButton(SvgGlyph selectedIcon, SvgGlyph unselectedIcon, IconToggleButtonStyle style)
+    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, ToggleButtonStyle style)
     {
-        super();
+        super(style);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.style = style;
         initialize();
     }
     
-    public IconSize getIconSizes()
-    {
-        return this.iconSize;
-    }
-
-    public IconToggleButtonStyle getRtStyle()
+    public ToggleButtonStyle getRtStyle()
     {
         return this.style;
     }
@@ -129,13 +108,13 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
     {
         return unselectedFill.get();
     }
-    
-    public SvgGlyph getSelectedIcon()
+
+    public SvgIcon getSelectedIcon()
     {
         return this.selectedIcon;
     }
-    
-    public SvgGlyph getUnslectedIcon()
+
+    public SvgIcon getUnslectedIcon()
     {
         return this.unselectedIcon;
     }
@@ -144,79 +123,54 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
     {
         this.selectedText = selectedText;
     }
-    
+
     public String getSelectedText()
     {
         return this.selectedText;
     }
-    
+
     public void setUnselectedText(String unselectedText)
     {
         this.unselectedText = unselectedText;
     }
-    
+
     public String getUnselectedText()
     {
         return this.unselectedText;
     }
-    
-    public void setToggleText(boolean isToggleText)
+
+    public boolean isColorManaged()
     {
-        this.isToggleText = isToggleText;
-    }
-    
-    public boolean isToggleText()
-    {
-        return this.isToggleText;
+        return this.isSelected() ? this.selectedIcon.isColorManaged() : this.unselectedIcon.isColorManaged();
     }
 
-    public BooleanProperty isAnimationDisabledProperty()
+    public void setIsColorManaged(boolean isFillManaged)
     {
-        return this.isAnimationDisabled;
-    }
-
-    public boolean getIsAnimationDisabled()
-    {
-        return isAnimationDisabled.get();
-    }
-
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
-    {
-        this.isAnimationDisabled.set(isAnimationDisabled);
-    }
-
-    public boolean isGlyphColorManaged()
-    {
-        return this.isSelected() ? this.selectedIcon.isGlyphColorManaged() : this.unselectedIcon.isGlyphColorManaged();
-    }
-
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
-    {
-        this.selectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
-        this.unselectedIcon.setIsGlyphColorManaged(isGlyphFillManaged);
+        this.selectedIcon.setIsColorManaged(isFillManaged);
+        this.unselectedIcon.setIsColorManaged(isFillManaged);
     }
 
     @Override
-    public void setGlyphFill(Paint fill)
+    public void setFill(Paint fill)
     {
-        this.unselectedIcon.setGlyphFill(fill);
-        this.selectedIcon.setGlyphFill(fill);
+        this.unselectedIcon.setFill(fill);
+        this.selectedIcon.setFill(fill);
     }
 
     @Override
-    public Paint getGlyphFill()
+    public Paint getFill()
     {
         return isSelected() ? getSelectedFill() : getUnselectedFill();
     }
 
     @Override
-    public double getGlyphSize()
+    public double getSize()
     {
-        return isSelected() ? this.selectedIcon.getGlyphSize() : this.unselectedIcon.getGlyphSize();
+        return isSelected() ? this.selectedIcon.getSize() : this.unselectedIcon.getSize();
     }
 
     @Override
-    public Node getGlyph()
+    public Node getNode()
     {
         return this;
     }
@@ -231,7 +185,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
@@ -240,53 +194,19 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin() 
+    protected Skin<?> createDefaultSkin()
     {
         return new RtIconToggleButtonSkin(this);
     }
-    
+
     private void initialize()
     {
-        // TODO add binding for the icon sizes and padding
-        this.iconPane.getChildren().addAll(this.selectedIcon, this.unselectedIcon);
-        
-        this.selectedIcon.visibleProperty().bind(selectedProperty());
-        this.unselectedIcon.visibleProperty().bind(selectedProperty().not());
-        selectedProperty().addListener((ov, oldVal, newVal) ->  
-        {
-            updateText();
-        });
-        updateText();
-        textProperty().addListener((ov, oldVal, newVal) -> 
+        textProperty().addListener((ov, oldVal, newVal) ->
         {
             this.selectedText = newVal;
+            this.unselectedText = newVal;
         });
-        this.selectedFill.addListener((ov, oldVal, newVal) -> 
-        {
-            this.selectedIcon.setGlyphFill(newVal);
-        });
-        this.unselectedFill.addListener((ov, oldVal, newVal) -> 
-        {
-            this.unselectedIcon.setGlyphFill(newVal);
-        });
-        
-        double width = this.selectedIcon.getGlyphSize();
-        double height = this.selectedIcon.getGlyphSize();
-        setIconPaneSize(width, height);
-        setGraphic(this.iconPane);
-        
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
-        getStyleClass().add(this.accent.getCssName());
     }
-    
-    private void setIconPaneSize(double width, double height)
-    {   
-        this.iconPane.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        this.iconPane.setPrefSize(width, height);
-        this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-    }
-    
     private static class StyleableProperties
     {
         private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = new CssMetaData<IconToggleButton, Paint>(
@@ -304,7 +224,7 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
                 return control.selectedFill;
             }
         };
-        
+
         private static final CssMetaData<IconToggleButton, Paint> UNSELECTED_ICON_COLOR = new CssMetaData<IconToggleButton, Paint>(
                 "-rt-unselected-icon-color", PaintConverter.getInstance())
         {
@@ -320,32 +240,15 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
                 return control.unselectedFill;
             }
         };
-        
-        private static final CssMetaData<IconToggleButton, Boolean> DISABLE_ANIMATION = new CssMetaData<IconToggleButton, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(IconToggleButton control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(IconToggleButton control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
 
         private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
 
         static
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.ToggleButton.getClassCssMetaData());
+                    ToggleButton.getClassCssMetaData());
             styleables.add(SELECTED_ICON_COLOR);
             styleables.add(UNSELECTED_ICON_COLOR);
-            styleables.add(DISABLE_ANIMATION);
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
@@ -353,22 +256,5 @@ public class IconToggleButton extends javafx.scene.control.ToggleButton implemen
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
-    }
-    
-    private void updateText()
-    {
-        if (!this.isToggleText)
-        {
-            setText(this.selectedText);
-        }
-        else
-        {
-            setText(isSelected() ? this.selectedText : this.unselectedText);
-        }
-    }
-    
-    static
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 }

@@ -1,10 +1,13 @@
 package test.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ListChangeListener;
 import test.demo.abstraction.SampleSession;
 import test.demo.abstraction.Settings;
-import test.demo.abstraction.data.Person;
-import test.demo.abstraction.immutable.Service;
+import test.demo.abstraction.data.immutable.Person;
+import test.demo.abstraction.data.immutable.Service;
 import test.demo.presentation.data.TablePerson;
 import test.demo.presentation.model.BoxesPaneModel;
 import test.demo.presentation.model.ColorPickerPaneModel;
@@ -50,36 +53,52 @@ public class PaneController
     {
         this.session = session;
         
-        tableViewModel = new TableViewModel();
+        this.tableViewModel = new TableViewModel();
 
-        for(Person addedPerson : session.getPeople())
-        {
-            TablePerson tablePerson = addNewTablePerson(addedPerson);
-            tableViewModel.addPerson(tablePerson);
-        }
         session.getPeople().addListener(new ListChangeListener<Person>() 
         {
             @Override
             public void onChanged(javafx.collections.ListChangeListener.Change<? extends Person> c)
             {
-                // TODO look at update function and include replace, etc...
-                if (c.next() && c.wasAdded())
+                while(c.next())
                 {
-                    for(Person addedPerson : c.getAddedSubList())
+                    if (c.wasPermutated())
                     {
-                        TablePerson tablePerson = addNewTablePerson(addedPerson);
-                        tableViewModel.addPerson(tablePerson);
+                        int from = c.getFrom();
+                        int to = c.getTo();
+                        List<Integer> permutations = new ArrayList<>();
+                        for (int oldIndex = from; oldIndex < to; oldIndex++)
+                        {
+                            permutations.add(c.getPermutation(oldIndex));
+                        }
+                        tableViewModel.setPeopleSublsit(from, to, permutations);
                     }
-                }
-                else if (c.wasRemoved())
-                {
-                    for(Person removedPerson : c.getRemoved())
+                    else if (c.wasUpdated())
                     {
-                        tableViewModel.removePerson(removedPerson.getId());
+                        for (int index = c.getFrom(); index < c.getTo(); ++ index)
+                        {
+                            tableViewModel.updatePerson(session.getPeople().get(index));
+                        }
+                    }
+                    else
+                    {
+                        for(Person removedPerson : c.getRemoved())
+                        {
+                            tableViewModel.removePerson(removedPerson);
+                        }
+                        for(Person person : c.getAddedSubList())
+                        {
+                            tableViewModel.addPerson(person);
+                        }
                     }
                 }
             }
         });
+        for(Person person : session.getPeople())
+        {
+            tableViewModel.addPerson(person);
+        }
+        session.getPeople().get(0).setAge(123);
     }
     
     public PaneModel getPaneModel()
@@ -205,30 +224,5 @@ public class PaneController
     public Person getPerson(String id)
     {
         return this.session.getPersonFromId(id);
-    }
-    
-    public TablePerson addNewTablePerson(Person person)
-    {
-        // @formatter:off
-        TablePerson tablePerson = new TablePerson(
-                person.getId(), 
-                person.getFirstName(), 
-                person.getLastName(), 
-                person.getEmail(), 
-                person.getAge(), 
-                person.getCoolFactor(), 
-                person.getService(), 
-                person.getIsSubscribed());
-        // @formatter:on
-        
-        person.getFirstNameProperty().addListener((ov, oldVal, newVal) -> tablePerson.setFirstName(newVal)); 
-        person.getLastNameProperty().addListener((ov, oldVal, newVal) -> tablePerson.setLastName(newVal)); 
-        person.getEmailProperty().addListener((ov, oldVal, newVal) -> tablePerson.setEmail(newVal));  
-        person.getAgeProperty().addListener((ov, oldVal, newVal) -> tablePerson.setAge(newVal.intValue())); 
-        person.getCoolFactorProperty().addListener((ov, oldVal, newVal) -> tablePerson.setCoolFactor(newVal.doubleValue())); 
-        person.getServiceProperty().addListener((ov, oldVal, newVal) -> tablePerson.setService(newVal)); 
-        person.getIsSubscribedProperty().addListener((ov, oldVal, newVal) -> tablePerson.setIsSubscribed(newVal)); 
-        return tablePerson;
-        
     }
 }

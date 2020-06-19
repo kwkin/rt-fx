@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtComponent 
+public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtStyleableComponent 
 {
     protected Accent accent = Accent.PRIMARY_MID;
     
@@ -61,15 +61,6 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
@@ -80,9 +71,17 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        ChoiceBox.loadStyleSheet();
     }
 }

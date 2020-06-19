@@ -3,78 +3,99 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.SliderSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.Slider;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
+import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
+import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
-// TODO bind colors to rt style properties
 public class RtSliderSkin extends SliderSkin
 {
     private final Slider slider;
-    private final Circle stateThumb = new Circle();
     private final Circle circleThumb = new Circle();
     private final StackPane track;
     private final StackPane filledTrack;
     private final StackPane thumb;
+    private final StackPane stateBox = new StackPane();
     
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline interactionTimeline;
+    private RtAnimationTimeline stateTimeline;
 
     public RtSliderSkin(final Slider slider)
     {
         super(slider);
         this.slider = slider;
-
-        stateThumb.getStyleClass().setAll("state-thumb");
-        stateThumb.setRadius(0);
-        circleThumb.getStyleClass().setAll("circle-thumb");
-        circleThumb.setRadius(8);
         
-        track = (StackPane) slider.lookup(".track");
-        thumb = (StackPane) slider.lookup(".thumb");
-        thumb.getChildren().addAll(stateThumb, circleThumb);
+        this.circleThumb.getStyleClass().setAll("circle-thumb");
+        this.circleThumb.setRadius(8);
+        this.circleThumb.setFill(determineThumbColor());
+        
+        this.track = (StackPane) slider.lookup(".track");
+        this.thumb = (StackPane) slider.lookup(".thumb");
+        this.thumb.setPickOnBounds(false);
+        DepthManager.getInstance().setDepth(this.thumb, 2);
 
-        filledTrack = new StackPane();
-        filledTrack.getStyleClass().add("colored-track");
-        filledTrack.setMouseTransparent(true);
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
+        Rectangle slideClip = new Rectangle();
+        slideClip.widthProperty().bind(this.thumb.widthProperty());
+        slideClip.heightProperty().bind(this.thumb.heightProperty());
+        this.stateBox.setClip(slideClip);
+        slideClip.setArcWidth(100);
+        slideClip.setArcHeight(100);
+        slideClip.setSmooth(true);
+        updateStateBoxColor();
+        this.thumb.getChildren().addAll(this.circleThumb, this.stateBox);
 
-
+        this.filledTrack = new StackPane();
+        this.filledTrack.getStyleClass().add("colored-track");
+        this.filledTrack.setMouseTransparent(true);
+        
+        int insertIndex = getChildren().indexOf(this.thumb);
+        getChildren().add(insertIndex, this.filledTrack);
+        
         slider.setPickOnBounds(false);
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(circleThumb.radiusProperty())
-                        .setEndValueSupplier(() -> determineThumbRadius())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !slider.getIsAnimationDisabled())
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(stateThumb.radiusProperty())
-                        .setEndValueSupplier(() -> determineStateRadius())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !slider.getIsAnimationDisabled())
-                        .build())
-                .build());
-        timer.setCacheNodes(stateThumb);
-
         
-        thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        slider.pressedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
+        createAnimation();
+        createAnimationListeners();
 
-        int insertIndex = getChildren().indexOf(thumb);
-        getChildren().add(insertIndex, filledTrack);
+        registerChangeListener(slider.thumbColorProperty(), slider.thumbColorProperty().getName());
+        registerChangeListener(slider.filledTrackColorProperty(), slider.filledTrackColorProperty().getName());
+        registerChangeListener(slider.unfilledTrackColorProperty(), slider.unfilledTrackColorProperty().getName());
+        registerChangeListener(slider.overlayColorProperty(), slider.overlayColorProperty().getName());
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (this.slider.thumbColorProperty().getName().equals(property))
+        {
+            updateColors();
+        }
+        else if (this.slider.filledTrackColorProperty().getName().equals(property))
+        {
+            updateColors();
+        }
+        else if (this.slider.unfilledTrackColorProperty().getName().equals(property))
+        {
+            updateColors();
+        }
+        else if (this.slider.overlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
+        }
     }
 
     @Override
@@ -86,54 +107,144 @@ public class RtSliderSkin extends SliderSkin
         boolean isHorizontal = getSkinnable().getOrientation() == Orientation.HORIZONTAL;
         if (isHorizontal)
         {
-            width = thumb.getLayoutX() - snappedLeftInset();
-            height = track.getHeight();
-            layoutX = track.getLayoutX();
-            layoutY = track.getLayoutY();
+            width = this.thumb.getLayoutX() - snappedLeftInset();
+            height = this.track.getHeight();
+            layoutX = this.track.getLayoutX();
+            layoutY = this.track.getLayoutY();
         } 
         else
         {
-            height = track.getLayoutBounds().getMaxY() + track.getLayoutY() - thumb.getLayoutY() - snappedBottomInset();
-            width = track.getWidth();
-            layoutX = track.getLayoutX();
-            layoutY = thumb.getLayoutY();
+            height = this.track.getLayoutBounds().getMaxY() + this.track.getLayoutY() - this.thumb.getLayoutY() - snappedBottomInset();
+            width = this.track.getWidth();
+            layoutX = this.track.getLayoutX();
+            layoutY = this.thumb.getLayoutY();
         }
-        
-        stateThumb.setCenterX(thumb.getLayoutX() + thumb.getWidth() / 2);
-        stateThumb.setCenterY(thumb.getLayoutY() + thumb.getHeight() / 2);
 
-        filledTrack.resizeRelocate(layoutX, layoutY, width, height);
+        this.filledTrack.resizeRelocate(layoutX, layoutY, width, height);
     }
     
-    private void updateState()
+    private double determineStateBoxOpacity()
     {
-        if (!slider.getIsAnimationDisabled())
+        double opacity = 0;
+        if (this.slider.isPressed())
         {
-            timer.reverseAndContinue();
+            opacity = 1;
+        }
+        else if (this.slider.isHover())
+        {
+            opacity = 0.6;
+        }
+        return opacity;
+    }
+
+    private DepthShadow determineButtonShadow()
+    {
+        DepthShadow shadow;
+        if (Double.compare(this.slider.getValue(), this.slider.getMin()) <= 0)
+        {
+            shadow = DepthManager.getInstance().getShadowAt(0);
+        }
+        else if (this.slider.isPressed())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(5);
+        }
+        else if (this.slider.isHover())
+        {
+            shadow = DepthManager.getInstance().getShadowAt(3);
         }
         else
         {
-            timer.applyEndValues();
+            shadow = DepthManager.getInstance().getShadowAt(2);
         }
+        return shadow;
+    }
+    
+    private Paint determineThumbColor()
+    {
+        Paint thumbColor;
+        if (Double.compare(this.slider.getValue(), this.slider.getMin()) <= 0)
+        {
+            thumbColor = this.slider.getUnfilledTrackColor();
+        }
+        else
+        {
+            thumbColor = this.slider.getThumbColor();
+        }
+        return thumbColor;
     }
 
-    private double determineStateRadius() 
+    private void createAnimation()
     {
-        double radius = 0;
-        if (slider.isPressed() || thumb.isHover())
-        {
-            radius = 12;
-        }
-        return radius;
+        // @formatter:off
+        this.interactionTimeline = new RtAnimationTimeline(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(200))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.stateBox.opacityProperty())
+                        .setEndValueSupplier(() -> determineStateBoxOpacity())
+                        .setInterpolator(Interpolator.EASE_OUT)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.thumb.effectProperty())
+                        .setEndValueSupplier(() -> determineButtonShadow())
+                        .setInterpolator(Interpolator.EASE_OUT)
+                        .build())
+                .build());
+        this.stateTimeline = new RtAnimationTimeline(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(200))
+                    .setKeyValues(
+                        RtKeyValue.builder()
+                            .setTarget(this.circleThumb.fillProperty())
+                            .setEndValueSupplier(() -> determineThumbColor())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build(),
+                        RtKeyValue.builder()
+                            .setTarget(this.thumb.effectProperty())
+                            .setEndValueSupplier(() -> determineButtonShadow())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
+        // @formatter:on
+        this.interactionTimeline.setAnimateCondition(() -> !this.slider.getIsAnimationDisabled());
     }
 
-    private double determineThumbRadius() 
+    private void createAnimationListeners()
     {
-        double radius = 8;
-        if (slider.isPressed())
+        this.slider.pressedProperty().addListener((ov, oldVal, newVal) ->
         {
-            radius = 9;
-        }
-        return radius;
+            if (oldVal)
+            {
+                this.interactionTimeline.skipAndContinue();
+            }
+            else
+            {
+                this.interactionTimeline.start();
+            }
+        });
+        this.thumb.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.interactionTimeline.start();
+        });
+        this.slider.valueChangingProperty().addListener((ov, oldVal, newVal) -> 
+        {
+            this.stateTimeline.reverseAndContinue();
+        });
+    }
+
+    private void updateColors()
+    {
+        this.circleThumb.setFill(determineThumbColor());
+        Utils.setBackgroundColor(this.track, this.slider.getUnfilledTrackColor());
+        Utils.setBackgroundColor(this.filledTrack, this.slider.getFilledTrackColor());
+    }
+
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.slider.getBackground() == null ? null
+                : this.slider.getBackground().getFills().get(0).getRadii();
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.slider.getOverlayColor(), radii, insets)));
     }
 }

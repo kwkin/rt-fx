@@ -22,6 +22,11 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with spacing = 0 and the specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public HBox(Accent accent)
     {
         super();
@@ -29,12 +34,24 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with the specified spacing between children.
+     * 
+     * @param spacing the amount of horizontal space between each child
+     */
     public HBox(double spacing)
     {
         super(spacing);
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with the specified spacing between children and
+     * accent.
+     * 
+     * @param spacing the amount of horizontal space between each child
+     * @param accent The accent type used to change the layout's color scheme.
+     */
     public HBox(double spacing, Accent accent)
     {
         super(spacing);
@@ -42,12 +59,23 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with spacing = 0.
+     * 
+     * @param children The initial set of children for this pane.
+     */
     public HBox(Node... children)
     {
         super(children);
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with spacing = 0 and the specified accent.
+     * 
+     * @param accent The accent type used to change the layout's color scheme.
+     * @param children The initial set of children for this pane.
+     */
     public HBox(Accent accent, Node... children)
     {
         super(children);
@@ -55,13 +83,26 @@ public class HBox extends javafx.scene.layout.HBox
         initialize();
     }
 
+    /**
+     * Creates an HBox layout with the specified spacing between children.
+     * 
+     * @param spacing the amount of horizontal space between each child
+     * @param children The initial set of children for this pane.
+     */
     public HBox(double spacing, Node... children)
     {
         super(spacing, children);
         initialize();
     }
-    
-    public HBox(double spacing, Accent accent, Node... children) 
+
+    /**
+     * Creates an HBox layout with the specified spacing between children.
+     * 
+     * @param spacing the amount of horizontal space between each child.
+     * @param accent The accent type used to change the layout's color scheme.
+     * @param children The initial set of children for this pane.
+     */
+    public HBox(double spacing, Accent accent, Node... children)
     {
         super(spacing, children);
         this.accent = accent;
@@ -72,19 +113,27 @@ public class HBox extends javafx.scene.layout.HBox
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
     }
-    
-    static
+
+    /**
+     * Loads the user agent stylesheet specific to this layout
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        HBox.loadStyleSheet();
     }
 }

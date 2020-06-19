@@ -25,9 +25,17 @@ public class Tooltip extends javafx.scene.control.Tooltip
     {
         getStyleClass().add(CSS_CLASS);
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        Tooltip.loadStyleSheet();
     }
 }

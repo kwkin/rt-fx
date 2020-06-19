@@ -5,7 +5,7 @@ import com.sun.javafx.css.StyleManager;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ButtonBar extends javafx.scene.control.ButtonBar implements RtComponent
+public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -46,15 +46,6 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtCompo
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet()
     {
         return null;
@@ -65,9 +56,17 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtCompo
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getCssName());
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        ButtonBar.loadStyleSheet();
     }
 }

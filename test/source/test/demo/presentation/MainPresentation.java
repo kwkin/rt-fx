@@ -10,21 +10,20 @@ import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 import test.demo.SampleApp;
-import test.demo.abstraction.immutable.DemoTheme;
+import test.demo.abstraction.data.immutable.DemoTheme;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
+import test.demo.presentation.panes.compare.ButtonComparisonPane;
+import test.demo.presentation.panes.controls.ComboBoxPanePresentation;
 import test.demo.presentation.panes.controls.ComponentsPresentation;
 import test.demo.presentation.panes.controls.TextAreaPanePresentation;
-import test.demo.presentation.panes.controls.TextFieldPanePresentation;
-import test.demo.presentation.panes.controls.TitledSeparatorPanePresentation;
-import test.demo.presentation.panes.controls.ToggleButtonPanePresentation;
 import test.demo.presentation.panes.layouts.LayoutsPresentation;
 import test.demo.presentation.sidebar.SideBarPresentation;
 import test.jfoenix.presentation.panes.controls.ButtonComparison;
@@ -57,8 +56,8 @@ public class MainPresentation extends BorderPane
     {
         JFXToolbar toolBar = new JFXToolbar();
 
-        SvgGlyph arrowRight = new SvgGlyph(SvgFile.ARROW_RIGHT, Color.WHITE, IconSize.SIZE_16);
-        SvgGlyph arrowLeft = new SvgGlyph(SvgFile.ARROW_LEFT, Color.WHITE, IconSize.SIZE_16);
+        SvgIcon arrowRight = new SvgIcon(SvgFile.ARROW_RIGHT, Color.WHITE, IconSize.SIZE_16);
+        SvgIcon arrowLeft = new SvgIcon(SvgFile.ARROW_LEFT, Color.WHITE, IconSize.SIZE_16);
         this.toggleButton = new IconToggleButton(arrowLeft, arrowRight);
         this.titled = new Label("Components");
         Label themeLabel = new Label("Theme:");
@@ -81,7 +80,7 @@ public class MainPresentation extends BorderPane
         });
         setTop(toolBar);
 
-//        this.panes.add(new ComboBoxPanePresentation(paneController));
+//        this.panes.add(new ButtonComparisonPane());
         this.panes.add(new ComponentsPresentation(paneController));
         this.panes.add(new LayoutsPresentation());
         this.panes.add(new TableComparison(paneController));

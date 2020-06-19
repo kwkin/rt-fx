@@ -8,11 +8,10 @@ import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
-import mil.af.eglin.ccf.rt.fx.layout.HBox;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -75,13 +74,15 @@ public class ButtonPanePresentation extends SizedTitledCard
 
         GridPane toggleButtonGridPane = new GridPane();
         
-        Button primaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
-        Button primaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.PRIMARY_MID);
-        Button primaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
+        Button primaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
+        primaryLightFlatButton.setDefaultButton(true);
+        Button primaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_MID);
+        Button primaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
 ;
-        Button secondaryLightFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
-        Button secondaryMidFlatButton = new Button("APPLY", ButtonStyle.FLAT, Accent.SECONDARY_MID);
-        Button secondaryDarkFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
+        Button secondaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
+        secondaryLightFlatButton.setDefaultButton(true);
+        Button secondaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_MID);
+        Button secondaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
 
         toggleButtonGridPane.add(primaryLightFlatButton, 0, 0);
         toggleButtonGridPane.add(primaryMidFlatButton, 1, 0);
@@ -102,17 +103,17 @@ public class ButtonPanePresentation extends SizedTitledCard
         descriptionPane.setDescription("Icon buttons are similar to flat buttons, but have a tighter padding and different API.");
         
         FlowPane primaryButtonBar = new FlowPane();
-        IconButton iconButton1 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_MINUS, IconSize.SIZE_24));
-        IconButton iconButton2 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY, IconSize.SIZE_24));
-        IconButton iconButton3 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_PLUS, IconSize.SIZE_24));
-        IconButton iconButton4 = new IconButton(new SvgGlyph(SvgFile.MAGNIFY_REMOVE_CURSOR, IconSize.SIZE_24));
+        IconButton iconButton1 = new IconButton(new SvgIcon(SvgFile.MAGNIFY_MINUS, IconSize.SIZE_24));
+        IconButton iconButton2 = new IconButton(new SvgIcon(SvgFile.MAGNIFY, IconSize.SIZE_24));
+        IconButton iconButton3 = new IconButton(new SvgIcon(SvgFile.MAGNIFY_PLUS, IconSize.SIZE_24));
+        IconButton iconButton4 = new IconButton(new SvgIcon(SvgFile.MAGNIFY_REMOVE_CURSOR, IconSize.SIZE_24));
 
-        IconButton iconButtonLeftText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Left Icon");
-        IconButton iconButtonRightText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Right Icon");
+        IconButton iconButtonLeftText = new IconButton(new SvgIcon(SvgFile.COG, IconSize.SIZE_24), "Left Icon");
+        IconButton iconButtonRightText = new IconButton(new SvgIcon(SvgFile.COG, IconSize.SIZE_24), "Right Icon");
         iconButtonRightText.setContentDisplay(ContentDisplay.RIGHT);
-        IconButton iconButtonTopText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Top Icon");
+        IconButton iconButtonTopText = new IconButton(new SvgIcon(SvgFile.COG, IconSize.SIZE_24), "Top Icon");
         iconButtonTopText.setContentDisplay(ContentDisplay.TOP);
-        IconButton iconButtonBottomText = new IconButton(new SvgGlyph(SvgFile.COG, IconSize.SIZE_24), "Bottom Icon");
+        IconButton iconButtonBottomText = new IconButton(new SvgIcon(SvgFile.COG, IconSize.SIZE_24), "Bottom Icon");
         iconButtonBottomText.setContentDisplay(ContentDisplay.BOTTOM);
         
         primaryButtonBar.getChildren().add(iconButton1);

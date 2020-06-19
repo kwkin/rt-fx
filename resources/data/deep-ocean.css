@@ -1,0 +1,53 @@
+.root 
+{
+    /*-- ############################### Font ############################### */
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14;
+
+    /* Main colors are used on backgrounds and overlays */
+    /*-- ############################### Main Color ############################### */
+    -var-main-color-l0: #151518;
+    -var-main-color-l1: #1c1e23;
+    -var-main-color-l2: #272a31;
+    -var-main-color-l3: #2a2d35;
+    -var-main-color-l4: #3e424e;
+
+    -var-on-main-light-color: #cfccba;
+    -var-on-main-mid-color: #fdf8df;
+
+    -var-base-overlay-color: rgba(255, 255, 255, 0.25);
+
+    /* Primary colors are used to accent components */
+    /*-- ############################### Primary Color ############################### */
+    -var-primary-light-color: #80e8dd;
+    -var-primary-mid-color: #4bb5ab;
+    -var-primary-dark-color: #00857c;
+    
+    -var-on-primary-light-color: #000000;
+    -var-on-primary-mid-color: #000000;
+    -var-on-primary-dark-color: #fdf8df;
+    
+    -var-primary-overlay-color: rgba(255, 255, 255, 0.25);
+
+    /* Secondary colors are used to accent components */
+    /*-- ############################### Secondary Color ############################### */
+    -var-secondary-light-color: #80d6ff;
+    -var-secondary-mid-color: #42a5f5;
+    -var-secondary-dark-color: #0077c2;
+    
+    -var-on-secondary-light-color: #000000;
+    -var-on-secondary-mid-color: #000000;
+    -var-on-secondary-text-color: #fdf8df;
+    
+    -var-secondary-overlay-color: rgba(255, 255, 255, 0.45);
+
+    /*-- ############################### Error Colors ############################### */
+    -var-light-error-color: #58222c;
+    -var-error-color: #cf6679;
+    -var-on-error-color: #ffffff;
+    
+    /*-- ############################### Root Colors ############################### */
+    -fx-background-color: -var-main-color-l0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

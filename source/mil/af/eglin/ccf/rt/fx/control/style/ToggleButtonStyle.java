@@ -1,20 +1,42 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
-// TODO this enum class needs to be redesigned since toggle button and toggle switch are different classes
+import javafx.css.PseudoClass;
+
+/**
+ *  A {@code mil.af.eglin.ccf.rt.fx.control.ToggleButton ToggleButton} can have four styles:
+ * <ul>
+ * <li>RAISED: Appears elevated from the surface.</li>
+ * <li>ICON: Appears to place an icon directly on the surface.</li>
+ * <li>ACCENTED_ICON: Similar to the icon, but also changes the fill color of the icon when selected.</li>
+ * <li>GLOWING_ICON: Similar to the accented icon, but also adds a overlay around the icon..</li>
+ * </ul>
+ * <p>
+ * Each style type is applied as a pseudo class.
+ * 
+ * @see mil.af.eglin.ccf.rt.fx.control.ToggleButton
+ * @see mil.af.eglin.ccf.rt.fx.control.IconToggleButton
+ */
 public enum ToggleButtonStyle
 {
-    RAISED("raised"),
-    SWITCH("switch");
-    
-    private String cssName;
+    ACCENTED_ICON("accented-icon"),
+    GLOWING_ICON("glowing-icon"),
+    ICON("icon"),
+    RAISED("raised");
+
+    private PseudoClass pseudoClass;
     
     ToggleButtonStyle(String cssName)
     {
-        this.cssName = cssName;
+        this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
     
-    public String getCssName()
+    /**
+     * Gets the name of the pseudo class
+     * 
+     * @return The name of the pseudo class
+     */
+    public PseudoClass getPseudoClass()
     {
-        return this.cssName;
+        return this.pseudoClass;
     }
 }

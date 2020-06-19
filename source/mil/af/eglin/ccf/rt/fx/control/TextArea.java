@@ -7,10 +7,8 @@ import java.util.List;
 import com.sun.javafx.css.StyleManager;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.css.converters.PaintConverter;
-import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -21,11 +19,9 @@ import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableBooleanProperty;
-import javafx.css.SimpleStyleableDoubleProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
-import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.scene.control.Control;
@@ -40,7 +36,8 @@ import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class TextArea extends javafx.scene.control.TextArea implements RtComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
+// TODO error and helper pseudo states do not apply correctly
+public class TextArea extends javafx.scene.control.TextArea implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -79,8 +76,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
             StyleableProperties.FOCUS_COLOR, TextArea.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
             StyleableProperties.OVERLAY_COLOR, TextArea.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
-    private StyleableDoubleProperty helperTextHeight = new SimpleStyleableDoubleProperty(
-            StyleableProperties.HELPER_TEXT_HEIGHT, TextArea.this, "helperTextHeight", 16.0);
     private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, TextArea.this, "disableAnimation", false);
     // @formatter:on
@@ -256,33 +251,9 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
-    }
-
-    public DoubleProperty helperTextHeightProperty()
-    {
-        return this.helperTextHeight;
-    }
-
-    public double getHelperTextHeight()
-    {
-        return this.helperTextHeight.get();
-    }
-
-    public void setHelperTextHeight(double helperTextHeight)
-    {
-        this.helperTextHeight.set(helperTextHeight);
     }
 
     public StringProperty helperTextProperty()
@@ -510,22 +481,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
                 return control.focusColor;
             }
         };
-        private static final CssMetaData<TextArea, Number> HELPER_TEXT_HEIGHT = new CssMetaData<TextArea, Number>(
-                "-rt-helper-text-height", SizeConverter.getInstance(), 16.0)
-        {
-
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.helperTextHeight == null || !control.helperTextHeight.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Number> getStyleableProperty(TextArea control)
-            {
-                return control.helperTextHeight;
-            }
-        };
         private static final CssMetaData<TextArea, Boolean> DISABLE_ANIMATION = new CssMetaData<TextArea, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -553,22 +508,33 @@ public class TextArea extends javafx.scene.control.TextArea implements RtCompone
             styleables.add(UNFOCUS_COLOR);
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
-            styleables.add(HELPER_TEXT_HEIGHT);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }
 
+    /**
+     * Returns the list of available CSS properties
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
     
     static
     {
-        // TODO load scroll pane component
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        TextArea.loadStyleSheet();
         ScrollPane.loadStyleSheet();
     }
 }

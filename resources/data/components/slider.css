@@ -4,6 +4,19 @@ TODO
 */
 
 /*-- ############################### Slider Style ############################### */
+.slider,
+.slider:horizontal,
+.slider:vertical,
+.rt-slider,
+.rt-slider:horizontal,
+.rt-slider:vertical
+{
+    -rt-filled-track-color: -var-accent-color;
+    -rt-overlay-color: -var-overlay-color;
+    -rt-unfilled-track-color: -var-main-color-l3;
+    -rt-thumb-color: -var-accent-color;
+}
+
 .rt-slider:horizontal
 {
     -fx-padding: 8 0 8 0;
@@ -21,7 +34,8 @@ TODO
 .rt-slider:vertical .track 
 {
 	-fx-background-color: -var-main-color-l3;
-    -fx-background-insets: 1.5;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
 }
 
 .rt-slider .thumb,
@@ -29,7 +43,8 @@ TODO
 .rt-slider:vertical .thumb 
 {
     -fx-cursor: hand;
-	-fx-background-color: -var-accent-color;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
     -fx-effect: null;
     -fx-background-insets: 0;
     -fx-background-radius: 16;
@@ -43,9 +58,10 @@ TODO
 .rt-slider:focused .thumb
 {
     -fx-cursor: hand;
-    -fx-background-color: -var-accent-color;
+    -fx-background-color: transparent;
     -fx-background-radius: 16;
     -fx-background-insets: 0;
+    -fx-border-width: 0;
     -fx-padding: 0;
 }
 
@@ -71,14 +87,7 @@ TODO
     -fx-background-radius: 4
 }
 
-.rt-slider .state-thumb 
-{
-    -fx-fill: -var-accent-color;
-    -fx-opacity: 0.3;
-}
-
 .rt-slider .circle-thumb
 {
-    -fx-fill: -var-accent-color;
     -fx-radius: 8;
 }

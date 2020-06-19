@@ -1,72 +1,62 @@
 package mil.af.eglin.ccf.rt.fx.control.validation;
 
-import javafx.geometry.Pos;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.RtDescriptionControl;
-import mil.af.eglin.ccf.rt.fx.layout.StackPane;
+import mil.af.eglin.ccf.rt.fx.control.skins.RtDescriptionContainerSkin;
 
-public class DescriptionContainer<T extends ValidableControl<?> & RtDescriptionControl> extends StackPane
+public class DescriptionContainer<T extends ValidableControl<?> & RtDescriptionControl> extends Labeled
 {
-    private final StackPane helperContainer = new StackPane();
-    private final StackPane errorContainer = new StackPane();
-    private Text helperText;
-    private Text errorText;
-    
     private T control;
-    
+
     public DescriptionContainer(T control)
     {
-        this.setManaged(false);
         this.control = control;
-        
+
+        textProperty().bind(control.helperTextProperty());
+
         getStyleClass().add("description-container");
-        helperContainer.getStyleClass().add("helper-container");
-        errorContainer.getStyleClass().add("error-container");
 
-        createHelperText();
-        createErrorText();
+    }
 
-        Rectangle descriptionClip = new Rectangle();
-        descriptionClip.setX(0);
-        descriptionClip.setY(0);
-        descriptionClip.widthProperty().bind(widthProperty());
-        descriptionClip.heightProperty().bind(heightProperty());
-        setClip(descriptionClip);
-        
-        StackPane.setAlignment(this.helperContainer, Pos.CENTER_LEFT);
-        StackPane.setAlignment(this.errorContainer, Pos.CENTER_LEFT);
-        
-        this.helperContainer.visibleProperty().bind(control.isValidProperty());
-        this.errorContainer.visibleProperty().bind(control.isValidProperty().not());
-        getChildren().addAll(helperContainer, errorContainer);
-    }
-    
-    private void createHelperText()
+    public ReadOnlyBooleanProperty isValidProperty()
     {
-        if (this.helperText != null || !this.control.getIsShowHelperText())
-        {
-            return;
-        }
-        this.helperText = new Text();
-        this.helperText.getStyleClass().add("helper-text");
-        this.helperText.visibleProperty().bind(this.control.isShowHelperTextProperty());
-        this.helperText.textProperty().bind(this.control.helperTextProperty());
-        StackPane.setAlignment(this.helperText, Pos.CENTER_LEFT);
-        this.helperContainer.getChildren().add(this.helperText);
+        return this.control.isValidProperty();
     }
-    
-    public void createErrorText()
+
+    public ReadOnlyBooleanProperty isShowHelperTextProperty()
     {
-        if (this.errorText != null)
-        {
-            return;
-        }
-        this.errorText = new Text();
-        this.errorText.setManaged(true);
-        this.errorText.getStyleClass().add("error-text");
-        this.errorText.textProperty().bind(this.control.errorMessageProperty());
-        StackPane.setAlignment(this.errorText, Pos.CENTER_LEFT);
-        this.errorContainer.getChildren().add(this.errorText);
+        return this.control.isShowHelperTextProperty();
+    }
+
+    public boolean getIsShowHelperText()
+    {
+        return this.control.getIsShowHelperText();
+    }
+
+    public ReadOnlyStringProperty errorMessageProperty()
+    {
+        return this.control.errorMessageProperty();
+    }
+
+    public ReadOnlyStringProperty helperTextProperty()
+    {
+        return this.control.helperTextProperty();
+    }
+
+    public String getHelperText()
+    {
+        return this.control.getHelperText();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtDescriptionContainerSkin<>(this);
     }
 }

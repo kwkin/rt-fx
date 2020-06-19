@@ -9,7 +9,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.demo.abstraction.immutable.Service;
+import test.demo.abstraction.data.immutable.Service;
 import test.demo.control.TitledCardSize;
 import test.demo.controller.PaneController;
 import test.demo.presentation.data.TablePerson;
@@ -47,11 +47,6 @@ public class BasicTableViewPresentation extends TitledCard
         TableColumn<TablePerson, Boolean> isSubscribedColumn = new TableColumn<TablePerson, Boolean>("Sub");
         isSubscribedColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Boolean>("isSubscribed"));
         isSubscribedColumn.setPrefWidth(60);
-
-        // TODO the architectural styling for this application introduces an
-        // absurd amount of plumbing. Improve this
-        // TODO second, the way this updates is also absurd. It updates in the
-        // presentation and the abstraction in two different paths.
         isSubscribedColumn.setCellFactory(column ->
         {
             CheckBoxTableCell<TablePerson, Boolean> ctCell = new CheckBoxTableCell<>();

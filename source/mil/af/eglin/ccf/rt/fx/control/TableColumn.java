@@ -37,34 +37,6 @@ public class TableColumn<S, T> extends javafx.scene.control.TableColumn<S, T>
 
     private void initialize() 
     {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
-        
-//        if (this.style != null)
-//        {
-//            // TODO remove listeners
-//            this.tableViewProperty().addListener((ov, oldVal, newVal) -> 
-//            {            
-//                newVal.getItems().addListener(new ListChangeListener<S>() 
-//                {
-//                    @Override
-//                    public void onChanged(javafx.collections.ListChangeListener.Change<? extends S> c)
-//                    {
-//                        if (c.next() && c.wasAdded())
-//                        {
-//                            T type = getCellObservableValue(0).getValue();
-//                            if (type instanceof Number)
-//                            {
-//                                getStyleClass().add(TableColumnStyle.NUMBER.getCssName());
-//                            }
-//                            else
-//                            {
-//                                getStyleClass().add(TableColumnStyle.TEXT.getCssName());
-//                            }
-//                        }
-//                    }
-//                });
-//            });
-//        }
+        getStyleClass().add(String.format("%s-%s", CSS_CLASS, this.style.getCssName()));
     }
 }

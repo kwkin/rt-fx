@@ -6,7 +6,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtComponent
+public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -61,15 +61,6 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
@@ -82,8 +73,16 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtCom
         getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
     }
     
-    static
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+    
+    static
+    {
+        Spinner.loadStyleSheet();
     }
 }

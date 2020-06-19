@@ -26,25 +26,20 @@ import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO incorporate logging
-// Logged components should have easily discernable names. Some concerns:
-// Not all components have a variable name
-// Some components are dynamically created, such as in a for loop.
-// Some components may have the exact same content (remove icon buttons in a list of entries)
-//
-// Some ideas:
-// If a specific logging name is defined, use that. (Maybe not do this to reduce variance with all these if/else)
-// Else If the component/layout has a variable name, use that and the index in the parent layout
-// Else use the component/layout type, context (if component), and the index in the parent layout
-// Use reflection to recursively get variable names of the component and parent layouts/scene
-//
-// Examples:
-// mainScene.sideBar.mainTree.treeItem-5.deleteIcon
-// mainScene.sideBar.tree-view-1.tree-item-5.icon-button-(delete)-2
-//
-// TODO default button style
-// TODO cancel button style
-public class Button extends javafx.scene.control.Button implements RtComponent
+/**
+ * A simple button control allows the user to take actions with a single press.
+ * <p>
+ * In general, icon buttons should be created using the {@link IconButton
+ * IconButton} class whenever using a
+ * {@link RtIcon RtIcon} as the graphic. The
+ * {@link IconButton IconButton} class provides additional API for styling and
+ * using the icon inside the button. This class still allows the Icon type in
+ * case a generic node wants to be used instead of {@link RtIcon RtIcon}.
+ * 
+ * @see IconButton
+ * @see mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle
+ */
+public class Button extends javafx.scene.control.Button implements RtStyleableComponent
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
     protected Accent accent = Accent.PRIMARY_MID;
@@ -52,17 +47,39 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";
 
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
+            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor",
+            DefaultPalette.getInstance().getBaseColor());
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             StyleableProperties.DISABLE_ANIMATION, Button.this, "disableAnimation", false);
 
+    /**
+     * Creates a raised button with an empty string for its label.
+     */
     public Button()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a button with the specified style.
+     * 
+     * @param style The style used to change the overall look of the button.
+     */
     public Button(ButtonStyle style)
     {
         super();
@@ -70,13 +87,13 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    public Button(Accent accent)
-    {
-        super();
-        this.accent = accent;
-        initialize();
-    }
-
+    /**
+     * Creates a button with the specified style and accent
+     * 
+     * @param style The style type used to change the component's look.
+     * @param accent The accent type used to change the component's color
+     *            scheme.
+     */
     public Button(ButtonStyle style, Accent accent)
     {
         super();
@@ -85,12 +102,23 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
+    /**
+     * Creates a raised button with the specified text as its label.
+     *
+     * @param text A text string for its label.
+     */
     public Button(String text)
     {
         super(text);
         initialize();
     }
 
+    /**
+     * Creates a button with the specified label text and style
+     * 
+     * @param text A text string for its label.
+     * @param style The style type used to change the component's look.
+     */
     public Button(String text, ButtonStyle style)
     {
         this(text);
@@ -98,13 +126,14 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    public Button(String text, Accent accent)
-    {
-        super(text);
-        this.accent = accent;
-        initialize();
-    }
-
+    /**
+     * Creates a button with the specified label text, style, and accent
+     * 
+     * @param text A text string for its label.
+     * @param style The style type used to change the component's look.
+     * @param accent The accent type used to change the component's color
+     *            scheme.
+     */
     public Button(String text, ButtonStyle style, Accent accent)
     {
         super(text);
@@ -113,12 +142,25 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
+    /**
+     * Creates a button with the specified text and icon for its label.
+     *
+     * @param text A text string for its label.
+     * @param graphic The icon for its label.
+     */
     public Button(String text, Node graphic)
     {
         super(text, graphic);
         initialize();
     }
 
+    /**
+     * Creates a button with the specified label text, icon, and style.
+     *
+     * @param text A text string for its label.
+     * @param graphic The icon for its label.
+     * @param style The style type used to change the component's look.
+     */
     public Button(String text, Node graphic, ButtonStyle style)
     {
         super(text, graphic);
@@ -126,13 +168,15 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    public Button(String text, Node graphic, Accent accent)
-    {
-        super(text, graphic);
-        this.accent = accent;
-        initialize();
-    }
-
+    /**
+     * Creates a button with the specified label text, icon, style, and accent.
+     *
+     * @param text A text string for its label.
+     * @param graphic The icon for its label.
+     * @param style The style type used to change the component's look.
+     * @param accent The accent type used to change the component's color
+     *            scheme.
+     */
     public Button(String text, Node graphic, ButtonStyle style, Accent accent)
     {
         super(text, graphic);
@@ -141,39 +185,44 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         initialize();
     }
 
-    public ObjectProperty<Paint> getOverlayColorProperty()
+    /**
+     * Gets the style type of the button.
+     * 
+     * @return The style type of the button
+     */
+    public ButtonStyle getButtonStyle()
+    {
+        return this.style;
+    }
+
+    public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
     }
 
-    public Paint getOverlayColor()
+    public final Paint getOverlayColor()
     {
         return overlayColor.get();
     }
 
-    public void setOverlayColor(Paint overlayColor)
+    public final void setOverlayColor(Paint overlayColor)
     {
         this.overlayColor.set(overlayColor);
     }
 
-    public BooleanProperty isAnimationDisabledProperty()
+    public final BooleanProperty isAnimationDisabledProperty()
     {
         return this.isAnimationDisabled;
     }
 
-    public boolean getIsAnimationDisabled()
+    public final boolean getIsAnimationDisabled()
     {
         return isAnimationDisabled.get();
     }
 
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
+    public final void setIsAnimationDisabled(boolean isAnimationDisabled)
     {
         this.isAnimationDisabled.set(isAnimationDisabled);
-    }
-
-    public ButtonStyle getButtonStyle()
-    {
-        return this.style;
     }
 
     /**
@@ -198,21 +247,6 @@ public class Button extends javafx.scene.control.Button implements RtComponent
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet()
     {
         return null;
@@ -230,10 +264,10 @@ public class Button extends javafx.scene.control.Button implements RtComponent
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
-        if (this.accent != null)
+        getStyleClass().add(this.accent.getCssName());
+        for (ButtonStyle buttonStyle : ButtonStyle.values())
         {
-            getStyleClass().add(this.accent.getCssName());
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
     }
 
@@ -254,7 +288,7 @@ public class Button extends javafx.scene.control.Button implements RtComponent
                 return control.overlayColor;
             }
         };
-        
+
         private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = new CssMetaData<Button, Boolean>(
                 "-rt-disable-animation", BooleanConverter.getInstance(), false)
         {
@@ -283,13 +317,33 @@ public class Button extends javafx.scene.control.Button implements RtComponent
         }
     }
 
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return getClassCssMetaData();
+    }
     
-    static
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        Button.loadStyleSheet();
     }
 }

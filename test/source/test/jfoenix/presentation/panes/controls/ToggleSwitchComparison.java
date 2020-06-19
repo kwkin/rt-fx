@@ -11,10 +11,10 @@ import javafx.scene.layout.Priority;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
-import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
-import mil.af.eglin.ccf.rt.fx.icons.svg.SvgGlyph;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -118,28 +118,28 @@ public class ToggleSwitchComparison extends SizedTitledCard
     public Node createRtIconButton()
     {
         VBox box = new VBox();
-        SvgGlyph smilyOn = new SvgGlyph(SvgFile.EMOTICON_EXCITED, IconSize.SIZE_32);
-        SvgGlyph smilyOff = new SvgGlyph(SvgFile.EMOTICON_EXCITED_OUTLINE, IconSize.SIZE_32);
+        SvgIcon smilyOn = new SvgIcon(SvgFile.EMOTICON_EXCITED, IconSize.SIZE_32);
+        SvgIcon smilyOff = new SvgIcon(SvgFile.EMOTICON_EXCITED_OUTLINE, IconSize.SIZE_32);
         IconToggleButton smiley = new IconToggleButton(smilyOn, smilyOff);
         
-        SvgGlyph eyeOn = new SvgGlyph(SvgFile.EYE, IconSize.SIZE_32);
-        SvgGlyph eyeOff = new SvgGlyph(SvgFile.EYE_OUTLINE, IconSize.SIZE_32);
+        SvgIcon eyeOn = new SvgIcon(SvgFile.EYE, IconSize.SIZE_32);
+        SvgIcon eyeOff = new SvgIcon(SvgFile.EYE_OUTLINE, IconSize.SIZE_32);
         IconToggleButton rtPalette = new IconToggleButton(eyeOn, eyeOff);
         rtPalette.setText("Normal");
 
-        SvgGlyph mapAlert = new SvgGlyph(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
-        SvgGlyph mapAlertCircle = new SvgGlyph(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED);
+        SvgIcon mapAlert = new SvgIcon(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
+        SvgIcon mapAlertCircle = new SvgIcon(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
+        IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, ToggleButtonStyle.ACCENTED_ICON);
         rtMapAlert.setText("Highlighted");
 
-        SvgGlyph shieldAlert = new SvgGlyph(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
-        SvgGlyph shieldAlertOutline = new SvgGlyph(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING);
+        SvgIcon shieldAlert = new SvgIcon(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
+        SvgIcon shieldAlertOutline = new SvgIcon(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
+        IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, ToggleButtonStyle.GLOWING_ICON);
         rtToggle.setText("Glowing");
 
-        SvgGlyph alertCircle = new SvgGlyph(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
-        SvgGlyph alertCircleOutline = new SvgGlyph(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING);
+        SvgIcon alertCircle = new SvgIcon(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
+        SvgIcon alertCircleOutline = new SvgIcon(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
+        IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, ToggleButtonStyle.GLOWING_ICON);
 
         box.getChildren().add(smiley);
         box.getChildren().add(rtPalette);
@@ -153,10 +153,10 @@ public class ToggleSwitchComparison extends SizedTitledCard
     {
         VBox box = new VBox();
         JFXToggleNode jfxUnselected = new JFXToggleNode();
-        jfxUnselected.setGraphic(new SvgGlyph(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32));
+        jfxUnselected.setGraphic(new SvgIcon(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32));
 
         JFXToggleNode jfxGlowing = new JFXToggleNode();
-        jfxGlowing.setGraphic(new SvgGlyph(SvgFile.SHIELD_ALERT, IconSize.SIZE_32));
+        jfxGlowing.setGraphic(new SvgIcon(SvgFile.SHIELD_ALERT, IconSize.SIZE_32));
         jfxGlowing.setText("Glowing");
         
         box.getChildren().add(jfxUnselected);

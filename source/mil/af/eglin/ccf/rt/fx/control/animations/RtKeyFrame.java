@@ -12,6 +12,7 @@ public class RtKeyFrame
     private Duration duration;
     private Set<RtKeyValue<?>> keyValues = new CopyOnWriteArraySet<>();
     private Supplier<Boolean> animateCondition = null;
+    private Supplier<Boolean> applyCondition = null;
 
     public RtKeyFrame()
     {
@@ -57,6 +58,11 @@ public class RtKeyFrame
         return animateCondition;
     }
 
+    public Supplier<Boolean> getApplyCondition()
+    {
+        return applyCondition;
+    }
+
     public static RtKeyFrameBuilder builder()
     {
         return new RtKeyFrameBuilder();
@@ -67,6 +73,7 @@ public class RtKeyFrame
         private Duration duration;
         private Set<RtKeyValue<?>> keyValues = new CopyOnWriteArraySet<>();
         private Supplier<Boolean> animateCondition = null;
+        private Supplier<Boolean> applyCondition = null;
 
         private RtKeyFrameBuilder()
         {
@@ -96,13 +103,20 @@ public class RtKeyFrame
             return this;
         }
 
+        public RtKeyFrameBuilder setApplyCondition(Supplier<Boolean> applyCondition)
+        {
+            this.applyCondition = applyCondition;
+            return this;
+        }
+
         public RtKeyFrame build()
         {
-            RtKeyFrame jFXKeyFrame = new RtKeyFrame();
-            jFXKeyFrame.duration = this.duration;
-            jFXKeyFrame.keyValues = this.keyValues;
-            jFXKeyFrame.animateCondition = this.animateCondition;
-            return jFXKeyFrame;
+            RtKeyFrame keyFrame = new RtKeyFrame();
+            keyFrame.duration = this.duration;
+            keyFrame.keyValues = this.keyValues;
+            keyFrame.animateCondition = this.animateCondition;
+            keyFrame.applyCondition = this.applyCondition;
+            return keyFrame;
         }
     }
 }

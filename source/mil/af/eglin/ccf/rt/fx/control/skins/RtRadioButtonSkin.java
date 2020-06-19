@@ -3,24 +3,32 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.RadioButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.RadioButton;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+// TODO change usage of shapes (circle) to stack pane
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
     private final RadioButton radioButton;
     private final Circle radio = new Circle();
     private final Circle dot = new Circle();
     private final StackPane container = new StackPane();
+    private final StackPane stateBox = new StackPane();
 
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline stateTimeline;
+    private RtAnimationTimeline interactionTimeline;
 
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
@@ -43,51 +51,24 @@ public class RtRadioButtonSkin extends RadioButtonSkin
         this.dot.setScaleY(0);
         this.dot.setSmooth(true);
 
-        this.container.getChildren().addAll(radio, dot);
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
+        Rectangle slideClip = new Rectangle();
+        slideClip.widthProperty().bind(this.container.widthProperty());
+        slideClip.heightProperty().bind(this.container.heightProperty());
+        this.stateBox.setClip(slideClip);
+        slideClip.setArcWidth(100);
+        slideClip.setArcHeight(100);
+        slideClip.setSmooth(true);
+        updateStateBoxColor();
+
         this.container.getStyleClass().add("radio-container");
-
-        getSkinnable().selectedProperty().addListener(observable ->
-        {
-            if (!radioButton.getIsAnimationDisabled())
-            {
-                timer.reverseAndContinue();
-            }
-            else
-            {
-                timer.applyEndValues();
-            }
-        });
-
-        // @formatter:off
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(150))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(this.radio.strokeProperty())
-                        .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.opacityProperty())
-                        .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.scaleXProperty())
-                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(this.dot.scaleYProperty())
-                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .build())
-                .build());
-        timer.applyEndValues();
-        // @formatter:on
-
+        this.container.getChildren().addAll(this.radio, this.dot, this.stateBox);
         updateChildren();
+
+        createAnimation();
+        createAnimationListeners();
+        stateTimeline.applyEndValues();
 
         registerChangeListener(radioButton.selectedColorProperty(), radioButton.selectedColorProperty().getName());
         registerChangeListener(radioButton.unselectedColorProperty(), radioButton.unselectedColorProperty().getName());
@@ -184,5 +165,99 @@ public class RtRadioButtonSkin extends RadioButtonSkin
                 break;
             }
         }
+    }
+    
+    private double determineStateBoxOpacity()
+    {
+        double opacity = 0;
+        if (this.radioButton.isArmed())
+        {
+            opacity = 1;
+        }
+        else if (this.radioButton.isHover())
+        {
+            opacity = 0.6;
+        }
+        return opacity;
+    }
+    
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.radioButton.getBackground() == null ? null : this.radioButton.getBackground().getFills().get(0).getRadii(); 
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.radioButton.getOverlayColor(), radii, insets)));
+    }
+    
+    private void createAnimation()
+    {
+        // @formatter:off
+        this.stateTimeline = new RtAnimationTimeline(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(150))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.radio.strokeProperty())
+                        .setEndValueSupplier(() -> determineColor(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.opacityProperty())
+                        .setEndValueSupplier(() -> this.radioButton.isSelected() ? 1 : 0)
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.scaleXProperty())
+                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.dot.scaleYProperty())
+                        .setEndValueSupplier(() -> determineSize(this.radioButton.isSelected()))
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        this.interactionTimeline = new RtAnimationTimeline(
+                RtKeyFrame.builder()
+                    .setDuration(Duration.millis(100))
+                    .setKeyValues(
+                            RtKeyValue.builder()
+                            .setTarget(this.stateBox.opacityProperty())
+                            .setEndValueSupplier(() -> determineStateBoxOpacity())
+                            .setInterpolator(Interpolator.EASE_OUT)
+                            .build())
+                    .build());
+        // @formatter:on
+        this.stateTimeline.setAnimateCondition(() -> !this.radioButton.getIsAnimationDisabled());
+        this.interactionTimeline.setAnimateCondition(() -> !this.radioButton.getIsAnimationDisabled());
+    }
+
+    private void createAnimationListeners()
+    {
+        this.radioButton.selectedProperty().addListener(observable ->
+        {
+            if (!this.radioButton.getIsAnimationDisabled())
+            {
+                this.stateTimeline.reverseAndContinue();
+            }
+            else
+            {
+                this.stateTimeline.applyEndValues();
+            }
+        });
+        this.radioButton.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            if (oldVal)
+            {
+                this.interactionTimeline.skipAndContinue();
+            }
+            else
+            {
+                this.interactionTimeline.start();
+            }
+        });
+        this.radioButton.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.interactionTimeline.start();
+        });
     }
 }

@@ -1,8 +1,8 @@
 
-.rt-label.block-title.primary-mid
+.rt-label:block-title.primary-mid
 {
     -fx-background-color: -var-main-color-l3;
-    -fx-text-fill: -var-base-mid-text-color;
+    -fx-text-fill: -var-on-main-mid-color;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 5, 0.18, 0, 2);
 }
 

@@ -23,7 +23,6 @@ TODO
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
-    -rt-helper-text-height: 24;
 }
 
 .rt-text-area .input-container
@@ -80,37 +79,29 @@ TODO
     -fx-min-height: 72;
 }
 
-.rt-text-area:helper .description-container
+.rt-text-area .description-container
 {
     -fx-min-height: 16;
     -fx-padding: 2 16 2 16;
 }
 
-.rt-text-area .description-container .helper-container .helper-text,
-.rt-text-area .description-container .error-container .error-text
+.rt-text-area .description-container .helper-text
 {
+    -fx-fill: -var-on-main-light-color;
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
 
-.rt-text-area .description-container .helper-container .helper-text
-{
-    -fx-fill: -var-on-main-light-color;
-}
-
-.rt-text-area .description-container .error-container .error-text
+.rt-text-area .description-container .error-text
 {
     -fx-fill: -var-error-color;
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
 }
 
 .rt-text-area:floating .input-container
 {
     -fx-padding: 22 16 6 16;
-}
-
-.rt-text-area .error-container
-{
-    -fx-min-height: 16;
 }
 
 .rt-text-area:error

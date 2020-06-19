@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtProgressBarSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ProgressBar extends javafx.scene.control.ProgressBar implements RtComponent
+public class ProgressBar extends javafx.scene.control.ProgressBar implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -72,15 +72,6 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtC
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
@@ -92,8 +83,16 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtC
         getStyleClass().add(this.accent.getCssName());
     }
     
-    static
+    public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    static
+    {
+        ProgressBar.loadStyleSheet();
     }
 }

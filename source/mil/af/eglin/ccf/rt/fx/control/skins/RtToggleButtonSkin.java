@@ -3,11 +3,15 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 import javafx.animation.Interpolator;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
-import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimer;
+import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
@@ -18,59 +22,42 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
     private final ToggleButton button;
     private final StackPane stateBox = new StackPane();
 
-    private RtAnimationTimer timer;
+    private RtAnimationTimeline timer;
     
     public RtToggleButtonSkin(final ToggleButton button)
     {
         super(button);
         this.button = button;
         
-        stateBox.getStyleClass().setAll("state-box");
-        stateBox.setOpacity(0);
+        this.stateBox.getStyleClass().setAll("state-box");
+        this.stateBox.setOpacity(0);
+        updateStateBoxColor();
         
-        // TODO generate shadow automatically
         button.setPickOnBounds(false);
         DepthManager.getInstance().setDepth(button, 2);
-        timer = new RtAnimationTimer(
-            RtKeyFrame.builder()
-                .setDuration(Duration.millis(100))
-                .setKeyValues(
-                    RtKeyValue.builder()
-                        .setTarget(button.effectProperty())
-                        .setEndValueSupplier(() -> determineShadow())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                        .build(),
-                    RtKeyValue.builder()
-                        .setTarget(stateBox.opacityProperty())
-                        .setEndValueSupplier(() -> determineOpacity())
-                        .setInterpolator(Interpolator.EASE_BOTH)
-                        .setAnimateCondition(() -> !button.getIsAnimationDisabled())
-                        .build())
-                .build());
-        timer.setCacheNodes(stateBox);
-        
-        button.selectedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        button.armedProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        button.hoverProperty().addListener((ov, oldVal, newVal) ->
-        {
-            updateState();
-        });
-        
+
         updateChildren();
+        createAnimation();
+        createAnimationListeners();
+
+        registerChangeListener(button.overlayColorProperty(), button.overlayColorProperty().getName());
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (button.overlayColorProperty().getName().equals(property))
+        {
+            updateStateBoxColor();
+        }
     }
     
     @Override
     protected void updateChildren()
     {
         super.updateChildren();
-        if (stateBox != null)
+        if (this.stateBox != null)
         {
             Node text = getSkinnable().lookup(".text");
             int insertIndex = getChildren().indexOf(text);
@@ -92,34 +79,61 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
         layoutLabelInArea(x, y, w, h);
     }
     
-    private void updateState()
+    private void createAnimation()
     {
-        if (!button.getIsAnimationDisabled())
-        {
-            timer.reverseAndContinue();
-        }
-        else
-        {
-            timer.applyEndValues();
-        }
+        // @formatter:off
+        this.timer = new RtAnimationTimeline(
+            RtKeyFrame.builder()
+                .setDuration(Duration.millis(100))
+                .setKeyValues(
+                    RtKeyValue.builder()
+                        .setTarget(this.button.effectProperty())
+                        .setEndValueSupplier(() -> determineShadow())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build(),
+                    RtKeyValue.builder()
+                        .setTarget(this.stateBox.opacityProperty())
+                        .setEndValueSupplier(() -> determineOpacity())
+                        .setInterpolator(Interpolator.EASE_BOTH)
+                        .build())
+                .build());
+        // @formatter:on
+        this.timer.setCacheNodes(this.stateBox);
+        this.timer.setAnimateCondition(() -> !this.button.getIsAnimationDisabled());
     }
 
+    private void createAnimationListeners()
+    {
+        this.button.selectedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.timer.start();
+        });
+        this.button.armedProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.timer.start();
+        });
+        this.button.hoverProperty().addListener((ov, oldVal, newVal) ->
+        {
+            this.timer.start();
+        });
+    }
+    
     private double determineOpacity() 
     {
         double opacity = 0;
-        if (button.isArmed())
+        if (this.button.isArmed())
         {
             opacity = 1;
         }
-        else if (button.isHover() && button.isSelected())
+        else if (this.button.isHover() && this.button.isSelected())
         {
             opacity = 0.8;
         }
-        else if (button.isSelected())
+        else if (this.button.isSelected())
         {
             opacity = 0.6;
         }
-        else if (button.isHover())
+        else if (this.button.isHover())
         {
             opacity = 0.4;
         }
@@ -129,19 +143,19 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
     private DepthShadow determineShadow() 
     {
         DepthShadow shadow;
-        if (button.isArmed())
+        if (this.button.isArmed())
         {
             shadow = DepthManager.getInstance().getShadowAt(5);
         }
-        else if (button.isHover() && button.isSelected())
+        else if (this.button.isHover() && this.button.isSelected())
         {
             shadow = DepthManager.getInstance().getShadowAt(4);
         }
-        else if (button.isSelected())
+        else if (this.button.isSelected())
         {
             shadow = DepthManager.getInstance().getShadowAt(3);
         }
-        else if (button.isHover())
+        else if (this.button.isHover())
         {
             shadow = DepthManager.getInstance().getShadowAt(3);
         }
@@ -150,5 +164,13 @@ public class RtToggleButtonSkin extends ToggleButtonSkin
             shadow = DepthManager.getInstance().getShadowAt(2);
         }
         return shadow;
+    }
+
+    private void updateStateBoxColor()
+    {
+        CornerRadii radii = this.button.getBackground() == null ? null
+                : this.button.getBackground().getFills().get(0).getRadii();
+        Insets insets = this.stateBox.getInsets();
+        this.stateBox.setBackground(new Background(new BackgroundFill(this.button.getOverlayColor(), radii, insets)));
     }
 }

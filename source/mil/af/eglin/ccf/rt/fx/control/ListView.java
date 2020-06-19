@@ -7,7 +7,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class ListView<T> extends javafx.scene.control.ListView<T> implements RtComponent
+public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
     // TODO change to pseudoclass
     protected ListViewStyle style = ListViewStyle.PLAIN;
@@ -93,15 +93,6 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtC
      * {@inheritDoc}
      */
     @Override
-    public String getRtAccentCssName()
-    {
-        return this.accent.getCssName();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getUserAgentStylesheet() 
     {
         return null;
@@ -110,12 +101,23 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtC
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        for (ListViewStyle listStyle : ListViewStyle.values())
+        {
+            pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
+        }
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
     
     static
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        ListView.loadStyleSheet();
     }
 }

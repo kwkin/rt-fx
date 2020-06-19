@@ -2,14 +2,8 @@
 TODO
 - Icon button glowing accent API
 */
-/*-- ############################### Toggle Button Style ############################### */
-.rt-toggle-button
-{
-    -fx-cursor: hand;
-}
-
 /*-- ############################### Raised Toggle Button Style ############################### */
-.rt-toggle-button.raised
+.rt-toggle-button:raised
 {
     -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
@@ -17,84 +11,68 @@ TODO
     -fx-border-color: -var-accent-color;
     -fx-border-radius: 4;
     -fx-border-width: 0;
+    -fx-cursor: hand;
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 14;
+    -fx-graphic-text-gap: 12;
     -fx-min-height: 36;
     -fx-min-width: 64;
     -fx-padding: 4 16 4 16;
     -fx-text-fill: -var-on-accent-color;
+
+    -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-toggle-button.raised:focused
+.rt-toggle-button:raised:focused,
+.rt-toggle-button:raised:selected
 {
+    -fx-background-color: -var-accent-color;
     -fx-background-insets: 0;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-width: 0;
 }
 
-.rt-toggle-button.raised .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
 /*-- ############################### Normal Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.normal
+.rt-toggle-button:icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
-    -fx-padding: 4;
+    -rt-overlay-color: -var-overlay-color;
 }
 
-.rt-icon-toggle-button.normal .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-icon-toggle-button.normal:selected,
-.rt-icon-toggle-button.normal:focused,
-.rt-icon-toggle-button.normal:selected:focused
+.rt-toggle-button:icon:selected,
+.rt-toggle-button:icon:focused,
+.rt-toggle-button:icon:selected:focused
 {
     -fx-border-width: 0;
     -fx-background-color: transparent;
 }
 
 /*-- ############################### Accented Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.accented
+.rt-toggle-button:accented-icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-icon-color: -var-accent-color;
     -rt-unselected-icon-color: -var-on-main-mid-color;
 
-    -fx-padding: 4;
 }
 
-.rt-icon-toggle-button.accented .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-icon-toggle-button.accented:selected,
-.rt-icon-toggle-button.accented:focused,
-.rt-icon-toggle-button.accented:selected:focused
+.rt-toggle-button:accented-icon:selected,
+.rt-toggle-button:accented-icon:focused,
+.rt-toggle-button:accented-icon:selected:focused
 {
     -fx-border-width: 0;
     -fx-background-color: transparent;
@@ -102,32 +80,24 @@ TODO
 }
 
 /*-- ############################### Glowing Icon Toggle Button Style ############################### */
-.rt-icon-toggle-button.glowing
+.rt-toggle-button:glowing-icon
 {
     -fx-cursor: hand;
     -fx-background-color: transparent;
+    -fx-background-insets: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
 
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-icon-color: -var-accent-color;
     -rt-unselected-icon-color: -var-on-main-mid-color;
-    -fx-background-insets: 0;
-
-    -fx-padding: 4;
 }
 
-.rt-icon-toggle-button.glowing .state-box
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-border-width: 0;
-}
-
-.rt-icon-toggle-button.glowing:selected,
-.rt-icon-toggle-button.glowing:focused,
-.rt-icon-toggle-button.glowing:selected:focused
+.rt-toggle-button:glowing-icon:selected,
+.rt-toggle-button:glowing-icon:focused,
+.rt-toggle-button:glowing-icon:selected:focused
 {
     -fx-background: transparent;
     -fx-background-color: transparent;
@@ -135,5 +105,6 @@ TODO
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-text-fill: -var-accent-color;
+
     -rt-fill-color: -var-accent-color;
 }

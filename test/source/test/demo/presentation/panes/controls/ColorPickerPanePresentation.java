@@ -3,9 +3,8 @@ package test.demo.presentation.panes.controls;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
-import mil.af.eglin.ccf.rt.fx.control.IconColorPicker;
-import mil.af.eglin.ccf.rt.fx.control.IconColorPicker2;
 import mil.af.eglin.ccf.rt.fx.control.Label;
+import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -41,17 +40,16 @@ public class ColorPickerPanePresentation extends SizedTitledCard
         rtInitialized.setValue(Color.RED);
 
         Label buttonLabel = new Label("Button Color Pickers");
-        IconColorPicker rtIconUninitialized = new IconColorPicker();
-        IconColorPicker rtIconInitialized = new IconColorPicker();
+        ColorPicker rtIconUninitialized = new ColorPicker(ColorPickerStyle.BUTTON);
+        ColorPicker rtIconInitialized = new ColorPicker(ColorPickerStyle.BUTTON);
         rtIconInitialized.setValue(Color.SANDYBROWN);
 
         Label iconLabel = new Label("Icon Color Pickers");
-        IconColorPicker2 rtIcon = new IconColorPicker2();
+        ColorPicker rtIcon = new ColorPicker(ColorPickerStyle.ICON);
         rtIcon.setValue(Color.TEAL);
-        IconColorPicker2 rtIconWithText = new IconColorPicker2();
-        rtIconWithText.setLabelVisibility(true);
+        ColorPicker rtIconWithText = new ColorPicker(ColorPickerStyle.ICON);
+        rtIconWithText.setLabelVisiblity(true);
         rtIconWithText.setValue(Color.MEDIUMTURQUOISE);
-        
         
         int row = 0;
         box.add(comboBoxLabel, 0, row++, 2, 1);

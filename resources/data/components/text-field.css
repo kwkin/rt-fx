@@ -17,9 +17,8 @@
     -rt-focus-color: -var-accent-color;
     -rt-overlay-color: -var-base-overlay-color;
     -rt-unfocus-color: -var-main-color-l4;
-    -rt-trailing-icon-gap: 10;
+    -rt-trailing-gap: 10;
     -rt-trailing-icon-color: -var-on-main-light-color;
-    -rt-helper-text-height: 24;
 }
 
 .rt-text-field .input-container
@@ -86,12 +85,19 @@
 .rt-text-field:helper .description-container
 {
     -fx-min-height: 16;
-    -fx-padding: 2 16 2 16;
+    -fx-padding: 4 16 2 16;
 }
 
-.rt-text-field:helper .description-container .helper-container .helper-text
+.rt-text-field:helper .description-container .helper-text
 {
     -fx-fill: -var-on-main-light-color;
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+.rt-text-field:helper .description-container .error-text
+{
+    -fx-fill: -var-error-color;
     -fx-font-size: 12;
     -fx-text-alignment: left;
 }
@@ -99,18 +105,6 @@
 .rt-text-field:floating .input-container
 {
     -fx-padding: 22 16 6 16;
-}
-
-.rt-text-field:helper .error-container
-{
-    -fx-min-height: 16;
-}
-
-.rt-text-field:helper .error-container .error-text
-{
-    -fx-fill: -var-error-color;
-    -fx-font-size: 12;
-    -fx-text-alignment: left;
 }
 
 .rt-text-field:error

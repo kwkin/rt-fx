@@ -1,18 +1,28 @@
-/*
-TODO add animations to the check box 
-*/
 /*-- ############################### Check Box Style ############################### */ 
 .rt-check-box 
 { 
-    -fx-cursor: hand; 
-    -fx-label-padding: 0 0 0 12; 
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 12;
     -fx-padding: 4 8 4 8; 
     -fx-text-fill: -var-on-main-mid-color; 
      
+    -rt-overlay-color: -var-overlay-color;
     -rt-selected-color: -var-accent-color; 
-    -rt-unselected-color: -var-main-color-l4; 
+    -rt-unselected-color: -var-main-color-l4;
 } 
  
+.rt-check-box .box-marks
+{
+    -var-pref-width: 18; 
+    -var-pref-height: 18; 
+    -fx-max-width: -var-pref-width; 
+    -fx-min-width: -var-pref-width; 
+    -fx-pref-width: -var-pref-width; 
+    -fx-pref-height: -var-pref-width; 
+    -fx-max-height: -var-pref-height; 
+    -fx-min-height: -var-pref-height; 
+}
+
 .rt-check-box .box 
 { 
     -fx-background-color: transparent; 
@@ -21,24 +31,17 @@ TODO add animations to the check box
     -fx-border-style: solid; 
     -fx-border-radius: 2; 
     -fx-border-width: 2; 
- 
-    -var-pref-width: 18; 
-    -var-pref-height: 18; 
-    -fx-max-width: -var-pref-width; 
-    -fx-min-width: -var-pref-width; 
-    -fx-max-height: -var-pref-height; 
-    -fx-min-height: -var-pref-height; 
+    -fx-padding: 0; 
+    -fx-insets: 0;
 } 
- 
-.rt-check-box:hover .box 
-{ 
-    -fx-border-color: -var-main-color-l3; 
-} 
- 
-.rt-check-box:armed .box 
-{ 
-    -fx-border-color: -var-accent-color; 
-} 
+
+.rt-check-box .colored-box
+{
+    -fx-background-color: -var-accent-color; 
+    -fx-background-radius: 2; 
+    -fx-padding: 0; 
+    -fx-insets: 0;
+}
  
 .rt-check-box:selected .box, 
 .rt-check-box:indeterminate .box, 
@@ -54,7 +57,7 @@ TODO add animations to the check box
     -fx-background-radius: 2; 
 } 
  
- .rt-check-box .box .mark  
+ .rt-check-box .mark  
  { 
     -fx-shape: "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"; 
     -fx-max-width: 13; 
@@ -70,7 +73,7 @@ TODO add animations to the check box
     -fx-border-color: -var-main-color-l2; 
 } 
  
-.rt-check-box .box .indeterminate-mark 
+.rt-check-box .indeterminate-mark 
 {
     -fx-shape: "M19 13H5v-2h14v2z";  
  

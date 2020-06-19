@@ -1,5 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+/**
+ * An accent defines the standard color scheme used by a component.
+ */
 public enum Accent
 {
     BASE("base"),
@@ -16,14 +19,14 @@ public enum Accent
     {
         this.cssName = cssName;
     }
-    
+
+    /**
+     * Gets the CSS class name associated with the accent type.
+     * 
+     * @return The name of the CSS class for the accent colors
+     */
     public String getCssName()
     {
         return this.cssName;
-    }
-    
-    public String getFullAccentName(String cssName)
-    {
-        return String.format("%s-%s", cssName, getCssName());
     }
 }

@@ -64,7 +64,7 @@
     -var-on-primary-mid-color: #ffffff;
     -var-on-primary-dark-color: #ffffff;
     
-    -var-primary-overlay-color: rgba(255, 255, 255, 0.35);
+    -var-primary-overlay-color: rgba(215, 215, 215, 0.50);
 
     /*-- ############################### Secondary Color ############################### */
     -var-secondary-light-color: #ff8e9b;
@@ -75,7 +75,7 @@
     -var-on-secondary-mid-color: #ffffff;
     -var-on-secondary-text-color: #ffffff;
 
-    -var-secondary-overlay-color: rgba(255, 255, 255, 0.35);
+    -var-secondary-overlay-color: rgba(215, 215, 215, 0.50);
     
     /*-- ############################### Error Colors ############################### */
     -var-light-error-color: #f3dade;

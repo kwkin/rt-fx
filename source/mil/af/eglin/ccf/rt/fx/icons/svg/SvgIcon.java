@@ -27,107 +27,121 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
-import mil.af.eglin.ccf.rt.fx.control.RtGlyph;
+import mil.af.eglin.ccf.rt.fx.control.RtIcon;
+import mil.af.eglin.ccf.rt.fx.control.skins.Utils;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO Add a maintain aspect ratio flag
-public class SvgGlyph extends StackPane implements RtGlyph
+public class SvgIcon extends StackPane implements RtIcon
 {
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
     private static final String CSS_CLASS = "rt-svg-icon";
 
-    private boolean isGlyphFillManaged = true;
-    
+    private final StackPane iconBox = new StackPane();
+    private final StackPane icon = new StackPane();
+
+    private boolean isFillManaged = true;
+
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
-    private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>();
-    private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(
-            StyleableProperties.SIZE, this, "size", (double)IconSize.SIZE_32.getIconSize());
+    private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>()
+    {
+        @Override
+        protected void invalidated()
+        {
+            Paint fill = icon.getBackground() == null ? null : icon.getBackground().getFills().get(0).getFill();
+            if (get() != null && !get().equals(fill))
+            {
+                Utils.setBackgroundColor(icon, get());
+            }
+        }
+    };
+    private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(StyleableProperties.SIZE, this, "size",
+            (double) IconSize.SIZE_32.getIconSize());
 
-    public SvgGlyph(URL icon) throws IOException
+    public SvgIcon(URL icon) throws IOException
     {
         initialize(extractSvgPath(icon.openStream()));
     }
 
-    public SvgGlyph(URL icon, IconSize size) throws IOException
+    public SvgIcon(URL icon, IconSize size) throws IOException
     {
         this.size.setValue(size.getIconSize());
         initialize(extractSvgPath(icon.openStream()));
     }
 
-    public SvgGlyph(URL icon, Paint fill) throws IOException
+    public SvgIcon(URL icon, Paint fill) throws IOException
     {
         this.fill.setValue(fill);
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
 
-    public SvgGlyph(URL icon, Paint fill, IconSize size) throws IOException
+    public SvgIcon(URL icon, Paint fill, IconSize size) throws IOException
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.openStream()));
     }
-    
-    public SvgGlyph(SvgFile icon)
+
+    public SvgIcon(SvgFile icon)
     {
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-    public SvgGlyph(SvgFile icon, IconSize size)
+    public SvgIcon(SvgFile icon, IconSize size)
     {
         this.size.setValue(size.getIconSize());
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-    public SvgGlyph(SvgFile icon, Paint fill)
+    public SvgIcon(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-    public SvgGlyph(SvgFile icon, Paint fill, IconSize size)
+    public SvgIcon(SvgFile icon, Paint fill, IconSize size)
     {
         this.fill.setValue(fill);
         this.size.setValue(size.getIconSize());
-        setIsGlyphColorManaged(false);
+        setIsColorManaged(false);
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
-
-    public SvgGlyph(String svgPath)
+    public SvgIcon(String svgPath)
     {
 
         initialize(svgPath);
     }
 
     @Override
-    public Node getGlyph()
+    public Node getNode()
     {
         return this;
     }
-    
+
     @Override
-    public double getGlyphSize()
+    public double getSize()
     {
         return size.get();
     }
 
     @Override
-    public Paint getGlyphFill()
+    public Paint getFill()
     {
         return this.fill.getValue();
     }
 
     @Override
-    public void setGlyphFill(Paint fill)
+    public void setFill(Paint fill)
     {
         this.fill.setValue(fill);
     }
-    
+
     public ObjectProperty<Paint> fillProperty()
     {
         return this.fill;
@@ -148,16 +162,16 @@ public class SvgGlyph extends StackPane implements RtGlyph
         return this.widthHeightRatio;
     }
 
-    public boolean isGlyphColorManaged()
+    public boolean isColorManaged()
     {
-        return this.isGlyphFillManaged;
+        return this.isFillManaged;
     }
 
-    public void setIsGlyphColorManaged(boolean isGlyphFillManaged)
+    public void setIsColorManaged(boolean isFillManaged)
     {
-        this.isGlyphFillManaged = isGlyphFillManaged;
+        this.isFillManaged = isFillManaged;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -170,77 +184,85 @@ public class SvgGlyph extends StackPane implements RtGlyph
     private void initialize(String svgPath)
     {
         getStyleClass().add(CSS_CLASS);
+        this.icon.getStyleClass().setAll("icon");
 
-        // TODO add binding and property conversions for background
-        if (getGlyphFill() != null)
+        Paint fill = this.icon.getBackground() == null ? null
+                : this.icon.getBackground().getFills().get(0).getFill();
+        if (this.fill.get() != null && !this.fill.get().equals(fill))
         {
-            setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
+            Utils.setBackgroundColor(this.icon, this.fill.get());
         }
-        this.fill.addListener((ov, oldVal, newVal) -> 
-        {
-            setBackground(new Background(new BackgroundFill(newVal, null, null)));
-        });
-        backgroundProperty().addListener((ov, oldVal, newVal) -> 
+        this.icon.backgroundProperty().addListener((ov, oldVal, newVal) -> 
         {
             if (this.fill.getValue() != null)
             {
-                setBackground(new Background(new BackgroundFill(getGlyphFill(), null, null)));
+                this.icon.setBackground(new Background(new BackgroundFill(getFill(), null, null)));
             }
         });
-        shapeProperty().addListener((ov, oldVal, newVal) ->
+
+        this.icon.shapeProperty().addListener((ov, oldVal, newVal) ->
         {
             if (newVal != null)
             {
                 this.widthHeightRatio.setValue(newVal.prefWidth(-1) / newVal.prefHeight(-1));
-                if (getGlyphSize() != Region.USE_COMPUTED_SIZE)
+                if (getSize() != Region.USE_COMPUTED_SIZE)
                 {
-                    setSizeRatio(getGlyphSize());
+                    setSizeRatio(getSize());
                 }
             }
         });
 
-        if (svgPath != null && !svgPath.isEmpty()) 
+        this.iconBox.getChildren().add(this.icon);
+        getChildren().add(this.iconBox);
+        if (svgPath != null && !svgPath.isEmpty())
         {
             SVGPath shape = new SVGPath();
             shape.setContent(svgPath);
-            setShape(shape);
+            this.widthHeightRatio.setValue(shape.prefWidth(-1) / shape.prefHeight(-1));
+            this.icon.setShape(shape);
+            setSizeRatio(getSize());
         }
     }
 
     private void setSizeRatio(double size)
     {
-        double width = widthHeightRatio.getValue() * size;
-        double height = size / widthHeightRatio.getValue();
+        double width = this.widthHeightRatio.getValue() * size;
+        double height = size / this.widthHeightRatio.getValue();
         if (width <= size)
         {
-            setSize(width, size);
-        } 
+            setIconSize(width, size);
+        }
         else if (height <= size)
         {
-            setSize(size, height);
-        } 
+            setIconSize(size, height);
+        }
         else
         {
-            setSize(size, size);
+            setIconSize(size, size);
         }
     }
 
-    public void setSize(double size) 
+    public void setIconSize(double size)
     {
         this.size.setValue(size);
     }
 
-    public void setSize(double width, double height) 
+    public void setIconSize(double width, double height)
     {
-        setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        setPrefSize(width, height);
-        setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.icon.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.icon.setPrefSize(width, height);
+        this.icon.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        
+        double size = Math.max(width, height);
+        this.iconBox.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.iconBox.setPrefSize(size, size);
+        this.iconBox.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
 
     private static String extractSvgPath(InputStream inputStream)
     {
         StringBuilder builder = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
         {
             String line;
             while ((line = reader.readLine()) != null)
@@ -251,24 +273,24 @@ public class SvgGlyph extends StackPane implements RtGlyph
         catch (IOException e)
         {
             e.printStackTrace();
-        } 
+        }
         String svgPath = builder.toString().replaceFirst(".*d=\"", "").replaceFirst("\".*", "");
         return svgPath;
     }
 
     private static class StyleableProperties
     {
-        private static final CssMetaData<SvgGlyph, Number> SIZE = new CssMetaData<SvgGlyph, Number>("-rt-size",
+        private static final CssMetaData<SvgIcon, Number> SIZE = new CssMetaData<SvgIcon, Number>("-rt-size",
                 SizeConverter.getInstance(), Region.USE_COMPUTED_SIZE)
         {
             @Override
-            public boolean isSettable(SvgGlyph control)
+            public boolean isSettable(SvgIcon control)
             {
                 return control.size == null || !control.size.isBound();
             }
 
             @Override
-            public StyleableDoubleProperty getStyleableProperty(SvgGlyph control)
+            public StyleableDoubleProperty getStyleableProperty(SvgIcon control)
             {
                 return control.size;
             }
@@ -288,7 +310,7 @@ public class SvgGlyph extends StackPane implements RtGlyph
     {
         return StyleableProperties.CHILD_STYLEABLES;
     }
-    
+
     static
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

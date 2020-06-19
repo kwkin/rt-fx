@@ -3,18 +3,19 @@ package mil.af.eglin.ccf.rt.fx.style;
 public enum Theme
 {
     DARK_MATERIAL("Dark Material", "dark-theme-material.css"),
+    DEEP_OCEAN("Deep Ocean", "deep-ocean.css"),
     DEEP_SEA("Deep Sea", "deep-sea.css"),
     EMERALD_COAST("Emerald Coast", "emerald-coast.css"),
     LIGHT("Light", "light-theme.css"),
     LIGHT_SINGLE("Light", "light-theme-single.css"),
     CELESTIAL_QUASAR("Celestial Quasar", "celestial-quasar.css");
 
-    private String name;
+    private String themeName;
     private String fileName;
     
-    Theme(String name, String fileName)
+    Theme(String themeName, String fileName)
     {
-        this.name = name;
+        this.themeName = themeName;
         this.fileName = fileName;
     }
     
@@ -40,6 +41,6 @@ public enum Theme
     @Override
     public String toString()
     {
-        return name; 
+        return themeName; 
     }
 }

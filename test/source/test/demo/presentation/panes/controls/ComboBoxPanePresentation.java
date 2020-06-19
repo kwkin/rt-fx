@@ -63,6 +63,8 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         ComboBox<String> editableComboBox = new ComboBox<>(Accent.SECONDARY_LIGHT);
         editableComboBox.setItems(items);
         editableComboBox.setEditable(true);
+        editableComboBox.setLabelFloat(true);
+        editableComboBox.setPromptText("Editable");
         ComboBox<String> editableFloatingComboBox = new ComboBox<>(Accent.SECONDARY_MID);
         editableFloatingComboBox.setItems(items);
         editableFloatingComboBox.setEditable(true);

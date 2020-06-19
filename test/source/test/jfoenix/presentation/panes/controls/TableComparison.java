@@ -28,7 +28,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.TableColumnStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.TableViewStyle;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
-import test.demo.abstraction.immutable.Service;
+import test.demo.abstraction.data.immutable.Service;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
 import test.demo.control.TitledCardSize;
