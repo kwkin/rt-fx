@@ -6,57 +6,87 @@ TODO
 */
 
 /*-- ############################### Color Picker Style ############################### */
-.rt-color-picker:combo-box
+.rt-color-picker:combo-box,
+.rt-color-picker:combo-box:focused
 {
-    -fx-background-color: -var-main-color-l2;
-	-fx-background-radius: 2.0;
-    -fx-border-color: -var-main-color-l2;
-    -fx-border-radius: 2.0;
-    -fx-border-width: 0 0 2 0;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: default;
+    -fx-font-size: 14;
     -fx-max-width: 1000000;
-	-fx-padding: 4 8 4 4;
+    -fx-min-height: 48;
+    -fx-padding: 0;
+    -fx-prompt-text-fill: -var-on-main-light-color;
     -fx-text-fill: -var-on-main-mid-color;
+
+    -rt-focus-color: -var-accent-color;
+    -rt-overlay-color: -var-overlay-color;
+    -rt-unfocus-color: -var-main-color-l4;
 }
 
-.rt-color-picker:combo-box:hover
+.rt-color-picker:combo-box .input-container
 {
-    -fx-background-insets: 0;
-    -fx-border-color: -var-accent-color;
+    -fx-cursor: hand;
+    -fx-background-color: -var-main-color-l2;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 16 32 16 16;
+    -fx-min-height: 48;
+}
+
+.rt-color-picker:combo-box .prompt-container
+{
+    -fx-cursor: hand;
+	-fx-background-radius: 4 4 0 0;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 16;
+}
+
+.rt-color-picker:combo-box .input-focused-line
+{
+    -fx-background-color: -var-accent-color;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+
+    -var-height: 2;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
+}
+
+.rt-color-picker:combo-box .input-unfocused-line
+{
+    -fx-background-color: -var-main-color-l4;
+	-fx-background-radius: 0;
+    -fx-border-radius: 0;
+    
+    -var-height: 2;
+    -fx-pref-height: -var-height;
+    -fx-max-height: -var-height;
 }
 
 .rt-color-picker:combo-box .arrow-button .arrow
 {
+    -fx-cursor: hand;
+    -fx-background-color: -var-on-main-light-color;
+    -fx-cursor: hand;
     -fx-shape: "M7,10L12,15L17,10H7Z";
+
+    -var-height: 4;
+    -fx-min-height: -var-height;
+    -fx-max-height: -var-height;
+
+    -var-width: 10;
+    -fx-min-width: -var-width;
+    -fx-max-width: -var-width;
 }
 
 .rt-color-picker:combo-box:showing .arrow-button .arrow
 {
+    -fx-background-color: -var-accent-color;
     -fx-shape: "M7,15L12,10L17,15H7Z";
-}
-
-.rt-color-picker:combo-box:focused,
-.rt-color-picker:combo-box:focused:hover
-{
-    -fx-background-color: -var-main-color-l2;
-    -fx-background-insets: 0;
-    -fx-border-color: -var-accent-color;
-}
-
-.rt-color-picker:combo-box:focused .prompt-pane,
-.rt-color-picker:combo-box:focused:hover .prompt-pane
-{
-    -fx-background-color: -var-main-color-l1;
-    -fx-fill: -var-main-color-l1;
-	-fx-background-radius: 2.0;
-    -fx-border-width: 0 0 0 0;
-}
-
-.rt-color-picker:combo-box:focused .prompt-pane #text,
-.rt-color-picker:combo-box:focused:hover .prompt-pane #text
-{
-    -fx-fill: -var-selected-color;
-    -fx-text-fill: -var-selected-color;
-    -fx-padding: 0 0 0 4;
 }
 
 .rt-color-picker:combo-box .label,
@@ -90,23 +120,66 @@ TODO
     -fx-opacity: 0;
 }
 
-/*-- ############################### Color Picker Icon Text ############################### */
+/*-- ############################### Pseudo State Padding ############################### */
+.rt-color-picker:combo-box:helper
+{
+    -fx-min-height: 72;
+}
+
+.rt-color-picker:combo-box:helper .description-container
+{
+    -fx-min-height: 16;
+    -fx-padding: 4 16 4 16;
+}
+
+.rt-color-picker:combo-box:helper .description-container .helper-text
+{
+    -fx-fill: -var-on-main-light-color;
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+.rt-color-picker:combo-box:helper .description-container .error-text
+{
+    -fx-fill: -var-error-color;
+    -fx-font-size: 12;
+    -fx-text-alignment: left;
+}
+
+
+.rt-color-picker:combo-box:floating .input-container
+{
+    -fx-padding: 22 32 6 16;
+}
+
+.rt-color-picker:combo-box:error
+{
+    -rt-focus-color: -var-error-color;
+    -rt-unfocus-color: -var-error-color;
+    -fx-prompt-text-fill: -var-error-color;
+}
+
+.rt-color-picker:combo-box:error .input-container
+{
+    -fx-background-color: -var-light-error-color;
+}
+
+/*-- ############################### Color Picker Button ############################### */
 .rt-color-picker:button
 {
     -fx-background-color: -var-main-color-l1;
-	-fx-background-radius: 2.0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
     -fx-border-color: -var-main-color-l2;
-    -fx-border-radius: 2.0;
-    -fx-border-width: 2 2 2 2;
-	-fx-padding: 2 8 2 2;
+    -fx-border-radius: 4;
+    -fx-border-width: 0;
+    -fx-graphic-text-gap: 8;
+    -fx-min-height: 36;
+    -fx-min-width: 64;
+    -fx-padding: 8 16 8 16;
     -fx-text-fill: -var-on-main-mid-color;
     
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 4, 0.06, 0, 2);
-}
-
-.rt-color-picker:button:hover
-{
-    -fx-border-color: -var-main-color-l2;
+    -rt-overlay-color: -var-overlay-color;
 }
 
 .rt-color-picker:button .arrow-button .arrow
@@ -122,9 +195,7 @@ TODO
 .rt-color-picker:button .color-picker-label .picker-color
 {
     -fx-border-width: 0 0 0 0;
-    -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
-
-    -rt-size: 16;
+    -rt-size: 0;
     -fx-min-height: -rt-size;
     -fx-min-width: -rt-size;
     -fx-max-height: -rt-size;
@@ -154,20 +225,13 @@ TODO
 .rt-color-picker:icon
 {
     -fx-background-color: transparent;
-	-fx-background-radius: 2.0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
     -fx-border-color: transparent;
     -fx-border-radius: 2.0;
-	-fx-padding: 4 4 4 4;
+	-fx-padding: 4;
     -fx-text-fill: -var-on-main-mid-color;
     -fx-color-label-visible: false;
-
-    -fx-effect: null;
-}
-
-.rt-color-picker:icon:hover
-{
-    -fx-background-color: -var-overlay-color;
-    -fx-border-color: -var-overlay-color;
 }
 
 .rt-color-picker:icon .arrow-button .arrow
@@ -199,16 +263,11 @@ TODO
 }
 
 .rt-color-picker:icon .label,
-.rt-color-picker:icon.split-button .color-picker-label
-{
-    -fx-background-insets: 0 0 0 0;
-    -fx-padding: 0 0 0 0;
-}
-
+.rt-color-picker:icon.split-button .color-picker-label,
 .rt-color-picker:icon.split-button:focused .color-picker-label
 {
-    -fx-background-insets: 0 0 0 0;
-    -fx-padding: 0 0 0 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 /*-- ############################### Color Palette ############################### */

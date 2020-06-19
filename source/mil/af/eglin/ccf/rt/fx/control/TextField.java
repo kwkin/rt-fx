@@ -52,7 +52,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * {@link TextField#islabelFloating floating}, {@link TextField#isShowHelperText
  * helper}, and {@link TextField#isValid error} pseudo states.
  */
-// TODO consider flags for trailing icon and text visibility
 public class TextField extends javafx.scene.control.TextField
         implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {

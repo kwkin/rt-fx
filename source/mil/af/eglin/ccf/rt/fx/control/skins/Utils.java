@@ -10,6 +10,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextBoundsType;
@@ -112,6 +113,11 @@ public class Utils
             layout.setBoundsType(0);
         }
         return layout.getBounds().getHeight();
+    }
+    
+    static boolean computeTextColor(Color color)
+    {
+        return color.getRed() * 0.299 + color.getGreen() * 0.587 + color.getBlue() * 0.114 > 0.7266;
     }
 
     public static double boundedSize(double value, double min, double max)

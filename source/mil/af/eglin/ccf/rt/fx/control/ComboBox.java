@@ -407,7 +407,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         this.unfocusColor.set(color);
     }
 
-    public final ObjectProperty<Paint> getOverlayColorProperty()
+    public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
     }
@@ -604,13 +604,11 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         {
             final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
                     javafx.scene.control.ComboBox.getClassCssMetaData());
-            // @formatter:off
             styleables.add(LABEL_FLOAT);
             styleables.add(UNFOCUS_COLOR);
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
             styleables.add(DISABLE_ANIMATION);
-            // @formatter:on
             CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
         }
     }

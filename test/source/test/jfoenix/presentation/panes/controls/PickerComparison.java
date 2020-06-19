@@ -16,9 +16,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
+import mil.af.eglin.ccf.rt.fx.control.ColorPickerButton;
+import mil.af.eglin.ccf.rt.fx.control.ColorPickerIcon;
 import mil.af.eglin.ccf.rt.fx.control.DatePicker;
 import mil.af.eglin.ccf.rt.fx.control.Label;
-import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -100,11 +101,11 @@ public class PickerComparison extends SizedTitledCard
         ColorPicker rtInitialized = new ColorPicker();
         rtInitialized.setValue(Color.RED);
 
-        ColorPicker rtIconUninitialized = new ColorPicker(ColorPickerStyle.BUTTON);
-        ColorPicker rtIconInitialized = new ColorPicker(ColorPickerStyle.BUTTON);
+        ColorPickerButton rtIconUninitialized = new ColorPickerButton();
+        ColorPickerButton rtIconInitialized = new ColorPickerButton();
         rtIconInitialized.setValue(Color.SANDYBROWN);
 
-        ColorPicker rtIcon = new ColorPicker(ColorPickerStyle.ICON);
+        ColorPickerIcon rtIcon = new ColorPickerIcon();
         rtIcon.setValue(Color.TEAL);
         
         box.getChildren().add(rtUninitialized);

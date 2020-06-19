@@ -9,7 +9,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
-    // TODO change to pseudoclass
     protected ListViewStyle style = ListViewStyle.PLAIN;
     protected Accent accent = Accent.PRIMARY_MID;
 

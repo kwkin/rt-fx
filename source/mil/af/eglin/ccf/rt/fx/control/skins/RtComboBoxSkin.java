@@ -23,7 +23,6 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 {
     private final ComboBox<T> comboBox;
 
-    private final Node arrowButton;
     private final Node listView;
     private final PromptInput<ComboBox<T>> input;
     private final DescriptionContainer<ComboBox<T>> descriptionContainer;
@@ -43,7 +42,6 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         this.input.updateOverlayColor(this.comboBox.getOverlayColor());
         this.descriptionContainer = new DescriptionContainer<ComboBox<T>>(comboBox);
 
-        this.arrowButton = (StackPane) this.comboBox.lookup(".arrow-button");
         this.listView = this.comboBox.lookup(".list-view");
         getChildren().remove(this.arrowButton);
         // @formatter:off
@@ -64,7 +62,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
         registerChangeListener(comboBox.labelFloatProperty(), comboBox.labelFloatProperty().getName());
         registerChangeListener(comboBox.focusColorProperty(), comboBox.focusColorProperty().getName());
-        registerChangeListener(comboBox.getOverlayColorProperty(), comboBox.getOverlayColorProperty().getName());
+        registerChangeListener(comboBox.overlayColorProperty(), comboBox.overlayColorProperty().getName());
         registerChangeListener(comboBox.unfocusColorProperty(), comboBox.unfocusColorProperty().getName());
         registerChangeListener(comboBox.isShowHelperTextProperty(), comboBox.isShowHelperTextProperty().getName());
     }
@@ -97,7 +95,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         {
             this.input.updateUnfocusColor();
         }
-        else if (this.comboBox.getOverlayColorProperty().getName().equals(propertyReference))
+        else if (this.comboBox.overlayColorProperty().getName().equals(propertyReference))
         {
             this.input.updateOverlayColor(this.comboBox.getOverlayColor());
         }

@@ -3,8 +3,9 @@ package test.demo.presentation.panes.controls;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
+import mil.af.eglin.ccf.rt.fx.control.ColorPickerButton;
+import mil.af.eglin.ccf.rt.fx.control.ColorPickerIcon;
 import mil.af.eglin.ccf.rt.fx.control.Label;
-import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
@@ -37,17 +38,22 @@ public class ColorPickerPanePresentation extends SizedTitledCard
         Label comboBoxLabel = new Label("Combo Box Color Pickers");
         ColorPicker rtUninitialized = new ColorPicker();
         ColorPicker rtInitialized = new ColorPicker();
+        rtInitialized.setPromptText("Prompt Text");
+        rtInitialized.setLabelFloat(true);
         rtInitialized.setValue(Color.RED);
+        rtInitialized.setHelperText("Helper Text");
+        rtInitialized.setIsShowHelperText(true);
+        
 
         Label buttonLabel = new Label("Button Color Pickers");
-        ColorPicker rtIconUninitialized = new ColorPicker(ColorPickerStyle.BUTTON);
-        ColorPicker rtIconInitialized = new ColorPicker(ColorPickerStyle.BUTTON);
-        rtIconInitialized.setValue(Color.SANDYBROWN);
+        ColorPickerButton rtButton = new ColorPickerButton();
+        ColorPickerButton rtButtonInitialized = new ColorPickerButton();
+        rtButtonInitialized.setValue(Color.SANDYBROWN);
 
         Label iconLabel = new Label("Icon Color Pickers");
-        ColorPicker rtIcon = new ColorPicker(ColorPickerStyle.ICON);
+        ColorPickerIcon rtIcon = new ColorPickerIcon();
         rtIcon.setValue(Color.TEAL);
-        ColorPicker rtIconWithText = new ColorPicker(ColorPickerStyle.ICON);
+        ColorPickerIcon rtIconWithText = new ColorPickerIcon();
         rtIconWithText.setLabelVisiblity(true);
         rtIconWithText.setValue(Color.MEDIUMTURQUOISE);
         
@@ -57,8 +63,8 @@ public class ColorPickerPanePresentation extends SizedTitledCard
         box.add(rtInitialized, 1, row++);
 
         box.add(buttonLabel, 0, row++, 2, 1);
-        box.add(rtIconUninitialized, 0, row);
-        box.add(rtIconInitialized, 1, row++);
+        box.add(rtButton, 0, row);
+        box.add(rtButtonInitialized, 1, row++);
 
         box.add(iconLabel, 0, row++, 2, 1);
         box.add(rtIcon, 0, row, 1, 1);
