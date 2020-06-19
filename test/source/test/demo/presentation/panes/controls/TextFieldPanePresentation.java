@@ -1,5 +1,6 @@
 package test.demo.presentation.panes.controls;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
@@ -69,15 +70,14 @@ public class TextFieldPanePresentation extends SizedTitledCard
         helperTextField.setIsShowHelperText(true);
         helperTextField.setHelperText("Helper Text");
         
-        SvgIcon bell = new SvgIcon(SvgFile.BELL, IconSize.SIZE_24);
         TextField allTextField = new TextField(Accent.SECONDARY_MID);
         allTextField.setPromptText("Label");
         allTextField.setLabelFloat(true);
         allTextField.setIsShowHelperText(true);
         allTextField.setHelperText("Helper Text");
-        allTextField.setTrailingIcon(bell);
+        allTextField.setTrailingText("Trailing Text");
 
-        RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.asdasdasdadasdasdadasdasdasdasdasdasdasdadasdasd");
+        RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required");
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
         validableTextField.setLabelFloat(true);

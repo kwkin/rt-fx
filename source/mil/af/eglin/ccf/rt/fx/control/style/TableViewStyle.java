@@ -1,19 +1,26 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+import javafx.css.PseudoClass;
+
 public enum TableViewStyle
 {
     PLAIN("plain"),
     ZEBRA("zebra");
-    
-    private String cssName;
+
+    private PseudoClass pseudoClass;
     
     TableViewStyle(String cssName)
     {
-        this.cssName = cssName;
+        this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
     
-    public String getCssName()
+    /**
+     * Gets the name of the pseudo class
+     * 
+     * @return The name of the pseudo class
+     */
+    public PseudoClass getPseudoClass()
     {
-        return this.cssName;
+        return this.pseudoClass;
     }
 }

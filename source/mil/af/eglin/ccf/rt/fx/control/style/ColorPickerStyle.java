@@ -1,21 +1,27 @@
 package mil.af.eglin.ccf.rt.fx.control.style;
 
+import javafx.css.PseudoClass;
+
 public enum ColorPickerStyle
 {
-    FILLED("filled"),
-    FLAT("flat"),
-    ICON("icon"),
-    ICON2("icon2");
+    COMBO_BOX("combo-box"),
+    BUTTON("button"),
+    ICON("icon");
     
-    private String cssName;
+    private PseudoClass pseudoClass;
     
     ColorPickerStyle(String cssName)
     {
-        this.cssName = cssName;
+        this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
     
-    public String getCssName()
+    /**
+     * Gets the name of the pseudo class
+     * 
+     * @return The name of the pseudo class
+     */
+    public PseudoClass getPseudoClass()
     {
-        return this.cssName;
+        return this.pseudoClass;
     }
 }

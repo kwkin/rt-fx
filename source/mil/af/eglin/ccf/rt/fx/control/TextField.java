@@ -52,6 +52,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * {@link TextField#islabelFloating floating}, {@link TextField#isShowHelperText
  * helper}, and {@link TextField#isValid error} pseudo states.
  */
+// TODO consider flags for trailing icon and text visibility
 public class TextField extends javafx.scene.control.TextField
         implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
 {
@@ -99,8 +100,18 @@ public class TextField extends javafx.scene.control.TextField
     private StringProperty errorText = new SimpleStringProperty();
 
     /**
+     * Trailing text adds a label to the end of the text field.
+     * <p>
+     * Trailing text will override a trailing icon if both are set. The trailing
+     * text is considered to be set if it is not empty or null.
+     */
+    private ObjectProperty<String> trailingText = new SimpleObjectProperty<String>();
+
+    /**
      * A trailing icon adds an icon to the end of the text field. Input text
      * will be clipped before overlapping with the trailing icon.
+     * <p>
+     * Trailing text will override a trailing icon if both are set.
      */
     private ObjectProperty<RtIcon> trailingIcon = new SimpleObjectProperty<RtIcon>();
 
@@ -118,6 +129,14 @@ public class TextField extends javafx.scene.control.TextField
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
         }
     };
+
+    /**
+     * Toggles the visibility of the trailing text or icon.
+     * <p>
+     * Trailing text will override a trailing icon if both are set.
+     */
+    private StyleableBooleanProperty isTrailingVisible = new SimpleStyleableBooleanProperty(
+            StyleableProperties.TRAILING_VISIBILITY, TextField.this, "trailingVisible", true);
 
     /**
      * The unfocus color specifies the accent colors used when the component is
@@ -157,7 +176,7 @@ public class TextField extends javafx.scene.control.TextField
      * trailing icon.
      */
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
-            StyleableProperties.TRAILING_ICON_PADDING, TextField.this, "trailingIconGap", 10.0);
+            StyleableProperties.TRAILING_PADDING, TextField.this, "trailingIconGap", 10.0);
 
     /**
      * Sets color of the trailing icon.
@@ -213,6 +232,21 @@ public class TextField extends javafx.scene.control.TextField
         super(text);
         this.accent = accent;
         initialize();
+    }
+
+    public StyleableBooleanProperty isTrailingVisibleProperty()
+    {
+        return this.isTrailingVisible;
+    }
+
+    public boolean isTrailingVisible()
+    {
+        return isTrailingVisible.get();
+    }
+
+    public void setTrailingVisible(final boolean labelFloat)
+    {
+        isTrailingVisible.set(labelFloat);
     }
 
     /**
@@ -336,6 +370,21 @@ public class TextField extends javafx.scene.control.TextField
     public void setDisableAnimation(Boolean disabled)
     {
         this.disableAnimation.set(disabled);
+    }
+
+    public ObjectProperty<String> trailingTextProperty()
+    {
+        return this.trailingText;
+    }
+
+    public String getTrailingText()
+    {
+        return this.trailingText.get();
+    }
+
+    public void setTrailingText(String text)
+    {
+        this.trailingText.set(text);
     }
 
     public ObjectProperty<RtIcon> trailingIconProperty()
@@ -619,6 +668,22 @@ public class TextField extends javafx.scene.control.TextField
                 return control.islabelFloating;
             }
         };
+
+        private static final CssMetaData<TextField, Boolean> TRAILING_VISIBILITY = new CssMetaData<TextField, Boolean>(
+                "-rt-trailing-visiblity", BooleanConverter.getInstance(), true)
+        {
+            @Override
+            public boolean isSettable(TextField control)
+            {
+                return control.isTrailingVisible == null || !control.isTrailingVisible.isBound();
+            }
+
+            @Override
+            public StyleableBooleanProperty getStyleableProperty(TextField control)
+            {
+                return control.isTrailingVisible;
+            }
+        };
         private static final CssMetaData<TextField, Paint> UNFOCUS_COLOR = new CssMetaData<TextField, Paint>(
                 "-rt-unfocus-color", PaintConverter.getInstance())
         {
@@ -649,8 +714,8 @@ public class TextField extends javafx.scene.control.TextField
                 return control.focusColor;
             }
         };
-        private static final CssMetaData<TextField, Number> TRAILING_ICON_PADDING = new CssMetaData<TextField, Number>(
-                "-rt-trailing-icon-gap", SizeConverter.getInstance(), 10.0)
+        private static final CssMetaData<TextField, Number> TRAILING_PADDING = new CssMetaData<TextField, Number>(
+                "-rt-trailing-gap", SizeConverter.getInstance(), 10.0)
         {
 
             @Override
@@ -709,7 +774,7 @@ public class TextField extends javafx.scene.control.TextField
             styleables.add(UNFOCUS_COLOR);
             styleables.add(FOCUS_COLOR);
             styleables.add(OVERLAY_COLOR);
-            styleables.add(TRAILING_ICON_PADDING);
+            styleables.add(TRAILING_PADDING);
             styleables.add(TRAILING_ICON_COLOR);
             styleables.add(DISABLE_ANIMATION);
             // @formatter:on

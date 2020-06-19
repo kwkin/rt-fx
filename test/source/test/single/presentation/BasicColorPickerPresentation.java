@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import mil.af.eglin.ccf.rt.fx.control.IconColorPicker;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.TitledCardSize;
@@ -39,9 +38,9 @@ public class BasicColorPickerPresentation extends TitledCard
         rtInitialized.setValue(Color.RED);
 
         Label buttonLabel = new Label("Button Color Pickers");
-        IconColorPicker rtIconUninitialized = new IconColorPicker();
-        IconColorPicker rtIconInitialized = new IconColorPicker();
-        rtIconInitialized.setValue(Color.SANDYBROWN);
+//        ColorPicker rtIconUninitialized = new ColorPicker();
+//        ColorPicker rtIconInitialized = new IconColorPicker();
+//        rtIconInitialized.setValue(Color.SANDYBROWN);
         
         
         int row = 0;
@@ -50,8 +49,8 @@ public class BasicColorPickerPresentation extends TitledCard
         box.add(rtInitialized, 1, row++);
 
         box.add(buttonLabel, 0, row++, 2, 1);
-        box.add(rtIconUninitialized, 0, row);
-        box.add(rtIconInitialized, 1, row++);
+//        box.add(rtIconUninitialized, 0, row);
+//        box.add(rtIconInitialized, 1, row++);
         
         descriptionPane.setContent(box);
         

@@ -20,6 +20,7 @@ import test.demo.SampleApp;
 import test.demo.abstraction.data.immutable.DemoTheme;
 import test.demo.control.TitledContentPane;
 import test.demo.controller.PaneController;
+import test.demo.presentation.panes.compare.ButtonComparisonPane;
 import test.demo.presentation.panes.controls.ComboBoxPanePresentation;
 import test.demo.presentation.panes.controls.ComponentsPresentation;
 import test.demo.presentation.panes.controls.TextAreaPanePresentation;
@@ -79,6 +80,7 @@ public class MainPresentation extends BorderPane
         });
         setTop(toolBar);
 
+//        this.panes.add(new ButtonComparisonPane());
         this.panes.add(new ComponentsPresentation(paneController));
         this.panes.add(new LayoutsPresentation());
         this.panes.add(new TableComparison(paneController));

@@ -31,12 +31,12 @@ TODO
 	-fx-border-width: 0 0 1 0;
 }
 
-.rt-table-view.plain .table-row-cell
+.rt-table-view:plain .table-row-cell
 {
     -fx-background: -var-main-color-l1;
 }
 
-.rt-table-view.zebra .table-row-cell
+.rt-table-view:zebra .table-row-cell
 {
     -fx-background: -var-main-color-l2;
 }
@@ -47,12 +47,12 @@ TODO
 	-fx-border-width: 0 0 1 0;
 }
 
-.rt-table-view.plain .table-row-cell:odd 
+.rt-table-view:plain .table-row-cell:odd 
 {
     -fx-background: -var-main-color-l1;
 }
 
-.rt-table-view.zebra .table-row-cell:odd 
+.rt-table-view:zebra .table-row-cell:odd 
 {
     -fx-background: -var-main-color-l1;
 }

@@ -101,8 +101,11 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
         getStyleClass().add(this.accent.getCssName());
+        for (ListViewStyle listStyle : ListViewStyle.values())
+        {
+            pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
+        }
     }
 
     /**

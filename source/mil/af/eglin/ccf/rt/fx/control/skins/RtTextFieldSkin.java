@@ -3,6 +3,7 @@ package mil.af.eglin.ccf.rt.fx.control.skins;
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import com.sun.javafx.scene.text.HitInfo;
 
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Bounds;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -12,10 +13,12 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.RtIcon;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
@@ -30,6 +33,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     private Text textNode;
     private Text promptText;
     private Pane textGroup;
+    private Text trailingTextNode;
 
     public RtTextFieldSkin(final TextField textField)
     {
@@ -41,16 +45,16 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             if (node instanceof Text)
             {
-                this.textNode = (Text)node;
+                this.textNode = (Text) node;
             }
         }
-        
-        this.input = new PromptInput<>(textField, textField.textProperty(), this.promptTextFill, 
+
+        this.input = new PromptInput<>(textField, textField.textProperty(), this.promptTextFill,
                 textField.promptTextProperty(), () -> this.promptText, this.textField.focusedProperty());
         this.input.init(() -> createPromptText(), this.textGroup);
         this.input.updateOverlayColor(this.textField.getOverlayColor());
         this.descriptionContainer = new DescriptionContainer<>(textField);
-        
+
         updateTrailingIconColor();
 
         getChildren().remove(this.textGroup);
@@ -63,19 +67,16 @@ public class RtTextFieldSkin extends TextFieldSkin
                 this.input.getPromptContainer(),
                 this.descriptionContainer);
         // @formatter:on
-        RtIcon icon = textField.getTrailingIcon();
-        if (icon != null)
-        {
-            getChildren().add(icon.getNode());
-        }
-        
+        createTrailingText();
+        addTrailingIcon();
+
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(), textField.focusColorProperty().getName());
         registerChangeListener(textField.getOverlayColorProperty(), textField.getOverlayColorProperty().getName());
         registerChangeListener(textField.unfocusColorProperty(), textField.unfocusColorProperty().getName());
+        registerChangeListener(textField.trailingTextProperty(), textField.trailingTextProperty().getName());
         registerChangeListener(textField.trailingIconProperty(), textField.trailingIconProperty().getName());
-        registerChangeListener(textField.trailingIconColorProperty(),
-                textField.trailingIconColorProperty().getName());
+        registerChangeListener(textField.trailingIconColorProperty(), textField.trailingIconColorProperty().getName());
         registerChangeListener(textField.isShowHelperTextProperty(), textField.isShowHelperTextProperty().getName());
     }
 
@@ -83,8 +84,7 @@ public class RtTextFieldSkin extends TextFieldSkin
     public HitInfo getIndex(double x, double y)
     {
         Pane inputContainer = this.input.getInputContainer();
-        Point2D p = new Point2D(
-                x - snappedLeftInset() - inputContainer.getPadding().getLeft(),
+        Point2D p = new Point2D(x - snappedLeftInset() - inputContainer.getPadding().getLeft(),
                 y - snappedTopInset() - (2 * inputContainer.getPadding().getTop()));
 
         Text text = ((Text) textGroup.getChildren().get(1));
@@ -110,6 +110,10 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             input.updateOverlayColor(this.textField.getOverlayColor());
         }
+        else if (textField.trailingTextProperty().getName().equals(propertyReference))
+        {
+            this.textField.layout();
+        }
         else if (textField.trailingIconProperty().getName().equals(propertyReference))
         {
             this.textField.layout();
@@ -134,48 +138,91 @@ public class RtTextFieldSkin extends TextFieldSkin
         this.descriptionContainer.resizeRelocate(x, inputHeight, w, this.descriptionContainer.getHeight());
 
         Pane inputContainer = this.input.getInputContainer();
+        String trailingText = textField.getTrailingText();
         RtIcon graphic = this.textField.getTrailingIcon();
         double promptWidth = w;
-        if (graphic != null)
+        if (this.textField.isTrailingVisible())
         {
-            double graphicWidth = graphic.getSize();
-            double xPosition = w - graphicWidth - textField.getTrailingIconGap();
-            double inputYCenter = y + inputHeight / 2;
-            positionInArea(graphic.getNode(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER, VPos.CENTER);
-            updateTrailingIconColor();
+            if (trailingText != null && !"".equals(trailingText))
+            {
+                if (!this.getChildren().contains(this.trailingTextNode))
+                {
+                    createTrailingText();
+                }
+                Font font = this.textField.getFont();
+                double textWidth = Utils.computeTextWidth(font, trailingText, 0);
+                double xPosition = w - textWidth - this.textField.getTrailingIconGap();
+                double inputYCenter = y + inputHeight / 2;
+                positionInArea(this.trailingTextNode, xPosition, inputYCenter, textWidth, 0, 0, HPos.CENTER,
+                        VPos.CENTER);
 
-            double graphicLeftGap = graphicWidth + 2 * textField.getTrailingIconGap();
-            double inputRightPadding = graphicLeftGap - inputContainer.getPadding().getRight();
-            inputRightPadding = Math.max(inputRightPadding, inputContainer.getPadding().getRight());
-            this.input.getInputDisplayContainer().setPadding(new Insets(0, inputRightPadding, 0, 0));
+                double graphicLeftGap = textWidth + 2 * textField.getTrailingIconGap();
+                double inputRightPadding = graphicLeftGap - inputContainer.getPadding().getRight();
+                inputRightPadding = Math.max(inputRightPadding, inputContainer.getPadding().getRight());
+                this.input.getInputDisplayContainer().setPadding(new Insets(0, inputRightPadding, 0, 0));
 
-            promptWidth -= graphicLeftGap;
+                promptWidth -= graphicLeftGap;
+            }
+            else if (graphic != null)
+            {
+                double graphicWidth = graphic.getSize();
+                double xPosition = w - graphicWidth - textField.getTrailingIconGap();
+                double inputYCenter = y + inputHeight / 2;
+                positionInArea(graphic.getNode(), xPosition, inputYCenter, graphicWidth, 0, 0, HPos.CENTER,
+                        VPos.CENTER);
+                updateTrailingIconColor();
+
+                double graphicLeftGap = graphicWidth + 2 * textField.getTrailingIconGap();
+                double inputRightPadding = graphicLeftGap - inputContainer.getPadding().getRight();
+                inputRightPadding = Math.max(inputRightPadding, inputContainer.getPadding().getRight());
+                this.input.getInputDisplayContainer().setPadding(new Insets(0, inputRightPadding, 0, 0));
+
+                promptWidth -= graphicLeftGap;
+            }
         }
         input.getPromptContainer().resizeRelocate(x, y, promptWidth, inputHeight);
 
-        if (textNode != null) 
+        if (textNode != null)
         {
             double textY;
             Bounds textNodeBounds = textNode.getLayoutBounds();
             double ascent = textNode.getBaselineOffset();
             double descent = textNodeBounds.getHeight() - ascent;
-            double height = inputHeight - inputContainer.getPadding().getTop() - inputContainer.getPadding().getBottom();
+            double height = inputHeight - inputContainer.getPadding().getTop()
+                    - inputContainer.getPadding().getBottom();
 
-            switch (getSkinnable().getAlignment().getVpos()) {
+            switch (getSkinnable().getAlignment().getVpos())
+            {
                 case TOP:
-                textY = ascent;
-                break;
+                    textY = ascent;
+                    break;
 
-              case CENTER:
-                textY = (ascent + height - descent) / 2;
-                break;
+                case CENTER:
+                    textY = (ascent + height - descent) / 2;
+                    break;
 
-              case BOTTOM:
-              default:
-                textY = height - descent;
+                case BOTTOM:
+                default:
+                    textY = height - descent;
             }
             textNode.setY(textY);
         }
+    }
+
+    private void createTrailingText()
+    {
+        String trailingText = textField.getTrailingText();
+        if (this.trailingTextNode != null || !this.textField.isTrailingVisible())
+        {
+            return;
+        }
+        this.trailingTextNode = new Text(trailingText);
+        this.trailingTextNode.getStyleClass().add("trailing-text");
+        this.trailingTextNode.visibleProperty().bind(this.textField.isTrailingVisibleProperty());
+        this.trailingTextNode.fontProperty().bind(this.textField.fontProperty());
+        this.trailingTextNode.textProperty().bind(this.textField.trailingTextProperty());
+        this.trailingTextNode.fillProperty().bind(this.input.animatedPromptTextFillProperty());
+        getChildren().add(this.trailingTextNode);
     }
 
     private void createPromptText()
@@ -215,6 +262,18 @@ public class RtTextFieldSkin extends TextFieldSkin
         }
     }
 
+    private void addTrailingIcon()
+    {
+        RtIcon icon = this.textField.getTrailingIcon();
+        if (icon == null || getChildren().contains(icon))
+        {
+            return;
+        }
+        Bindings.createBooleanBinding(() -> isTrailingIconVisible(), this.textField.isTrailingVisibleProperty(),
+                this.textField.trailingTextProperty(), this.textField.trailingIconProperty());
+        getChildren().add(icon.getNode());
+    }
+
     private void updateTrailingIconColor()
     {
         RtIcon graphic = this.textField.getTrailingIcon();
@@ -222,5 +281,11 @@ public class RtTextFieldSkin extends TextFieldSkin
         {
             graphic.setFill(this.textField.getTrailingIconColor());
         }
+    }
+
+    private boolean isTrailingIconVisible()
+    {
+        boolean isShowingText = !this.textField.getTrailingText().isEmpty() && !"".equals(this.textField.getTrailingText());
+        return this.textField.isTrailingVisible() && !isShowingText;
     }
 }

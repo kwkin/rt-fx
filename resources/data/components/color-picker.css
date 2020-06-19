@@ -6,7 +6,7 @@ TODO
 */
 
 /*-- ############################### Color Picker Style ############################### */
-.rt-color-picker.filled
+.rt-color-picker:combo-box
 {
     -fx-background-color: -var-main-color-l2;
 	-fx-background-radius: 2.0;
@@ -18,32 +18,32 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-.rt-color-picker.filled:hover
+.rt-color-picker:combo-box:hover
 {
     -fx-background-insets: 0;
     -fx-border-color: -var-accent-color;
 }
 
-.rt-color-picker.filled .arrow-button .arrow
+.rt-color-picker:combo-box .arrow-button .arrow
 {
     -fx-shape: "M7,10L12,15L17,10H7Z";
 }
 
-.rt-color-picker.filled:showing .arrow-button .arrow
+.rt-color-picker:combo-box:showing .arrow-button .arrow
 {
     -fx-shape: "M7,15L12,10L17,15H7Z";
 }
 
-.rt-color-picker.filled:focused,
-.rt-color-picker.filled:focused:hover
+.rt-color-picker:combo-box:focused,
+.rt-color-picker:combo-box:focused:hover
 {
     -fx-background-color: -var-main-color-l2;
     -fx-background-insets: 0;
     -fx-border-color: -var-accent-color;
 }
 
-.rt-color-picker.filled:focused .prompt-pane,
-.rt-color-picker.filled:focused:hover .prompt-pane
+.rt-color-picker:combo-box:focused .prompt-pane,
+.rt-color-picker:combo-box:focused:hover .prompt-pane
 {
     -fx-background-color: -var-main-color-l1;
     -fx-fill: -var-main-color-l1;
@@ -51,28 +51,28 @@ TODO
     -fx-border-width: 0 0 0 0;
 }
 
-.rt-color-picker.filled:focused .prompt-pane #text,
-.rt-color-picker.filled:focused:hover .prompt-pane #text
+.rt-color-picker:combo-box:focused .prompt-pane #text,
+.rt-color-picker:combo-box:focused:hover .prompt-pane #text
 {
     -fx-fill: -var-selected-color;
     -fx-text-fill: -var-selected-color;
     -fx-padding: 0 0 0 4;
 }
 
-.rt-color-picker.filled .label,
-.rt-color-picker.filled.split-button .color-picker-label
+.rt-color-picker:combo-box .label,
+.rt-color-picker:combo-box.split-button .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }
 
-.rt-color-picker.filled.split-button:focused .color-picker-label
+.rt-color-picker:combo-box.split-button:focused .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }
 
-.rt-color-picker.filled .color-picker-label .picker-color
+.rt-color-picker:combo-box .color-picker-label .picker-color
 {
     -fx-border-width: 0 0 0 0;
     -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
@@ -84,14 +84,14 @@ TODO
     -fx-max-width: -rt-size;
 }
 
-.rt-color-picker.filled .color-picker-label .picker-color .picker-color-rect 
+.rt-color-picker:combo-box .color-picker-label .picker-color .picker-color-rect 
 {
     -fx-stroke-width: 0;
     -fx-opacity: 0;
 }
 
 /*-- ############################### Color Picker Icon Text ############################### */
-.rt-color-picker.icon
+.rt-color-picker:button
 {
     -fx-background-color: -var-main-color-l1;
 	-fx-background-radius: 2.0;
@@ -104,22 +104,22 @@ TODO
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 4, 0.06, 0, 2);
 }
 
-.rt-color-picker.icon:hover
+.rt-color-picker:button:hover
 {
     -fx-border-color: -var-main-color-l2;
 }
 
-.rt-color-picker.icon .arrow-button .arrow
+.rt-color-picker:button .arrow-button .arrow
 {
     -fx-background-color: transparent;
 }
 
-.rt-color-picker.icon:showing .arrow-button .arrow
+.rt-color-picker:button:showing .arrow-button .arrow
 {
     -fx-background-color: transparent;
 }
 
-.rt-color-picker.icon .color-picker-label .picker-color
+.rt-color-picker:button .color-picker-label .picker-color
 {
     -fx-border-width: 0 0 0 0;
     -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
@@ -131,27 +131,27 @@ TODO
     -fx-max-width: -rt-size;
 }
 
-.rt-color-picker.icon .color-picker-label .picker-color .picker-color-rect 
+.rt-color-picker:button .color-picker-label .picker-color .picker-color-rect 
 {
     -fx-stroke-width: 0;
     -fx-opacity: 0;
 }
 
-.rt-color-picker.icon .label,
-.rt-color-picker.icon.split-button .color-picker-label
+.rt-color-picker:button .label,
+.rt-color-picker:button.split-button .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }
 
-.rt-color-picker.icon.split-button:focused .color-picker-label
+.rt-color-picker:button.split-button:focused .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }
 
 /*-- ############################### Color Picker Icon ############################### */
-.rt-color-picker.icon2
+.rt-color-picker:icon
 {
     -fx-background-color: transparent;
 	-fx-background-radius: 2.0;
@@ -164,23 +164,23 @@ TODO
     -fx-effect: null;
 }
 
-.rt-color-picker.icon2:hover
+.rt-color-picker:icon:hover
 {
     -fx-background-color: -var-overlay-color;
     -fx-border-color: -var-overlay-color;
 }
 
-.rt-color-picker.icon2 .arrow-button .arrow
+.rt-color-picker:icon .arrow-button .arrow
 {
     -fx-background-color: transparent;
 }
 
-.rt-color-picker.icon2:showing .arrow-button .arrow
+.rt-color-picker:icon:showing .arrow-button .arrow
 {
     -fx-background-color: transparent;
 }
 
-.rt-color-picker.icon2 .color-picker-label .picker-color
+.rt-color-picker:icon .color-picker-label .picker-color
 {
     -fx-border-width: 0 0 0 0;
     -fx-shape: "M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z";
@@ -192,20 +192,20 @@ TODO
     -fx-max-width: -rt-size;
 }
 
-.rt-color-picker.icon2 .color-picker-label .picker-color .picker-color-rect 
+.rt-color-picker:icon .color-picker-label .picker-color .picker-color-rect 
 {
     -fx-stroke-width: 0;
     -fx-opacity: 0;
 }
 
-.rt-color-picker.icon2 .label,
-.rt-color-picker.icon2.split-button .color-picker-label
+.rt-color-picker:icon .label,
+.rt-color-picker:icon.split-button .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;
 }
 
-.rt-color-picker.icon2.split-button:focused .color-picker-label
+.rt-color-picker:icon.split-button:focused .color-picker-label
 {
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 0 0;

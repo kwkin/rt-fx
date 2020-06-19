@@ -37,7 +37,6 @@ public class TableColumn<S, T> extends javafx.scene.control.TableColumn<S, T>
 
     private void initialize() 
     {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.style.getCssName());
+        getStyleClass().add(String.format("%s-%s", CSS_CLASS, this.style.getCssName()));
     }
 }
