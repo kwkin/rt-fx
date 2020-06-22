@@ -78,7 +78,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     /**
      * Creates a button with the specified style.
      * 
-     * @param style The style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button.
      */
     public Button(ButtonStyle style)
     {

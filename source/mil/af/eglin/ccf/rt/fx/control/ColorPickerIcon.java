@@ -29,7 +29,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
-
     protected ColorPickerStyle style = ColorPickerStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;
 

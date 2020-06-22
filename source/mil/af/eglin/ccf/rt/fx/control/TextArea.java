@@ -541,7 +541,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     
     static
     {
-        TextArea.loadStyleSheet();
         ScrollPane.loadStyleSheet();
+        TextArea.loadStyleSheet();
     }
 }

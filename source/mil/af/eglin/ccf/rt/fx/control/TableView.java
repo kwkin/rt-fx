@@ -105,6 +105,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
     
     static
     {
+        ScrollPane.loadStyleSheet();
         TableView.loadStyleSheet();
     }
 }
