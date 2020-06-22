@@ -527,7 +527,7 @@ public class TextField extends javafx.scene.control.TextField
      * {@inheritDoc}
      */
     @Override
-    public ValidateCondition getValidateCondition(ValidateCondition validateCondition)
+    public ValidateCondition getValidateCondition()
     {
         return this.validationHandler.getValidateCondition();
     }

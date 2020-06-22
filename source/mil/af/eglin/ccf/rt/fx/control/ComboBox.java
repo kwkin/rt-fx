@@ -229,14 +229,22 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         return this.validationHandler.getValidators();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.setValidateCondition(validateCondition);
     }
 
-    public void getValidateCondition(ValidateCondition validateCondition)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ValidateCondition getValidateCondition()
     {
-        this.validationHandler.getValidateCondition();
+        return this.validationHandler.getValidateCondition();
     }
 
     /**

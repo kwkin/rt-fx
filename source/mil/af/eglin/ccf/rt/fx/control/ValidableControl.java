@@ -77,7 +77,7 @@ public interface ValidableControl<T>
      * @return the validate condition used to trigger when the component is
      *         validated
      */
-    public ValidateCondition getValidateCondition(ValidateCondition validateCondition);
+    public ValidateCondition getValidateCondition();
 
     /**
      * Gets the observable value for the validable control

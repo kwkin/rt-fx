@@ -342,14 +342,22 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
         this.isValid.set(isValid);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.setValidateCondition(validateCondition);
     }
 
-    public void getValidateCondition(ValidateCondition validateCondition)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ValidateCondition getValidateCondition()
     {
-        this.validationHandler.getValidateCondition();
+        return this.validationHandler.getValidateCondition();
     }
     
     public boolean isHelperTextVisible()
