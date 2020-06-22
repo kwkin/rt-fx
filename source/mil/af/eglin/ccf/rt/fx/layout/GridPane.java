@@ -51,7 +51,7 @@ public class GridPane extends javafx.scene.layout.GridPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

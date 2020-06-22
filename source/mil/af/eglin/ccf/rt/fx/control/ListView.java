@@ -9,7 +9,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
-    protected ListViewStyle style = ListViewStyle.PLAIN;
+    protected ListViewStyle style = ListViewStyle.SOLID;
     protected Accent accent = Accent.PRIMARY_MID;
 
     private static final String USER_AGENT_STYLESHEET = "list-view.css";
@@ -100,7 +100,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (ListViewStyle listStyle : ListViewStyle.values())
         {
             pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);

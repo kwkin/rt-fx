@@ -174,7 +174,7 @@ public class IconButton extends Button implements RtIcon
         setIconPaneSize(width, height);
         setGraphic(this.iconPane);
 
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     private void setIconPaneSize(double width, double height)

@@ -3,9 +3,8 @@ TODO
 - link up text color to all components 
 - Hover state
 - Hover and selected state animation
+- Move scroll bar styling to the scroll pane
 */
-
-/* TODO override list view skin and replace scroll bar with rt-scoll-bar */ 
 /*-- ############################### List View Styles ############################### */
 .rt-list-view
 {
@@ -18,27 +17,27 @@ TODO
 }
 
 .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:odd:filled:selected,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:filled:selected,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:filled:selected,
 .rt-list-view:focused .virtual-flow .clipped-container .sheet .list-cell:focused,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:focused,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:focused,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:focused,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:focused,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover
 {
     -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
     -fx-border-color: transparent;
 }
 
 .rt-list-view .virtual-flow .clipped-container .sheet .list-cell:hover,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:hover,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:odd:hover,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:hover,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:odd:hover
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:hover,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:hover,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:hover,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:hover
 {
     -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
     -fx-border-color: transparent;
@@ -53,26 +52,26 @@ TODO
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell,
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell,
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell
 {
 	-fx-border-width: 0 0 1 0;
 }
 
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell,
-.rt-list-view:plain .virtual-flow .clipped-container .sheet .list-cell:odd
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell,
+.rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd
 {
     -fx-border-color: -var-main-color-l1;
 	-fx-border-width: 0 0 1 0;
 }
 
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell
 {
 	-fx-border-color: -var-main-color-l3;
 	-fx-border-width: 0 0 1 0;
 }
 
-.rt-list-view:zebra .virtual-flow .clipped-container .sheet .list-cell:odd
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd
 {
     -fx-background-color: -var-main-color-l2;
 	-fx-border-width: 0 0 1 0;

@@ -70,7 +70,7 @@ public class TextFlow extends javafx.scene.text.TextFlow
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

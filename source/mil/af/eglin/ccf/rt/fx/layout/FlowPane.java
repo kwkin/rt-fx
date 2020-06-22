@@ -242,7 +242,7 @@ public class FlowPane extends javafx.scene.layout.FlowPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

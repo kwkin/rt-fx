@@ -128,7 +128,7 @@ public class VBox extends javafx.scene.layout.VBox
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

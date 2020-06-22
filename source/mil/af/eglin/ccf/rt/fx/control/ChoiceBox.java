@@ -69,7 +69,7 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

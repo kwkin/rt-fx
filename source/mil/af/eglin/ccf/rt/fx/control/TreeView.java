@@ -45,7 +45,7 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

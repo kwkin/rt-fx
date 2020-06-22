@@ -157,7 +157,7 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (LabelStyle labelStyle : LabelStyle.values())
         {
             pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);

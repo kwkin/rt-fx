@@ -88,7 +88,7 @@ public class TitledPane extends javafx.scene.control.TitledPane
         getStyleClass().add(CSS_CLASS);
         if (this.accent != null)
         {
-            getStyleClass().add(this.accent.getCssName());
+            getStyleClass().add(this.accent.getStyleClassName());
         }
     }
 

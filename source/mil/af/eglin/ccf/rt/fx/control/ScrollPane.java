@@ -53,7 +53,7 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
         getStyleClass().add(CSS_CLASS);
         if (this.accent != null)
         {
-            getStyleClass().add(this.accent.getCssName());
+            getStyleClass().add(this.accent.getStyleClassName());
         }
     }
     

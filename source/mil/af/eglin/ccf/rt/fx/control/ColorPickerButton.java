@@ -237,7 +237,7 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);

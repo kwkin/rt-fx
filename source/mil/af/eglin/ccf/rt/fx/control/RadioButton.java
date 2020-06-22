@@ -218,7 +218,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     private static class StyleableProperties

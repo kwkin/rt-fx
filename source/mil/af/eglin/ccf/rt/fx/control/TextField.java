@@ -620,7 +620,7 @@ public class TextField extends javafx.scene.control.TextField
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
 
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.islabelFloating.get());
         pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());

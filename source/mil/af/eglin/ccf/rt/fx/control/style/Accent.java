@@ -2,6 +2,8 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 
 /**
  * An accent defines the standard color scheme used by a component.
+ * <p>
+ * Each accent is applied as its own CSS style class.
  */
 public enum Accent
 {
@@ -25,7 +27,7 @@ public enum Accent
      * 
      * @return The name of the CSS style class
      */
-    public String getCssName()
+    public String getStyleClassName()
     {
         return this.cssName;
     }

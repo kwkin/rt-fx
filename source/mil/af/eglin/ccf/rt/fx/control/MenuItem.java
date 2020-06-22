@@ -61,6 +61,6 @@ public class MenuItem extends javafx.scene.control.MenuItem implements RtStyleab
     private void initialize()
     {
         getStyleClass().add(DEFAULT_STYLE_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 }

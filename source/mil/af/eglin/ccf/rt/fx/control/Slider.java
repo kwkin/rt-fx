@@ -250,7 +250,7 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     private static class StyleableProperties

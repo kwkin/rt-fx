@@ -264,7 +264,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (ButtonStyle buttonStyle : ButtonStyle.values())
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);

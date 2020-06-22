@@ -41,7 +41,7 @@ public class ListViewPanePresentation extends SizedTitledCard
             items.add(String.format("Item %d", index));
         }
         ListView<String> listViewZebra = new ListView<String>(items);
-        ListView<String> listView = new ListView<String>(items, ListViewStyle.ZEBRA);
+        ListView<String> listView = new ListView<String>(items, ListViewStyle.STRIPPED);
         stackPane.getChildren().add(listViewZebra);
         stackPane.getChildren().add(listView);
 

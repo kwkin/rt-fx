@@ -3,11 +3,10 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 import javafx.css.PseudoClass;
 
 /**
- * 
  *  A {@code mil.af.eglin.ccf.rt.fx.control.Label Label} can have five styles:
  * <ul>
  * <li>SMALL: The smallest text size.</li>
- * <li>NORMAL: The standard text size.</li>
+ * <li>NORMAL: The default text size.</li>
  * <li>LARGE: The second largest text size.</li>
  * <li>TITLE: The largest text size.</li>
  * <li>BLOCK_TITLE: The largest text size with an accented background.</li>
@@ -33,7 +32,7 @@ public enum LabelStyle
     }
     
     /**
-     * Gets the name of the pseudo class
+     * Gets the name of the pseudo class for the accent type
      * 
      * @return The name of the pseudo class
      */

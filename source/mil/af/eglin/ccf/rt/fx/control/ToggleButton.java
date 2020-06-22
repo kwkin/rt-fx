@@ -257,7 +257,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     {
         getStyleClass().clear();;
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (ToggleButtonStyle buttonStyle : ToggleButtonStyle.values())
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);

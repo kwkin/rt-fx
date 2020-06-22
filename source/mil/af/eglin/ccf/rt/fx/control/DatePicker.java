@@ -70,7 +70,7 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

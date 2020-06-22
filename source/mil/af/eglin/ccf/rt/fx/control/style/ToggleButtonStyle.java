@@ -3,12 +3,15 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 import javafx.css.PseudoClass;
 
 /**
- *  A {@code mil.af.eglin.ccf.rt.fx.control.ToggleButton ToggleButton} can have four styles:
+ * A {@code mil.af.eglin.ccf.rt.fx.control.ToggleButton ToggleButton} can have
+ * four styles:
  * <ul>
  * <li>RAISED: Appears elevated from the surface.</li>
  * <li>ICON: Appears to place an icon directly on the surface.</li>
- * <li>ACCENTED_ICON: Similar to the icon, but also changes the fill color of the icon when selected.</li>
- * <li>GLOWING_ICON: Similar to the accented icon, but also adds a overlay around the icon..</li>
+ * <li>ACCENTED_ICON: Similar to the icon, but also changes the fill color of
+ * the icon when selected.</li>
+ * <li>GLOWING_ICON: Similar to the accented icon, but also adds a overlay
+ * around the icon..</li>
  * </ul>
  * <p>
  * Each style type is applied as a pseudo class.
@@ -18,20 +21,20 @@ import javafx.css.PseudoClass;
  */
 public enum ToggleButtonStyle
 {
-    ACCENTED_ICON("accented-icon"),
-    GLOWING_ICON("glowing-icon"),
-    ICON("icon"),
+    ACCENTED_ICON("accented-icon"), 
+    GLOWING_ICON("glowing-icon"), 
+    ICON("icon"), 
     RAISED("raised");
 
     private PseudoClass pseudoClass;
-    
+
     ToggleButtonStyle(String cssName)
     {
         this.pseudoClass = PseudoClass.getPseudoClass(cssName);
     }
-    
+
     /**
-     * Gets the name of the pseudo class
+     * Gets the name of the pseudo class for the accent type
      * 
      * @return The name of the pseudo class
      */

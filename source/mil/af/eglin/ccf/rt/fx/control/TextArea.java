@@ -415,7 +415,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     private static class StyleableProperties

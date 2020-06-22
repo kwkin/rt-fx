@@ -80,7 +80,7 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
     
     public static void loadStyleSheet()

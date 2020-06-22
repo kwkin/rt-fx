@@ -69,7 +69,7 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

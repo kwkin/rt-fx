@@ -242,7 +242,7 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
     private void initialize()
     {
         getStyleClass().add(DEFAULT_STYLE_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     private static class StyleableProperties

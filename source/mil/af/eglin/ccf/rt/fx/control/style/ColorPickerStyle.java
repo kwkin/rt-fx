@@ -12,7 +12,7 @@ import javafx.css.PseudoClass;
  * <li>BUTTON: Button color pickers are styled similarly to raised buttons, but
  * it's background matches the selected color picker value.</li>
  * <li>ICON: Icon color pickers are styled similarly to icon buttons, except the
- * icon color mathches the select color picker value.</li>
+ * icon color matches the select color picker value.</li>
  * </ul>
  * <p>
  * Each style type is applied as a pseudo class.
@@ -21,7 +21,9 @@ import javafx.css.PseudoClass;
  */
 public enum ColorPickerStyle
 {
-    COMBO_BOX("combo-box"), BUTTON("button"), ICON("icon");
+    COMBO_BOX("combo-box"), 
+    BUTTON("button"), 
+    ICON("icon");
 
     private PseudoClass pseudoClass;
 
@@ -31,7 +33,7 @@ public enum ColorPickerStyle
     }
 
     /**
-     * Gets the name of the pseudo class
+     * Gets the name of the pseudo class for the accent type
      * 
      * @return The name of the pseudo class
      */

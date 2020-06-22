@@ -247,7 +247,7 @@ public class TilePane extends javafx.scene.layout.TilePane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

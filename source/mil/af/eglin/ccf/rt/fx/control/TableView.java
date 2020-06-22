@@ -88,7 +88,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
         for (TableViewStyle tableStyle : TableViewStyle.values())
         {
             pseudoClassStateChanged(tableStyle.getPseudoClass(), tableStyle == this.style);

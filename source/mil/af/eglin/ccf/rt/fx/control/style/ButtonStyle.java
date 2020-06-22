@@ -32,7 +32,7 @@ public enum ButtonStyle
     }
 
     /**
-     * Gets the name of the pseudo class
+     * Gets the name of the pseudo class for the accent type
      * 
      * @return The name of the pseudo class
      */

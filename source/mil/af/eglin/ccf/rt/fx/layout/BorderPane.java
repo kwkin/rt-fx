@@ -70,7 +70,7 @@ public class BorderPane extends javafx.scene.layout.BorderPane
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

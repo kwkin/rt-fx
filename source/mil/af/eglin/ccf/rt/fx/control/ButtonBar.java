@@ -54,7 +54,7 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getCssName());
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

@@ -88,22 +88,22 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
                 {
                     TableView<?> tableView = (TableView<?>) getTableView();
                     this.accent = tableView.getAccent();
-                    getStyleClass().add(this.accent.getCssName());
+                    getStyleClass().add(this.accent.getStyleClassName());
                 }
             }
             tableViewProperty().addListener((ov, oldVal, newVal) -> 
             {
                 if (newVal instanceof TableView)
                 {
-                    getStyleClass().remove(this.accent.getCssName());
+                    getStyleClass().remove(this.accent.getStyleClassName());
                     this.accent = ((TableView<?>) newVal).getAccent();
-                    getStyleClass().add(this.accent.getCssName());
+                    getStyleClass().add(this.accent.getStyleClassName());
                 }
             });
         }
         else
         {
-            getStyleClass().add(this.accent.getCssName());
+            getStyleClass().add(this.accent.getStyleClassName());
         }
     }
 
