@@ -85,6 +85,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         validableTextField.setHelperText("This can be invalidated.");
         validableTextField.getValidators().add(requiredValidator);
         validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);
+        validableTextField.validate();
         
         vBox.getChildren().add(textField);
         vBox.getChildren().add(floatingTextField);

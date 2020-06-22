@@ -3,7 +3,7 @@ package mil.af.eglin.ccf.rt.fx.control.style;
 import javafx.css.PseudoClass;
 
 /**
- * A {@code mil.af.eglin.ccf.rt.fx.control.ToggleButton ToggleButton} can have
+ * A {@link mil.af.eglin.ccf.rt.fx.control.ToggleButton ToggleButton} can have
  * four styles:
  * <ul>
  * <li>RAISED: Appears elevated from the surface.</li>
@@ -36,7 +36,7 @@ public enum ToggleButtonStyle
     /**
      * Gets the name of the pseudo class for the accent type
      * 
-     * @return The name of the pseudo class
+     * @return the name of the pseudo class
      */
     public PseudoClass getPseudoClass()
     {

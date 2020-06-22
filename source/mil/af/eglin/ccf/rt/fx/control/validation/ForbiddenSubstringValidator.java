@@ -1,30 +1,46 @@
 package mil.af.eglin.ccf.rt.fx.control.validation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
 
 /**
- * Validation for checking forbidden substrings
+ * A {@code ForbiddenSubstringValidator} checks a string for one or more invalid substrings.
  */
-public class ForbiddenTextValidator implements Validator<String>
+public class ForbiddenSubstringValidator implements Validator<String>
 {
     private List<String> forbiddenStrings = new ArrayList<>();
     private String message = "";
 
-    public ForbiddenTextValidator(List<String> forbiddenStrings)
+    /**
+     * Creates a {@code ForbiddenSubstringValidator} for checking a string for one or more invalid substrings
+     * 
+     * @param forbidden The invalid substrings
+     */
+    public ForbiddenSubstringValidator(String... forbidden)
     {
-        this.forbiddenStrings = forbiddenStrings;
+        this.forbiddenStrings = Arrays.asList(forbidden);
     }
-    
+
+    /**
+     * Creates a {@code ForbiddenSubstringValidator} for checking a string for one or more invalid substrings
+     * 
+     * @param forbidden The invalid substrings
+     */
+    public ForbiddenSubstringValidator(List<String> forbidden)
+    {
+        this.forbiddenStrings = forbidden;
+    }
+
+    /**
+     * Gets the list of forbidden substrings
+     * 
+     * @return the list of forbidden substrings
+     */
     public List<String> getForbiddenString()
     {
         return this.forbiddenStrings;
-    }
-    
-    public void addForbiddenString(String forbidden)
-    {
-        this.forbiddenStrings.add(forbidden);
     }
 
     /**
@@ -52,6 +68,7 @@ public class ForbiddenTextValidator implements Validator<String>
             StringBuilder builder = new StringBuilder();
             builder.append("Cannot contain ");
             builder.append(forbiddenFields);
+            this.message = builder.toString();
         }
         else
         {

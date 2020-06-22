@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.ComboBox;
-import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
+import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>

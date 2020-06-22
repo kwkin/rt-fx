@@ -9,8 +9,8 @@ import com.sun.javafx.scene.control.skin.LabeledText;
 import javafx.geometry.Pos;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.control.RtDescriptionControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 
@@ -18,7 +18,7 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
  * Creates a description container for displaying helper and error text for a
  * validable and description component.
  *
- * @param <T> The validable and description component.
+ * @param <T> the validable and description component.
  */
 public class RtDescriptionContainerSkin<T extends ValidableControl<?> & RtDescriptionControl>
         extends LabeledSkinBase<DescriptionContainer<T>, BehaviorBase<DescriptionContainer<T>>>
@@ -90,8 +90,9 @@ public class RtDescriptionContainerSkin<T extends ValidableControl<?> & RtDescri
 
     private void createHelperText()
     {
+        this.helperText.getStyleClass().clear();
         this.helperText.getStyleClass().add("helper-text");
-        this.helperText.visibleProperty().bind(this.labeled.isShowHelperTextProperty().and(labeled.isValidProperty()));
+        this.helperText.visibleProperty().bind(this.labeled.isShowHelperTextProperty().and(this.labeled.isValidProperty()));
     }
 
     private void createErrorText()
@@ -99,7 +100,7 @@ public class RtDescriptionContainerSkin<T extends ValidableControl<?> & RtDescri
         this.errorText = new Text();
         this.errorText.setManaged(true);
         this.errorText.getStyleClass().add("error-text");
-        this.errorText.visibleProperty().bind(labeled.isValidProperty().not());
+        this.errorText.visibleProperty().bind(this.labeled.isValidProperty().not());
         this.errorText.textProperty().bind(this.labeled.errorMessageProperty());
         StackPane.setAlignment(this.errorText, Pos.CENTER_LEFT);
         this.textPane.getChildren().add(this.errorText);

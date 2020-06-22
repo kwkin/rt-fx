@@ -67,7 +67,7 @@ public class ValidableHandler<T>
         StringJoiner errorMessage = new StringJoiner(". ");
         for (Validator<T> validator : validators)
         {
-            if (validator.validate(value))
+            if (!validator.validate(value))
             {
                 errorMessage.add(validator.getErrorMessage());
                 if (isValid)

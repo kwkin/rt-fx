@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
-import mil.af.eglin.ccf.rt.fx.control.validation.DescriptionContainer;
+import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 public class RtColorPickerSkin extends ColorPickerSkin
