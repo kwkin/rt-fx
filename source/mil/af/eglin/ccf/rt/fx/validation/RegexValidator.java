@@ -1,4 +1,4 @@
-package mil.af.eglin.ccf.rt.fx.control.validation;
+package mil.af.eglin.ccf.rt.fx.validation;
 
 /**
  * A {@code RegexValidator} requires a string to match a provided regex.

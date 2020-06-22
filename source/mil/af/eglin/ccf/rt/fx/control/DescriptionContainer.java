@@ -5,7 +5,6 @@ import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtDescriptionContainerSkin;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
 
 /**
  * A helper component used to toggle between description and error text defined
@@ -17,7 +16,7 @@ import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
  *
  * @param <T> A validable component with a description.
  */
-public class DescriptionContainer<T extends ValidableControl<?> & RtDescriptionControl> extends Labeled
+public class DescriptionContainer<T extends ValidableControl<?> & DescriptionControl> extends Labeled
 {
     private static final String CSS_CLASS = "description-container";
 

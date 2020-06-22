@@ -1,4 +1,4 @@
-package mil.af.eglin.ccf.rt.fx.control.validation;
+package mil.af.eglin.ccf.rt.fx.validation;
 
 /**
  * A {@code RequiredFieldValidator} ensures that a string is not null or empty
@@ -33,8 +33,7 @@ public class RequiredFieldValidator implements Validator<String>
      */
     public boolean validate(String value)
     {
-        boolean isValid = value != null && !"".equals(value);
-        return isValid;
+        return value != null && !"".equals(value);
     }
 
     /**

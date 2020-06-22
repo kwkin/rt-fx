@@ -1,5 +1,10 @@
-package mil.af.eglin.ccf.rt.fx.control.validation;
+package mil.af.eglin.ccf.rt.fx.validation;
 
+/**
+ * A {@code Validator} checks if provided values pass a predefined condition.
+ * 
+ * @param <T> the input value type to validate
+ */
 public interface Validator<T>
 {
     /**
@@ -9,7 +14,7 @@ public interface Validator<T>
      * @return True if the value is valid
      */
     public boolean validate(T value);
-    
+
     /**
      * Gets the message detailing the last validation check
      * 

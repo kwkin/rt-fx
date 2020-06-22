@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
  * optional field that may be used to convey additional information about the
  * input field. In general helper text should be contained in a single line.
  */
-public interface RtDescriptionControl
+public interface DescriptionControl
 {
     /**
      * Returns the helper text property

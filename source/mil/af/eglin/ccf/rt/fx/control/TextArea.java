@@ -29,15 +29,14 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextAreaSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
-import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
+import mil.af.eglin.ccf.rt.fx.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
+import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 // TODO error and helper pseudo states do not apply correctly
-public class TextArea extends javafx.scene.control.TextArea implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
+public class TextArea extends javafx.scene.control.TextArea implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -407,7 +406,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
      * {@inheritDoc}
      */
     @Override
-    public ObservableValue<String> getObservable()
+    public ObservableValue<String> getObservableValue()
     {
         return textProperty();
     }

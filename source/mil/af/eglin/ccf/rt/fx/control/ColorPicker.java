@@ -31,15 +31,14 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtColorPickerSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
-import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
+import mil.af.eglin.ccf.rt.fx.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
+import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class ColorPicker extends javafx.scene.control.ColorPicker
-        implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<Color>
+        implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<Color>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -196,7 +195,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     }
 
     @Override
-    public ObservableValue<Color> getObservable()
+    public ObservableValue<Color> getObservableValue()
     {
         return valueProperty();
     }

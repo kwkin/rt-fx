@@ -36,7 +36,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * 
  * @see Button
  */
-public class IconButton extends Button implements RtIcon
+public class IconButton extends Button implements Icon
 {
     protected StackPane iconPane = new StackPane();
     protected Accent accent = Accent.BASE;

@@ -1,4 +1,4 @@
-package mil.af.eglin.ccf.rt.fx.control.validation;
+package mil.af.eglin.ccf.rt.fx.validation;
 
 /**
  * A {@code MaxCharLimitValidator} is used to ensure a string does not exceed

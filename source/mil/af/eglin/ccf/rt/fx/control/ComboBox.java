@@ -30,11 +30,10 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtComboBoxSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
-import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
+import mil.af.eglin.ccf.rt.fx.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
+import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 /**
@@ -45,7 +44,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * Selecting the drop down button will open a list of selectable options.
  */
 public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
-        implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<T>
+        implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<T>
 {
     protected Accent accent = Accent.PRIMARY_MID;
 
@@ -438,7 +437,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
     }
 
     @Override
-    public ObservableValue<T> getObservable()
+    public ObservableValue<T> getObservableValue()
     {
         return valueProperty();
     }

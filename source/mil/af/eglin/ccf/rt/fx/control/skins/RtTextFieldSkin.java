@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
-import mil.af.eglin.ccf.rt.fx.control.RtIcon;
+import mil.af.eglin.ccf.rt.fx.control.Icon;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
@@ -138,7 +138,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
         Pane inputContainer = this.input.getInputContainer();
         String trailingText = textField.getTrailingText();
-        RtIcon graphic = this.textField.getTrailingIcon();
+        Icon graphic = this.textField.getTrailingIcon();
         double promptWidth = w;
         if (this.textField.isTrailingVisible())
         {
@@ -263,7 +263,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private void addTrailingIcon()
     {
-        RtIcon icon = this.textField.getTrailingIcon();
+        Icon icon = this.textField.getTrailingIcon();
         if (icon == null || getChildren().contains(icon))
         {
             return;
@@ -275,7 +275,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
     private void updateTrailingIconColor()
     {
-        RtIcon graphic = this.textField.getTrailingIcon();
+        Icon graphic = this.textField.getTrailingIcon();
         if (graphic != null && graphic.isColorManaged())
         {
             graphic.setFill(this.textField.getTrailingIconColor());

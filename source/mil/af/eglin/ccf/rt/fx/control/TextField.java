@@ -35,11 +35,10 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableHandler;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
-import mil.af.eglin.ccf.rt.fx.control.validation.Validator;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
+import mil.af.eglin.ccf.rt.fx.validation.ValidableHandler;
+import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
+import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 /**
@@ -53,7 +52,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * helper}, and {@link TextField#isValid error} pseudo states.
  */
 public class TextField extends javafx.scene.control.TextField
-        implements RtStyleableComponent, RtLabelFloatControl, RtDescriptionControl, ValidableControl<String>
+        implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
@@ -112,7 +111,7 @@ public class TextField extends javafx.scene.control.TextField
      * <p>
      * Trailing text will override a trailing icon if both are set.
      */
-    private ObjectProperty<RtIcon> trailingIcon = new SimpleObjectProperty<RtIcon>();
+    private ObjectProperty<Icon> trailingIcon = new SimpleObjectProperty<Icon>();
 
     /**
      * When enabled, the prompt text will be positioned above the input text.
@@ -386,17 +385,17 @@ public class TextField extends javafx.scene.control.TextField
         this.trailingText.set(text);
     }
 
-    public ObjectProperty<RtIcon> trailingIconProperty()
+    public ObjectProperty<Icon> trailingIconProperty()
     {
         return this.trailingIcon;
     }
 
-    public RtIcon getTrailingIcon()
+    public Icon getTrailingIcon()
     {
         return this.trailingIcon.get();
     }
 
-    public void setTrailingIcon(RtIcon icon)
+    public void setTrailingIcon(Icon icon)
     {
         this.trailingIcon.set(icon);
     }
@@ -515,14 +514,22 @@ public class TextField extends javafx.scene.control.TextField
         this.isValid.set(isValid);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setValidateCondition(ValidateCondition validateCondition)
     {
         this.validationHandler.setValidateCondition(validateCondition);
     }
 
-    public void getValidateCondition(ValidateCondition validateCondition)
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ValidateCondition getValidateCondition(ValidateCondition validateCondition)
     {
-        this.validationHandler.getValidateCondition();
+        return this.validationHandler.getValidateCondition();
     }
 
     public boolean isHelperTextVisible()
@@ -597,7 +604,7 @@ public class TextField extends javafx.scene.control.TextField
      * {@inheritDoc}
      */
     @Override
-    public ObservableValue<String> getObservable()
+    public ObservableValue<String> getObservableValue()
     {
         return textProperty();
     }

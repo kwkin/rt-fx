@@ -20,7 +20,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 
-public class IconToggleButton extends ToggleButton implements RtIcon
+public class IconToggleButton extends ToggleButton implements Icon
 {
     protected ToggleButtonStyle style = ToggleButtonStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;

@@ -10,8 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
-import mil.af.eglin.ccf.rt.fx.control.RtDescriptionControl;
-import mil.af.eglin.ccf.rt.fx.control.validation.ValidableControl;
+import mil.af.eglin.ccf.rt.fx.control.DescriptionControl;
+import mil.af.eglin.ccf.rt.fx.control.ValidableControl;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 
 /**
@@ -20,7 +20,7 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
  *
  * @param <T> the validable and description component.
  */
-public class RtDescriptionContainerSkin<T extends ValidableControl<?> & RtDescriptionControl>
+public class RtDescriptionContainerSkin<T extends ValidableControl<?> & DescriptionControl>
         extends LabeledSkinBase<DescriptionContainer<T>, BehaviorBase<DescriptionContainer<T>>>
 {
     private DescriptionContainer<T> labeled;

@@ -1,4 +1,4 @@
-package mil.af.eglin.ccf.rt.fx.control.validation;
+package mil.af.eglin.ccf.rt.fx.validation;
 
 /**
  * A {@code RequiredValueValidator} ensures that a value is not null.
@@ -31,8 +31,7 @@ public class RequiredValueValidator<T> implements Validator<T>
      */
     public boolean validate(T value)
     {
-        boolean isValid = value != null;
-        return isValid;
+        return value != null;
     }
 
     /**

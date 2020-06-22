@@ -22,14 +22,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
-import mil.af.eglin.ccf.rt.fx.control.RtLabelFloatControl;
+import mil.af.eglin.ccf.rt.fx.control.LabelFloatControl;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
 import java.util.function.Supplier;
 
-public class PromptInput<T extends Control & RtLabelFloatControl>
+public class PromptInput<T extends Control & LabelFloatControl>
 {
     protected final T control;
     protected final StackPane inputContainer = new StackPane();

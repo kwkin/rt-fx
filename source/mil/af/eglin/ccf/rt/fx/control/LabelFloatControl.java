@@ -12,7 +12,7 @@ import javafx.scene.paint.Paint;
  * text will remove the prompt text after an input is entered. However, if the text field
  * used a floating label, the prompt text will hover above the input text and remain visible.  
  */
-public interface RtLabelFloatControl
+public interface LabelFloatControl
 {
     /**
      * Returns the label float property indicating if the label should float
