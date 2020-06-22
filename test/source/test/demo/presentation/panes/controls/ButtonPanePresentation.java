@@ -26,20 +26,20 @@ public class ButtonPanePresentation extends SizedTitledCard
         super(TITLE);
 
         VBox vBox = new VBox();
+        DescriptionPane descriptionPane = new DescriptionPane();
+        descriptionPane.setDescription("Normal buttons come in several varieties: raised, flat, icon, and icon with text.");
+        vBox.getChildren().add(descriptionPane);
+        vBox.getChildren().add(new TitledSeparator("Normal"));
         vBox.getChildren().add(createNormalButtons());
-        vBox.getChildren().add(new TitledSeparator("Flat Buttons"));
+        vBox.getChildren().add(new TitledSeparator("Flat"));
         vBox.getChildren().add(createFlatButtons());
-        vBox.getChildren().add(new TitledSeparator("Icon Buttons"));
+        vBox.getChildren().add(new TitledSeparator("Icon"));
         vBox.getChildren().add(createIconButtons());
-        
         setContent(vBox);
     }
     
     private Node createNormalButtons()
     {
-        DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("Normal buttons come in several varieties: raised, flat, icon, and icon with text. Here are some raised buttons.");
-
         GridPane toggleButtonGridPane = new GridPane();
         
         Button primaryLightButton = new Button("OK", ButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
@@ -55,16 +55,12 @@ public class ButtonPanePresentation extends SizedTitledCard
         toggleButtonGridPane.add(primaryLightButton, 0, 0);
         toggleButtonGridPane.add(primaryMidButton, 1, 0);
         toggleButtonGridPane.add(primaryDarkButton, 2, 0);
-
         toggleButtonGridPane.add(secondaryLightButton, 0, 1);
         toggleButtonGridPane.add(secondaryMidButton, 1, 1);
         toggleButtonGridPane.add(secondaryDarkButton, 2, 1);
-
         toggleButtonGridPane.add(baseButton, 0, 2);
         
-        descriptionPane.setContent(toggleButtonGridPane);
-        
-        return descriptionPane;
+        return toggleButtonGridPane;
     }
     
     private Node createFlatButtons()

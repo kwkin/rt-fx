@@ -71,7 +71,7 @@ public class RtTextFieldSkin extends TextFieldSkin
 
         registerChangeListener(textField.labelFloatProperty(), textField.labelFloatProperty().getName());
         registerChangeListener(textField.focusColorProperty(), textField.focusColorProperty().getName());
-        registerChangeListener(textField.getOverlayColorProperty(), textField.getOverlayColorProperty().getName());
+        registerChangeListener(textField.overlayColorProperty(), textField.overlayColorProperty().getName());
         registerChangeListener(textField.unfocusColorProperty(), textField.unfocusColorProperty().getName());
         registerChangeListener(textField.trailingTextProperty(), textField.trailingTextProperty().getName());
         registerChangeListener(textField.trailingIconProperty(), textField.trailingIconProperty().getName());
@@ -94,30 +94,30 @@ public class RtTextFieldSkin extends TextFieldSkin
     }
 
     @Override
-    protected void handleControlPropertyChanged(String propertyReference)
+    protected void handleControlPropertyChanged(String property)
     {
-        super.handleControlPropertyChanged(propertyReference);
-        if (textField.focusColorProperty().getName().equals(propertyReference))
+        super.handleControlPropertyChanged(property);
+        if (this.textField.focusColorProperty().getName().equals(property))
         {
-            input.updateFocusColor();
+            this.input.updateFocusColor();
         }
-        else if (textField.unfocusColorProperty().getName().equals(propertyReference))
+        else if (this.textField.unfocusColorProperty().getName().equals(property))
         {
-            input.updateUnfocusColor();
+            this.input.updateUnfocusColor();
         }
-        else if (textField.getOverlayColorProperty().getName().equals(propertyReference))
+        else if (this.textField.overlayColorProperty().getName().equals(property))
         {
-            input.updateOverlayColor(this.textField.getOverlayColor());
+            this.input.updateOverlayColor(this.textField.getOverlayColor());
         }
-        else if (textField.trailingTextProperty().getName().equals(propertyReference))
-        {
-            this.textField.layout();
-        }
-        else if (textField.trailingIconProperty().getName().equals(propertyReference))
+        else if (this.textField.trailingTextProperty().getName().equals(property))
         {
             this.textField.layout();
         }
-        else if (textField.trailingIconColorProperty().getName().equals(propertyReference))
+        else if (this.textField.trailingIconProperty().getName().equals(property))
+        {
+            this.textField.layout();
+        }
+        else if (this.textField.trailingIconColorProperty().getName().equals(property))
         {
             updateTrailingIconColor();
         }

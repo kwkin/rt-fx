@@ -21,9 +21,9 @@ public enum Accent
     }
 
     /**
-     * Gets the CSS class name associated with the accent type.
+     * Gets the CSS style class name for the accent type.
      * 
-     * @return The name of the CSS class for the accent colors
+     * @return The name of the CSS style class
      */
     public String getCssName()
     {

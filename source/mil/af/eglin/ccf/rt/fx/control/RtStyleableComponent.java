@@ -6,8 +6,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
  * A real-time styleable component defines standard a
  * {@link mil.af.eglin.ccf.rt.fx.control.style.Accent Accent} and a unique CSS
  * name.
- * 
- * @author kwkin
  */
 public interface RtStyleableComponent
 {

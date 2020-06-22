@@ -27,18 +27,21 @@ public class IconPanePresentation extends SizedTitledCard
         super(TITLE, TitledCardSize.SIZE_1x2);
 
         VBox vBox = new VBox();
+        DescriptionPane descriptionPane = new DescriptionPane();
+        descriptionPane.setDescription("RT-FX supports using icons as components. Currently, only SVG icons are available.");
+        vBox.getChildren().add(descriptionPane);
+        vBox.getChildren().add(new TitledSeparator("Available Icons"));
         vBox.getChildren().add(createIcons());
-        vBox.getChildren().add(new TitledSeparator("Icon Features"));
+        vBox.getChildren().add(new TitledSeparator("Features"));
         vBox.getChildren().add(createIconSizesButtons());
-        
         setContent(vBox);
     }
     
     private Node createIcons()
     {
         DescriptionPane descriptionPane = new DescriptionPane();
-        descriptionPane.setDescription("SVG (.svg) files can be loaded as icons using RT-FX. A subset of Google's Material Design icons are readily accessible using RT-FX.");
-
+        descriptionPane.setDescription("A subset of Google's Material Design icons are readily accessible using RT-FX. Custom SVG (.svg) files can be loaded as icons using RT-FX.");
+        
         TilePane iconButtonPane = new TilePane();
         iconButtonPane.setHgap(0);
         iconButtonPane.setVgap(0);
@@ -80,9 +83,7 @@ public class IconPanePresentation extends SizedTitledCard
         iconButtonPane.getChildren().add(new SvgIcon(SvgFile.DOTS_VERTICAL, IconSize.SIZE_24));
         iconButtonPane.getChildren().add(new SvgIcon(SvgFile.ADD_ANSWER_CARD, IconSize.SIZE_24));
         iconButtonPane.getChildren().add(new SvgIcon(SvgFile.ADD_ANSWER_PLOT, IconSize.SIZE_24));
-        
         descriptionPane.setContent(iconButtonPane);
-        
         return descriptionPane;
     }
 

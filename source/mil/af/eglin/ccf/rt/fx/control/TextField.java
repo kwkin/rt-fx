@@ -329,7 +329,7 @@ public class TextField extends javafx.scene.control.TextField
         this.unfocusColor.set(color);
     }
 
-    public ObjectProperty<Paint> getOverlayColorProperty()
+    public ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
     }

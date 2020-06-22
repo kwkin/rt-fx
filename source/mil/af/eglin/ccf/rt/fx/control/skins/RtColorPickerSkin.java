@@ -83,6 +83,24 @@ public class RtColorPickerSkin extends ColorPickerSkin
     }
 
     @Override
+    protected void handleControlPropertyChanged(String property)
+    {
+        super.handleControlPropertyChanged(property);
+        if (this.colorPicker.focusColorProperty().getName().equals(property))
+        {
+            this.input.updateFocusColor();
+        }
+        else if (this.colorPicker.unfocusColorProperty().getName().equals(property))
+        {
+            this.input.updateUnfocusColor();
+        }
+        else if (this.colorPicker.overlayColorProperty().getName().equals(property))
+        {
+            this.input.updateOverlayColor(this.colorPicker.getOverlayColor());
+        }
+    }
+
+    @Override
     protected void updateDisplayArea()
     {
         super.updateDisplayArea();

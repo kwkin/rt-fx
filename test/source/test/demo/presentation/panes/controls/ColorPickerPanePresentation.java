@@ -5,8 +5,9 @@ import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
 import mil.af.eglin.ccf.rt.fx.control.ColorPickerButton;
 import mil.af.eglin.ccf.rt.fx.control.ColorPickerIcon;
-import mil.af.eglin.ccf.rt.fx.control.Label;
-import mil.af.eglin.ccf.rt.fx.layout.GridPane;
+import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
+import mil.af.eglin.ccf.rt.fx.control.validation.FunctionValidator;
+import mil.af.eglin.ccf.rt.fx.control.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
 import test.demo.control.DescriptionPane;
 import test.demo.control.SizedTitledCard;
@@ -19,59 +20,79 @@ public class ColorPickerPanePresentation extends SizedTitledCard
     
     public ColorPickerPanePresentation(PaneController controller)
     {
-        super(TITLE, TitledCardSize.SIZE_1x1);
+        super(TITLE, TitledCardSize.SIZE_1x2);
 
-        VBox stackPane = new VBox();
-        
-        stackPane.getChildren().add(createColorPickers());
-        
-        setContent(stackPane);
-    }
-    
-    private Node createColorPickers()
-    {
+        VBox vBox = new VBox();
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Color Pickers come in several varieties: combo boxes, buttons, and icons.");
-
-        GridPane box = new GridPane();
-        
-        Label comboBoxLabel = new Label("Combo Box Color Pickers");
+        vBox.getChildren().add(descriptionPane);
+        vBox.getChildren().add(new TitledSeparator("Combo Box"));
+        vBox.getChildren().add(createComboColorPickers());
+        vBox.getChildren().add(new TitledSeparator("Button Buttons"));
+        vBox.getChildren().add(createButtonColorPickers());
+        vBox.getChildren().add(new TitledSeparator("Icon Buttons"));
+        vBox.getChildren().add(createIconColorPickers());
+        setContent(vBox);
+    }
+    
+    private Node createComboColorPickers()
+    {
+        VBox box = new VBox();
+        box.setSpacing(16);
         ColorPicker rtUninitialized = new ColorPicker();
         ColorPicker rtInitialized = new ColorPicker();
-        rtInitialized.setPromptText("Prompt Text");
-        rtInitialized.setLabelFloat(true);
-        rtInitialized.setValue(Color.RED);
-        rtInitialized.setHelperText("Helper Text");
-        rtInitialized.setIsShowHelperText(true);
+        rtInitialized.setValue(Color.AQUAMARINE);
+        rtInitialized.overlayColorProperty().bind(rtInitialized.valueProperty());
+        ColorPicker rtAll = new ColorPicker();
+        rtAll.setPromptText("Prompt Text");
+        rtAll.setLabelFloat(true);
+        rtAll.setValue(Color.RED);
+        rtAll.setHelperText("Helper Text");
+        rtAll.setIsShowHelperText(true);
+        FunctionValidator<Color> nonOpaqueValidator = new FunctionValidator<>((value) -> 
+        {
+            return Double.compare(value.getOpacity(), 1) >= 0;
+        });
+        ColorPicker validatableColorPicker = new ColorPicker();
+        validatableColorPicker.setValue(Color.TRANSPARENT);
+        validatableColorPicker.setPromptText("Non-Opaque");
+        validatableColorPicker.setLabelFloat(true);
+        validatableColorPicker.setValidateCondition(ValidateCondition.CHANGED);
+        validatableColorPicker.getValidators().add(nonOpaqueValidator);
+        validatableColorPicker.validate();
         
-
-        Label buttonLabel = new Label("Button Color Pickers");
+        box.getChildren().add(rtUninitialized);
+        box.getChildren().add(rtInitialized);
+        box.getChildren().add(rtAll);
+        box.getChildren().add(validatableColorPicker);
+        return box;
+    }
+    
+    private Node createButtonColorPickers()
+    {
+        VBox box = new VBox();
+        box.setSpacing(16);
         ColorPickerButton rtButton = new ColorPickerButton();
         ColorPickerButton rtButtonInitialized = new ColorPickerButton();
         rtButtonInitialized.setValue(Color.SANDYBROWN);
 
-        Label iconLabel = new Label("Icon Color Pickers");
+        box.getChildren().add(rtButton);
+        box.getChildren().add(rtButtonInitialized);
+        return box;
+    }
+    
+    private Node createIconColorPickers()
+    {
+        VBox box = new VBox();
+        box.setSpacing(16);
         ColorPickerIcon rtIcon = new ColorPickerIcon();
         rtIcon.setValue(Color.TEAL);
         ColorPickerIcon rtIconWithText = new ColorPickerIcon();
         rtIconWithText.setLabelVisiblity(true);
         rtIconWithText.setValue(Color.MEDIUMTURQUOISE);
-        
-        int row = 0;
-        box.add(comboBoxLabel, 0, row++, 2, 1);
-        box.add(rtUninitialized, 0, row);
-        box.add(rtInitialized, 1, row++);
 
-        box.add(buttonLabel, 0, row++, 2, 1);
-        box.add(rtButton, 0, row);
-        box.add(rtButtonInitialized, 1, row++);
-
-        box.add(iconLabel, 0, row++, 2, 1);
-        box.add(rtIcon, 0, row, 1, 1);
-        box.add(rtIconWithText, 1, row++, 1, 1);
-        
-        descriptionPane.setContent(box);
-        
-        return descriptionPane;
+        box.getChildren().add(rtIcon);
+        box.getChildren().add(rtIconWithText);
+        return box;
     }
 }
