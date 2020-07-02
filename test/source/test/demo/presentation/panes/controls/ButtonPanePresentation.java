@@ -1,15 +1,22 @@
 package test.demo.presentation.panes.controls;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.Button;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ButtonStyle;
+import mil.af.eglin.ccf.rt.fx.icons.IconScale;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
+import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import mil.af.eglin.ccf.rt.fx.layout.FlowPane;
 import mil.af.eglin.ccf.rt.fx.layout.GridPane;
 import mil.af.eglin.ccf.rt.fx.layout.VBox;
@@ -74,7 +81,7 @@ public class ButtonPanePresentation extends SizedTitledCard
         primaryLightFlatButton.setDefaultButton(true);
         Button primaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_MID);
         Button primaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
-;
+
         Button secondaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
         secondaryLightFlatButton.setDefaultButton(true);
         Button secondaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_MID);

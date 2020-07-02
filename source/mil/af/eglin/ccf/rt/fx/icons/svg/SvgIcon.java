@@ -29,11 +29,14 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import mil.af.eglin.ccf.rt.fx.control.Icon;
 import mil.af.eglin.ccf.rt.fx.control.skins.Utils;
+import mil.af.eglin.ccf.rt.fx.icons.IconScale;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO Add a maintain aspect ratio flag
+/**
+ * 
+ */
 public class SvgIcon extends StackPane implements Icon
 {
     private static final String USER_AGENT_STYLESHEET = "svg-icon.css";
@@ -42,9 +45,34 @@ public class SvgIcon extends StackPane implements Icon
     private final StackPane iconBox = new StackPane();
     private final StackPane icon = new StackPane();
 
+    private double originalWidth = 0;
+    private double originalHeight = 0;
     private boolean isFillManaged = true;
 
+    /**
+     * The icon scale determines the size of the icon.
+     * <p>
+     * Scaling options are provided for automatically resizing and preserving
+     * aspect ratio based upon the parent's dimensions. Additionally, an option
+     * is provided to manually set the icon size.
+     */
+    private ObjectProperty<IconScale> iconScale = new SimpleObjectProperty<IconScale>(IconScale.NONE)
+    {
+        @Override
+        protected void invalidated()
+        {
+            applyScale();
+        }
+    };
+    
+    /**
+     * The width height ratio represents width/height of the original icon.
+     */
     private DoubleProperty widthHeightRatio = new SimpleDoubleProperty(1);
+    
+    /**
+     * The fill sets the color of the icon.
+     */
     private ObjectProperty<Paint> fill = new SimpleObjectProperty<Paint>()
     {
         @Override
@@ -57,20 +85,44 @@ public class SvgIcon extends StackPane implements Icon
             }
         }
     };
+    
+    /**
+     * Size is used to set a uniform height and width to an icon with {@code IconScale.NONE}
+     */
     private StyleableDoubleProperty size = new SimpleStyleableDoubleProperty(StyleableProperties.SIZE, this, "size",
             (double) IconSize.SIZE_32.getIconSize());
 
+    /**
+     * Creates an icon using an SVG file.
+     * 
+     * @param icon the {@code URL} containing the SVG data
+     * @throws IOException if there was an error reading the file
+     */
     public SvgIcon(URL icon) throws IOException
     {
         initialize(extractSvgPath(icon.openStream()));
     }
 
+    /**
+     * Creates an icon with the specified SVG file and size.
+     * 
+     * @param icon the {@code URL} containing the SVG data
+     * @param size the width and height of the icon
+     * @throws IOException if there was an error reading the file
+     */
     public SvgIcon(URL icon, IconSize size) throws IOException
     {
         this.size.setValue(size.getIconSize());
         initialize(extractSvgPath(icon.openStream()));
     }
 
+    /**
+     * Creates an icon with the specified SVG file and color.
+     * 
+     * @param icon the {@code URL} containing the SVG data
+     * @param fill the color of the icon
+     * @throws IOException if there was an error reading the file
+     */
     public SvgIcon(URL icon, Paint fill) throws IOException
     {
         this.fill.setValue(fill);
@@ -78,6 +130,14 @@ public class SvgIcon extends StackPane implements Icon
         initialize(extractSvgPath(icon.openStream()));
     }
 
+    /**
+     * Creates an icon with the specified SVG file, color, and size.
+     * 
+     * @param icon the {@code URL} containing the SVG data
+     * @param fill the color of the icon
+     * @param size the width and height of the icon
+     * @throws IOException if there was an error reading the file
+     */
     public SvgIcon(URL icon, Paint fill, IconSize size) throws IOException
     {
         this.fill.setValue(fill);
@@ -86,17 +146,35 @@ public class SvgIcon extends StackPane implements Icon
         initialize(extractSvgPath(icon.openStream()));
     }
 
+    /**
+     * Creates an icon with the standard rt-fx icon.
+     * 
+     * @param icon the standard rt-fx icon
+     */
     public SvgIcon(SvgFile icon)
     {
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
+    /**
+     * Creates an icon with the standard rt-fx icon and size.
+     * 
+     * @param icon the standard rt-fx icon
+     * @param size the width and height of the icon
+     */
     public SvgIcon(SvgFile icon, IconSize size)
     {
         this.size.setValue(size.getIconSize());
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
+    /**
+     * Creates an icon with the standard rt-fx icon and fill.
+     * 
+     * @param icon the standard rt-fx icon
+     * @param fill the color of the icon
+     * @param size the width and height of the icon
+     */
     public SvgIcon(SvgFile icon, Paint fill)
     {
         this.fill.setValue(fill);
@@ -104,6 +182,13 @@ public class SvgIcon extends StackPane implements Icon
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
+    /**
+     * Creates an icon with the standard rt-fx icon, fill, and size.
+     * 
+     * @param icon the standard rt-fx icon
+     * @param fill the color of the icon
+     * @param size the width and height of the icon
+     */
     public SvgIcon(SvgFile icon, Paint fill, IconSize size)
     {
         this.fill.setValue(fill);
@@ -112,9 +197,13 @@ public class SvgIcon extends StackPane implements Icon
         initialize(extractSvgPath(icon.getIconInputStream()));
     }
 
+    /**
+     * Creates an icon with the specified svg path.
+     * 
+     * @param svgPath the svg path
+     */
     public SvgIcon(String svgPath)
     {
-
         initialize(svgPath);
     }
 
@@ -145,6 +234,21 @@ public class SvgIcon extends StackPane implements Icon
     public ObjectProperty<Paint> fillProperty()
     {
         return this.fill;
+    }
+
+    public ObjectProperty<IconScale> iconScaleProperty()
+    {
+        return this.iconScale;
+    }
+
+    public IconScale getIconScale()
+    {
+        return this.iconScale.get();
+    }
+
+    public void setIconScale(IconScale scale)
+    {
+        this.iconScale.set(scale);
     }
 
     public double getWidthHeightRatio()
@@ -186,13 +290,12 @@ public class SvgIcon extends StackPane implements Icon
         getStyleClass().add(CSS_CLASS);
         this.icon.getStyleClass().setAll("icon");
 
-        Paint fill = this.icon.getBackground() == null ? null
-                : this.icon.getBackground().getFills().get(0).getFill();
+        Paint fill = this.icon.getBackground() == null ? null : this.icon.getBackground().getFills().get(0).getFill();
         if (this.fill.get() != null && !this.fill.get().equals(fill))
         {
             Utils.setBackgroundColor(this.icon, this.fill.get());
         }
-        this.icon.backgroundProperty().addListener((ov, oldVal, newVal) -> 
+        this.icon.backgroundProperty().addListener((ov, oldVal, newVal) ->
         {
             if (this.fill.getValue() != null)
             {
@@ -204,11 +307,9 @@ public class SvgIcon extends StackPane implements Icon
         {
             if (newVal != null)
             {
-                this.widthHeightRatio.setValue(newVal.prefWidth(-1) / newVal.prefHeight(-1));
-                if (getSize() != Region.USE_COMPUTED_SIZE)
-                {
-                    setSizeRatio(getSize());
-                }
+                this.originalWidth = newVal.prefWidth(-1);
+                this.originalHeight = newVal.prefHeight(-1);
+                applyScale();
             }
         });
 
@@ -222,6 +323,46 @@ public class SvgIcon extends StackPane implements Icon
             this.icon.setShape(shape);
             setSizeRatio(getSize());
         }
+
+        parentProperty().addListener((ov, oldVal, newVal) ->
+        {
+            applyScale();
+        });
+    }
+
+    private void applyScale()
+    {
+        Region region = (Region) getParent();
+        double parentWidth = 0;
+        double parentHeight = 0;
+        if (region != null)
+        {
+            parentWidth = region.getPrefWidth() - region.snappedLeftInset() - region.snappedRightInset();
+            parentHeight = region.getPrefHeight() - region.snappedBottomInset() - region.snappedTopInset();
+        }
+        switch (this.iconScale.getValue())
+        {
+            case FILL:
+                setIconSize(parentWidth, parentHeight);
+                break;
+            case NONE:
+                this.widthHeightRatio.setValue(this.originalWidth / this.originalHeight);
+                if (getSize() != Region.USE_COMPUTED_SIZE)
+                {
+                    setSizeRatio(getSize());
+                }
+                break;
+            case UNIFORM_FILL:
+                this.widthHeightRatio.setValue(this.originalWidth / this.originalHeight);
+                double smallerSize = Math.min(parentWidth, parentHeight);
+                if (getSize() != Region.USE_COMPUTED_SIZE)
+                {
+                    setSizeRatio(smallerSize);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void setSizeRatio(double size)
@@ -230,15 +371,15 @@ public class SvgIcon extends StackPane implements Icon
         double height = size / this.widthHeightRatio.getValue();
         if (width <= size)
         {
-            setIconSize(width, size);
+            setIconSizeUniform(width, size);
         }
         else if (height <= size)
         {
-            setIconSize(size, height);
+            setIconSizeUniform(size, height);
         }
         else
         {
-            setIconSize(size, size);
+            setIconSizeUniform(size, size);
         }
     }
 
@@ -247,15 +388,26 @@ public class SvgIcon extends StackPane implements Icon
         this.size.setValue(size);
     }
 
+    public void setIconSizeUniform(double width, double height)
+    {
+        this.icon.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.icon.setPrefSize(width, height);
+        this.icon.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+
+        double size = Math.max(width, height);
+        this.iconBox.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+        this.iconBox.setPrefSize(size, size);
+        this.iconBox.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+    }
+
     public void setIconSize(double width, double height)
     {
         this.icon.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
         this.icon.setPrefSize(width, height);
         this.icon.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        
-        double size = Math.max(width, height);
+
         this.iconBox.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-        this.iconBox.setPrefSize(size, size);
+        this.iconBox.setPrefSize(width, height);
         this.iconBox.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
 

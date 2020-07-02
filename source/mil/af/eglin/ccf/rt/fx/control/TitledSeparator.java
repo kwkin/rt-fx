@@ -57,6 +57,10 @@ public class TitledSeparator extends Labeled
     private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
     private static final String CSS_CLASS = "rt-titled-separator";
 
+    /**
+     * The orientation property indicates if the {@code TitledSeparator} is horizontal
+     * or vertical
+     */
     private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
             StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL)
     {
@@ -68,8 +72,26 @@ public class TitledSeparator extends Labeled
             pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, !isVertical);
         }
     };
+
+    /**
+     * The position of the title
+     * <p>
+     * The label can be vertically placed at the top, center, or bottom of the
+     * component. The label may also be horizontally placed at the left, center,
+     * or right of the component. When centered, a gap will be added between the
+     * label and the separators on each side equal to the
+     */
     private StyleableObjectProperty<Pos> titleAlignment = new SimpleStyleableObjectProperty<>(
             StyleableProperties.TITLE_ALIGNMENT, TitledSeparator.this, "titleAlignment", Pos.CENTER);
+
+    /**
+     * Returns the gap property used to pad the label
+     * <p>
+     * When the label is centered, the gap is used to specify the white space
+     * between the label and the separator lines. When the label is positioned
+     * to the left or right, the gap will specify the white space between the
+     * label and the edge of the component.
+     */
     private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
             StyleableProperties.SEPARATOR_CONTENT_GAP, TitledSeparator.this, "separatorContentGap", 0.0);
 
@@ -85,8 +107,7 @@ public class TitledSeparator extends Labeled
     /**
      * Creates a horizontal {@code Separator} with text
      * 
-     * @param text
-     *            The title of the separator
+     * @param text The title of the separator
      */
     public TitledSeparator(String text)
     {
@@ -98,10 +119,8 @@ public class TitledSeparator extends Labeled
     /**
      * Creates a horizontal {@code Separator} with text and graphic
      * 
-     * @param text
-     *            The title of the separator
-     * @param graphic
-     *            The graphic for the separator label
+     * @param text The title of the separator
+     * @param graphic The graphic for the separator label
      */
     public TitledSeparator(String text, Node graphic)
     {
@@ -112,8 +131,7 @@ public class TitledSeparator extends Labeled
     /**
      * Creates an horizontal {@code Separator} styled with the provided accent
      * 
-     * @param accent
-     *            The accent of the separator
+     * @param accent The accent of the separator
      */
     public TitledSeparator(Accent accent)
     {
@@ -126,10 +144,8 @@ public class TitledSeparator extends Labeled
      * Creates a horizontal {@code Separator} with text and styled with the
      * provided accent
      * 
-     * @param text
-     *            The text of the separator
-     * @param accent
-     *            The accent of the separator
+     * @param text The text of the separator
+     * @param accent The accent of the separator
      */
     public TitledSeparator(String text, Accent accent)
     {
@@ -141,10 +157,8 @@ public class TitledSeparator extends Labeled
     /**
      * Creates a {@code Separator} with the specified text and orientation
      * 
-     * @param text
-     *            The text of the separator
-     * @param orientation
-     *            The orientation of the separator lines
+     * @param text The text of the separator
+     * @param orientation The orientation of the separator lines
      */
     public TitledSeparator(String text, Orientation orientation)
     {
@@ -156,10 +170,8 @@ public class TitledSeparator extends Labeled
     /**
      * Creates a {@code Separator} with the specified accent and orientation
      * 
-     * @param orientation
-     *            The orientation of the separator lines
-     * @param accent
-     *            The accent of the separator
+     * @param orientation The orientation of the separator lines
+     * @param accent The accent of the separator
      */
     public TitledSeparator(Orientation orientation, Accent accent)
     {
@@ -173,12 +185,9 @@ public class TitledSeparator extends Labeled
      * Creates a {@code Separator} with the specified text, accent, and
      * orientation
      * 
-     * @param text
-     *            The text of the separator
-     * @param orientation
-     *            The orientation of the separator lines
-     * @param accent
-     *            The accent of the separator
+     * @param text The text of the separator
+     * @param orientation The orientation of the separator lines
+     * @param accent The accent of the separator
      */
     public TitledSeparator(String text, Orientation orientation, Accent accent)
     {
@@ -188,125 +197,46 @@ public class TitledSeparator extends Labeled
         initialize();
     }
 
-    /**
-     * Returns the orientation property indicating if the {@code Separator} is
-     * horizontal or vertical
-     * 
-     * @return The orientation property
-     */
     public ObjectProperty<Orientation> orientationProperty()
     {
         return orientation;
     }
 
-    /**
-     * Sets the orientation of the {@code Separator} lines
-     * 
-     * @param value
-     *            The orientation of the {@code Separator} lines
-     */
     public void setOrientation(Orientation value)
     {
         orientation.set(value);
     }
 
-    /**
-     * Returns the orientation of the {@code Separator} lines
-     * 
-     * @return The orientation of the {@code Separator} lines
-     */
     public Orientation getOrientation()
     {
         return orientation.get();
     }
 
-    /**
-     * Returns the position property of the title
-     * <p>
-     * The label can be vertically placed at the top, center, or bottom of the
-     * component. The label may also be horizontally placed at the left, center,
-     * or right of the component. When centered, a gap will be added between the
-     * label and the separators on each side equal to the
-     * 
-     * @return value The position property label
-     */
     public ObjectProperty<Pos> titleAlignmentProperty()
     {
         return titleAlignment;
     }
 
-    /**
-     * Sets the position of the title
-     * <p>
-     * The label can be vertically placed at the top, center, or bottom of the
-     * component. The label may also be horizontally placed at the left, center,
-     * or right of the component. When centered, a gap will be added between the
-     * label and the separators on each side equal to the
-     * 
-     * @param value
-     *            The position of the title
-     */
     public void setTitleAlignment(Pos value)
     {
         titleAlignment.set(value);
     }
 
-    /**
-     * Returns the position of the title
-     * <p>
-     * The label can be vertically placed at the top, center, or bottom of the
-     * component. The label may also be horizontally placed at the left, center,
-     * or right of the component. When centered, a gap will be added between the
-     * label and the separators on each side equal to the
-     * 
-     * @return value The position property label
-     */
     public Pos getTitlealignment()
     {
         return titleAlignment.get();
     }
 
-    /**
-     * Returns the gap property used to pad the label
-     * <p>
-     * When the label is centered, the gap is used to specify the white space
-     * between the label and the separator lines. When the label is positioned
-     * to the left or right, the gap will specify the white space between the
-     * label and the edge of the component.
-     * 
-     * @return The gap property used to pad the label
-     */
     public DoubleProperty separatorContentGapProperty()
     {
         return separatorContentGap;
     }
 
-    /**
-     * Sets the gap used to pad the label
-     * <p>
-     * When the label is centered, the gap is used to specify the white space
-     * between the label and the separator lines. When the label is positioned
-     * to the left or right, the gap will specify the white space between the
-     * label and the edge of the component.
-     * 
-     * @param value
-     *            The gap used to pad the label
-     */
     public void setSeparatorContentGap(double value)
     {
         separatorContentGap.set(value);
     }
 
-    /**
-     * Returns the gap used to pad the label
-     * <p>
-     * When the label is centered, the gap is used to specify the white space
-     * between the label and the separator lines. When the label is positioned
-     * to the left or right, the gap will specify the white space between the
-     * label and the edge of the component.
-     * 
-     * @return The gap used to pad the label
-     */
     public Double getSparatorContentGap()
     {
         return separatorContentGap.get();
