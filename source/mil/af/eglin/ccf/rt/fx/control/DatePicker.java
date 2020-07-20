@@ -1,9 +1,13 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -14,6 +18,9 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
     private static final String USER_AGENT_STYLESHEET = "date-picker.css";
     private static final String CSS_CLASS = "rt-date-picker";
 
+    private static final StyleablePropertyFactory<ColorPicker> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+    
     public DatePicker()
     {
         super();
@@ -71,6 +78,26 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

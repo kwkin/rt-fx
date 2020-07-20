@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -16,7 +12,7 @@ import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtSliderSkin;
@@ -39,30 +35,41 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     private static final String USER_AGENT_STYLESHEET = "slider.css";
     private static final String CSS_CLASS = "rt-slider";
 
+    private static final StyleablePropertyFactory<Slider> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.CheckBox.getClassCssMetaData());
+    
+    private static final CssMetaData<Slider, Paint> THUMB_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-thumb-color", s -> s.thumbColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<Slider, Paint> FILLED_TRACK_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-filled-track-color", s -> s.filledTrackColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<Slider, Paint> UNFILLED_TRACK_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unfilled-track-color", s -> s.unfilledTrackColor, DefaultPalette.getInstance().getLightBaseColor(), false);
+    private static final CssMetaData<Slider, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<Slider, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
     /**
      * The color of the thumb.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
     private StyleableObjectProperty<Paint> thumbColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.THUMB_COLOR, Slider.this, "thumbColor",
-            DefaultPalette.getInstance().getAccentColor());
+            THUMB_COLOR, this, "thumbColor");
 
     /**
      * The filled track color specifies the color of the track from the minimum
      * end of the slider to the thumb.
      */
     private StyleableObjectProperty<Paint> filledTrackColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FILLED_TRACK_COLOR, Slider.this, "filledTrackColor",
-            DefaultPalette.getInstance().getAccentColor());
+            FILLED_TRACK_COLOR, this, "filledTrackColor");
 
     /**
      * The unfilled track color specifies the color of the track from the thumb
      * to the maximum end of the slider.
      */
     private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFILLED_TRACK_COLOR, Slider.this, "unfilledTrackColor",
-            DefaultPalette.getInstance().getLightBaseColor());
+            UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
 
     /**
      * The overlay color specifies the background color used when hovering and
@@ -72,8 +79,7 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * be visible when a semi-opaque overlay color is provided.
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, Slider.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
+            OVERLAY_COLOR, this, "overlayColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
@@ -81,7 +87,7 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * When disabled, the transition end values will apply instantly.
      */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, Slider.this, "disableAnimation", false);
+            DISABLE_ANIMATION, this, "disableAnimation");
 
     /**
      * Creates a default slider instance.
@@ -253,98 +259,6 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         getStyleClass().add(this.accent.getStyleClassName());
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<Slider, Paint> THUMB_COLOR = new CssMetaData<Slider, Paint>("-rt-thumb-color",
-                PaintConverter.getInstance(), DefaultPalette.getInstance().getAccentColor())
-        {
-            @Override
-            public boolean isSettable(Slider control)
-            {
-                return control.thumbColor == null || !control.thumbColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(Slider control)
-            {
-                return control.thumbColor;
-            }
-        };
-        private static final CssMetaData<Slider, Paint> FILLED_TRACK_COLOR = new CssMetaData<Slider, Paint>(
-                "-rt-filled-track-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getAccentColor())
-        {
-            @Override
-            public boolean isSettable(Slider control)
-            {
-                return control.filledTrackColor == null || !control.filledTrackColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(Slider control)
-            {
-                return control.filledTrackColor;
-            }
-        };
-        private static final CssMetaData<Slider, Paint> UNFILLED_TRACK_COLOR = new CssMetaData<Slider, Paint>(
-                "-rt-unfilled-track-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getLightBaseColor())
-        {
-            @Override
-            public boolean isSettable(Slider control)
-            {
-                return control.unfilledTrackColor == null || !control.unfilledTrackColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(Slider control)
-            {
-                return control.unfilledTrackColor;
-            }
-        };
-        private static final CssMetaData<Slider, Paint> OVERLAY_COLOR = new CssMetaData<Slider, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(Slider control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(Slider control)
-            {
-                return control.overlayColor;
-            }
-        };
-        private static final CssMetaData<Slider, Boolean> DISABLE_ANIMATION = new CssMetaData<Slider, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(Slider control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(Slider control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.Slider.getClassCssMetaData());
-            styleables.add(THUMB_COLOR);
-            styleables.add(FILLED_TRACK_COLOR);
-            styleables.add(UNFILLED_TRACK_COLOR);
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
      * Returns the list of available CSS properties associated with this class,
      * which may include the properties of its super classes.
@@ -353,16 +267,16 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return getClassCssMetaData();
+        return FACTORY.getCssMetaData();
     }
 
     /**

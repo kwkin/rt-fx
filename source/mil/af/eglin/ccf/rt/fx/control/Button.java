@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -14,9 +10,7 @@ import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableBooleanProperty;
-import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
@@ -43,29 +37,36 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
     protected Accent accent = Accent.PRIMARY_MID;
-
+    
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";
 
+    private static final StyleablePropertyFactory<Button> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Button.getClassCssMetaData());
+    
+    private static final CssMetaData<Button, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
     /**
      * The overlay color specifies the background color used when hovering and
-     * arming the button.
+     * arming.
      * <p>
-     * The color is added on top of the button to allow the base button color to
+     * The color is added on top of the component to allow the base button color to
      * be visible when a semi-opaque overlay color is provided.
      */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, Button.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
-
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = 
+            new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this, "overlayColor");
+    
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, Button.this, "disableAnimation", false);
-
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
+            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
+    
     /**
      * Creates a raised button with an empty string for its label.
      */
@@ -271,50 +272,13 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
         }
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<Button, Paint> OVERLAY_COLOR = new CssMetaData<Button, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(Button control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(Button control)
-            {
-                return control.overlayColor;
-            }
-        };
-
-        private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = new CssMetaData<Button, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(Button control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(Button control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.ToggleButton.getClassCssMetaData());
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
     }
 
     /**
@@ -323,20 +287,14 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
     }
 
     /**
-     * {@inheritDoc}
+     * Loads the user agent stylesheet specific to this component
      */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-    
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

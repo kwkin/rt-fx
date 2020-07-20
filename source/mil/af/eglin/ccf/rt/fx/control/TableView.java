@@ -1,8 +1,13 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.ObservableList;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TableViewStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -14,6 +19,9 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
     
     protected TableViewStyle style = TableViewStyle.ZEBRA;
     protected Accent accent = Accent.PRIMARY_MID;
+
+    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.TableView.getClassCssMetaData());
     
     public TableView()
     {
@@ -93,6 +101,26 @@ public class TableView<S> extends javafx.scene.control.TableView<S>
         {
             pseudoClassStateChanged(tableStyle.getPseudoClass(), tableStyle == this.style);
         }
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

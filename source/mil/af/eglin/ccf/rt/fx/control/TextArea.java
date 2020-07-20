@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -23,9 +19,10 @@ import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextAreaSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -60,23 +57,73 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     };
     private StringProperty helperText = new SimpleStringProperty();
     private StringProperty errorText = new SimpleStringProperty();
-    private StyleableBooleanProperty labelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, TextArea.this, "disableAnimation", false)
+
+    private static final StyleablePropertyFactory<TextArea> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<TextArea, Boolean> LABEL_FLOAT = 
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+    private static final CssMetaData<TextArea, Paint> UNFOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<TextArea, Paint> FOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<TextArea, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<TextArea, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * When enabled, the prompt text will be positioned above the input text.
+     * When disabled, the prompt text will disappear when the input text is
+     * entered.
+     */
+    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
+            LABEL_FLOAT, this, "labelFloat")
     {
-        @Override 
-        protected void invalidated() 
+        @Override
+        protected void invalidated()
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
         }
     };
+
+    /**
+     * The unfocus color specifies the accent colors used when the component is
+     * unfocused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, TextArea.this, "unfocusColor", DefaultPalette.getInstance().getBaseColor());
+            UNFOCUS_COLOR, this, "unfocusColor");
+
+    /**
+     * The focus color specifies the accent colors used when the component is
+     * focused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, TextArea.this, "focusColor", DefaultPalette.getInstance().getAccentColor());
+            FOCUS_COLOR, this, "focusColor");
+
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, TextArea.this, "overlayColor", DefaultPalette.getInstance().getBaseColor());
-    private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, TextArea.this, "disableAnimation", false);
+            OVERLAY_COLOR, this, "overlayColor");
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "disableAnimation");
     // @formatter:on
     
     public TextArea()
@@ -111,7 +158,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public StyleableBooleanProperty labelFloatProperty()
     {
-        return this.labelFloating;
+        return this.isLabelFloating;
     }
 
     /**
@@ -120,7 +167,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public boolean isLabelFloat()
     {
-        return labelFloating.get();
+        return isLabelFloating.get();
     }
 
     /**
@@ -129,7 +176,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public void setLabelFloat(final boolean labelFloat)
     {
-        labelFloating.set(labelFloat);
+        isLabelFloating.set(labelFloat);
     }
 
     /**
@@ -196,7 +243,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
         return overlayColor.get();
     }
 
-    public void setOverlayColor(Paint overlayColor)
+    public void setOverlayColor(Color overlayColor)
     {
         this.overlayColor.set(overlayColor);
     }
@@ -207,7 +254,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public StyleableBooleanProperty disableAnimationProperty()
     {
-        return this.disableAnimation;
+        return this.isAnimationDisabled;
     }
 
     /**
@@ -216,7 +263,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public Boolean isDisableAnimation()
     {
-        return this.disableAnimation.get();
+        return this.isAnimationDisabled.get();
     }
 
     /**
@@ -225,7 +272,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     @Override
     public void setDisableAnimation(Boolean disabled)
     {
-        this.disableAnimation.set(disabled);
+        this.isAnimationDisabled.set(disabled);
     }
 
     /**
@@ -425,110 +472,24 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
         getStyleClass().add(this.accent.getStyleClassName());
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<TextArea, Paint> OVERLAY_COLOR = new CssMetaData<TextArea, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextArea control)
-            {
-                return control.overlayColor;
-            }
-        };
-        
-        private static final CssMetaData<TextArea, Boolean> LABEL_FLOAT = new CssMetaData<TextArea, Boolean>(
-                "-rt-label-float", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.labelFloating == null || !control.labelFloating.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(TextArea control)
-            {
-                return control.labelFloating;
-            }
-        };
-        private static final CssMetaData<TextArea, Paint> UNFOCUS_COLOR = new CssMetaData<TextArea, Paint>(
-                "-rt-unfocus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.unfocusColor == null || !control.unfocusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextArea control)
-            {
-                return control.unfocusColor;
-            }
-        };
-        private static final CssMetaData<TextArea, Paint> FOCUS_COLOR = new CssMetaData<TextArea, Paint>(
-                "-rt-focus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.focusColor == null || !control.focusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextArea control)
-            {
-                return control.focusColor;
-            }
-        };
-        private static final CssMetaData<TextArea, Boolean> DISABLE_ANIMATION = new CssMetaData<TextArea, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(TextArea control)
-            {
-                return control.disableAnimation == null || !control.disableAnimation.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(TextArea control)
-            {
-                return control.disableAnimation;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.TextArea.getClassCssMetaData());
-            // @formatter:off
-            styleables.add(LABEL_FLOAT);
-            styleables.add(UNFOCUS_COLOR);
-            styleables.add(FOCUS_COLOR);
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            // @formatter:on
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

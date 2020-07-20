@@ -1,16 +1,14 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import com.sun.javafx.css.converters.PaintConverter;
+import com.sun.javafx.css.StyleManager;
 
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
@@ -19,6 +17,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
+import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 public class IconToggleButton extends ToggleButton implements Icon
 {
@@ -30,12 +29,21 @@ public class IconToggleButton extends ToggleButton implements Icon
     protected String selectedText = "";
     protected String unselectedText = "";
 
+    private static final String USER_AGENT_STYLESHEET = "button.css";
+    
+    private static final StyleablePropertyFactory<IconToggleButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-selected-fill", s -> s.selectedFill, DefaultPalette.getInstance().getAccentColor(), false);
+
+    private static final CssMetaData<IconToggleButton, Paint> UNSELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unselected-fill", s -> s.unselectedFill, DefaultPalette.getInstance().getBaseColor(), false);
+
     private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, IconToggleButton.this, "selectedFill",
-            DefaultPalette.getInstance().getAccentColor());
+            SELECTED_ICON_COLOR, this, "selectedFill");
     private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_ICON_COLOR, IconToggleButton.this, "unselectedFill",
-            DefaultPalette.getInstance().getBaseColor());
+            UNSELECTED_ICON_COLOR, this, "unselectedFill");
 
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
     {
@@ -175,12 +183,6 @@ public class IconToggleButton extends ToggleButton implements Icon
         return this;
     }
 
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -207,54 +209,37 @@ public class IconToggleButton extends ToggleButton implements Icon
             this.unselectedText = newVal;
         });
     }
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = new CssMetaData<IconToggleButton, Paint>(
-                "-rt-selected-icon-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(IconToggleButton control)
-            {
-                return control.selectedFill == null || !control.selectedFill.isBound();
-            }
 
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(IconToggleButton control)
-            {
-                return control.selectedFill;
-            }
-        };
-
-        private static final CssMetaData<IconToggleButton, Paint> UNSELECTED_ICON_COLOR = new CssMetaData<IconToggleButton, Paint>(
-                "-rt-unselected-icon-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(IconToggleButton control)
-            {
-                return control.unselectedFill == null || !control.unselectedFill.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(IconToggleButton control)
-            {
-                return control.unselectedFill;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    ToggleButton.getClassCssMetaData());
-            styleables.add(SELECTED_ICON_COLOR);
-            styleables.add(UNSELECTED_ICON_COLOR);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
     }
 
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    static
+    {
+        IconButton.loadStyleSheet();
     }
 }

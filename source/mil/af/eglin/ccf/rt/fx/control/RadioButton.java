@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -16,8 +12,9 @@ import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Skin;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtRadioButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -37,21 +34,31 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     private static final String USER_AGENT_STYLESHEET = "radio-button.css";
     private static final String CSS_CLASS = "rt-radio-button";
 
+    private static final StyleablePropertyFactory<RadioButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+
+    private static final CssMetaData<RadioButton, Paint> SELECTED_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<RadioButton, Paint> UNSELECTED_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unselected-color", s -> s.unselectedColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<RadioButton, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<RadioButton, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    
     /**
      * The selected color specifies the color used by the border and fill when
      * in the selected state.
      */
     private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_COLOR, RadioButton.this, "selectedColor",
-            DefaultPalette.getInstance().getAccentColor());
+            SELECTED_COLOR, this, "selectedColor");
 
     /**
      * The unselected color specifies the color used by the border when in the
      * unselected state.
      */
     private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNSELECTED_COLOR, RadioButton.this, "unselectedColor",
-            DefaultPalette.getInstance().getBaseColor());
+            UNSELECTED_COLOR, this, "unselectedColor");
 
     /**
      * The overlay color specifies the background color used when hovering and
@@ -61,8 +68,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * to be visible when a semi-opaque overlay color is provided.
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, RadioButton.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
+            OVERLAY_COLOR, this, "overlayColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
@@ -70,7 +76,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * When disabled, the transition end values will apply instantly.
      */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, RadioButton.this, "disableAnimation", false);
+            DISABLE_ANIMATION, this, "disableAnimation");
 
     /**
      * Creates a radio button with an empty string for its label.
@@ -159,7 +165,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
         return this.overlayColor.get();
     }
 
-    public void setOverlayColor(Paint overlayColor)
+    public void setOverlayColor(Color overlayColor)
     {
         this.overlayColor.set(overlayColor);
     }
@@ -221,82 +227,6 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
         getStyleClass().add(this.accent.getStyleClassName());
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<RadioButton, Paint> SELECTED_COLOR = new CssMetaData<RadioButton, Paint>(
-                "-rt-selected-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(RadioButton control)
-            {
-                return control.selectedColor == null || !control.selectedColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(RadioButton control)
-            {
-                return control.selectedColorProperty();
-            }
-        };
-        private static final CssMetaData<RadioButton, Paint> UNSELECTED_COLOR = new CssMetaData<RadioButton, Paint>(
-                "-rt-unselected-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(RadioButton control)
-            {
-                return control.unselectedColor == null || !control.unselectedColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(RadioButton control)
-            {
-                return control.unselectedColorProperty();
-            }
-        };
-        private static final CssMetaData<RadioButton, Paint> OVERLAY_COLOR = new CssMetaData<RadioButton, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(RadioButton control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(RadioButton control)
-            {
-                return control.overlayColor;
-            }
-        };
-        private static final CssMetaData<RadioButton, Boolean> DISABLE_ANIMATION = new CssMetaData<RadioButton, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(RadioButton control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(RadioButton control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.CheckBox.getClassCssMetaData());
-            styleables.add(SELECTED_COLOR);
-            styleables.add(UNSELECTED_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            styleables.add(OVERLAY_COLOR);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
      * Returns the list of available CSS properties associated with this class,
      * which may include the properties of its super classes.
@@ -305,7 +235,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
     }
 
     /**
@@ -314,7 +244,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return getClassCssMetaData();
+        return FACTORY.getCssMetaData();
     }
     
     public static void loadStyleSheet()

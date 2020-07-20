@@ -1,7 +1,12 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Skin;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtProgressBarSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -13,6 +18,9 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
 
     private static final String USER_AGENT_STYLESHEET = "progress-bar.css";
     private static final String CSS_CLASS = "rt-progress-bar";
+
+    private static final StyleablePropertyFactory<IconButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
     
     public ProgressBar()
     {
@@ -81,6 +89,26 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
     
     public static void loadStyleSheet()

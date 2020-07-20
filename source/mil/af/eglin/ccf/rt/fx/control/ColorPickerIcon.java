@@ -24,6 +24,8 @@ import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtColorPickerIconSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
+import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
@@ -35,6 +37,8 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
     private static final String USER_AGENT_STYLESHEET = "color-picker.css";
     private static final String CSS_CLASS = "rt-color-picker";
 
+    private SvgIcon icon = new SvgIcon(SvgFile.EYEDROPPER_VARIANT);
+    
     /**
      * The overlay color specifies the background color used when hovering and
      * arming the button.
@@ -68,7 +72,6 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
         }
     };
 
-    // TODO add feature for changing icon and its size
     public ColorPickerIcon()
     {
         super();
@@ -79,6 +82,16 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
     {
         super(color);
         initialize();
+    }
+    
+    public final SvgIcon getIcon()
+    {
+        return this.icon;
+    }
+    
+    public final void setIcon(SvgIcon icon)
+    {
+        this.icon = icon;
     }
 
     public final ObjectProperty<Paint> overlayColorProperty()

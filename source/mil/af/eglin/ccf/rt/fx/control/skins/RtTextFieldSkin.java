@@ -85,12 +85,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         Pane inputContainer = this.input.getInputContainer();
         Point2D p = new Point2D(x - snappedLeftInset() - inputContainer.getPadding().getLeft(),
                 y - snappedTopInset() - (2 * inputContainer.getPadding().getTop()));
-
-        Text text = ((Text) textGroup.getChildren().get(1));
-        // Replace with text.hitTest(p) for JavaFX versions 9+
-        @SuppressWarnings("deprecation")
-        HitInfo hitInfo = text.impl_hitTestChar(translateCaretPosition(p));
-        return hitInfo;
+        return super.getIndex(p.getX(), p.getY());
     }
 
     @Override

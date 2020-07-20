@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -23,7 +19,7 @@ import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Color;
@@ -84,13 +80,27 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      */
     private StringProperty errorText = new SimpleStringProperty();
 
+    private static final StyleablePropertyFactory<ColorPicker> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = 
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+    private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    
     /**
      * When enabled, the prompt text will be positioned above the input text.
      * When disabled, the prompt text will disappear when the input text is
      * entered.
      */
     private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, ColorPicker.this, "labelFloat", false)
+            LABEL_FLOAT, this, "labelFloat")
     {
         @Override
         protected void invalidated()
@@ -107,8 +117,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * icon.
      */
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, ColorPicker.this, "unfocusColor",
-            DefaultPalette.getInstance().getBaseColor());
+            UNFOCUS_COLOR, this, "unfocusColor");
 
     /**
      * The focus color specifies the accent colors used when the component is
@@ -118,8 +127,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * icon.
      */
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, ColorPicker.this, "focusColor",
-            DefaultPalette.getInstance().getAccentColor());
+            FOCUS_COLOR, this, "focusColor");
 
     /**
      * The overlay color specifies the background color used when hovering and
@@ -129,8 +137,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * be visible when a semi-opaque overlay color is provided.
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, ColorPicker.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
+            OVERLAY_COLOR, this, "overlayColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
@@ -138,7 +145,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * When disabled, the transition end values will apply instantly.
      */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, ColorPicker.this, "disableAnimation", false);
+            DISABLE_ANIMATION, this, "disableAnimation");
 
     /**
      * Indicates if the label showing the name or hex value of the current color
@@ -491,121 +498,6 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         return null;
     }
 
-    private static class StyleableProperties
-    {
-
-        private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = new CssMetaData<ColorPicker, Boolean>(
-                "-rt-label-float", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(ColorPicker control)
-            {
-                return control.isLabelFloating == null || !control.isLabelFloating.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(ColorPicker control)
-            {
-                return control.isLabelFloating;
-            }
-        };
-        private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = new CssMetaData<ColorPicker, Paint>(
-                "-rt-unfocus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(ColorPicker control)
-            {
-                return control.unfocusColor == null || !control.unfocusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(ColorPicker control)
-            {
-                return control.unfocusColor;
-            }
-        };
-        private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = new CssMetaData<ColorPicker, Paint>(
-                "-rt-focus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(ColorPicker control)
-            {
-                return control.focusColor == null || !control.focusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(ColorPicker control)
-            {
-                return control.focusColor;
-            }
-        };
-        private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = new CssMetaData<ColorPicker, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(ColorPicker control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(ColorPicker control)
-            {
-                return control.overlayColor;
-            }
-        };
-
-        private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = new CssMetaData<ColorPicker, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(ColorPicker control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(ColorPicker control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.ColorPicker.getClassCssMetaData());
-            styleables.add(LABEL_FLOAT);
-            styleables.add(UNFOCUS_COLOR);
-            styleables.add(FOCUS_COLOR);
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return StyleableProperties.CHILD_STYLEABLES;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -614,6 +506,26 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

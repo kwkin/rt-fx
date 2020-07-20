@@ -1,7 +1,12 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.TextStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -23,6 +28,9 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
 
     private static final String USER_AGENT_STYLESHEET = "text.css";
     private static final String CSS_CLASS = "rt-text";
+
+    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.text.Text.getClassCssMetaData());
 
     /**
      * Creates a text with an empty string.
@@ -146,6 +154,25 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
         {
             pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
         }
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

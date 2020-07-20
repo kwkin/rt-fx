@@ -1,8 +1,13 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
 import javafx.collections.ObservableList;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -14,6 +19,9 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
 
     private static final String USER_AGENT_STYLESHEET = "list-view.css";
     private static final String CSS_CLASS = "rt-list-view";
+
+    private static final StyleablePropertyFactory<IconButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ListView.getClassCssMetaData());
 
     /**
      * Creates a default ListView which will display contents stacked
@@ -132,6 +140,26 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
         {
             pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

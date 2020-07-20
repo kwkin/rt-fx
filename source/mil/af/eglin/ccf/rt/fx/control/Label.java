@@ -1,7 +1,12 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
@@ -25,6 +30,9 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     private static final String USER_AGENT_STYLESHEET = "label.css";
     private static final String CSS_CLASS = "rt-label";
 
+    private static final StyleablePropertyFactory<IconButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+    
     /**
      * Creates a label with an empty string.
      */
@@ -162,6 +170,26 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         {
             pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

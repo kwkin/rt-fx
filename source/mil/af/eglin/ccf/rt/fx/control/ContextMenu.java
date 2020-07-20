@@ -1,7 +1,12 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.MenuItem;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -12,6 +17,9 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
     private static final String CSS_CLASS = "rt-context-menu";
     
     private Accent accent = Accent.PRIMARY_MID;
+
+    private static final StyleablePropertyFactory<ColorPicker> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ContextMenu.getClassCssMetaData());
 
     public ContextMenu()
     {
@@ -61,6 +69,25 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

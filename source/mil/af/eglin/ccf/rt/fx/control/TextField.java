@@ -1,13 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
-import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -29,9 +24,10 @@ import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtTextFieldSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -113,13 +109,34 @@ public class TextField extends javafx.scene.control.TextField
      */
     private ObjectProperty<Icon> trailingIcon = new SimpleObjectProperty<Icon>();
 
+    private static final StyleablePropertyFactory<TextField> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<TextField, Boolean> TRAILING_VISIBILITY = 
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isTrailingVisible, false, false);
+    private static final CssMetaData<TextField, Boolean> LABEL_FLOAT = 
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+    private static final CssMetaData<TextField, Paint> UNFOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<TextField, Paint> FOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<TextField, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<TextField, Number> TRAILING_PADDING = 
+            FACTORY.createSizeCssMetaData("-rt-trailing-gap", s -> s.trailingIconGap, 10, false);
+    private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.trailingIconColor, DefaultPalette.getInstance().getLightBaseColor(), false);
+    private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+
     /**
      * When enabled, the prompt text will be positioned above the input text.
      * When disabled, the prompt text will disappear when the input text is
      * entered.
      */
-    private StyleableBooleanProperty islabelFloating = new SimpleStyleableBooleanProperty(
-            StyleableProperties.LABEL_FLOAT, TextField.this, "disableAnimation", false)
+    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
+            LABEL_FLOAT, this, "labelFloat")
     {
         @Override
         protected void invalidated()
@@ -134,7 +151,7 @@ public class TextField extends javafx.scene.control.TextField
      * Trailing text will override a trailing icon if both are set.
      */
     private StyleableBooleanProperty isTrailingVisible = new SimpleStyleableBooleanProperty(
-            StyleableProperties.TRAILING_VISIBILITY, TextField.this, "trailingVisible", true);
+            TRAILING_VISIBILITY, TextField.this, "trailingVisible", true);
 
     /**
      * The unfocus color specifies the accent colors used when the component is
@@ -144,8 +161,7 @@ public class TextField extends javafx.scene.control.TextField
      * icon.
      */
     private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.UNFOCUS_COLOR, TextField.this, "unfocusColor",
-            DefaultPalette.getInstance().getBaseColor());
+            UNFOCUS_COLOR, this, "unfocusColor");
 
     /**
      * The focus color specifies the accent colors used when the component is
@@ -155,26 +171,24 @@ public class TextField extends javafx.scene.control.TextField
      * icon.
      */
     private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.FOCUS_COLOR, TextField.this, "focusColor",
-            DefaultPalette.getInstance().getAccentColor());
+            FOCUS_COLOR, this, "focusColor");
 
     /**
-     * The overlay color specifies the background color used when combobox is
-     * hovered over or focused
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
      * <p>
      * The color is added on top of the button to allow the base button color to
      * be visible when a semi-opaque overlay color is provided.
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, TextField.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
+            OVERLAY_COLOR, this, "overlayColor");
 
     /**
      * Sets the padding between the text field right border and the start of the
      * trailing icon.
      */
     private StyleableDoubleProperty trailingIconGap = new SimpleStyleableDoubleProperty(
-            StyleableProperties.TRAILING_PADDING, TextField.this, "trailingIconGap", 10.0);
+            TRAILING_PADDING, this, "trailingIconGap");
 
     /**
      * Sets color of the trailing icon.
@@ -182,17 +196,16 @@ public class TextField extends javafx.scene.control.TextField
      * When unspecified, the trailing icon color will be specified by the color
      * used when defining the icon.
      */
-    private StyleableObjectProperty<Paint> trailingIconColor = new SimpleStyleableObjectProperty<Paint>(
-            StyleableProperties.TRAILING_ICON_COLOR, TextField.this, "trailingIconColor",
-            DefaultPalette.getInstance().getLightBaseColor());
+    private StyleableObjectProperty<Paint> trailingIconColor = new SimpleStyleableObjectProperty<>(
+            TRAILING_ICON_COLOR, this, "trailingIconColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private StyleableBooleanProperty disableAnimation = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, TextField.this, "disableAnimation", false);
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "disableAnimation");
 
     /**
      * Create a text field with an empty text input
@@ -253,7 +266,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public StyleableBooleanProperty labelFloatProperty()
     {
-        return this.islabelFloating;
+        return this.isLabelFloating;
     }
 
     /**
@@ -262,7 +275,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public boolean isLabelFloat()
     {
-        return islabelFloating.get();
+        return isLabelFloating.get();
     }
 
     /**
@@ -271,7 +284,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public void setLabelFloat(final boolean labelFloat)
     {
-        islabelFloating.set(labelFloat);
+        isLabelFloating.set(labelFloat);
     }
 
     /**
@@ -349,7 +362,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public StyleableBooleanProperty disableAnimationProperty()
     {
-        return this.disableAnimation;
+        return this.isAnimationDisabled;
     }
 
     /**
@@ -358,7 +371,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public Boolean isDisableAnimation()
     {
-        return this.disableAnimation.get();
+        return this.isAnimationDisabled.get();
     }
 
     /**
@@ -367,7 +380,7 @@ public class TextField extends javafx.scene.control.TextField
     @Override
     public void setDisableAnimation(Boolean disabled)
     {
-        this.disableAnimation.set(disabled);
+        this.isAnimationDisabled.set(disabled);
     }
 
     public ObjectProperty<String> trailingTextProperty()
@@ -410,7 +423,7 @@ public class TextField extends javafx.scene.control.TextField
         return trailingIconColor.get();
     }
 
-    public void setTrailingIconColor(Paint color)
+    public void setTrailingIconColor(Color color)
     {
         this.trailingIconColor.set(color);
     }
@@ -618,18 +631,12 @@ public class TextField extends javafx.scene.control.TextField
         return null;
     }
 
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
 
-        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.islabelFloating.get());
+        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.isLabelFloating.get());
         pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
         this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<String>>()
         {
@@ -641,161 +648,24 @@ public class TextField extends javafx.scene.control.TextField
         });
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<TextField, Paint> OVERLAY_COLOR = new CssMetaData<TextField, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextField control)
-            {
-                return control.overlayColor;
-            }
-        };
-
-        private static final CssMetaData<TextField, Boolean> LABEL_FLOAT = new CssMetaData<TextField, Boolean>(
-                "-rt-label-float", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.islabelFloating == null || !control.islabelFloating.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(TextField control)
-            {
-                return control.islabelFloating;
-            }
-        };
-
-        private static final CssMetaData<TextField, Boolean> TRAILING_VISIBILITY = new CssMetaData<TextField, Boolean>(
-                "-rt-trailing-visiblity", BooleanConverter.getInstance(), true)
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.isTrailingVisible == null || !control.isTrailingVisible.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(TextField control)
-            {
-                return control.isTrailingVisible;
-            }
-        };
-        private static final CssMetaData<TextField, Paint> UNFOCUS_COLOR = new CssMetaData<TextField, Paint>(
-                "-rt-unfocus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.unfocusColor == null || !control.unfocusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextField control)
-            {
-                return control.unfocusColor;
-            }
-        };
-        private static final CssMetaData<TextField, Paint> FOCUS_COLOR = new CssMetaData<TextField, Paint>(
-                "-rt-focus-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.focusColor == null || !control.focusColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextField control)
-            {
-                return control.focusColor;
-            }
-        };
-        private static final CssMetaData<TextField, Number> TRAILING_PADDING = new CssMetaData<TextField, Number>(
-                "-rt-trailing-gap", SizeConverter.getInstance(), 10.0)
-        {
-
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.trailingIconGap == null || !control.trailingIconGap.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Number> getStyleableProperty(TextField control)
-            {
-                return control.trailingIconGap;
-            }
-        };
-        private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = new CssMetaData<TextField, Paint>(
-                "-rt-trailing-icon-color", PaintConverter.getInstance(),
-                DefaultPalette.getInstance().getLightBaseColor())
-        {
-
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.trailingIconColor == null || !control.trailingIconColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(TextField control)
-            {
-                return control.trailingIconColor;
-            }
-        };
-        private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = new CssMetaData<TextField, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(TextField control)
-            {
-                return control.disableAnimation == null || !control.disableAnimation.isBound();
-            }
-
-            @Override
-            public StyleableBooleanProperty getStyleableProperty(TextField control)
-            {
-                return control.disableAnimation;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.TextField.getClassCssMetaData());
-            // @formatter:off
-            styleables.add(LABEL_FLOAT);
-            styleables.add(UNFOCUS_COLOR);
-            styleables.add(FOCUS_COLOR);
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(TRAILING_PADDING);
-            styleables.add(TRAILING_ICON_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            // @formatter:on
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

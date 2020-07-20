@@ -1,22 +1,20 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -44,14 +42,19 @@ public class IconButton extends Button implements Icon
 
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
+    private static final StyleablePropertyFactory<IconButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-disable-animation", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);
+
     /**
      * The color of the icon when the button is armed.
      * <p>
      * When not armed, the icon will retain the color specified by the icon
      */
     private StyleableObjectProperty<Paint> selectedIconFill = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.SELECTED_ICON_COLOR, this, "selectedFill",
-            DefaultPalette.getInstance().getAccentColor());
+            SELECTED_ICON_COLOR, this, "selectedFill");
 
     // to RtTextFieldIcon
     /**
@@ -184,32 +187,13 @@ public class IconButton extends Button implements Icon
         this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = new CssMetaData<IconButton, Paint>(
-                "-rt-selected-icon-color", PaintConverter.getInstance())
-        {
-            @Override
-            public boolean isSettable(IconButton control)
-            {
-                return control.selectedIconFill == null || !control.selectedIconFill.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(IconButton control)
-            {
-                return control.selectedIconFill;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(Button.getClassCssMetaData());
-            styleables.add(SELECTED_ICON_COLOR);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
     }
 
     /**
@@ -218,18 +202,9 @@ public class IconButton extends Button implements Icon
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
     {
-        return StyleableProperties.CHILD_STYLEABLES;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
+        return FACTORY.getCssMetaData();
     }
 
     /**

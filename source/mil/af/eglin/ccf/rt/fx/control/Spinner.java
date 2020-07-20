@@ -1,7 +1,12 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
+import java.util.List;
+
 import com.sun.javafx.css.StyleManager;
 
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -12,6 +17,9 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
 
     private static final String USER_AGENT_STYLESHEET = "spinner.css";
     private static final String CSS_CLASS = "rt-spinner";
+
+    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Spinner.getClassCssMetaData());
 
     public Spinner()
     {
@@ -71,6 +79,26 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
         getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
+    }
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
     
     /**
