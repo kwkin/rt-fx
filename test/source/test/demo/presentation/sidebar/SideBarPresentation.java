@@ -15,6 +15,7 @@ import mil.af.eglin.ccf.rt.fx.control.TreeView;
 import mil.af.eglin.ccf.rt.fx.layout.BorderPane;
 import test.demo.control.TitledContentPane;
 
+// TODO add sidebar as a control
 public class SideBarPresentation extends StackPane
 {
     private HashMap<TreeItem<String>, TitledContentPane> itemMap = new HashMap<TreeItem<String>, TitledContentPane>();

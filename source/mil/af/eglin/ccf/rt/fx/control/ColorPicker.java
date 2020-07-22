@@ -33,6 +33,10 @@ import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A color picker allows the user to select a color from a standard color
+ * palette or specify a custom color.
+ */
 public class ColorPicker extends javafx.scene.control.ColorPicker
         implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<Color>
 {
@@ -80,27 +84,27 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      */
     private StringProperty errorText = new SimpleStringProperty();
 
-    private static final StyleablePropertyFactory<ColorPicker> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+    private static final StyleablePropertyFactory<ColorPicker> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ColorPicker.getClassCssMetaData());
 
-    private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = 
-            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
-    private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-    
+    private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = FACTORY
+            .createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+    private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = FACTORY.createPaintCssMetaData("-rt-focus-color",
+            s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
     /**
      * When enabled, the prompt text will be positioned above the input text.
      * When disabled, the prompt text will disappear when the input text is
      * entered.
      */
-    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
-            LABEL_FLOAT, this, "labelFloat")
+    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(LABEL_FLOAT, this,
+            "labelFloat")
     {
         @Override
         protected void invalidated()
@@ -116,8 +120,8 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * Accented color typically include the border, prompt text, and drop down
      * icon.
      */
-    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            UNFOCUS_COLOR, this, "unfocusColor");
+    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(UNFOCUS_COLOR, this,
+            "unfocusColor");
 
     /**
      * The focus color specifies the accent colors used when the component is
@@ -126,8 +130,8 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * Accented color typically include the border, prompt text, and drop down
      * icon.
      */
-    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            FOCUS_COLOR, this, "focusColor");
+    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(FOCUS_COLOR, this,
+            "focusColor");
 
     /**
      * The overlay color specifies the background color used when hovering and
@@ -136,16 +140,16 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * The color is added on top of the button to allow the base button color to
      * be visible when a semi-opaque overlay color is provided.
      */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            OVERLAY_COLOR, this, "overlayColor");
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this,
+            "overlayColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "disableAnimation");
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
+            "disableAnimation");
 
     /**
      * Indicates if the label showing the name or hex value of the current color
@@ -161,12 +165,20 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         }
     };
 
+    /**
+     * Creates a {@code ColorPicker} initialized with a white value
+     */
     public ColorPicker()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a {@code ColorPicker} initialized with the provided color
+     * 
+     * @param color the initial color
+     */
     public ColorPicker(Color color)
     {
         super(color);
@@ -201,12 +213,20 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         return isValid();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObservableValue<Color> getObservableValue()
     {
         return valueProperty();
     }
 
+    /**
+     * Gets the list of validators used to check the current value 
+     * 
+     * @return the list of validators used to check the current value 
+     */
     public ObservableList<Validator<Color>> getValidators()
     {
         return this.validationHandler.getValidators();
@@ -512,8 +532,8 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
         return FACTORY.getCssMetaData();
     }
 
@@ -523,7 +543,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

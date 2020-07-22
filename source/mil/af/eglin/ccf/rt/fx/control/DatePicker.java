@@ -19,14 +19,22 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
     private static final String CSS_CLASS = "rt-date-picker";
 
     private static final StyleablePropertyFactory<ColorPicker> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.DatePicker.getClassCssMetaData());
     
+    /**
+     * Creates a {@code DatePicker} with no date initialized
+     */
     public DatePicker()
     {
         super();
         initialize();
     }
     
+    /**
+     * Creates a {@code DatePicker} with the specified accent and no date initialized
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public DatePicker(Accent accent)
     {
         super();
@@ -34,12 +42,24 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
         initialize();
     }
 
+    /**
+     * Creates a {@code DatePicker} initialized with the provided date
+     *
+     * @param localDate the initial date
+     */
     public DatePicker(LocalDate localDate)
     {
         super(localDate);
         initialize();
     }
-    
+
+
+    /**
+     * Creates a {@code DatePicker} initialized with the provided date and accent
+     *
+     * @param localDate the initial date
+     * @param accent the accent used to change the component's color scheme
+     */
     public DatePicker(LocalDate localDate, Accent accent)
     {
         super(localDate);

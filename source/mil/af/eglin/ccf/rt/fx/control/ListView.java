@@ -12,6 +12,11 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.control.style.ListViewStyle;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A list view displays a horizontal or vertical list of selectable items.
+ * 
+ * @param <T> the type of objects stored in the list view
+ */
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
     protected ListViewStyle style = ListViewStyle.SOLID;

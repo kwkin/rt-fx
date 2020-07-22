@@ -11,6 +11,9 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A control that provides a scrolled, clipped viewport of its contents.
+ */
 public class ScrollPane extends javafx.scene.control.ScrollPane
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -19,27 +22,47 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     private static final String CSS_CLASS = "rt-scroll-pane";
 
     private static final StyleablePropertyFactory<IconButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.ScrollPane.getClassCssMetaData());
     
+    /**
+     * Creates an empty {@code ScrollPane}
+     */
     public ScrollPane()
     {
         super();
         initialize();
     }
-    
+
+    /**
+     * Creates an empty {@code ScrollPane} with the provided accent
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public ScrollPane(Accent accent)
     {
         super();
         this.accent = accent;
         initialize();
     }
-    
+
+
+    /**
+     * Creates an empty {@code ScrollPane} with the provided content and accent
+     * 
+     * @param content the node to set as the scroll pane's content
+     */
     public ScrollPane(Node content)
     {
         super(content);
         initialize();
     }
-    
+
+    /**
+     * Creates an empty {@code ScrollPane} with the provided content and accent
+     * 
+     * @param content the node to set as the scroll pane's content
+     * @param accent the accent used to change the component's color scheme
+     */
     public ScrollPane(Node content, Accent accent)
     {
         super(content);

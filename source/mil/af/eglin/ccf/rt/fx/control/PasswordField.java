@@ -10,6 +10,9 @@ import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A text field that masks entered characters
+ */
 public class PasswordField extends javafx.scene.control.PasswordField implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -18,8 +21,11 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     private static final String CSS_CLASS = "rt-text-field";
 
     private static final StyleablePropertyFactory<IconButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.PasswordField.getClassCssMetaData());
     
+    /**
+     * Creates an empty {@code PasswordField}
+     */
     public PasswordField()
     {
         super();
@@ -78,7 +84,10 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     {
         return FACTORY.getCssMetaData();
     }
-    
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

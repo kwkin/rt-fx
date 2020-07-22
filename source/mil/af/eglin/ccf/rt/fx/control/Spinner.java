@@ -11,6 +11,11 @@ import javafx.scene.control.SpinnerValueFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A spinner allows the user to enter and edit text, or select the value from an ordered sequence
+ * 
+ * @param <T> the type of value that can be iterated through
+ */
 public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -21,25 +26,43 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
     private static final StyleablePropertyFactory<CheckBox> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.Spinner.getClassCssMetaData());
 
+    /**
+     * Creates an empty {@code Spinner} with a non-editable text editor
+     */
     public Spinner()
     {
         super();
         initialize();
     }
-    
+
+    /**
+     * Creates an empty {@code Spinner} with the provided accent and a non-editable text editor
+     */
     public Spinner(Accent accent)
     {
         super();
         this.accent = accent;
         initialize();
     }
-    
+
+    /**
+     * Creates an {@code Spinner} with the provided value factory
+     * 
+     * @param valueFactory the value factory to use
+     */
     public Spinner(SpinnerValueFactory<T> valueFactory)
     {
         super(valueFactory);
         initialize();
     }
-    
+
+
+    /**
+     * Creates an {@code Spinner} with the provided value factory and accent
+     * 
+     * @param valueFactory the value factory to use
+     * @param accent the accent used to change the component's color scheme
+     */
     public Spinner(SpinnerValueFactory<T> valueFactory, Accent accent)
     {
         super(valueFactory);

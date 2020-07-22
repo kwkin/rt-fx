@@ -8,7 +8,7 @@ import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.ToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgFile;
@@ -44,15 +44,15 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
 
         GridPane toggleButtonGridPane = new GridPane();
 
-        ToggleButton primaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
-        ToggleButton primaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_MID);
-        ToggleButton primaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.PRIMARY_DARK);
+        ToggleButton primaryLightToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.PRIMARY_LIGHT);
+        ToggleButton primaryMidToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.PRIMARY_MID);
+        ToggleButton primaryDarkToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.PRIMARY_DARK);
 
-        ToggleButton secondaryLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
-        ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
-        ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
+        ToggleButton secondaryLightToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.SECONDARY_LIGHT);
+        ToggleButton secondaryMidToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.SECONDARY_MID);
+        ToggleButton secondaryDarkToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.SECONDARY_DARK);
 
-        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", ToggleButtonStyle.RAISED, Accent.BASE);
+        ToggleButton baseLightToggleButton = new ToggleButton("TOGGLE", IconToggleButtonStyle.RAISED, Accent.BASE);
 
         toggleButtonGridPane.add(primaryLightToggleButton, 0, 0);
         toggleButtonGridPane.add(primaryMidToggleButton, 1, 0);
@@ -126,20 +126,20 @@ public class ToggleButtonPanePresentation extends SizedTitledCard
 
         SvgIcon play = new SvgIcon(SvgFile.PLAY, IconSize.SIZE_32);
         SvgIcon pause = new SvgIcon(SvgFile.PAUSE, IconSize.SIZE_32);
-        IconToggleButton accented = new IconToggleButton(play, pause, ToggleButtonStyle.ACCENTED_ICON);
+        IconToggleButton accented = new IconToggleButton(play, pause, IconToggleButtonStyle.ACCENTED_ICON);
 
         SvgIcon mapAlert = new SvgIcon(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
         SvgIcon mapAlertCircle = new SvgIcon(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton accentedWithText = new IconToggleButton(mapAlert, mapAlertCircle, ToggleButtonStyle.ACCENTED_ICON);
+        IconToggleButton accentedWithText = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED_ICON);
         accentedWithText.setText("Accented");
 
         SvgIcon alertCircle = new SvgIcon(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
         SvgIcon alertCircleOutline = new SvgIcon(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton glowing = new IconToggleButton(alertCircle, alertCircleOutline, ToggleButtonStyle.GLOWING_ICON);
+        IconToggleButton glowing = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING_ICON);
 
         SvgIcon shieldAlert = new SvgIcon(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
         SvgIcon shieldAlertOutline = new SvgIcon(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton glowingWithText = new IconToggleButton(shieldAlert, shieldAlertOutline, ToggleButtonStyle.GLOWING_ICON);
+        IconToggleButton glowingWithText = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING_ICON);
         glowingWithText.setText("Glowing");
 
         pane.getChildren().add(normal);

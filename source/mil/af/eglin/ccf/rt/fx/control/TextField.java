@@ -110,7 +110,7 @@ public class TextField extends javafx.scene.control.TextField
     private ObjectProperty<Icon> trailingIcon = new SimpleObjectProperty<Icon>();
 
     private static final StyleablePropertyFactory<TextField> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.TextField.getClassCssMetaData());
 
     private static final CssMetaData<TextField, Boolean> TRAILING_VISIBILITY = 
             FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isTrailingVisible, false, false);
@@ -208,7 +208,7 @@ public class TextField extends javafx.scene.control.TextField
             DISABLE_ANIMATION, this, "disableAnimation");
 
     /**
-     * Create a text field with an empty text input
+     * Create a {@code TextField} with an empty text input
      */
     public TextField()
     {
@@ -217,7 +217,9 @@ public class TextField extends javafx.scene.control.TextField
     }
 
     /**
-     * Create a text field with initial text content
+     * Create a {@code TextField} with initial text content
+     * 
+     * @param text the initial text value
      */
     public TextField(String text)
     {
@@ -226,7 +228,9 @@ public class TextField extends javafx.scene.control.TextField
     }
 
     /**
-     * Create a text field with the specified accent
+     * Create a {@code TextField} with the specified accent
+     * 
+     * @param accent the accent used to change the component's color scheme
      */
     public TextField(Accent accent)
     {
@@ -236,7 +240,10 @@ public class TextField extends javafx.scene.control.TextField
     }
 
     /**
-     * Create a text field with initial text content and accent
+     * Create a {@code TextField} with initial text content and accent
+     * 
+     * @param text the initial text value
+     * @param accent the accent used to change the component's color scheme
      */
     public TextField(String text, Accent accent)
     {

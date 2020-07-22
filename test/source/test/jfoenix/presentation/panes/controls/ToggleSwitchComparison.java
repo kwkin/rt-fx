@@ -11,7 +11,7 @@ import javafx.scene.layout.Priority;
 import mil.af.eglin.ccf.rt.fx.control.IconToggleButton;
 import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.ToggleSwitch;
-import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 import mil.af.eglin.ccf.rt.fx.icons.IconSize;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
@@ -129,17 +129,17 @@ public class ToggleSwitchComparison extends SizedTitledCard
 
         SvgIcon mapAlert = new SvgIcon(SvgFile.MAP_MARKER_ALERT, IconSize.SIZE_32);
         SvgIcon mapAlertCircle = new SvgIcon(SvgFile.MAP_MARKER_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, ToggleButtonStyle.ACCENTED_ICON);
+        IconToggleButton rtMapAlert = new IconToggleButton(mapAlert, mapAlertCircle, IconToggleButtonStyle.ACCENTED_ICON);
         rtMapAlert.setText("Highlighted");
 
         SvgIcon shieldAlert = new SvgIcon(SvgFile.SHIELD_ALERT, IconSize.SIZE_32);
         SvgIcon shieldAlertOutline = new SvgIcon(SvgFile.SHIELD_ALERT_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, ToggleButtonStyle.GLOWING_ICON);
+        IconToggleButton rtToggle = new IconToggleButton(shieldAlert, shieldAlertOutline, IconToggleButtonStyle.GLOWING_ICON);
         rtToggle.setText("Glowing");
 
         SvgIcon alertCircle = new SvgIcon(SvgFile.ALERT_CIRCLE, IconSize.SIZE_32);
         SvgIcon alertCircleOutline = new SvgIcon(SvgFile.ALERT_CIRCLE_OUTLINE, IconSize.SIZE_32);
-        IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, ToggleButtonStyle.GLOWING_ICON);
+        IconToggleButton rtToggleIconGlow = new IconToggleButton(alertCircle, alertCircleOutline, IconToggleButtonStyle.GLOWING_ICON);
 
         box.getChildren().add(smiley);
         box.getChildren().add(rtPalette);

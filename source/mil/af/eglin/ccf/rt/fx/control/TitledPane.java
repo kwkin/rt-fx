@@ -1,22 +1,19 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.css.CssMetaData;
-import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.Styleable;
-import javafx.css.StyleableBooleanProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A titled pane is a panel with a titled that can be opened and closed
+ */
 public class TitledPane extends javafx.scene.control.TitledPane
 {
     protected Accent accent;
@@ -24,21 +21,36 @@ public class TitledPane extends javafx.scene.control.TitledPane
     private static final String USER_AGENT_STYLESHEET = "titled-pane.css";
     private static final String CSS_CLASS = "rt-titled-pane";
 
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, this, "disableAnimation", false);
+    private static final StyleablePropertyFactory<TextField> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.TitledPane.getClassCssMetaData());
     
+    /**
+     * Creates a {@code TitledPane} with no title or content
+     */
     public TitledPane()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a {@code TitledPane} with the provided title and content
+     * 
+     * @param title the title of the TitledPane
+     * @param content the content of the TitledPane
+     */
     public TitledPane(String title, Node content)
     {
         super(title, content);
         initialize();
     }
-    
+
+
+    /**
+     * Creates a {@code TitledPane} with the provided accent and no title or content
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public TitledPane(Accent accent)
     {
         super();
@@ -46,32 +58,18 @@ public class TitledPane extends javafx.scene.control.TitledPane
         initialize();
     }
 
+    /**
+     * Creates a {@code TitledPane} with the provided title, content, and accent
+     * 
+     * @param title the title of the TitledPane
+     * @param content the content of the TitledPane
+     * @param accent the accent used to change the component's color scheme
+     */
     public TitledPane(String title, Node content, Accent accent)
     {
         super(title, content);
         this.accent = accent;
         initialize();
-    }
-
-    public BooleanProperty isAnimationDisabledProperty()
-    {
-        return this.isAnimationDisabled;
-    }
-
-    public boolean getIsAnimationDisabled()
-    {
-        return isAnimationDisabled.get();
-    }
-
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
-    {
-        this.isAnimationDisabled.set(isAnimationDisabled);
-    }
-
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
     }
 
     /**
@@ -92,43 +90,24 @@ public class TitledPane extends javafx.scene.control.TitledPane
         }
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<TitledPane, Boolean> DISABLE_ANIMATION = new CssMetaData<TitledPane, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(TitledPane control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(TitledPane control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.ToggleButton.getClassCssMetaData());
-            styleables.add(DISABLE_ANIMATION);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.CHILD_STYLEABLES;
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**

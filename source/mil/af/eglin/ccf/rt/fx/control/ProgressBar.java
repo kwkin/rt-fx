@@ -12,6 +12,9 @@ import mil.af.eglin.ccf.rt.fx.control.skins.RtProgressBarSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A horizontal or vertical bar used to represent progress
+ */
 public class ProgressBar extends javafx.scene.control.ProgressBar implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -19,15 +22,23 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     private static final String USER_AGENT_STYLESHEET = "progress-bar.css";
     private static final String CSS_CLASS = "rt-progress-bar";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
-    
+    private static final StyleablePropertyFactory<IconButton> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ProgressBar.getClassCssMetaData());
+
+    /**
+     * Creates an indeterminate {@code ProgressBar}
+     */
     public ProgressBar()
     {
         super();
         initialize();
     }
-    
+
+    /**
+     * Creates an indeterminate {@code ProgressBar} with the provided accent
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public ProgressBar(Accent accent)
     {
         super();
@@ -35,12 +46,24 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
         initialize();
     }
 
+    /**
+     * Creates an {@code ProgressBar} initialized to the provided progress
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public ProgressBar(double progress)
     {
         super(progress);
         initialize();
     }
 
+    /**
+     * Creates an {@code ProgressBar} with the provided accent and initialized
+     * to the provided progress
+     * 
+     * @param progress the initial progress
+     * @param accent the accent used to change the component's color scheme
+     */
     public ProgressBar(double progress, Accent accent)
     {
         super(progress);
@@ -56,7 +79,6 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     {
         return new RtProgressBarSkin(this);
     }
-    
 
     /**
      * {@inheritDoc}
@@ -80,11 +102,11 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -95,8 +117,8 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
         return FACTORY.getCssMetaData();
     }
 
@@ -106,11 +128,14 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }
-    
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

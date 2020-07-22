@@ -14,14 +14,17 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtIconToggleButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.ToggleButtonStyle;
+import mil.af.eglin.ccf.rt.fx.control.style.IconToggleButtonStyle;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A bi-state selection control allowing the user to toggle options.
+ */
 public class IconToggleButton extends ToggleButton implements Icon
 {
-    protected ToggleButtonStyle style = ToggleButtonStyle.ICON;
+    protected IconToggleButtonStyle style = IconToggleButtonStyle.ICON;
     protected Accent accent = Accent.PRIMARY_MID;
 
     protected SvgIcon selectedIcon;
@@ -32,7 +35,7 @@ public class IconToggleButton extends ToggleButton implements Icon
     private static final String USER_AGENT_STYLESHEET = "button.css";
     
     private static final StyleablePropertyFactory<IconToggleButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+        new StyleablePropertyFactory<>(ToggleButton.getClassCssMetaData());
 
     private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = 
             FACTORY.createPaintCssMetaData("-rt-selected-fill", s -> s.selectedFill, DefaultPalette.getInstance().getAccentColor(), false);
@@ -45,17 +48,30 @@ public class IconToggleButton extends ToggleButton implements Icon
     private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
             UNSELECTED_ICON_COLOR, this, "unselectedFill");
 
+    /**
+     * Creates a {@code IconToggleButton} with the provided select and unselected icons 
+     * 
+     * @param selectedIcon the button's icon when in the selected state
+     * @param unselectedIcon the button's icon when in the unselected state
+     */
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
     {
-        super(ToggleButtonStyle.ICON);
+        super(IconToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         initialize();
     }
 
+    /**
+     * Creates a {@code IconToggleButton} with the provided text and select and unselected icons 
+     * 
+     * @param selectedIcon the button's icon when in the selected state
+     * @param unselectedIcon the button's icon when in the unselected state
+     * @param text the text to use when the button is in both the selected and unselected states
+     */
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String text)
     {
-        super(ToggleButtonStyle.ICON);
+        super(IconToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.selectedText = text;
@@ -63,9 +79,17 @@ public class IconToggleButton extends ToggleButton implements Icon
         initialize();
     }
 
+    /**
+     * Creates a {@code IconToggleButton} with the provided select and unselected icons and text
+     * 
+     * @param selectedIcon the button's icon when selected
+     * @param unselectedIcon the button's icon when unselected
+     * @param selectedText the text to use when the button is selected
+     * @param unselectedText the text to use when the button is unselected
+     */
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String selectedText, String unselectedText)
     {
-        super(ToggleButtonStyle.ICON);
+        super(IconToggleButtonStyle.ICON);
         this.selectedIcon = selectedIcon;
         this.unselectedIcon = unselectedIcon;
         this.selectedText = selectedText;
@@ -73,7 +97,7 @@ public class IconToggleButton extends ToggleButton implements Icon
         initialize();
     }
 
-    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, ToggleButtonStyle style)
+    public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, IconToggleButtonStyle style)
     {
         super(style);
         this.selectedIcon = selectedIcon;
@@ -82,7 +106,7 @@ public class IconToggleButton extends ToggleButton implements Icon
         initialize();
     }
     
-    public ToggleButtonStyle getRtStyle()
+    public IconToggleButtonStyle getRtStyle()
     {
         return this.style;
     }

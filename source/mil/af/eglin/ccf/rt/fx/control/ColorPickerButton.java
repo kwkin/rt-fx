@@ -22,6 +22,10 @@ import mil.af.eglin.ccf.rt.fx.control.style.ColorPickerStyle;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A color picker allows the user to select a color from a standard color
+ * palette or specify a custom color.
+ */
 public class ColorPickerButton extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
 
@@ -31,32 +35,31 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
     private static final String USER_AGENT_STYLESHEET = "color-picker.css";
     private static final String CSS_CLASS = "rt-color-picker";
 
-    private static final StyleablePropertyFactory<ColorPickerButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Button.getClassCssMetaData());
-    
-    private static final CssMetaData<ColorPickerButton, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPickerButton, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    private static final StyleablePropertyFactory<ColorPickerButton> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<ColorPickerButton, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPickerButton, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
 
     /**
      * The overlay color specifies the background color used when hovering and
      * arming.
      * <p>
-     * The color is added on top of the component to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
+     * The color is added on top of the component to allow the base button color
+     * to be visible when a semi-opaque overlay color is provided.
      */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = 
-            new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this, "overlayColor");
-    
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
+
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
-            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
-    
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
      * Indicates if the label showing the name or hex value of the current color
@@ -72,13 +75,20 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
         }
     };
 
-    // TODO add feature for changing icon and its size
+    /**
+     * Creates a {@code ColorPickerButton} initialized with a white value
+     */
     public ColorPickerButton()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a {@code ColorPickerButton} initialized with the provided color
+     * 
+     * @param color the initial color
+     */
     public ColorPickerButton(Color color)
     {
         super(color);
@@ -185,8 +195,8 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
         return FACTORY.getCssMetaData();
     }
 
@@ -196,7 +206,7 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

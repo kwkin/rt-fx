@@ -21,11 +21,10 @@ import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 /**
- * A simple button control allows the user to take actions with a single press.
+ * A button allows the user to take actions with a single press.
  * <p>
  * In general, icon buttons should be created using the {@link IconButton
- * IconButton} class whenever using a
- * {@link Icon RtIcon} as the graphic. The
+ * IconButton} class whenever using a {@link Icon RtIcon} as the graphic. The
  * {@link IconButton IconButton} class provides additional API for styling and
  * using the icon inside the button. This class still allows the Icon type in
  * case a generic node wants to be used instead of {@link Icon RtIcon}.
@@ -37,36 +36,36 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
 {
     protected ButtonStyle style = ButtonStyle.RAISED;
     protected Accent accent = Accent.PRIMARY_MID;
-    
+
     private static final String USER_AGENT_STYLESHEET = "button.css";
     private static final String CSS_CLASS = "rt-button";
 
-    private static final StyleablePropertyFactory<Button> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Button.getClassCssMetaData());
-    
-    private static final CssMetaData<Button, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Button.getClassCssMetaData());
+
+    private static final CssMetaData<Button, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
+            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
 
     /**
      * The overlay color specifies the background color used when hovering and
      * arming.
      * <p>
-     * The color is added on top of the component to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
+     * The color is added on top of the component to allow the base button color
+     * to be visible when a semi-opaque overlay color is provided.
      */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = 
-            new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this, "overlayColor");
-    
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
+
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
-            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
-    
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
+
     /**
      * Creates a raised button with an empty string for its label.
      */
@@ -91,9 +90,8 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     /**
      * Creates a button with the specified style and accent
      * 
-     * @param style The style type used to change the component's look.
-     * @param accent The accent type used to change the component's color
-     *            scheme.
+     * @param style the style type used to change the component's look
+     * @param accent the accent used to change the component's color scheme
      */
     public Button(ButtonStyle style, Accent accent)
     {
@@ -130,10 +128,9 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     /**
      * Creates a button with the specified label text, style, and accent
      * 
-     * @param text A text string for its label.
-     * @param style The style type used to change the component's look.
-     * @param accent The accent type used to change the component's color
-     *            scheme.
+     * @param text a text string for its label
+     * @param style the style type used to change the component's look
+     * @param accent the accent used to change the component's color scheme
      */
     public Button(String text, ButtonStyle style, Accent accent)
     {
@@ -276,8 +273,8 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
         return FACTORY.getCssMetaData();
     }
 
@@ -287,7 +284,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

@@ -11,6 +11,10 @@ import javafx.scene.control.Tab;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A control that allows switching between a group of {@link Tab Tabs}. Only one
+ * tab may be visible at a time.
+ */
 public class TabPane extends javafx.scene.control.TabPane implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
@@ -18,15 +22,21 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
     private static final String USER_AGENT_STYLESHEET = "tab-pane.css";
     private static final String CSS_CLASS = "rt-tab-pane";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.CheckBox.getClassCssMetaData());
-    
+    private static final StyleablePropertyFactory<CheckBox> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.TabPane.getClassCssMetaData());
+
+    /**
+     * Creates a {@code TabPane} with no tabs
+     */
     public TabPane()
     {
         super();
         initialize();
     }
-    
+
+    /**
+     * Creates a {@code TabPane} with the specified accent and no tabs
+     */
     public TabPane(Accent accent)
     {
         super();
@@ -46,7 +56,7 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
         this.accent = accent;
         initialize();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -69,11 +79,11 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -107,7 +117,7 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
-    
+
     static
     {
         TabPane.loadStyleSheet();

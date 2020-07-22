@@ -10,6 +10,12 @@ import mil.af.eglin.ccf.rt.fx.control.TableView;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A bi-state selection control for adding a check box to a table.\
+ *
+ * @param <S> the type of the elements contained within the TableView
+ * @param <T> the type of the elements contained within the TableColumn.
+ */
 public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxTableCell<S, T>
 {
     private static final String USER_AGENT_STYLESHEET = "table-view.css";

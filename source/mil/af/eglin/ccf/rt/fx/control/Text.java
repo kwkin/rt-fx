@@ -44,7 +44,7 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
     /**
      * Creates a text with the specified text.
      * 
-     * @param text A text string for the text.
+     * @param text a text string for the text
      */
     public Text(String text)
     {

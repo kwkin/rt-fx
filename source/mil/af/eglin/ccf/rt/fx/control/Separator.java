@@ -11,6 +11,9 @@ import javafx.geometry.Orientation;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A horizontal or vertical separator line.
+ */
 public class Separator extends javafx.scene.control.Separator implements RtStyleableComponent
 {
     protected Accent accent = Accent.BASE;
@@ -21,18 +24,32 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
     private static final StyleablePropertyFactory<CheckBox> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.Separator.getClassCssMetaData());
     
+    /**
+     * Creates a horizontal {@code Separator}.
+     */
     public Separator()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a new {@code Separator} with the provided orientation.
+     * 
+     * @param orientation the orientation used to specify a horizontal or vertical separator
+     */
     public Separator(Orientation orientation)
     {
         super(orientation);
         initialize();
     }
-    
+
+
+    /**
+     * Creates a horizontal {@code Separator} with the provided accent.
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public Separator(Accent accent)
     {
         super();
@@ -40,6 +57,12 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
         initialize();
     }
 
+    /**
+     * Creates a horizontal {@code Separator} with the provided orientation and accent.
+     * 
+     * @param orientation the orientation used to specify a horizontal or vertical separator
+     * @param accent the accent used to change the component's color scheme
+     */
     public Separator(Orientation orientation, Accent accent)
     {
         super(orientation);

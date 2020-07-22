@@ -48,7 +48,7 @@ public class TableViewPresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("RT-FX tables can be styled with zebra stripes and various accents. Accents change the color of highlighted cells and nested components.");
 
-        TableView<TablePerson> table = new TableView<TablePerson>(Accent.PRIMARY_MID);
+        TableView<TablePerson> table = new TableView<TablePerson>();
         
         TableColumn<TablePerson, Boolean> isSubscribedColumn = new TableColumn<TablePerson, Boolean>("Sub");
         isSubscribedColumn.setCellValueFactory(new PropertyValueFactory<TablePerson, Boolean>("isSubscribed"));

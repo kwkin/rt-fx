@@ -60,6 +60,37 @@ public class RtTextAreaSkin extends TextAreaSkin
     }
 
     @Override
+    @SuppressWarnings("deprecation")
+    public HitInfo getIndex(double x, double y)
+    {
+        // TODO fix how broken JavaFX computes the hitbox.
+        return super.getIndex(x, y);
+//        Pane inputContainer = this.input.getInputContainer();
+//
+//        System.out.println("X: " + x);
+//        System.out.println("Y: " + y);
+//        double adjustedX = x - snappedLeftInset() - inputContainer.getPadding().getLeft();
+//        double adjustedY = y - snappedTopInset() - (inputContainer.getPadding().getTop());
+//        adjustedY = Math.max(adjustedY, inputContainer.getPadding().getTop() + 1);
+//        Point2D p = new Point2D(adjustedX, adjustedY);
+//        System.out.println("adjustedX: " + adjustedX);
+//        System.out.println("adjustedY: " + adjustedY);
+//
+//        HitInfo hit = textNode.impl_hitTestChar(p);
+//        int pos = hit.getCharIndex();
+//        if (pos > 0) {
+//            int oldPos = textNode.getImpl_caretPosition();
+//            textNode.setImpl_caretPosition(pos);
+//            PathElement element = textNode.getImpl_caretShape()[0];
+//            if (element instanceof MoveTo && ((MoveTo)element).getY() > adjustedY - inputContainer.getPadding().getTop()) {
+//                hit.setCharIndex(pos - 1);
+//            }
+//            textNode.setImpl_caretPosition(oldPos);
+//        }
+//        return hit;
+    }
+
+    @Override
     protected void handleControlPropertyChanged(String propertyReference)
     {
         super.handleControlPropertyChanged(propertyReference);

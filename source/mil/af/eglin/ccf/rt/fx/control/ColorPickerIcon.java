@@ -1,12 +1,8 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.BooleanConverter;
-import com.sun.javafx.css.converters.PaintConverter;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -16,8 +12,7 @@ import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableBooleanProperty;
-import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Skin;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -29,6 +24,10 @@ import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A color picker allows the user to select a color from a standard color
+ * palette or specify a custom color.
+ */
 public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
     protected ColorPickerStyle style = ColorPickerStyle.ICON;
@@ -38,25 +37,32 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
     private static final String CSS_CLASS = "rt-color-picker";
 
     private SvgIcon icon = new SvgIcon(SvgFile.EYEDROPPER_VARIANT);
+
+    private static final StyleablePropertyFactory<ColorPickerIcon> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
     
+    private static final CssMetaData<ColorPickerIcon, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<ColorPickerIcon, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
     /**
      * The overlay color specifies the background color used when hovering and
-     * arming the button.
+     * arming.
      * <p>
-     * The color is added on top of the button to allow the base button color to
+     * The color is added on top of the component to allow the base button color to
      * be visible when a semi-opaque overlay color is provided.
      */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.OVERLAY_COLOR, ColorPickerIcon.this, "overlayColor",
-            DefaultPalette.getInstance().getBaseColor());
-
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = 
+            new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this, "overlayColor");
+    
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            StyleableProperties.DISABLE_ANIMATION, ColorPickerIcon.this, "disableAnimation", false);
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
+            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
      * Indicates if the label showing the name or hex value of the current color
@@ -72,23 +78,41 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
         }
     };
 
+    /**
+     * Creates a {@code ColorPickerIcon} initialized with a white value
+     */
     public ColorPickerIcon()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a {@code ColorPickerIcon} initialized with the provided color
+     * 
+     * @param color the initial color
+     */
     public ColorPickerIcon(Color color)
     {
         super(color);
         initialize();
     }
     
+    /**
+     * Gets the icon used to represent the color picker value
+     * 
+     * @return the icon used to represent the color picker value
+     */
     public final SvgIcon getIcon()
     {
         return this.icon;
     }
-    
+
+    /**
+     * Sets the icon used to represent the color picker value
+     * 
+     * @param icon the icon used to represent the color picker value
+     */
     public final void setIcon(SvgIcon icon)
     {
         this.icon = icon;
@@ -180,50 +204,13 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
         return null;
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<ColorPickerIcon, Paint> OVERLAY_COLOR = new CssMetaData<ColorPickerIcon, Paint>(
-                "-rt-overlay-color", PaintConverter.getInstance(), DefaultPalette.getInstance().getBaseColor())
-        {
-            @Override
-            public boolean isSettable(ColorPickerIcon control)
-            {
-                return control.overlayColor == null || !control.overlayColor.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Paint> getStyleableProperty(ColorPickerIcon control)
-            {
-                return control.overlayColor;
-            }
-        };
-
-        private static final CssMetaData<ColorPickerIcon, Boolean> DISABLE_ANIMATION = new CssMetaData<ColorPickerIcon, Boolean>(
-                "-rt-disable-animation", BooleanConverter.getInstance(), false)
-        {
-            @Override
-            public boolean isSettable(ColorPickerIcon control)
-            {
-                return control.isAnimationDisabled == null || !control.isAnimationDisabled.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Boolean> getStyleableProperty(ColorPickerIcon control)
-            {
-                return control.isAnimationDisabled;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> CHILD_STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<>(
-                    javafx.scene.control.ColorPicker.getClassCssMetaData());
-            styleables.add(OVERLAY_COLOR);
-            styleables.add(DISABLE_ANIMATION);
-            CHILD_STYLEABLES = Collections.unmodifiableList(styleables);
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
     }
 
     /**
@@ -232,18 +219,9 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
     {
-        return StyleableProperties.CHILD_STYLEABLES;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
+        return FACTORY.getCssMetaData();
     }
 
     private void initialize()

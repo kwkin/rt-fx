@@ -32,17 +32,20 @@ import mil.af.eglin.ccf.rt.fx.validation.ValidateCondition;
 import mil.af.eglin.ccf.rt.fx.validation.Validator;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-// TODO error and helper pseudo states do not apply correctly
-public class TextArea extends javafx.scene.control.TextArea implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<String>
+/**
+ * Text fields allow users to enter and edit multiple lines of text.
+ */
+public class TextArea extends javafx.scene.control.TextArea
+        implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<String>
 {
     public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
     public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
-    
+
     protected Accent accent = Accent.PRIMARY_MID;
-    
+
     private static final String USER_AGENT_STYLESHEET = "text-area.css";
     private static final String CSS_CLASS = "rt-text-area";
-    
+
     private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
 
     // @formatter:off
@@ -59,7 +62,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     private StringProperty errorText = new SimpleStringProperty();
 
     private static final StyleablePropertyFactory<TextArea> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.TextArea.getClassCssMetaData());
 
     private static final CssMetaData<TextArea, Boolean> LABEL_FLOAT = 
             FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
@@ -125,26 +128,45 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
             DISABLE_ANIMATION, this, "disableAnimation");
     // @formatter:on
-    
+
+    /**
+     * Create a {@code TextArea} with an empty text input
+     */
     public TextArea()
     {
         super();
         initialize();
     }
-    
+
+    /**
+     * Create a {@code TextArea} with initial text content
+     * 
+     * @param text the initial text value
+     */
+    public TextArea(String text)
+    {
+        super(text);
+        initialize();
+    }
+
+    /**
+     * Create a {@code TextArea} with the specified accent
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public TextArea(Accent accent)
     {
         super();
         this.accent = accent;
         initialize();
     }
-    
-    public TextArea(String text)
-    {
-        super(text);
-        initialize();
-    }
-    
+
+    /**
+     * Create a {@code TextArea} with initial text content and accent
+     * 
+     * @param text the initial text value
+     * @param accent the accent used to change the component's color scheme
+     */
     public TextArea(String text, Accent accent)
     {
         super(text);
@@ -297,7 +319,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
@@ -317,7 +339,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
         this.helperText.set(helperText);
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -327,7 +348,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
         return this.isShowHelperText;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -336,7 +356,6 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         return this.isShowHelperText.get();
     }
-
 
     /**
      * {@inheritDoc}
@@ -406,7 +425,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         return this.validationHandler.getValidateCondition();
     }
-    
+
     public boolean isHelperTextVisible()
     {
         return isShowHelperText.get() || getValidators().size() > 0;
@@ -447,7 +466,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         return this.errorText.get();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -465,7 +484,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         return textProperty();
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -499,7 +518,7 @@ public class TextArea extends javafx.scene.control.TextArea implements RtStyleab
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
-    
+
     static
     {
         ScrollPane.loadStyleSheet();

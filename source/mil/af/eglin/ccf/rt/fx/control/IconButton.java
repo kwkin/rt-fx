@@ -14,7 +14,6 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtButtonSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -43,7 +42,7 @@ public class IconButton extends Button implements Icon
     private static final String USER_AGENT_STYLESHEET = "button.css";
 
     private static final StyleablePropertyFactory<IconButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
+        new StyleablePropertyFactory<>(Button.getClassCssMetaData());
 
     private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = 
             FACTORY.createPaintCssMetaData("-rt-disable-animation", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);

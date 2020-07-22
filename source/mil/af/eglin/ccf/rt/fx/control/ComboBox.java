@@ -23,7 +23,6 @@ import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleablePropertyFactory;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import mil.af.eglin.ccf.rt.fx.control.skins.RtComboBoxSkin;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -53,6 +52,9 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
 
     private ValidableHandler<T> validationHandler = new ValidableHandler<>(this);
 
+    private static final StyleablePropertyFactory<ComboBox<?>> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ComboBox.getClassCssMetaData());
+    
     /**
      * Indicates if the current value is valid according to the validator
      * conditions.
@@ -86,11 +88,8 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      */
     private StringProperty errorText = new SimpleStringProperty();
 
-    private static final StyleablePropertyFactory<ComboBox<?>> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ColorPicker.getClassCssMetaData());
-
     private static final CssMetaData<ComboBox<?>, Boolean> LABEL_FLOAT = 
-            FACTORY.createBooleanCssMetaData("-rt-overlay-color", s -> s.isLabelFloating, false, false);
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
     private static final CssMetaData<ComboBox<?>, Paint> UNFOCUS_COLOR = 
             FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
     private static final CssMetaData<ComboBox<?>, Paint> FOCUS_COLOR = 
@@ -99,14 +98,14 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
             FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
     private static final CssMetaData<ComboBox<?>, Boolean> DISABLE_ANIMATION = 
             FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-    
+
     /**
      * When enabled, the prompt text will be positioned above the input text.
      * When disabled, the prompt text will disappear when the input text is
      * entered.
      */
     private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
-            LABEL_FLOAT, this, "labelFloat")
+            LABEL_FLOAT, this, "labelFloat", false)
     {
         @Override
         protected void invalidated()
@@ -114,7 +113,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
         }
     };
-
+    
     /**
      * The unfocus color specifies the accent colors used when the component is
      * unfocused.
@@ -144,14 +143,14 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      */
     private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
             OVERLAY_COLOR, this, "overlayColor");
-
+    
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "disableAnimation");
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
+            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
      * Creates a default ComboBox instance with an empty items list and default

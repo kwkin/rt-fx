@@ -35,7 +35,7 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     private static final String CSS_CLASS = "rt-radio-button";
 
     private static final StyleablePropertyFactory<RadioButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+        new StyleablePropertyFactory<>(javafx.scene.control.RadioButton.getClassCssMetaData());
 
     private static final CssMetaData<RadioButton, Paint> SELECTED_COLOR = 
             FACTORY.createPaintCssMetaData("-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
