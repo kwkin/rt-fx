@@ -51,7 +51,7 @@ public class DescriptionContainer<T extends ValidableControl<?> & DescriptionCon
      */
     public ReadOnlyBooleanProperty isShowHelperTextProperty()
     {
-        return this.control.isShowHelperTextProperty();
+        return this.control.helperTextVisibleProperty();
     }
 
     /**

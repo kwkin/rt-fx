@@ -22,7 +22,7 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     private static final String USER_AGENT_STYLESHEET = "progress-bar.css";
     private static final String CSS_CLASS = "rt-progress-bar";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<ProgressBar> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.ProgressBar.getClassCssMetaData());
 
     /**

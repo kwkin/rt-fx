@@ -39,14 +39,14 @@ public interface DescriptionControl
      * 
      * @return The helper text visibility property
      */
-    public BooleanProperty isShowHelperTextProperty();
+    public BooleanProperty helperTextVisibleProperty();
 
     /**
      * Returns the helper text visibility
      * 
-     * @return True if the helper text is visible
+     * @return true if the helper text is visible
      */
-    public boolean getIsShowHelperText();
+    public boolean getHelperTextVisible();
 
     /**
      * Sets the whether or not the helper text is visible
@@ -54,5 +54,5 @@ public interface DescriptionControl
      * @param isShowHelperText
      *            Whether the helper text is visible
      */
-    public void setIsShowHelperText(boolean isShowHelperText);
+    public void setHelperTextVisible(boolean isHelperTextVisible);
 }

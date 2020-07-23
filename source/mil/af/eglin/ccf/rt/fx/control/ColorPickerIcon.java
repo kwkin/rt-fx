@@ -213,6 +213,16 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
         return FACTORY.getCssMetaData();
     }
 
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
+        {
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
+        }
+    }
+
     /**
      * Returns the list of available CSS properties associated with this class,
      * which may include the properties of its super classes.
@@ -222,16 +232,6 @@ public class ColorPickerIcon extends javafx.scene.control.ColorPicker implements
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
     {
         return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
-        {
-            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
-        }
     }
 
     /**

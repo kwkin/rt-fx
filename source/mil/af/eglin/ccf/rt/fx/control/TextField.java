@@ -125,7 +125,7 @@ public class TextField extends javafx.scene.control.TextField
     private static final CssMetaData<TextField, Number> TRAILING_PADDING = 
             FACTORY.createSizeCssMetaData("-rt-trailing-gap", s -> s.trailingIconGap, 10, false);
     private static final CssMetaData<TextField, Paint> TRAILING_ICON_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.trailingIconColor, DefaultPalette.getInstance().getLightBaseColor(), false);
+            FACTORY.createPaintCssMetaData("-rt-trailing-icon-color", s -> s.trailingIconColor, DefaultPalette.getInstance().getLightBaseColor(), false);
     private static final CssMetaData<TextField, Boolean> DISABLE_ANIMATION = 
             FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
 
@@ -469,7 +469,7 @@ public class TextField extends javafx.scene.control.TextField
      * {@inheritDoc}
      */
     @Override
-    public BooleanProperty isShowHelperTextProperty()
+    public BooleanProperty helperTextVisibleProperty()
     {
         return this.isShowHelperText;
     }
@@ -478,7 +478,7 @@ public class TextField extends javafx.scene.control.TextField
      * {@inheritDoc}
      */
     @Override
-    public boolean getIsShowHelperText()
+    public boolean getHelperTextVisible()
     {
         return this.isShowHelperText.get();
     }
@@ -487,7 +487,7 @@ public class TextField extends javafx.scene.control.TextField
      * {@inheritDoc}
      */
     @Override
-    public void setIsShowHelperText(boolean isShowHelperText)
+    public void setHelperTextVisible(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
     }
@@ -638,6 +638,15 @@ public class TextField extends javafx.scene.control.TextField
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -662,15 +671,6 @@ public class TextField extends javafx.scene.control.TextField
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

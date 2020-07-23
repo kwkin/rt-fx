@@ -23,8 +23,8 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
 
     protected Accent accent = Accent.PRIMARY_MID;
 
-    private static final StyleablePropertyFactory<ToggleButton> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ToggleButton.getClassCssMetaData());
+    private static final StyleablePropertyFactory<TreeView> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.TreeView.getClassCssMetaData());
     
     /**
      * Creates an empty {@code TreeView}
@@ -62,12 +62,6 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
         return null;
     }
 
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -75,6 +69,12 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

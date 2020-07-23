@@ -23,7 +23,7 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
     private static final String USER_AGENT_STYLESHEET = "spinner.css";
     private static final String CSS_CLASS = "rt-spinner";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+    private static final StyleablePropertyFactory<Spinner<?>> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.Spinner.getClassCssMetaData());
 
     /**
@@ -97,6 +97,15 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -111,15 +120,6 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

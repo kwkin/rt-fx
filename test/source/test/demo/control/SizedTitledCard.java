@@ -1,81 +1,37 @@
 package test.demo.control;
 
 import javafx.scene.Node;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
-import mil.af.eglin.ccf.rt.fx.control.Label;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
-import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
-import mil.af.eglin.ccf.rt.fx.layout.CardPane;
+import mil.af.eglin.ccf.rt.fx.layout.TitledCardPane;
 
-public class SizedTitledCard extends CardPane implements TitledContentPane
+public class SizedTitledCard extends TitledCardPane implements TitledContentPane
 {
-    private Label titleLabel;
-    private Node content;
-    
     private TitledCardSize cardSize = TitledCardSize.SIZE_1x2;
     
     public SizedTitledCard(String title)
     {
-        super();
-        this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
+        super(title);
         initialize();
     }
     
     public SizedTitledCard(String title, Accent accent)
     {
-        super(accent);
-        this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
+        super(title, accent);
         initialize();
     }
 
     public SizedTitledCard(String title, TitledCardSize size)
     {
-        super();
-        this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
+        super(title);
         this.cardSize = size;
         initialize();
     }
     
     public SizedTitledCard(String title, Accent accent, TitledCardSize size)
     {
-        super(accent);
-        this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
+        super(title, accent);
         this.cardSize = size;
         initialize();
-    }
-    
-    public Label getTitleLabel()
-    {
-        return this.titleLabel;
-    }
-    
-    public void setTitleText(String text)
-    {
-        this.titleLabel.setText(text);
-    }
-    
-    public void setContent(Node content)
-    {
-        this.content = content;
-        VBox.setVgrow(content, Priority.ALWAYS);
-        getChildren().add(this.content);
-    }
-    
-    public Node getContent()
-    {
-        return this.content;
-    }
-
-    @Override
-    public String getTitle()
-    {
-        return this.titleLabel.getText();
     }
 
     @Override
@@ -92,6 +48,5 @@ public class SizedTitledCard extends CardPane implements TitledContentPane
         setMinHeight(this.cardSize.getHeight());
         setMaxWidth(this.cardSize.getWidth());
         setMaxHeight(this.cardSize.getHeight());
-        getChildren().add(this.titleLabel);
     }
 }

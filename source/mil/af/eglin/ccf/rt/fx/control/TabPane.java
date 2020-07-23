@@ -22,7 +22,7 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
     private static final String USER_AGENT_STYLESHEET = "tab-pane.css";
     private static final String CSS_CLASS = "rt-tab-pane";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<TabPane> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.TabPane.getClassCssMetaData());
 
     /**
@@ -35,7 +35,20 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
     }
 
     /**
-     * Creates a {@code TabPane} with the specified accent and no tabs
+     * Creates a {@code TabPane} with the provided tabs
+     * 
+     * @param tabs the tabs to display inside the tab pane
+     */
+    public TabPane(Tab... tabs)
+    {
+        super(tabs);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code TabPane} with the provided accent and no tabs
+     * 
+     * @param accent the accent used to change the component's color scheme
      */
     public TabPane(Accent accent)
     {
@@ -44,12 +57,12 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
         initialize();
     }
 
-    public TabPane(Tab... tabs)
-    {
-        super(tabs);
-        initialize();
-    }
-
+    /**
+     * Creates a {@code TabPane} with the provided accent and tabs
+     * 
+     * @param accent the accent used to change the component's color scheme
+     * @param tabs the tabs to display inside the tab pane
+     */
     public TabPane(Accent accent, Tab... tabs)
     {
         super(tabs);
@@ -84,6 +97,15 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -97,15 +119,6 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

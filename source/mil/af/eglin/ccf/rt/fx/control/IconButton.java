@@ -55,9 +55,8 @@ public class IconButton extends Button implements Icon
     private StyleableObjectProperty<Paint> selectedIconFill = new SimpleStyleableObjectProperty<>(
             SELECTED_ICON_COLOR, this, "selectedFill");
 
-    // to RtTextFieldIcon
     /**
-     * Creates an icon button with the specified icon as its label.
+     * Creates an {@code IconButton} with the specified icon as its label.
      * 
      * @param icon The icon for its label
      */
@@ -69,7 +68,7 @@ public class IconButton extends Button implements Icon
     }
 
     /**
-     * Creates an icon button with the specified icon and text as its label.
+     * Creates an {@code IconButton} with the specified icon and text as its label.
      * 
      * @param icon The icon for its label
      * @param text The text string for its label
@@ -82,7 +81,7 @@ public class IconButton extends Button implements Icon
     }
 
     /**
-     * Creates an icon button with the specified icon and text as its label.
+     * Creates an {@code IconButton} with the specified icon and text as its label.
      * 
      * @param icon The icon for its label
      * @param text The text string for its label
@@ -126,18 +125,27 @@ public class IconButton extends Button implements Icon
         this.icon.setIsColorManaged(isFillManaged);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFill(Paint fill)
     {
         this.icon.setFill(fill);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Paint getFill()
     {
         return this.icon.getFill();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getSize()
     {
@@ -168,6 +176,15 @@ public class IconButton extends Button implements Icon
         return new RtButtonSkin(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         this.iconPane.getChildren().addAll(this.icon);
@@ -184,15 +201,6 @@ public class IconButton extends Button implements Icon
         this.iconPane.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
         this.iconPane.setPrefSize(width, height);
         this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
     }
 
     /**

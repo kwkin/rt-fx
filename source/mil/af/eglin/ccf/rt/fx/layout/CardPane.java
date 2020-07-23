@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-public class CardPane extends VBox
+public class CardPane extends StackPane
 {
     protected Accent accent = Accent.BASE;
     

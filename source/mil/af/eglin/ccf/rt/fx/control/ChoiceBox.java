@@ -28,7 +28,7 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
     private static final String USER_AGENT_STYLESHEET = "combo-box.css";
     private static final String CSS_CLASS = "rt-choice-box";
 
-    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<ChoiceBox<?>> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.ChoiceBox.getClassCssMetaData());
 
     /**
@@ -40,6 +40,22 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         initialize();
     }
 
+    /**
+     * Creates an {@code ChoiceBox} with the provided items
+     * 
+     * @param items the list of items available to the combo box
+     */
+    public ChoiceBox(ObservableList<T> items)
+    {
+        super(items);
+        initialize();
+    }
+
+    /**
+     * Creates an empty {@code ChoiceBox} with the provided accent
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public ChoiceBox(Accent accent)
     {
         super();
@@ -47,12 +63,12 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         initialize();
     }
 
-    public ChoiceBox(ObservableList<T> items)
-    {
-        super(items);
-        initialize();
-    }
-
+    /**
+     * Creates an {@code ChoiceBox} with the provided items and accent
+     * 
+     * @param items the list of items available to the combo box
+     * @param accent the accent used to change the component's color scheme
+     */
     public ChoiceBox(ObservableList<T> items, Accent accent)
     {
         super(items);

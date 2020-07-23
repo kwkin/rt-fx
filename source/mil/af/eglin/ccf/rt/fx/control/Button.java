@@ -67,7 +67,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
             DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
-     * Creates a raised button with an empty string for its label.
+     * Creates a raised {@code Button} with an empty string for its label.
      */
     public Button()
     {
@@ -76,9 +76,32 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a button with the specified style.
+     * Creates a raised {@code Button} with the specified text as its label.
+     *
+     * @param text a text string for its label
+     */
+    public Button(String text)
+    {
+        super(text);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code Button} with the specified text and icon for its label.
+     *
+     * @param text a text string for its label
+     * @param graphic the icon for its label
+     */
+    public Button(String text, Node graphic)
+    {
+        super(text, graphic);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code Button} with the specified style.
      * 
-     * @param style the style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button
      */
     public Button(ButtonStyle style)
     {
@@ -88,7 +111,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a button with the specified style and accent
+     * Creates a {@code Button} with the specified style and accent
      * 
      * @param style the style type used to change the component's look
      * @param accent the accent used to change the component's color scheme
@@ -102,21 +125,10 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a raised button with the specified text as its label.
-     *
-     * @param text A text string for its label.
-     */
-    public Button(String text)
-    {
-        super(text);
-        initialize();
-    }
-
-    /**
-     * Creates a button with the specified label text and style
+     * Creates a {@code Button} with the specified label text and style
      * 
-     * @param text A text string for its label.
-     * @param style The style type used to change the component's look.
+     * @param text a text string for its label
+     * @param style the style type used to change the component's look
      */
     public Button(String text, ButtonStyle style)
     {
@@ -126,7 +138,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a button with the specified label text, style, and accent
+     * Creates a {@code Button} with the specified label text, style, and accent
      * 
      * @param text a text string for its label
      * @param style the style type used to change the component's look
@@ -141,23 +153,11 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a button with the specified text and icon for its label.
+     * Creates a {@code Button} with the specified label text, icon, and style.
      *
-     * @param text A text string for its label.
-     * @param graphic The icon for its label.
-     */
-    public Button(String text, Node graphic)
-    {
-        super(text, graphic);
-        initialize();
-    }
-
-    /**
-     * Creates a button with the specified label text, icon, and style.
-     *
-     * @param text A text string for its label.
-     * @param graphic The icon for its label.
-     * @param style The style type used to change the component's look.
+     * @param text a text string for its label
+     * @param graphic the icon for its label
+     * @param style the style type used to change the component's look
      */
     public Button(String text, Node graphic, ButtonStyle style)
     {
@@ -167,13 +167,12 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Creates a button with the specified label text, icon, style, and accent.
+     * Creates a {@code Button} with the specified label text, icon, style, and accent.
      *
-     * @param text A text string for its label.
-     * @param graphic The icon for its label.
-     * @param style The style type used to change the component's look.
-     * @param accent The accent type used to change the component's color
-     *            scheme.
+     * @param text a text string for its label.
+     * @param graphic the icon for its label.
+     * @param style the style type used to change the component's look.
+     * @param accent the accent used to change the component's color scheme.
      */
     public Button(String text, Node graphic, ButtonStyle style, Accent accent)
     {
@@ -259,6 +258,15 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
         return new RtButtonSkin(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -267,15 +275,6 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
     }
 
     /**

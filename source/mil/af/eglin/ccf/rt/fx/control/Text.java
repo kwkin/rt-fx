@@ -29,7 +29,7 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
     private static final String USER_AGENT_STYLESHEET = "text.css";
     private static final String CSS_CLASS = "rt-text";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+    private static final StyleablePropertyFactory<Text> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.text.Text.getClassCssMetaData());
 
     /**
@@ -49,6 +49,19 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
     public Text(String text)
     {
         super(text);
+        initialize();
+    }
+
+    /**
+     * Creates a text at the given coordinates with the given string.
+     * 
+     * @param x The horizontal position of the text.
+     * @param y The vertical position of the text.
+     * @param text Text to be contained in the instance.
+     */
+    public Text(double x, double y, String text)
+    {
+        super(x, y, text);
         initialize();
     }
 
@@ -78,19 +91,6 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
         super(text);
         this.style = style;
         this.accent = accent;
-        initialize();
-    }
-
-    /**
-     * Creates a text at the given coordinates with the given string.
-     * 
-     * @param x The horizontal position of the text.
-     * @param y The vertical position of the text.
-     * @param text Text to be contained in the instance.
-     */
-    public Text(double x, double y, String text)
-    {
-        super(x, y, text);
         initialize();
     }
 

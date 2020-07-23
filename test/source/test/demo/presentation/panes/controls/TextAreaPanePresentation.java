@@ -47,21 +47,21 @@ public class TextAreaPanePresentation extends SizedTitledCard
         TextArea primaryDarkTextArea = new TextArea(Accent.PRIMARY_DARK);
         primaryDarkTextArea.setPrefHeight(textAreaHelperHeight);
         primaryDarkTextArea.setPromptText("Prompt Text");
-        primaryDarkTextArea.setIsShowHelperText(true);
+        primaryDarkTextArea.setHelperTextVisible(true);
         primaryDarkTextArea.setHelperText("Helper Text");
 
         TextArea secondaryLightTextArea = new TextArea(Accent.SECONDARY_LIGHT);
         secondaryLightTextArea.setPrefHeight(textAreaHelperHeight);
         secondaryLightTextArea.setLabelFloat(true);
         secondaryLightTextArea.setPromptText("Floating");
-        secondaryLightTextArea.setIsShowHelperText(true);
+        secondaryLightTextArea.setHelperTextVisible(true);
         secondaryLightTextArea.setHelperText("Helper Text");
         
         TextArea secondaryMidTextArea = new TextArea("This is a sentence initialized in a text area.", Accent.SECONDARY_MID);
         secondaryMidTextArea.setPrefHeight(textAreaHelperHeight);
         secondaryMidTextArea.setLabelFloat(true);
         secondaryMidTextArea.setPromptText("Floating");
-        secondaryMidTextArea.setIsShowHelperText(true);
+        secondaryMidTextArea.setHelperTextVisible(true);
         secondaryMidTextArea.setHelperText("Helper Text");
         
         RequiredFieldValidator requiredValidator = new RequiredFieldValidator("Field is required.");

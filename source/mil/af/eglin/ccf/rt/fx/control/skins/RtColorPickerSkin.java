@@ -79,7 +79,7 @@ public class RtColorPickerSkin extends ColorPickerSkin
         registerChangeListener(colorPicker.focusColorProperty(), colorPicker.focusColorProperty().getName());
         registerChangeListener(colorPicker.overlayColorProperty(), colorPicker.overlayColorProperty().getName());
         registerChangeListener(colorPicker.unfocusColorProperty(), colorPicker.unfocusColorProperty().getName());
-        registerChangeListener(colorPicker.isShowHelperTextProperty(), colorPicker.isShowHelperTextProperty().getName());
+        registerChangeListener(colorPicker.helperTextVisibleProperty(), colorPicker.helperTextVisibleProperty().getName());
     }
 
     @Override

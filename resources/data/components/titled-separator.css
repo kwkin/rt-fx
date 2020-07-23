@@ -3,6 +3,7 @@
 {
     -fx-corus-traversable: false;
     -fx-title-alignment: BOTTOM_LEFT;
+    -fx-orientation: horizontal;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-content-display: CENTER;

@@ -25,7 +25,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
     protected TableViewStyle style = TableViewStyle.ZEBRA;
     protected Accent accent = Accent.PRIMARY_MID;
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+    private static final StyleablePropertyFactory<TableView<?>> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.TableView.getClassCssMetaData());
     
     /**
@@ -51,7 +51,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
     /**
      * Creates an empty {@code TableView} with the specified style.
      * 
-     * @param style the style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button
      */
     public TableView(TableViewStyle style)
     {
@@ -63,7 +63,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
     /**
      * Creates an empty {@code TableView} with the specified style and accent.
      * 
-     * @param style the style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button
      * @param accent the accent used to change the component's color scheme
      */
     public TableView(TableViewStyle style, Accent accent)
@@ -78,7 +78,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
      * Creates a {@code TableView} with the specified items and style.
      * 
      * @param items the content to insert into the table view
-     * @param style the style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button
      */
     public TableView(ObservableList<S> items, TableViewStyle style)
     {
@@ -91,7 +91,7 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
      * Creates a {@code TableView} with the specified items, style, accent.
      * 
      * @param items the content to insert into the table view
-     * @param style the style used to change the overall look of the button.
+     * @param style the style used to change the overall look of the button
      * @param accent the accent used to change the component's color scheme
      */
     public TableView(ObservableList<S> items, TableViewStyle style, Accent accent)

@@ -10,6 +10,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.LabelStyle;
 
 public class TitledCardPane extends CardPane
 {
+    private final VBox nodePane = new VBox();
     private Label titleLabel;
     private Node content;
     
@@ -22,7 +23,6 @@ public class TitledCardPane extends CardPane
     {
         super();
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, Accent.PRIMARY_MID);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
         initialize();
     }
 
@@ -36,7 +36,6 @@ public class TitledCardPane extends CardPane
     {
         super(accent);
         this.titleLabel = new Label(title, LabelStyle.BLOCK_TITLE, accent);
-        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
         initialize();
     }
     public Label getTitleLabel()
@@ -57,8 +56,14 @@ public class TitledCardPane extends CardPane
     public void setContent(Node content)
     {
         this.content = content;
-        VBox.setVgrow(content, Priority.ALWAYS);
-        getChildren().add(this.content);
+        if (this.nodePane.getChildren().size() < 2)
+        {
+            this.nodePane.getChildren().add(this.content);
+        }
+        else
+        {
+            this.nodePane.getChildren().set(1, this.content);
+        }
     }
     
     public Node getContent()
@@ -68,6 +73,8 @@ public class TitledCardPane extends CardPane
     
     private void initialize()
     {
-        getChildren().add(this.titleLabel);
+        this.titleLabel.setTextAlignment(TextAlignment.CENTER);
+        this.nodePane.getChildren().add(this.titleLabel);
+        getChildren().add(this.nodePane);
     }
 }

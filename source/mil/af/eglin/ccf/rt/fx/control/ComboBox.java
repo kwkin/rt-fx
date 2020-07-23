@@ -67,7 +67,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * Helper text is typically a short description conveying additional
      * guidance about the input field. The helper text appears below the input.
      */
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty()
+    private BooleanProperty isHelperTextVisible = new SimpleBooleanProperty()
     {
         @Override
         protected void invalidated()
@@ -180,7 +180,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * Creates a default ComboBox instance with the provided items list and a
      * default selection model.
      * 
-     * @param items The list of items available to the combo box.
+     * @param items the list of items available to the combo box
      */
     public ComboBox(ObservableList<T> items)
     {
@@ -285,32 +285,32 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
      * {@inheritDoc}
      */
     @Override
-    public final BooleanProperty isShowHelperTextProperty()
+    public final BooleanProperty helperTextVisibleProperty()
     {
-        return this.isShowHelperText;
+        return this.isHelperTextVisible;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final boolean getIsShowHelperText()
+    public final boolean getHelperTextVisible()
     {
-        return this.isShowHelperText.get();
+        return this.isHelperTextVisible.get();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final void setIsShowHelperText(boolean isShowHelperText)
+    public final void setHelperTextVisible(boolean isShowHelperText)
     {
-        this.isShowHelperText.set(isShowHelperText);
+        this.isHelperTextVisible.set(isShowHelperText);
     }
 
     public final boolean isHelperTextVisible()
     {
-        return isShowHelperText.get() || getValidators().size() > 0;
+        return isHelperTextVisible.get() || getValidators().size() > 0;
     }
 
     /**
@@ -514,12 +514,12 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         getStyleClass().add(this.accent.getStyleClassName());
 
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.isLabelFloating.get());
-        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isShowHelperText.get() || getValidators().size() > 0);
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isHelperTextVisible.get() || getValidators().size() > 0);
         this.isLabelFloating.addListener((ov, oldVal, newVal) ->
         {
             pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
         });
-        this.isShowHelperText.addListener((ov, oldVal, newVal) ->
+        this.isHelperTextVisible.addListener((ov, oldVal, newVal) ->
         {
             pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
         });

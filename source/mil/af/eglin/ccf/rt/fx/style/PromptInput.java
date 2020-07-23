@@ -87,6 +87,7 @@ public class PromptInput<T extends Control & LabelFloatControl>
 
         this.promptContainer.getStyleClass().add("prompt-container");
         this.promptContainer.setManaged(false);
+        this.promptContainer.setPickOnBounds(false);
         this.animatedPromptTextFill = new SimpleObjectProperty<>(promptTextFill.get());
         this.isUsingPromptText = Bindings.createBooleanBinding(this::usePromptText, valueProperty, promptTextProperty,
                 control.labelFloatProperty(), promptTextFill);

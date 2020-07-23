@@ -64,7 +64,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         registerChangeListener(comboBox.focusColorProperty(), comboBox.focusColorProperty().getName());
         registerChangeListener(comboBox.overlayColorProperty(), comboBox.overlayColorProperty().getName());
         registerChangeListener(comboBox.unfocusColorProperty(), comboBox.unfocusColorProperty().getName());
-        registerChangeListener(comboBox.isShowHelperTextProperty(), comboBox.isShowHelperTextProperty().getName());
+        registerChangeListener(comboBox.helperTextVisibleProperty(), comboBox.helperTextVisibleProperty().getName());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
         {
             this.input.updateLabelFloatLayout();
         }
-        else if (this.comboBox.isShowHelperTextProperty().getName().equals(propertyReference))
+        else if (this.comboBox.helperTextVisibleProperty().getName().equals(propertyReference))
         {
             updatePopupLocation();
         }

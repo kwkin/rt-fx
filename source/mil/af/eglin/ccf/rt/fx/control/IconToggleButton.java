@@ -97,6 +97,13 @@ public class IconToggleButton extends ToggleButton implements Icon
         initialize();
     }
 
+    /**
+     * Creates a {@code IconToggleButton} with the provided select and unselected icons
+     * 
+     * @param selectedIcon the button's icon when selected
+     * @param unselectedIcon the button's icon when unselected
+     * @param style the style used to change the overall look of the icon toggle button
+     */
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, IconToggleButtonStyle style)
     {
         super(style);
@@ -182,6 +189,9 @@ public class IconToggleButton extends ToggleButton implements Icon
         this.unselectedIcon.setIsColorManaged(isFillManaged);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFill(Paint fill)
     {
@@ -189,18 +199,27 @@ public class IconToggleButton extends ToggleButton implements Icon
         this.selectedIcon.setFill(fill);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Paint getFill()
     {
         return isSelected() ? getSelectedFill() : getUnselectedFill();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getSize()
     {
         return isSelected() ? this.selectedIcon.getSize() : this.unselectedIcon.getSize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Node getNode()
     {
@@ -220,6 +239,15 @@ public class IconToggleButton extends ToggleButton implements Icon
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Skin<?> createDefaultSkin()
     {
         return new RtIconToggleButtonSkin(this);
@@ -232,15 +260,6 @@ public class IconToggleButton extends ToggleButton implements Icon
             this.selectedText = newVal;
             this.unselectedText = newVal;
         });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
     }
 
     /**

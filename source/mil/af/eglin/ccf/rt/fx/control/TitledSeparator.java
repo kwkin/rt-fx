@@ -1,16 +1,11 @@
 package mil.af.eglin.ccf.rt.fx.control;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
-import com.sun.javafx.css.converters.EnumConverter;
-import com.sun.javafx.css.converters.SizeConverter;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.value.WritableValue;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
 import javafx.css.SimpleStyleableDoubleProperty;
@@ -18,7 +13,7 @@ import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableObjectProperty;
-import javafx.css.StyleableProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -57,12 +52,22 @@ public class TitledSeparator extends Labeled
     private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
     private static final String CSS_CLASS = "rt-titled-separator";
 
+    private static final StyleablePropertyFactory<TitledSeparator> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Labeled.getClassCssMetaData());
+
+    private static final CssMetaData<TitledSeparator, Orientation> ORIENTATION = FACTORY
+            .createEnumCssMetaData(Orientation.class, "-fx-orientation", s -> s.orientation, Orientation.HORIZONTAL, false);
+    private static final CssMetaData<TitledSeparator, Pos> TITLE_ALIGNMENT = FACTORY
+            .createEnumCssMetaData(Pos.class, "-fx-title-alignment", s -> s.titleAlignment, Pos.CENTER, false);
+    private static final CssMetaData<TitledSeparator, Number> SEPARATOR_CONTENT_GAP = 
+            FACTORY.createSizeCssMetaData("-rt-separator-content-gap", s -> s.separatorContentGap, 0, false);
+
     /**
-     * The orientation property indicates if the {@code TitledSeparator} is horizontal
-     * or vertical
+     * The orientation property indicates if the {@code TitledSeparator} is
+     * horizontal or vertical
      */
     private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
-            StyleableProperties.ORIENTATION, TitledSeparator.this, "orientation", Orientation.HORIZONTAL)
+            ORIENTATION, this, "orientation", Orientation.HORIZONTAL)
     {
         @Override
         protected void invalidated()
@@ -82,7 +87,7 @@ public class TitledSeparator extends Labeled
      * label and the separators on each side equal to the
      */
     private StyleableObjectProperty<Pos> titleAlignment = new SimpleStyleableObjectProperty<>(
-            StyleableProperties.TITLE_ALIGNMENT, TitledSeparator.this, "titleAlignment", Pos.CENTER);
+            TITLE_ALIGNMENT, this, "titleAlignment");
 
     /**
      * Returns the gap property used to pad the label
@@ -93,7 +98,7 @@ public class TitledSeparator extends Labeled
      * label and the edge of the component.
      */
     private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
-            StyleableProperties.SEPARATOR_CONTENT_GAP, TitledSeparator.this, "separatorContentGap", 0.0);
+            SEPARATOR_CONTENT_GAP, this, "separatorContentGap");
 
     /**
      * Creates a horizontal {@code Separator} with no text or graphic.
@@ -255,6 +260,15 @@ public class TitledSeparator extends Labeled
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Skin<?> createDefaultSkin()
     {
         return new RtTitledSeparatorSkin(this);
@@ -270,95 +284,15 @@ public class TitledSeparator extends Labeled
         pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, orientation.getValue() == Orientation.VERTICAL);
     }
 
-    private static class StyleableProperties
-    {
-        private static final CssMetaData<TitledSeparator, Orientation> ORIENTATION = new CssMetaData<TitledSeparator, Orientation>(
-                "-fx-orientation", new EnumConverter<Orientation>(Orientation.class), Orientation.HORIZONTAL)
-        {
-
-            @Override
-            public Orientation getInitialValue(TitledSeparator node)
-            {
-                return node.getOrientation();
-            }
-
-            @Override
-            public boolean isSettable(TitledSeparator control)
-            {
-                return control.orientation == null || !control.orientation.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Orientation> getStyleableProperty(TitledSeparator n)
-            {
-                return (StyleableProperty<Orientation>) (WritableValue<Orientation>) n.orientationProperty();
-            }
-        };
-
-        private static final CssMetaData<TitledSeparator, Pos> TITLE_ALIGNMENT = new CssMetaData<TitledSeparator, Pos>(
-                "-fx-title-alignment", new EnumConverter<Pos>(Pos.class), Pos.CENTER)
-        {
-
-            @Override
-            public boolean isSettable(TitledSeparator control)
-            {
-                return control.titleAlignment == null || !control.titleAlignment.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Pos> getStyleableProperty(TitledSeparator n)
-            {
-                return (StyleableProperty<Pos>) (WritableValue<Pos>) n.titleAlignment;
-            }
-        };
-
-        private static final CssMetaData<TitledSeparator, Number> SEPARATOR_CONTENT_GAP = new CssMetaData<TitledSeparator, Number>(
-                "-rt-separator-content-gap", SizeConverter.getInstance(), 0)
-        {
-
-            @Override
-            public boolean isSettable(TitledSeparator control)
-            {
-                return control.separatorContentGap == null || !control.separatorContentGap.isBound();
-            }
-
-            @Override
-            public StyleableProperty<Number> getStyleableProperty(TitledSeparator control)
-            {
-                return control.separatorContentGap;
-            }
-        };
-
-        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
-
-        static
-        {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(
-                    Labeled.getClassCssMetaData());
-            styleables.add(ORIENTATION);
-            styleables.add(TITLE_ALIGNMENT);
-            styleables.add(SEPARATOR_CONTENT_GAP);
-            STYLEABLES = Collections.unmodifiableList(styleables);
-        }
-    }
-
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return getClassCssMetaData();
-    }
-
-    /**
-     * Returns the list of available CSS properties
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
      * 
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return StyleableProperties.STYLEABLES;
+        return FACTORY.getCssMetaData();
     }
 
     /**

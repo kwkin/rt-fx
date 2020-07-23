@@ -59,7 +59,7 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         ComboBox<String> helperComboBox = new ComboBox<>(Accent.PRIMARY_DARK);
         helperComboBox.setItems(items);
         helperComboBox.setHelperText("Helper Text");
-        helperComboBox.setIsShowHelperText(true);
+        helperComboBox.setHelperTextVisible(true);
         ComboBox<String> editableComboBox = new ComboBox<>(Accent.SECONDARY_LIGHT);
         editableComboBox.setItems(items);
         editableComboBox.setEditable(true);
@@ -76,7 +76,7 @@ public class ComboBoxPanePresentation extends SizedTitledCard
         allComboBox.setEditable(true);
         allComboBox.setHelperText("Helper Text");
         allComboBox.setLabelFloat(true);
-        allComboBox.setIsShowHelperText(true);
+        allComboBox.setHelperTextVisible(true);
         allComboBox.setPromptText("Floating");
         
         RegexValidator regexValidator = new RegexValidator("Valid", "Invalid value selected");

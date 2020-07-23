@@ -181,6 +181,15 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -189,15 +198,6 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
     }
 
     /**

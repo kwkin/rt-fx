@@ -37,7 +37,17 @@ public interface Icon
      */
     public Paint getFill();
 
+    /**
+     * Gets the size of the icon when uniform in width and height
+     * 
+     * @param the size of the icon when uniform in width and height
+     */
     public double getSize();
 
+    /**
+     * Gets the javafx node of the icon
+     * 
+     * @return the javafx of the icon
+     */
     public Node getNode();
 }

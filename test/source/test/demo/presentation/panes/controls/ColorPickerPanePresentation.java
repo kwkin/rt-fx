@@ -48,7 +48,7 @@ public class ColorPickerPanePresentation extends SizedTitledCard
         rtAll.setLabelFloat(true);
         rtAll.setValue(Color.RED);
         rtAll.setHelperText("Helper Text");
-        rtAll.setIsShowHelperText(true);
+        rtAll.setHelperTextVisible(true);
         FunctionValidator<Color> nonOpaqueValidator = new FunctionValidator<>((value) -> 
         {
             return Double.compare(value.getOpacity(), 1) >= 0;

@@ -21,7 +21,7 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
     private static final String USER_AGENT_STYLESHEET = "separator.css";
     private static final String CSS_CLASS = "rt-separator";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
+    private static final StyleablePropertyFactory<Separator> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.Separator.getClassCssMetaData());
     
     /**
@@ -96,6 +96,15 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
     {
         return null;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
     
     private void initialize()
     {
@@ -110,15 +119,6 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

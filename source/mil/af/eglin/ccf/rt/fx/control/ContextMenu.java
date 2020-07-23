@@ -21,7 +21,7 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
 
     private Accent accent = Accent.PRIMARY_MID;
 
-    private static final StyleablePropertyFactory<ColorPicker> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<ContextMenu> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.ContextMenu.getClassCssMetaData());
 
     /**
@@ -87,18 +87,18 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
         return CSS_CLASS;
     }
 
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
     /**
      * {@inheritDoc}
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

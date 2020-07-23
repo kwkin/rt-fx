@@ -135,6 +135,17 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     }
 
     /**
+     * Creates a toggle switch with the specified text as its label.
+     *
+     * @param text A text string for its label.
+     */
+    public ToggleSwitch(String text)
+    {
+        super(text);
+        initialize();
+    }
+
+    /**
      * Creates a toggle switch with the specified accent.
      * 
      * @param accent The accent type used to change the component's color
@@ -144,17 +155,6 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         super();
         this.accent = accent;
-        initialize();
-    }
-
-    /**
-     * Creates a toggle switch with the specified text as its label.
-     *
-     * @param text A text string for its label.
-     */
-    public ToggleSwitch(String text)
-    {
-        super(text);
         initialize();
     }
 
@@ -329,6 +329,15 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getUserAgentStylesheet()
     {
         return null;
@@ -347,15 +356,6 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
     }
 
     /**

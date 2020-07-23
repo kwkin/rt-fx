@@ -11,34 +11,26 @@ import javafx.css.StyleablePropertyFactory;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A date picker allows the user to enter a date as text or select from a
+ * calendar popup.
+ */
 public class DatePicker extends javafx.scene.control.DatePicker implements RtStyleableComponent
 {
     protected Accent accent = Accent.PRIMARY_MID;
-    
+
     private static final String USER_AGENT_STYLESHEET = "date-picker.css";
     private static final String CSS_CLASS = "rt-date-picker";
 
-    private static final StyleablePropertyFactory<ColorPicker> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.DatePicker.getClassCssMetaData());
-    
+    private static final StyleablePropertyFactory<DatePicker> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.DatePicker.getClassCssMetaData());
+
     /**
      * Creates a {@code DatePicker} with no date initialized
      */
     public DatePicker()
     {
         super();
-        initialize();
-    }
-    
-    /**
-     * Creates a {@code DatePicker} with the specified accent and no date initialized
-     * 
-     * @param accent the accent used to change the component's color scheme
-     */
-    public DatePicker(Accent accent)
-    {
-        super();
-        this.accent = accent;
         initialize();
     }
 
@@ -53,9 +45,22 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
         initialize();
     }
 
+    /**
+     * Creates a {@code DatePicker} with the specified accent and no date
+     * initialized
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
+    public DatePicker(Accent accent)
+    {
+        super();
+        this.accent = accent;
+        initialize();
+    }
 
     /**
-     * Creates a {@code DatePicker} initialized with the provided date and accent
+     * Creates a {@code DatePicker} initialized with the provided date and
+     * accent
      *
      * @param localDate the initial date
      * @param accent the accent used to change the component's color scheme
@@ -89,24 +94,24 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
-    }
-    
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**
@@ -115,7 +120,7 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
      * 
      * @return The list of available CSS properties
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }
@@ -127,7 +132,7 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
-    
+
     static
     {
         DatePicker.loadStyleSheet();

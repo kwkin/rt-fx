@@ -6,6 +6,10 @@ import javafx.scene.Node;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * A border pane lays out children in the top, left, right, bottom, and center
+ * positions.
+ */
 public class BorderPane extends javafx.scene.layout.BorderPane
 {
     protected Accent accent = Accent.BASE;
@@ -23,7 +27,8 @@ public class BorderPane extends javafx.scene.layout.BorderPane
     }
 
     /**
-     * Creates an BorderPane layout with the given Node as the center of the BorderPane.
+     * Creates an BorderPane layout with the given Node as the center of the
+     * BorderPane.
      * 
      * @param center The node to set as the center of the BorderPane.
      */

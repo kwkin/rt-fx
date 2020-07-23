@@ -20,7 +20,7 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     private static final String USER_AGENT_STYLESHEET = "text-field.css";
     private static final String CSS_CLASS = "rt-text-field";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
+    private static final StyleablePropertyFactory<PasswordField> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.PasswordField.getClassCssMetaData());
     
     /**
@@ -58,20 +58,20 @@ public class PasswordField extends javafx.scene.control.PasswordField implements
     {
         return null;
     }
-    
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
+    {
         return FACTORY.getCssMetaData();
+    }
+    
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

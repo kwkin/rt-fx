@@ -67,13 +67,13 @@ public class TextFieldPanePresentation extends SizedTitledCard
 
         TextField helperTextField = new TextField(Accent.SECONDARY_DARK);
         helperTextField.setPromptText("Label");
-        helperTextField.setIsShowHelperText(true);
+        helperTextField.setHelperTextVisible(true);
         helperTextField.setHelperText("Helper Text");
         
         TextField allTextField = new TextField(Accent.SECONDARY_MID);
         allTextField.setPromptText("Label");
         allTextField.setLabelFloat(true);
-        allTextField.setIsShowHelperText(true);
+        allTextField.setHelperTextVisible(true);
         allTextField.setHelperText("Helper Text");
         allTextField.setTrailingText("Trailing Text");
 
@@ -81,7 +81,7 @@ public class TextFieldPanePresentation extends SizedTitledCard
         TextField validableTextField = new TextField(Accent.PRIMARY_MID);
         validableTextField.setPromptText("Required");
         validableTextField.setLabelFloat(true);
-        validableTextField.setIsShowHelperText(true);
+        validableTextField.setHelperTextVisible(true);
         validableTextField.setHelperText("This can be invalidated.");
         validableTextField.getValidators().add(requiredValidator);
         validableTextField.setValidateCondition(ValidateCondition.UNFOCUS);

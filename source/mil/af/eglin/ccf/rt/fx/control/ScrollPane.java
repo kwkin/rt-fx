@@ -21,7 +21,7 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     private static final String USER_AGENT_STYLESHEET = "scroll-pane.css";
     private static final String CSS_CLASS = "rt-scroll-pane";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
+    private static final StyleablePropertyFactory<ScrollPane> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.ScrollPane.getClassCssMetaData());
     
     /**
@@ -78,15 +78,6 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     {
         return null;
     }
-    
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        if (this.accent != null)
-        {
-            getStyleClass().add(this.accent.getStyleClassName());
-        }
-    }
 
     /**
      * {@inheritDoc}
@@ -95,6 +86,15 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
      {
         return FACTORY.getCssMetaData();
+    }
+    
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        if (this.accent != null)
+        {
+            getStyleClass().add(this.accent.getStyleClassName());
+        }
     }
 
     /**
@@ -107,7 +107,10 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     {
         return FACTORY.getCssMetaData();
     }
-    
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));

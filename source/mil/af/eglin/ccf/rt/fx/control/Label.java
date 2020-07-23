@@ -30,11 +30,11 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     private static final String USER_AGENT_STYLESHEET = "label.css";
     private static final String CSS_CLASS = "rt-label";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
+    private static final StyleablePropertyFactory<Label> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
     
     /**
-     * Creates a label with an empty string.
+     * Creates a {@code Label} with an empty string.
      */
     public Label()
     {
@@ -43,7 +43,7 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     }
 
     /**
-     * Creates a label with the specified text.
+     * Creates a {@code Label} with the specified text.
      * 
      * @param text A text string for the label.
      */
@@ -54,7 +54,19 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     }
 
     /**
-     * Creates a label with the specified text and style.
+     * Creates a {@code Label} with the specified text and icon.
+     *
+     * @param text A text string for the label.
+     * @param graphic The icon for the label.
+     */
+    public Label(String text, Node graphic)
+    {
+        super(text, graphic);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code Label} with the specified text and style.
      * 
      * @param text A text string for the label.
      * @param style The style type used to change the component's look.
@@ -67,7 +79,7 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     }
 
     /**
-     * Creates a label with the specified text, style, and accent.
+     * Creates a {@code Label} with the specified text, style, and accent.
      * 
      * @param text A text string for the label.
      * @param style The style type used to change the component's look.
@@ -83,19 +95,7 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     }
 
     /**
-     * Creates a label with the specified text and icon.
-     *
-     * @param text A text string for the label.
-     * @param graphic The icon for the label.
-     */
-    public Label(String text, Node graphic)
-    {
-        super(text, graphic);
-        initialize();
-    }
-
-    /**
-     * Creates a label with the specified text, icon, and style.
+     * Creates a {@code Label} with the specified text, icon, and style.
      *
      * @param text A text string for the label.
      * @param graphic The icon for the label.
@@ -109,7 +109,7 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     }
 
     /**
-     * Creates a label with the specified text, icon, style, and accent.
+     * Creates a {@code Label} with the specified text, icon, style, and accent.
      *
      * @param text A text string for the label.
      * @param graphic The icon for the label.
@@ -162,6 +162,15 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -170,15 +179,6 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         {
             pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
     }
 
     /**

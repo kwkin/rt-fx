@@ -63,7 +63,7 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * Helper text is typically a short description conveying additional
      * guidance about the input field. The helper text appears below the input.
      */
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty()
+    private BooleanProperty isHelperTextVisible = new SimpleBooleanProperty()
     {
         @Override
         protected void invalidated()
@@ -83,6 +83,20 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * invalid. When valid, the helper text will be visible.
      */
     private StringProperty errorText = new SimpleStringProperty();
+
+    /**
+     * Indicates if the label showing the name or hex value of the current color
+     * is displayed.
+     */
+    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
+    {
+        @Override
+        protected void invalidated()
+        {
+            String style = String.format("-fx-color-label-visible:%s", get());
+            setStyle(style);
+        }
+    };
 
     private static final StyleablePropertyFactory<ColorPicker> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.ColorPicker.getClassCssMetaData());
@@ -150,20 +164,6 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      */
     private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
             "disableAnimation");
-
-    /**
-     * Indicates if the label showing the name or hex value of the current color
-     * is displayed.
-     */
-    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
-    {
-        @Override
-        protected void invalidated()
-        {
-            String style = String.format("-fx-color-label-visible:%s", get());
-            setStyle(style);
-        }
-    };
 
     /**
      * Creates a {@code ColorPicker} initialized with a white value
@@ -281,32 +281,32 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * {@inheritDoc}
      */
     @Override
-    public final BooleanProperty isShowHelperTextProperty()
+    public final BooleanProperty helperTextVisibleProperty()
     {
-        return this.isShowHelperText;
+        return this.isHelperTextVisible;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final boolean getIsShowHelperText()
+    public final boolean getHelperTextVisible()
     {
-        return this.isShowHelperText.get();
+        return this.isHelperTextVisible.get();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final void setIsShowHelperText(boolean isShowHelperText)
+    public final void setHelperTextVisible(boolean isHelperTextVisible)
     {
-        this.isShowHelperText.set(isShowHelperText);
+        this.isHelperTextVisible.set(isHelperTextVisible);
     }
 
     public final boolean isHelperTextVisible()
     {
-        return this.isShowHelperText.get();
+        return isHelperTextVisible.get() || getValidators().size() > 0;
     }
 
     /**

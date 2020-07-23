@@ -22,7 +22,7 @@ public class Accordion extends javafx.scene.control.Accordion
     private static final String USER_AGENT_STYLESHEET = "accordion.css";
     private static final String CSS_CLASS = "rt-accordion";
 
-    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<Accordion> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.Accordion.getClassCssMetaData());
 
     /**
@@ -79,15 +79,6 @@ public class Accordion extends javafx.scene.control.Accordion
         return null;
     }
 
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        if (this.accent != null)
-        {
-            getStyleClass().add(this.accent.getStyleClassName());
-        }
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -95,6 +86,15 @@ public class Accordion extends javafx.scene.control.Accordion
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        if (this.accent != null)
+        {
+            getStyleClass().add(this.accent.getStyleClassName());
+        }
     }
 
     /**

@@ -76,7 +76,7 @@ public class RtTextFieldSkin extends TextFieldSkin
         registerChangeListener(textField.trailingTextProperty(), textField.trailingTextProperty().getName());
         registerChangeListener(textField.trailingIconProperty(), textField.trailingIconProperty().getName());
         registerChangeListener(textField.trailingIconColorProperty(), textField.trailingIconColorProperty().getName());
-        registerChangeListener(textField.isShowHelperTextProperty(), textField.isShowHelperTextProperty().getName());
+        registerChangeListener(textField.helperTextVisibleProperty(), textField.helperTextVisibleProperty().getName());
     }
 
     @Override

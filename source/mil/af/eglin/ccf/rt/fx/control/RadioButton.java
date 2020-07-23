@@ -216,6 +216,15 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Skin<?> createDefaultSkin()
     {
         return new RtRadioButtonSkin(this);
@@ -234,15 +243,6 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

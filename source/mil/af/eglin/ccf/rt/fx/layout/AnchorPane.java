@@ -5,10 +5,14 @@ import com.sun.javafx.css.StyleManager;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * An anchor pane allows the edges of child nodes to be anchored to an offset
+ * from the anchor pane's edge
+ */
 public class AnchorPane extends javafx.scene.layout.AnchorPane
 {
     protected Accent accent = Accent.BASE;
-    
+
     private static final String USER_AGENT_STYLESHEET = "anchor-pane.css";
     private static final String CSS_CLASS = "rt-anchor-pane";
 
@@ -35,16 +39,16 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane
     {
         return this.accent;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet() 
+    public String getUserAgentStylesheet()
     {
         return null;
     }
-    
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -58,7 +62,7 @@ public class AnchorPane extends javafx.scene.layout.AnchorPane
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
     }
-    
+
     static
     {
         AnchorPane.loadStyleSheet();

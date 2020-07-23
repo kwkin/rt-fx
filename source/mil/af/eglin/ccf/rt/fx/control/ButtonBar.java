@@ -21,7 +21,7 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
     private static final String USER_AGENT_STYLESHEET = "button-bar.css";
     private static final String CSS_CLASS = "rt-button-bar";
 
-    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
+    private static final StyleablePropertyFactory<ButtonBar> FACTORY = new StyleablePropertyFactory<>(
             javafx.scene.control.ButtonBar.getClassCssMetaData());
 
     /**
@@ -71,12 +71,6 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
         return null;
     }
 
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -84,6 +78,12 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**

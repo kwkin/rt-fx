@@ -17,8 +17,8 @@ public class Tooltip extends javafx.scene.control.Tooltip
     private static final String USER_AGENT_STYLESHEET = "tool-tip.css";
     private static final String CSS_CLASS = "rt-tool-tip";
 
-    private static final StyleablePropertyFactory<ToggleButton> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ToggleButton.getClassCssMetaData());
+    private static final StyleablePropertyFactory<Tooltip> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Tooltip.getClassCssMetaData());
 
     /**
      * Creates an emppty {@code Tooltip}
@@ -40,17 +40,17 @@ public class Tooltip extends javafx.scene.control.Tooltip
         initialize();
     }
 
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-    }
-
     /**
      * {@inheritDoc}
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
     }
 
     /**

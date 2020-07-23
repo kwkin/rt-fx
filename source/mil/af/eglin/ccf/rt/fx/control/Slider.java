@@ -20,8 +20,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.fx.style.DefaultPalette;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
-//TODO add range slider (2 thumbs)
-//TODO discuss discrete sliders, bubble, and potentially adding the value inside the thumb
 /**
  * A slider allow users to make a selection from a range of values.
  * <p>
@@ -248,6 +246,15 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Skin<?> createDefaultSkin()
     {
         return new RtSliderSkin(this);
@@ -266,15 +273,6 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }

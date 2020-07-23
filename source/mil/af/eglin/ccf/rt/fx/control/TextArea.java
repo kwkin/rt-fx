@@ -343,7 +343,7 @@ public class TextArea extends javafx.scene.control.TextArea
      * {@inheritDoc}
      */
     @Override
-    public BooleanProperty isShowHelperTextProperty()
+    public BooleanProperty helperTextVisibleProperty()
     {
         return this.isShowHelperText;
     }
@@ -352,7 +352,7 @@ public class TextArea extends javafx.scene.control.TextArea
      * {@inheritDoc}
      */
     @Override
-    public boolean getIsShowHelperText()
+    public boolean getHelperTextVisible()
     {
         return this.isShowHelperText.get();
     }
@@ -361,7 +361,7 @@ public class TextArea extends javafx.scene.control.TextArea
      * {@inheritDoc}
      */
     @Override
-    public void setIsShowHelperText(boolean isShowHelperText)
+    public void setHelperTextVisible(boolean isShowHelperText)
     {
         this.isShowHelperText.set(isShowHelperText);
     }

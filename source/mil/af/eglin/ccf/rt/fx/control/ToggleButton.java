@@ -61,7 +61,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
             DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
-     * Creates a toggle button with an empty string for its label.
+     * Creates a {@code ToggleButton} with an empty string for its label.
      */
     public ToggleButton()
     {
@@ -70,7 +70,30 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle button with the specified accent.
+     * Creates a {@code ToggleButton} with the specified text as its label.
+     *
+     * @param text A text string for its label.
+     */
+    public ToggleButton(String text)
+    {
+        super(text);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code ToggleButton} with the specified text and graphic as its label.
+     * 
+     * @param text A text string for its label.
+     * @param graphic The icon for its label.
+     */
+    public ToggleButton(String text, Node graphic)
+    {
+        super(text, graphic);
+        initialize();
+    }
+
+    /**
+     * Creates a {@code ToggleButton} with the specified accent.
      * 
      * @param style The style type used to change the component's look.
      */
@@ -82,7 +105,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle button with the specified accent.
+     * Creates a {@code ToggleButton} with the specified accent.
      * 
      * @param style The style type used to change the component's look.
      * @param accent The accent type used to change the component's color
@@ -96,18 +119,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle switch with the specified text as its label.
-     *
-     * @param text A text string for its label.
-     */
-    public ToggleButton(String text)
-    {
-        super(text);
-        initialize();
-    }
-
-    /**
-     * Creates a toggle switch with the specified text and accent.
+     * Creates a {@code ToggleButton} with the specified text and accent.
      *
      * @param text A text string for its label.
      * @param style The style type used to change the component's look.
@@ -120,7 +132,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle switch with the specified text and accent.
+     * Creates a {@code ToggleButton} with the specified text and accent.
      *
      * @param text A text string for its label.
      * @param style The style type used to change the component's look.
@@ -136,19 +148,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle switch with the specified text and graphic as its label.
-     * 
-     * @param text A text string for its label.
-     * @param graphic The icon for its label.
-     */
-    public ToggleButton(String text, Node graphic)
-    {
-        super(text, graphic);
-        initialize();
-    }
-
-    /**
-     * Creates a toggle switch with the specified text and graphic as its label.
+     * Creates a {@code ToggleButton} with the specified text and graphic as its label.
      * 
      * @param text A text string for its label.
      * @param graphic The icon for its label.
@@ -162,7 +162,7 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Creates a toggle switch with the specified text and graphic as its label.
+     * Creates a {@code ToggleButton} with the specified text and graphic as its label.
      * 
      * @param text A text string for its label.
      * @param graphic The icon for its label.

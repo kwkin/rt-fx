@@ -25,7 +25,7 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
     private static final String USER_AGENT_STYLESHEET = "list-view.css";
     private static final String CSS_CLASS = "rt-list-view";
 
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
+    private static final StyleablePropertyFactory<ListView<?>> FACTORY =
         new StyleablePropertyFactory<>(javafx.scene.control.ListView.getClassCssMetaData());
 
     /**
@@ -137,6 +137,15 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -145,15 +154,6 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
         {
             pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
     }
 
     /**

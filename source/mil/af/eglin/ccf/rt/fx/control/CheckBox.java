@@ -47,7 +47,7 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * {@link Checkbox Checkboxes) and {@link ToggleSwitch Toggleswitches} provide
  * similar behavior, but should be used in different situations. Checkboxes
  * should be use when presented a list of multiple related options, while toggle
- * switches should be used when one more independent options are present. 
+ * switches should be used when one more independent options are present.
  */
 public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleableComponent
 {
@@ -56,32 +56,32 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
     private static final String USER_AGENT_STYLESHEET = "check-box.css";
     private static final String CSS_CLASS = "rt-check-box";
 
-    private static final StyleablePropertyFactory<CheckBox> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.CheckBox.getClassCssMetaData());
+    private static final StyleablePropertyFactory<CheckBox> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.CheckBox.getClassCssMetaData());
 
-    private static final CssMetaData<CheckBox, Paint> SELECTED_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<CheckBox, Paint> UNSELECTED_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-unselected-color", s -> s.unselectedColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<CheckBox, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<CheckBox, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    private static final CssMetaData<CheckBox, Paint> SELECTED_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
+    private static final CssMetaData<CheckBox, Paint> UNSELECTED_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unselected-color", s -> s.unselectedColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<CheckBox, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    private static final CssMetaData<CheckBox, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
 
     /**
      * The selected color specifies the color used by the border and fill when
      * in the selected and indeterminate state.
      */
-    private StyleableObjectProperty<Paint> selectedColor = 
-            new SimpleStyleableObjectProperty<>(SELECTED_COLOR, this, "selectedColor");
+    private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(SELECTED_COLOR, this,
+            "selectedColor");
 
     /**
      * The unselected color specifies the color used by the border when in the
      * unselected state.
      */
-    private StyleableObjectProperty<Paint> unselectedColor = 
-            new SimpleStyleableObjectProperty<>(UNSELECTED_COLOR, this, "unselectedColor");
-    
+    private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(UNSELECTED_COLOR, this,
+            "unselectedColor");
+
     /**
      * The overlay color specifies the background color used when hovering and
      * arming the button.
@@ -89,16 +89,16 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
      * The color is added on top of the button to allow the base component color
      * to be visible when a semi-opaque overlay color is provided.
      */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = 
-            new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this, "overlayColor");
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
 
     /**
      * An animated component will apply transitions between pseudostates.
      * <p>
      * When disabled, the transition end values will apply instantly.
      */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = 
-            new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this, "isAnimationDisabled");
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     /**
      * Creates a check box with an empty string for its label.
@@ -106,19 +106,6 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
     public CheckBox()
     {
         super();
-        initialize();
-    }
-
-    /**
-     * Creates a check box with the accent.
-     * 
-     * @param accent The accent type used to change the component's color
-     *            scheme.
-     */
-    public CheckBox(Accent accent)
-    {
-        super();
-        this.accent = accent;
         initialize();
     }
 
@@ -134,11 +121,22 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
     }
 
     /**
+     * Creates a check box with the accent.
+     * 
+     * @param accent the accent used to change the component's color scheme.
+     */
+    public CheckBox(Accent accent)
+    {
+        super();
+        this.accent = accent;
+        initialize();
+    }
+
+    /**
      * Creates a check box with the specified text and accent.
      * 
-     * @param text A text string for its label.
-     * @param accent The accent type used to change the component's color
-     *            scheme.
+     * @param text a text string for its label.
+     * @param accent the accent used to change the component's color scheme.
      */
     public CheckBox(String text, Accent accent)
     {
@@ -238,6 +236,15 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
      * {@inheritDoc}
      */
     @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected Skin<?> createDefaultSkin()
     {
         return new RtCheckBoxSkin(this);
@@ -256,15 +263,6 @@ public class CheckBox extends javafx.scene.control.CheckBox implements RtStyleab
      * @return The list of available CSS properties
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
     }
