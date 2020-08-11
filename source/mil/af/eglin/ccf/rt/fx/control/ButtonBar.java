@@ -16,14 +16,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "button-bar.css";
-    private static final String CSS_CLASS = "rt-button-bar";
-
-    private static final StyleablePropertyFactory<ButtonBar> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ButtonBar.getClassCssMetaData());
-
     /**
      * Creates an empty {@code ButtonBar} using the default properties for the user's operating system.
      */
@@ -44,6 +36,70 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
         initialize();
     }
 
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ButtonBar> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ButtonBar.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "button-bar.css";
+    private static final String CSS_CLASS = "rt-button-bar";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -60,49 +116,6 @@ public class ButtonBar extends javafx.scene.control.ButtonBar implements RtStyle
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     static

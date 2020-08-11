@@ -23,14 +23,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "combo-box.css";
-    private static final String CSS_CLASS = "rt-choice-box";
-
-    private static final StyleablePropertyFactory<ChoiceBox<?>> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ChoiceBox.getClassCssMetaData());
-
     /**
      * Creates an empty {@code ChoiceBox}
      */
@@ -75,40 +67,22 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         this.accent = accent;
         initialize();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
+    
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ChoiceBox<?>> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ChoiceBox.getClassCssMetaData());
+    
     /**
      * {@inheritDoc}
      */
@@ -129,12 +103,50 @@ public class ChoiceBox<T> extends javafx.scene.control.ChoiceBox<T> implements R
         return FACTORY.getCssMetaData();
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "combo-box.css";
+    private static final String CSS_CLASS = "rt-choice-box";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
     }
 
     static

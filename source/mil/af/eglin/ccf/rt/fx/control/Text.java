@@ -23,15 +23,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Text extends javafx.scene.text.Text implements RtStyleableComponent
 {
-    protected TextStyle style = TextStyle.NORMAL;
-    protected Accent accent = Accent.BASE;
-
-    private static final String USER_AGENT_STYLESHEET = "text.css";
-    private static final String CSS_CLASS = "rt-text";
-
-    private static final StyleablePropertyFactory<Text> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.text.Text.getClassCssMetaData());
-
     /**
      * Creates a text with an empty string.
      */
@@ -128,24 +119,6 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -155,6 +128,15 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
             pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
         }
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Text> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.text.Text.getClassCssMetaData());
 
     /**
      * Returns the list of available CSS properties associated with this class,
@@ -174,6 +156,18 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
     {
         return FACTORY.getCssMetaData();
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "text.css";
+    private static final String CSS_CLASS = "rt-text";
+    
+    protected TextStyle style = TextStyle.NORMAL;
+    protected Accent accent = Accent.BASE;
 
     /**
      * Loads the user agent stylesheet specific to this component
@@ -181,6 +175,24 @@ public class Text extends javafx.scene.text.Text implements RtStyleableComponent
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
     }
 
     static

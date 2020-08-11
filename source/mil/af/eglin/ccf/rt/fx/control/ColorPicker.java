@@ -40,131 +40,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class ColorPicker extends javafx.scene.control.ColorPicker
         implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<Color>
 {
-    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
-    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
-
-    protected ColorPickerStyle style = ColorPickerStyle.COMBO_BOX;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "color-picker.css";
-    private static final String CSS_CLASS = "rt-color-picker";
-
-    private ValidableHandler<Color> validationHandler = new ValidableHandler<>(this);
-
-    /**
-     * Indicates if the current value is valid according to the validator
-     * conditions.
-     */
-    private BooleanProperty isValid = new SimpleBooleanProperty(true);
-
-    /**
-     * Indicates if the helper text should be shown.
-     * <p>
-     * Helper text is typically a short description conveying additional
-     * guidance about the input field. The helper text appears below the input.
-     */
-    private BooleanProperty isHelperTextVisible = new SimpleBooleanProperty()
-    {
-        @Override
-        protected void invalidated()
-        {
-            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get());
-        }
-    };
-
-    /**
-     * The text to use for the helper description located below the input field.
-     */
-    private StringProperty helperText = new SimpleStringProperty();
-
-    /**
-     * The text to use for the error description located below the input field.
-     * The error description will override the helper text when the component is
-     * invalid. When valid, the helper text will be visible.
-     */
-    private StringProperty errorText = new SimpleStringProperty();
-
-    /**
-     * Indicates if the label showing the name or hex value of the current color
-     * is displayed.
-     */
-    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
-    {
-        @Override
-        protected void invalidated()
-        {
-            String style = String.format("-fx-color-label-visible:%s", get());
-            setStyle(style);
-        }
-    };
-
-    private static final StyleablePropertyFactory<ColorPicker> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ColorPicker.getClassCssMetaData());
-
-    private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = FACTORY
-            .createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
-    private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = FACTORY.createPaintCssMetaData("-rt-focus-color",
-            s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * When enabled, the prompt text will be positioned above the input text.
-     * When disabled, the prompt text will disappear when the input text is
-     * entered.
-     */
-    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(LABEL_FLOAT, this,
-            "labelFloat")
-    {
-        @Override
-        protected void invalidated()
-        {
-            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
-        }
-    };
-
-    /**
-     * The unfocus color specifies the accent colors used when the component is
-     * unfocused.
-     * <p>
-     * Accented color typically include the border, prompt text, and drop down
-     * icon.
-     */
-    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(UNFOCUS_COLOR, this,
-            "unfocusColor");
-
-    /**
-     * The focus color specifies the accent colors used when the component is
-     * focused.
-     * <p>
-     * Accented color typically include the border, prompt text, and drop down
-     * icon.
-     */
-    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(FOCUS_COLOR, this,
-            "focusColor");
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming the button.
-     * <p>
-     * The color is added on top of the button to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
-     */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this,
-            "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
-            "disableAnimation");
-
     /**
      * Creates a {@code ColorPicker} initialized with a white value
      */
@@ -189,9 +64,48 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * {@inheritDoc}
      */
     @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtColorPickerSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
+        {
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
+        }
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * Validation                                                            *
+     *                                                                       *
+     ************************************************************************/
+
+    private ValidableHandler<Color> validationHandler = new ValidableHandler<>(this);
+
+    /**
+     * Indicates if the current value is valid according to the validator
+     * conditions.
+     */
+    private BooleanProperty isValid = new SimpleBooleanProperty(true);
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final ReadOnlyBooleanProperty isValidProperty()
     {
         return this.isValid;
+    }
+
+    @Override
+    public void setValid(boolean isValid)
+    {
+        this.isValid.set(isValid);
     }
 
     /**
@@ -211,15 +125,6 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     {
         this.isValid.set(this.validationHandler.validate(getValue()));
         return isValid();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ObservableValue<Color> getObservableValue()
-    {
-        return valueProperty();
     }
 
     /**
@@ -254,29 +159,70 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
      * {@inheritDoc}
      */
     @Override
-    public final StringProperty errorMessageProperty()
+    public ObservableValue<Color> getValidableValue()
     {
-        return this.errorText;
+        return valueProperty();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final void setErrorMessage(String message)
+    public Control getValidableControl()
     {
-        this.errorText.set(message);
+        return this;
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * Properties                                                            *
+     *                                                                       *
+     ************************************************************************/
+
+    /**
+     * Indicates if the label showing the name or hex value of the current color
+     * is displayed.
+     */
+    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
+    {
+        @Override
+        protected void invalidated()
+        {
+            String style = String.format("-fx-color-label-visible:%s", get());
+            setStyle(style);
+        }
+    };
+    
+    public BooleanProperty isLabelVisibleProperty()
+    {
+        return this.isLabelVisible;
+    }
+
+    public void setLabelVisiblity(boolean isLabelVisible)
+    {
+        this.isLabelVisible.set(isLabelVisible);
+    }
+
+    public boolean isLabelVisible()
+    {
+        return this.isLabelVisible.get();
     }
 
     /**
-     * {@inheritDoc}
+     * Indicates if the helper text should be shown.
+     * <p>
+     * Helper text is typically a short description conveying additional
+     * guidance about the input field. The helper text appears below the input.
      */
-    @Override
-    public final String getErrorMessage()
+    private BooleanProperty isHelperTextVisible = new SimpleBooleanProperty()
     {
-        return this.errorText.get();
-    }
-
+        @Override
+        protected void invalidated()
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get());
+        }
+    };
+    
     /**
      * {@inheritDoc}
      */
@@ -309,6 +255,12 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         return isHelperTextVisible.get() || getValidators().size() > 0;
     }
 
+
+    /**
+     * The text to use for the helper description located below the input field.
+     */
+    private StringProperty helperText = new SimpleStringProperty();
+
     /**
      * {@inheritDoc}
      */
@@ -337,6 +289,67 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     }
 
     /**
+     * The text to use for the error description located below the input field.
+     * The error description will override the helper text when the component is
+     * invalid. When valid, the helper text will be visible.
+     */
+    private StringProperty errorText = new SimpleStringProperty();
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final StringProperty errorMessageProperty()
+    {
+        return this.errorText;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void setErrorMessage(String message)
+    {
+        this.errorText.set(message);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final String getErrorMessage()
+    {
+        return this.errorText.get();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ColorPicker> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<ColorPicker, Boolean> LABEL_FLOAT = FACTORY
+            .createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+
+    /**
+     * When enabled, the prompt text will be positioned above the input text.
+     * When disabled, the prompt text will disappear when the input text is
+     * entered.
+     */
+    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(LABEL_FLOAT, this,
+            "labelFloat")
+    {
+        @Override
+        protected void invalidated()
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
+        }
+    };
+    
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -362,6 +375,58 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     {
         isLabelFloating.set(labelFloat);
     }
+
+    private static final CssMetaData<ColorPicker, Paint> UNFOCUS_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    /**
+     * The unfocus color specifies the accent colors used when the component is
+     * unfocused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
+    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(UNFOCUS_COLOR, this,
+            "unfocusColor");
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final StyleableObjectProperty<Paint> unfocusColorProperty()
+    {
+        return this.unfocusColor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final Paint getUnfocusColor()
+    {
+        return unfocusColor.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void setUnfocusColor(Paint color)
+    {
+        this.unfocusColor.set(color);
+    }
+    
+    private static final CssMetaData<ColorPicker, Paint> FOCUS_COLOR = FACTORY.createPaintCssMetaData("-rt-focus-color",
+            s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    
+    /**
+     * The focus color specifies the accent colors used when the component is
+     * focused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
+    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(FOCUS_COLOR, this,
+            "focusColor");
 
     /**
      * {@inheritDoc}
@@ -390,32 +455,18 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         this.focusColor.set(color);
     }
 
+    private static final CssMetaData<ColorPicker, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
     /**
-     * {@inheritDoc}
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
      */
-    @Override
-    public final StyleableObjectProperty<Paint> unfocusColorProperty()
-    {
-        return this.unfocusColor;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Paint getUnfocusColor()
-    {
-        return unfocusColor.get();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final void setUnfocusColor(Paint color)
-    {
-        this.unfocusColor.set(color);
-    }
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this,
+            "overlayColor");
 
     public final ObjectProperty<Paint> overlayColorProperty()
     {
@@ -432,6 +483,17 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         this.overlayColor.set(overlayColor);
     }
 
+    private static final CssMetaData<ColorPicker, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
+            "disableAnimation");
+
     public final StyleableBooleanProperty disableAnimationProperty()
     {
         return this.isAnimationDisabled;
@@ -445,87 +507,6 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     public final void setDisableAnimation(Boolean disabled)
     {
         this.isAnimationDisabled.set(disabled);
-    }
-
-    public BooleanProperty isLabelVisibleProperty()
-    {
-        return this.isLabelVisible;
-    }
-
-    public void setLabelVisiblity(boolean isLabelVisible)
-    {
-        this.isLabelVisible.set(isLabelVisible);
-    }
-
-    public boolean isLabelVisible()
-    {
-        return this.isLabelVisible.get();
-    }
-
-    public ColorPickerStyle getButtonStyle()
-    {
-        return this.style;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Control getControl()
-    {
-        return this;
-    }
-
-    @Override
-    public void setValid(boolean isValid)
-    {
-        this.isValid.set(isValid);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Skin<?> createDefaultSkin()
-    {
-        return new RtColorPickerSkin(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
-        {
-            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
-        }
     }
 
     /**
@@ -548,12 +529,59 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
         return FACTORY.getCssMetaData();
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
+    
+    private static final String USER_AGENT_STYLESHEET = "color-picker.css";
+    private static final String CSS_CLASS = "rt-color-picker";
+
+    protected ColorPickerStyle style = ColorPickerStyle.COMBO_BOX;
+    protected Accent accent = Accent.PRIMARY_MID;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
+    }
+
+    public ColorPickerStyle getButtonStyle()
+    {
+        return this.style;
     }
 
     static

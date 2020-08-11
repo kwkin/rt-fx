@@ -17,14 +17,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ProgressBar extends javafx.scene.control.ProgressBar implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "progress-bar.css";
-    private static final String CSS_CLASS = "rt-progress-bar";
-
-    private static final StyleablePropertyFactory<ProgressBar> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ProgressBar.getClassCssMetaData());
-
     /**
      * Creates an indeterminate {@code ProgressBar}
      */
@@ -80,6 +72,69 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
         return new RtProgressBarSkin(this);
     }
 
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ProgressBar> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ProgressBar.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "progress-bar.css";
+    private static final String CSS_CLASS = "rt-progress-bar";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -96,49 +151,6 @@ public class ProgressBar extends javafx.scene.control.ProgressBar implements RtS
     public String getRtStyleCssName()
     {
         return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**

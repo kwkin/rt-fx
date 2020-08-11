@@ -16,14 +16,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Separator extends javafx.scene.control.Separator implements RtStyleableComponent
 {
-    protected Accent accent = Accent.BASE;
-    
-    private static final String USER_AGENT_STYLESHEET = "separator.css";
-    private static final String CSS_CLASS = "rt-separator";
-
-    private static final StyleablePropertyFactory<Separator> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Separator.getClassCssMetaData());
-    
     /**
      * Creates a horizontal {@code Separator}.
      */
@@ -69,23 +61,60 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
         this.accent = accent;
         initialize();
     }
+    
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Separator> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Separator.getClassCssMetaData());
+
 
     /**
-     * {@inheritDoc}
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
      */
-    @Override
-    public Accent getAccent()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return this.accent;
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final String USER_AGENT_STYLESHEET = "separator.css";
+    private static final String CSS_CLASS = "rt-separator";
+
+    protected Accent accent = Accent.BASE;
+    
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -101,34 +130,17 @@ public class Separator extends javafx.scene.control.Separator implements RtStyle
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
+        return CSS_CLASS;
     }
-    
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
     
     static

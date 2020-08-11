@@ -29,55 +29,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class RadioButton extends javafx.scene.control.RadioButton implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "radio-button.css";
-    private static final String CSS_CLASS = "rt-radio-button";
-
-    private static final StyleablePropertyFactory<RadioButton> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.RadioButton.getClassCssMetaData());
-
-    private static final CssMetaData<RadioButton, Paint> SELECTED_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<RadioButton, Paint> UNSELECTED_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-unselected-color", s -> s.unselectedColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<RadioButton, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<RadioButton, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-    
-    /**
-     * The selected color specifies the color used by the border and fill when
-     * in the selected state.
-     */
-    private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
-            SELECTED_COLOR, this, "selectedColor");
-
-    /**
-     * The unselected color specifies the color used by the border when in the
-     * unselected state.
-     */
-    private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
-            UNSELECTED_COLOR, this, "unselectedColor");
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming the button.
-     * <p>
-     * The color is added on top of the button to allow the base component color
-     * to be visible when a semi-opaque overlay color is provided.
-     */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            OVERLAY_COLOR, this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "disableAnimation");
-
     /**
      * Creates a radio button with an empty string for its label.
      */
@@ -125,6 +76,40 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtRadioButtonSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<RadioButton> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.RadioButton.getClassCssMetaData());
+    
+    private static final CssMetaData<RadioButton, Paint> SELECTED_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-selected-color", s -> s.selectedColor, DefaultPalette.getInstance().getAccentColor(), false);
+    
+    /**
+     * The selected color specifies the color used by the border and fill when
+     * in the selected state.
+     */
+    private StyleableObjectProperty<Paint> selectedColor = new SimpleStyleableObjectProperty<>(
+            SELECTED_COLOR, this, "selectedColor");
+
     public StyleableObjectProperty<Paint> selectedColorProperty()
     {
         return this.selectedColor;
@@ -140,6 +125,16 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
         this.selectedColor.set(color);
     }
 
+    private static final CssMetaData<RadioButton, Paint> UNSELECTED_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unselected-color", s -> s.unselectedColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
+    /**
+     * The unselected color specifies the color used by the border when in the
+     * unselected state.
+     */
+    private StyleableObjectProperty<Paint> unselectedColor = new SimpleStyleableObjectProperty<>(
+            UNSELECTED_COLOR, this, "unselectedColor");
+    
     public StyleableObjectProperty<Paint> unselectedColorProperty()
     {
         return this.unselectedColor;
@@ -155,6 +150,20 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
         this.unselectedColor.set(color);
     }
 
+
+    private static final CssMetaData<RadioButton, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
+     * <p>
+     * The color is added on top of the button to allow the base component color
+     * to be visible when a semi-opaque overlay color is provided.
+     */
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            OVERLAY_COLOR, this, "overlayColor");
+
     public ObjectProperty<Paint> getOverlayColorProperty()
     {
         return this.overlayColor;
@@ -169,6 +178,17 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
     {
         this.overlayColor.set(overlayColor);
     }
+
+    private static final CssMetaData<RadioButton, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "disableAnimation");
 
     public BooleanProperty isAnimationDisabledProperty()
     {
@@ -189,18 +209,36 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * {@inheritDoc}
      */
     @Override
-    public Accent getAccent()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return this.accent;
+        return FACTORY.getCssMetaData();
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
      */
-    @Override
-    public String getRtStyleCssName()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "radio-button.css";
+    private static final String CSS_CLASS = "rt-radio-button";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -216,40 +254,18 @@ public class RadioButton extends javafx.scene.control.RadioButton implements RtS
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
+        return CSS_CLASS;
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin()
+    public Accent getAccent()
     {
-        return new RtRadioButtonSkin(this);
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-    
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     /**

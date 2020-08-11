@@ -16,14 +16,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ContextMenu extends javafx.scene.control.ContextMenu implements RtStyleableComponent
 {
-    private static final String USER_AGENT_STYLESHEET = "context-menu.css";
-    private static final String CSS_CLASS = "rt-context-menu";
-
-    private Accent accent = Accent.PRIMARY_MID;
-
-    private static final StyleablePropertyFactory<ContextMenu> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ContextMenu.getClassCssMetaData());
-
     /**
      * Creates an empty {@code ContextMenu}
      */
@@ -69,36 +61,26 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+    private static final StyleablePropertyFactory<ContextMenu> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ContextMenu.getClassCssMetaData());
+    
     /**
      * {@inheritDoc}
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
     }
 
     /**
@@ -112,12 +94,41 @@ public class ContextMenu extends javafx.scene.control.ContextMenu implements RtS
         return FACTORY.getCssMetaData();
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final String USER_AGENT_STYLESHEET = "context-menu.css";
+    private static final String CSS_CLASS = "rt-context-menu";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
     }
 
     static

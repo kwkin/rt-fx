@@ -44,62 +44,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class TitledSeparator extends Labeled
 {
-    protected Accent accent = Accent.BASE;
-
-    private static final PseudoClass VERTICAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("vertical");
-    private static final PseudoClass HORIZONTAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("horizontal");
-
-    private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
-    private static final String CSS_CLASS = "rt-titled-separator";
-
-    private static final StyleablePropertyFactory<TitledSeparator> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.Labeled.getClassCssMetaData());
-
-    private static final CssMetaData<TitledSeparator, Orientation> ORIENTATION = FACTORY
-            .createEnumCssMetaData(Orientation.class, "-fx-orientation", s -> s.orientation, Orientation.HORIZONTAL, false);
-    private static final CssMetaData<TitledSeparator, Pos> TITLE_ALIGNMENT = FACTORY
-            .createEnumCssMetaData(Pos.class, "-fx-title-alignment", s -> s.titleAlignment, Pos.CENTER, false);
-    private static final CssMetaData<TitledSeparator, Number> SEPARATOR_CONTENT_GAP = 
-            FACTORY.createSizeCssMetaData("-rt-separator-content-gap", s -> s.separatorContentGap, 0, false);
-
-    /**
-     * The orientation property indicates if the {@code TitledSeparator} is
-     * horizontal or vertical
-     */
-    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
-            ORIENTATION, this, "orientation", Orientation.HORIZONTAL)
-    {
-        @Override
-        protected void invalidated()
-        {
-            final boolean isVertical = (get() == Orientation.VERTICAL);
-            pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, isVertical);
-            pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, !isVertical);
-        }
-    };
-
-    /**
-     * The position of the title
-     * <p>
-     * The label can be vertically placed at the top, center, or bottom of the
-     * component. The label may also be horizontally placed at the left, center,
-     * or right of the component. When centered, a gap will be added between the
-     * label and the separators on each side equal to the
-     */
-    private StyleableObjectProperty<Pos> titleAlignment = new SimpleStyleableObjectProperty<>(
-            TITLE_ALIGNMENT, this, "titleAlignment");
-
-    /**
-     * Returns the gap property used to pad the label
-     * <p>
-     * When the label is centered, the gap is used to specify the white space
-     * between the label and the separator lines. When the label is positioned
-     * to the left or right, the gap will specify the white space between the
-     * label and the edge of the component.
-     */
-    private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
-            SEPARATOR_CONTENT_GAP, this, "separatorContentGap");
-
     /**
      * Creates a horizontal {@code Separator} with no text or graphic.
      */
@@ -202,6 +146,54 @@ public class TitledSeparator extends Labeled
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtTitledSeparatorSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        setContentDisplay(ContentDisplay.LEFT);
+
+        pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, orientation.getValue() != Orientation.VERTICAL);
+        pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, orientation.getValue() == Orientation.VERTICAL);
+    }
+    
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<TitledSeparator> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Labeled.getClassCssMetaData());
+
+    private static final CssMetaData<TitledSeparator, Orientation> ORIENTATION = FACTORY
+            .createEnumCssMetaData(Orientation.class, "-fx-orientation", s -> s.orientation, Orientation.HORIZONTAL, false);
+
+    /**
+     * The orientation property indicates if the {@code TitledSeparator} is
+     * horizontal or vertical
+     */
+    private StyleableObjectProperty<Orientation> orientation = new SimpleStyleableObjectProperty<Orientation>(
+            ORIENTATION, this, "orientation", Orientation.HORIZONTAL)
+    {
+        @Override
+        protected void invalidated()
+        {
+            final boolean isVertical = (get() == Orientation.VERTICAL);
+            pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, isVertical);
+            pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, !isVertical);
+        }
+    };
+
     public ObjectProperty<Orientation> orientationProperty()
     {
         return orientation;
@@ -216,6 +208,20 @@ public class TitledSeparator extends Labeled
     {
         return orientation.get();
     }
+    
+    private static final CssMetaData<TitledSeparator, Pos> TITLE_ALIGNMENT = FACTORY
+            .createEnumCssMetaData(Pos.class, "-fx-title-alignment", s -> s.titleAlignment, Pos.CENTER, false);
+
+    /**
+     * The position of the title
+     * <p>
+     * The label can be vertically placed at the top, center, or bottom of the
+     * component. The label may also be horizontally placed at the left, center,
+     * or right of the component. When centered, a gap will be added between the
+     * label and the separators on each side equal to the
+     */
+    private StyleableObjectProperty<Pos> titleAlignment = new SimpleStyleableObjectProperty<>(
+            TITLE_ALIGNMENT, this, "titleAlignment");
 
     public ObjectProperty<Pos> titleAlignmentProperty()
     {
@@ -231,6 +237,20 @@ public class TitledSeparator extends Labeled
     {
         return titleAlignment.get();
     }
+    
+    private static final CssMetaData<TitledSeparator, Number> SEPARATOR_CONTENT_GAP = 
+            FACTORY.createSizeCssMetaData("-rt-separator-content-gap", s -> s.separatorContentGap, 0, false);
+
+    /**
+     * Returns the gap property used to pad the label
+     * <p>
+     * When the label is centered, the gap is used to specify the white space
+     * between the label and the separator lines. When the label is positioned
+     * to the left or right, the gap will specify the white space between the
+     * label and the edge of the component.
+     */
+    private StyleableDoubleProperty separatorContentGap = new SimpleStyleableDoubleProperty(
+            SEPARATOR_CONTENT_GAP, this, "separatorContentGap");
 
     public DoubleProperty separatorContentGapProperty()
     {
@@ -251,37 +271,9 @@ public class TitledSeparator extends Labeled
      * {@inheritDoc}
      */
     @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Skin<?> createDefaultSkin()
-    {
-        return new RtTitledSeparatorSkin(this);
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        setContentDisplay(ContentDisplay.LEFT);
-
-        pseudoClassStateChanged(HORIZONTAL_PSEUDOCLASS_STATE, orientation.getValue() != Orientation.VERTICAL);
-        pseudoClassStateChanged(VERTICAL_PSEUDOCLASS_STATE, orientation.getValue() == Orientation.VERTICAL);
     }
 
     /**
@@ -295,12 +287,36 @@ public class TitledSeparator extends Labeled
         return FACTORY.getCssMetaData();
     }
 
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final PseudoClass VERTICAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("vertical");
+    private static final PseudoClass HORIZONTAL_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("horizontal");
+    
+    private static final String USER_AGENT_STYLESHEET = "titled-separator.css";
+    private static final String CSS_CLASS = "rt-titled-separator";
+    
+    protected Accent accent = Accent.BASE;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
     }
 
     static

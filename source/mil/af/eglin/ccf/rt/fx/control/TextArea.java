@@ -38,97 +38,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class TextArea extends javafx.scene.control.TextArea
         implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<String>
 {
-    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
-    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
-
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "text-area.css";
-    private static final String CSS_CLASS = "rt-text-area";
-
-    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
-
-    // @formatter:off
-    private BooleanProperty isValid = new SimpleBooleanProperty(true);
-    private BooleanProperty isShowHelperText = new SimpleBooleanProperty() 
-    {
-        @Override 
-        protected void invalidated() 
-        {
-            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
-        }
-    };
-    private StringProperty helperText = new SimpleStringProperty();
-    private StringProperty errorText = new SimpleStringProperty();
-
-    private static final StyleablePropertyFactory<TextArea> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.TextArea.getClassCssMetaData());
-
-    private static final CssMetaData<TextArea, Boolean> LABEL_FLOAT = 
-            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
-    private static final CssMetaData<TextArea, Paint> UNFOCUS_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<TextArea, Paint> FOCUS_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<TextArea, Paint> OVERLAY_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<TextArea, Boolean> DISABLE_ANIMATION = 
-            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * When enabled, the prompt text will be positioned above the input text.
-     * When disabled, the prompt text will disappear when the input text is
-     * entered.
-     */
-    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
-            LABEL_FLOAT, this, "labelFloat")
-    {
-        @Override
-        protected void invalidated()
-        {
-            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
-        }
-    };
-
-    /**
-     * The unfocus color specifies the accent colors used when the component is
-     * unfocused.
-     * <p>
-     * Accented color typically include the border, prompt text, and drop down
-     * icon.
-     */
-    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
-            UNFOCUS_COLOR, this, "unfocusColor");
-
-    /**
-     * The focus color specifies the accent colors used when the component is
-     * focused.
-     * <p>
-     * Accented color typically include the border, prompt text, and drop down
-     * icon.
-     */
-    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
-            FOCUS_COLOR, this, "focusColor");
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming the button.
-     * <p>
-     * The color is added on top of the button to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
-     */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            OVERLAY_COLOR, this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "disableAnimation");
-    // @formatter:on
-
     /**
      * Create a {@code TextArea} with an empty text input
      */
@@ -178,193 +87,25 @@ public class TextArea extends javafx.scene.control.TextArea
      * {@inheritDoc}
      */
     @Override
-    public StyleableBooleanProperty labelFloatProperty()
+    protected Skin<?> createDefaultSkin()
     {
-        return this.isLabelFloating;
+        return new RtTextAreaSkin(this);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isLabelFloat()
+    private void initialize()
     {
-        return isLabelFloating.get();
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setLabelFloat(final boolean labelFloat)
-    {
-        isLabelFloating.set(labelFloat);
-    }
+    /*************************************************************************
+     *                                                                       *
+     * Validation                                                            *
+     *                                                                       *
+     ************************************************************************/
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StyleableObjectProperty<Paint> focusColorProperty()
-    {
-        return this.focusColor;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Paint getFocusColor()
-    {
-        return this.focusColor.get();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setFocusColor(Paint color)
-    {
-        this.focusColor.set(color);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StyleableObjectProperty<Paint> unfocusColorProperty()
-    {
-        return this.unfocusColor;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Paint getUnfocusColor()
-    {
-        return unfocusColor.get();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setUnfocusColor(Paint color)
-    {
-        this.unfocusColor.set(color);
-    }
-
-    public ObjectProperty<Paint> getOverlayColorProperty()
-    {
-        return this.overlayColor;
-    }
-
-    public Paint getOverlayColor()
-    {
-        return overlayColor.get();
-    }
-
-    public void setOverlayColor(Color overlayColor)
-    {
-        this.overlayColor.set(overlayColor);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public StyleableBooleanProperty disableAnimationProperty()
-    {
-        return this.isAnimationDisabled;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Boolean isDisableAnimation()
-    {
-        return this.isAnimationDisabled.get();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDisableAnimation(Boolean disabled)
-    {
-        this.isAnimationDisabled.set(disabled);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    public StringProperty helperTextProperty()
-    {
-        return this.helperText;
-    }
-
-    public String getHelperText()
-    {
-        return this.helperText.get();
-    }
-
-    public void setHelperText(String helperText)
-    {
-        this.helperText.set(helperText);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BooleanProperty helperTextVisibleProperty()
-    {
-        return this.isShowHelperText;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean getHelperTextVisible()
-    {
-        return this.isShowHelperText.get();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setHelperTextVisible(boolean isShowHelperText)
-    {
-        this.isShowHelperText.set(isShowHelperText);
-    }
+    private ValidableHandler<String> validationHandler = new ValidableHandler<>(this);
+    private BooleanProperty isValid = new SimpleBooleanProperty(true);
 
     public ObservableList<Validator<String>> getValidators()
     {
@@ -426,6 +167,56 @@ public class TextArea extends javafx.scene.control.TextArea
         return this.validationHandler.getValidateCondition();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Control getValidableControl()
+    {
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObservableValue<String> getValidableValue()
+    {
+        return textProperty();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * Properties                                                            *
+     *                                                                       *
+     ************************************************************************/
+
+    private BooleanProperty isShowHelperText = new SimpleBooleanProperty() 
+    {
+        @Override 
+        protected void invalidated() 
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, get() || getValidators().size() > 0);
+        }
+    };
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BooleanProperty helperTextVisibleProperty()
+    {
+        return this.isShowHelperText;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean getHelperTextVisible()
+    {
+        return this.isShowHelperText.get();
+    }
+
     public boolean isHelperTextVisible()
     {
         return isShowHelperText.get() || getValidators().size() > 0;
@@ -435,11 +226,30 @@ public class TextArea extends javafx.scene.control.TextArea
      * {@inheritDoc}
      */
     @Override
-    public Control getControl()
+    public void setHelperTextVisible(boolean isShowHelperText)
     {
-        return this;
+        this.isShowHelperText.set(isShowHelperText);
     }
 
+    private StringProperty helperText = new SimpleStringProperty();
+    
+    public StringProperty helperTextProperty()
+    {
+        return this.helperText;
+    }
+
+    public String getHelperText()
+    {
+        return this.helperText.get();
+    }
+
+    public void setHelperText(String helperText)
+    {
+        this.helperText.set(helperText);
+    }
+
+    private StringProperty errorText = new SimpleStringProperty();
+    
     /**
      * {@inheritDoc}
      */
@@ -466,29 +276,205 @@ public class TextArea extends javafx.scene.control.TextArea
     {
         return this.errorText.get();
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final StyleablePropertyFactory<TextArea> FACTORY =
+            new StyleablePropertyFactory<>(javafx.scene.control.TextArea.getClassCssMetaData());
 
+    private static final CssMetaData<TextArea, Boolean> LABEL_FLOAT = 
+            FACTORY.createBooleanCssMetaData("-rt-label-float", s -> s.isLabelFloating, false, false);
+    
+    /**
+     * When enabled, the prompt text will be positioned above the input text.
+     * When disabled, the prompt text will disappear when the input text is
+     * entered.
+     */
+    private StyleableBooleanProperty isLabelFloating = new SimpleStyleableBooleanProperty(
+            LABEL_FLOAT, this, "labelFloat")
+    {
+        @Override
+        protected void invalidated()
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, get());
+        }
+    };
+    
     /**
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin()
+    public StyleableBooleanProperty labelFloatProperty()
     {
-        return new RtTextAreaSkin(this);
+        return this.isLabelFloating;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ObservableValue<String> getObservableValue()
+    public boolean isLabelFloat()
     {
-        return textProperty();
+        return isLabelFloating.get();
     }
 
-    private void initialize()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setLabelFloat(final boolean labelFloat)
     {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
+        isLabelFloating.set(labelFloat);
+    }
+
+    private static final CssMetaData<TextArea, Paint> FOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-focus-color", s -> s.focusColor, DefaultPalette.getInstance().getAccentColor(), false);
+    
+    /**
+     * The focus color specifies the accent colors used when the component is
+     * focused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
+    private StyleableObjectProperty<Paint> focusColor = new SimpleStyleableObjectProperty<>(
+            FOCUS_COLOR, this, "focusColor");
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StyleableObjectProperty<Paint> focusColorProperty()
+    {
+        return this.focusColor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Paint getFocusColor()
+    {
+        return this.focusColor.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFocusColor(Paint color)
+    {
+        this.focusColor.set(color);
+    }
+
+    private static final CssMetaData<TextArea, Paint> UNFOCUS_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unfocus-color", s -> s.unfocusColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
+    /**
+     * The unfocus color specifies the accent colors used when the component is
+     * unfocused.
+     * <p>
+     * Accented color typically include the border, prompt text, and drop down
+     * icon.
+     */
+    private StyleableObjectProperty<Paint> unfocusColor = new SimpleStyleableObjectProperty<>(
+            UNFOCUS_COLOR, this, "unfocusColor");
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StyleableObjectProperty<Paint> unfocusColorProperty()
+    {
+        return this.unfocusColor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Paint getUnfocusColor()
+    {
+        return unfocusColor.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setUnfocusColor(Paint color)
+    {
+        this.unfocusColor.set(color);
+    }
+
+    private static final CssMetaData<TextArea, Paint> OVERLAY_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the button.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            OVERLAY_COLOR, this, "overlayColor");
+
+    public ObjectProperty<Paint> getOverlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public Paint getOverlayColor()
+    {
+        return overlayColor.get();
+    }
+
+    public void setOverlayColor(Color overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
+    }
+
+    private static final CssMetaData<TextArea, Boolean> DISABLE_ANIMATION = 
+            FACTORY.createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+    
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "disableAnimation");
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StyleableBooleanProperty disableAnimationProperty()
+    {
+        return this.isAnimationDisabled;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean isDisableAnimation()
+    {
+        return this.isAnimationDisabled.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setDisableAnimation(Boolean disabled)
+    {
+        this.isAnimationDisabled.set(disabled);
     }
 
     /**
@@ -511,12 +497,54 @@ public class TextArea extends javafx.scene.control.TextArea
         return FACTORY.getCssMetaData();
     }
 
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    public static final PseudoClass FLOATING_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("floating");
+    public static final PseudoClass HELPER_PSEUDOCLASS_STATE = PseudoClass.getPseudoClass("helper");
+
+    private static final String USER_AGENT_STYLESHEET = "text-area.css";
+    private static final String CSS_CLASS = "rt-text-area";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
     }
 
     static

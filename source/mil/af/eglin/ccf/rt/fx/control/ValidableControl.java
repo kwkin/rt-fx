@@ -24,7 +24,7 @@ public interface ValidableControl<T>
      * 
      * @return the javafx control reference
      */
-    public Control getControl();
+    public Control getValidableControl();
 
     /**
      * Gets the read only property indicating if the control is valid
@@ -84,7 +84,7 @@ public interface ValidableControl<T>
      * 
      * @return the observable value for the validable control
      */
-    public ObservableValue<T> getObservableValue();
+    public ObservableValue<T> getValidableValue();
 
     void setErrorMessage(String errorMessage);
 

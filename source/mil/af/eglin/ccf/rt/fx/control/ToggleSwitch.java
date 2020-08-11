@@ -38,93 +38,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "toggle-switch.css";
-    private static final String CSS_CLASS = "rt-toggle-switch";
-
-    private static final StyleablePropertyFactory<ToggleSwitch> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ToggleButton.getClassCssMetaData());
-
-    private static final CssMetaData<ToggleSwitch, Number> LINE_WIDTH = FACTORY.createSizeCssMetaData(
-            "-rt-line-width", s -> s.lineWidth, 22.0, false);
-    private static final CssMetaData<ToggleSwitch, Number> LINE_LENGTH = FACTORY.createSizeCssMetaData(
-            "-rt-line-length", s -> s.lineLength, 18.0, false);
-    private static final CssMetaData<ToggleSwitch, Number> THUMB_RADIUS = FACTORY.createSizeCssMetaData(
-            "-rt-thumb-radius", s -> s.thumbRadius, 18.0, false);
-    private static final CssMetaData<ToggleSwitch, Paint> SELECTED_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-selected-thumb-color", s -> s.selectedThumbColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<ToggleSwitch, Paint> UNSELECTED_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-unselected-thumb-color", s -> s.unselectedThumbColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ToggleSwitch, Paint> SELECTED_LINE_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-selected-line-color", s -> s.selectedLineColor, DefaultPalette.getInstance().getLightAccentColor(), false);
-    private static final CssMetaData<ToggleSwitch, Paint> UNSELECTED_LINE_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-unselected-line-color", s -> s.unselectedLineColor, DefaultPalette.getInstance().getLightBaseColor(), false);
-    private static final CssMetaData<ToggleSwitch, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ToggleSwitch, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * The width of the line in pixels
-     */
-    private StyleableDoubleProperty lineWidth = new SimpleStyleableDoubleProperty(LINE_WIDTH,
-            ToggleSwitch.this, "lineWidth", 22.0);
-
-    /**
-     * The length of the line in pixels
-     */
-    private StyleableDoubleProperty lineLength = new SimpleStyleableDoubleProperty(LINE_LENGTH,
-            ToggleSwitch.this, "lineLength", 18.0);
-
-    /**
-     * The radius of the thumb in pixels
-     */
-    private StyleableDoubleProperty thumbRadius = new SimpleStyleableDoubleProperty(THUMB_RADIUS,
-            ToggleSwitch.this, "thumbRadius", 8.0);
-
-    /**
-     * The color used by the thumb when in the selected state.
-     */
-    private StyleableObjectProperty<Paint> selectedThumbColor = new SimpleStyleableObjectProperty<>(
-            SELECTED_COLOR, ToggleSwitch.this, "selectedThumbColor");
-
-    /**
-     * The color used by the thumb when in the unselected or indeterminate
-     * state.
-     */
-    private StyleableObjectProperty<Paint> unselectedThumbColor = new SimpleStyleableObjectProperty<>(
-            UNSELECTED_COLOR, ToggleSwitch.this, "unselectedThumbColor");
-
-    /**
-     * The color used by the line when in the selected state.
-     */
-    private StyleableObjectProperty<Paint> selectedLineColor = new SimpleStyleableObjectProperty<>(
-            SELECTED_LINE_COLOR, ToggleSwitch.this, "selectedLineColor");
-    /**
-     * The color used by the line when in the unselected or indeterminate state.
-     */
-    private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
-            UNSELECTED_LINE_COLOR, ToggleSwitch.this, "unselectedLineColor");
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming the toggle switch.
-     * <p>
-     * The color is added on top of the button to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
-     */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
-            OVERLAY_COLOR, ToggleSwitch.this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, ToggleSwitch.this, "disableAnimation");
-
     /**
      * Creates a toggle switch with an empty string for its label.
      */
@@ -172,6 +85,39 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtToggleSwitchSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ToggleSwitch> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ToggleButton.getClassCssMetaData());
+    
+    private static final CssMetaData<ToggleSwitch, Number> LINE_WIDTH = FACTORY.createSizeCssMetaData(
+            "-rt-line-width", s -> s.lineWidth, 22.0, false);
+    
+    /**
+     * The width of the line in pixels
+     */
+    private StyleableDoubleProperty lineWidth = new SimpleStyleableDoubleProperty(LINE_WIDTH,
+            ToggleSwitch.this, "lineWidth", 22.0);
+
     public DoubleProperty lineWidthProperty()
     {
         return this.lineWidth;
@@ -186,6 +132,15 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         this.lineWidth.set(lineWidth);
     }
+    
+    private static final CssMetaData<ToggleSwitch, Number> LINE_LENGTH = FACTORY.createSizeCssMetaData(
+            "-rt-line-length", s -> s.lineLength, 18.0, false);
+    
+    /**
+     * The length of the line in pixels
+     */
+    private StyleableDoubleProperty lineLength = new SimpleStyleableDoubleProperty(LINE_LENGTH,
+            ToggleSwitch.this, "lineLength", 18.0);
 
     public DoubleProperty lineLengthProperty()
     {
@@ -202,6 +157,14 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
         this.lineLength.set(lineLength);
     }
 
+    private static final CssMetaData<ToggleSwitch, Number> THUMB_RADIUS = FACTORY.createSizeCssMetaData(
+            "-rt-thumb-radius", s -> s.thumbRadius, 18.0, false);
+    /**
+     * The radius of the thumb in pixels
+     */
+    private StyleableDoubleProperty thumbRadius = new SimpleStyleableDoubleProperty(THUMB_RADIUS,
+            ToggleSwitch.this, "thumbRadius", 8.0);
+
     public DoubleProperty thumbRadiusProperty()
     {
         return this.thumbRadius;
@@ -216,6 +179,15 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         this.thumbRadius.set(thumbRadius);
     }
+    
+    private static final CssMetaData<ToggleSwitch, Paint> SELECTED_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-selected-thumb-color", s -> s.selectedThumbColor, DefaultPalette.getInstance().getAccentColor(), false);
+    
+    /**
+     * The color used by the thumb when in the selected state.
+     */
+    private StyleableObjectProperty<Paint> selectedThumbColor = new SimpleStyleableObjectProperty<>(
+            SELECTED_COLOR, ToggleSwitch.this, "selectedThumbColor");
 
     public ObjectProperty<Paint> selectedColorProperty()
     {
@@ -231,6 +203,16 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         this.selectedThumbColor.set(color);
     }
+    
+    private static final CssMetaData<ToggleSwitch, Paint> UNSELECTED_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unselected-thumb-color", s -> s.unselectedThumbColor, DefaultPalette.getInstance().getBaseColor(), false);
+
+    /**
+     * The color used by the thumb when in the unselected or indeterminate
+     * state.
+     */
+    private StyleableObjectProperty<Paint> unselectedThumbColor = new SimpleStyleableObjectProperty<>(
+            UNSELECTED_COLOR, ToggleSwitch.this, "unselectedThumbColor");
 
     public ObjectProperty<Paint> unselectedColorProperty()
     {
@@ -246,6 +228,15 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         this.unselectedThumbColor.set(color);
     }
+    
+    private static final CssMetaData<ToggleSwitch, Paint> SELECTED_LINE_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-selected-line-color", s -> s.selectedLineColor, DefaultPalette.getInstance().getLightAccentColor(), false);
+
+    /**
+     * The color used by the line when in the selected state.
+     */
+    private StyleableObjectProperty<Paint> selectedLineColor = new SimpleStyleableObjectProperty<>(
+            SELECTED_LINE_COLOR, ToggleSwitch.this, "selectedLineColor");
 
     public ObjectProperty<Paint> selectedLineColorProperty()
     {
@@ -262,6 +253,15 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
         this.selectedLineColor.set(color);
     }
 
+    private static final CssMetaData<ToggleSwitch, Paint> UNSELECTED_LINE_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unselected-line-color", s -> s.unselectedLineColor, DefaultPalette.getInstance().getLightBaseColor(), false);
+    
+    /**
+     * The color used by the line when in the unselected or indeterminate state.
+     */
+    private StyleableObjectProperty<Paint> unselectedLineColor = new SimpleStyleableObjectProperty<>(
+            UNSELECTED_LINE_COLOR, ToggleSwitch.this, "unselectedLineColor");
+    
     public StyleableObjectProperty<Paint> unselectedLineColorProperty()
     {
         return this.unselectedLineColor;
@@ -277,6 +277,19 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
         this.unselectedLineColor.set(color);
     }
 
+    private static final CssMetaData<ToggleSwitch, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the toggle switch.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(
+            OVERLAY_COLOR, ToggleSwitch.this, "overlayColor");
+    
     public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
@@ -291,6 +304,17 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     {
         this.overlayColor.set(overlayColor);
     }
+    
+    private static final CssMetaData<ToggleSwitch, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, ToggleSwitch.this, "disableAnimation");
 
     public BooleanProperty isAnimationDisabledProperty()
     {
@@ -308,21 +332,14 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
      */
-    @Override
-    public Accent getAccent()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
     }
 
     /**
@@ -332,6 +349,25 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
         return FACTORY.getCssMetaData();
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    private static final String USER_AGENT_STYLESHEET = "toggle-switch.css";
+    private static final String CSS_CLASS = "rt-toggle-switch";
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -347,34 +383,18 @@ public class ToggleSwitch extends javafx.scene.control.CheckBox implements RtSty
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin()
+    public String getRtStyleCssName()
     {
-        return new RtToggleSwitchSkin(this);
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
+        return CSS_CLASS;
     }
 
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     static

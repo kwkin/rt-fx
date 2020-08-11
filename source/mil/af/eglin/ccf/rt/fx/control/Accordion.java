@@ -17,14 +17,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Accordion extends javafx.scene.control.Accordion
 {
-    protected Accent accent;
-
-    private static final String USER_AGENT_STYLESHEET = "accordion.css";
-    private static final String CSS_CLASS = "rt-accordion";
-
-    private static final StyleablePropertyFactory<Accordion> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.Accordion.getClassCssMetaData());
-
     /**
      * Creates an empty {@code Accordion}
      */
@@ -70,24 +62,6 @@ public class Accordion extends javafx.scene.control.Accordion
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -96,6 +70,15 @@ public class Accordion extends javafx.scene.control.Accordion
             getStyleClass().add(this.accent.getStyleClassName());
         }
     }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Accordion> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Accordion.getClassCssMetaData());
 
     /**
      * Returns the list of available CSS properties associated with this class,
@@ -109,11 +92,42 @@ public class Accordion extends javafx.scene.control.Accordion
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "accordion.css";
+    private static final String CSS_CLASS = "rt-accordion";
+    
+    protected Accent accent;
+    
+    /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
     }
 
     static

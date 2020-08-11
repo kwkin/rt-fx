@@ -28,38 +28,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ToggleButton extends javafx.scene.control.ToggleButton implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-    protected IconToggleButtonStyle style = IconToggleButtonStyle.RAISED;
-
-    private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
-    private static final String CSS_CLASS = "rt-toggle-button";
-
-    private static final StyleablePropertyFactory<ToggleButton> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ToggleButton.getClassCssMetaData());
-
-    private static final CssMetaData<ToggleButton, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
-            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ToggleButton, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming.
-     * <p>
-     * The color is added on top of the component to allow the base button color
-     * to be visible when a semi-opaque overlay color is provided.
-     */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
-            this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "isAnimationDisabled");
-
     /**
      * Creates a {@code ToggleButton} with an empty string for its label.
      */
@@ -179,73 +147,6 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
     }
 
     /**
-     * Gets the style type of the toggle button.
-     * 
-     * @return The style type of the toggle button
-     */
-    public IconToggleButtonStyle getButtonStyle()
-    {
-        return this.style;
-    }
-
-    public final ObjectProperty<Paint> overlayColorProperty()
-    {
-        return this.overlayColor;
-    }
-
-    public final Paint getOverlayColor()
-    {
-        return overlayColor.get();
-    }
-
-    public final void setOverlayColor(Paint overlayColor)
-    {
-        this.overlayColor.set(overlayColor);
-    }
-
-    public BooleanProperty isAnimationDisabledProperty()
-    {
-        return this.isAnimationDisabled;
-    }
-
-    public boolean getIsAnimationDisabled()
-    {
-        return isAnimationDisabled.get();
-    }
-
-    public void setIsAnimationDisabled(boolean isAnimationDisabled)
-    {
-        this.isAnimationDisabled.set(isAnimationDisabled);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -263,6 +164,69 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
         }
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ToggleButton> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ToggleButton.getClassCssMetaData());
+
+    private static final CssMetaData<ToggleButton, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
+            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming.
+     * <p>
+     * The color is added on top of the component to allow the base button color
+     * to be visible when a semi-opaque overlay color is provided.
+     */
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
+    
+    public final ObjectProperty<Paint> overlayColorProperty()
+    {
+        return this.overlayColor;
+    }
+
+    public final Paint getOverlayColor()
+    {
+        return overlayColor.get();
+    }
+
+    public final void setOverlayColor(Paint overlayColor)
+    {
+        this.overlayColor.set(overlayColor);
+    }
+    
+    private static final CssMetaData<ToggleButton, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
+
+    public BooleanProperty isAnimationDisabledProperty()
+    {
+        return this.isAnimationDisabled;
+    }
+
+    public boolean getIsAnimationDisabled()
+    {
+        return isAnimationDisabled.get();
+    }
+
+    public void setIsAnimationDisabled(boolean isAnimationDisabled)
+    {
+        this.isAnimationDisabled.set(isAnimationDisabled);
     }
 
     /**
@@ -285,12 +249,61 @@ public class ToggleButton extends javafx.scene.control.ToggleButton implements R
         return FACTORY.getCssMetaData();
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "toggle-button.css";
+    private static final String CSS_CLASS = "rt-toggle-button";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+    protected IconToggleButtonStyle style = IconToggleButtonStyle.RAISED;
+
     /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
+    }
+
+    /**
+     * Gets the style type of the toggle button.
+     * 
+     * @return The style type of the toggle button
+     */
+    public IconToggleButtonStyle getButtonStyle()
+    {
+        return this.style;
     }
 
     static

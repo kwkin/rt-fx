@@ -36,25 +36,8 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
 public class IconButton extends Button implements Icon
 {
     protected StackPane iconPane = new StackPane();
-    protected Accent accent = Accent.BASE;
     protected SvgIcon icon;
-
-    private static final String USER_AGENT_STYLESHEET = "button.css";
-
-    private static final StyleablePropertyFactory<IconButton> FACTORY =
-        new StyleablePropertyFactory<>(Button.getClassCssMetaData());
-
-    private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-disable-animation", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);
-
-    /**
-     * The color of the icon when the button is armed.
-     * <p>
-     * When not armed, the icon will retain the color specified by the icon
-     */
-    private StyleableObjectProperty<Paint> selectedIconFill = new SimpleStyleableObjectProperty<>(
-            SELECTED_ICON_COLOR, this, "selectedFill");
-
+    
     /**
      * Creates an {@code IconButton} with the specified icon as its label.
      * 
@@ -95,24 +78,18 @@ public class IconButton extends Button implements Icon
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtButtonSkin(this);
+    }
+
     public SvgIcon getIcon()
     {
         return this.icon;
-    }
-
-    public final StyleableObjectProperty<Paint> selectedIconFillProperty()
-    {
-        return this.selectedIconFill;
-    }
-
-    public final void setSelectedFill(Paint fill)
-    {
-        this.selectedIconFill.set(fill);
-    }
-
-    public final Paint getSelectedIconFill()
-    {
-        return this.selectedIconFill.get();
     }
 
     public boolean isColorManaged()
@@ -158,49 +135,46 @@ public class IconButton extends Button implements Icon
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Skin<?> createDefaultSkin()
-    {
-        return new RtButtonSkin(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        this.iconPane.getChildren().addAll(this.icon);
-        double width = this.icon.getSize();
-        double height = this.icon.getSize();
-        setIconPaneSize(width, height);
-        setGraphic(this.iconPane);
-
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
     private void setIconPaneSize(double width, double height)
     {
         this.iconPane.setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
         this.iconPane.setPrefSize(width, height);
         this.iconPane.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<IconButton> FACTORY =
+        new StyleablePropertyFactory<>(Button.getClassCssMetaData());
+
+    private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-disable-animation", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);
+
+    /**
+     * The color of the icon when the button is armed.
+     * <p>
+     * When not armed, the icon will retain the color specified by the icon
+     */
+    private StyleableObjectProperty<Paint> selectedIconFill = new SimpleStyleableObjectProperty<>(
+            SELECTED_ICON_COLOR, this, "selectedFill");
+
+    public final StyleableObjectProperty<Paint> selectedIconFillProperty()
+    {
+        return this.selectedIconFill;
+    }
+
+    public final void setSelectedFill(Paint fill)
+    {
+        this.selectedIconFill.set(fill);
+    }
+
+    public final Paint getSelectedIconFill()
+    {
+        return this.selectedIconFill.get();
     }
 
     /**
@@ -215,11 +189,49 @@ public class IconButton extends Button implements Icon
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "button.css";
+    protected Accent accent = Accent.BASE;
+
+    private void initialize()
+    {
+        this.iconPane.getChildren().addAll(this.icon);
+        double width = this.icon.getSize();
+        double height = this.icon.getSize();
+        setIconPaneSize(width, height);
+        setGraphic(this.iconPane);
+
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+
+    /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
     }
 
     static

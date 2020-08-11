@@ -17,13 +17,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class TabPane extends javafx.scene.control.TabPane implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "tab-pane.css";
-    private static final String CSS_CLASS = "rt-tab-pane";
-
-    private static final StyleablePropertyFactory<TabPane> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.TabPane.getClassCssMetaData());
 
     /**
      * Creates a {@code TabPane} with no tabs
@@ -70,22 +63,58 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<TabPane> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.TabPane.getClassCssMetaData());
+    
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "tab-pane.css";
+    private static final String CSS_CLASS = "rt-tab-pane";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -101,34 +130,18 @@ public class TabPane extends javafx.scene.control.TabPane implements RtStyleable
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
+        return CSS_CLASS;
     }
 
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     static

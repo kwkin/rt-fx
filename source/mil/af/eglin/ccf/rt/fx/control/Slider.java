@@ -28,66 +28,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Slider extends javafx.scene.control.Slider implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "slider.css";
-    private static final String CSS_CLASS = "rt-slider";
-
-    private static final StyleablePropertyFactory<Slider> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.Slider.getClassCssMetaData());
-
-    private static final CssMetaData<Slider, Paint> THUMB_COLOR = FACTORY.createPaintCssMetaData("-rt-thumb-color",
-            s -> s.thumbColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<Slider, Paint> FILLED_TRACK_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-filled-track-color", s -> s.filledTrackColor, DefaultPalette.getInstance().getAccentColor(), false);
-    private static final CssMetaData<Slider, Paint> UNFILLED_TRACK_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-unfilled-track-color", s -> s.unfilledTrackColor, DefaultPalette.getInstance().getLightBaseColor(),
-            false);
-    private static final CssMetaData<Slider, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
-            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<Slider, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * The color of the thumb.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableObjectProperty<Paint> thumbColor = new SimpleStyleableObjectProperty<>(THUMB_COLOR, this,
-            "thumbColor");
-
-    /**
-     * The filled track color specifies the color of the track from the minimum
-     * end of the slider to the thumb.
-     */
-    private StyleableObjectProperty<Paint> filledTrackColor = new SimpleStyleableObjectProperty<>(FILLED_TRACK_COLOR,
-            this, "filledTrackColor");
-
-    /**
-     * The unfilled track color specifies the color of the track from the thumb
-     * to the maximum end of the slider.
-     */
-    private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
-            UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming the toggle switch.
-     * <p>
-     * The color is added on top of the button to allow the base button color to
-     * be visible when a semi-opaque overlay color is provided.
-     */
-    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this,
-            "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
-            "disableAnimation");
-
     /**
      * Creates a default slider instance.
      */
@@ -140,6 +80,40 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtSliderSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Slider> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Slider.getClassCssMetaData());
+
+    private static final CssMetaData<Slider, Paint> THUMB_COLOR = FACTORY.createPaintCssMetaData("-rt-thumb-color",
+            s -> s.thumbColor, DefaultPalette.getInstance().getAccentColor(), false);
+    /**
+     * The color of the thumb.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableObjectProperty<Paint> thumbColor = new SimpleStyleableObjectProperty<>(THUMB_COLOR, this,
+            "thumbColor");
+    
     public final StyleableObjectProperty<Paint> thumbColorProperty()
     {
         return this.thumbColor;
@@ -155,6 +129,16 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         this.thumbColor.set(color);
     }
 
+    private static final CssMetaData<Slider, Paint> FILLED_TRACK_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-filled-track-color", s -> s.filledTrackColor, DefaultPalette.getInstance().getAccentColor(), false);
+
+    /**
+     * The filled track color specifies the color of the track from the minimum
+     * end of the slider to the thumb.
+     */
+    private StyleableObjectProperty<Paint> filledTrackColor = new SimpleStyleableObjectProperty<>(FILLED_TRACK_COLOR,
+            this, "filledTrackColor");
+    
     public final StyleableObjectProperty<Paint> filledTrackColorProperty()
     {
         return this.filledTrackColor;
@@ -170,6 +154,17 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
         this.filledTrackColor.set(color);
     }
 
+    private static final CssMetaData<Slider, Paint> UNFILLED_TRACK_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-unfilled-track-color", s -> s.unfilledTrackColor, DefaultPalette.getInstance().getLightBaseColor(),
+            false);
+    
+    /**
+     * The unfilled track color specifies the color of the track from the thumb
+     * to the maximum end of the slider.
+     */
+    private StyleableObjectProperty<Paint> unfilledTrackColor = new SimpleStyleableObjectProperty<>(
+            UNFILLED_TRACK_COLOR, this, "unfilledTrackColor");
+    
     public final StyleableObjectProperty<Paint> unfilledTrackColorProperty()
     {
         return this.unfilledTrackColor;
@@ -184,6 +179,19 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     {
         this.unfilledTrackColor.set(color);
     }
+    
+    private static final CssMetaData<Slider, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
+            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming the toggle switch.
+     * <p>
+     * The color is added on top of the button to allow the base button color to
+     * be visible when a semi-opaque overlay color is provided.
+     */
+    private StyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR, this,
+            "overlayColor");
 
     public final ObjectProperty<Paint> overlayColorProperty()
     {
@@ -199,6 +207,17 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     {
         this.overlayColor.set(overlayColor);
     }
+    
+    private static final CssMetaData<Slider, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private StyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(DISABLE_ANIMATION, this,
+            "disableAnimation");
 
     public final BooleanProperty isAnimationDisabledProperty()
     {
@@ -216,21 +235,42 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
      */
-    @Override
-    public Accent getAccent()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return this.accent;
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "slider.css";
+    private static final String CSS_CLASS = "rt-slider";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -246,43 +286,18 @@ public class Slider extends javafx.scene.control.Slider implements RtStyleableCo
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
+        return CSS_CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected Skin<?> createDefaultSkin()
+    public Accent getAccent()
     {
-        return new RtSliderSkin(this);
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     static

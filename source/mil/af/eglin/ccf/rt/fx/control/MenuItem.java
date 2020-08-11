@@ -8,10 +8,6 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
  */
 public class MenuItem extends javafx.scene.control.MenuItem implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-    
-    private static final String DEFAULT_STYLE_CLASS = "rt-menu-item";
-    
     /**
      * Creates a {@code MenuItem} with no text
      */
@@ -73,15 +69,22 @@ public class MenuItem extends javafx.scene.control.MenuItem implements RtStyleab
         super(text, graphic);
         initialize();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(DEFAULT_STYLE_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
     }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final String DEFAULT_STYLE_CLASS = "rt-menu-item";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
 
     /**
      * {@inheritDoc}
@@ -91,10 +94,13 @@ public class MenuItem extends javafx.scene.control.MenuItem implements RtStyleab
     {
         return DEFAULT_STYLE_CLASS;
     }
-    
-    private void initialize()
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
     {
-        getStyleClass().add(DEFAULT_STYLE_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
+        return this.accent;
     }
 }

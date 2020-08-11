@@ -18,14 +18,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class TreeView<T> extends javafx.scene.control.TreeView<T>
 {
-    private static final String USER_AGENT_STYLESHEET = "tree-view.css";
-    private static final String CSS_CLASS = "rt-tree-view";
-
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final StyleablePropertyFactory<TreeView> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.TreeView.getClassCssMetaData());
-    
     /**
      * Creates an empty {@code TreeView}
      */
@@ -45,37 +37,20 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
     }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<TreeView<?>> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.TreeView.getClassCssMetaData());
 
     /**
      * Returns the list of available CSS properties associated with this class,
@@ -89,11 +64,48 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "tree-view.css";
+    private static final String CSS_CLASS = "rt-tree-view";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
     }
     
     static

@@ -16,14 +16,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ScrollPane extends javafx.scene.control.ScrollPane
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "scroll-pane.css";
-    private static final String CSS_CLASS = "rt-scroll-pane";
-
-    private static final StyleablePropertyFactory<ScrollPane> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ScrollPane.getClassCssMetaData());
-    
     /**
      * Creates an empty {@code ScrollPane}
      */
@@ -70,24 +62,6 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
         initialize();
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet() 
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
-    }
-    
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -96,6 +70,15 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
             getStyleClass().add(this.accent.getStyleClassName());
         }
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ScrollPane> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ScrollPane.getClassCssMetaData());
 
     /**
      * Returns the list of available CSS properties associated with this class,
@@ -109,11 +92,41 @@ public class ScrollPane extends javafx.scene.control.ScrollPane
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "scroll-pane.css";
+    private static final String CSS_CLASS = "rt-scroll-pane";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet() 
+    {
+        return null;
     }
     
     static

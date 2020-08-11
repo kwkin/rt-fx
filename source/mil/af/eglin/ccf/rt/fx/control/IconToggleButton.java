@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.sun.javafx.css.StyleManager;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.css.CssMetaData;
 import javafx.css.SimpleStyleableObjectProperty;
 import javafx.css.Styleable;
@@ -24,30 +28,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class IconToggleButton extends ToggleButton implements Icon
 {
-    protected IconToggleButtonStyle style = IconToggleButtonStyle.ICON;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    protected SvgIcon selectedIcon;
-    protected SvgIcon unselectedIcon;
-    protected String selectedText = "";
-    protected String unselectedText = "";
-
-    private static final String USER_AGENT_STYLESHEET = "button.css";
-    
-    private static final StyleablePropertyFactory<IconToggleButton> FACTORY =
-        new StyleablePropertyFactory<>(ToggleButton.getClassCssMetaData());
-
-    private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-selected-fill", s -> s.selectedFill, DefaultPalette.getInstance().getAccentColor(), false);
-
-    private static final CssMetaData<IconToggleButton, Paint> UNSELECTED_ICON_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-unselected-fill", s -> s.unselectedFill, DefaultPalette.getInstance().getBaseColor(), false);
-
-    private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
-            SELECTED_ICON_COLOR, this, "selectedFill");
-    private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
-            UNSELECTED_ICON_COLOR, this, "unselectedFill");
-
     /**
      * Creates a {@code IconToggleButton} with the provided select and unselected icons 
      * 
@@ -57,8 +37,8 @@ public class IconToggleButton extends ToggleButton implements Icon
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon)
     {
         super(IconToggleButtonStyle.ICON);
-        this.selectedIcon = selectedIcon;
-        this.unselectedIcon = unselectedIcon;
+        this.selectedIcon.set(selectedIcon);
+        this.unselectedIcon.set(unselectedIcon);
         initialize();
     }
 
@@ -72,10 +52,10 @@ public class IconToggleButton extends ToggleButton implements Icon
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String text)
     {
         super(IconToggleButtonStyle.ICON);
-        this.selectedIcon = selectedIcon;
-        this.unselectedIcon = unselectedIcon;
-        this.selectedText = text;
-        this.unselectedText = text;
+        this.selectedIcon.set(selectedIcon);
+        this.unselectedIcon.set(unselectedIcon);
+        this.selectedText.set(text);
+        this.unselectedText.set(text);
         initialize();
     }
 
@@ -90,10 +70,10 @@ public class IconToggleButton extends ToggleButton implements Icon
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, String selectedText, String unselectedText)
     {
         super(IconToggleButtonStyle.ICON);
-        this.selectedIcon = selectedIcon;
-        this.unselectedIcon = unselectedIcon;
-        this.selectedText = selectedText;
-        this.unselectedText = unselectedText;
+        this.selectedIcon.set(selectedIcon);
+        this.unselectedIcon.set(unselectedIcon);
+        this.selectedText.set(selectedText);
+        this.unselectedText.set(unselectedText);
         initialize();
     }
 
@@ -107,86 +87,30 @@ public class IconToggleButton extends ToggleButton implements Icon
     public IconToggleButton(SvgIcon selectedIcon, SvgIcon unselectedIcon, IconToggleButtonStyle style)
     {
         super(style);
-        this.selectedIcon = selectedIcon;
-        this.unselectedIcon = unselectedIcon;
+        this.selectedIcon.set(selectedIcon);
+        this.unselectedIcon.set(unselectedIcon);
         this.style = style;
         initialize();
     }
-    
-    public IconToggleButtonStyle getRtStyle()
-    {
-        return this.style;
-    }
 
-    public StyleableObjectProperty<Paint> selectedFillProperty()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
     {
-        return this.selectedFill;
-    }
-
-    public void setSelectedFill(Paint color)
-    {
-        this.selectedFill.set(color);
-    }
-
-    public Paint getSelectedFill()
-    {
-        return selectedFill.get();
-    }
-
-    public StyleableObjectProperty<Paint> unselectedFillProperty()
-    {
-        return this.unselectedFill;
-    }
-
-    public void setUnselectedFill(Paint color)
-    {
-        this.unselectedFill.set(color);
-    }
-
-    public Paint getUnselectedFill()
-    {
-        return unselectedFill.get();
-    }
-
-    public SvgIcon getSelectedIcon()
-    {
-        return this.selectedIcon;
-    }
-
-    public SvgIcon getUnslectedIcon()
-    {
-        return this.unselectedIcon;
-    }
-
-    public void setSelectedText(String selectedText)
-    {
-        this.selectedText = selectedText;
-    }
-
-    public String getSelectedText()
-    {
-        return this.selectedText;
-    }
-
-    public void setUnselectedText(String unselectedText)
-    {
-        this.unselectedText = unselectedText;
-    }
-
-    public String getUnselectedText()
-    {
-        return this.unselectedText;
+        return new RtIconToggleButtonSkin(this);
     }
 
     public boolean isColorManaged()
     {
-        return this.isSelected() ? this.selectedIcon.isColorManaged() : this.unselectedIcon.isColorManaged();
+        return this.isSelected() ? this.selectedIcon.get().isColorManaged() : this.unselectedIcon.get().isColorManaged();
     }
 
     public void setIsColorManaged(boolean isFillManaged)
     {
-        this.selectedIcon.setIsColorManaged(isFillManaged);
-        this.unselectedIcon.setIsColorManaged(isFillManaged);
+        this.selectedIcon.get().setIsColorManaged(isFillManaged);
+        this.unselectedIcon.get().setIsColorManaged(isFillManaged);
     }
 
     /**
@@ -195,8 +119,8 @@ public class IconToggleButton extends ToggleButton implements Icon
     @Override
     public void setFill(Paint fill)
     {
-        this.unselectedIcon.setFill(fill);
-        this.selectedIcon.setFill(fill);
+        this.unselectedIcon.get().setFill(fill);
+        this.selectedIcon.get().setFill(fill);
     }
 
     /**
@@ -214,7 +138,7 @@ public class IconToggleButton extends ToggleButton implements Icon
     @Override
     public double getSize()
     {
-        return isSelected() ? this.selectedIcon.getSize() : this.unselectedIcon.getSize();
+        return isSelected() ? this.selectedIcon.get().getSize() : this.unselectedIcon.get().getSize();
     }
 
     /**
@@ -226,40 +150,136 @@ public class IconToggleButton extends ToggleButton implements Icon
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Skin<?> createDefaultSkin()
-    {
-        return new RtIconToggleButtonSkin(this);
-    }
-
     private void initialize()
     {
         textProperty().addListener((ov, oldVal, newVal) ->
         {
-            this.selectedText = newVal;
-            this.unselectedText = newVal;
+            this.selectedText.set(newVal);
+            this.unselectedText.set(newVal);
         });
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * Properties                                                            *
+     *                                                                       *
+     ************************************************************************/
+
+    protected ObjectProperty<SvgIcon> selectedIcon = new SimpleObjectProperty<>();
+    protected ObjectProperty<SvgIcon> unselectedIcon = new SimpleObjectProperty<>();
+    protected StringProperty selectedText = new SimpleStringProperty("");
+    protected StringProperty unselectedText = new SimpleStringProperty("");
+
+
+    public  ObjectProperty<SvgIcon> selectedIconProperty()
+    {
+        return this.selectedIcon;
+    }
+    
+    public void setSelectedIcon(SvgIcon selectedIcon)
+    {
+        this.selectedIcon.set(selectedIcon);
+    }
+    
+    public SvgIcon getSelectedIcon()
+    {
+        return this.selectedIcon.get();
+    }
+
+    public  ObjectProperty<SvgIcon> unselectedIconProperty()
+    {
+        return this.unselectedIcon;
+    }
+    
+    public void setUnselectedIcon(SvgIcon unselectedIcon)
+    {
+        this.unselectedIcon.set(unselectedIcon);
+    }
+    
+    public SvgIcon getUnslectedIcon()
+    {
+        return this.unselectedIcon.get();
+    }
+
+    public StringProperty selectedTextProperty()
+    {
+        return this.selectedText;
+    }
+
+    public void setSelectedText(String selectedText)
+    {
+        this.selectedText.set(selectedText);
+    }
+
+    public String getSelectedText()
+    {
+        return this.selectedText.get();
+    }
+
+    public StringProperty unselectedTextProperty()
+    {
+        return this.unselectedText;
+    }
+
+    public void setUnselectedText(String unselectedText)
+    {
+        this.unselectedText.set(unselectedText);
+    }
+
+    public String getUnselectedText()
+    {
+        return this.unselectedText.get();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final StyleablePropertyFactory<IconToggleButton> FACTORY =
+        new StyleablePropertyFactory<>(ToggleButton.getClassCssMetaData());
+
+    private static final CssMetaData<IconToggleButton, Paint> SELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-selected-fill", s -> s.selectedFill, DefaultPalette.getInstance().getAccentColor(), false);
+
+    private StyleableObjectProperty<Paint> selectedFill = new SimpleStyleableObjectProperty<>(
+            SELECTED_ICON_COLOR, this, "selectedFill");
+
+    public StyleableObjectProperty<Paint> selectedFillProperty()
+    {
+        return this.selectedFill;
+    }
+
+    public void setSelectedFill(Paint color)
+    {
+        this.selectedFill.set(color);
+    }
+
+    public Paint getSelectedFill()
+    {
+        return selectedFill.get();
+    }
+
+    private static final CssMetaData<IconToggleButton, Paint> UNSELECTED_ICON_COLOR = 
+            FACTORY.createPaintCssMetaData("-rt-unselected-fill", s -> s.unselectedFill, DefaultPalette.getInstance().getBaseColor(), false);
+
+    private StyleableObjectProperty<Paint> unselectedFill = new SimpleStyleableObjectProperty<>(
+            UNSELECTED_ICON_COLOR, this, "unselectedFill");
+
+    public StyleableObjectProperty<Paint> unselectedFillProperty()
+    {
+        return this.unselectedFill;
+    }
+
+    public void setUnselectedFill(Paint color)
+    {
+        this.unselectedFill.set(color);
+    }
+
+    public Paint getUnselectedFill()
+    {
+        return unselectedFill.get();
     }
 
     /**
@@ -274,11 +294,45 @@ public class IconToggleButton extends ToggleButton implements Icon
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    private static final String USER_AGENT_STYLESHEET = "button.css";
+    
+    protected IconToggleButtonStyle style = IconToggleButtonStyle.ICON;
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
      * Loads the user agent stylesheet specific to this component
      */
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+
+    public IconToggleButtonStyle getRtStyle()
+    {
+        return this.style;
     }
 
     static

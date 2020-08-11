@@ -19,15 +19,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class TableView<S> extends javafx.scene.control.TableView<S> implements RtStyleableComponent
 {
-    private static final String USER_AGENT_STYLESHEET = "table-view.css";
-    private static final String CSS_CLASS = "rt-table-view";
-    
-    protected TableViewStyle style = TableViewStyle.ZEBRA;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final StyleablePropertyFactory<TableView<?>> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.TableView.getClassCssMetaData());
-    
     /**
      * Creates an empty {@code TableView}
      */
@@ -102,33 +93,6 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
-    {
-        return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
     private void initialize()
     {
         getStyleClass().add(CSS_CLASS);
@@ -138,6 +102,15 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
             pseudoClassStateChanged(tableStyle.getPseudoClass(), tableStyle == this.style);
         }
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<TableView<?>> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.TableView.getClassCssMetaData());
 
     /**
      * Returns the list of available CSS properties associated with this class,
@@ -158,6 +131,18 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
     {
         return FACTORY.getCssMetaData();
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final String USER_AGENT_STYLESHEET = "table-view.css";
+    private static final String CSS_CLASS = "rt-table-view";
+    
+    protected TableViewStyle style = TableViewStyle.ZEBRA;
+    protected Accent accent = Accent.PRIMARY_MID;
 
     /**
      * Loads the user agent stylesheet specific to this component
@@ -165,6 +150,33 @@ public class TableView<S> extends javafx.scene.control.TableView<S> implements R
     public static void loadStyleSheet()
     {
         StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Accent getAccent()
+    {
+        return this.accent;
     }
     
     static

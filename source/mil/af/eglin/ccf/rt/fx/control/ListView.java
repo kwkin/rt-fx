@@ -19,15 +19,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ListView<T> extends javafx.scene.control.ListView<T> implements RtStyleableComponent
 {
-    protected ListViewStyle style = ListViewStyle.SOLID;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "list-view.css";
-    private static final String CSS_CLASS = "rt-list-view";
-
-    private static final StyleablePropertyFactory<ListView<?>> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.ListView.getClassCssMetaData());
-
     /**
      * Creates a default ListView which will display contents stacked
      * vertically.
@@ -110,22 +101,63 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (ListViewStyle listStyle : ListViewStyle.values())
+        {
+            pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
+        }
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ListView<?>> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.ListView.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+     {
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "list-view.css";
+    private static final String CSS_CLASS = "rt-list-view";
+
+    protected ListViewStyle style = ListViewStyle.SOLID;
+    protected Accent accent = Accent.PRIMARY_MID;
+    
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
     {
-        return CSS_CLASS;
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -141,38 +173,18 @@ public class ListView<T> extends javafx.scene.control.ListView<T> implements RtS
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
+    public String getRtStyleCssName()
     {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (ListViewStyle listStyle : ListViewStyle.values())
-        {
-            pseudoClassStateChanged(listStyle.getPseudoClass(), listStyle == this.style);
-        }
+        return CSS_CLASS;
     }
-
+    
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     static

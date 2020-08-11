@@ -84,10 +84,10 @@ public class ValidableHandler<T>
                     {
                         this.valueListener = new ValidationListener();
                     }
-                    this.control.getObservableValue().addListener(this.valueListener);
+                    this.control.getValidableValue().addListener(this.valueListener);
                     if (this.unfocusListener != null)
                     {
-                        this.control.getControl().focusedProperty().removeListener(this.unfocusListener);
+                        this.control.getValidableControl().focusedProperty().removeListener(this.unfocusListener);
                     }
                     break;
                 case UNFOCUS:
@@ -95,21 +95,21 @@ public class ValidableHandler<T>
                     {
                         this.unfocusListener = new UnfocusListener();
                     }
-                    this.control.getControl().focusedProperty().addListener(this.unfocusListener);
+                    this.control.getValidableControl().focusedProperty().addListener(this.unfocusListener);
                     if (this.valueListener != null)
                     {
-                        this.control.getObservableValue().removeListener(this.valueListener);
+                        this.control.getValidableValue().removeListener(this.valueListener);
                     }
                     break;
                 case MANUAL:
                 default:
                     if (this.valueListener != null)
                     {
-                        this.control.getObservableValue().removeListener(this.valueListener);
+                        this.control.getValidableValue().removeListener(this.valueListener);
                     }
                     if (this.unfocusListener != null)
                     {
-                        this.control.getControl().focusedProperty().removeListener(this.unfocusListener);
+                        this.control.getValidableControl().focusedProperty().removeListener(this.unfocusListener);
                     }
                     break;
             }
@@ -147,7 +147,7 @@ public class ValidableHandler<T>
                 }
             }
         }
-        this.control.getControl().pseudoClassStateChanged(ERROR_PSEUDOCLASS_STATE, !isValid);
+        this.control.getValidableControl().pseudoClassStateChanged(ERROR_PSEUDOCLASS_STATE, !isValid);
         this.control.setErrorMessage(errorMessage.toString());
         return isValid;
     }
@@ -168,7 +168,7 @@ public class ValidableHandler<T>
         {
             if (!newValue)
             {
-                control.setValid(validate(control.getObservableValue().getValue()));
+                control.setValid(validate(control.getValidableValue().getValue()));
             }
         }
     }

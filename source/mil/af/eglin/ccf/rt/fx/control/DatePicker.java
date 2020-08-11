@@ -17,14 +17,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class DatePicker extends javafx.scene.control.DatePicker implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "date-picker.css";
-    private static final String CSS_CLASS = "rt-date-picker";
-
-    private static final StyleablePropertyFactory<DatePicker> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.DatePicker.getClassCssMetaData());
-
     /**
      * Creates a {@code DatePicker} with no date initialized
      */
@@ -72,22 +64,58 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<DatePicker> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.DatePicker.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "date-picker.css";
+    private static final String CSS_CLASS = "rt-date-picker";
+    
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -103,34 +131,18 @@ public class DatePicker extends javafx.scene.control.DatePicker implements RtSty
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
+        return CSS_CLASS;
     }
 
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
 
     static

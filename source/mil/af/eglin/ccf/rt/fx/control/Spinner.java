@@ -18,14 +18,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtStyleableComponent
 {
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "spinner.css";
-    private static final String CSS_CLASS = "rt-spinner";
-
-    private static final StyleablePropertyFactory<Spinner<?>> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Spinner.getClassCssMetaData());
-
     /**
      * Creates an empty {@code Spinner} with a non-editable text editor
      */
@@ -70,22 +62,59 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
         initialize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Accent getAccent()
+    private void initialize()
     {
-        return this.accent;
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Spinner<?>> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Spinner.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getRtStyleCssName()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "spinner.css";
+    private static final String CSS_CLASS = "rt-spinner";
+
+    protected Accent accent = Accent.PRIMARY_MID;
+    
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -101,35 +130,18 @@ public class Spinner<T> extends javafx.scene.control.Spinner<T> implements RtSty
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        getStyleClass().add(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
+        return CSS_CLASS;
     }
     
     /**
-     * Loads the user agent stylesheet specific to this component
+     * {@inheritDoc}
      */
-    public static void loadStyleSheet()
+    @Override
+    public Accent getAccent()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.accent;
     }
     
     static

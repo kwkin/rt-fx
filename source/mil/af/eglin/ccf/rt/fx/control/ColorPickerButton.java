@@ -28,53 +28,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class ColorPickerButton extends javafx.scene.control.ColorPicker implements RtStyleableComponent
 {
-
-    protected ColorPickerStyle style = ColorPickerStyle.BUTTON;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "color-picker.css";
-    private static final String CSS_CLASS = "rt-color-picker";
-
-    private static final StyleablePropertyFactory<ColorPickerButton> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.ColorPicker.getClassCssMetaData());
-
-    private static final CssMetaData<ColorPickerButton, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
-            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<ColorPickerButton, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming.
-     * <p>
-     * The color is added on top of the component to allow the base button color
-     * to be visible when a semi-opaque overlay color is provided.
-     */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
-            this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "isAnimationDisabled");
-
-    /**
-     * Indicates if the label showing the name or hex value of the current color
-     * is displayed.
-     */
-    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
-    {
-        @Override
-        protected void invalidated()
-        {
-            String style = String.format("-fx-color-label-visible:%s", get());
-            setStyle(style);
-        }
-    };
-
     /**
      * Creates a {@code ColorPickerButton} initialized with a white value
      */
@@ -95,6 +48,82 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
         initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Skin<?> createDefaultSkin()
+    {
+        return new RtColorPickerButtonSkin(this);
+    }
+
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
+        {
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
+        }
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * Properties                                                            *
+     *                                                                       *
+     ************************************************************************/
+
+    /**
+     * Indicates if the label showing the name or hex value of the current color
+     * is displayed.
+     */
+    private BooleanProperty isLabelVisible = new SimpleBooleanProperty()
+    {
+        @Override
+        protected void invalidated()
+        {
+            String style = String.format("-fx-color-label-visible:%s", get());
+            setStyle(style);
+        }
+    };
+    
+    public BooleanProperty isLabelVisibleProperty()
+    {
+        return this.isLabelVisible;
+    }
+
+    public void setLabelVisiblity(boolean isLabelVisible)
+    {
+        this.isLabelVisible.set(isLabelVisible);
+    }
+
+    public boolean isLabelVisible()
+    {
+        return this.isLabelVisible.get();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<ColorPickerButton> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.ColorPicker.getClassCssMetaData());
+
+    private static final CssMetaData<ColorPickerButton, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData(
+            "-rt-overlay-color", s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming.
+     * <p>
+     * The color is added on top of the component to allow the base button color
+     * to be visible when a semi-opaque overlay color is provided.
+     */
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
+
     public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
@@ -109,6 +138,17 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
     {
         this.overlayColor.set(overlayColor);
     }
+    
+    private static final CssMetaData<ColorPickerButton, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     public final StyleableBooleanProperty disableAnimationProperty()
     {
@@ -125,51 +165,44 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
         this.isAnimationDisabled.set(disabled);
     }
 
-    public BooleanProperty isLabelVisibleProperty()
-    {
-        return this.isLabelVisible;
-    }
-
-    public void setLabelVisiblity(boolean isLabelVisible)
-    {
-        this.isLabelVisible.set(isLabelVisible);
-    }
-
-    public boolean isLabelVisible()
-    {
-        return this.isLabelVisible.get();
-    }
-
-    public ColorPickerStyle getButtonStyle()
-    {
-        return this.style;
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public Accent getAccent()
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
     {
-        return this.accent;
+        return FACTORY.getCssMetaData();
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
      */
-    @Override
-    public String getRtStyleCssName()
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
     {
-        return CSS_CLASS;
+        return FACTORY.getCssMetaData();
     }
 
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "color-picker.css";
+    private static final String CSS_CLASS = "rt-color-picker";
+
+    protected ColorPickerStyle style = ColorPickerStyle.BUTTON;
+    protected Accent accent = Accent.PRIMARY_MID;
+
     /**
-     * {@inheritDoc}
+     * Loads the user agent stylesheet specific to this component
      */
-    @Override
-    protected Skin<?> createDefaultSkin()
+    public static void loadStyleSheet()
     {
-        return new RtColorPickerButtonSkin(this);
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**
@@ -185,38 +218,23 @@ public class ColorPickerButton extends javafx.scene.control.ColorPicker implemen
      * {@inheritDoc}
      */
     @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    public String getRtStyleCssName()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
-        {
-            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
-        }
+        return CSS_CLASS;
     }
 
     /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
+     * {@inheritDoc}
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    @Override
+    public Accent getAccent()
     {
-        return FACTORY.getCssMetaData();
+        return this.accent;
     }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
+    
+    public ColorPickerStyle getButtonStyle()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.style;
     }
 
     static

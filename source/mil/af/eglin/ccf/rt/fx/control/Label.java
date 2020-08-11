@@ -29,9 +29,6 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
 
     private static final String USER_AGENT_STYLESHEET = "label.css";
     private static final String CSS_CLASS = "rt-label";
-
-    private static final StyleablePropertyFactory<Label> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
     
     /**
      * Creates a {@code Label} with an empty string.
@@ -125,6 +122,77 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
         initialize();
     }
 
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (LabelStyle labelStyle : LabelStyle.values())
+        {
+            pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
+        }
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final StyleablePropertyFactory<Label> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.Label.getClassCssMetaData());
+
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
+    {
+        return FACTORY.getCssMetaData();
+    }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getRtStyleCssName()
+    {
+        return CSS_CLASS;
+    }
+    
     /**
      * Gets the style type of the label.
      * 
@@ -142,62 +210,6 @@ public class Label extends javafx.scene.control.Label implements RtStyleableComp
     public Accent getAccent()
     {
         return this.accent;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getRtStyleCssName()
-    {
-        return CSS_CLASS;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() 
-     {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (LabelStyle labelStyle : LabelStyle.values())
-        {
-            pseudoClassStateChanged(labelStyle.getPseudoClass(), labelStyle == this.style);
-        }
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
-     * 
-     * @return The list of available CSS properties
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() 
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
     }
 
     static

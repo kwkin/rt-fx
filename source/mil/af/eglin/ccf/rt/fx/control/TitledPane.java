@@ -16,14 +16,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class TitledPane extends javafx.scene.control.TitledPane
 {
-    protected Accent accent;
-
-    private static final String USER_AGENT_STYLESHEET = "titled-pane.css";
-    private static final String CSS_CLASS = "rt-titled-pane";
-
-    private static final StyleablePropertyFactory<TextField> FACTORY =
-        new StyleablePropertyFactory<>(javafx.scene.control.TitledPane.getClassCssMetaData());
-    
     /**
      * Creates a {@code TitledPane} with no title or content
      */
@@ -89,7 +81,16 @@ public class TitledPane extends javafx.scene.control.TitledPane
             getStyleClass().add(this.accent.getStyleClassName());
         }
     }
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
 
+    private static final StyleablePropertyFactory<TextField> FACTORY =
+        new StyleablePropertyFactory<>(javafx.scene.control.TitledPane.getClassCssMetaData());
+    
     /**
      * Returns the list of available CSS properties associated with this class,
      * which may include the properties of its super classes.
@@ -109,6 +110,17 @@ public class TitledPane extends javafx.scene.control.TitledPane
     {
         return FACTORY.getCssMetaData();
     }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "titled-pane.css";
+    private static final String CSS_CLASS = "rt-titled-pane";
+
+    protected Accent accent;
 
     /**
      * Loads the user agent stylesheet specific to this component

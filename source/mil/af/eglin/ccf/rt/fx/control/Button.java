@@ -34,38 +34,6 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  */
 public class Button extends javafx.scene.control.Button implements RtStyleableComponent
 {
-    protected ButtonStyle style = ButtonStyle.RAISED;
-    protected Accent accent = Accent.PRIMARY_MID;
-
-    private static final String USER_AGENT_STYLESHEET = "button.css";
-    private static final String CSS_CLASS = "rt-button";
-
-    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
-            javafx.scene.control.Button.getClassCssMetaData());
-
-    private static final CssMetaData<Button, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
-            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
-    private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = FACTORY
-            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
-
-    /**
-     * The overlay color specifies the background color used when hovering and
-     * arming.
-     * <p>
-     * The color is added on top of the component to allow the base button color
-     * to be visible when a semi-opaque overlay color is provided.
-     */
-    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
-            this, "overlayColor");
-
-    /**
-     * An animated component will apply transitions between pseudostates.
-     * <p>
-     * When disabled, the transition end values will apply instantly.
-     */
-    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
-            DISABLE_ANIMATION, this, "isAnimationDisabled");
-
     /**
      * Creates a raised {@code Button} with an empty string for its label.
      */
@@ -183,15 +151,46 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * Gets the style type of the button.
-     * 
-     * @return The style type of the button
+     * {@inheritDoc}
      */
-    public ButtonStyle getButtonStyle()
+    @Override
+    protected Skin<?> createDefaultSkin()
     {
-        return this.style;
+        return new RtButtonSkin(this);
     }
 
+    private void initialize()
+    {
+        getStyleClass().add(CSS_CLASS);
+        getStyleClass().add(this.accent.getStyleClassName());
+        for (ButtonStyle buttonStyle : ButtonStyle.values())
+        {
+            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
+        }
+    }
+
+    /*************************************************************************
+     *                                                                       *
+     * CSS Properties                                                        *
+     *                                                                       *
+     ************************************************************************/
+    
+    private static final StyleablePropertyFactory<Button> FACTORY = new StyleablePropertyFactory<>(
+            javafx.scene.control.Button.getClassCssMetaData());
+
+    private static final CssMetaData<Button, Paint> OVERLAY_COLOR = FACTORY.createPaintCssMetaData("-rt-overlay-color",
+            s -> s.overlayColor, DefaultPalette.getInstance().getBaseColor(), false);
+    
+    /**
+     * The overlay color specifies the background color used when hovering and
+     * arming.
+     * <p>
+     * The color is added on top of the component to allow the base button color
+     * to be visible when a semi-opaque overlay color is provided.
+     */
+    private final SimpleStyleableObjectProperty<Paint> overlayColor = new SimpleStyleableObjectProperty<>(OVERLAY_COLOR,
+            this, "overlayColor");
+    
     public final ObjectProperty<Paint> overlayColorProperty()
     {
         return this.overlayColor;
@@ -206,6 +205,18 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     {
         this.overlayColor.set(overlayColor);
     }
+    
+    
+    private static final CssMetaData<Button, Boolean> DISABLE_ANIMATION = FACTORY
+            .createBooleanCssMetaData("-rt-disable-animation", s -> s.isAnimationDisabled, false, false);
+
+    /**
+     * An animated component will apply transitions between pseudostates.
+     * <p>
+     * When disabled, the transition end values will apply instantly.
+     */
+    private final SimpleStyleableBooleanProperty isAnimationDisabled = new SimpleStyleableBooleanProperty(
+            DISABLE_ANIMATION, this, "isAnimationDisabled");
 
     public final BooleanProperty isAnimationDisabledProperty()
     {
@@ -221,6 +232,57 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     {
         this.isAnimationDisabled.set(isAnimationDisabled);
     }
+    
+    /**
+     * Returns the list of available CSS properties associated with this class,
+     * which may include the properties of its super classes.
+     * 
+     * @return The list of available CSS properties
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
+    {
+        return FACTORY.getCssMetaData();
+    }
+    
+    
+    /*************************************************************************
+     *                                                                       *
+     * CSS Loading                                                           *
+     *                                                                       *
+     ************************************************************************/
+
+    private static final String USER_AGENT_STYLESHEET = "button.css";
+    private static final String CSS_CLASS = "rt-button";
+    
+    protected ButtonStyle style = ButtonStyle.RAISED;
+    protected Accent accent = Accent.PRIMARY_MID;
+
+    /**
+     * Loads the user agent stylesheet specific to this component
+     */
+    public static void loadStyleSheet()
+    {
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserAgentStylesheet()
+    {
+        return null;
+    }
+
 
     /**
      * {@inheritDoc}
@@ -241,59 +303,13 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getUserAgentStylesheet()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Skin<?> createDefaultSkin()
-    {
-        return new RtButtonSkin(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData()
-    {
-        return FACTORY.getCssMetaData();
-    }
-
-    private void initialize()
-    {
-        getStyleClass().add(CSS_CLASS);
-        getStyleClass().add(this.accent.getStyleClassName());
-        for (ButtonStyle buttonStyle : ButtonStyle.values())
-        {
-            pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
-        }
-    }
-
-    /**
-     * Returns the list of available CSS properties associated with this class,
-     * which may include the properties of its super classes.
+     * Gets the style type of the button.
      * 
-     * @return The list of available CSS properties
+     * @return The style type of the button
      */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData()
+    public ButtonStyle getButtonStyle()
     {
-        return FACTORY.getCssMetaData();
-    }
-
-    /**
-     * Loads the user agent stylesheet specific to this component
-     */
-    public static void loadStyleSheet()
-    {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        return this.style;
     }
 
     static
