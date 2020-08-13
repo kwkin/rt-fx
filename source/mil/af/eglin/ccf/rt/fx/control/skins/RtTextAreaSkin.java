@@ -4,8 +4,10 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
+import com.sun.javafx.scene.text.HitInfo;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -48,7 +50,6 @@ public class RtTextAreaSkin extends TextAreaSkin
         this.descriptionContainer = new DescriptionContainer<>(textArea);
         
         getChildren().remove(this.scrollPane);
-//        this.linesWrapper.addInput(this.scrollPane);
         getChildren().addAll(this.input.getInputContainer(), 
                 this.input.getOverlayContainer(), 
                 this.scrollPane,
@@ -62,6 +63,15 @@ public class RtTextAreaSkin extends TextAreaSkin
         registerChangeListener(textArea.getOverlayColorProperty(), textArea.getOverlayColorProperty().getName());
         registerChangeListener(textArea.unfocusColorProperty(), textArea.unfocusColorProperty().getName());
         registerChangeListener(textArea.helperTextVisibleProperty(), textArea.helperTextVisibleProperty().getName());
+    }
+
+    @Override
+    public HitInfo getIndex(double x, double y)
+    {
+        Insets padding = this.input.getInputContainer().getPadding();
+        x = Math.max(x, padding.getLeft());
+        x = Math.min(x, padding.getRight() + this.input.getInputContainer().getWidth());
+        return super.getIndex(x, y);
     }
 
     @Override
@@ -114,7 +124,6 @@ public class RtTextAreaSkin extends TextAreaSkin
         this.promptText.visibleProperty().bind(input.isUsingPromptTextProperty());
         this.promptText.fontProperty().bind(this.textArea.fontProperty());
         this.promptText.textProperty().bind(this.textArea.promptTextProperty());
-        this.promptText.translateXProperty().set(1);
         this.promptText.fillProperty().bind(this.input.animatedPromptTextFillProperty());
         this.promptText.getTransforms().add(this.input.getPromptTextScale());
         StackPane.setAlignment(promptText, Pos.CENTER_LEFT);
@@ -137,7 +146,8 @@ public class RtTextAreaSkin extends TextAreaSkin
         }
     }
     
-    private <T> void reflectionFieldConsumer(String fieldName, CheckedConsumer<Field> consumer) {
+    private <T> void reflectionFieldConsumer(String fieldName, CheckedConsumer<Field> consumer) 
+    {
         Field field = null;
         try {
             field = TextAreaSkin.class.getDeclaredField(fieldName);

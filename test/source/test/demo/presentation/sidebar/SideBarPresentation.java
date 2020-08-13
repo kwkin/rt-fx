@@ -71,11 +71,6 @@ public class SideBarPresentation extends StackPane
         
         scroll.setContent(pane);
         
-//        Button noPush = new Button("DO NOT PRESS");
-//        noPush.setStyle("-fx-background-color:#f53a18;-fx-text-fill:WHITE");
-//        StackPane.setAlignment(noPush, Pos.BOTTOM_CENTER);
-        
-//        getChildren().addAll(scroll, noPush);
         getChildren().addAll(scroll);
     }
     

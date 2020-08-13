@@ -1,10 +1,3 @@
-/*
-TODO 
-- Fix overlay color being incorrect
-- Fix inconsistenties with textfield CSS (-rt-focus-color, rt-unfocus-color)
-- Fix prompt text fill not updating (need workaround to accomodate JavaFX issue)
-- Fix issue with error text not having correct left padding
-*/
 /*-- ############################### Text Area Style ############################### */
 .rt-text-area,
 .rt-text-area:focused
@@ -109,13 +102,6 @@ TODO
     -fx-prompt-text-fill: -var-error-color;
     -rt-focus-color: -var-error-color;
     -rt-unfocus-color: -var-error-color;
-}
-
-/* TODO remove this. Currently cannot use properties */
-.rt-text-area:error .input-focused-line,
-.rt-text-area:error .input-unfocused-line
-{
-    -fx-background-color: -var-error-color;
 }
 
 .rt-text-area:error .input-container
