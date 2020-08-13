@@ -12,6 +12,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.TitledSeparator titled separators}
+ */
 public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, BehaviorBase<TitledSeparator>>
 {
     private final TitledSeparator separator;
@@ -20,6 +23,11 @@ public class RtTitledSeparatorSkin extends LabeledSkinBase<TitledSeparator, Beha
     private final Region leftLine = new Region();
     private final Region rightLine = new Region();
 
+    /**
+     * Creates a {@code RtTitledSeparatorSkin} for the provided titled separator
+     * 
+     * @param separator the titled separator that will use this skin
+     */
     public RtTitledSeparatorSkin(final TitledSeparator separator)
     {
         super(separator, new BehaviorBase<>(separator, Collections.emptyList()));

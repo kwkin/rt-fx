@@ -1,5 +1,3 @@
-/* TODO when unfocused, use a 50% derived color */
-
 /*-- ############################### Tree View Style ############################### */
 .rt-tree-view
 {
@@ -22,19 +20,24 @@
     -fx-text-fill: -var-on-main-mid-color;
 }
 
-.rt-tree-view:focused .virtual-flow .clipped-container > .sheet .tree-cell:filled:selected
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:hover,
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:filled:hover,
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:selected:hover,
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:filled:selected:hover
 {
-    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
-    -fx-text-fill: -var-on-main-mid-color;
+    -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
 }
 
-.tree-cell:filled:hover
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:filled:selected,
+.rt-tree-view:focused .virtual-flow .clipped-container .sheet .tree-cell:filled:selected
 {
-    -fx-background-color: ladder(#222222, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: ladder(#bbbbbb, transparent 0%, -var-accent-color 100%);
+    -fx-text-fill: -var-on-accent-color;
 }
 
-.tree-cell:filled:selected
+.rt-tree-view .virtual-flow .clipped-container .sheet .tree-cell:filled:selected:hover,
+.rt-tree-view:focused .virtual-flow .clipped-container .sheet .tree-cell:filled:selected:hover
 {
-    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
-    -fx-text-fill: -var-on-main-mid-color;
+    -fx-background-color: -var-accent-color;
+    -fx-text-fill: -var-on-accent-color;
 }

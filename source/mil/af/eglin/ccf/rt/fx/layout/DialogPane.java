@@ -62,7 +62,6 @@ public class DialogPane extends javafx.scene.control.DialogPane
         return null;
     }
 
-    // TODO expandable handler
     @Override
     protected Node createButtonBar()
     {
@@ -101,7 +100,6 @@ public class DialogPane extends javafx.scene.control.DialogPane
         List<Button> buttons = new ArrayList<>();
         for (ButtonType buttonType : getButtonTypes())
         {
-            // TODO this will create duplicate buttons
             Node lookup = lookupButton(buttonType);
             Node button = lookup == null ? createButton(buttonType) : lookup;
             buttonBar.getButtons().add(button);

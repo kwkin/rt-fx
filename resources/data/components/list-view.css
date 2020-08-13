@@ -1,12 +1,6 @@
-/*
-TODO 
-- link up text color to all components 
-- Hover state
-- Hover and selected state animation
-- Move scroll bar styling to the scroll pane
-*/
 /*-- ############################### List View Styles ############################### */
-.rt-list-view
+.rt-list-view,
+.rt-combo-box .combo-box-popup .list-view 
 {
     -fx-background-color: -var-main-color-l1;
 }
@@ -24,30 +18,46 @@ TODO
 .rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
 .rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:focused,
 .rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:focused,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:selected,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected
+{
+    -fx-background-color: ladder(#bbbbbb, transparent 0%, -var-accent-color 100%);
+    -fx-border-color: transparent;
+    -fx-text-fill: -var-on-accent-color;
+}
+
 .rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
 .rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover,
 .rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:focused:hover,
-.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:focused:hover,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:selected:hover,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:selected:hover 
 {
-    -fx-background-color: ladder(#888888, transparent 0%, -var-accent-color 100%);
+    -fx-background-color: -var-accent-color;
     -fx-border-color: transparent;
+    -fx-text-fill: -var-on-accent-color;
 }
 
 .rt-list-view .virtual-flow .clipped-container .sheet .list-cell:hover,
 .rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:hover,
 .rt-list-view:solid .virtual-flow .clipped-container .sheet .list-cell:odd:hover,
 .rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:hover,
-.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:hover
+.rt-list-view:striped .virtual-flow .clipped-container .sheet .list-cell:odd:hover,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell:filled:hover
 {
     -fx-background-color: ladder(#444444, transparent 0%, -var-accent-color 100%);
     -fx-border-color: transparent;
 }
 
 /*-- ############################### List Cell Styles ############################### */
-.list-cell 
+.list-cell,
+.combo-box-popup .list-view .virtual-flow .clipped-container .sheet .list-cell 
 {
     -fx-background-color: -var-main-color-l1;
-    -fx-text-fill: -var-on-main-mid-color;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-font-size: 14;
     -fx-padding: 8 16 8 16;
     -fx-text-fill: -var-on-main-mid-color;
 }
@@ -75,146 +85,4 @@ TODO
 {
     -fx-background-color: -var-main-color-l2;
 	-fx-border-width: 0 0 1 0;
-}
-
-/*-- ############################### List View Scroll Bar Styles ############################### */
-.rt-list-view .virtual-flow .scroll-bar
-{
-    -fx-background-color: transparent;
-    -fx-opacity: 30%;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:hover
-{
-    -fx-opacity: 50%;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:pressed
-{
-    -fx-opacity: 100%;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .track
-{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .thumb
-{
-    -fx-background-color: -var-accent-color;
-    -fx-background-radius: 6;
-    -fx-border-width: 0 0 0 0;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .thumb:hover
-{
-    -fx-cursor: open_hand;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .thumb:pressed
-{
-    -fx-cursor: closed_hand;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .increment-button,
-.rt-list-view .virtual-flow .scroll-bar .decrement-button
-{
-    -fx-cursor: hand;
-    -fx-padding: 2 2 2 2;
-    -fx-border-width: 0;
-}
-
-.rt-list-view .virtual-flow .scroll-bar .increment-button:hover,
-.rt-list-view .virtual-flow .scroll-bar .decrement-button:hover,
-.rt-list-view .virtual-flow .scroll-bar .increment-button:pressed,
-.rt-list-view .virtual-flow .scroll-bar .decrement-button:pressed
-{
-    -fx-color: transparent;
-}
-
-/*-- ############################### List View Vertical Scroll Bar Style ############################### */
-.rt-list-view .virtual-flow .scroll-bar:vertical 
-{
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:vertical .track
-{
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:vertical .thumb
-{
-    -rt-size: 12;
-    -fx-min-height: -rt-size;
-    -fx-min-width: -rt-size;
-    -fx-pref-width: -rt-size;
-    -fx-max-width: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:vertical .increment-button .increment-arrow
-{
-    -fx-background-color: transparent;
-    -fx-shape: "M7,10L12,15L17,10H7Z";
-}
-
-.rt-list-view .virtual-flow .scroll-bar:vertical .decrement-button .decrement-arrow
-{
-    -fx-background-color: transparent;
-    -fx-shape: "M7,15L12,10L17,15H7Z";
-}
-
-/*-- ############################### List View Horizontal Scroll Bar Style ############################### */
-.rt-list-view .virtual-flow .scroll-bar:horizontal 
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:horizontal .track
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:horizontal .thumb
-{
-    -rt-size: 12;
-    -fx-min-width: -rt-size;
-    -fx-min-height: -rt-size;
-    -fx-pref-height: -rt-size;
-    -fx-max-height: -rt-size;
-}
-
-.rt-list-view .virtual-flow .scroll-bar:horizontal .increment-button .increment-arrow
-{
-    -fx-background-color: transparent;
-    -fx-shape: "M10,17L15,12L10,7V17Z";
-}
-
-.rt-list-view .virtual-flow .scroll-bar:horizontal .decrement-button .decrement-arrow
-{
-    -fx-background-color: transparent;
-    -fx-shape: "M14,7L9,12L14,17V7Z";
-}
-
-/*-- ############################### List View Scroll Bar Corner Style ############################### */
-.rt-list-view .virtual-flow .corner
-{
-    -fx-background-color: transparent;
 }

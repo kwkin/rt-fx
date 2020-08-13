@@ -38,6 +38,8 @@ import mil.af.eglin.ccf.rt.util.ResourceLoader;
  * <p>
  * A combo box is typically skinned as a text entry with a drop down button.
  * Selecting the drop down button will open a list of selectable options.
+ * 
+ * @param <T> the type of values stored by the combo box
  */
 public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
         implements RtStyleableComponent, LabelFloatControl, DescriptionControl, ValidableControl<T>
@@ -594,6 +596,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
     static
     {
         ScrollPane.loadStyleSheet();
+        ListView.loadStyleSheet();
         ComboBox.loadStyleSheet();
     }
 }

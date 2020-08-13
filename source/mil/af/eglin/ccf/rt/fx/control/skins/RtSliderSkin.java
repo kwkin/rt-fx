@@ -20,6 +20,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.Slider sliders}
+ */
 public class RtSliderSkin extends SliderSkin
 {
     private final Slider slider;
@@ -32,6 +35,11 @@ public class RtSliderSkin extends SliderSkin
     private RtAnimationTimeline interactionTimeline;
     private RtAnimationTimeline stateTimeline;
 
+    /**
+     * Creates a {@code RtSliderSkin} for the provided slider
+     * 
+     * @param slider the slider that will use this skin
+     */
     public RtSliderSkin(final Slider slider)
     {
         super(slider);

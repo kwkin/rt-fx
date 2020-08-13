@@ -17,13 +17,21 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ToggleButton toggle buttons}
+ */
 public class RtToggleButtonSkin extends ToggleButtonSkin
 {
     private final ToggleButton button;
     private final StackPane stateBox = new StackPane();
 
     private RtAnimationTimeline timer;
-    
+
+    /**
+     * Creates a {@code RtToggleButtonSkin} for the provided toggle button
+     * 
+     * @param button the toggle button that will use this skin
+     */
     public RtToggleButtonSkin(final ToggleButton button)
     {
         super(button);

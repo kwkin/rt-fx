@@ -26,6 +26,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.icons.svg.SvgIcon;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.IconToggleButton icon toggle buttons}
+ */
 public class RtIconToggleButtonSkin extends ToggleButtonSkin
 {
     private final static Duration ANIMATION_DURATION = Duration.millis(200);
@@ -37,6 +40,11 @@ public class RtIconToggleButtonSkin extends ToggleButtonSkin
 
     private RtAnimationTimeline interactionTimeline;
 
+    /**
+     * Creates a {@code RtColorPickerIconSkin} for the provided icon toggle button
+     * 
+     * @param button the icon toggle button that will use this skin
+     */
     public RtIconToggleButtonSkin(final IconToggleButton button)
     {
         super(button);

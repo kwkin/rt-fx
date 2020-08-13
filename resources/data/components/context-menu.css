@@ -5,53 +5,7 @@ TODO
 - Distinguish radio vs checkbox marks
 */
 
-/*-- ############################### Table View Accents ############################### */
-.rt-context-menu.primary-light
-{
-    -var-accent-color: -var-primary-light-color;
-}
-
-.rt-context-menu.primary-mid
-{
-    -var-accent-color: -var-primary-mid-color;
-}
-
-.rt-context-menu.primary-dark
-{
-    -var-accent-color: -var-primary-dark-color;
-}
-
-.rt-context-menu.secondary-light
-{
-    -var-accent-color: -var-secondary-light-color;
-}
-
-.rt-context-menu.secondary-mid
-{
-    -var-accent-color: -var-secondary-mid-color;
-}
-
-.rt-context-menu.secondary-dark
-{
-    -var-accent-color: -var-secondary-dark-color;
-}
-
-.rt-context-menu.base-light
-{
-    -var-accent-color: -var-main-color-l2;
-}
-
-.rt-context-menu.base-mid
-{
-    -var-accent-color: -var-main-color-l3;
-}
-
-.rt-context-menu.base-dark
-{
-    -var-accent-color: -var-main-color-l4;
-}
-
-/*-- ############################### Table View Accents ############################### */
+/*-- ############################### Context Menu Accents ############################### */
 /* TODO still a lot of work. Padding, hover state foreground for radio buttons, sub menu icon */
 .rt-context-menu
 {

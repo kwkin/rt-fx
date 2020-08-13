@@ -19,6 +19,9 @@ import javafx.util.converter.NumberStringConverter;
 import mil.af.eglin.ccf.rt.fx.control.ProgressBar;
 import mil.af.eglin.ccf.rt.fx.control.Text;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ProgressBar progress bars}
+ */
 public class RtProgressBarSkin extends ProgressIndicatorSkin
 {
     private final ProgressBar progressBar;
@@ -29,6 +32,11 @@ public class RtProgressBarSkin extends ProgressIndicatorSkin
     private double barWidth = 0;
     private Region clip;
 
+    /**
+     * Creates a {@code RtProgressBarSkin} for the provided progress bar
+     * 
+     * @param progressBar the progress bar that will use this skin
+     */
     public RtProgressBarSkin(final ProgressBar progressBar)
     {
         super(progressBar);

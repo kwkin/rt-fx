@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
-import com.sun.javafx.scene.text.HitInfo;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -17,6 +16,9 @@ import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.control.TextArea;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.TextArea text areas}
+ */
 public class RtTextAreaSkin extends TextAreaSkin
 {
     private final TextArea textArea;
@@ -24,17 +26,20 @@ public class RtTextAreaSkin extends TextAreaSkin
     private final PromptInput<TextArea> input;
     private final DescriptionContainer<TextArea> descriptionContainer;
 
-    private Text textNode;
     private Text promptText;
     private ScrollPane scrollPane;
 
+    /**
+     * Creates a {@code RtRadioButtonSkin} for the provided text area
+     * 
+     * @param radioButton the text area that will use this skin
+     */
     public RtTextAreaSkin(final TextArea textArea)
     {
         super(textArea);
         this.textArea = textArea;
 
         this.scrollPane = (ScrollPane) getChildren().get(0);
-        this.textNode = (Text)this.scrollPane.getContent().lookup(".text");
         
         this.input = new PromptInput<>(textArea, textArea.textProperty(), this.promptTextFill, 
                 textArea.promptTextProperty(), () -> this.promptText, this.textArea.focusedProperty());

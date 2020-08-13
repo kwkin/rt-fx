@@ -20,6 +20,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ColorPickerButton color picker buttons}
+ */
 public class RtColorPickerButtonSkin extends ColorPickerSkin
 {
     protected StackPane iconPane;
@@ -29,6 +32,11 @@ public class RtColorPickerButtonSkin extends ColorPickerSkin
     
     private RtAnimationTimeline interactionTimeline;
     
+    /**
+     * Creates a {@code RtColorPickerButtonSkin} for the provided color picker button
+     * 
+     * @param colorPicker the color picker button that will use this skin
+     */
     public RtColorPickerButtonSkin(final ColorPickerButton colorPicker)
     {
         super(colorPicker);

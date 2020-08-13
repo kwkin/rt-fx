@@ -19,7 +19,7 @@ import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
 /**
- * The component skin for action and icon buttons
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.Button Buttons}
  */
 public class RtButtonSkin extends ButtonSkin
 {
@@ -28,6 +28,11 @@ public class RtButtonSkin extends ButtonSkin
 
     private RtAnimationTimeline interactionTimeline;
 
+    /**
+     * Creates a {@code RtButtonSkin} for the provided button
+     * 
+     * @param button the button that will use this skin
+     */
     public RtButtonSkin(final Button button)
     {
         super(button);

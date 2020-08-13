@@ -1,7 +1,6 @@
 package mil.af.eglin.ccf.rt.fx.layout;
 
 import javafx.scene.Node;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import mil.af.eglin.ccf.rt.fx.control.Label;

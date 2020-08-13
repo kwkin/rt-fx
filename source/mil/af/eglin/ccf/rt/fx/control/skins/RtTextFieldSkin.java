@@ -22,6 +22,9 @@ import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.TextField text fields}
+ */
 public class RtTextFieldSkin extends TextFieldSkin
 {
     private final TextField textField;
@@ -34,6 +37,11 @@ public class RtTextFieldSkin extends TextFieldSkin
     private Pane textGroup;
     private Text trailingTextNode;
 
+    /**
+     * Creates a {@code RtTextFieldSkin} for the provided text field
+     * 
+     * @param textField the text field that will use this skin
+     */
     public RtTextFieldSkin(final TextField textField)
     {
         super(textField);

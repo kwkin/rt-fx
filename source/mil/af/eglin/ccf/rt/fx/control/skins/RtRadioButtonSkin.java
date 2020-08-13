@@ -18,7 +18,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
-// TODO change usage of shapes (circle) to stack pane
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.RadioButton radio buttons}
+ */
 public class RtRadioButtonSkin extends RadioButtonSkin
 {
     private final RadioButton radioButton;
@@ -30,6 +32,11 @@ public class RtRadioButtonSkin extends RadioButtonSkin
     private RtAnimationTimeline stateTimeline;
     private RtAnimationTimeline interactionTimeline;
 
+    /**
+     * Creates a {@code RtRadioButtonSkin} for the provided radio button
+     * 
+     * @param radioButton the radio button that will use this skin
+     */
     public RtRadioButtonSkin(final RadioButton radioButton)
     {
         super(radioButton);

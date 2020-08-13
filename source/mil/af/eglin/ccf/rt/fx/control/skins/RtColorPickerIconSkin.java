@@ -18,6 +18,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ColorPickerIcon color picker icons}
+ */
 public class RtColorPickerIconSkin extends ColorPickerSkin
 {
     protected StackPane iconPane;
@@ -27,6 +30,11 @@ public class RtColorPickerIconSkin extends ColorPickerSkin
     
     private RtAnimationTimeline interactionTimeline;
     
+    /**
+     * Creates a {@code RtColorPickerIconSkin} for the provided color picker icon
+     * 
+     * @param colorPicker the color picker that will use this skin
+     */
     public RtColorPickerIconSkin(final ColorPickerIcon colorPicker)
     {
         super(colorPicker);

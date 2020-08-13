@@ -22,6 +22,9 @@ import mil.af.eglin.ccf.rt.fx.layout.StackPane;
 import mil.af.eglin.ccf.rt.fx.utils.DepthManager;
 import mil.af.eglin.ccf.rt.fx.utils.DepthShadow;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ToggleSwitch toggle switches}
+ */
 public class RtToggleSwitchSkin extends LabeledSkinBase<ToggleSwitch, ButtonBehavior<ToggleSwitch>>
 {
     private final ToggleSwitch toggleSwitch;
@@ -33,7 +36,12 @@ public class RtToggleSwitchSkin extends LabeledSkinBase<ToggleSwitch, ButtonBeha
 
     private RtAnimationTimeline stateTimeline;
     private RtAnimationTimeline interactionTimeline;
-    
+
+    /**
+     * Creates a {@code RtToggleSwitchSkin} for the provided toggle switch
+     * 
+     * @param toggleSwitch the toggle switch that will use this skin
+     */
     public RtToggleSwitchSkin(final ToggleSwitch toggleSwitch) 
     {
         super(toggleSwitch, new ButtonBehavior<>(toggleSwitch));

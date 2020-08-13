@@ -16,6 +16,9 @@ import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.CheckBox check boxes}
+ */
 public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<CheckBox>>
 {
     private final CheckBox checkBox;
@@ -31,7 +34,12 @@ public class RtCheckBoxSkin extends LabeledSkinBase<CheckBox, ButtonBehavior<Che
     private RtAnimationTimeline selectedTimeline;
     private RtAnimationTimeline indeterminateToSelectedTimeline;
     private RtAnimationTimeline interactionTimeline;
-    
+
+    /**
+     * Creates a {@code RtCheckBoxSkin} for the provided check box
+     * 
+     * @param button the check box that will use this skin
+     */
     public RtCheckBoxSkin(final CheckBox checkBox)
     {
         super(checkBox, new ButtonBehavior<>(checkBox));

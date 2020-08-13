@@ -18,6 +18,9 @@ import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ColorPicker color pickers}
+ */
 public class RtColorPickerSkin extends ColorPickerSkin
 {
     protected StackPane iconPane;
@@ -29,6 +32,11 @@ public class RtColorPickerSkin extends ColorPickerSkin
 
     private Text promptText;
 
+    /**
+     * Creates a {@code RtColorPickerSkin} for the provided color picker
+     * 
+     * @param colorPicker the color picker that will use this skin
+     */
     public RtColorPickerSkin(final ColorPicker colorPicker)
     {
         super(colorPicker);

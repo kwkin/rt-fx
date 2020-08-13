@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
@@ -48,7 +47,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
     {
         StackPane border = new StackPane();
         SizedTitledCard card = new SizedTitledCard(TITLE, TitledCardSize.SIZE_3x3);
-        card.setAlignment(Pos.CENTER);
+        
         this.controller = controller;
         this.model = controller.getTableViewModel();
         
@@ -79,11 +78,7 @@ public class TableComparison extends ScrollPane implements TitledContentPane
         card.setContent(vBox);
         border.getChildren().add(card);
 
-        // TODO fix this hot trash of code
-        border.minWidthProperty().bind(Bindings.createDoubleBinding(() -> 
-            this.getViewportBounds().getWidth(), this.viewportBoundsProperty()));
-        border.minHeightProperty().bind(Bindings.createDoubleBinding(() -> 
-            this.getViewportBounds().getHeight(), this.viewportBoundsProperty()));
+        setFitToWidth(true);
         setContent(border);
     }
     

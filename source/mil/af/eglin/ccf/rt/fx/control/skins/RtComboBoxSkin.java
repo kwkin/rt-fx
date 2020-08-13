@@ -19,6 +19,11 @@ import mil.af.eglin.ccf.rt.fx.control.ComboBox;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
+/**
+ * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ComboBox combo boxes}
+ *
+ * @param <T> the type of values stored by the combo box
+ */
 public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 {
     private final ComboBox<T> comboBox;
@@ -29,6 +34,11 @@ public class RtComboBoxSkin<T> extends ComboBoxListViewSkin<T>
 
     private Text promptText;
 
+    /**
+     * Creates a {@code RtComboBoxSkin} for the provided combo box
+     * 
+     * @param comboBox the combo box that will use this skin
+     */
     public RtComboBoxSkin(final ComboBox<T> comboBox)
     {
         super(comboBox);
