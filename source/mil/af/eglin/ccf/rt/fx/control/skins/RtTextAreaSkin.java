@@ -68,10 +68,9 @@ public class RtTextAreaSkin extends TextAreaSkin
     @Override
     public HitInfo getIndex(double x, double y)
     {
-        Insets padding = this.input.getInputContainer().getPadding();
-        x = Math.max(x, padding.getLeft());
-        x = Math.min(x, padding.getRight() + this.input.getInputContainer().getWidth());
-        return super.getIndex(x, y);
+        HitInfo hitinfo = super.getIndex(x, y);
+        hitinfo.setLeading(this.textArea.textProperty().get().isEmpty() ? true : hitinfo.isLeading());
+        return  hitinfo;
     }
 
     @Override
