@@ -1,5 +1,5 @@
 /*-- ############################### Button Bar Accents ############################### */
 .rt-button-bar
 {
-    -fx-padding: 16;
+    -fx-padding: 4 8 4 8;
 }

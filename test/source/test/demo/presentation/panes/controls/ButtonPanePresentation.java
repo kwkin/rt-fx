@@ -8,6 +8,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import mil.af.eglin.ccf.rt.fx.control.Button;
+import mil.af.eglin.ccf.rt.fx.control.ButtonBar;
 import mil.af.eglin.ccf.rt.fx.control.IconButton;
 import mil.af.eglin.ccf.rt.fx.control.TitledSeparator;
 import mil.af.eglin.ccf.rt.fx.control.style.Accent;
@@ -75,25 +76,24 @@ public class ButtonPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("Flat buttons behave the same as regular buttons, but they appear to be on the same level as its container.");
 
-        GridPane toggleButtonGridPane = new GridPane();
+        VBox toggleButtonGridPane = new VBox();
         
-        Button primaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
+        Button primaryLightFlatButton = new Button("OK", ButtonStyle.FLAT, Accent.PRIMARY_LIGHT);
         primaryLightFlatButton.setDefaultButton(true);
-        Button primaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.PRIMARY_MID);
-        Button primaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
+        Button primaryDarkFlatButton = new Button("CANCEL", ButtonStyle.FLAT, Accent.PRIMARY_DARK);
 
-        Button secondaryLightFlatButton = new Button("DEFAULT", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
+        Button secondaryLightFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_LIGHT);
         secondaryLightFlatButton.setDefaultButton(true);
-        Button secondaryMidFlatButton = new Button("ADD", ButtonStyle.FLAT, Accent.SECONDARY_MID);
         Button secondaryDarkFlatButton = new Button("DISCARD", ButtonStyle.FLAT, Accent.SECONDARY_DARK);
+        
+        ButtonBar primaryButtonBar = new ButtonBar();
+        primaryButtonBar.getButtons().addAll(primaryLightFlatButton, primaryDarkFlatButton);
 
-        toggleButtonGridPane.add(primaryLightFlatButton, 0, 0);
-        toggleButtonGridPane.add(primaryMidFlatButton, 1, 0);
-        toggleButtonGridPane.add(primaryDarkFlatButton, 2, 0);
-
-        toggleButtonGridPane.add(secondaryLightFlatButton, 0, 1);
-        toggleButtonGridPane.add(secondaryMidFlatButton, 1, 1);
-        toggleButtonGridPane.add(secondaryDarkFlatButton, 2, 1);
+        ButtonBar secondaryButtonBar = new ButtonBar();
+        secondaryButtonBar.getButtons().addAll(secondaryLightFlatButton, secondaryDarkFlatButton);
+        
+        toggleButtonGridPane.getChildren().add(primaryButtonBar);
+        toggleButtonGridPane.getChildren().add(secondaryButtonBar);
 
         descriptionPane.setContent(toggleButtonGridPane);
         

@@ -108,7 +108,7 @@ public class ComboBox<T> extends javafx.scene.control.ComboBox<T>
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
-
+        
         pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.isLabelFloating.get());
         pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isHelperTextVisible.get() || getValidators().size() > 0);
         this.isLabelFloating.addListener((ov, oldVal, newVal) ->

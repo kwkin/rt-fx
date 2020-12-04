@@ -121,12 +121,14 @@ TODO
 }
 
 /*-- ############################### Pseudo State Padding ############################### */
-.rt-color-picker:combo-box:helper
+.rt-color-picker:combo-box:helper,
+.rt-color-picker:combo-box:error
 {
     -fx-min-height: 72;
 }
 
-.rt-color-picker:combo-box:helper .description-container
+.rt-color-picker:combo-box:helper .description-container,
+.rt-color-picker:combo-box:error .description-container
 {
     -fx-min-height: 16;
     -fx-padding: 4 16 4 16;

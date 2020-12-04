@@ -52,7 +52,6 @@ public class TitledPanePresentation extends SizedTitledCard
         DescriptionPane descriptionPane = new DescriptionPane();
         descriptionPane.setDescription("An accordion is composed of several titled panes.");
         
-        
         CheckBox secondaryLightCheckBox = new CheckBox();
         secondaryLightCheckBox.setSelected(true);
         TitledPane titled1 = new TitledPane("Titled 1", secondaryLightCheckBox);

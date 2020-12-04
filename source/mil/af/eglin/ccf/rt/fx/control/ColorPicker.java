@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.css.CssMetaData;
 import javafx.css.PseudoClass;
@@ -73,6 +74,26 @@ public class ColorPicker extends javafx.scene.control.ColorPicker
     {
         getStyleClass().add(CSS_CLASS);
         getStyleClass().add(this.accent.getStyleClassName());
+
+        pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, this.isLabelFloating.get());
+        pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, this.isHelperTextVisible.get() || getValidators().size() > 0);
+        this.isLabelFloating.addListener((ov, oldVal, newVal) ->
+        {
+            pseudoClassStateChanged(FLOATING_PSEUDOCLASS_STATE, newVal);
+        });
+        this.isHelperTextVisible.addListener((ov, oldVal, newVal) ->
+        {
+            pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, newVal);
+        });
+        this.validationHandler.getValidators().addListener(new ListChangeListener<Validator<Color>>()
+        {
+            @Override
+            public void onChanged(javafx.collections.ListChangeListener.Change<? extends Validator<Color>> c)
+            {
+                pseudoClassStateChanged(HELPER_PSEUDOCLASS_STATE, isHelperTextVisible());
+            }
+        });
+        
         for (ColorPickerStyle buttonStyle : ColorPickerStyle.values())
         {
             pseudoClassStateChanged(buttonStyle.getPseudoClass(), buttonStyle == this.style);
