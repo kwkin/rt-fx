@@ -152,7 +152,7 @@ public class IconButton extends Button implements Icon
         new StyleablePropertyFactory<>(Button.getClassCssMetaData());
 
     private static final CssMetaData<IconButton, Paint> SELECTED_ICON_COLOR = 
-            FACTORY.createPaintCssMetaData("-rt-disable-animation", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);
+            FACTORY.createPaintCssMetaData("-rt-selected-fill", s -> s.selectedIconFill, DefaultPalette.getInstance().getAccentColor(), false);
 
     /**
      * The color of the icon when the button is armed.
@@ -222,7 +222,7 @@ public class IconButton extends Button implements Icon
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.getInstance().loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**

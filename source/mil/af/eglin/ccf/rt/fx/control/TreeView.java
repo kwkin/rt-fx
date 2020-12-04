@@ -88,7 +88,7 @@ public class TreeView<T> extends javafx.scene.control.TreeView<T>
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadComponent(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.getInstance().loadComponent(USER_AGENT_STYLESHEET));
     }
 
     /**

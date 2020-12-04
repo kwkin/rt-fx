@@ -1,4 +1,4 @@
-package mil.af.eglin.ccf.rt.fx.style;
+package mil.af.eglin.ccf.rt.fx.control;
 
 import javafx.animation.Interpolator;
 import javafx.beans.binding.Bindings;
@@ -22,7 +22,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
-import mil.af.eglin.ccf.rt.fx.control.LabelFloatControl;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtAnimationTimeline;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyFrame;
 import mil.af.eglin.ccf.rt.fx.control.animations.RtKeyValue;

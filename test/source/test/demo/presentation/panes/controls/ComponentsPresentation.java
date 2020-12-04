@@ -53,6 +53,7 @@ public class ComponentsPresentation extends ScrollPane implements TitledContentP
         componentPanes.add(new ListViewPanePresentation(controller));
         componentPanes.add(new ContextMenuPanePresentation(controller));
         componentPanes.add(new DialogPanePresentation(controller));
+        componentPanes.add(new TableViewPresentation(controller));
         return componentPanes;
     }
 

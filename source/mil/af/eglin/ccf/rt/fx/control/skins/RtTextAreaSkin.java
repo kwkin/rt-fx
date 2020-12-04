@@ -15,8 +15,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
+import mil.af.eglin.ccf.rt.fx.control.PromptInput;
 import mil.af.eglin.ccf.rt.fx.control.TextArea;
-import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 /**
  * A skin for {@link mil.af.eglin.ccf.rt.fx.control.TextArea text areas}

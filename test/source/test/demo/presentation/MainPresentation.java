@@ -69,8 +69,8 @@ public class MainPresentation extends BorderPane
             ThemeManager.getInstance().load(newVal.getTheme());
             if (!newVal.getDemoFile().equals(oldVal.getDemoFile()))
             {
-                String oldDemoFile = ResourceLoader.loadDemoFile(oldVal.getDemoFile());
-                String newDemoFile = ResourceLoader.loadDemoFile(newVal.getDemoFile());
+                String oldDemoFile = ResourceLoader.getInstance().loadDemoFile(oldVal.getDemoFile());
+                String newDemoFile = ResourceLoader.getInstance().loadDemoFile(newVal.getDemoFile());
                 SampleApp.getStage().getScene().getStylesheets().remove(oldDemoFile);
                 SampleApp.getStage().getScene().getStylesheets().add(newDemoFile);
             }

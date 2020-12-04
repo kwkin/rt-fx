@@ -17,8 +17,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
 import mil.af.eglin.ccf.rt.fx.control.Icon;
+import mil.af.eglin.ccf.rt.fx.control.PromptInput;
 import mil.af.eglin.ccf.rt.fx.control.TextField;
-import mil.af.eglin.ccf.rt.fx.style.PromptInput;
 
 import java.lang.reflect.Field;
 

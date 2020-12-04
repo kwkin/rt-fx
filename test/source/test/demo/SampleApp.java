@@ -59,7 +59,7 @@ public class SampleApp extends Application
         stage.setTitle("RT-FX Demo");
         
         Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
-        scene.getStylesheets().add(ResourceLoader.loadDemoFile("demo.css"));
+        scene.getStylesheets().add(ResourceLoader.getInstance().loadDemoFile("demo.css"));
        
         
         SampleApp.stage.setScene(scene);

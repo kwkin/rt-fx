@@ -250,7 +250,7 @@ public class FlowPane extends javafx.scene.layout.FlowPane
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.getInstance().loadLayouts(USER_AGENT_STYLESHEET));
     }
 
     static

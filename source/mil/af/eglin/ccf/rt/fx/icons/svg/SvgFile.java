@@ -4,6 +4,11 @@ import java.io.InputStream;
 
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
+/**
+ * An {@link SvgIcon Svg Icon} can use one of several standard icon files listed
+ * in {@code SvgFile}. Each {@code SvgFile} defines a .svg filename containing a
+ * single svg path.
+ */
 public enum SvgFile
 {
     // @formatter:off
@@ -70,21 +75,31 @@ public enum SvgFile
     TACO("taco.svg"),
     UNDO("undo.svg");
     // @formatter:on
-    
+
     private String svgFileName;
-    
+
     SvgFile(String svgFileName)
     {
         this.svgFileName = svgFileName;
     }
-    
+
+    /**
+     * Gets the name of the svg file 
+     * 
+     * @return the name of the svg file
+     */
     public String getSvgFileName()
     {
         return svgFileName;
     }
-    
+
+    /**
+     * Gets an input stream to the svg file
+     * 
+     * @return an input stream to the svg file
+     */
     public InputStream getIconInputStream()
     {
-        return ResourceLoader.loadIconStream(getSvgFileName());
+        return ResourceLoader.getInstance().loadIconStream(getSvgFileName());
     }
 }

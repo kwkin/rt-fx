@@ -78,7 +78,7 @@ public class TextFlow extends javafx.scene.text.TextFlow
      */
     public static void loadStyleSheet()
     {
-        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.loadLayouts(USER_AGENT_STYLESHEET));
+        StyleManager.getInstance().addUserAgentStylesheet(ResourceLoader.getInstance().loadLayouts(USER_AGENT_STYLESHEET));
     }
     
     static

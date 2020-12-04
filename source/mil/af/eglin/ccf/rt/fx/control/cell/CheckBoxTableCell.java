@@ -11,7 +11,7 @@ import mil.af.eglin.ccf.rt.fx.control.style.Accent;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
 
 /**
- * A bi-state selection control for adding a check box to a table.\
+ * A bi-state selection control for adding a check box to a table.
  *
  * @param <S> the type of the elements contained within the TableView
  * @param <T> the type of the elements contained within the TableColumn.
@@ -23,22 +23,41 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
 
     protected boolean isAccentSpecified = false;
     protected Accent accent = Accent.PRIMARY_MID;
-    
+
     protected CheckBox checkBox;
     protected ObservableValue<Boolean> cellSelectedProperty;
 
+    /**
+     * Creates a {@code CheckBoxTableCell}
+     */
     public CheckBoxTableCell()
     {
         super();
         initialize();
     }
 
+    /**
+     * Creates a {@code CheckBoxTableCell} with a custom callback to retrieve an
+     * observable value for a given cell index
+     * 
+     * @param getSelectedProperty a callback that returns an observable value
+     *            given an index from the table column
+     */
     public CheckBoxTableCell(Callback<Integer, ObservableValue<Boolean>> getSelectedProperty)
     {
         super(getSelectedProperty);
         initialize();
     }
 
+    /**
+     * Creates a {@code CheckBoxTableCell} with a custom callback and converter
+     * 
+     * @param getSelectedProperty a callback that returns an observable value
+     *            given an index from the table column
+     * @param converter A StringConverter that, given an object of type T, will
+     *            return a String that can be used to represent the object
+     *            visually.
+     */
     public CheckBoxTableCell(final Callback<Integer, ObservableValue<Boolean>> getSelectedProperty,
             final StringConverter<T> converter)
     {
@@ -46,6 +65,11 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         initialize();
     }
 
+    /**
+     * Creates a {@code CheckBoxTableCell} with the provided accent
+     * 
+     * @param accent the accent used to change the component's color scheme
+     */
     public CheckBoxTableCell(Accent accent)
     {
         super();
@@ -54,6 +78,13 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         initialize();
     }
 
+    /**
+     * Creates a {@code CheckBoxTableCell} with a custom callback and accent
+     * 
+     * @param getSelectedProperty a callback that returns an observable value
+     *            given an index from the table column
+     * @param accent the accent used to change the component's color scheme
+     */
     public CheckBoxTableCell(Callback<Integer, ObservableValue<Boolean>> getSelectedProperty, Accent accent)
     {
         super(getSelectedProperty);
@@ -62,6 +93,17 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         initialize();
     }
 
+    /**
+     * Creates a {@code CheckBoxTableCell} with a custom callback, converter,
+     * and accent
+     * 
+     * @param getSelectedProperty a callback that returns an observable value
+     *            given an index from the table column
+     * @param converter A StringConverter that, given an object of type T, will
+     *            return a String that can be used to represent the object
+     *            visually.
+     * @param accent the accent used to change the component's color scheme
+     */
     public CheckBoxTableCell(final Callback<Integer, ObservableValue<Boolean>> getSelectedProperty,
             final StringConverter<T> converter, Accent accent)
     {
@@ -77,7 +119,7 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
     @Override
     public String getUserAgentStylesheet()
     {
-        return ResourceLoader.loadComponent(USER_AGENT_STYLESHEET);
+        return ResourceLoader.getInstance().loadComponent(USER_AGENT_STYLESHEET);
     }
 
     private void initialize()
@@ -85,7 +127,7 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         this.checkBox = new CheckBox(this.accent);
         getStyleClass().add(CSS_CLASS);
         setGraphic(checkBox);
-        
+
         if (!this.isAccentSpecified)
         {
             if (getTableView() != null)
@@ -97,7 +139,7 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
                     getStyleClass().add(this.accent.getStyleClassName());
                 }
             }
-            tableViewProperty().addListener((ov, oldVal, newVal) -> 
+            tableViewProperty().addListener((ov, oldVal, newVal) ->
             {
                 if (newVal instanceof TableView)
                 {
@@ -113,6 +155,9 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void updateItem(T item, boolean empty)
@@ -123,7 +168,8 @@ public class CheckBoxTableCell<S, T> extends javafx.scene.control.cell.CheckBoxT
         {
             setText(null);
             setGraphic(null);
-        } else
+        }
+        else
         {
             setGraphic(checkBox);
 

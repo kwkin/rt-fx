@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import mil.af.eglin.ccf.rt.fx.control.ColorPicker;
 import mil.af.eglin.ccf.rt.fx.control.DescriptionContainer;
-import mil.af.eglin.ccf.rt.fx.style.PromptInput;
+import mil.af.eglin.ccf.rt.fx.control.PromptInput;
 
 /**
  * A skin for {@link mil.af.eglin.ccf.rt.fx.control.ColorPicker color pickers}
