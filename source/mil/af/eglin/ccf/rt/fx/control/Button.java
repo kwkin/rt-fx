@@ -92,6 +92,7 @@ public class Button extends javafx.scene.control.Button implements RtStyleableCo
         initialize();
     }
 
+    // TODO use style or separate as a separate class?
     /**
      * Creates a {@code Button} with the specified label text and style
      * 

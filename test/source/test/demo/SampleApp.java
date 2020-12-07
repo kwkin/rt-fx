@@ -1,11 +1,10 @@
 package test.demo;
 
-import com.jfoenix.controls.JFXDecorator;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mil.af.eglin.ccf.rt.fx.style.Theme;
 import mil.af.eglin.ccf.rt.fx.style.ThemeManager;
 import mil.af.eglin.ccf.rt.util.ResourceLoader;
@@ -19,7 +18,7 @@ public class SampleApp extends Application
     private static Stage stage;
     private SampleSession session;
     private Settings settings;
-
+    
     public static void main(String[] args)
     {
         launch(args);
@@ -52,18 +51,19 @@ public class SampleApp extends Application
         this.session = session;
         this.settings = settings;
 
+        
+        
         PaneController controller = new PaneController(session, settings);
         MainPresentation presentation = new MainPresentation(controller);
-        
-        JFXDecorator decorator = new JFXDecorator(stage, presentation, false, true, true);
+//        JFXDecorator decorator = new JFXDecorator(stage, presentation, false, true, true);
         stage.setTitle("RT-FX Demo");
-        
-        Scene scene = new Scene(decorator, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
+        stage.initStyle(StageStyle.UNIFIED);
+        Scene scene = new Scene(presentation, settings.getDefaultWindowWidth(), settings.getDefaultWindowHeight());
         scene.getStylesheets().add(ResourceLoader.getInstance().loadDemoFile("demo.css"));
-       
+
         
         SampleApp.stage.setScene(scene);
-        SampleApp.stage.show();
+        SampleApp.stage.show();;
     }
 
     @Override
